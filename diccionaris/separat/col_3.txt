@@ -62531,7 +62531,7 @@ en
 en
 ɛnə
 aɣuɾəs
-ɛŋ
+eŋ
 o
 o
 ons
@@ -344447,7 +344447,7 @@ i
 ɔpə
 okəs
 istə
-o
+or
 ɔɾə
 a
 a
@@ -361793,7 +361793,7 @@ oləs
 ɛtə
 ɛtəs
 ɔlf
-ɔlf
+olf
 olfə
 as
 asus
@@ -563986,7 +563986,7 @@ on
 ɔkəs
 ɛt
 ɛts
-o
+ɔr
 oɾə
 oɾə
 a
@@ -584813,8 +584813,8 @@ i
 ɔtə
 ɔtə
 ɔkis
-o
-o
+or
+oɾ
 eɾə
 oɾə
 a
