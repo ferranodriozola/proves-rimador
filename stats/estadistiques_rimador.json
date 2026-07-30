@@ -1,5 +1,5 @@
 {
-    "actualitzacio": "30/07/2026 15:03:58",
+    "actualitzacio": "30/07/2026 17:21:38",
     "setmana": {
         "text_dies": "23/7 > 29/7",
         "top_10_paraules": [],
@@ -25,11 +25,20 @@
             {
                 "paraula": "parells",
                 "cerques": 1
+            },
+            {
+                "paraula": "morir",
+                "cerques": 1
             }
         ],
         "top_10_rimes": [
             {
                 "paraula": "at",
+                "tipus": "r.consonant",
+                "cerques": 1
+            },
+            {
+                "paraula": "i",
                 "tipus": "r.consonant",
                 "cerques": 1
             },
@@ -49,24 +58,24 @@
                 "cerques": 1
             }
         ],
-        "total_cerques": 4,
+        "total_cerques": 5,
         "numero_usuaris": 1,
         "recompte_tipus_rima": {
-            "r.consonant": 4
+            "r.consonant": 5
         },
         "top_10_fenix": [],
         "top_10_typos": [],
         "recompte_num_sil": {
-            "0": 4
+            "0": 5
         },
         "recompte_comenca_per": {
-            "indiferent": 4
+            "indiferent": 5
         },
         "recompte_incloure_np": {
-            "no": 4
+            "no": 5
         },
         "recompte_incloure_pl": {
-            "si": 4
+            "si": 5
         },
         "grafic_linia_diaria": [
             {
@@ -205,6 +214,10 @@
             },
             {
                 "rima": "ɛʎs",
+                "vegades": 1
+            },
+            {
+                "rima": "i",
                 "vegades": 1
             }
         ]
