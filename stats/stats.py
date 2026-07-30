@@ -110,6 +110,7 @@ def formatar_top_per_json(dades):
 dades_json = {
     "actualitzacio": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
     "setmana": {
+        "text_dies": f"{inici_setmana.day}/{inici_setmana.month} > {ahir.day}/{ahir.month}",        
         "top_10_paraules": formatar_top_per_json(obtenir_top_paraules(df_rimes_setmana, 10, 'paraula')),
         "top_10_rimes": formatar_top_per_json(obtenir_top_paraules(df_rimes_setmana, 10, 'rima')),
         "total_cerques": len(df_net_setmana),

@@ -104,7 +104,6 @@ function pintarFiltresHTML(dadesSempre) {
 
 
 
-
 function omplirLlistesHTML(idElement, arrayDades, esRima = false) {
     const contenidor = document.getElementById(idElement);
     if (!contenidor) return;
@@ -146,6 +145,7 @@ async function carregarEstadistiques(arxiuJson) {
         const dades = await resposta.json();
 
         document.getElementById('data-actualitzacio').textContent = dades.actualitzacio;
+        document.getElementById('rang-setmana').textContent = "(" + dades.setmana.text_dies + ")";
         document.getElementById('cerques-setmana').textContent = dades.setmana.total_cerques;
         document.getElementById('usuaris-setmana').textContent = dades.setmana.numero_usuaris;
         document.getElementById('cerques-sempre').textContent = dades.sempre.total_cerques;
