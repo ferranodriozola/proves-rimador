@@ -1,3 +1,15 @@
+let llistaFenix = [];
+
+async function carregarFenix() {
+  try {
+    const resposta = await fetch(`llistes/paraules_fenixs.json?t=${Date.now()}`); 
+    llistaFenix = await resposta.json();
+    console.log("Paraules fènix carregades:", llistaFenix.length);
+  } catch (err) {
+    console.error("Error carregant el json de paraules fènix", err);
+  }
+}
+
 let VERSIONS_FITXERS = {};
 
 async function carregarVersions() {
@@ -58,11 +70,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     Debug.logTime('Temps de càrrega');
     const loaderText2 = document.getElementById('loader-text2');
     if (loaderText2) {
-        loaderText2.textContent = `Carregant fitxers (${fitxersLlegits}/${nombresDeFitxers})`;
+        loaderText2.textContent = `Carregant fitxers (${fitxersLlegits}/${nombresDeFitxers+1})`; //+1 per si de cas es queda penjat, que no quedi 10/10
     }
 
     try {
         await carregarVersions();
+        await carregarFenix(); 
         const resultatFitxers = await Promise.all(camins.map(llegirFitxerAmbIndexedDB));
         [array0, array1, array2, array3, array4, array5, array6, array7, array8, array9] = resultatFitxers;
         console.log('Tots els fitxers carregats correctament');
@@ -122,7 +135,7 @@ async function llegirFitxerAmbIndexedDB(rutaFitxer) {
     fitxersLlegits++;
     const loaderText2 = document.getElementById("loader-text2");
     if (loaderText2) {
-      loaderText2.textContent = `Carregant fitxers (${fitxersLlegits}/${nombresDeFitxers})`;
+      loaderText2.textContent = `Carregant fitxers (${fitxersLlegits}/${nombresDeFitxers+1})`; //+1 per si de cas es queda penjat, que no quedi 10/10
     }
   };
 
@@ -526,8 +539,7 @@ function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, i
   return [matches, llistaParaulaCerca];
 }
 
-// La ruta no canvia mai un cop carregada la pàgina, però es tornava a calcular dins
-// de cada funció, o sigui un cop per cada logo de cada paraula del llistat de rimes.
+
 let rutaLogos = '';
 if (idPagina === 'principal') {
   rutaLogos = 'assets/';
@@ -578,75 +590,143 @@ function actualitzarRimes() {
   var rimesPerSilabes = {};
   var rima_enllac = "";
 
+  var contenidorRimes = document.getElementById("rima_enllac");
+  var checkboxContainer = document.getElementById("checkboxContainer");
+  var resultatsContainer = document.querySelector(".resultats");
+
+  var textNombre = document.getElementById("nombre");
+
   if (matches_provisionals.length > 0) {
-    for (var i = 0; i < matches_provisionals.length; i++) {
-      var parts = matches_provisionals[i];
-      var paraula = parts[0];
-      var paraula_mare = "";
+    var esFenix = llistaFenix.some(item => item.paraula.toLowerCase() === paraulacerca[0]);
+    if (esFenix) {
+      textNombre.innerHTML = ""; 
 
-      if (parts[2][0] === "V") {
-        paraula_mare = " (" + parts[1] + ") ";
-      }      
-      var enllac_vicc = "";
-      var enllac_viq = "";
-      var enllac_diec = "";
+      contenidorRimes.classList.remove("column-container");
 
-      if (parts[4] === "Vicc") {
-        enllac_vicc = crearEnllacViccionari(parts[1]);
-      }
+      if (checkboxContainer) checkboxContainer.style.display = "none";
+      if (resultatsContainer) resultatsContainer.style.width = "100%";
 
-      if (parts[5] === "Viq") {
-        enllac_viq = crearEnllacViquipedia(parts[1]);
+      var isSober = document.documentElement.getAttribute("data-theme") === "sober";
+
+      if (isSober) {       
+        rima_enllac = /*html*/`
+          <div class="alerta-fenix" style="text-align: center; width: 100%; margin-top: 20px;">
+            <p><strong>Has trobat una paraula fènix!!!</strong></p>
+            <p>La paraula <strong>${paraulacerca[0]}</strong> no rima amb cap altra paraula del diccionari ni amb cap nom propi.</p>
+            <p>Consulta la llista de <a id="enllaç" href="llistes/llista_fenixs.html" target="_blank">Paraules fènix</a></p>
+          </div>
+        `;  
+      } else {
+        rima_enllac = /*html*/`
+          <div class="alerta-fenix" style="
+              background-color: #ffff00;
+              border: 6px dashed #ff00ff;
+              box-shadow: 10px 10px 0px #00ffff;
+              padding: 25px;
+              text-align: center;
+              width: 80%;
+              max-width: 600px;
+              margin: 40px auto;
+              font-family: 'Comic Sans MS', cursive, sans-serif;
+              color: #0000cc;
+              border-radius: 15px;
+              transform: rotate(-1deg);
+          ">
+            <h2 style="color: #ff0000; text-shadow: 3px 3px 0px #00ff00; font-size: 28px; text-transform: uppercase; margin-top: 0;">Paraula fènix!!!</h2>
+            <p style="font-size: 18px;">La paraula <strong style="font-size: 24px; color: #ff00ff; text-decoration: underline;">${paraulacerca[0]}</strong> no rima amb cap altra paraula del diccionari ni amb cap nom propi.</p>
+            
+            <div style="margin-top: 25px; background: #817f7f; padding: 10px; border-radius: 8px; border: 2px solid #00ffff;">
+              <p style="font-weight: bold; font-size: 18px; color: white; margin: 0;">
+                Consulta la llista de <a id="enllaçbrillant" href="llistes/llista_fenixs.html" target="_blank">Paraules fènix</a>
+              </p>
+            </div>
+          </div>
+        `;
       }
       
-      if (parts[6] === "Diec") {
-        enllac_diec = crearEnllacDiec(parts[1]);
-      }
+    } else {
+        textNombre.innerHTML = numerorimes;
 
-      var numsilabes = parts[3];
-
-      if (!rimesPerSilabes[numsilabes]) {
-        rimesPerSilabes[numsilabes] = [];
-      }
-
-      rimesPerSilabes[numsilabes].push({ paraula: paraula, paraula_mare: paraula_mare, enllac_vicc: enllac_vicc, enllac_viq: enllac_viq, enllac_diec: enllac_diec });
-    }
-
-    for (var silabes in rimesPerSilabes) {
-      if (dataLlista === 'mots_de7_glosa') {
-        if (silabes == 7) {
-          rima_enllac += "<h3><br>7 síl·labes (mots aguts):</h3><ul>";
-      } else if (silabes == 8) {
-          rima_enllac += "<h3><br>8 síl·labes (mots plans):</h3><ul>";
-      } else if (silabes == 9) {
-          rima_enllac += "<h3><br>9 síl·labes (mots esdrúixols):</h3><ul>";
-    }} else {
-        rima_enllac += "<h3><br>" + silabes + (silabes > 1 ? " síl·labes" : " síl·laba") + ":</h3><ul>";
-      }
-      for (var j = 0; j < rimesPerSilabes[silabes].length; j++) {
-        var item = rimesPerSilabes[silabes][j];
-        var enllacText = "";
+        contenidorRimes.classList.add("column-container");
         
-        if (item.enllac_vicc) {
-          enllacText += item.enllac_vicc + " ";
-        }
-        if (item.enllac_viq) {
-          enllacText += item.enllac_viq + " ";
-        }
-        if (item.enllac_diec) {
-          enllacText += item.enllac_diec + " ";
+        if (checkboxContainer) checkboxContainer.style.display = "";
+        if (resultatsContainer) resultatsContainer.style.width = "";
+
+        for (var i = 0; i < matches_provisionals.length; i++) {
+          var parts = matches_provisionals[i];
+          var paraula = parts[0];
+          var paraula_mare = "";
+
+          if (parts[2][0] === "V") {
+            paraula_mare = " (" + parts[1] + ") ";
+          }      
+          var enllac_vicc = "";
+          var enllac_viq = "";
+          var enllac_diec = "";
+
+          if (parts[4] === "Vicc") {
+            enllac_vicc = crearEnllacViccionari(parts[1]);
+          }
+
+          if (parts[5] === "Viq") {
+            enllac_viq = crearEnllacViquipedia(parts[1]);
+          }
+          
+          if (parts[6] === "Diec") {
+            enllac_diec = crearEnllacDiec(parts[1]);
+          }
+
+          var numsilabes = parts[3];
+
+          if (!rimesPerSilabes[numsilabes]) {
+            rimesPerSilabes[numsilabes] = [];
+          }
+
+          rimesPerSilabes[numsilabes].push({ paraula: paraula, paraula_mare: paraula_mare, enllac_vicc: enllac_vicc, enllac_viq: enllac_viq, enllac_diec: enllac_diec });
         }
 
-        rima_enllac += "<li><span class='classeParaula'>" + item.paraula + "</span><span class='classeParaulaMare'>" + item.paraula_mare + "</span> " + enllacText.trim() + "</li>";
+        for (var silabes in rimesPerSilabes) {
+          if (dataLlista === 'mots_de7_glosa') {
+            if (silabes == 7) {
+              rima_enllac += "<h3><br>7 síl·labes (mots aguts):</h3><ul>";
+          } else if (silabes == 8) {
+              rima_enllac += "<h3><br>8 síl·labes (mots plans):</h3><ul>";
+          } else if (silabes == 9) {
+              rima_enllac += "<h3><br>9 síl·labes (mots esdrúixols):</h3><ul>";
+        }} else {
+            rima_enllac += "<h3><br>" + silabes + (silabes > 1 ? " síl·labes" : " síl·laba") + ":</h3><ul>";
+          }
+          for (var j = 0; j < rimesPerSilabes[silabes].length; j++) {
+            var item = rimesPerSilabes[silabes][j];
+            var enllacText = "";
+            
+            if (item.enllac_vicc) {
+              enllacText += item.enllac_vicc + " ";
+            }
+            if (item.enllac_viq) {
+              enllacText += item.enllac_viq + " ";
+            }
+            if (item.enllac_diec) {
+              enllacText += item.enllac_diec + " ";
+            }
+
+            rima_enllac += "<li><span class='classeParaula'>" + item.paraula + "</span><span class='classeParaulaMare'>" + item.paraula_mare + "</span> " + enllacText.trim() + "</li>";
+          }
+          rima_enllac += "</ul>";
+        }
       }
-      rima_enllac += "</ul>";
-    }
     
   } else {
+    textNombre.innerHTML = numerorimes;
+    contenidorRimes.classList.remove("column-container");
     var rimes;
     if (paraulacerca[0] === 0) {
+      if (checkboxContainer) checkboxContainer.style.display = "none";
+      if (resultatsContainer) resultatsContainer.style.width = "100%";
       rimes = "No s'ha trobat la paraula al diccionari.";
     } else {
+      if (checkboxContainer) checkboxContainer.style.display = "";
+      if (resultatsContainer) resultatsContainer.style.width = "";
       rimes = "No s'han trobat rimes amb aquestes condicions. Ets massa exigent!";
     }
     
@@ -994,6 +1074,9 @@ function toggleTheme() {
   }
 
   aplicarTema(temaNou);
+  if (document.querySelector('.alerta-fenix')) {
+      actualitzarRimes();
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
