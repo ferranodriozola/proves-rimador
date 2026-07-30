@@ -31,6 +31,10 @@ a.kofi-button {
     background-color: #00ffff; 
 }
 
+body#dades a.kofi-button {
+    border: 1px solid black;
+}
+
 body#llista a.kofi-button {
     background-color: #FF91FF !important;
     border: 1px solid white;
@@ -66,6 +70,7 @@ img.kofiimg {
     margin-right: 5px !important;
     margin-bottom: 3px !important;
 }
+
 
 @keyframes kofi-wiggle {
     0%, 60% { transform: rotate(0) scale(1); }
