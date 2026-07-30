@@ -72,6 +72,8 @@ img.kofiimg {
 }
 
 
+/* Adaptat telèfons */
+
 @keyframes kofi-wiggle {
     0%, 60% { transform: rotate(0) scale(1); }
     75% { transform: rotate(0) scale(1.13); }

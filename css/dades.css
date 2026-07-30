@@ -1,13 +1,7 @@
-/* =========================================
-   ESTILS DELS FILTRES (BARRES APILADES)
-   ========================================= */
-
-/* Fer la caixa prou alta */
 .grafic-caixa-filtres .grafic-cos {
     height: auto;
 }
 
-/* Forçar la llegenda en una línia que ocupi el 100% */
 .llegenda-filtre {
     display: flex;
     width: 100%;
@@ -18,7 +12,6 @@
     font-size: 13px;
 }
 
-/* Col·locar el color a dalt i centrar-ho tot segons el percentatge */
 .item-llegenda {
     display: flex;
     flex-direction: column;
@@ -31,7 +24,7 @@
 }
 
 .item-llegenda span {
-    word-break: break-word; /* Evita que el text es talli bruscament */
+    word-break: break-word;
     font-size: 11px;
 }
 
@@ -42,7 +35,7 @@
 
 #contenidor-filtres {
     display: flex;
-    flex-direction: column; /* Posem els 4 filtres un sota l'altre */
+    flex-direction: column;
     gap: 25px;
     padding: 20px;
 }
@@ -60,7 +53,7 @@
 .barra-apilada {
     display: flex;
     width: 100%;
-    height: 40px; /* Gruix de la barra principal */
+    height: 40px;
     border-radius: 8px;
     overflow: hidden;
     border: 2px solid #d30505;
@@ -77,7 +70,7 @@
     font-size: 13px;
     font-weight: bold;
     box-sizing: border-box;
-    border-right: 1px solid rgba(0,0,0,0.3); /* Línia de separació entre colors */
+    border-right: 1px solid rgba(0,0,0,0.3);
     overflow: hidden;
 }
 
@@ -93,10 +86,6 @@
     border-radius: 3px;
 }
 
-
-
-
-
 #text_dades {
     background-color: #00ffff;
     padding: 20px;
@@ -111,12 +100,12 @@
 #titol_dades {
     font-family: 'Comic Sans MS', cursive, sans-serif;
     font-size: 2em;
-    color: #FF69B4; /* Rosa vibrant */
+    color: #FF91ff; 
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 5px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Ombra suau */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 #data_actualitzacio {
@@ -166,7 +155,6 @@
     text-decoration: underline;
 }
 
-/* Els comptadors, amb aire de rellotge digital */
 .comptador {
     display: block;
     margin: 8px 12px;
@@ -237,6 +225,9 @@
     margin: 0px auto;
 }
 
+
+/* Adaptat telèfons */
+
 @media screen and (max-width: 750px) {
     #text_dades {
         margin-left: 15px;
@@ -256,7 +247,7 @@
     .text-amagat-mobil {
         display: none;
     }
-    /* 2. Mostrem el percentatge a la llegenda (només dels trossos petits) perquè no es perdi la dada */
+
     .text-visible-mobil {
         display: inline;
     }
@@ -278,10 +269,7 @@
     }
 }
 
-
-
 @media screen and (max-width: 750px) {
-    /* Permetem que els ítems saltin de línia i els centrem */
     .llegenda-filtre {
         flex-wrap: wrap !important;
         justify-content: center;
@@ -289,29 +277,23 @@
         margin-top: 15px;
     }
 
-    /* Ignorem el percentatge del JavaScript donant-li un width automàtic */
     .item-llegenda {
         width: auto !important; 
-        flex-direction: row; /* Posem el quadrat de color al costat del text */
+        flex-direction: row; 
         align-items: center;
         padding: 0;
     }
 
-    /* Restaurem el comportament normal del text */
     .item-llegenda span {
         word-break: normal;
         font-size: 12px;
     }
 
-    /* Fem la lletra de dins de la barra una mica més petita per guanyar espai */
     .segment-barra {
         font-size: 11px;
     }
 }
 
-/* Per defecte (escriptori), complim la teva norma: no mostrar mai el percentatge a la llegenda */
 .text-visible-mobil {
     display: none;
 }
-
-

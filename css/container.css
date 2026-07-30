@@ -64,7 +64,6 @@ body#llista #separador_rosa1 {
     padding-left: 12px;
 }
 
-
 #paraulaCercada:focus {
     border-color: #d975d9;
     outline: none;
@@ -116,8 +115,6 @@ body#llista #separador_rosa1 {
     font-weight: bold;
 }
 
-
-
 .dropdown-container {
     display: flex;
     flex-wrap: wrap;
@@ -125,8 +122,6 @@ body#llista #separador_rosa1 {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 14px;
 }
-
-
 
 .dropdown-container label {
     flex: 1 1 150px;
@@ -139,7 +134,7 @@ body#llista #separador_rosa1 {
 }
 
 
-
+/* Adaptat telèfons */
 
 @media screen and (max-width: 750px) {
     .dropdown-container {
@@ -159,7 +154,6 @@ body#llista #separador_rosa1 {
     }
     
 }
-
 
 @media screen and (max-width: 750px) {
     .container,
@@ -220,23 +214,23 @@ body#llista #separador_rosa1 {
 @media screen and (max-width: 550px) {
 #separador_rosa1 p {
   font-size: 14px;
-}
+    }
 }
 
 @media screen and (max-width: 470px) {
 #separador_rosa1 p {
   font-size: 12px;
-}
+    }
 }
 
 @media screen and (max-width: 420px) {
 #separador_rosa1 p {
   font-size: 11px;
-}
+    }
 }
 
 @media screen and (max-width: 350px) {
 #separador_rosa1 p {
   font-size: 10px;
-}
+    }
 }

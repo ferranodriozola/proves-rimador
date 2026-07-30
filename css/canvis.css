@@ -32,7 +32,6 @@
     text-shadow: 0 0 8px #3399ff;
 }
 
-
 #enllaç {
     color: #007BFF;
     text-decoration: underline;
@@ -71,12 +70,12 @@
 #titol_canvis {
     font-family: 'Comic Sans MS', cursive, sans-serif;
     font-size: 2em;
-    color: #FF69B4; /* Rosa vibrants */
+    color: #ff69b4;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Ombra suau */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
   }  
 
 #text_canvis p {
@@ -105,8 +104,9 @@
     color: #606060; 
 }    
 
-/* --- Pantalles petites ---
-   El marge de 150px deixava el text en una columna de 75px en un mòbil. */
+
+/* Adaptat telèfons */
+
 @media screen and (max-width: 750px) {
     #text_canvis {
         margin-left: 25px;
