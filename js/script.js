@@ -596,7 +596,8 @@ function actualitzarRimes() {
 
   if (matches_provisionals.length > 0) {
     var esFenix = llistaFenix.some(item => item.paraula.toLowerCase() === paraulacerca[0]);
-    if (esFenix) {
+    var tipusRima = document.getElementById('rimaSelector').value;
+    if (esFenix && tipusRima === 'r.consonant') {
       textNombre.innerHTML = ""; 
 
       contenidorRimes.classList.remove("column-container");
@@ -610,7 +611,7 @@ function actualitzarRimes() {
         rima_enllac = /*html*/`
           <div class="alerta-fenix" style="text-align: center; width: 100%; margin-top: 20px;">
             <p><strong>Has trobat una paraula fènix.</strong></p>
-            <p>La paraula <strong>${paraulacerca[0]}</strong> no rima amb cap altra paraula del diccionari...</p>
+            <p>La paraula <strong>${paraulacerca[0]}</strong> no rima consonantment amb cap altra paraula del diccionari...</p>
             <p>Consulta la llista de <a id="enllaç" href="llistes/llista_fenixs.html" target="_blank">Paraules fènix</a></p>
           </div>
         `;  
@@ -631,7 +632,7 @@ function actualitzarRimes() {
               transform: rotate(-1deg);
           ">
             <h2 style="color: #ff0000; text-shadow: 3px 3px 0px #00ff00; font-size: 28px; text-transform: uppercase; margin-top: 0;">Paraula fènix!!!</h2>
-            <p style="font-size: 18px;">La paraula <strong style="font-size: 24px; color: #ff00ff; text-decoration: underline;">${paraulacerca[0]}</strong> no rima amb cap altra paraula del diccionari...</p>
+            <p style="font-size: 18px;">La paraula <strong style="font-size: 24px; color: #ff00ff; text-decoration: underline;">${paraulacerca[0]}</strong> no rima consonantment amb cap altra paraula del diccionari...</p>
             
             <div style="margin-top: 25px; background: #817f7f; padding: 10px; border-radius: 8px; border: 2px solid #00ffff;">
               <p style="font-weight: bold; font-size: 18px; color: white; margin: 0;">
