@@ -1,6 +1,7 @@
 {
-    "actualitzacio": "30/07/2026 15:31:51",
+    "actualitzacio": "30/07/2026 16:53:09",
     "setmana": {
+        "text_dies": "23/7 > 29/7",
         "top_10_paraules": [],
         "top_10_rimes": [],
         "total_cerques": 0,
@@ -10,78 +11,44 @@
     "sempre": {
         "top_10_paraules": [
             {
-                "paraula": "trot",
+                "paraula": "saviesa",
                 "cerques": 1
             },
             {
-                "paraula": "casa",
-                "cerques": 1
-            },
-            {
-                "paraula": "estimo",
-                "cerques": 1
-            },
-            {
-                "paraula": "any",
+                "paraula": "boca",
                 "cerques": 1
             }
         ],
         "top_10_rimes": [
             {
-                "paraula": "a",
-                "tipus": "r.assonant",
-                "cerques": 1
-            },
-            {
-                "paraula": "azə",
+                "paraula": "okə",
                 "tipus": "r.consonant",
                 "cerques": 1
             },
             {
-                "paraula": "imu",
+                "paraula": "ɛzə",
                 "tipus": "r.consonant",
-                "cerques": 1
-            },
-            {
-                "paraula": "ɔ",
-                "tipus": "r.assonant",
                 "cerques": 1
             }
         ],
-        "total_cerques": 6,
-        "numero_usuaris": 2,
+        "total_cerques": 2,
+        "numero_usuaris": 1,
         "recompte_tipus_rima": {
-            "r.assonant": 3,
-            "r.consonant": 3
+            "r.consonant": 2
         },
         "top_10_fenix": [],
-        "top_10_typos": [
-            {
-                "paraula": "oure",
-                "cerques": 2
-            }
-        ],
+        "top_10_typos": [],
         "recompte_num_sil": {
-            "1": 5,
-            "0": 5,
-            "2": 3,
-            "3": 2,
-            "4": 1,
-            "5": 1,
-            "6": 1
+            "0": 2
         },
         "recompte_comenca_per": {
-            "indiferent": 12,
-            "vocal+h": 3,
-            "consonant": 3
+            "indiferent": 2
         },
         "recompte_incloure_np": {
-            "no": 15,
-            "si": 3
+            "no": 2
         },
         "recompte_incloure_pl": {
-            "si": 14,
-            "no": 4
+            "si": 2
         },
         "grafic_linia_diaria": [
             {
@@ -207,19 +174,11 @@
         ],
         "grafic_formatge_exit": [
             {
-                "rima": "ɔ",
+                "rima": "ɛzə",
                 "vegades": 1
             },
             {
-                "rima": "azə",
-                "vegades": 1
-            },
-            {
-                "rima": "imu",
-                "vegades": 1
-            },
-            {
-                "rima": "a",
+                "rima": "okə",
                 "vegades": 1
             }
         ]
