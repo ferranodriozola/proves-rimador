@@ -1,5 +1,5 @@
 {
-    "actualitzacio": "30/07/2026 16:53:09",
+    "actualitzacio": "30/07/2026 15:03:58",
     "setmana": {
         "text_dies": "23/7 > 29/7",
         "top_10_paraules": [],
@@ -17,9 +17,22 @@
             {
                 "paraula": "boca",
                 "cerques": 1
+            },
+            {
+                "paraula": "autoritat",
+                "cerques": 1
+            },
+            {
+                "paraula": "parells",
+                "cerques": 1
             }
         ],
         "top_10_rimes": [
+            {
+                "paraula": "at",
+                "tipus": "r.consonant",
+                "cerques": 1
+            },
             {
                 "paraula": "okə",
                 "tipus": "r.consonant",
@@ -29,26 +42,31 @@
                 "paraula": "ɛzə",
                 "tipus": "r.consonant",
                 "cerques": 1
+            },
+            {
+                "paraula": "ɛʎs",
+                "tipus": "r.consonant",
+                "cerques": 1
             }
         ],
-        "total_cerques": 2,
+        "total_cerques": 4,
         "numero_usuaris": 1,
         "recompte_tipus_rima": {
-            "r.consonant": 2
+            "r.consonant": 4
         },
         "top_10_fenix": [],
         "top_10_typos": [],
         "recompte_num_sil": {
-            "0": 2
+            "0": 4
         },
         "recompte_comenca_per": {
-            "indiferent": 2
+            "indiferent": 4
         },
         "recompte_incloure_np": {
-            "no": 2
+            "no": 4
         },
         "recompte_incloure_pl": {
-            "si": 2
+            "si": 4
         },
         "grafic_linia_diaria": [
             {
@@ -179,6 +197,14 @@
             },
             {
                 "rima": "okə",
+                "vegades": 1
+            },
+            {
+                "rima": "at",
+                "vegades": 1
+            },
+            {
+                "rima": "ɛʎs",
                 "vegades": 1
             }
         ]
