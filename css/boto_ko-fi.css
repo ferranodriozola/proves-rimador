@@ -40,8 +40,9 @@ body#llista a.kofi-button {
     border: 1px solid white;
 }
 
-body#canvis a.kofi-button {
-    background-color: #d30505 !important;
+body#canvis a.kofi-button,
+body#nosaltres a.kofi-button {
+    background-color: #d92424 !important;
     border: 1px solid white;
 }
 

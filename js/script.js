@@ -1047,7 +1047,7 @@ function aplicarTema(tema) {
   }
 
   let ruta = '';
-  if (idPagina === 'principal' || idPagina === 'canvis' || idPagina === 'dades') {
+  if (idPagina === 'principal' || idPagina === 'canvis' || idPagina === 'dades' || idPagina === 'nosaltres') {
     ruta = 'assets/';
   } else if (idPagina === '404') {
     ruta = '/assets/';

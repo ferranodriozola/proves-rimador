@@ -15,7 +15,7 @@ let opcionsSilabes = /*html*/`
     <option value="6">6 o +</option>
 `;
 
-if (idPagina === 'principal' || idPagina === 'canvis' || idPagina === 'dades') {
+if (idPagina === 'principal' || idPagina === 'canvis' || idPagina === 'dades' || idPagina === 'nosaltres') {
   ruta1 = 'assets/';
   ruta2 = 'historial_canvis.html';
 } else if (idPagina === '404') {
@@ -242,7 +242,7 @@ const checkboxContainerHTML = document.getElementById('checkboxContainer');
 if (checkboxContainerHTML) { checkboxContainerHTML.innerHTML = checkboxContainer; }
 
 const footer = /*html*/`
-<br>v.5.3 &copy; Marc i Ferran. Tots els drets reservats.
+<br>v.5.3 &copy; Marc i Ferran. Ens reservem els drets, però pots utilitzar-lo tan com vulguis de manera lliure.
 <br><br><a href="mailto:hola@rimador.cat">hola@rimador.cat</a>
 <button id="botoNetejarCache" style="display:none;position:fixed;bottom:70px;right:15px;" onclick="netejarIndexedDB()">🗑 Esborrar memòria cau</button>
 <br>

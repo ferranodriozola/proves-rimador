@@ -55,11 +55,13 @@ body#llista #mostrarFormulari:after {
     background-color: #FF91FF !important;
 }
 
-body#canvis #mostrarFormulari {
+body#canvis #mostrarFormulari,
+body#nosaltres #mostrarFormulari {
     background-color: #7f0c0c !important;
 }
 
-body#canvis #mostrarFormulari:after {
+body#canvis #mostrarFormulari:after,
+body#nosaltres #mostrarFormulari:after {
     background-color: #d30505 !important;
 }
 
