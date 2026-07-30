@@ -129,8 +129,6 @@ async function llegirFitxerAmbIndexedDB(rutaFitxer) {
   const nomFitxer = rutaFitxer.split("/").pop();
   const versioActual = VERSIONS_FITXERS[nomFitxer];
 
-  // Abans es feia document.getElementById("loader-text2").textContent = ... a tres
-  // llocs, sense comprovar que l'element hi fos (la resta del fitxer sí que ho comprova).
   const comptarFitxer = () => {
     fitxersLlegits++;
     const loaderText2 = document.getElementById("loader-text2");
@@ -199,7 +197,7 @@ function netejarIndexedDB() {
     request.onblocked = () => console.warn("L'esborrat d'IndexedDB està bloquejat");
 }
   
-// Afegir event listener per la tecla Enter
+// event listener per la tecla enter
 const inputParaula = document.getElementById('paraulaCercada');
 if (inputParaula) {
   inputParaula.addEventListener('keydown', function(event) {
@@ -611,7 +609,7 @@ function actualitzarRimes() {
       if (isSober) {       
         rima_enllac = /*html*/`
           <div class="alerta-fenix" style="text-align: center; width: 100%; margin-top: 20px;">
-            <p><strong>Has trobat una paraula fènix!!!</strong></p>
+            <p><strong>Has trobat una paraula fènix.</strong></p>
             <p>La paraula <strong>${paraulacerca[0]}</strong> no rima amb cap altra paraula del diccionari ni amb cap nom propi.</p>
             <p>Consulta la llista de <a id="enllaç" href="llistes/llista_fenixs.html" target="_blank">Paraules fènix</a></p>
           </div>
@@ -685,17 +683,27 @@ function actualitzarRimes() {
           rimesPerSilabes[numsilabes].push({ paraula: paraula, paraula_mare: paraula_mare, enllac_vicc: enllac_vicc, enllac_viq: enllac_viq, enllac_diec: enllac_diec });
         }
 
+        let primerTitol = true;
+
         for (var silabes in rimesPerSilabes) {
+          
+          let saltLinia = primerTitol ? "" : "<br>";
+          let estilPrimerTitol = primerTitol ? ' style="margin-top: 0px;"' : "";
+          
+          primerTitol = false; 
+
           if (dataLlista === 'mots_de7_glosa') {
             if (silabes == 7) {
-              rima_enllac += "<h3><br>7 síl·labes (mots aguts):</h3><ul>";
+              rima_enllac += "<h3" + estilPrimerTitol + ">" + saltLinia + "7 síl·labes (mots aguts):</h3><ul>";
           } else if (silabes == 8) {
-              rima_enllac += "<h3><br>8 síl·labes (mots plans):</h3><ul>";
+              rima_enllac += "<h3" + estilPrimerTitol + ">" + saltLinia + "8 síl·labes (mots plans):</h3><ul>";
           } else if (silabes == 9) {
-              rima_enllac += "<h3><br>9 síl·labes (mots esdrúixols):</h3><ul>";
+              rima_enllac += "<h3" + estilPrimerTitol + ">" + saltLinia + "9 síl·labes (mots esdrúixols):</h3><ul>";
         }} else {
-            rima_enllac += "<h3><br>" + silabes + (silabes > 1 ? " síl·labes" : " síl·laba") + ":</h3><ul>";
+            rima_enllac += "<h3" + estilPrimerTitol + ">" + saltLinia + silabes + (silabes > 1 ? " síl·labes" : " síl·laba") + ":</h3><ul>";
           }
+          
+          
           for (var j = 0; j < rimesPerSilabes[silabes].length; j++) {
             var item = rimesPerSilabes[silabes][j];
             var enllacText = "";
@@ -943,7 +951,6 @@ function obtenirValorsSegonsPrimerCaracter(matches) {
       }
   }
 
-  // Retornar les variables amb els resultats
   Debug.logTimeEnd('obtenirValorsSegonsPrimerCaracter');
   return {
       resultatsN: resultatsN,
