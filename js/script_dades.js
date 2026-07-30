@@ -1,12 +1,8 @@
-// Funció d'ajuda per imprimir els rànquings a les llistes de l'HTML
 function omplirLlistesHTML(idElement, arrayDades, esRima = false) {
     const contenidor = document.getElementById(idElement);
     if (!contenidor) return;
-    contenidor.innerHTML = ''; // Netegem abans d'afegir per seguretat
+    contenidor.innerHTML = '';
 
-    // Si el JSON no porta aquesta llista (per exemple perquè encara no s'ha tornat
-    // a generar amb stats.py i les claus han canviat de nom), abans petava aquí i
-    // l'error s'enduia per davant tota la resta de la pàgina, gràfics inclosos.
     if (!Array.isArray(arrayDades)) {
         console.warn(`[dades] no hi ha dades per a "${idElement}"`);
         return;
@@ -42,7 +38,6 @@ async function carregarEstadistiques(arxiuJson) {
 
         const dades = await resposta.json();
 
-        // 1. INJECTEM DADES NUMÈRIQUES AÏLLADES
         document.getElementById('data-actualitzacio').textContent = dades.actualitzacio;
         document.getElementById('cerques-setmana').textContent = dades.setmana.total_cerques;
         document.getElementById('usuaris-setmana').textContent = dades.setmana.numero_usuaris;
@@ -51,7 +46,6 @@ async function carregarEstadistiques(arxiuJson) {
         document.getElementById('assonant-sempre').textContent = dades.sempre.recompte_tipus_rima.assonant;
         document.getElementById('consonant-sempre').textContent = dades.sempre.recompte_tipus_rima.consonant;
 
-        // 2. INJECTEM ELS RÀNQUINGS A LES LLISTES (Les 6 categories)
         omplirLlistesHTML('llista-paraules-setmana', dades.setmana.top_10_paraules, false);
         omplirLlistesHTML('llista-rimes-setmana', dades.setmana.top_10_rimes, true);
         
@@ -61,7 +55,6 @@ async function carregarEstadistiques(arxiuJson) {
         omplirLlistesHTML('llista-fenix', dades.sempre.top_10_fenix, false);
         omplirLlistesHTML('llista-typos', dades.sempre.top_10_typos, false);
 
-        // 3. CREEM EL GRÀFIC DE LÍNIA (Correcció de buit)
         const dadesLinia = dades.sempre.grafic_linia_diaria;
         const ctxLinia = document.getElementById('graficLinia').getContext('2d');
         
@@ -81,22 +74,20 @@ async function carregarEstadistiques(arxiuJson) {
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false, // Permet que no s'esclafi
+                maintainAspectRatio: false,
                 scales: {
                     y: {
-                        beginAtZero: true, // Força a que comenci en 0 i mostri la línia plana
-                        ticks: { stepSize: 1 } // Evita decimals estranys com "0.5 cerques"
+                        beginAtZero: true,
+                        ticks: { stepSize: 1 }
                     }
                 },
                 plugins: { legend: { display: false } }
             }
         });
 
-        // 4. CREEM EL GRÀFIC DE FORMATGE (TOTES LES RIMES)
         const dadesFormatge = dades.sempre.grafic_formatge_exit;
         const ctxFormatge = document.getElementById('graficFormatge').getContext('2d');
         
-        // Paleta fixa (els colors del botó de cercar), per no canviar a cada recàrrega
         const PALETA = ['#ff0000', '#ff7300', '#fffb00', '#48ff00', '#00ffd5', '#002bff', '#7a00ff', '#ff00c8'];
         const colorsFormatge = dadesFormatge.map((_, i) => PALETA[i % PALETA.length]);
 
@@ -126,7 +117,6 @@ async function carregarEstadistiques(arxiuJson) {
             }
         });
 
-        // Fi de la càrrega
         setTimeout(() => {
             if (loader) loader.style.display = 'none';
         }, 300);
