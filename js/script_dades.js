@@ -1,3 +1,100 @@
+function pintarFiltresHTML(dadesSempre) {
+    const contenidor = document.getElementById('contenidor-filtres');
+    if (!contenidor) return;
+    contenidor.innerHTML = '';
+
+    const filtres = [
+        { id: 'recompte_num_sil', titol: 'Filtre de síl·labes' },
+        { id: 'recompte_comenca_per', titol: 'Comença per...' },
+        { id: 'recompte_incloure_np', titol: 'Incloure noms propis?' },
+        { id: 'recompte_incloure_pl', titol: 'Incloure plurals?' }
+    ];
+
+    // Diccionari de traducció
+    const nomsTraduïts = {
+        '0': 'Indiferent', '1': '1 síl·laba', '2': '2 síl·labes', '3': '3 síl·labes',
+        '4': '4 síl·labes', '5': '5 síl·labes', '6': '6 síl·labes',
+        'indiferent': 'qualsevol lletra', 'consonant': 'Consonant', 'vocal+h': 'vocal / h',
+        'si': 'Sí', 'no': 'No'
+    };
+
+    // Paleta de colors a l'estil de la teva web (roses, cians, grocs, verds llima)
+    const paletaColors = ['#FF91FF', '#00ffff', '#ffe680', '#b3ffb3', '#ffb3b3', '#d9b3ff', '#ffc266'];
+
+    filtres.forEach(filtre => {
+        const dadesFiltre = dadesSempre[filtre.id];
+        if (!dadesFiltre) return;
+
+        let totalFiltre = 0;
+        let entrades = [];
+
+        // 1. Recopilem les dades i calculem el total
+        for (const [opcio, vegades] of Object.entries(dadesFiltre)) {
+            if (opcio !== 'nan' && opcio !== 'None') {
+                totalFiltre += vegades;
+                entrades.push({ opcio, vegades });
+            }
+        }
+
+        if (totalFiltre === 0) return;
+
+        // 2. Ordenem de major a menor quantitat (queda millor al gràfic)
+        entrades.sort((a, b) => b.vegades - a.vegades);
+
+        const divCategoria = document.createElement('div');
+        divCategoria.className = 'filtre-categoria';
+
+        const titolElement = document.createElement('h4');
+        titolElement.textContent = filtre.titol;
+        divCategoria.appendChild(titolElement);
+
+        const barraApilada = document.createElement('div');
+        barraApilada.className = 'barra-apilada';
+
+        const llegenda = document.createElement('div');
+        llegenda.className = 'llegenda-filtre';
+
+        // 3. Creem els segments i la llegenda
+        entrades.forEach((item, index) => {
+            const percentatge = ((item.vegades / totalFiltre) * 100).toFixed(1);
+            const nomMostrar = nomsTraduïts[item.opcio] || item.opcio;
+            const colorTros = paletaColors[index % paletaColors.length];
+
+// Dibuixem el segment dins la barra general
+            const segment = document.createElement('div');
+            segment.className = 'segment-barra';
+            segment.style.width = `${percentatge}%`;
+            segment.style.backgroundColor = colorTros;
+            segment.title = `${nomMostrar}: ${percentatge}%`; // Títol al passar el ratolí
+            
+            // Ara mostrem sempre el percentatge a la barra
+            segment.textContent = `${percentatge}%`;
+
+            barraApilada.appendChild(segment);
+
+            // Afegim l'ítem a la llegenda inferior només amb el nom i l'amplada correcta
+            const itemLlegenda = document.createElement('div');
+            itemLlegenda.className = 'item-llegenda';
+            itemLlegenda.style.width = `${percentatge}%`;
+            itemLlegenda.innerHTML = `
+                <div class="color-box" style="background-color: ${colorTros}"></div>
+                <span>${nomMostrar}</span>
+            `;
+            llegenda.appendChild(itemLlegenda);
+        });
+
+        divCategoria.appendChild(barraApilada);
+        divCategoria.appendChild(llegenda);
+        contenidor.appendChild(divCategoria);
+    });
+}
+
+
+
+
+
+
+
 function omplirLlistesHTML(idElement, arrayDades, esRima = false) {
     const contenidor = document.getElementById(idElement);
     if (!contenidor) return;
@@ -43,9 +140,11 @@ async function carregarEstadistiques(arxiuJson) {
         document.getElementById('usuaris-setmana').textContent = dades.setmana.numero_usuaris;
         document.getElementById('cerques-sempre').textContent = dades.sempre.total_cerques;
         document.getElementById('usuaris-sempre').textContent = dades.sempre.numero_usuaris;
-        document.getElementById('assonant-sempre').textContent = dades.sempre.recompte_tipus_rima.assonant;
-        document.getElementById('consonant-sempre').textContent = dades.sempre.recompte_tipus_rima.consonant;
+        document.getElementById('assonant-sempre').textContent = dades.sempre.recompte_tipus_rima['r.assonant'] || 0;
+        document.getElementById('consonant-sempre').textContent = dades.sempre.recompte_tipus_rima['r.consonant'] || 0;
 
+        pintarFiltresHTML(dades.sempre, dades.sempre.total_cerques);
+        
         omplirLlistesHTML('llista-paraules-setmana', dades.setmana.top_10_paraules, false);
         omplirLlistesHTML('llista-rimes-setmana', dades.setmana.top_10_rimes, true);
         

@@ -15,8 +15,15 @@ df['Usuari'] = df['Usuari'].astype(str)
 df['Paraula'] = df['Paraula'].astype(str)
 df['Rima'] = df['Rima'].astype(str)
 df['Tipus de rima'] = df['Tipus de rima'].astype(str)
+df['Num. síl·'] = df['Num. síl·'].astype(str)
+df['Comença per'] = df['Comença per'].astype(str)
+df['Incloure NP'] = df['Incloure NP'].astype(str)
+df['Incloure pl.'] = df['Incloure pl.'].astype(str)
 
-df_net = df.drop_duplicates(subset=['Dia', 'Usuari', 'Paraula', 'Tipus de rima']).copy()
+df_net = df.drop_duplicates(subset=['Dia', 'Usuari', 'Paraula']).copy()
+
+df_filtres = df.drop_duplicates(subset=['Dia', 'Usuari', 'Paraula', 'Tipus de rima', 'Num. síl·', 'Comença per', 'Incloure NP', 'Incloure pl.']).copy()
+
 
 #les dues llistes
 df_typos = df_net[df_net['Rima'] == '***'].copy()
@@ -55,13 +62,6 @@ def obtenir_top_paraules(df_dades, n, paraula):
         return recompte.sort_values(by='cerques', ascending=False).head(n)
     else:
         raise ValueError("El paràmetre 'paraula' només pot ser 'paraula' o 'rima'.")
-
-def comptar_per_tipus_rima(df_dades):
-    recompte = df_dades['Tipus de rima'].value_counts().to_dict()
-    return {
-        "assonant": recompte.get("r.assonant", 0),
-        "consonant": recompte.get("r.consonant", 0)
-    }
 
 def dades_grafic_linia(df_dades):
     avui = datetime.now().date()
@@ -114,7 +114,7 @@ dades_json = {
         "top_10_rimes": formatar_top_per_json(obtenir_top_paraules(df_rimes_setmana, 10, 'rima')),
         "total_cerques": len(df_net_setmana),
         "numero_usuaris": df_net_setmana['Usuari'].nunique(),
-        "recompte_tipus_rima": comptar_per_tipus_rima(df_rimes_setmana),
+        "recompte_tipus_rima": df_net_setmana['Tipus de rima'].value_counts().to_dict(),
 
     },
     "sempre": {
@@ -122,12 +122,15 @@ dades_json = {
         "top_10_rimes": formatar_top_per_json(obtenir_top_paraules(df_rimes_totes, 10, 'rima')),
         "total_cerques": len(df_net),
         "numero_usuaris": df_net['Usuari'].nunique(),
-        "recompte_tipus_rima": comptar_per_tipus_rima(df_rimes_totes),
+        "recompte_tipus_rima": df_net['Tipus de rima'].value_counts().to_dict(),
         "top_10_fenix": formatar_top_per_json(obtenir_top_paraules(df_rimes_fenix, 10, 'paraula')),
         "top_10_typos": formatar_top_per_json(obtenir_top_paraules(df_typos, 10, 'paraula')),
+        "recompte_num_sil": df_filtres['Num. síl·'].value_counts().to_dict(),
+        "recompte_comenca_per": df_filtres['Comença per'].value_counts().to_dict(),
+        "recompte_incloure_np": df_filtres['Incloure NP'].value_counts().to_dict(),
+        "recompte_incloure_pl": df_filtres['Incloure pl.'].value_counts().to_dict(),
         "grafic_linia_diaria": dades_grafic_linia(df_net),
         "grafic_formatge_exit": dades_grafic_formatge_totes(df_rimes_totes),
-
     }
 }
 

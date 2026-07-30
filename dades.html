@@ -86,20 +86,28 @@
             <div class="caixa-dades">
                 <h3>Altres cerques</h3>
                 
-                <p class="comptador petit"><span id="assonant-sempre">0</span> / <span id="consonant-sempre">0</span><small>assonants / consonants</small></p>
+                <p class="comptador"><span id="assonant-sempre">0</span> / <span id="consonant-sempre">0</span><small>assonants / consonants</small></p>
+                <p class="comptador petit"><span id="noms-propis-sempre">0</span><small>noms propis</small></p>
 
                 <hr class="separador-dades">
 
                 <h4>Top 10 paraules fènix (cerques sense rima)</h4>
                 <ol id="llista-fenix"></ol>
 
-                <h4>Top 10 typos</h4>
+                <h4>Top 10 errors de cerca</h4>
                 <ol id="llista-typos"></ol>
             </div>
 
         </div>
 
-        <!-- Els Gràfics -->
+        <!-- Filtres -->
+        <div class="grafic-caixa grafic-caixa-filtres">
+            <h3>Percentatge d'ús dels filtres</h3>
+            <div class="grafic-cos" id="contenidor-filtres">
+            </div>
+        </div>
+
+        <!-- Gràfics -->
         <div class="grafic-caixa">
             <h3>Evolució de cerques (darrers 30 dies)</h3>
             <div class="grafic-cos">
@@ -108,7 +116,7 @@
         </div>
 
         <div class="grafic-caixa formatge">
-            <h3>Totes les rimes cercades (des de l'1 d'agost)</h3>
+            <h3>Totes les rimes cercades (des de l'1/8/26)</h3>
             <div class="grafic-cos">
                 <canvas id="graficFormatge"></canvas>
             </div>
