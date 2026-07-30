@@ -1,9 +1,13 @@
 import pandas as pd
 import json
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context
+
+# hora no utc
+tz_espanya = ZoneInfo("Europe/Madrid") 
 
 # agafar excel drive i netejar dades
 url_google_sheet = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQu2bwhVaSdCKFkzXsqpVdufvVrOFankBE5CTTD1dHMbzhFXnSBgn2mXYgnGjrXt41FgHU6WmIGr7Gw/pub?gid=0&single=true&output=csv"
@@ -39,7 +43,7 @@ llista_paraules_fenix = [item['paraula'] for item in dades_fenix]
 df_rimes_fenix = df_rimes_totes[df_rimes_totes['Paraula'].isin(llista_paraules_fenix)].copy()
 
 #dades i coses del temps
-avui = datetime.now().date()
+avui = datetime.now(tz_espanya).date()
 inici_setmana = avui - timedelta(days=7)
 ahir = avui - timedelta(days=1)
 
@@ -64,31 +68,31 @@ def obtenir_top_paraules(df_dades, n, paraula):
         raise ValueError("El paràmetre 'paraula' només pot ser 'paraula' o 'rima'.")
 
 def dades_grafic_linia(df_dades):
-    avui = datetime.now().date()
+    avui = datetime.now(tz_espanya).date()
     data_inici = avui - timedelta(days=30)
     data_fi = avui - timedelta(days=1)
-    
+
     mascara_temps = (df_dades['Dia'] >= data_inici) & (df_dades['Dia'] <= data_fi)
     df_filtrat = df_dades[mascara_temps]
-    
+
     recompte_diari = df_filtrat['Dia'].value_counts()
-    
+
     resultat = []
-    
+
     for i in range(30, 0, -1):
         dia_actual = avui - timedelta(days=i)
         total_cerques = recompte_diari.get(dia_actual, 0)
-        
+
         resultat.append({
             "data": dia_actual.strftime("%d/%m"),
             "cerques": int(total_cerques)
         })
-        
+
     return resultat
 
 def dades_grafic_formatge_totes(df_dades):
     recompte = df_dades['Rima'].value_counts()
-    
+
     return [
         {"rima": str(rima), "vegades": int(total)}
         for rima, total in recompte.items()
@@ -100,7 +104,7 @@ def formatar_top_per_json(dades):
         df_temp = dades.reset_index()
         df_temp.columns = ['paraula', 'cerques']
         return df_temp.to_dict(orient='records')
-        
+
     elif isinstance(dades, pd.DataFrame):
         df_temp = dades.rename(columns={'Rima': 'paraula', 'Tipus de rima': 'tipus'})
         return df_temp.to_dict(orient='records')
@@ -108,7 +112,7 @@ def formatar_top_per_json(dades):
 
 #execució
 dades_json = {
-    "actualitzacio": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+    "actualitzacio": datetime.now(tz_espanya).strftime("%d/%m/%Y %H:%M:%S"),
     "setmana": {
         "text_dies": f"{inici_setmana.day}/{inici_setmana.month} > {ahir.day}/{ahir.month}",        
         "top_10_paraules": formatar_top_per_json(obtenir_top_paraules(df_rimes_setmana, 10, 'paraula')),
@@ -140,5 +144,4 @@ ruta_json = 'stats/estadistiques_rimador.json'
 with open(ruta_json, 'w', encoding='utf-8') as arxiu:
     json.dump(dades_json, arxiu, ensure_ascii=False, indent=4)
 
-print(f"Exportació completada amb èxit (hora: {datetime.now().strftime('%H:%M:%S')})")
-
+print(f"Exportació completada amb èxit (hora: {datetime.now(tz_espanya).strftime('%H:%M:%S')})")
