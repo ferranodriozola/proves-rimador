@@ -137,7 +137,8 @@ async function carregarEstadistiques(arxiuJson) {
     try {
         if (loaderText2) loaderText2.textContent = "Descarregant estadístiques (0/2)";
 
-        const resposta = await fetch(arxiuJson);
+        const resposta = await fetch(`${arxiuJson}?t=${Date.now()}`);
+        
         if (!resposta.ok) throw new Error(`Error HTTP: ${resposta.status}`);
 
         if (loaderText2) loaderText2.textContent = "Dibuixant els gràfics (1/2)";
