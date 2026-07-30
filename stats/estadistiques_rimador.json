@@ -1,137 +1,256 @@
 {
-    "actualitzacio": "30/07/2026 20:53:50",
+    "actualitzacio": "31/07/2026 00:03:30",
     "setmana": {
-        "text_dies": "23/7 > 29/7",
-        "top_10_paraules": [],
-        "top_10_rimes": [],
-        "total_cerques": 0,
-        "numero_usuaris": 0,
-        "recompte_tipus_rima": {}
-    },
-    "sempre": {
+        "text_dies": "24/7 > 30/7",
         "top_10_paraules": [
             {
-                "paraula": "saviesa",
+                "paraula": "préssec",
+                "cerques": 4
+            },
+            {
+                "paraula": "música",
+                "cerques": 3
+            },
+            {
+                "paraula": "casa",
+                "cerques": 2
+            },
+            {
+                "paraula": "por",
+                "cerques": 2
+            },
+            {
+                "paraula": "unnilpenti",
+                "cerques": 2
+            },
+            {
+                "paraula": "dormir",
                 "cerques": 1
             },
             {
-                "paraula": "boca",
+                "paraula": "casori",
                 "cerques": 1
             },
             {
-                "paraula": "autoritat",
+                "paraula": "camí",
                 "cerques": 1
             },
             {
-                "paraula": "parells",
+                "paraula": "casor",
                 "cerques": 1
             },
             {
-                "paraula": "morir",
-                "cerques": 1
-            },
-            {
-                "paraula": "erta",
-                "cerques": 1
-            },
-            {
-                "paraula": "cel",
-                "cerques": 1
-            },
-            {
-                "paraula": "espurnes",
-                "cerques": 1
-            },
-            {
-                "paraula": "llampades",
-                "cerques": 1
-            },
-            {
-                "paraula": "joves",
+                "paraula": "for",
                 "cerques": 1
             }
         ],
         "top_10_rimes": [
             {
-                "paraula": "at",
+                "paraula": "o",
                 "tipus": "r.consonant",
-                "cerques": 3
+                "cerques": 4
             },
             {
-                "paraula": "al",
+                "paraula": "azə",
                 "tipus": "r.consonant",
-                "cerques": 1
-            },
-            {
-                "paraula": "ansəs",
-                "tipus": "r.consonant",
-                "cerques": 1
-            },
-            {
-                "paraula": "aðəs",
-                "tipus": "r.consonant",
-                "cerques": 1
+                "cerques": 2
             },
             {
                 "paraula": "esək",
                 "tipus": "r.consonant",
-                "cerques": 1
-            },
-            {
-                "paraula": "eɡɡləs",
-                "tipus": "r.consonant",
-                "cerques": 1
+                "cerques": 2
             },
             {
                 "paraula": "i",
                 "tipus": "r.consonant",
-                "cerques": 1
+                "cerques": 2
             },
             {
-                "paraula": "it",
+                "paraula": "eə",
+                "tipus": "r.assonant",
+                "cerques": 2
+            },
+            {
+                "paraula": "uiə",
+                "tipus": "r.assonant",
+                "cerques": 2
+            },
+            {
+                "paraula": "es",
+                "tipus": "r.consonant",
+                "cerques": 2
+            },
+            {
+                "paraula": "awɾus",
                 "tipus": "r.consonant",
                 "cerques": 1
             },
             {
-                "paraula": "iŋ",
+                "paraula": "arək",
                 "tipus": "r.consonant",
                 "cerques": 1
             },
             {
-                "paraula": "okə",
-                "tipus": "r.consonant",
+                "paraula": "ai",
+                "tipus": "r.assonant",
                 "cerques": 1
             }
         ],
-        "total_cerques": 20,
-        "numero_usuaris": 8,
+        "total_cerques": 32,
+        "numero_usuaris": 6,
         "recompte_tipus_rima": {
-            "r.consonant": 20
+            "r.consonant": 25,
+            "r.assonant": 7
+        }
+    },
+    "sempre": {
+        "top_10_paraules": [
+            {
+                "paraula": "préssec",
+                "cerques": 5
+            },
+            {
+                "paraula": "música",
+                "cerques": 4
+            },
+            {
+                "paraula": "casa",
+                "cerques": 2
+            },
+            {
+                "paraula": "por",
+                "cerques": 2
+            },
+            {
+                "paraula": "unnilpenti",
+                "cerques": 2
+            },
+            {
+                "paraula": "dormir",
+                "cerques": 1
+            },
+            {
+                "paraula": "casori",
+                "cerques": 1
+            },
+            {
+                "paraula": "camí",
+                "cerques": 1
+            },
+            {
+                "paraula": "casor",
+                "cerques": 1
+            },
+            {
+                "paraula": "for",
+                "cerques": 1
+            }
+        ],
+        "top_10_rimes": [
+            {
+                "paraula": "o",
+                "tipus": "r.consonant",
+                "cerques": 4
+            },
+            {
+                "paraula": "esək",
+                "tipus": "r.consonant",
+                "cerques": 3
+            },
+            {
+                "paraula": "uiə",
+                "tipus": "r.assonant",
+                "cerques": 3
+            },
+            {
+                "paraula": "i",
+                "tipus": "r.consonant",
+                "cerques": 2
+            },
+            {
+                "paraula": "eə",
+                "tipus": "r.assonant",
+                "cerques": 2
+            },
+            {
+                "paraula": "azə",
+                "tipus": "r.consonant",
+                "cerques": 2
+            },
+            {
+                "paraula": "es",
+                "tipus": "r.consonant",
+                "cerques": 2
+            },
+            {
+                "paraula": "awɾus",
+                "tipus": "r.consonant",
+                "cerques": 1
+            },
+            {
+                "paraula": "arək",
+                "tipus": "r.consonant",
+                "cerques": 1
+            },
+            {
+                "paraula": "ai",
+                "tipus": "r.assonant",
+                "cerques": 1
+            }
+        ],
+        "total_cerques": 34,
+        "numero_usuaris": 6,
+        "recompte_tipus_rima": {
+            "r.consonant": 26,
+            "r.assonant": 8
         },
         "top_10_fenix": [
             {
                 "paraula": "préssec",
+                "cerques": 5
+            },
+            {
+                "paraula": "música",
+                "cerques": 4
+            },
+            {
+                "paraula": "unnilpenti",
+                "cerques": 2
+            }
+        ],
+        "top_10_typos": [
+            {
+                "paraula": "asdfasdf",
+                "cerques": 1
+            },
+            {
+                "paraula": "casafghjk",
+                "cerques": 1
+            },
+            {
+                "paraula": "eurin",
+                "cerques": 1
+            },
+            {
+                "paraula": "facils",
                 "cerques": 1
             }
         ],
-        "top_10_typos": [],
         "recompte_num_sil": {
-            "0": 20
+            "0": 42
         },
         "recompte_comenca_per": {
-            "indiferent": 20
+            "indiferent": 37,
+            "consonant": 5
         },
         "recompte_incloure_np": {
-            "no": 20
+            "no": 40,
+            "si": 2
         },
         "recompte_incloure_pl": {
-            "si": 20
+            "si": 42
         },
         "grafic_linia_diaria": [
-            {
-                "data": "30/06",
-                "cerques": 0
-            },
             {
                 "data": "01/07",
                 "cerques": 0
@@ -247,79 +366,87 @@
             {
                 "data": "29/07",
                 "cerques": 0
+            },
+            {
+                "data": "30/07",
+                "cerques": 32
             }
         ],
         "grafic_formatge_exit": [
             {
-                "rima": "at",
+                "rima": "o",
+                "vegades": 4
+            },
+            {
+                "rima": "uiə",
                 "vegades": 3
             },
             {
-                "rima": "ɛzə",
-                "vegades": 1
+                "rima": "esək",
+                "vegades": 3
             },
             {
-                "rima": "okə",
-                "vegades": 1
+                "rima": "es",
+                "vegades": 2
             },
             {
-                "rima": "ɛʎs",
-                "vegades": 1
+                "rima": "azə",
+                "vegades": 2
+            },
+            {
+                "rima": "eə",
+                "vegades": 2
             },
             {
                 "rima": "i",
+                "vegades": 2
+            },
+            {
+                "rima": "uzikə",
                 "vegades": 1
             },
             {
-                "rima": "ɛrtə",
+                "rima": "urməs",
                 "vegades": 1
             },
             {
-                "rima": "ɛl",
+                "rima": "ɔɾi",
                 "vegades": 1
             },
             {
-                "rima": "urnəs",
+                "rima": "ektə",
                 "vegades": 1
             },
             {
-                "rima": "aðəs",
+                "rima": "arək",
                 "vegades": 1
             },
             {
-                "rima": "oβəs",
+                "rima": "awɾus",
                 "vegades": 1
             },
             {
-                "rima": "ɛðəs",
+                "rima": "ins",
                 "vegades": 1
             },
             {
-                "rima": "iŋ",
+                "rima": "ɛs",
                 "vegades": 1
             },
             {
-                "rima": "oðə",
+                "rima": "ai",
                 "vegades": 1
             },
             {
-                "rima": "it",
+                "rima": "ɔk",
                 "vegades": 1
             },
             {
-                "rima": "al",
+                "rima": "ɛi",
                 "vegades": 1
             },
             {
-                "rima": "esək",
-                "vegades": 1
-            },
-            {
-                "rima": "eɡɡləs",
-                "vegades": 1
-            },
-            {
-                "rima": "ansəs",
+                "rima": "ɛnti",
                 "vegades": 1
             }
         ]
