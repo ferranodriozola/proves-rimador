@@ -1,5 +1,3 @@
-/* Atenció: la ruta és relativa al CSS ja construït (dist/css/styles.min.css),
-   no pas a aquest fitxer. Des de dist/css/, "../../assets/" = /assets/. */
 header {
     background: url("../../assets/bubbles.png") repeat;
     background-size: 120px 120px;
@@ -12,7 +10,7 @@ header {
     height: 100px;
     text-align: center;
     width: 100%;
-    box-sizing: border-box; /* si no, el padding fa que sobresurti de la pantalla */
+    box-sizing: border-box;
 }
 
 .peixet-btn {
@@ -39,6 +37,9 @@ header {
     height: auto; 
     margin-left: 5%;
 }
+
+
+/* Adaptat telèfons */
 
 @media screen and (max-width: 750px) {
     .peixet {
@@ -72,8 +73,6 @@ header {
     }
 }
 
-/* Els marges del 5%/10% més el logo de 240px no cabien en pantalles molt
-   estretes (320-360px), típiques dels mòbils petits. */
 @media screen and (max-width: 400px) {
     .rimador {
         width: 195px;

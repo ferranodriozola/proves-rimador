@@ -82,7 +82,6 @@ body#canvis #mostrarFormulari:after {
   background: none;
 }
 
-
 #formulariContainer {
     display: none;
     position: fixed;
@@ -128,7 +127,6 @@ body#canvis #mostrarFormulari:after {
        -1px  1px 0 #004D98,  
        1px  1px 0 #004D98;  
 }
-
 
 #formulariContainer form input,
 #formulariContainer form textarea {
@@ -219,6 +217,8 @@ body#canvis #mostrarFormulari:after {
   height: 35px;
 }
 
+
+/* Adaptat telèfons */
 
 @media screen and (max-width: 460px) {
     #formulariContainer {

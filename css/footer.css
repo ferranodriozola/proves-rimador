@@ -3,7 +3,7 @@
     text-align: center;
     padding: 15px;
     width: 100%;
-    box-sizing: border-box; /* si no, el padding fa que sobresurti de la pantalla */
+    box-sizing: border-box;
 }
 
 #footer a {
@@ -15,7 +15,6 @@
     color: #00ffff;
     font-family: 'Comic Sans MS';
     text-decoration: underline;
-
 }
 
 #footer a:active {

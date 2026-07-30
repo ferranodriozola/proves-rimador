@@ -11,7 +11,6 @@
   --sober-font: "Arial Narrow", Arial, Helvetica, sans-serif;
 }
 
-
 [data-theme="sober"] body,
 [data-theme="sober"] body#llista,
 [data-theme="sober"] body#llista #separador_rosa1,
@@ -148,7 +147,6 @@
   color: var(--sober-muted);
 }
 
-
 [data-theme="sober"] .loader {
   background: #f2f2f2bc;
 }
@@ -178,7 +176,6 @@
 [data-theme="sober"] .loader-line-wrap:nth-child(5) .loader-line {
   border-color: var(--sober-header-bg);
 }
-
 
 [data-theme="sober"] #text_presentació,
 [data-theme="sober"] #text_canvis {
