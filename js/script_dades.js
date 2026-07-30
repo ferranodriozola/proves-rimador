@@ -60,28 +60,38 @@ function pintarFiltresHTML(dadesSempre) {
             const nomMostrar = nomsTraduïts[item.opcio] || item.opcio;
             const colorTros = paletaColors[index % paletaColors.length];
 
-// Dibuixem el segment dins la barra general
+// Avaluem si el tros és petit
+            const esPetit = parseFloat(percentatge) < 12;
+
+            // Dibuixem el segment dins la barra general
             const segment = document.createElement('div');
             segment.className = 'segment-barra';
             segment.style.width = `${percentatge}%`;
             segment.style.backgroundColor = colorTros;
-            segment.title = `${nomMostrar}: ${percentatge}%`; // Títol al passar el ratolí
+            segment.title = `${nomMostrar}: ${percentatge}%`;
             
-            // Ara mostrem sempre el percentatge a la barra
-            segment.textContent = `${percentatge}%`;
-
+            // Si és petit, l'embolcallem amb una classe especial per amagar-lo al mòbil
+            if (esPetit) {
+                segment.innerHTML = `<span class="text-amagat-mobil">${percentatge}%</span>`;
+            } else {
+                segment.innerHTML = `<span>${percentatge}%</span>`;
+            }
             barraApilada.appendChild(segment);
 
-            // Afegim l'ítem a la llegenda inferior només amb el nom i l'amplada correcta
+            // Afegim l'ítem a la llegenda inferior
             const itemLlegenda = document.createElement('div');
             itemLlegenda.className = 'item-llegenda';
             itemLlegenda.style.width = `${percentatge}%`;
+
+            // Preparem el percentatge a la llegenda, però amb una classe per amagar-lo a l'escriptori
+            const textExtraMobil = esPetit ? `<span class="text-visible-mobil"> (${percentatge}%)</span>` : '';
+
             itemLlegenda.innerHTML = `
                 <div class="color-box" style="background-color: ${colorTros}"></div>
-                <span>${nomMostrar}</span>
+                <span>${nomMostrar}${textExtraMobil}</span>
             `;
             llegenda.appendChild(itemLlegenda);
-        });
+                });
 
         divCategoria.appendChild(barraApilada);
         divCategoria.appendChild(llegenda);

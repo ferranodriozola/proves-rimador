@@ -252,6 +252,14 @@
     .grafic-cos {
         height: 280px;
     }
+
+    .text-amagat-mobil {
+        display: none;
+    }
+    /* 2. Mostrem el percentatge a la llegenda (només dels trossos petits) perquè no es perdi la dada */
+    .text-visible-mobil {
+        display: inline;
+    }
 }
 
 @media screen and (max-width: 550px) {
@@ -269,3 +277,41 @@
         height: 240px;
     }
 }
+
+
+
+@media screen and (max-width: 750px) {
+    /* Permetem que els ítems saltin de línia i els centrem */
+    .llegenda-filtre {
+        flex-wrap: wrap !important;
+        justify-content: center;
+        gap: 15px !important;
+        margin-top: 15px;
+    }
+
+    /* Ignorem el percentatge del JavaScript donant-li un width automàtic */
+    .item-llegenda {
+        width: auto !important; 
+        flex-direction: row; /* Posem el quadrat de color al costat del text */
+        align-items: center;
+        padding: 0;
+    }
+
+    /* Restaurem el comportament normal del text */
+    .item-llegenda span {
+        word-break: normal;
+        font-size: 12px;
+    }
+
+    /* Fem la lletra de dins de la barra una mica més petita per guanyar espai */
+    .segment-barra {
+        font-size: 11px;
+    }
+}
+
+/* Per defecte (escriptori), complim la teva norma: no mostrar mai el percentatge a la llegenda */
+.text-visible-mobil {
+    display: none;
+}
+
+
