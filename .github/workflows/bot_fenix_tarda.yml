@@ -2,7 +2,7 @@ name: Bot de Rimes a Twitter (tarda, fènix)
 
 on:
   #schedule:
-  #  - cron: '0 14 * * *'
+  #  - cron: '15 18 * * *'
   
   workflow_dispatch:
 
