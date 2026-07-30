@@ -55,9 +55,9 @@ def principal():
 
     tuit = f"Paraula fènix del dia ({data_formatada}): {paraula_escollida} (/{rima_escollida}/)\n\n"
     if codi.startswith("NP"):
-        tuit += "Aquest nom propi no rima amb cap paraula del diccionari ni amb cap altre nom propi, per això és una Paraula fènix.\n\n"
+        tuit += "Aquest nom propi no rima amb cap paraula del diccionari, per això és una Paraula fènix.\n\n"
     else:
-        tuit += "Aquesta paraula no rima amb cap paraula del diccionari ni amb cap nom propi, per això és una Paraula fènix.\n\n"
+        tuit += "Aquesta paraula no rima amb cap paraula del diccionari, per això és una Paraula fènix.\n\n"
 
     paraula_url = urllib.parse.quote(lema)
     
