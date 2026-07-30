@@ -381,7 +381,7 @@ atén € atendre € VMM02S00 € ətˈen
 atén € atenir € VMM02S00 € ətˈen
 Atena € Atena € NPFSSP0 € ətˈɛnə
 Atenàgores € Atenàgores € NPMPSP0 € ətənˈaɣuɾəs
-atenc € atendre € VMIP1S00 € ətˈɛŋ
+atenc € atendre € VMIP1S00 € ətˈeŋ
 atenció € atenció € ZI € ətənsiˈo
 atenció € atenció € NCFS000 € ətənsiˈo
 atencions € atenció € NCFP000 € ətənsiˈons
