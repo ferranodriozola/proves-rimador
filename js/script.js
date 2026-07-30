@@ -291,7 +291,8 @@ function crearCriterisTriples(nom, prefix1, prefix2, prefix3) {
 }
 
 //excel per guardar cerques
-const URL_GOOGLE_SCRIPT = "https://script.google.com/macros/s/AKfycbw5uSetN-OKIEQjmEo9PFFJp0r7UclUnHEYhbkghbqQ4q7JnIM7i0Ljfa3W_Q7Z-s5f/exec";
+//const URL_GOOGLE_SCRIPT = "https://script.google.com/macros/s/AKfycbw5uSetN-OKIEQjmEo9PFFJp0r7UclUnHEYhbkghbqQ4q7JnIM7i0Ljfa3W_Q7Z-s5f/exec";
+const URL_GOOGLE_SCRIPT = ""
 
 function getUsuariID() {
   let usuariID = localStorage.getItem('rimador_usuari_id');
