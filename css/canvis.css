@@ -82,6 +82,7 @@
     margin: 30px;
     margin-left: 70px;
     margin-right: 70px;
+    font-size: 17px;
 }
 
 #text_canvis > p:not(#arimar) a:not(#enllaçbrillant) {
@@ -115,6 +116,7 @@
     #text_canvis p {
         margin-left: 20px;
         margin-right: 20px;
+        font-size: 15px;
     }
 }
 
@@ -126,6 +128,7 @@
     }
     #text_canvis p {
         margin: 20px 5px;
+        font-size: 12px;
     }
     #titol_canvis {
         font-size: 1.4em;
