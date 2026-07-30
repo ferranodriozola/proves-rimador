@@ -64,7 +64,6 @@ jobs:
           git commit -m "Cache busting: versions actualitzades als HTML" || echo "No hi ha canvis"
           git push
 
-      # node_modules només fa falta per executar el gulp; no s'ha de publicar.
       - name: Treure node_modules abans de publicar
         run: rm -rf node_modules
 
