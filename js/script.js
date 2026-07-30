@@ -1,3 +1,22 @@
+//DEBUG
+const debugLevel = 0; // 0 = Off, 1 = Goatcounter, 2 = Errors, 3 = Logs, 4 = Temps
+
+const Debug = {
+    log: debugLevel >= 3 ? (label) => console.log(`[DEBUG] ${label}`) : () => {},
+    logError: debugLevel >= 2 ? (...args) => console.error('[ERROR]', ...args) : () => {},
+    logTime: debugLevel >= 4 ? (label) => console.time(`[TIMER] ${label}`) : () => {},
+    logTimeEnd: debugLevel >= 4 ? (label) => console.timeEnd(`[TIMER] ${label}`) : () => {},
+    contador: debugLevel >= 1 ? (label) => console.log(`[COUNTER] ${label}`) : () => {},
+};
+
+if (debugLevel >= 3) {
+  window.addEventListener('DOMContentLoaded', () => {
+    const boto = document.getElementById("botoNetejarCache");
+    if (boto) boto.style.display = "block";
+  });
+}
+
+//carregar json fènix
 let llistaFenix = [];
 
 async function carregarFenix() {
@@ -10,6 +29,8 @@ async function carregarFenix() {
   }
 }
 
+
+//gestió de versions
 let VERSIONS_FITXERS = {};
 
 async function carregarVersions() {
@@ -41,22 +62,8 @@ async function carregarVersions() {
   }
 }
 
-const debugLevel = 0; // 0 = Off, 1 = Goatcounter, 2 = Errors, 3 = Logs, 4 = Temps
 
-const Debug = {
-    log: debugLevel >= 3 ? (label) => console.log(`[DEBUG] ${label}`) : () => {},
-    logError: debugLevel >= 2 ? (...args) => console.error('[ERROR]', ...args) : () => {},
-    logTime: debugLevel >= 4 ? (label) => console.time(`[TIMER] ${label}`) : () => {},
-    logTimeEnd: debugLevel >= 4 ? (label) => console.timeEnd(`[TIMER] ${label}`) : () => {},
-    contador: debugLevel >= 1 ? (label) => console.log(`[COUNTER] ${label}`) : () => {},
-};
-
-if (debugLevel >= 3) {
-  window.addEventListener('DOMContentLoaded', () => {
-    const boto = document.getElementById("botoNetejarCache");
-    if (boto) boto.style.display = "block";
-  });
-}
+//INICI
 
 let array0, array1, array2, array3, array4, array5, array6, array7, array8, array9;
 let fitxersLlegits = 0;
@@ -88,6 +95,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         Debug.logTimeEnd('Temps de càrrega');
     }
 });
+
 
 // --- FUNCIONS INDEXEDDB ---
 function obrirIndexedDB() {
@@ -197,6 +205,7 @@ function netejarIndexedDB() {
     request.onblocked = () => console.warn("L'esborrat d'IndexedDB està bloquejat");
 }
   
+
 // event listener per la tecla enter
 const inputParaula = document.getElementById('paraulaCercada');
 if (inputParaula) {
@@ -275,7 +284,6 @@ function crearCriteris(nom, prefix) {
   return {
       [`${nom}`]: {
           filterFunction: item => item[2].startsWith(`${prefix}`),},};
-
 }
 
 function crearCriterisDobles(nom, prefix1, prefix2) {
@@ -289,6 +297,8 @@ function crearCriterisTriples(nom, prefix1, prefix2, prefix3) {
       [`${nom}`]: {
           filterFunction: item => item[2].startsWith(prefix1) || item[2].startsWith(prefix2) || item[2].startsWith(prefix3),},};
 }
+
+
 
 //excel per guardar cerques
 //const URL_GOOGLE_SCRIPT = "https://script.google.com/macros/s/AKfycbw5uSetN-OKIEQjmEo9PFFJp0r7UclUnHEYhbkghbqQ4q7JnIM7i0Ljfa3W_Q7Z-s5f/exec";
@@ -325,7 +335,9 @@ function registrarCerca(paraulaBuscada, rimaTrobada, tipusRima, codiParaula, num
 }
 
 
-//FUNCIONS
+
+
+//FUNCIONS PRINCIPALS
 async function realitzarCerca() {
   Debug.log("Botó clicat!");
   Debug.logTime('realitzarCerca');
@@ -400,7 +412,6 @@ function descriureCategoria(codi) {
   return "altra categoria";
 }
 
-// Assignar pes a la paraula segons el codi i la jerarquia
 function obtenirPesJerarquia(codi) {
   if (!codi) return 10;
   if (codi.startsWith('NC')) return 1;
@@ -417,7 +428,6 @@ function obtenirPesJerarquia(codi) {
 
 function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals, array0, array1, array2, array3, array4, array5, array6, array7, array8, array9) {
   Debug.logTime('buscarParaula');
-
 
   const coincidencies = array0
     .map((item, index) => ({ paraula: item, index }))
@@ -475,7 +485,6 @@ function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, i
       }
     }
   }
-
 
   for (var i = 0; i < array0.length; i++) {
     let bona = 1;
@@ -538,7 +547,7 @@ function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, i
   return [matches, llistaParaulaCerca];
 }
 
-
+//gestió logos per a imprimir
 let rutaLogos = '';
 if (idPagina === 'principal') {
   rutaLogos = 'assets/';
@@ -796,6 +805,7 @@ function mostrarLlista(tipusLlista, elementsAMostrar, checkboxId) {
   Debug.logTimeEnd('mostrarLlista');
 }
 
+
 function toggleList(listID, checkboxID) {
   Debug.logTime('toggleList');
 
@@ -814,8 +824,8 @@ function toggleList(listID, checkboxID) {
     });
   }
   Debug.logTimeEnd('toggleList');
-
 }
+
 
 function handleCheckboxClick(event, checkboxCriteria) {
   Debug.logTime('handleCheckboxClick');
@@ -861,8 +871,8 @@ function handleCheckboxClick(event, checkboxCriteria) {
           actualitzarRimes();
   }   }
   Debug.logTimeEnd('handleCheckboxClick');
-
 }
+
 
 function obtenirValorsSegonsPrimerCaracter(matches) {
   Debug.logTime('obtenirValorsSegonsPrimerCaracter');
@@ -964,9 +974,10 @@ function obtenirValorsSegonsPrimerCaracter(matches) {
   };
 }
 
+// ============================================================= //
+// ============================================================= //
 
 //CSS
-
 function ajustarPosicionsSticky() {
   var container = document.getElementById('container');
   var checkboxContainer = document.getElementById('checkboxContainer');
@@ -991,9 +1002,10 @@ if (containerEl) {
     observer.observe(containerEl);
 }
 
+// ============================================================= //
+// ============================================================= //
 
-
-//Mostrar i amagar el formulari de contacte
+//mostrar i amagar formulari contacte
 function toggleForm() {
   var formContainer = document.getElementById("formulariContainer");
   if (formContainer.style.display === "none" || formContainer.style.display === "") {
@@ -1013,9 +1025,10 @@ function closeFormOnClickOutside(event) {
   }
 }
 
+// ============================================================= //
+// ============================================================= //
 
 // boring style
-
 const PEIXET_IMG_FESTIU = "assets/peixet.webp?v=2";
 const PEIXET_IMG_SOBRI = "assets/boringlogo.webp?v=2";
 const THEME_STORAGE_KEY = "rimadorTheme";
@@ -1071,7 +1084,6 @@ function aplicarTema(tema) {
   }
 }
 
-
 function toggleTheme() {
   var temaActual = localStorage.getItem(THEME_STORAGE_KEY) === "sober" ? "sober" : "festiu";
   var temaNou = temaActual === "sober" ? "festiu" : "sober";
@@ -1095,3 +1107,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } catch (e) {}
   aplicarTema(temaDesat === "sober" ? "sober" : "festiu");
 });
+
+// ============================================================= //
+// ============================================================= //
+
