@@ -89,7 +89,7 @@ if (headerHTML) { headerHTML.innerHTML = header; }
 
 
 const separador_rosa1 = /*html*/`
-<p>NOVETAT (11 de setembre): Llançament oficial! Revisa tots els canvis <a id="enllaç" href="${ruta2}" target="_blank">aquí</a>.
+<p>NOVETATS (11 de setembre): Llançament oficial!! Revisa tots els canvis de l'actualització <a id="enllaç" href="${ruta2}" target="_blank">aquí</a>.
 <br>&nbsp;</p>
 `
 const separador_rosa1HTML = document.getElementById('separador_rosa1');
