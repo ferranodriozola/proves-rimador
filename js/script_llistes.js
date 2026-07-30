@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (tipusLlista === 'fenixs') {
         carregarDades('paraules_fenixs.json', 'versio_fenix');
-// ======= canviar aquí baix
+
     } else if (tipusLlista === 'mots_de7_real') {
         carregarDades('mots_de7_real.json', 'versio_hepta_real');
     
