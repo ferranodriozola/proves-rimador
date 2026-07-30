@@ -1,254 +1,86 @@
 {
-    "actualitzacio": "31/07/2026 00:03:30",
+    "actualitzacio": "31/07/2026 01:08:24",
     "setmana": {
         "text_dies": "24/7 > 30/7",
-        "top_10_paraules": [
-            {
-                "paraula": "préssec",
-                "cerques": 4
-            },
-            {
-                "paraula": "música",
-                "cerques": 3
-            },
-            {
-                "paraula": "casa",
-                "cerques": 2
-            },
-            {
-                "paraula": "por",
-                "cerques": 2
-            },
-            {
-                "paraula": "unnilpenti",
-                "cerques": 2
-            },
-            {
-                "paraula": "dormir",
-                "cerques": 1
-            },
-            {
-                "paraula": "casori",
-                "cerques": 1
-            },
-            {
-                "paraula": "camí",
-                "cerques": 1
-            },
-            {
-                "paraula": "casor",
-                "cerques": 1
-            },
-            {
-                "paraula": "for",
-                "cerques": 1
-            }
-        ],
-        "top_10_rimes": [
-            {
-                "paraula": "o",
-                "tipus": "r.consonant",
-                "cerques": 4
-            },
-            {
-                "paraula": "azə",
-                "tipus": "r.consonant",
-                "cerques": 2
-            },
-            {
-                "paraula": "esək",
-                "tipus": "r.consonant",
-                "cerques": 2
-            },
-            {
-                "paraula": "i",
-                "tipus": "r.consonant",
-                "cerques": 2
-            },
-            {
-                "paraula": "eə",
-                "tipus": "r.assonant",
-                "cerques": 2
-            },
-            {
-                "paraula": "uiə",
-                "tipus": "r.assonant",
-                "cerques": 2
-            },
-            {
-                "paraula": "es",
-                "tipus": "r.consonant",
-                "cerques": 2
-            },
-            {
-                "paraula": "awɾus",
-                "tipus": "r.consonant",
-                "cerques": 1
-            },
-            {
-                "paraula": "arək",
-                "tipus": "r.consonant",
-                "cerques": 1
-            },
-            {
-                "paraula": "ai",
-                "tipus": "r.assonant",
-                "cerques": 1
-            }
-        ],
-        "total_cerques": 32,
-        "numero_usuaris": 6,
-        "recompte_tipus_rima": {
-            "r.consonant": 25,
-            "r.assonant": 7
-        }
+        "top_10_paraules": [],
+        "top_10_rimes": [],
+        "total_cerques": 0,
+        "numero_usuaris": 0,
+        "recompte_tipus_rima": {}
     },
     "sempre": {
         "top_10_paraules": [
             {
+                "paraula": "herba",
+                "cerques": 1
+            },
+            {
+                "paraula": "sirena",
+                "cerques": 1
+            },
+            {
+                "paraula": "ells",
+                "cerques": 1
+            },
+            {
+                "paraula": "rupianenc",
+                "cerques": 1
+            },
+            {
                 "paraula": "préssec",
-                "cerques": 5
-            },
-            {
-                "paraula": "música",
-                "cerques": 4
-            },
-            {
-                "paraula": "casa",
-                "cerques": 2
-            },
-            {
-                "paraula": "por",
-                "cerques": 2
-            },
-            {
-                "paraula": "unnilpenti",
-                "cerques": 2
-            },
-            {
-                "paraula": "dormir",
-                "cerques": 1
-            },
-            {
-                "paraula": "casori",
-                "cerques": 1
-            },
-            {
-                "paraula": "camí",
-                "cerques": 1
-            },
-            {
-                "paraula": "casor",
-                "cerques": 1
-            },
-            {
-                "paraula": "for",
                 "cerques": 1
             }
         ],
         "top_10_rimes": [
             {
-                "paraula": "o",
+                "paraula": "erβə",
                 "tipus": "r.consonant",
-                "cerques": 4
+                "cerques": 1
             },
             {
                 "paraula": "esək",
                 "tipus": "r.consonant",
-                "cerques": 3
+                "cerques": 1
             },
             {
-                "paraula": "uiə",
-                "tipus": "r.assonant",
-                "cerques": 3
-            },
-            {
-                "paraula": "i",
-                "tipus": "r.consonant",
-                "cerques": 2
-            },
-            {
-                "paraula": "eə",
-                "tipus": "r.assonant",
-                "cerques": 2
-            },
-            {
-                "paraula": "azə",
-                "tipus": "r.consonant",
-                "cerques": 2
-            },
-            {
-                "paraula": "es",
-                "tipus": "r.consonant",
-                "cerques": 2
-            },
-            {
-                "paraula": "awɾus",
+                "paraula": "eʎs",
                 "tipus": "r.consonant",
                 "cerques": 1
             },
             {
-                "paraula": "arək",
+                "paraula": "ɛnə",
                 "tipus": "r.consonant",
                 "cerques": 1
             },
             {
-                "paraula": "ai",
-                "tipus": "r.assonant",
+                "paraula": "ɛŋ",
+                "tipus": "r.consonant",
                 "cerques": 1
             }
         ],
-        "total_cerques": 34,
-        "numero_usuaris": 6,
+        "total_cerques": 5,
+        "numero_usuaris": 3,
         "recompte_tipus_rima": {
-            "r.consonant": 26,
-            "r.assonant": 8
+            "r.consonant": 5
         },
         "top_10_fenix": [
             {
                 "paraula": "préssec",
-                "cerques": 5
-            },
-            {
-                "paraula": "música",
-                "cerques": 4
-            },
-            {
-                "paraula": "unnilpenti",
-                "cerques": 2
-            }
-        ],
-        "top_10_typos": [
-            {
-                "paraula": "asdfasdf",
-                "cerques": 1
-            },
-            {
-                "paraula": "casafghjk",
-                "cerques": 1
-            },
-            {
-                "paraula": "eurin",
-                "cerques": 1
-            },
-            {
-                "paraula": "facils",
                 "cerques": 1
             }
         ],
+        "top_10_typos": [],
         "recompte_num_sil": {
-            "0": 42
+            "0": 5
         },
         "recompte_comenca_per": {
-            "indiferent": 37,
-            "consonant": 5
+            "indiferent": 5
         },
         "recompte_incloure_np": {
-            "no": 40,
-            "si": 2
+            "no": 5
         },
         "recompte_incloure_pl": {
-            "si": 42
+            "si": 5
         },
         "grafic_linia_diaria": [
             {
@@ -369,84 +201,28 @@
             },
             {
                 "data": "30/07",
-                "cerques": 32
+                "cerques": 0
             }
         ],
         "grafic_formatge_exit": [
             {
-                "rima": "o",
-                "vegades": 4
+                "rima": "erβə",
+                "vegades": 1
             },
             {
-                "rima": "uiə",
-                "vegades": 3
+                "rima": "ɛnə",
+                "vegades": 1
+            },
+            {
+                "rima": "eʎs",
+                "vegades": 1
+            },
+            {
+                "rima": "ɛŋ",
+                "vegades": 1
             },
             {
                 "rima": "esək",
-                "vegades": 3
-            },
-            {
-                "rima": "es",
-                "vegades": 2
-            },
-            {
-                "rima": "azə",
-                "vegades": 2
-            },
-            {
-                "rima": "eə",
-                "vegades": 2
-            },
-            {
-                "rima": "i",
-                "vegades": 2
-            },
-            {
-                "rima": "uzikə",
-                "vegades": 1
-            },
-            {
-                "rima": "urməs",
-                "vegades": 1
-            },
-            {
-                "rima": "ɔɾi",
-                "vegades": 1
-            },
-            {
-                "rima": "ektə",
-                "vegades": 1
-            },
-            {
-                "rima": "arək",
-                "vegades": 1
-            },
-            {
-                "rima": "awɾus",
-                "vegades": 1
-            },
-            {
-                "rima": "ins",
-                "vegades": 1
-            },
-            {
-                "rima": "ɛs",
-                "vegades": 1
-            },
-            {
-                "rima": "ai",
-                "vegades": 1
-            },
-            {
-                "rima": "ɔk",
-                "vegades": 1
-            },
-            {
-                "rima": "ɛi",
-                "vegades": 1
-            },
-            {
-                "rima": "ɛnti",
                 "vegades": 1
             }
         ]
