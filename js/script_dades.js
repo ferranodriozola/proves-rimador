@@ -10,7 +10,6 @@ function pintarFiltresHTML(dadesSempre) {
         { id: 'recompte_incloure_pl', titol: 'Incloure plurals?' }
     ];
 
-    // Diccionari de traducció
     const nomsTraduïts = {
         '0': 'Indiferent', '1': '1 síl·laba', '2': '2 síl·labes', '3': '3 síl·labes',
         '4': '4 síl·labes', '5': '5 síl·labes', '6': '6 síl·labes',
@@ -18,7 +17,6 @@ function pintarFiltresHTML(dadesSempre) {
         'si': 'Sí', 'no': 'No'
     };
 
-    // Paleta de colors a l'estil de la teva web (roses, cians, grocs, verds llima)
     const paletaColors = ['#FF91FF', '#00ffff', '#ffe680', '#b3ffb3', '#ffb3b3', '#d9b3ff', '#ffc266'];
 
     filtres.forEach(filtre => {
@@ -28,7 +26,6 @@ function pintarFiltresHTML(dadesSempre) {
         let totalFiltre = 0;
         let entrades = [];
 
-        // 1. Recopilem les dades i calculem el total
         for (const [opcio, vegades] of Object.entries(dadesFiltre)) {
             if (opcio !== 'nan' && opcio !== 'None') {
                 totalFiltre += vegades;
@@ -38,7 +35,6 @@ function pintarFiltresHTML(dadesSempre) {
 
         if (totalFiltre === 0) return;
 
-        // 2. Ordenem de major a menor quantitat (queda millor al gràfic)
         entrades.sort((a, b) => b.vegades - a.vegades);
 
         const divCategoria = document.createElement('div');
@@ -54,23 +50,19 @@ function pintarFiltresHTML(dadesSempre) {
         const llegenda = document.createElement('div');
         llegenda.className = 'llegenda-filtre';
 
-        // 3. Creem els segments i la llegenda
         entrades.forEach((item, index) => {
             const percentatge = ((item.vegades / totalFiltre) * 100).toFixed(1);
             const nomMostrar = nomsTraduïts[item.opcio] || item.opcio;
             const colorTros = paletaColors[index % paletaColors.length];
 
-// Avaluem si el tros és petit
             const esPetit = parseFloat(percentatge) < 12;
 
-            // Dibuixem el segment dins la barra general
             const segment = document.createElement('div');
             segment.className = 'segment-barra';
             segment.style.width = `${percentatge}%`;
             segment.style.backgroundColor = colorTros;
             segment.title = `${nomMostrar}: ${percentatge}%`;
             
-            // Si és petit, l'embolcallem amb una classe especial per amagar-lo al mòbil
             if (esPetit) {
                 segment.innerHTML = `<span class="text-amagat-mobil">${percentatge}%</span>`;
             } else {
@@ -78,12 +70,10 @@ function pintarFiltresHTML(dadesSempre) {
             }
             barraApilada.appendChild(segment);
 
-            // Afegim l'ítem a la llegenda inferior
             const itemLlegenda = document.createElement('div');
             itemLlegenda.className = 'item-llegenda';
             itemLlegenda.style.width = `${percentatge}%`;
 
-            // Preparem el percentatge a la llegenda, però amb una classe per amagar-lo a l'escriptori
             const textExtraMobil = esPetit ? `<span class="text-visible-mobil"> (${percentatge}%)</span>` : '';
 
             itemLlegenda.innerHTML = `
