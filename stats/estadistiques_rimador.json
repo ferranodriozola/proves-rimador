@@ -1,14 +1,7 @@
 {
-    "actualitzacio": "31/07/2026 23:32:13",
+    "actualitzacio": "01/08/2026 01:02:04",
     "setmana": {
-        "text_dies": "24/7 > 30/7",
-        "top_10_paraules": [],
-        "top_10_rimes": [],
-        "total_cerques": 0,
-        "numero_usuaris": 0,
-        "recompte_tipus_rima": {}
-    },
-    "sempre": {
+        "text_dies": "25/7 > 31/7",
         "top_10_paraules": [
             {
                 "paraula": "herba",
@@ -108,6 +101,108 @@
         "recompte_tipus_rima": {
             "r.consonant": 42,
             "r.assonant": 13
+        }
+    },
+    "sempre": {
+        "top_10_paraules": [
+            {
+                "paraula": "herba",
+                "cerques": 1
+            },
+            {
+                "paraula": "sirena",
+                "cerques": 1
+            },
+            {
+                "paraula": "ells",
+                "cerques": 1
+            },
+            {
+                "paraula": "fidel",
+                "cerques": 1
+            },
+            {
+                "paraula": "muntanya",
+                "cerques": 1
+            },
+            {
+                "paraula": "anya",
+                "cerques": 1
+            },
+            {
+                "paraula": "rem",
+                "cerques": 1
+            },
+            {
+                "paraula": "sonar",
+                "cerques": 1
+            },
+            {
+                "paraula": "petjar",
+                "cerques": 1
+            },
+            {
+                "paraula": "hongarès",
+                "cerques": 1
+            }
+        ],
+        "top_10_rimes": [
+            {
+                "paraula": "a",
+                "tipus": "r.assonant",
+                "cerques": 2
+            },
+            {
+                "paraula": "aə",
+                "tipus": "r.assonant",
+                "cerques": 2
+            },
+            {
+                "paraula": "o",
+                "tipus": "r.assonant",
+                "cerques": 2
+            },
+            {
+                "paraula": "os",
+                "tipus": "r.consonant",
+                "cerques": 2
+            },
+            {
+                "paraula": "ɛ",
+                "tipus": "r.assonant",
+                "cerques": 2
+            },
+            {
+                "paraula": "eɾə",
+                "tipus": "r.consonant",
+                "cerques": 2
+            },
+            {
+                "paraula": "ar",
+                "tipus": "r.consonant",
+                "cerques": 1
+            },
+            {
+                "paraula": "art",
+                "tipus": "r.consonant",
+                "cerques": 1
+            },
+            {
+                "paraula": "aws",
+                "tipus": "r.consonant",
+                "cerques": 1
+            },
+            {
+                "paraula": "atər",
+                "tipus": "r.consonant",
+                "cerques": 1
+            }
+        ],
+        "total_cerques": 58,
+        "numero_usuaris": 17,
+        "recompte_tipus_rima": {
+            "r.consonant": 45,
+            "r.assonant": 13
         },
         "top_10_fenix": [
             {
@@ -146,7 +241,7 @@
             }
         ],
         "recompte_num_sil": {
-            "0": 42,
+            "0": 45,
             "3": 8,
             "2": 7,
             "1": 5,
@@ -154,20 +249,16 @@
             "4": 1
         },
         "recompte_comenca_per": {
-            "indiferent": 67
+            "indiferent": 70
         },
         "recompte_incloure_np": {
-            "no": 67
+            "no": 70
         },
         "recompte_incloure_pl": {
-            "si": 55,
+            "si": 58,
             "no": 12
         },
         "grafic_linia_diaria": [
-            {
-                "data": "01/07",
-                "cerques": 0
-            },
             {
                 "data": "02/07",
                 "cerques": 0
@@ -283,6 +374,10 @@
             {
                 "data": "30/07",
                 "cerques": 0
+            },
+            {
+                "data": "31/07",
+                "cerques": 55
             }
         ],
         "grafic_formatge_exit": [
@@ -452,6 +547,18 @@
             },
             {
                 "rima": "esək",
+                "vegades": 1
+            },
+            {
+                "rima": "aðəs",
+                "vegades": 1
+            },
+            {
+                "rima": "i",
+                "vegades": 1
+            },
+            {
+                "rima": "ɔ",
                 "vegades": 1
             }
         ]
