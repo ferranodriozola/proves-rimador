@@ -1,5 +1,5 @@
 {
-    "actualitzacio": "31/07/2026 19:26:15",
+    "actualitzacio": "31/07/2026 23:32:13",
     "setmana": {
         "text_dies": "24/7 > 30/7",
         "top_10_paraules": [],
@@ -63,6 +63,11 @@
                 "cerques": 2
             },
             {
+                "paraula": "eɾə",
+                "tipus": "r.consonant",
+                "cerques": 2
+            },
+            {
                 "paraula": "o",
                 "tipus": "r.assonant",
                 "cerques": 2
@@ -73,14 +78,14 @@
                 "cerques": 2
             },
             {
-                "paraula": "eɾə",
-                "tipus": "r.consonant",
-                "cerques": 2
-            },
-            {
                 "paraula": "ɛ",
                 "tipus": "r.assonant",
                 "cerques": 2
+            },
+            {
+                "paraula": "ansə",
+                "tipus": "r.consonant",
+                "cerques": 1
             },
             {
                 "paraula": "al",
@@ -93,25 +98,24 @@
                 "cerques": 1
             },
             {
-                "paraula": "ansə",
-                "tipus": "r.consonant",
-                "cerques": 1
-            },
-            {
-                "paraula": "ajɾə",
+                "paraula": "ar",
                 "tipus": "r.consonant",
                 "cerques": 1
             }
         ],
-        "total_cerques": 53,
-        "numero_usuaris": 15,
+        "total_cerques": 55,
+        "numero_usuaris": 17,
         "recompte_tipus_rima": {
-            "r.consonant": 40,
+            "r.consonant": 42,
             "r.assonant": 13
         },
         "top_10_fenix": [
             {
                 "paraula": "micro",
+                "cerques": 1
+            },
+            {
+                "paraula": "préssec",
                 "cerques": 1
             }
         ],
@@ -135,10 +139,14 @@
             {
                 "paraula": "airea",
                 "cerques": 1
+            },
+            {
+                "paraula": "osos",
+                "cerques": 1
             }
         ],
         "recompte_num_sil": {
-            "0": 40,
+            "0": 42,
             "3": 8,
             "2": 7,
             "1": 5,
@@ -146,13 +154,13 @@
             "4": 1
         },
         "recompte_comenca_per": {
-            "indiferent": 65
+            "indiferent": 67
         },
         "recompte_incloure_np": {
-            "no": 65
+            "no": 67
         },
         "recompte_incloure_pl": {
-            "si": 53,
+            "si": 55,
             "no": 12
         },
         "grafic_linia_diaria": [
@@ -283,7 +291,7 @@
                 "vegades": 3
             },
             {
-                "rima": "a",
+                "rima": "aə",
                 "vegades": 2
             },
             {
@@ -291,20 +299,16 @@
                 "vegades": 2
             },
             {
-                "rima": "os",
+                "rima": "a",
                 "vegades": 2
             },
             {
-                "rima": "aə",
+                "rima": "os",
                 "vegades": 2
             },
             {
                 "rima": "eɾə",
                 "vegades": 2
-            },
-            {
-                "rima": "ɛl",
-                "vegades": 1
             },
             {
                 "rima": "erβə",
@@ -315,7 +319,11 @@
                 "vegades": 1
             },
             {
-                "rima": "iks",
+                "rima": "eʎs",
+                "vegades": 1
+            },
+            {
+                "rima": "ɛl",
                 "vegades": 1
             },
             {
@@ -323,15 +331,15 @@
                 "vegades": 1
             },
             {
-                "rima": "eʎs",
-                "vegades": 1
-            },
-            {
-                "rima": "al",
+                "rima": "iks",
                 "vegades": 1
             },
             {
                 "rima": "ɛŋkə",
+                "vegades": 1
+            },
+            {
+                "rima": "al",
                 "vegades": 1
             },
             {
@@ -440,6 +448,10 @@
             },
             {
                 "rima": "eəs",
+                "vegades": 1
+            },
+            {
+                "rima": "esək",
                 "vegades": 1
             }
         ]
