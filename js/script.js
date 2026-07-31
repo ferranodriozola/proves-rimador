@@ -1029,11 +1029,11 @@ function closeFormOnClickOutside(event) {
 // ============================================================= //
 
 // boring style
-const PEIXET_IMG_FESTIU = "assets/peixet.webp?v=2";
-const PEIXET_IMG_SOBRI = "assets/boringlogo.webp?v=2";
+const PEIXET_IMG_FESTIU = "assets/peixet.webp?v=1";
+const PEIXET_IMG_SOBRI = "assets/boringlogo.webp?v=1";
 const THEME_STORAGE_KEY = "rimadorTheme";
-const RIMADOR_IMG_FESTIU = "assets/Rimador-1.webp?v=2";
-const RIMADOR_IMG_SOBRI = "assets/Rimador-1-sober.webp?v=2";
+const RIMADOR_IMG_FESTIU = "assets/Rimador-1.webp?v=1";
+const RIMADOR_IMG_SOBRI = "assets/Rimador-1-sober.webp?v=1";
 
 let colorFestiuOriginal = null;
 
@@ -1058,11 +1058,11 @@ function aplicarTema(tema) {
   if (tema === "sober") {
     document.documentElement.setAttribute("data-theme", "sober");
     if (peixetImg) {
-      peixetImg.src = ruta + "boringlogo.webp?v=2";
+      peixetImg.src = ruta + "boringlogo.webp?v=1";
       peixetImg.alt = "Logo (mode sobri)";
     }
     if (rimadorImg) {
-      rimadorImg.src = ruta + "Rimador-1-sober.webp?v=2";
+      rimadorImg.src = ruta + "Rimador-1-sober.webp?v=1";
       rimadorImg.alt = "El Rimador (mode sobri)";
     }
     if (themeColorMeta) {
@@ -1071,11 +1071,11 @@ function aplicarTema(tema) {
   } else {
     document.documentElement.removeAttribute("data-theme");
     if (peixetImg) {
-      peixetImg.src = ruta + "peixet.webp?v=2";
+      peixetImg.src = ruta + "peixet.webp?v=1";
       peixetImg.alt = "Peixet decoratiu";
     }
     if (rimadorImg) {
-      rimadorImg.src = ruta + "Rimador-1.webp?v=2";
+      rimadorImg.src = ruta + "Rimador-1.webp?v=1";
       rimadorImg.alt = "Logo del Rimador en català";
     }
     if (themeColorMeta && colorFestiuOriginal) {
