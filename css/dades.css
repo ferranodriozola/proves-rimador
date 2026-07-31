@@ -6,7 +6,7 @@
     display: flex;
     width: 100%;
     gap: 0;
-    margin-top: 10px;
+    margin-top: 5px;
     flex-wrap: nowrap;
     font-family: 'Comic Sans MS', cursive, sans-serif;
     font-size: 13px;
@@ -36,8 +36,8 @@
 #contenidor-filtres {
     display: flex;
     flex-direction: column;
-    gap: 25px;
-    padding: 20px;
+    gap: 15px;
+    padding: 10px 20px;
 }
 
 .filtre-categoria {
@@ -46,14 +46,14 @@
 }
 
 .filtre-categoria h4 {
-    margin: 0 0 10px 0;
+    margin: 0 0 5px 0;
     text-align: left;
 }
 
 .barra-apilada {
     display: flex;
     width: 100%;
-    height: 40px;
+    height: 25px;
     border-radius: 8px;
     overflow: hidden;
     border: 2px solid #d30505;
@@ -227,6 +227,13 @@
 
 
 /* Adaptat telèfons */
+.text-visible-mobil {
+    display: none;
+}
+
+.text-visible-mobil-petit {
+    display: none;
+}
 
 @media screen and (max-width: 750px) {
     #text_dades {
@@ -250,8 +257,9 @@
 
     .text-visible-mobil {
         display: inline;
-    }
+    }    
 }
+
 
 @media screen and (max-width: 550px) {
     #text_dades {
@@ -269,31 +277,16 @@
     }
 }
 
-@media screen and (max-width: 750px) {
-    .llegenda-filtre {
-        flex-wrap: wrap !important;
-        justify-content: center;
-        gap: 15px !important;
-        margin-top: 15px;
-    }
-
-    .item-llegenda {
-        width: auto !important; 
-        flex-direction: row; 
-        align-items: center;
-        padding: 0;
-    }
-
+@media screen and (max-width: 450px) {
     .item-llegenda span {
-        word-break: normal;
-        font-size: 12px;
+        font-size: 8px;
+    }
+    
+    .text-amagat-mobil-petit {
+        display: none;
     }
 
-    .segment-barra {
-        font-size: 11px;
+    .amagat-llegenda-mobil-petit {
+        display: none !important;
     }
-}
-
-.text-visible-mobil {
-    display: none;
 }

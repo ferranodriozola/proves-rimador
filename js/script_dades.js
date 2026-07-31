@@ -11,9 +11,9 @@ function pintarFiltresHTML(dadesSempre) {
     ];
 
     const nomsTraduïts = {
-        '0': 'Indiferent', '1': '1 síl·laba', '2': '2 síl·labes', '3': '3 síl·labes',
-        '4': '4 síl·labes', '5': '5 síl·labes', '6': '6 síl·labes',
-        'indiferent': 'qualsevol lletra', 'consonant': 'Consonant', 'vocal+h': 'vocal / h',
+        '0': 'Indiferent', '1': '1s', '2': '2s', '3': '3s',
+        '4': '4s', '5': '5s', '6': '6s',
+        'indiferent': 'qualsevol lletra', 'consonant': 'consonant', 'vocal+h': 'vocal / h',
         'si': 'Sí', 'no': 'No'
     };
 
@@ -55,7 +55,10 @@ function pintarFiltresHTML(dadesSempre) {
             const nomMostrar = nomsTraduïts[item.opcio] || item.opcio;
             const colorTros = paletaColors[index % paletaColors.length];
 
-            const esPetit = parseFloat(percentatge) < 12;
+            const valor = parseFloat(percentatge);
+            const esPetit = valor < 12;
+            const esPetitissim = valor < 5;
+            const mobilPetit = valor < 20;
 
             const segment = document.createElement('div');
             segment.className = 'segment-barra';
@@ -63,22 +66,30 @@ function pintarFiltresHTML(dadesSempre) {
             segment.style.backgroundColor = colorTros;
             segment.title = `${nomMostrar}: ${percentatge}%`;
             
-            if (esPetit) {
+            if (esPetitissim) {
+                segment.innerHTML = ``;
+            } else if (esPetit) {
                 segment.innerHTML = `<span class="text-amagat-mobil">${percentatge}%</span>`;
+            } else if (mobilPetit) {
+                segment.innerHTML = `<span class="text-amagat-mobil-petit">${percentatge}%</span>`;
             } else {
                 segment.innerHTML = `<span>${percentatge}%</span>`;
             }
+
             barraApilada.appendChild(segment);
 
             const itemLlegenda = document.createElement('div');
             itemLlegenda.className = 'item-llegenda';
-            itemLlegenda.style.width = `${percentatge}%`;
 
-            const textExtraMobil = esPetit ? `<span class="text-visible-mobil"> (${percentatge}%)</span>` : '';
+            if (esPetitissim) {
+                itemLlegenda.classList.add('amagat-llegenda-mobil-petit');
+            }
+
+            itemLlegenda.style.width = `${percentatge}%`;
 
             itemLlegenda.innerHTML = `
                 <div class="color-box" style="background-color: ${colorTros}"></div>
-                <span>${nomMostrar}${textExtraMobil}</span>
+                <span>${nomMostrar}</span>
             `;
             llegenda.appendChild(itemLlegenda);
                 });
@@ -128,7 +139,7 @@ async function carregarEstadistiques(arxiuJson) {
         if (loaderText2) loaderText2.textContent = "Descarregant estadístiques (0/2)";
 
         const resposta = await fetch(`${arxiuJson}?t=${Date.now()}`);
-        
+
         if (!resposta.ok) throw new Error(`Error HTTP: ${resposta.status}`);
 
         if (loaderText2) loaderText2.textContent = "Dibuixant els gràfics (1/2)";
