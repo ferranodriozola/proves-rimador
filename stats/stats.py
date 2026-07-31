@@ -139,9 +139,16 @@ dades_json = {
     }
 }
 
+dades_json_versio = {
+    "actualitzacio": datetime.now(tz_espanya).strftime("%d/%m/%Y %H:%M:%S")}
+
 ruta_json = 'stats/estadistiques_rimador.json'
+ruta_json_versio = 'stats/versio_estadistiques_rimador.json'
 
 with open(ruta_json, 'w', encoding='utf-8') as arxiu:
     json.dump(dades_json, arxiu, ensure_ascii=False, indent=4)
+
+with open(ruta_json_versio, 'w', encoding='utf-8') as arxiu:
+    json.dump(dades_json_versio, arxiu, ensure_ascii=False, indent=4)
 
 print(f"Exportació completada amb èxit (hora: {datetime.now(tz_espanya).strftime('%H:%M:%S')})")
