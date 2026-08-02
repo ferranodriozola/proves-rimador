@@ -1,5 +1,5 @@
 {
-    "actualitzacio": "02/08/2026 00:56:05",
+    "actualitzacio": "02/08/2026 14:17:01",
     "setmana": {
         "text_dies": "26/7 > 1/8",
         "top_10_paraules": [
@@ -114,6 +114,10 @@
                 "cerques": 2
             },
             {
+                "paraula": "gropa",
+                "cerques": 2
+            },
+            {
                 "paraula": "herba",
                 "cerques": 1
             },
@@ -140,10 +144,6 @@
             {
                 "paraula": "rem",
                 "cerques": 1
-            },
-            {
-                "paraula": "sonar",
-                "cerques": 1
             }
         ],
         "top_10_rimes": [
@@ -153,27 +153,32 @@
                 "cerques": 3
             },
             {
-                "paraula": "ɛ",
-                "tipus": "r.assonant",
-                "cerques": 3
-            },
-            {
                 "paraula": "i",
                 "tipus": "r.consonant",
                 "cerques": 3
             },
             {
-                "paraula": "ɔw",
+                "paraula": "ɛ",
+                "tipus": "r.assonant",
+                "cerques": 3
+            },
+            {
+                "paraula": "os",
                 "tipus": "r.consonant",
                 "cerques": 2
             },
             {
-                "paraula": "ɛtɾə",
-                "tipus": "r.consonant",
+                "paraula": "aə",
+                "tipus": "r.assonant",
                 "cerques": 2
             },
             {
-                "paraula": "eɾə",
+                "paraula": "oə",
+                "tipus": "r.assonant",
+                "cerques": 2
+            },
+            {
+                "paraula": "ɔ",
                 "tipus": "r.consonant",
                 "cerques": 2
             },
@@ -183,13 +188,8 @@
                 "cerques": 2
             },
             {
-                "paraula": "e",
-                "tipus": "r.assonant",
-                "cerques": 2
-            },
-            {
-                "paraula": "o",
-                "tipus": "r.assonant",
+                "paraula": "ɔw",
+                "tipus": "r.consonant",
                 "cerques": 2
             },
             {
@@ -198,11 +198,11 @@
                 "cerques": 2
             }
         ],
-        "total_cerques": 107,
-        "numero_usuaris": 28,
+        "total_cerques": 114,
+        "numero_usuaris": 31,
         "recompte_tipus_rima": {
-            "r.consonant": 87,
-            "r.assonant": 20
+            "r.consonant": 93,
+            "r.assonant": 21
         },
         "top_10_fenix": [
             {
@@ -261,22 +261,22 @@
             }
         ],
         "recompte_num_sil": {
-            "0": 93,
-            "2": 14,
+            "0": 99,
+            "2": 16,
             "3": 10,
             "1": 5,
             "5": 4,
             "4": 1
         },
         "recompte_comenca_per": {
-            "indiferent": 127
+            "indiferent": 135
         },
         "recompte_incloure_np": {
-            "no": 125,
+            "no": 133,
             "si": 2
         },
         "recompte_incloure_pl": {
-            "si": 114,
+            "si": 122,
             "no": 13
         },
         "grafic_linia_diaria": [
@@ -447,11 +447,23 @@
                 "vegades": 2
             },
             {
+                "rima": "ɔ",
+                "vegades": 2
+            },
+            {
                 "rima": "ɔk",
                 "vegades": 2
             },
             {
+                "rima": "oə",
+                "vegades": 2
+            },
+            {
                 "rima": "ut",
+                "vegades": 2
+            },
+            {
+                "rima": "an",
                 "vegades": 2
             },
             {
@@ -591,10 +603,6 @@
                 "vegades": 1
             },
             {
-                "rima": "ɔ",
-                "vegades": 1
-            },
-            {
                 "rima": "imu",
                 "vegades": 1
             },
@@ -612,10 +620,6 @@
             },
             {
                 "rima": "ou",
-                "vegades": 1
-            },
-            {
-                "rima": "oə",
                 "vegades": 1
             },
             {
@@ -640,10 +644,6 @@
             },
             {
                 "rima": "ɛrə",
-                "vegades": 1
-            },
-            {
-                "rima": "an",
                 "vegades": 1
             },
             {
@@ -708,6 +708,18 @@
             },
             {
                 "rima": "is",
+                "vegades": 1
+            },
+            {
+                "rima": "iw",
+                "vegades": 1
+            },
+            {
+                "rima": "ɛlə",
+                "vegades": 1
+            },
+            {
+                "rima": "iβə",
                 "vegades": 1
             }
         ]
