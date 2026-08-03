@@ -3,7 +3,11 @@ name: Deploy Gulp site to Pages
 on:
   push:
     branches: ["main"]
-  workflow_dispatch:   
+  workflow_run:
+    workflows: ["Actualització automàtica de les estadístiques"]
+    types:
+      - completed
+    workflow_dispatch:  
   
 permissions:
   contents: write
