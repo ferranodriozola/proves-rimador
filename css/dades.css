@@ -206,6 +206,19 @@
     margin: 14px 10px;
 }
 
+.taula-grafics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.taula-grafics .grafic-caixa {
+    flex: 1 1 300px;
+    margin-bottom: 0px;
+}
+
 .grafic-caixa {
     background-color: #ffffcc;
     border: 5px ridge #d30505;
@@ -221,10 +234,9 @@
 
 .grafic-caixa.formatge .grafic-cos {
     height: auto;
-    max-width: 620px;
+    width: 100%;
     margin: 0px auto;
 }
-
 
 /* Adaptat telèfons */
 .text-visible-mobil {

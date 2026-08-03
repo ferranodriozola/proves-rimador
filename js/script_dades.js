@@ -92,18 +92,13 @@ function pintarFiltresHTML(dadesSempre) {
                 <span>${nomMostrar}</span>
             `;
             llegenda.appendChild(itemLlegenda);
-                });
+        });
 
         divCategoria.appendChild(barraApilada);
         divCategoria.appendChild(llegenda);
         contenidor.appendChild(divCategoria);
     });
 }
-
-
-
-
-
 
 function omplirLlistesHTML(idElement, arrayDades, esRima = false) {
     const contenidor = document.getElementById(idElement);
@@ -129,7 +124,6 @@ function omplirLlistesHTML(idElement, arrayDades, esRima = false) {
         contenidor.appendChild(li);
     });
 }
-
 
 async function carregarEstadistiques(arxiuJson) {
     const loaderText2 = document.getElementById('loader-text2');
@@ -166,7 +160,7 @@ async function carregarEstadistiques(arxiuJson) {
         omplirLlistesHTML('llista-fenix', dades.sempre.top_10_fenix, false);
         omplirLlistesHTML('llista-typos', dades.sempre.top_10_typos, false);
 
-        const dadesLinia = dades.sempre.grafic_linia_diaria;
+        const dadesLinia = dades.grafics.grafic_linia_diaria;
         const ctxLinia = document.getElementById('graficLinia').getContext('2d');
         
         new Chart(ctxLinia, {
@@ -196,19 +190,52 @@ async function carregarEstadistiques(arxiuJson) {
             }
         });
 
-        const dadesFormatge = dades.sempre.grafic_formatge_exit;
-        const ctxFormatge = document.getElementById('graficFormatge').getContext('2d');
+        const dadesFormatgeAss = dades.grafics.grafic_formatge_exit_assonant;
+        const dadesFormatgeCons = dades.grafics.grafic_formatge_exit_consonant;
         
         const PALETA = ['#ff0000', '#ff7300', '#fffb00', '#48ff00', '#00ffd5', '#002bff', '#7a00ff', '#ff00c8'];
-        const colorsFormatge = dadesFormatge.map((_, i) => PALETA[i % PALETA.length]);
+        
+        //gràfic assonant
+        const ctxFormatgeAss = document.getElementById('graficFormatgeASS').getContext('2d');
+        const colorsFormatgeAss = dadesFormatgeAss.map((_, i) => PALETA[i % PALETA.length]);
 
-        new Chart(ctxFormatge, {
+        new Chart(ctxFormatgeAss, {
             type: 'pie',
             data: {
-                labels: dadesFormatge.map(item => item.rima),
+                labels: dadesFormatgeAss.map(item => item.rima),
                 datasets: [{
-                    data: dadesFormatge.map(item => item.vegades),
-                    backgroundColor: colorsFormatge,
+                    data: dadesFormatgeAss.map(item => item.vegades),
+                    backgroundColor: colorsFormatgeAss,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let valor = context.raw || 0;
+                                return ` ${valor} cerques`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        //gràfic consonant
+        const ctxFormatgeCons = document.getElementById('graficFormatgeCONS').getContext('2d');
+        const colorsFormatgeCons = dadesFormatgeCons.map((_, i) => PALETA[i % PALETA.length]);
+
+        new Chart(ctxFormatgeCons, {
+            type: 'pie',
+            data: {
+                labels: dadesFormatgeCons.map(item => item.rima),
+                datasets: [{
+                    data: dadesFormatgeCons.map(item => item.vegades),
+                    backgroundColor: colorsFormatgeCons,
                     borderWidth: 1
                 }]
             },

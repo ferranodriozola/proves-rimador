@@ -90,8 +90,9 @@ def dades_grafic_linia(df_dades):
 
     return resultat
 
-def dades_grafic_formatge_totes(df_dades):
-    recompte = df_dades['Rima'].value_counts()
+def dades_grafic_formatge_totes(df_dades, tipus_rima):
+    df_filtrat = df_dades[df_dades['Tipus de rima'] == tipus_rima]
+    recompte = df_filtrat['Rima'].value_counts()
 
     return [
         {"rima": str(rima), "vegades": int(total)}
@@ -134,8 +135,11 @@ dades_json = {
         "recompte_comenca_per": df_filtres['Comença per'].value_counts().to_dict(),
         "recompte_incloure_np": df_filtres['Incloure NP'].value_counts().to_dict(),
         "recompte_incloure_pl": df_filtres['Incloure pl.'].value_counts().to_dict(),
-        "grafic_linia_diaria": dades_grafic_linia(df_net),
-        "grafic_formatge_exit": dades_grafic_formatge_totes(df_rimes_totes),
+    },
+    "grafics": {
+    "grafic_linia_diaria": dades_grafic_linia(df_net),
+    "grafic_formatge_exit_assonant": dades_grafic_formatge_totes(df_rimes_totes, "r.assonant"),
+    "grafic_formatge_exit_consonant": dades_grafic_formatge_totes(df_rimes_totes, "r.consonant"),
     }
 }
 
