@@ -190,15 +190,41 @@ async function carregarEstadistiques(arxiuJson) {
             }
         });
 
-        const dadesFormatgeAss = dades.grafics.grafic_formatge_exit_assonant;
-        const dadesFormatgeCons = dades.grafics.grafic_formatge_exit_consonant;
         
         const PALETA = ['#ff0000', '#ff7300', '#fffb00', '#48ff00', '#00ffd5', '#002bff', '#7a00ff', '#ff00c8'];
         
+        //agrupar dades petites
+        function agruparMenors(dadesArray) {
+            const total = dadesArray.reduce((suma, item) => suma + item.vegades, 0);
+            const resultat = [];
+            let altres = 0;
+
+            dadesArray.forEach(item => {
+                const percentatge = (item.vegades / total) * 100;
+                if (percentatge < 1) {
+                    altres += item.vegades;
+                } else {
+                    resultat.push(item);
+                }
+            });
+
+            resultat.sort((a, b) => b.vegades - a.vegades);
+
+            if (altres > 0) {
+                resultat.push({ rima: 'Altres', vegades: altres });
+            }
+            return resultat;
+        }
+
+
+        const dadesFormatgeAss = agruparMenors(dades.grafics.grafic_formatge_exit_assonant);
+        const dadesFormatgeCons = agruparMenors(dades.grafics.grafic_formatge_exit_consonant);
+
         //gràfic assonant
         const ctxFormatgeAss = document.getElementById('graficFormatgeASS').getContext('2d');
-        const colorsFormatgeAss = dadesFormatgeAss.map((_, i) => PALETA[i % PALETA.length]);
-
+        const colorsFormatgeAss = dadesFormatgeAss.map((item, i) => 
+                    item.rima === 'Altres' ? '#aeaeae' : PALETA[i % PALETA.length]
+        );
         new Chart(ctxFormatgeAss, {
             type: 'pie',
             data: {
@@ -227,7 +253,9 @@ async function carregarEstadistiques(arxiuJson) {
 
         //gràfic consonant
         const ctxFormatgeCons = document.getElementById('graficFormatgeCONS').getContext('2d');
-        const colorsFormatgeCons = dadesFormatgeCons.map((_, i) => PALETA[i % PALETA.length]);
+        const colorsFormatgeCons = dadesFormatgeCons.map((item, i) => 
+                    item.rima === 'Altres' ? '#aeaeae' : PALETA[i % PALETA.length]
+        );
 
         new Chart(ctxFormatgeCons, {
             type: 'pie',
