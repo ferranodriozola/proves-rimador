@@ -475,14 +475,14 @@ function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, i
       if (isNaN(num) || num <= 0 || num > ordenat.length) {
               alert("Selecció invàlida. S'ha seleccionat la primera opció per defecte.");
               num = 1; 
-
-        const indexparaula = ordenat[num - 1].index;
-        llistaParaulaCerca = [
-          array0[indexparaula], array1[indexparaula], array2[indexparaula],
-          array3[indexparaula], array4[indexparaula], array5[indexparaula],
-          array6[indexparaula], array7[indexparaula], array8[indexparaula], array9[indexparaula]
-        ];
       }
+
+      const indexparaula = ordenat[num - 1].index;
+      llistaParaulaCerca = [
+        array0[indexparaula], array1[indexparaula], array2[indexparaula],
+        array3[indexparaula], array4[indexparaula], array5[indexparaula],
+        array6[indexparaula], array7[indexparaula], array8[indexparaula], array9[indexparaula]
+      ];
     }
   }
 
