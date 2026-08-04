@@ -1,5 +1,5 @@
 {
-    "actualitzacio": "05/08/2026 01:19:09",
+    "actualitzacio": "05/08/2026 01:51:45",
     "setmana": {
         "text_dies": "29/7 > 4/8",
         "top_10_paraules": [
@@ -302,6 +302,34 @@
                 {
                     "data": "03/08/2026",
                     "total": 20
+                },
+                {
+                    "data": "31/07/2026",
+                    "total": 17
+                }
+            ],
+            "anti_top_cerques": [
+                {
+                    "data": "02/08/2026",
+                    "total": 28
+                },
+                {
+                    "data": "01/08/2026",
+                    "total": 50
+                },
+                {
+                    "data": "31/07/2026",
+                    "total": 55
+                }
+            ],
+            "anti_top_usuaris": [
+                {
+                    "data": "02/08/2026",
+                    "total": 9
+                },
+                {
+                    "data": "01/08/2026",
+                    "total": 15
                 },
                 {
                     "data": "31/07/2026",
