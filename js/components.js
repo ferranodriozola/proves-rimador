@@ -18,7 +18,7 @@ let opcionsSilabes = /*html*/`
 if (idPagina === 'principal' || idPagina === 'canvis' || idPagina === 'dades' || idPagina === 'nosaltres') {
   ruta1 = 'assets/';
   ruta2 = 'historial_canvis.html';
-} else if (idPagina === '404') {
+} else if (idPagina === 'error404') {
   ruta1 = '/assets/';
   ruta2 = '/historial_canvis.html';
 } else if (idPagina === 'llista') {
@@ -81,7 +81,7 @@ if (loaderHTML) { loaderHTML.innerHTML = loader; }
 
 
 const header = /*html*/`
-<a href="https://rimador.cat"><img class="rimador" id="rimadorImg" src="${ruta1}Rimador-1.webp?=v2" alt="Logo del Rimador en català"></a>
+<a href="https://rimador.cat"><img class="rimador" id="rimadorImg" src="${ruta1}Rimador-1.webp?v=2" alt="Logo del Rimador en català"></a>
 <button type="button" id="themeToggleBtn" class="peixet-btn" onclick="toggleTheme()" aria-label="Canvia entre mode festiu i mode sobri" title="Canvia d'estil"><img class="peixet" id="peixetImg" src="${ruta1}peixet.webp" alt="Peixet decoratiu"></button>
 `
 const headerHTML = document.getElementById('header');

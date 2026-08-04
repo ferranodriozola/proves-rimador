@@ -1051,7 +1051,7 @@ function aplicarTema(tema) {
   let ruta = '';
   if (idPagina === 'principal' || idPagina === 'canvis' || idPagina === 'dades' || idPagina === 'nosaltres') {
     ruta = 'assets/';
-  } else if (idPagina === '404') {
+  } else if (idPagina === 'error404') {
     ruta = '/assets/';
   } else if (idPagina === 'llista') {
     ruta = '../assets/';
