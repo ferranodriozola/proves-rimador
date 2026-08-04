@@ -149,7 +149,7 @@ async function carregarEstadistiques(arxiuJson) {
         document.getElementById('assonant-sempre').textContent = dades.sempre.recompte_tipus_rima['r.assonant'] || 0;
         document.getElementById('consonant-sempre').textContent = dades.sempre.recompte_tipus_rima['r.consonant'] || 0;
 
-        pintarFiltresHTML(dades.sempre, dades.sempre.total_cerques);
+        pintarFiltresHTML(dades.sempre);
         
         omplirLlistesHTML('llista-paraules-setmana', dades.setmana.top_10_paraules, false);
         omplirLlistesHTML('llista-rimes-setmana', dades.setmana.top_10_rimes, true);
