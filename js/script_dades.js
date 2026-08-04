@@ -191,6 +191,8 @@ async function carregarEstadistiques(arxiuJson) {
         if (dades.sempre.top_dies) {
             omplirPodiHTML('podi-cerques', dades.sempre.top_dies.top_cerques, 'cerques');
             omplirPodiHTML('podi-usuaris', dades.sempre.top_dies.top_usuaris, 'usuaris');
+            omplirPodiHTML('anti-podi-cerques', dades.sempre.top_dies.anti_top_cerques, 'cerques');
+            omplirPodiHTML('anti-podi-usuaris', dades.sempre.top_dies.anti_top_usuaris, 'usuaris');
         }
 
         const temaSober = document.documentElement.getAttribute('data-theme') === 'sober' || document.body.getAttribute('data-theme') === 'sober';
