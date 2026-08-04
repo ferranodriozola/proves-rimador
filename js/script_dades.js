@@ -17,7 +17,11 @@ function pintarFiltresHTML(dadesSempre) {
         'si': 'Sí', 'no': 'No'
     };
 
-    const paletaColors = ['#FF91FF', '#00ffff', '#ffe680', '#b3ffb3', '#ffb3b3', '#d9b3ff', '#ffc266'];
+    const temaSober = document.documentElement.getAttribute('data-theme') === 'sober' || document.body.getAttribute('data-theme') === 'sober';
+    
+    const paletaColors = temaSober 
+        ? ['#4d4d4d', '#737373', '#999999', '#bfbfbf', '#d9d9d9', '#8c8c8c', '#e6e6e6']
+        : ['#FF91FF', '#00ffff', '#ffe680', '#b3ffb3', '#ffb3b3', '#d9b3ff', '#ffc266']; 
 
     filtres.forEach(filtre => {
         const dadesFiltre = dadesSempre[filtre.id];
@@ -172,6 +176,7 @@ async function carregarEstadistiques(arxiuJson) {
         document.getElementById('assonant-sempre').textContent = dades.sempre.recompte_tipus_rima['r.assonant'] || 0;
         document.getElementById('consonant-sempre').textContent = dades.sempre.recompte_tipus_rima['r.consonant'] || 0;
 
+        window.dadesSempre = dades.sempre; 
         pintarFiltresHTML(dades.sempre);
         
         omplirLlistesHTML('llista-paraules-setmana', dades.setmana.top_10_paraules, false);
@@ -187,28 +192,28 @@ async function carregarEstadistiques(arxiuJson) {
             omplirPodiHTML('podi-cerques', dades.sempre.top_dies.top_cerques, 'cerques');
             omplirPodiHTML('podi-usuaris', dades.sempre.top_dies.top_usuaris, 'usuaris');
         }
-        
+
+        const temaSober = document.documentElement.getAttribute('data-theme') === 'sober' || document.body.getAttribute('data-theme') === 'sober';
         const dadesLinia = dades.grafics.grafic_linia_diaria;
         const ctxLinia = document.getElementById('graficLinia').getContext('2d');
         
-        new Chart(ctxLinia, {
+        window.graficLiniaObj = new Chart(ctxLinia, {
             type: 'line',
             data: {
                 labels: dadesLinia.map(item => item.data),
                 datasets: [{
                     label: 'Cerques',
                     data: dadesLinia.map(item => item.cerques),
-                    borderColor: '#d30505',
-                    backgroundColor: 'rgba(255, 145, 255, 0.55)',
-                    borderWidth: 2,
+                    borderColor: temaSober ? '#aa0000' : '#d30505',
+                    backgroundColor: temaSober ? 'rgba(170, 0, 0, 0.2)' : 'rgba(255, 145, 255, 0.55)',                    borderWidth: 2,
                     fill: true,
                     tension: 0.3
                 },
                 {
                     label: 'Usuaris únics',
                     data: dadesLinia.map(item => item.usuaris),
-                    borderColor: '#0055ff', 
-                    backgroundColor: 'rgba(0, 85, 255, 0.2)', 
+                    borderColor: temaSober ? '#555555' : '#0055ff', 
+                    backgroundColor: temaSober ? 'rgba(85, 85, 85, 0.2)' : 'rgba(0, 85, 255, 0.2)',
                     borderWidth: 2,
                     fill: true,
                     tension: 0.3
@@ -228,8 +233,10 @@ async function carregarEstadistiques(arxiuJson) {
         });
 
         
-        const PALETA = ['#ff0000', '#ff7300', '#fffb00', '#48ff00', '#00ffd5', '#002bff', '#7a00ff', '#ff00c8'];
-        
+        const PALETA = temaSober 
+            ? ['#222222', '#4d4d4d', '#737373', '#999999', '#bfbfbf', '#aa0000', '#800000', '#555555'] 
+            : ['#ff0000', '#ff7300', '#fffb00', '#48ff00', '#00ffd5', '#002bff', '#7a00ff', '#ff00c8'];
+
         //agrupar dades petites
         function agruparMenors(dadesArray) {
             const total = dadesArray.reduce((suma, item) => suma + item.vegades, 0);
@@ -257,12 +264,15 @@ async function carregarEstadistiques(arxiuJson) {
         const dadesFormatgeAss = agruparMenors(dades.grafics.grafic_formatge_exit_assonant);
         const dadesFormatgeCons = agruparMenors(dades.grafics.grafic_formatge_exit_consonant);
 
+        window.dadesFormatgeAss = dadesFormatgeAss; 
+        window.dadesFormatgeCons = dadesFormatgeCons;
+
         //gràfic assonant
         const ctxFormatgeAss = document.getElementById('graficFormatgeASS').getContext('2d');
         const colorsFormatgeAss = dadesFormatgeAss.map((item, i) => 
                     item.rima === 'Altres' ? '#aeaeae' : PALETA[i % PALETA.length]
         );
-        new Chart(ctxFormatgeAss, {
+        window.graficFormatgeAssObj = new Chart(ctxFormatgeAss, {
             type: 'pie',
             data: {
                 labels: dadesFormatgeAss.map(item => item.rima),
@@ -274,6 +284,7 @@ async function carregarEstadistiques(arxiuJson) {
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     legend: { display: false },
                     tooltip: {
@@ -294,7 +305,7 @@ async function carregarEstadistiques(arxiuJson) {
                     item.rima === 'Altres' ? '#aeaeae' : PALETA[i % PALETA.length]
         );
 
-        new Chart(ctxFormatgeCons, {
+        window.graficFormatgeConsObj = new Chart(ctxFormatgeCons, { 
             type: 'pie',
             data: {
                 labels: dadesFormatgeCons.map(item => item.rima),
@@ -306,6 +317,7 @@ async function carregarEstadistiques(arxiuJson) {
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     legend: { display: false },
                     tooltip: {
@@ -338,3 +350,39 @@ document.addEventListener('DOMContentLoaded', () => {
         carregarEstadistiques('stats/estadistiques_rimador.json');
     }
 });
+
+function actualitzarColorsGrafics() {
+    const temaSober = document.documentElement.getAttribute('data-theme') === 'sober' || document.body.getAttribute('data-theme') === 'sober';
+    
+    if (window.dadesSempre) {
+        pintarFiltresHTML(window.dadesSempre);
+    }
+
+    if (window.graficLiniaObj) {
+        window.graficLiniaObj.data.datasets[0].borderColor = temaSober ? '#aa0000' : '#d30505';
+        window.graficLiniaObj.data.datasets[0].backgroundColor = temaSober ? 'rgba(170, 0, 0, 0.2)' : 'rgba(255, 145, 255, 0.55)';
+        
+        window.graficLiniaObj.data.datasets[1].borderColor = temaSober ? '#555555' : '#0055ff';
+        window.graficLiniaObj.data.datasets[1].backgroundColor = temaSober ? 'rgba(85, 85, 85, 0.2)' : 'rgba(0, 85, 255, 0.2)';
+        
+        window.graficLiniaObj.update();
+    }
+
+    const PALETA = temaSober 
+        ? ['#222222', '#4d4d4d', '#737373', '#999999', '#bfbfbf', '#aa0000', '#800000', '#555555'] 
+        : ['#ff0000', '#ff7300', '#fffb00', '#48ff00', '#00ffd5', '#002bff', '#7a00ff', '#ff00c8'];
+
+    if (window.graficFormatgeAssObj && window.dadesFormatgeAss) {
+        window.graficFormatgeAssObj.data.datasets[0].backgroundColor = window.dadesFormatgeAss.map((item, i) => 
+            item.rima === 'Altres' ? (temaSober ? '#e6e4e5' : '#aeaeae') : PALETA[i % PALETA.length]
+        );
+        window.graficFormatgeAssObj.update();
+    }
+
+    if (window.graficFormatgeConsObj && window.dadesFormatgeCons) {
+        window.graficFormatgeConsObj.data.datasets[0].backgroundColor = window.dadesFormatgeCons.map((item, i) => 
+            item.rima === 'Altres' ? (temaSober ? '#e6e4e5' : '#aeaeae') : PALETA[i % PALETA.length]
+        );
+        window.graficFormatgeConsObj.update();
+    }
+}

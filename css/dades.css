@@ -215,7 +215,8 @@
 }
 
 .taula-grafics .grafic-caixa {
-    flex: 1 1 300px;
+    flex: 1 1 calc(50% - 20px); 
+    min-width: 280px;
     margin-bottom: 0px;
 }
 
@@ -233,9 +234,11 @@
 }
 
 .grafic-caixa.formatge .grafic-cos {
-    height: auto;
+    height: 500px;
     width: 100%;
     margin: 0px auto;
+    padding: 25px; 
+    box-sizing: border-box;
 }
 
 
@@ -274,7 +277,11 @@
 
     .text-visible-mobil {
         display: inline;
-    }    
+    } 
+
+    .grafic-caixa.formatge .grafic-cos {
+        height: 320px; 
+    } 
 }
 
 
@@ -291,6 +298,10 @@
     }
     .grafic-cos {
         height: 240px;
+    }
+
+    .grafic-caixa.formatge .grafic-cos {
+        height: 280px;
     }
 }
 

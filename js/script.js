@@ -1100,6 +1100,9 @@ function toggleTheme() {
   if (document.querySelector('.alerta-fenix')) {
       actualitzarRimes();
     }
+  if (typeof actualitzarColorsGrafics === 'function') {
+      actualitzarColorsGrafics();
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
