@@ -376,3 +376,27 @@
     color: white !important;
     font-family: var(--sober-font) !important;
 }
+
+[data-theme="sober"] .podium-box {
+    background-color: var(--sober-panel-bg);
+    border: 1px solid var(--sober-border);
+    border-radius: 0; 
+}
+
+[data-theme="sober"] .podium-box h4 {
+    color: var(--sober-accent);
+    font-family: var(--sober-font);
+}
+
+[data-theme="sober"] .podium-box ul li {
+    background-color: #f7f7f7; 
+    border: 1px solid var(--sober-border);
+    color: var(--sober-text);
+    font-family: var(--sober-font);
+    border-radius: 0;
+}
+
+[data-theme="sober"] .medal-0 {
+    border-color: var(--sober-border) !important; 
+    border-width: 1px !important; 
+}

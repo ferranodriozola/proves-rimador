@@ -130,6 +130,24 @@ function omplirLlistesHTML(idElement, arrayDades, esRima = false) {
     });
 }
 
+function omplirPodiHTML(idElement, arrayDades, etiqueta) {
+    const contenidor = document.getElementById(idElement);
+    if (!contenidor) return;
+    contenidor.innerHTML = '';
+
+    if (!Array.isArray(arrayDades)) return;
+
+    const medalles = ['🥇', '🥈', '🥉'];
+
+    arrayDades.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.className = `medal-${index}`;
+        
+        li.innerHTML = `${medalles[index] || '🏅'} <u>${item.data}</u> : <b>${item.total}</b> ${etiqueta}`;
+        contenidor.appendChild(li);
+    });
+}
+
 async function carregarEstadistiques(arxiuJson) {
     const loaderText2 = document.getElementById('loader-text2');
     const loader = document.getElementById('loader');
@@ -164,7 +182,12 @@ async function carregarEstadistiques(arxiuJson) {
         
         omplirLlistesHTML('llista-fenix', dades.sempre.top_10_fenix, false);
         omplirLlistesHTML('llista-typos', dades.sempre.top_10_typos, false);
-
+        
+        if (dades.sempre.top_dies) {
+            omplirPodiHTML('podi-cerques', dades.sempre.top_dies.top_cerques, 'cerques');
+            omplirPodiHTML('podi-usuaris', dades.sempre.top_dies.top_usuaris, 'usuaris');
+        }
+        
         const dadesLinia = dades.grafics.grafic_linia_diaria;
         const ctxLinia = document.getElementById('graficLinia').getContext('2d');
         

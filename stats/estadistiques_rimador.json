@@ -1,5 +1,5 @@
 {
-    "actualitzacio": "05/08/2026 00:06:12",
+    "actualitzacio": "05/08/2026 00:18:17",
     "setmana": {
         "text_dies": "29/7 > 4/8",
         "top_10_paraules": [
@@ -278,6 +278,36 @@
         "recompte_incloure_pl": {
             "si": 268,
             "no": 16
+        },
+        "top_dies": {
+            "top_cerques": [
+                {
+                    "data": "04/08/2026",
+                    "total": 64
+                },
+                {
+                    "data": "03/08/2026",
+                    "total": 59
+                },
+                {
+                    "data": "31/07/2026",
+                    "total": 55
+                }
+            ],
+            "top_usuaris": [
+                {
+                    "data": "04/08/2026",
+                    "total": 23
+                },
+                {
+                    "data": "03/08/2026",
+                    "total": 20
+                },
+                {
+                    "data": "31/07/2026",
+                    "total": 17
+                }
+            ]
         }
     },
     "grafics": {

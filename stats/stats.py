@@ -67,6 +67,20 @@ def obtenir_top_paraules(df_dades, n, paraula):
     else:
         raise ValueError("El paràmetre 'paraula' només pot ser 'paraula' o 'rima'.")
 
+def obtenir_top_dies(df_dades):
+    cerques_per_dia = df_dades['Dia'].value_counts().reset_index()
+    cerques_per_dia.columns = ['Dia', 'cerques']
+    cerques_per_dia = cerques_per_dia.sort_values(by='cerques', ascending=False).head(3)
+    
+    usuaris_per_dia = df_dades.groupby('Dia')['Usuari'].nunique().reset_index()
+    usuaris_per_dia.columns = ['Dia', 'usuaris']
+    usuaris_per_dia = usuaris_per_dia.sort_values(by='usuaris', ascending=False).head(3)
+    
+    return {
+        "top_cerques": [{"data": d.strftime("%d/%m/%Y"), "total": int(c)} for d, c in zip(cerques_per_dia['Dia'], cerques_per_dia['cerques'])],
+        "top_usuaris": [{"data": d.strftime("%d/%m/%Y"), "total": int(u)} for d, u in zip(usuaris_per_dia['Dia'], usuaris_per_dia['usuaris'])]
+    }
+
 def dades_grafic_linia(df_dades):
     avui = datetime.now(tz_espanya).date()
     data_inici = avui - timedelta(days=30)
@@ -137,11 +151,12 @@ dades_json = {
         "recompte_comenca_per": df_filtres['Comença per'].value_counts().to_dict(),
         "recompte_incloure_np": df_filtres['Incloure NP'].value_counts().to_dict(),
         "recompte_incloure_pl": df_filtres['Incloure pl.'].value_counts().to_dict(),
+        "top_dies": obtenir_top_dies(df_net)
     },
     "grafics": {
-    "grafic_linia_diaria": dades_grafic_linia(df_net),
-    "grafic_formatge_exit_assonant": dades_grafic_formatge_totes(df_rimes_totes, "r.assonant"),
-    "grafic_formatge_exit_consonant": dades_grafic_formatge_totes(df_rimes_totes, "r.consonant"),
+        "grafic_linia_diaria": dades_grafic_linia(df_net),
+        "grafic_formatge_exit_assonant": dades_grafic_formatge_totes(df_rimes_totes, "r.assonant"),
+        "grafic_formatge_exit_consonant": dades_grafic_formatge_totes(df_rimes_totes, "r.consonant"),
     }
 }
 
