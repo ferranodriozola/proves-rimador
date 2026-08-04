@@ -850,7 +850,8 @@ function handleCheckboxClick(event, checkboxCriteria) {
               }
           }
       }
-          
+
+
       if (checkboxLabel in checkboxCriteria) {
           const { filterFunction } = checkboxCriteria[checkboxLabel];
 
@@ -860,6 +861,7 @@ function handleCheckboxClick(event, checkboxCriteria) {
               const uniqueLinesToAdd = linesToAdd.filter(line => !matches_provisionals.includes(line));
 
               matches_provisionals = matches_provisionals.concat(uniqueLinesToAdd);
+              matches_provisionals.sort((a, b) => matches.indexOf(a) - matches.indexOf(b));
 
               Debug.log(`Checkbox "${checkboxLabel}" marcada`);
           
