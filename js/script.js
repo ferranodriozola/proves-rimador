@@ -497,11 +497,13 @@ function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, i
         break;
       }
 
-      if (comença === "vocal+h" && !'haeiou'.includes(array0[i][0])) {
+      const vocalsValides = 'haeiouàèéíïòóúü';
+
+      if (comença === "vocal+h" && !vocalsValides.includes(array0[i][0])) {
         break;
       }
 
-      if (comença === "consonant" && 'haeiou'.includes(array0[i][0])) {
+      if (comença === "consonant" && vocalsValides.includes(array0[i][0])) {
         break;
       }
 
