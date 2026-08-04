@@ -82,10 +82,12 @@ def dades_grafic_linia(df_dades):
     for i in range(30, 0, -1):
         dia_actual = avui - timedelta(days=i)
         total_cerques = recompte_diari.get(dia_actual, 0)
+        total_usuaris = df_filtrat[df_filtrat['Dia'] == dia_actual]['Usuari'].nunique()
 
         resultat.append({
             "data": dia_actual.strftime("%d/%m"),
-            "cerques": int(total_cerques)
+            "cerques": int(total_cerques),
+            "usuaris": int(total_usuaris)
         })
 
     return resultat
