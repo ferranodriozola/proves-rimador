@@ -35,7 +35,12 @@ function pintarFiltresHTML(dadesSempre) {
 
         if (totalFiltre === 0) return;
 
-        entrades.sort((a, b) => b.vegades - a.vegades);
+        if (filtre.id === 'recompte_num_sil') {
+            const opcionsOrdenades = ['1', '2', '3', '4', '5', '6'];
+            entrades.sort((a, b) => opcionsOrdenades.indexOf(a.opcio) - opcionsOrdenades.indexOf(b.opcio));
+        } else {
+            entrades.sort((a, b) => b.vegades - a.vegades);
+        }
 
         const divCategoria = document.createElement('div');
         divCategoria.className = 'filtre-categoria';
@@ -57,7 +62,7 @@ function pintarFiltresHTML(dadesSempre) {
 
             const valor = parseFloat(percentatge);
             const esPetit = valor < 12;
-            const esPetitissim = valor < 5;
+            const esPetitissim = valor < 2;
             const mobilPetit = valor < 20;
 
             const segment = document.createElement('div');
@@ -66,7 +71,7 @@ function pintarFiltresHTML(dadesSempre) {
             segment.style.backgroundColor = colorTros;
             segment.title = `${nomMostrar}: ${percentatge}%`;
             
-            if (esPetitissim) {
+            if (valor < 5) {
                 segment.innerHTML = ``;
             } else if (esPetit) {
                 segment.innerHTML = `<span class="text-amagat-mobil">${percentatge}%</span>`;
@@ -80,12 +85,12 @@ function pintarFiltresHTML(dadesSempre) {
 
             const itemLlegenda = document.createElement('div');
             itemLlegenda.className = 'item-llegenda';
+            itemLlegenda.style.width = `${percentatge}%`;
 
             if (esPetitissim) {
                 itemLlegenda.classList.add('amagat-llegenda-mobil-petit');
             }
 
-            itemLlegenda.style.width = `${percentatge}%`;
 
             itemLlegenda.innerHTML = `
                 <div class="color-box" style="background-color: ${colorTros}"></div>

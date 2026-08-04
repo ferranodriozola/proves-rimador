@@ -238,6 +238,11 @@
     margin: 0px auto;
 }
 
+
+.amagat-llegenda-mobil-petit {
+    visibility: hidden !important;
+}
+
 /* Adaptat telèfons */
 .text-visible-mobil {
     display: none;
@@ -296,9 +301,5 @@
     
     .text-amagat-mobil-petit {
         display: none;
-    }
-
-    .amagat-llegenda-mobil-petit {
-        display: none !important;
     }
 }
