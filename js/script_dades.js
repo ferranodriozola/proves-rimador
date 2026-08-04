@@ -180,6 +180,15 @@ async function carregarEstadistiques(arxiuJson) {
                     borderWidth: 2,
                     fill: true,
                     tension: 0.3
+                },
+                {
+                    label: 'Usuaris únics',
+                    data: dadesLinia.map(item => item.usuaris),
+                    borderColor: '#0055ff', 
+                    backgroundColor: 'rgba(0, 85, 255, 0.2)', 
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.3
                 }]
             },
             options: {
@@ -191,7 +200,7 @@ async function carregarEstadistiques(arxiuJson) {
                         ticks: { stepSize: 1 }
                     }
                 },
-                plugins: { legend: { display: false } }
+                plugins: { legend: { display: true } }
             }
         });
 
