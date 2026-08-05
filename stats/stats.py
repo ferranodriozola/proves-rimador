@@ -75,8 +75,6 @@ rimes_usuaris_diferents_emmascarat = rimes_usuaris_diferents_emmascarat[rimes_us
 
 noms_propis = paraules_cercades[paraules_cercades['Codi'].str.startswith('NP')].copy()
 
-print(noms_propis.head())
-
 #funcions
 def obtenir_top_paraules(df_dades, n, paraula):
     if paraula == 'paraula':
