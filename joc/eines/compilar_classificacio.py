@@ -40,7 +40,7 @@ TOP_N = 20
 
 # Mateixes regles que joc/js/classificacio.js: el navegador ja filtra, pero aqui
 # ho tornem a comprovar perque es l'ultima porta abans de publicar.
-LLARG_MIN, LLARG_MAX = 2, 16
+LLARG_MIN, LLARG_MAX = 3, 16
 CARACTERS_OK = re.compile(r"^[^\W_]+[\w .\-]*$", re.UNICODE)
 PARAULES_VETADES = [
     "merda", "puta", "puto", "collo", "cabro", "fill de",

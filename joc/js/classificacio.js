@@ -8,23 +8,17 @@
 //
 // PER POSAR-HO EN MARXA cal omplir aquestes dues constants (mira el README i
 // joc/eines/apps_script_classificacio.gs):
-const URL_ENVIAMENT = 'https://script.google.com/macros/s/AKfycbzufsBU5PuCvn1-0jXaTRm39y90nE_sScKjeVv-CpEqNZ_CwYAIUHCGNseJVQ4ZH7-uyA/exec';   // el /exec del Google Apps Script desplegat
+const URL_ENVIAMENT = 'https://script.google.com/macros/s/AKfycbz6mXph0DU7jZPKg-EAHSbVPJoFLDgvNbocAGv4HGkruOH_ZoauwNKAxUu3SaRLbxPbzg/exec';
 const URL_CLASSIFICACIO = 'dades/classificacio.json';
 
 const VERSIO_CACHE = '1';
 
-// --------------------------------------------------------------- Sobrenom
 
-const LLARG_MIN = 2;
+// sobrenom
+
+const LLARG_MIN = 3;
 const LLARG_MAX = 16;
-// Lletres (accents inclosos), xifres, espai i alguns signes suaus.
 const CARACTERS_OK = /^[\p{L}\p{N} _.\-]+$/u;
-
-// Un filtre minim: no pretenem tapar-ho tot, nomes els casos mes evidents.
-const PARAULES_VETADES = [
-    'merda', 'puta', 'puto', 'colló', 'collo', 'cabró', 'cabro', 'fill de',
-    'nazi', 'hitler', 'admin', 'moderador',
-];
 
 export function validarSobrenom(text) {
     const net = String(text).trim().replace(/\s+/g, ' ');
@@ -32,16 +26,11 @@ export function validarSobrenom(text) {
     if (net.length < LLARG_MIN) {
         return { ok: false, motiu: `El sobrenom ha de tenir com a mínim ${LLARG_MIN} lletres.` };
     }
-    if (net.length > LLARG_MAX) {
-        return { ok: false, motiu: `El sobrenom no pot passar de ${LLARG_MAX} lletres.` };
-    }
     if (!CARACTERS_OK.test(net)) {
         return { ok: false, motiu: 'Fes servir només lletres, xifres i espais.' };
     }
     const enMinuscules = net.toLowerCase();
-    if (PARAULES_VETADES.some((mot) => enMinuscules.includes(mot))) {
-        return { ok: false, motiu: 'Aquest sobrenom no es pot fer servir.' };
-    }
+
     return { ok: true, sobrenom: net };
 }
 
@@ -49,7 +38,7 @@ export function estaConfigurat() {
     return URL_ENVIAMENT.length > 0;
 }
 
-// ------------------------------------------------------------- Enviar
+// enviar
 
 function usuariID() {
     let id = null;
@@ -65,11 +54,6 @@ function usuariID() {
     return id;
 }
 
-/**
- * Envia una puntuacio a la classificacio. Com que el POST es "no-cors" no en
- * podem llegir la resposta, o sigui que considerem "enviat" si la crida no peta.
- * L'acceptacio de veritat (i qualsevol moderacio) la fa el compilador.
- */
 export async function enviarPuntuacio({ sobrenom, mode, dificultat, segons, punts, paraula, data }) {
     if (!estaConfigurat()) {
         return { estat: 'sense-backend' };
@@ -93,7 +77,7 @@ export async function enviarPuntuacio({ sobrenom, mode, dificultat, segons, punt
     }
 }
 
-// ------------------------------------------------------------- Llegir
+// llegir
 
 let classificacioPromesa = null;
 
