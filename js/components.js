@@ -39,20 +39,20 @@ if (idPagina === 'principal' || idPagina === 'canvis' || idPagina === 'dades' ||
 }
 
 //botó ko-fi
-//const kofiWidgetHTML = /*html*/`
-//<div class="btn-container">
-//    <a title="Support me on ko-fi.com" class="kofi-button" href="https://ko-fi.com/rimadorcat" target="_blank">
-//        <span class="kofitext">
-//            <img src="https://storage.ko-fi.com/cdn/cup-border.png" alt="Ko-fi donations" class="kofiimg">
-//            Regala'ns un cafè
-//        </span>
-//    </a>
-//</div>
-//`;
+const kofiWidgetHTML = /*html*/`
+<div class="btn-container">
+    <a title="Support me on ko-fi.com" class="kofi-button" href="https://ko-fi.com/rimadorcat" target="_blank">
+        <span class="kofitext">
+            <img src="https://storage.ko-fi.com/cdn/cup-border.png" alt="Ko-fi donations" class="kofiimg">
+            Regala'ns un cafè
+        </span>
+    </a>
+</div>
+`;
 
-//if (document.body) {
-//    document.body.insertAdjacentHTML('beforeend', kofiWidgetHTML);
-//}
+if (document.body) {
+    document.body.insertAdjacentHTML('beforeend', kofiWidgetHTML);
+}
 
 
 const loader = /*html*/`
@@ -242,7 +242,7 @@ const checkboxContainerHTML = document.getElementById('checkboxContainer');
 if (checkboxContainerHTML) { checkboxContainerHTML.innerHTML = checkboxContainer; }
 
 const footer = /*html*/`
-<br>v.5.3 &copy; Marc i Ferran. Ens reservem els drets, però pots utilitzar-lo tan com vulguis de manera lliure.
+<br>v.5.3 &copy; Marc i Ferran. Uns quants drets reservats.
 <br><br><a href="mailto:hola@rimador.cat">hola@rimador.cat</a>
 <button id="botoNetejarCache" style="display:none;position:fixed;bottom:70px;right:15px;" onclick="netejarIndexedDB()">🗑 Esborrar memòria cau</button>
 <br>
