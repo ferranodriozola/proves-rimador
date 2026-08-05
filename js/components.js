@@ -243,9 +243,11 @@ if (checkboxContainerHTML) { checkboxContainerHTML.innerHTML = checkboxContainer
 
 const footer = /*html*/`
 <br>v.5.3 &copy; Marc i Ferran. Uns quants drets reservats.
+<br><br>
+<br>Si has trobat una errada o tens una suggerència, ens pots enviar un correu a:
 <br><br><a href="mailto:hola@rimador.cat">hola@rimador.cat</a>
 <button id="botoNetejarCache" style="display:none;position:fixed;bottom:70px;right:15px;" onclick="netejarIndexedDB()">🗑 Esborrar memòria cau</button>
-<br>
+<br><br><br><br><br><br>
 `
 const footerHTML = document.getElementById('footer');
 if (footerHTML) { footerHTML.innerHTML = footer; }
