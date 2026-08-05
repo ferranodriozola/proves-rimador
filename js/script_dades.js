@@ -169,9 +169,11 @@ async function carregarEstadistiques(arxiuJson) {
 
         document.getElementById('data-actualitzacio').textContent = dades.actualitzacio;
         document.getElementById('rang-setmana').textContent = "(" + dades.setmana.text_dies + ")";
+        document.getElementById('paraules_uniques_setmana').textContent = dades.setmana.paraules_cercades_uniques;
         document.getElementById('cerques-setmana').textContent = dades.setmana.total_cerques;
         document.getElementById('usuaris-setmana').textContent = dades.setmana.numero_usuaris;
-        document.getElementById('cerques-sempre').textContent = dades.sempre.total_cerques;
+        document.getElementById('paraules_uniques_sempre').textContent = dades.sempre.paraules_cercades_uniques;
+        document.getElementById('cerques-totals').textContent = dades.sempre.total_cerques;
         document.getElementById('usuaris-sempre').textContent = dades.sempre.numero_usuaris;
         document.getElementById('assonant-sempre').textContent = dades.sempre.recompte_tipus_rima['r.assonant'] || 0;
         document.getElementById('consonant-sempre').textContent = dades.sempre.recompte_tipus_rima['r.consonant'] || 0;
