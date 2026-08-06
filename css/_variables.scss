@@ -1,13 +1,3 @@
-// =========================================================
-// PALETA DE COLORS
-// Variables compartides per tot el CSS del lloc.
-// Els colors puntuals/decoratius d'un sol ús (degradats
-// arc de Sant Martí, ombres soltes...) es deixen literals.
-// El tema "sober" (sober.css) té el seu propi sistema de
-// custom properties --sober-* i no es toca aquí.
-// =========================================================
-
-// --- Bàsics ---
 $blanc: #ffffff;
 $negre: #000000;
 
@@ -49,7 +39,6 @@ $blau-podi-clar: #e0f7ff;  // podi: fons del 3r i 4t lloc
 $or-podi: #ffcc00;
 $plata-podi: #d4d4d4;
 $bronze-podi: #cd7f32;
-$neutre-podi: #f0f0f0; // del 4t lloc en avall, si mai n'hi ha
 
 // --- Verds ---
 $verd-hover: rgb(0, 145, 0); // enllaços en hover (presentació/canvis)
@@ -73,8 +62,6 @@ $gris-molt-fosc: #222222;
 $vermell-viu: #e50000;       // vora del botó i text del loader (eren #e50000/#e60000, gairebé idèntics)
 $vermell-boto-text: #db0000;
 $vermell-boto-actiu: #f30000;
-// L'estat :hover del botó (abans #d30000) s'unifica amb $vermell-principal (#d30505): la diferència
-// (5 unitats) és imperceptible i no responia a cap variació de disseny.
 
 // --- Bloc de codi tipus terminal ---
 $terminal-fons: #282a36;
