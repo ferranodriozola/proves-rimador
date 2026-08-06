@@ -17,6 +17,13 @@ header.p {
     font-size: 16px;
 }
 
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-right: 24px;
+}
+
 .peixet-btn {
     display: inline-block;
     background: none;
@@ -25,14 +32,12 @@ header.p {
     margin: 0;
     cursor: pointer;
     line-height: 0;
-    margin-right: 10%;
 }
 
 .peixet{
     display: inline-block;
     width: 90px;
     height: 90px;
-    margin-right: 10%;
 }
 
 .rimador {
@@ -52,15 +57,18 @@ header.p {
     }
     .rimador {
         width: 360px;
-        height: auto;     
+        height: auto;
     }
     header {
         height: 75px;
         padding: 7px;
-        background-size: 90px 90px; 
+        background-size: 90px 90px;
     }
     header.p {
     font-size: 14px;
+    }
+    .header-icons {
+        gap: 16px;
     }
 }
 
@@ -71,15 +79,18 @@ header.p {
     }
     .rimador {
         width: 240px;
-        height: auto;     
+        height: auto;
     }
     header {
         height: 50px;
         padding: 5px;
-        background-size: 60px 60px; 
+        background-size: 60px 60px;
     }
     header.p {
     font-size: 11px;
+    }
+    .header-icons {
+        gap: 12px;
     }
 }
 
@@ -91,9 +102,9 @@ header.p {
     .peixet {
         width: 40px;
         height: 40px;
-        margin-right: 4%;
     }
-    .peixet-btn {
-        margin-right: 4%;
+    .header-icons {
+        margin-right: 12px;
+        gap: 10px;
     }
 }
