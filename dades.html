@@ -160,6 +160,86 @@
         </div>
 
 
+        <!-- explicacions -->
+        <div class="grafic-caixa caixa-criteris">
+            <h3>Com llegim aquestes dades?</h3>
+            <div class="criteris-cos">
+                <h4>Quan s'actualitzen les dades?</h4>
+                <p>Les dades s'actualitzen automàticament un cop al dia, de matinada. La data i hora a dalt de tot és l'últim cop que es va executar. 
+                    L'històric arrenca l'1 d'agost del 2026, que és quan vam començar a registrar cerques: de tot el que es va cercar abans, no en tenim dades.</p>
+
+                <h4>Què compta com a "cerca"?</h4>
+                <p>Per evitar els dobles clics involuntaris, filtrem totes les cerques i ens quedem amb les <b>consultes diferents</b>. 
+                    Considerem que dues cerques són la mateixa —i n'eliminem una quan coincideixen en vuit elements: el dia, l'usuari, 
+                    la paraula cercada i els cinc filtres (tipus de rima, nombre de síl·labes, comença per, incloure noms propis i incloure plurals). 
+                    Si es torna a fer exactament la mateixa cerca, es repeteix la mateixa consulta dins un mateix dia o es torna a prémer el botó, 
+                    no ho considerem una cerca diferent. En canvi, <b>sí que compten com a cerques diferents</b>: la mateixa paraula cercada per dos 
+                    usuaris diferents, la mateixa paraula cercada per la mateixa persona un altre dia, o la mateixa paraula cercada canviant qualsevol 
+                    filtre o intercanviant consonant-assonant. La rima trobada no forma part d'aquesta comparació.</p>
+
+                <h4>Què és una paraula única?</h4>
+                <p>Són les <b>paraules diferents</b> que s'han cercat: cada paraula compta una sola vegada per molta gent que l'hagi buscat, 
+                    per molts dies que passin i per molts filtres diferents que es facin servir. Dins del còmput, descomptem les que no van 
+                    trobar cap resultat. És, doncs, una mesura de vocabulari, no d'activitat. El nombre de paraules úniques totals anirà augmentant a mesura
+                que es vagin cercant noves paraules al rimador.</p>
+
+                <h4>Per què "paraules úniques" i "cerques totals" no coincideixen?</h4>
+                <p>Compten coses diferents. Les cerques totals compten <i>consultes</i>: la mateixa paraula suma diverses cerques si la busca gent diferent, 
+                    en dies diferents o amb filtres diferents. A les cerques totals també estan incloses les cerques no trobades al diccionari. Les paraules 
+                    úniques compten <i>paraules</i>, una sola vegada cadascuna i deixant fora les que no van donar resultat. Les cerques totals sempre són més altes.</p>
+
+                <h4>Què és un usuari únic?</h4>
+                <p>La primera vegada que algú fa una cerca, al navegador es genera un identificador aleatori que queda desat només al seu dispositiu. 
+                    No hi ha ni comptes, ni noms, ni cap dada personal: només serveix per distingir si dues cerques venen de la mateixa persona o no. 
+                    Té els límits que té: una mateixa persona al mòbil i a l'ordinador surt com a dos usuaris diferents, i si algú esborra les dades del seu 
+                    navegador, el considerarà un usuari nou.</p>
+
+                <h4>Què vol dir "(usuaris únics)" al Top 10?</h4>
+                <p>Que el número del costat de la paraula o rima no és el nombre de vegades que s'ha cercat una cosa, 
+                    sinó <b>quanta gent diferent</b> l'ha cercada. Una sola persona, per molt que insisteixi amb la mateixa paraula o canviï els filtres, 
+                    suma només 1. Així, una tarda d'obsessió amb un mot no es menja el rànquing. És un criteri diferent del de les cerques totals, que sí 
+                    que compta totes les vegades que s'ha fet una cerca, encara que sigui la mateixa persona amb la mateixa paraula.</p>
+                    
+                <h4>I el top de rimes?</h4>
+                <p>Una rima, aquí, no és una paraula: és la <b>terminació fonètica</b> que comparteixen totes les paraules que rimen entre elles, 
+                    escrita en transcripció fonètica (per exemple <i>aðə</i>, que és la de <i>cascada</i> o <i>vegada</i>). El número de vegades que s'ha
+                    cercat una rima correspon a la suma de vegades que s'ha fet una cerca amb aquella rima, diferenciant assonant i consonant. Si s'ha cercat
+                'gran' 2 vegades consonantment i 1 assonantment, i elefant 2 vegades consonantment i 1 assonantment, la rima /an/ ha estat cercada 4 vegades
+                consonantment i 2 assonantment.</p>
+
+                <h4>Què són les paraules nàufragues?</h4>
+                <p>Són aquelles paraules que no rimen amb cap altre mot del diccionari. En fer una cerca, es compara la paraula amb la llista de paraules 
+                    nàufragues, i en cas de coincidir, s'afegeix al Top. Aquest rànquing és una manera de visualitzar quines són les paraules sense rima
+                més freqüents de cercar.</p>
+
+                <h4>Què és el Top errors de cerca?</h4>
+                <p>Són les cerques fetes al Rimador en què el "mot" cercat no coincideix amb cap paraula del diccionari. Són paraules mal escrites, 
+                    amb errors de picatge, o trossos de paraula. Recorda que se cerquen paraules, no terminacions fonètiques! Aquestes cerques no sumen 
+                    a les paraules úniques, però sí a les cerques totals.</p>
+
+                <h4>Com es compten els noms propis?</h4>
+                <p>El diccionari té categoritzada cada paraula amb un codi gramatical. En fer la cerca, filtrem les que consten com a nom propi, i
+                    les cataloguem seguint el mateix criteri que les "paraules úniques". El número no és de cerques, sinó de <b>noms propis diferents</b>
+                    que algú ha buscat alguna vegada. En cas de coincidir un nom propi i un nom comú o alguna altra categoria ('Esperança', per exemple), 
+                    es compta sempre com a l'altra categoria, i es restringeix el nom propi a aquells mots que només són noms propis.</p>
+
+                <h4>Què són el nombre de cerques dels podis? I el del gràfic de línies?</h4>
+                <p>Són el nombre de "cerques úniques" d'aquell dia. El dia present queda fora, igual que queda fora de les dades dels darrers 7 dies.
+                    Als podis de "menys" només hi surten els dies en què hi va haver com a mínim una cerca.</p>
+
+                <h4>Què és el percentatge d'ús dels filtres?</h4>
+                <p>Ens referim a com els usuaris tenen configurats els cinc filtres en el moment de cercar, sobre el total de cerques de l'històric. 
+                    Cada cerca hi aporta la seva combinació una sola vegada. Es pot veure clarament quins són els paràmetres predeterminats, però també
+                    quins són els filtres més usats després del principal.<p>
+
+                <h4>Què hi ha als gràfics de formatge?</h4>
+                <p>Hi ha <b>totes</b> les rimes, no només les deu primeres: cada tros és un grup de rima. La mida de cada tros segueix el mateix criteri 
+                    que el Top 10 de rimes, i per això moltíssims trossos són diminuts. Tots els que no arriben a l'1% s'acumulen en un únic tros gris anomenat 
+                    "Altres", que és el més gran precisament perquè agrupa la cua llarga de rimes cercades poques vegades. Un gràfic recull les rimes consonants 
+                    i l'altre les assonants.</p>
+            </div>
+        </div>
+
     </main>
 
     <!-- <button id="mostrarFormulari" onclick="toggleForm()">Has trobat algun error?</button>
