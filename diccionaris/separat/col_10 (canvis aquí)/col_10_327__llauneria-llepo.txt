@@ -307,7 +307,7 @@ llavoris € llavorar € VMSP2S0Y € ʎəβˈɔɾis
 llavoro € llavorar € VMIP1S0C € ʎəβˈɔɾu
 Llavorre € Llavorre € NPCSG00 € ʎəβˈɔrə
 llavors € llavor € NCFP000 € ʎəβˈors
-llavors € llavors € ZRG € ʎəβˈors
+llavors € llavors € ZRG € ʎəβˈɔrs
 Llavorsí € Llavorsí € NPCSG00 € ʎəβursˈi
 llavorsinenc € llavorsinenc € AQ0MS0 € ʎəβursinˈɛŋ
 llavorsinenc € llavorsinenc € NCMS000 € ʎəβursinˈɛŋ

@@ -693,8 +693,8 @@ panatenees € panateneu € AQ0FP0 € pənətənˈeəs
 panàtica € panàtica € NCFS000 € pənˈatikə
 panàtiques € panàtica € NCFP000 € pənˈatikəs
 Panay € Panay € NPCSG00 € pənˈai
-pancake € pancake € NCMS000 € pəŋkˈakə
-pancakes € pancake € NCMP000 € pəŋkˈakəs
+pancake € pancake € NCMS000 € pəŋkˈejk
+pancakes € pancake € NCMP000 € pəŋkˈejks
 pancaritat € pancaritat € NCMS000 € pəŋkəɾitˈat
 pancaritats € pancaritat € NCMP000 € pəŋkəɾitˈats
 pancarta € pancarta € NCFS000 € pəŋkˈartə

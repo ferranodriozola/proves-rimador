@@ -1019,7 +1019,7 @@ homeotermes € homeoterm € AQ0FP0 € umeutˈerməs
 homeotèrmia € homeotèrmia € NCFS000 € umeutˈɛrmiə
 homeotèrmies € homeotèrmia € NCFP000 € umeutˈɛrmiəs
 homeoterms € homeoterm € AQ0MP0 € uməutˈɛrms
-Homer € Homer € NPMSSP0 € umˈe
+Homer € Homer € NPMSSP0 € umˈer
 homèric € homèric € AQ0MS0 € umˈɛɾik
 homèrica € homèric € AQ0FS0 € umˈɛɾikə
 homèricament € homèricament € ZRG € umˈɛɾikəmˈen
