@@ -5,6 +5,7 @@ npx.txt
 # Fitxers del sistema
 .DS_Store
 Thumbs.db
+.claude
 
 # Minimitzats
 dist/
