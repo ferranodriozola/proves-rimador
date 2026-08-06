@@ -45,9 +45,9 @@
 
     <div id="text_presentació">
         <div id="titol_canvis">Has trobat un error?</div>
-        <p>Has trobat una paraula mal transcrita, una rima que no hi hauria de ser o
-            qualsevol altra cosa que no rutlla? Explica'ns-ho i ho corregirem tan aviat
-            com puguem. Els avisos ens arriben directament al correu.</p>
+        <p>Si has trobat una paraula mal transcrita, una rima que no hi hauria de ser o
+            qualsevol altra cosa que no rutlla, explica'ns-ho i ho corregirem tan aviat
+            com puguem.</p>
 
         <form id="formulariError" action="https://formspree.io/f/xeoazgnl" method="POST">
             <p class="camp">
@@ -56,9 +56,9 @@
             </p>
 
             <p class="camp">
-                <label for="err-detall">Què hi passa?</label>
+                <label for="err-detall">Què hi ha?</label>
                 <textarea id="err-detall" name="detall" required
-                          placeholder="Explica'ns-ho amb les teves paraules"></textarea>
+                          placeholder="Explica'ns-ho!"></textarea>
             </p>
 
             <p class="camp">
@@ -72,6 +72,20 @@
         <p>Si ho prefereixes, també ens pots escriure directament a
             <a href="mailto:hola@rimador.cat">hola@rimador.cat</a>.</p>
 
+        <hr class="separador-error">
+        
+        <div id="titol_canvis">Col·labora directament a GitHub!</div>  
+        <div class="explicacio-github">
+            <p>El Rimador català és un projecte de codi obert. Si saps programar o vols proposar una millora directament al codi font o a les dades del diccionari, pots fer una proposta de canvi (<strong>Pull Request</strong>) al nostre repositori de <a href="https://github.com/rimador/rimador.github.io" target="_blank" rel="noopener">GitHub</a>.</p>
+            <p>Com fer-ho pas a pas:</p>
+            <ol>
+                <li><strong>Fes una Fork</strong>Ves al nostre repositori i fes clic a "Fork" per tenir-ne una còpia al teu compte.</li>
+                <li><strong>Fes els teus canvis</strong>Pots modificar el codi directament des de la web de GitHub, o bé descarregar la fork al teu ordinador fent <code>git clone</code> si et resulta més còmode. Modifica el codi, el diccionari o el que consideris que ens pots ajudar a millorar.</li>
+                <li><strong>Desa-ho fent Commit</strong>Afegeix una descripció clara del que has arreglat o millorat i fes el Commit. Si fas servir la terminal, pots fer-ho amb <code>git commit -m "Descripció"</code> i després un <code>git push</code>.</li>
+                <li><strong>Obre la Pull Request</strong>Torna a la pàgina principal del repositori a GitHub i fes clic a "New pull request" perquè les modificacions ens arribin. Ho revisarem i ho integrarem al projecte!</li>
+            </ol>
+        </div>
+        
         <p id="arimar">
             <a href="https://rimador.cat">
                 A rimar!
