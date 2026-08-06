@@ -7,7 +7,7 @@ on:
     workflows: ["Actualització automàtica de les estadístiques"]
     types:
       - completed
-    workflow_dispatch:  
+  workflow_dispatch:  
   
 permissions:
   contents: write
