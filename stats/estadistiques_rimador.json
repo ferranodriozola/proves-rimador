@@ -1,5 +1,5 @@
 {
-    "actualitzacio": "07/08/2026 01:27:52",
+    "actualitzacio": "07/08/2026 01:57:29",
     "setmana": {
         "text_dies": "31/7 > 6/8",
         "top_10_paraules": [
@@ -111,6 +111,10 @@
                 "cerques": 3
             },
             {
+                "paraula": "avall",
+                "cerques": 2
+            },
+            {
                 "paraula": "pluja",
                 "cerques": 2
             },
@@ -137,10 +141,6 @@
             {
                 "paraula": "vida",
                 "cerques": 2
-            },
-            {
-                "paraula": "rima",
-                "cerques": 2
             }
         ],
         "top_10_rimes": [
@@ -160,12 +160,12 @@
                 "cerques": 6
             },
             {
-                "paraula": "a",
+                "paraula": "en",
                 "tipus": "r.consonant",
                 "cerques": 6
             },
             {
-                "paraula": "en",
+                "paraula": "a",
                 "tipus": "r.consonant",
                 "cerques": 6
             },
@@ -180,26 +180,26 @@
                 "cerques": 5
             },
             {
-                "paraula": "e",
-                "tipus": "r.consonant",
-                "cerques": 5
-            },
-            {
                 "paraula": "esək",
                 "tipus": "r.consonant",
                 "cerques": 5
             },
             {
-                "paraula": "at",
+                "paraula": "e",
+                "tipus": "r.consonant",
+                "cerques": 5
+            },
+            {
+                "paraula": "inə",
                 "tipus": "r.consonant",
                 "cerques": 5
             }
         ],
-        "total_cerques": 442,
-        "paraules_cercades_uniques": 316,
-        "numero_usuaris": 103,
+        "total_cerques": 444,
+        "paraules_cercades_uniques": 317,
+        "numero_usuaris": 104,
         "recompte_tipus_rima": {
-            "r.consonant": 394,
+            "r.consonant": 396,
             "r.assonant": 48
         },
         "top_10_naufragues": [
@@ -272,7 +272,7 @@
         ],
         "total_noms_propis": 12,
         "recompte_num_sil": {
-            "0": 391,
+            "0": 393,
             "2": 21,
             "3": 17,
             "1": 5,
@@ -281,15 +281,15 @@
             "6": 2
         },
         "recompte_comenca_per": {
-            "indiferent": 440,
+            "indiferent": 442,
             "consonant": 2
         },
         "recompte_incloure_np": {
-            "no": 430,
+            "no": 432,
             "si": 12
         },
         "recompte_incloure_pl": {
-            "si": 425,
+            "si": 427,
             "no": 17
         },
         "top_dies": {
@@ -616,6 +616,10 @@
                 "vegades": 4
             },
             {
+                "rima": "aʎ",
+                "vegades": 4
+            },
+            {
                 "rima": "uɾə",
                 "vegades": 4
             },
@@ -630,10 +634,6 @@
             {
                 "rima": "iβə",
                 "vegades": 4
-            },
-            {
-                "rima": "aʎ",
-                "vegades": 3
             },
             {
                 "rima": "ɔw",
@@ -1377,6 +1377,10 @@
             },
             {
                 "rima": "awfɾək",
+                "vegades": 1
+            },
+            {
+                "rima": "iskə",
                 "vegades": 1
             }
         ]
