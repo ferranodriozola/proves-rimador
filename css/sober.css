@@ -31,6 +31,14 @@
   color: #ffffff;
 }
 
+[data-theme="sober"] #paper-back {
+  background-color: var(--sober-header-bg);
+}
+
+[data-theme="sober"] .menu-peixet {
+  background-image: url("../../assets/boringlogo.webp");
+}
+
 [data-theme="sober"] .peixet-btn {
   background: none;
   border: none;
@@ -278,6 +286,24 @@
 [data-theme="sober"] #formulariContainer form label {
   color: var(--sober-text);
   text-shadow: none;
+}
+
+[data-theme="sober"] #formulariError label {
+  color: var(--sober-text);
+  font-family: var(--sober-font);
+}
+
+[data-theme="sober"] #formulariError input,
+[data-theme="sober"] #formulariError textarea {
+  background-color: #ffffff;
+  border: 1px solid var(--sober-border);
+  border-radius: 3px;
+  font-family: var(--sober-font);
+}
+
+[data-theme="sober"] #formulariError input:focus,
+[data-theme="sober"] #formulariError textarea:focus {
+  border-color: var(--sober-accent);
 }
 
 [data-theme="sober"] .submit-button {
