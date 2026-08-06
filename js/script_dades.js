@@ -64,37 +64,20 @@ function pintarFiltresHTML(dadesSempre) {
             const nomMostrar = nomsTraduïts[item.opcio] || item.opcio;
             const colorTros = paletaColors[index % paletaColors.length];
 
-            const valor = parseFloat(percentatge);
-            const esPetit = valor < 12;
-            const esPetitissim = valor < 2;
-            const mobilPetit = valor < 20;
-
             const segment = document.createElement('div');
             segment.className = 'segment-barra';
             segment.style.width = `${percentatge}%`;
             segment.style.backgroundColor = colorTros;
             segment.title = `${nomMostrar}: ${percentatge}%`;
-            
-            if (valor < 5) {
-                segment.innerHTML = ``;
-            } else if (esPetit) {
-                segment.innerHTML = `<span class="text-amagat-mobil">${percentatge}%</span>`;
-            } else if (mobilPetit) {
-                segment.innerHTML = `<span class="text-amagat-mobil-petit">${percentatge}%</span>`;
-            } else {
-                segment.innerHTML = `<span>${percentatge}%</span>`;
-            }
+            // es pinta sempre, l'amaga depurarPercentatges() si no hi cap
+            segment.innerHTML = `<span>${percentatge}%</span>`;
 
             barraApilada.appendChild(segment);
 
             const itemLlegenda = document.createElement('div');
             itemLlegenda.className = 'item-llegenda';
             itemLlegenda.style.width = `${percentatge}%`;
-
-            if (esPetitissim) {
-                itemLlegenda.classList.add('amagat-llegenda-mobil-petit');
-            }
-
+            itemLlegenda.dataset.pes = percentatge;
 
             itemLlegenda.innerHTML = `
                 <div class="color-box" style="background-color: ${colorTros}"></div>
@@ -106,6 +89,59 @@ function pintarFiltresHTML(dadesSempre) {
         divCategoria.appendChild(barraApilada);
         divCategoria.appendChild(llegenda);
         contenidor.appendChild(divCategoria);
+    });
+
+    ajustarEtiquetesFiltres();
+}
+
+function ajustarEtiquetesFiltres() {
+    depurarPercentatges();
+    depurarLlegendes();
+}
+
+function depurarPercentatges() {
+    const RESPIR = 6; 
+
+    document.querySelectorAll('#contenidor-filtres .segment-barra').forEach(segment => {
+        const text = segment.querySelector('span');
+        if (!text) return;
+
+        text.classList.remove('text-segment-amagat');
+
+        const ampladaText = text.getBoundingClientRect().width;
+        const ampladaSegment = segment.getBoundingClientRect().width;
+
+        if (ampladaText + RESPIR > ampladaSegment) {
+            text.classList.add('text-segment-amagat');
+        }
+    });
+}
+
+function depurarLlegendes() {
+    const SEPARACIO_MINIMA = 4; 
+
+    document.querySelectorAll('#contenidor-filtres .llegenda-filtre').forEach(llegenda => {
+        const items = Array.from(llegenda.querySelectorAll('.item-llegenda'));
+        items.forEach(item => item.classList.remove('item-llegenda-amagat'));
+
+        const ocupats = [];
+
+        items
+            .sort((a, b) => parseFloat(b.dataset.pes) - parseFloat(a.dataset.pes))
+            .forEach(item => {
+                const text = item.querySelector('span').getBoundingClientRect();
+
+                const xoca = ocupats.some(altre =>
+                    text.left < altre.right + SEPARACIO_MINIMA &&
+                    text.right + SEPARACIO_MINIMA > altre.left
+                );
+
+                if (xoca) {
+                    item.classList.add('item-llegenda-amagat');
+                } else {
+                    ocupats.push(text);
+                }
+            });
     });
 }
 
@@ -141,13 +177,22 @@ function omplirPodiHTML(idElement, arrayDades, etiqueta) {
 
     if (!Array.isArray(arrayDades)) return;
 
-    const medalles = ['🥇', '🥈', '🥉'];
+    contenidor.classList.add('podi-graella');
 
     arrayDades.forEach((item, index) => {
+        const lloc = index + 1;
+
         const li = document.createElement('li');
-        li.className = `medal-${index}`;
-        
-        li.innerHTML = `${medalles[index] || '🏅'} <u>${item.data}</u> : <b>${item.total}</b> ${etiqueta}`;
+        li.className = `podi-lloc podi-lloc-${lloc}`;
+        li.title = `${item.data}: ${item.total} ${etiqueta}`;
+
+        li.innerHTML = `
+            <div class="podi-placa">
+                <span class="podi-xifra">${item.total}</span>
+                <span class="podi-data">${item.data}</span>
+            </div>
+            <div class="podi-bloc"><span class="podi-numero">${lloc}</span></div>
+        `;
         contenidor.appendChild(li);
     });
 }
@@ -354,6 +399,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.body.id === 'dades') {
         carregarEstadistiques('stats/estadistiques_rimador.json');
     }
+});
+
+
+let temporitzadorEtiquetes;
+window.addEventListener('resize', () => {
+    clearTimeout(temporitzadorEtiquetes);
+    temporitzadorEtiquetes = setTimeout(ajustarEtiquetesFiltres, 150);
 });
 
 function actualitzarColorsGrafics() {
