@@ -1050,14 +1050,8 @@ function aplicarTema(tema) {
     colorFestiuOriginal = themeColorMeta.getAttribute("content");
   }
 
-  let ruta = '';
-  if (idPagina === 'principal' || idPagina === 'canvis' || idPagina === 'dades' || idPagina === 'nosaltres') {
-    ruta = 'assets/';
-  } else if (idPagina === 'error404') {
-    ruta = '/assets/';
-  } else if (idPagina === 'llista') {
-    ruta = '../assets/';
-  }
+  // La ruta dels assets surt de components.js, només s'ha de tocar allà
+  const ruta = ruta1;
 
   if (tema === "sober") {
     document.documentElement.setAttribute("data-theme", "sober");
