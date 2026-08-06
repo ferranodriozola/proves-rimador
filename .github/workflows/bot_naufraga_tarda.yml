@@ -32,12 +32,12 @@ jobs:
           API_SECRET: ${{ secrets.API_SECRET }}
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
-        run: python bot/script_naufraga.py
+        run: python bot/script_naufragues.py
 
       - name: Guardar els canvis al JSON (Commit & Push)
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add bot/publicades_naufraga.json
-          git commit -m "Actualització automàtica: Rima diària afegida a publicades_naufraga.json" || echo "Cap canvi per fer commit"
+          git add bot/publicades_naufragues.json
+          git commit -m "Actualització automàtica: Rima diària afegida a publicades_naufragues.json" || echo "Cap canvi per fer commit"
           git push

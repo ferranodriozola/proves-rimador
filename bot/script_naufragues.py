@@ -8,7 +8,7 @@ from datetime import datetime
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
 FITXER_NAUFRAGUES = os.path.join(base_dir, '..', 'llistes', 'paraules_naufragues.json')
-FITXER_UTILITZATS = os.path.join(base_dir, 'publicades_naufraga.json')
+FITXER_UTILITZATS = os.path.join(base_dir, 'publicades_naufragues.json')
 
 def carregar_json(nom_fitxer):
     if not os.path.exists(nom_fitxer):
