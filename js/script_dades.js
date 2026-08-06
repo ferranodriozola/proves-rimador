@@ -175,8 +175,9 @@ async function carregarEstadistiques(arxiuJson) {
         document.getElementById('paraules_uniques_sempre').textContent = dades.sempre.paraules_cercades_uniques;
         document.getElementById('cerques-totals').textContent = dades.sempre.total_cerques;
         document.getElementById('usuaris-sempre').textContent = dades.sempre.numero_usuaris;
-        document.getElementById('assonant-sempre').textContent = dades.sempre.recompte_tipus_rima['r.assonant'] || 0;
-        document.getElementById('consonant-sempre').textContent = dades.sempre.recompte_tipus_rima['r.consonant'] || 0;
+        document.getElementById('assonant-sempre').textContent = dades.sempre.recompte_tipus_rima['r.assonant'];
+        document.getElementById('consonant-sempre').textContent = dades.sempre.recompte_tipus_rima['r.consonant'];
+        document.getElementById('noms-propis-sempre').textContent = dades.sempre.total_noms_propis;
 
         window.dadesSempre = dades.sempre; 
         pintarFiltresHTML(dades.sempre);
