@@ -1,0 +1,75 @@
+// =========================================================
+// PALETA DE COLORS
+// Variables compartides per tot el CSS del lloc.
+// Els colors puntuals/decoratius d'un sol ús (degradats
+// arc de Sant Martí, ombres soltes...) es deixen literals.
+// El tema "sober" (sober.css) té el seu propi sistema de
+// custom properties --sober-* i no es toca aquí.
+// =========================================================
+
+// --- Bàsics ---
+$blanc: #ffffff;
+$negre: #000000;
+
+// --- Vermell (color de marca) ---
+$vermell-principal: #d30505; // header, botons, vores, elements destacats
+$vermell-fosc: #7f0c0c;      // variant fosca (pàgines canvis/nosaltres)
+$vermell-kofi: #d92424;      // variant del botó Ko-fi (pàgines canvis/nosaltres)
+
+// --- Rosa (accent secundari) ---
+$rosa-principal: #ff91ff; // separadors, fons, vores
+$rosa-mitja: #d975d9;     // estat de focus dels inputs
+$rosa-fosc: #b500b5;      // text destacat
+$rosa-clar: #fbf0fb;      // fons de caixes
+$rosa-vora: #f1e1f1;      // vores suaus
+$rosa-boto: #c94fc9;      // botó "mostrar formulari" (pàgina llista)
+$rosa-fort: #ff1493;      // títol del formulari flotant
+
+// --- Cian (accent) ---
+$cian-principal: #00ffff;
+$cian-fosc: #01c8c8; // estat fosc / actiu (botó i enllaç del peu)
+
+// --- Grocs ---
+$groc-principal: #f6ff00; // text destacat sobre vermell
+$groc-clar: #ffe680;      // ratlles alternes de taules
+$groc-palid: #ffffcc;     // fons de caixes de dades
+
+// --- Blaus ---
+$blau-principal: #007bff;
+$blau-fosc: #0056b3;
+$blau-clar: #66b2ff;
+$blau-actiu: #3399ff;
+$blau-input: #3498db;      // vora dels camps de cerca/formulari
+$blau-fosquissim: rgb(5, 6, 45); // text/fons dels botons principals
+$blau-podi: #0077aa;       // podi: vora del 3r i 4t lloc
+$blau-podi-fosc: #005580;  // podi: títol del 3r i 4t lloc
+$blau-podi-clar: #e0f7ff;  // podi: fons del 3r i 4t lloc
+
+// --- Verds ---
+$verd-hover: rgb(0, 145, 0); // enllaços en hover (presentació/canvis)
+$verd-comptador: #00ff00;    // xifres del comptador de dades
+
+// --- Magenta ---
+$magenta: #ff00ff; // enllaços destacats (presentació/canvis)
+
+// --- Grisos ---
+$gris-molt-clar: #f2f2f2;
+$gris-clar: #f7f7f7;
+$gris-vores: #ddd;
+$gris-suau: #eee;
+$gris-text: #333;
+$gris-mitja: #555555;
+$gris-fosc-text: #444;
+$gris-606: #606060;
+$gris-molt-fosc: #222222;
+
+// --- Estats del botó d'enviar (submit-button) i altres vermells vius ---
+$vermell-viu: #e50000;       // vora del botó i text del loader (eren #e50000/#e60000, gairebé idèntics)
+$vermell-boto-text: #db0000;
+$vermell-boto-actiu: #f30000;
+// L'estat :hover del botó (abans #d30000) s'unifica amb $vermell-principal (#d30505): la diferència
+// (5 unitats) és imperceptible i no responia a cap variació de disseny.
+
+// --- Bloc de codi tipus terminal ---
+$terminal-fons: #282a36;
+$terminal-text: #f8f8f2;

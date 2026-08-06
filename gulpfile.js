@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const sass = require('gulp-sass')(require('sass'));
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
@@ -7,12 +8,13 @@ const sourcemaps = require('gulp-sourcemaps');
 
 // CSS
 gulp.task('styles', function () {
-    return gulp.src('css/**/*.css', { allowEmpty: true }) 
+    return gulp.src(['css/**/*.scss', '!css/**/_*.scss'], { allowEmpty: true })
         .pipe(sourcemaps.init())
-        .pipe(concat('styles.css')) 
+        .pipe(sass().on('error', sass.logError))
+        .pipe(concat('styles.css'))
         .pipe(gulp.dest('dist/css'))
-        .pipe(cleanCSS())  
-        .pipe(rename({ suffix: '.min' })) 
+        .pipe(cleanCSS())
+        .pipe(rename({ suffix: '.min' }))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist/css'));
 });
@@ -31,7 +33,7 @@ gulp.task('scripts', function () {
 gulp.task('build', gulp.series('styles', 'scripts'));
 
 gulp.task('watch', function () {
-    gulp.watch('css/**/*.css', gulp.series('styles'));
+    gulp.watch('css/**/*.scss', gulp.series('styles'));
     gulp.watch('js/**/*.js', gulp.series('scripts'));
 });
 
