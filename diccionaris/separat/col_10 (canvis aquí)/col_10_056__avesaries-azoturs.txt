@@ -1,4 +1,3 @@
-avesarien € avesar € VMCC3P00 € əβəzəɾˈiən
 avesaries € avesar € VMCC2S00 € əβəzəɾˈiəs
 avesaríeu € avesar € VMCC2P00 € əβəzəɾˈiəw
 avesat € avesar € VMP00SM0 € əβəzˈat
@@ -1241,3 +1240,4 @@ azots € azot € NCMP000 € əzˈɔts
 azotur € azotur € NCMS000 € əzutˈu
 azotúria € azotúria € NCFS000 € əzutˈuɾiə
 azotúries € azotúria € NCFP000 € əzutˈuɾiəs
+azoturs € azotur € NCMP000 € əzutˈus

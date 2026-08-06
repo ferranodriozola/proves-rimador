@@ -1,4 +1,3 @@
-arpegem € arpejar € VMIP1P00 € ərpəʒˈɛm
 arpegem € arpejar € VMM01P00 € ərpəʒˈɛm
 arpegem € arpejar € VMSP1P00 € ərpəʒˈɛm
 arpegen € arpejar € VMIP3P00 € ərpˈɛʒən
@@ -1241,3 +1240,4 @@ arrasades € arrasada € NCFP000 € ərəzˈaðəs
 arrasades € arrasar € VMP00PF0 € ərəzˈaðəs
 arrasador € arrasador € AQ0MS0 € ərəzəðˈo
 arrasador € arrasador € NCMS000 € ərəzəðˈo
+arrasadora € arrasador € AQ0FS0 € ərəzəðˈoɾə

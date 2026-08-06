@@ -50593,7 +50593,6 @@ arduoses
 arduosos
 ardus
 arè
-aré
 àrea
 areal
 areals
@@ -76990,6 +76989,7 @@ bdel·li
 bdel·lis
 bdel·loide
 bdel·loides
+be
 be
 bé
 bé

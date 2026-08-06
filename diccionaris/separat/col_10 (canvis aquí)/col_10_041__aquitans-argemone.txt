@@ -873,7 +873,6 @@ arduoses € arduós € AQ0FP0 € ərðuˈozəs
 arduosos € arduós € AQ0MP0 € ərðuˈozus
 ardus € ardu € AQ0MP0 € ˈarðus
 arè € arè € NCMS000 € əɾˈɛ
-aré € arè € NCMS000 € əɾˈe
 àrea € àrea € NCFS000 € ˈaɾeə
 areal € areal € AQ0CS0 € əɾeˈal
 areals € areal € AQ0CP0 € əɾeˈals
@@ -1241,3 +1240,4 @@ argeletana € argeletà € AQ0FS0 € ərʒələtˈanə
 Argelita € Argeleta € NPCSG0O € ərʒəlˈitə
 Argemí € Argemí € NPMSSP0 € ərʒəmˈi
 Argemir € Argemir € NPCNSP0 € ərʒəmˈi
+argemone € argemone € NCFS000 € ərʒəmˈɔnə

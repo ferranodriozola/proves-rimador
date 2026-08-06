@@ -1,4 +1,3 @@
-aurificàrem € aurificar € VMIS1P00 € əwɾifikˈaɾəm
 aurificaren € aurificar € VMIS3P00 € əwɾifikˈaɾən
 aurificares € aurificar € VMIS2S00 € əwɾifikˈaɾəs
 aurificareu € aurificar € VMIF2P00 € əwɾifikəɾˈɛw
@@ -1241,3 +1240,4 @@ autoritzaren € autoritzar € VMIS3P00 € əwtuɾidzˈaɾən
 autoritzares € autoritzar € VMIS2S00 € əwtuɾidzˈaɾəs
 autoritzareu € autoritzar € VMIF2P00 € əwtuɾidzəɾˈɛw
 autoritzàreu € autoritzar € VMIS2P00 € əwtuɾidzˈaɾəw
+autoritzaria € autoritzar € VMCC1S00 € əwtuɾidzəɾˈiə

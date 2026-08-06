@@ -1,4 +1,3 @@
-barratges € barratge € NCMP000 € bərˈadʒəs
 barrats € barrar € VMP00PM0 € bərˈats
 barrats € barrat € NCMP000 € bərˈats
 barrava € barrar € VMII1S00 € bərˈaβə
@@ -1241,3 +1240,4 @@ bastessin € bastar € VMSI3P02 € bəstˈesin
 bastessis € bastar € VMSI2S02 € bəstˈesis
 bastéssiu € bastar € VMSI2P02 € bəstˈesiw
 bastet € bastet € NCMS000 € bəstˈɛt
+basteta € basteta € NCFS000 € bəstˈɛtə

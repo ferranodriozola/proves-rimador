@@ -1,4 +1,3 @@
-atirantares € atirantar € VMIS2S00 € ətiɾəntˈaɾəs
 atirantareu € atirantar € VMIF2P00 € ətiɾəntəɾˈɛw
 atirantàreu € atirantar € VMIS2P00 € ətiɾəntˈaɾəw
 atirantaria € atirantar € VMCC1S00 € ətiɾəntəɾˈiə
@@ -1241,3 +1240,4 @@ atrinxerada € atrinxerar € VMP00SF0 € ətɾinʃəɾˈaðə
 atrinxerades € atrinxerar € VMP00PF0 € ətɾinʃəɾˈaðəs
 atrinxerament € atrinxerament € NCMS000 € ətɾinʃəɾəmˈen
 atrinxeraments € atrinxerament € NCMP000 € ətɾinʃəɾəmˈens
+atrinxerant € atrinxerar € VMG00000 € ətɾinʃəɾˈan

@@ -50593,7 +50593,6 @@ ndɾəŋɡˈɛtə
 ərðuˈozus
 ˈarðus
 əɾˈɛ
-əɾˈe
 ˈaɾeə
 əɾeˈal
 əɾeˈals
@@ -76991,6 +76990,7 @@ bdˈɛllis
 bdəllˈɔjðə
 bdəllˈɔjðəs
 bˈe
+bˈɛ
 bˈe
 bˈe
 bˈeə

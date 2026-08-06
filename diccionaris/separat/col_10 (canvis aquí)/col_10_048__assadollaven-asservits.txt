@@ -1,4 +1,3 @@
-assadollàvem € assadollar € VMII1P00 € əsəðuʎˈaβəm
 assadollaven € assadollar € VMII3P00 € əsəðuʎˈaβən
 assadollaves € assadollar € VMII2S00 € əsəðuʎˈaβəs
 assadollàveu € assadollar € VMII2P00 € əsəðuʎˈaβəw
@@ -1241,3 +1240,4 @@ asservissin € asservir € VMSI3P02 € əsərβˈisin
 asservissis € asservir € VMSI2S02 € əsərβˈisis
 asservíssiu € asservir € VMSI2P02 € əsərβˈisiw
 asservit € asservir € VMP00SM0 € əsərβˈit
+asservits € asservir € VMP00PM0 € əsərβˈits

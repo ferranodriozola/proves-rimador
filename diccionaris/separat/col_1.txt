@@ -50593,7 +50593,6 @@ arduós
 arduós
 ardu
 arè
-arè
 àrea
 areal
 areal
@@ -76990,6 +76989,7 @@ bdel·li
 bdel·li
 bdel·loide
 bdel·loide
+be
 be
 bé
 bé

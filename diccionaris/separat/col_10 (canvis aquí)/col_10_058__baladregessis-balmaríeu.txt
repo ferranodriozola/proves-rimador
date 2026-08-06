@@ -1,4 +1,3 @@
-baladregessin € baladrejar € VMSI3P02 € bələðɾəʒˈesin
 baladregessis € baladrejar € VMSI2S02 € bələðɾəʒˈesis
 baladregéssiu € baladrejar € VMSI2P02 € bələðɾəʒˈesiw
 baladregeu € baladrejar € VMIP2P00 € bələðɾəʒˈɛw
@@ -1241,3 +1240,4 @@ balmaria € balmar € VMCC1S00 € bəlməɾˈiə
 balmaríem € balmar € VMCC1P00 € bəlməɾˈiəm
 balmarien € balmar € VMCC3P00 € bəlməɾˈiən
 balmaries € balmar € VMCC2S00 € bəlməɾˈiəs
+balmaríeu € balmar € VMCC2P00 € bəlməɾˈiəw

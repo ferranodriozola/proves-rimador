@@ -1,4 +1,3 @@
-asservits € asservir € VMP00PM0 € əsərβˈits
 asserviu € asservir € VMIP2P00 € əsərβˈiw
 asserviu € asservir € VMM02P00 € əsərβˈiw
 asserviu € asservir € VMSP2P00 € əsərβˈiw
@@ -1241,3 +1240,4 @@ assuaujares € assuaujar € VMIS2S00 € əsuəwʒˈaɾəs
 assuaujareu € assuaujar € VMIF2P00 € əsuəwʒəɾˈɛw
 assuaujàreu € assuaujar € VMIS2P00 € əsuəwʒˈaɾəw
 assuaujaria € assuaujar € VMCC1S00 € əsuəwʒəɾˈiə
+assuaujaríem € assuaujar € VMCC1P00 € əsuəwʒəɾˈiəm

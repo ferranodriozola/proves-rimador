@@ -1,4 +1,3 @@
-assuaujaríem € assuaujar € VMCC1P00 € əsuəwʒəɾˈiəm
 assuaujarien € assuaujar € VMCC3P00 € əsuəwʒəɾˈiən
 assuaujaries € assuaujar € VMCC2S00 € əsuəwʒəɾˈiəs
 assuaujaríeu € assuaujar € VMCC2P00 € əsuəwʒəɾˈiəw
@@ -1241,3 +1240,4 @@ atarantéssiu € atarantar € VMSI2P02 € ətəɾəntˈesiw
 ataranteu € atarantar € VMIP2P00 € ətəɾəntˈɛw
 ataranteu € atarantar € VMM02P0X € ətəɾəntˈɛw
 ataranteu € atarantar € VMSP2P00 € ətəɾəntˈɛw
+ataranti € atarantar € VMM03S0Y € ətəɾˈanti

@@ -1,4 +1,3 @@
-autoritzaria € autoritzar € VMCC1S00 € əwtuɾidzəɾˈiə
 autoritzaríem € autoritzar € VMCC1P00 € əwtuɾidzəɾˈiəm
 autoritzarien € autoritzar € VMCC3P00 € əwtuɾidzəɾˈiən
 autoritzaries € autoritzar € VMCC2S00 € əwtuɾidzəɾˈiəs
@@ -1241,3 +1240,4 @@ avesareu € avesar € VMIF2P00 € əβəzəɾˈɛw
 avesàreu € avesar € VMIS2P00 € əβəzˈaɾəw
 avesaria € avesar € VMCC1S00 € əβəzəɾˈiə
 avesaríem € avesar € VMCC1P00 € əβəzəɾˈiəm
+avesarien € avesar € VMCC3P00 € əβəzəɾˈiən

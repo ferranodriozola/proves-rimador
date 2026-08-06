@@ -1,4 +1,3 @@
-atrinxerant € atrinxerar € VMG00000 € ətɾinʃəɾˈan
 atrinxerar € atrinxerar € VMN00000 € ətɾinʃəɾˈa
 atrinxerarà € atrinxerar € VMIF3S00 € ətɾinʃəɾəɾˈa
 atrinxeraran € atrinxerar € VMIF3P00 € ətɾinʃəɾəɾˈan
@@ -1241,3 +1240,4 @@ aurificaran € aurificar € VMIF3P00 € əwɾifikəɾˈan
 aurificaràs € aurificar € VMIF2S00 € əwɾifikəɾˈas
 aurificaré € aurificar € VMIF1S00 € əwɾifikəɾˈe
 aurificarem € aurificar € VMIF1P00 € əwɾifikəɾˈɛm
+aurificàrem € aurificar € VMIS1P00 € əwɾifikˈaɾəm

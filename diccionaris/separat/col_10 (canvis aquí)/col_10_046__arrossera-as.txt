@@ -1,4 +1,3 @@
-arrosser € arrosser € NCMS000 € ərusˈe
 arrossera € arrosser € AQ0FS0 € ərusˈeɾə
 arrossera € arrosser € NCFS000 € ərusˈeɾə
 arrosseres € arrosser € AQ0FP0 € ərusˈeɾəs
@@ -1241,3 +1240,4 @@ Arzamas € Arzamas € NPCSG00 € ərzˈaməs
 Arzano € Arzano € NPCSG00 € ərzˈanu
 Arzignano € Arzignano € NPCSG00 € ərziɡnˈanu
 as € a € NCFP000 € ˈas
+as € as € NCMS000 € ˈas

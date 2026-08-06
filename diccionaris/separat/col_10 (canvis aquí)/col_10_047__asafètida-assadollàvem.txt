@@ -1,4 +1,3 @@
-as € as € NCMS000 € ˈas
 asafètida € asafètida € NCFS000 € əzəfˈɛtiðə
 asafètides € asafètida € NCFP000 € əzəfˈɛtiðəs
 asafia € asafia € NCFS000 € əzəfˈiə
@@ -1241,3 +1240,4 @@ assadollaríeu € assadollar € VMCC2P00 € əsəðuʎəɾˈiəw
 assadollat € assadollar € VMP00SM0 € əsəðuʎˈat
 assadollats € assadollar € VMP00PM0 € əsəðuʎˈats
 assadollava € assadollar € VMII1S00 € əsəðuʎˈaβə
+assadollàvem € assadollar € VMII1P00 € əsəðuʎˈaβəm

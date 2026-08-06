@@ -1,4 +1,3 @@
-Barahona € Barahona € NPCSG00 € bəɾəˈonə
 Barajas € Barajas € NPCSG00 € bəɾˈaʒəs
 bàral € bàral € NCMS000 € bˈaɾəl
 baralla € baralla € NCFS000 € bəɾˈaʎə
@@ -1241,3 +1240,4 @@ barrastrals € barrastral € NCMP000 € bərəstɾˈals
 barrat € barrar € VMP00SM0 € bərˈat
 barrat € barrat € NCMS000 € bərˈat
 barratge € barratge € NCMS000 € bərˈadʒə
+barratges € barratge € NCMP000 € bərˈadʒəs

@@ -50593,7 +50593,6 @@ ozəs
 ozus
 arðus
 ɛ
-e
 aɾeə
 al
 als
@@ -76990,6 +76989,7 @@ ukəs
 ɛllis
 ɔjðə
 ɔjðəs
+e
 e
 e
 e

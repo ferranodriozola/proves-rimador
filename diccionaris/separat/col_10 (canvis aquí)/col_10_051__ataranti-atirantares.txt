@@ -1,4 +1,3 @@
-ataranti € atarantar € VMM03S0Y € ətəɾˈanti
 ataranti € atarantar € VMSP1S0Y € ətəɾˈanti
 atarantí € atarantar € VMIS1S00 € ətəɾəntˈi
 atarantin € atarantar € VMM03P0Y € ətəɾˈantin
@@ -1241,3 +1240,4 @@ atirantaré € atirantar € VMIF1S00 € ətiɾəntəɾˈe
 atirantarem € atirantar € VMIF1P00 € ətiɾəntəɾˈɛm
 atirantàrem € atirantar € VMIS1P00 € ətiɾəntˈaɾəm
 atirantaren € atirantar € VMIS3P00 € ətiɾəntˈaɾən
+atirantares € atirantar € VMIS2S00 € ətiɾəntˈaɾəs

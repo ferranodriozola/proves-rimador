@@ -1,4 +1,3 @@
-argemone € argemone € NCFS000 € ərʒəmˈɔnə
 argemones € argemone € NCFP000 € ərʒəmˈɔnəs
 argenç € argenç € NCMS000 € ərʒˈɛns
 Argençola € Argençola € NPFSG00 € ərʒənsˈɔlə
@@ -1241,3 +1240,4 @@ arpàvem € arpar € VMII1P00 € ərpˈaβəm
 arpaven € arpar € VMII3P00 € ərpˈaβən
 arpaves € arpar € VMII2S00 € ərpˈaβəs
 arpàveu € arpar € VMII2P00 € ərpˈaβəw
+arpegem € arpejar € VMIP1P00 € ərpəʒˈɛm

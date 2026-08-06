@@ -1,4 +1,3 @@
-arrasadora € arrasador € AQ0FS0 € ərəzəðˈoɾə
 arrasadores € arrasador € AQ0FP0 € ərəzəðˈoɾəs
 arrasadors € arrasador € AQ0MP0 € ərəzəðˈos
 arrasadors € arrasador € NCMP000 € ərəzəðˈos
@@ -1241,3 +1240,4 @@ arrepapeu € arrepapar € VMSP2P00 € ərəpəpˈɛw
 arrepapi € arrepapar € VMM03S0Y € ərəpˈapi
 arrepapi € arrepapar € VMSP1S0Y € ərəpˈapi
 arrepapí € arrepapar € VMIS1S00 € ərəpəpˈi
+arrepapin € arrepapar € VMM03P0Y € ərəpˈapin

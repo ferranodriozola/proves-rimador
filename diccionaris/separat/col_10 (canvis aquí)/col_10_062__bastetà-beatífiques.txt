@@ -1,4 +1,3 @@
-basteta € basteta € NCFS000 € bəstˈɛtə
 bastetà € bastetà € AQ0MS0 € bəstətˈa
 bastetà € bastetà € NCMS000 € bəstətˈa
 bastetana € bastetà € AQ0FS0 € bəstətˈanə
@@ -1168,6 +1167,7 @@ bdel·lis € bdel·li € NCMP000 € bdˈɛllis
 bdel·loide € bdel·loide € AQ0CS0 € bdəllˈɔjðə
 bdel·loides € bdel·loide € AQ0CP0 € bdəllˈɔjðəs
 be € be € NCMS000 € bˈe
+be € be € NCMS000 € bˈɛ
 bé € bé € ZCC € bˈe
 bé € bé € NCMS000 € bˈe
 Bea € Bea € NPFSSP0 € bˈeə

@@ -1,4 +1,3 @@
-azoturs € azotur € NCMP000 € əzutˈus
 Azov € Azov € NPCSG00 € əzˈop
 Azuébar € Assuévar € NPCSG0O € əzuˈeβə
 azulè € azulè € NCMS000 € əzulˈɛ
@@ -1241,3 +1240,4 @@ baladregen € baladrejar € VMIP3P00 € bələðɾˈɛʒən
 baladreges € baladrejar € VMIP2S00 € bələðɾˈɛʒəs
 baladregés € baladrejar € VMSI1S01 € bələðɾəʒˈes
 baladregéssim € baladrejar € VMSI1P02 € bələðɾəʒˈesim
+baladregessin € baladrejar € VMSI3P02 € bələðɾəʒˈesin
