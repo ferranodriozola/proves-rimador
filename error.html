@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" id="themeColor" content="#FF91FF">
+    <meta name="robots" content="index, follow">
+
+    <title>El Rimador català - Has trobat un error?</title>
+    <meta name="description" content="Has trobat una errada al Rimador català? Explica'ns-la i la corregirem tan aviat com puguem.">
+    <meta name="author" content="Marc i Ferran">
+    <link rel="canonical" href="https://rimador.cat/error.html">
+
+    <link rel="icon" type="image/webp" href="assets/R.webp">
+    <link rel="apple-touch-icon" href="assets/R.webp">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rimador.cat/error.html">
+    <meta property="og:title" content="El Rimador català - Has trobat un error?">
+    <meta property="og:description" content="Explica'ns quina errada has trobat i la corregirem tan aviat com puguem.">
+    <meta property="og:image" content="https://rimador.cat/assets/R.webp">
+    <meta property="og:locale" content="ca_ES">
+    <meta property="og:site_name" content="El Rimador català">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="El Rimador català - Has trobat un error?">
+    <meta name="twitter:description" content="Explica'ns quina errada has trobat i la corregirem tan aviat com puguem.">
+    <meta name="twitter:image" content="https://rimador.cat/assets/R.webp">
+
+    <link rel="stylesheet" href="dist/css/styles.min.css?v=dev">
+    <script src="dist/js/components.min.js?v=dev" defer></script>
+    <script src="dist/js/menu.min.js?v=dev" defer></script>
+    <script src="dist/js/script.min.js?v=dev" defer></script>
+</head>
+
+<body id="error">
+
+    <header id="header">
+        <!-- components.js -->
+    </header>
+
+    <div id="separador_rosa1">
+        <!-- components.js -->
+    </div>
+
+    <div id="text_presentació">
+        <div id="titol_canvis">Has trobat un error?</div>
+        <p>Has trobat una paraula mal transcrita, una rima que no hi hauria de ser o
+            qualsevol altra cosa que no rutlla? Explica'ns-ho i ho corregirem tan aviat
+            com puguem. Els avisos ens arriben directament al correu.</p>
+
+        <form id="formulariError" action="https://formspree.io/f/xeoazgnl" method="POST">
+            <p class="camp">
+                <label for="err-on">On l'has trobat?</label>
+                <input type="text" id="err-on" name="on" placeholder="Una paraula, una llista, el joc...">
+            </p>
+
+            <p class="camp">
+                <label for="err-detall">Què hi passa?</label>
+                <textarea id="err-detall" name="detall" required
+                          placeholder="Explica'ns-ho amb les teves paraules"></textarea>
+            </p>
+
+            <p class="camp">
+                <label for="err-correu">El teu correu <span class="opcional">(opcional)</span></label>
+                <input type="email" id="err-correu" name="email" placeholder="Per si et volem respondre">
+            </p>
+
+            <button class="submit-button" type="submit"><span>Enviar</span></button>
+        </form>
+
+        <p>Si ho prefereixes, també ens pots escriure directament a
+            <a href="mailto:hola@rimador.cat">hola@rimador.cat</a>.</p>
+
+        <p id="arimar">
+            <a href="https://rimador.cat">
+                A rimar!
+            </a>
+        </p>
+
+    </div>
+
+<footer id="footer">
+<!-- components.js -->
+</footer>
+
+</body>
+</html>
