@@ -316,7 +316,7 @@ fajols € fajol € NCMP000 € fəʒˈɔls
 fajos € faig € NCMP000 € fˈaʒus
 fajosa € fajosa € NCFS000 € fəʒˈozə
 fajoses € fajosa € NCFP000 € fəʒˈozəs
-fake € fake € AQ0CN0 € fˈakə
+fake € fake € AQ0CN0 € fˈejk
 falacrocoràcid € falacrocoràcid € NCMS000 € fələkɾukuɾˈasit
 falacrocoràcids € falacrocoràcid € NCMP000 € fələkɾukuɾˈasits
 falàfel € falàfel € NCMS000 € fəlˈafəl

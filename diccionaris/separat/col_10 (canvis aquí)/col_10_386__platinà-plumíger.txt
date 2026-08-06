@@ -1203,8 +1203,8 @@ plujós € plujós € AQ0MS0 € pluʒˈos
 plujosa € plujós € AQ0FS0 € pluʒˈozə
 plujoses € plujós € AQ0FP0 € pluʒˈozəs
 plujosos € plujós € AQ0MP0 € pluʒˈozus
-plum-cake € plum-cake € NCMS000 € plˈumkˈakə
-plum-cakes € plum-cake € NCMP000 € plˈumkˈakəs
+plum-cake € plum-cake € NCMS000 € plˈumkˈejk
+plum-cakes € plum-cake € NCMP000 € plˈumkˈejks
 plumbagina € plumbagina € NCFS000 € plumbəʒˈinə
 plumbaginàcia € plumbaginàcia € NCFS000 € plumbəʒinˈasiə
 plumbaginàcies € plumbaginàcia € NCFP000 € plumbəʒinˈasiəs

@@ -1037,7 +1037,7 @@ remagrida € remagrit € AQ0FS0 € rəməɣɾˈiðə
 remagrides € remagrit € AQ0FP0 € rəməɣɾˈiðəs
 remagrit € remagrit € AQ0MS0 € rəməɣɾˈit
 remagrits € remagrit € AQ0MP0 € rəməɣɾˈits
-remake € remake € NCMS000 € rəmˈakə
+remake € remake € NCMS000 € rəmˈejk
 remalla € remallar € VMIP3S00 € rəmˈaʎə
 remalla € remallar € VMM02S00 € rəmˈaʎə
 remallà € remallar € VMIS3S00 € rəməʎˈa

@@ -1142,8 +1142,8 @@ Sakai € Sakai € NPCSG00 € səkˈaj
 sakalava € sakalava € AQ0CS0 € səkəlˈaβə
 sakalava € sakalava € NCCS000 € səkəlˈaβə
 Sakarya € Sakarya € NPCSG00 € səkˈarjə
-sake € sake € NCMS000 € sˈakə
-sakes € sake € NCMP000 € sˈakəs
+sake € sake € NCMS000 € sˈejk
+sakes € sake € NCMP000 € sˈejks
 Sakhalin € Sakhalin € NPCSG00 € səkˈalin
 Sakhir € Sakhir € NPCSG00 € səkˈi
 sakmarià € sakmarià € AQ0MS0 € səkməɾiˈa

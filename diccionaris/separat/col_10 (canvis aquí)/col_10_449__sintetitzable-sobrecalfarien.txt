@@ -750,7 +750,7 @@ smithsonites € smithsonita € NCFP000 € zmitsunˈitəs
 Smolensk € Smolensk € NPCSG00 € zmulˈɛnsk
 snack € snack € NCMS000 € znˈak
 snacks € snack € NCMP000 € znˈaks
-Snake € Snake € NPCSG00 € znˈakə
+Snake € Snake € NPCSG00 € znˈejk
 snowboard € snowboard € NCMS000 € znubbˈoart
 snowboards € snowboard € NCMP000 € znubbˈoars
 So € So € NPCNSP0 € sˈɔ

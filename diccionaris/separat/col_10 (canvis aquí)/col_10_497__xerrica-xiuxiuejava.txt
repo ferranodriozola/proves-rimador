@@ -284,8 +284,8 @@ xiisme € xiisme € NCMS000 € ʃiˈizmə
 xiismes € xiisme € NCMP000 € ʃiˈizməs
 xiïta € xiïta € AQ0CS0 € ʃiˈitə
 xiïta € xiïta € NCCS000 € ʃiˈitə
-xiitake € xiitake € NCMS000 € ʃijtˈakə
-xiitakes € xiitake € NCMP000 € ʃijtˈakəs
+xiitake € xiitake € NCMS000 € ʃijtˈake
+xiitakes € xiitake € NCMP000 € ʃijtˈakes
 xiïtes € xiïta € AQ0CP0 € ʃiˈitəs
 xiïtes € xiïta € NCCP000 € ʃiˈitəs
 xilarial € xilarial € NCFS000 € ʃiləɾiˈal

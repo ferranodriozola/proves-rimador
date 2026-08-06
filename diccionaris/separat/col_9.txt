@@ -57180,7 +57180,7 @@ ndɾəŋɡˈɛtə
 əzəfˈɛtiðəs
 əzəfˈiə
 əzəfˈiəs
-əzˈaiðˈakə
+əzˈaiðˈejk
 əzəikˈaβə
 əzəmˈɛlə
 əzəmˈɛləs
@@ -149229,7 +149229,7 @@ kupˈajɾə
 kupˈajɾəs
 kupˈadʒə
 kupˈadʒəs
-kupkˈakə
+kupkˈejk
 kupˈɛ
 kupˈe
 kˈupə
@@ -332197,7 +332197,7 @@ fəʒˈɔls
 fˈaʒus
 fəʒˈozə
 fəʒˈozəs
-fˈakə
+fˈejk
 fələkɾukuɾˈasit
 fələkɾukuɾˈasits
 fəlˈafəl
@@ -422166,8 +422166,8 @@ mˈats
 mətsuβˈaɾə
 mətsˈuə
 mətsumˈɔtu
-mətsutˈakə
-mətsutˈakəs
+mətsutˈake
+mətsutˈakes
 mətsujˈamə
 mətˈɛl
 mətuɾəsiˈo
@@ -479758,8 +479758,8 @@ pluʒˈos
 pluʒˈozə
 pluʒˈozəs
 pluʒˈozus
-plˈumkˈakə
-plˈumkˈakəs
+plˈumkˈejk
+plˈumkˈejks
 plumbəʒˈinə
 plumbəʒinˈasiə
 plumbəʒinˈasiəs
@@ -521854,7 +521854,7 @@ rəməɣɾˈiðə
 rəməɣɾˈiðəs
 rəməɣɾˈit
 rəməɣɾˈits
-rəmˈakə
+rəmˈejk
 rəmˈaʎə
 rəmˈaʎə
 rəməʎˈa
@@ -544333,8 +544333,8 @@ səkˈaj
 səkəlˈaβə
 səkəlˈaβə
 səkˈarjə
-sˈakə
-sˈakəs
+sˈejk
+sˈejks
 səkˈalin
 səkˈi
 səkməɾiˈa
@@ -557614,7 +557614,7 @@ zmitsunˈitəs
 zmulˈɛnsk
 znˈak
 znˈaks
-znˈakə
+znˈejk
 znubbˈoart
 znubbˈoars
 sˈɔ
@@ -613618,7 +613618,7 @@ bəəβˈitəs
 bəjŋɡˈaŋɡə
 bəkˈamə
 bəkəjˈamə
-bˈakə
+uˈejk
 bəkəfiˈɛl
 bəkˈan
 bˈaldə
@@ -616812,8 +616812,8 @@ bjumˈiŋ
 ʃiˈizməs
 ʃiˈitə
 ʃiˈitə
-ʃijtˈakə
-ʃijtˈakəs
+ʃijtˈake
+ʃijtˈakes
 ʃiˈitəs
 ʃiˈitəs
 ʃiləɾiˈal

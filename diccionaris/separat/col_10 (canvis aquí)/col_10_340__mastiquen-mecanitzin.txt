@@ -789,8 +789,8 @@ mats € mat € NCMP000 € mˈats
 Matsubara € Matsubara € NPCSG00 € mətsuβˈaɾə
 Matsue € Matsue € NPCSG00 € mətsˈuə
 Matsumoto € Matsumoto € NPCSG00 € mətsumˈɔtu
-matsutake € matsutake € NCMS000 € mətsutˈakə
-matsutakes € matsutake € NCMP000 € mətsutˈakəs
+matsutake € matsutake € NCMS000 € mətsutˈake
+matsutakes € matsutake € NCMP000 € mətsutˈakes
 Matsuyama € Matsuyama € NPCSG00 € mətsujˈamə
 Mattel € Mattel € NPCNO00 € mətˈɛl
 maturació € maturació € NCFS000 € mətuɾəsiˈo
