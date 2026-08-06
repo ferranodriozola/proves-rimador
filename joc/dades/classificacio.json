@@ -1,9 +1,49 @@
 {
-  "actualitzacio": "29/07/2026 22:53:48",
+  "actualitzacio": "06/08/2026 02:03:11",
   "modalitats": {
+    "diaria|dificil|60": {
+      "titol": "Paraula del dia · Difícil",
+      "top": [
+        {
+          "sobrenom": "Adm1n",
+          "punts": 10,
+          "paraula": "estel",
+          "data": "06/08/2026"
+        },
+        {
+          "sobrenom": "admιn",
+          "punts": 9,
+          "paraula": "estel",
+          "data": "06/08/2026"
+        }
+      ]
+    },
+    "diaria|facil|60": {
+      "titol": "Paraula del dia · Fàcil",
+      "top": [
+        {
+          "sobrenom": "franco",
+          "punts": 3,
+          "paraula": "enfoscaments",
+          "data": "29/07/2026"
+        }
+      ]
+    },
     "illimitat|dificil|45": {
       "titol": "Il·limitat · Difícil · Llampec",
       "top": [
+        {
+          "sobrenom": "javascript",
+          "punts": 11,
+          "paraula": "falzies",
+          "data": "29/07/2026"
+        },
+        {
+          "sobrenom": "Berna",
+          "punts": 6,
+          "paraula": "encegadores",
+          "data": "30/07/2026"
+        },
         {
           "sobrenom": "franco",
           "punts": 5,
@@ -11,7 +51,47 @@
           "data": "29/07/2026"
         }
       ]
+    },
+    "illimitat|facil|90": {
+      "titol": "Il·limitat · Fàcil · Estàndard",
+      "top": [
+        {
+          "sobrenom": "Préssec",
+          "punts": 3,
+          "paraula": "bytownites",
+          "data": "29/07/2026"
+        }
+      ]
     }
   },
-  "diaria": {}
+  "diaria": {
+    "2026-07-29": {
+      "paraula": "enfoscaments",
+      "facil": [
+        {
+          "sobrenom": "franco",
+          "punts": 3,
+          "paraula": "enfoscaments",
+          "data": "29/07/2026"
+        }
+      ]
+    },
+    "2026-08-06": {
+      "paraula": "estel",
+      "dificil": [
+        {
+          "sobrenom": "Adm1n",
+          "punts": 10,
+          "paraula": "estel",
+          "data": "06/08/2026"
+        },
+        {
+          "sobrenom": "admιn",
+          "punts": 9,
+          "paraula": "estel",
+          "data": "06/08/2026"
+        }
+      ]
+    }
+  }
 }
