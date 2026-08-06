@@ -15,7 +15,9 @@ let opcionsSilabes = /*html*/`
     <option value="6">6 o +</option>
 `;
 
-if (idPagina === 'principal' || idPagina === 'canvis' || idPagina === 'dades' || idPagina === 'nosaltres') {
+const PAGINES_ARREL = ['principal', 'canvis', 'dades', 'nosaltres', 'error'];
+
+if (PAGINES_ARREL.includes(idPagina)) {
   ruta1 = 'assets/';
   ruta2 = 'historial_canvis.html';
 } else if (idPagina === 'error404') {
@@ -24,6 +26,7 @@ if (idPagina === 'principal' || idPagina === 'canvis' || idPagina === 'dades' ||
 } else if (idPagina === 'llista') {
   ruta1 = '../assets/';
   ruta2 = '../historial_canvis.html';
+  
   botoactualitzar = '<button class="boto" role="button" id="actualitzaButton"><span class="text">Actualitzar</span></button>';
     if (dataLlista === 'mots_de7_real') {
         estilSilabes = 'style="display: none;"';
@@ -82,7 +85,12 @@ if (loaderHTML) { loaderHTML.innerHTML = loader; }
 
 const header = /*html*/`
 <a href="https://rimador.cat"><img class="rimador" id="rimadorImg" src="${ruta1}Rimador-1.webp?v=2" alt="Logo del Rimador en català"></a>
-<button type="button" id="themeToggleBtn" class="peixet-btn" onclick="toggleTheme()" aria-label="Canvia entre mode festiu i mode sobri" title="Canvia d'estil"><img class="peixet" id="peixetImg" src="${ruta1}peixet.webp" alt="Peixet decoratiu"></button>
+<div class="header-icons">
+    <button type="button" id="themeToggleBtn" class="peixet-btn" onclick="toggleTheme()" aria-label="Canvia entre mode festiu i mode sobri" title="Canvia d'estil"><img class="peixet" id="peixetImg" src="${ruta1}peixet.webp" alt="Peixet decoratiu"></button>
+    <button type="button" id="menuToggleBtn" class="menu-hamburger" aria-label="Obre el menú" aria-expanded="false" aria-controls="paper-back" title="Menú">
+        <span></span>
+    </button>
+</div>
 `
 const headerHTML = document.getElementById('header');
 if (headerHTML) { headerHTML.innerHTML = header; }
