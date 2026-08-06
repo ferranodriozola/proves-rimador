@@ -67,17 +67,6 @@
     font-weight: lighter;
 }
 
-#titol_canvis {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    font-size: 2em;
-    color: #ff69b4;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
-  }  
-
 #text_canvis p {
     margin: 30px;
     margin-left: 70px;
@@ -129,9 +118,5 @@
     #text_canvis p {
         margin: 20px 5px;
         font-size: 12px;
-    }
-    #titol_canvis {
-        font-size: 1.4em;
-        letter-spacing: 1px;
     }
 }

@@ -209,7 +209,7 @@
   color: var(--sober-muted);
 }
 
-[data-theme="sober"] #titol_canvis {
+[data-theme="sober"] .titol-pagina {
   font-family: var(--sober-font);
   color: var(--sober-text);
   text-shadow: none;
@@ -327,13 +327,6 @@
   background-color: var(--sober-panel-bg);
   border: 1px solid var(--sober-border);
   font-weight: normal;
-}
-
-[data-theme="sober"] #titol_dades {
-  font-family: var(--sober-font);
-  color: var(--sober-text);
-  text-shadow: none;
-  letter-spacing: normal;
 }
 
 [data-theme="sober"] #data_actualitzacio,

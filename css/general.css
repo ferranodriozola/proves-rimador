@@ -18,3 +18,21 @@ body {
 #espai_inicial {
     color: #FF91FF;
 }
+
+.titol-pagina {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 2em;
+    color: #ff69b4;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 550px) {
+    .titol-pagina {
+        font-size: 1.4em;
+        letter-spacing: 1px;
+    }
+}
