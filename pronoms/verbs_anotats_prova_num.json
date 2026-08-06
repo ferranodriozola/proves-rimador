@@ -1,0 +1,49 @@
+{
+    "voler": {
+        "categories": [
+            "v. aux.",
+            "v. intr.",
+            "v. tr."
+        ],
+        "estat": "OK"
+    },
+    "haver": {
+        "categories": [
+            "v. aux.",
+            "v. tr."
+        ],
+        "estat": "OK"
+    },
+    "esdevenir": {
+        "categories": [
+            "v. intr.",
+            "v. intr. pron."
+        ],
+        "estat": "OK"
+    },
+    "ploure": {
+        "categories": [
+            "v. intr."
+        ],
+        "estat": "OK"
+    },
+    "queixar": {
+        "categories": [
+            "v. intr. pron."
+        ],
+        "estat": "OK"
+    },
+    "dinyar": {
+        "categories": [
+            "v. tr."
+        ],
+        "estat": "OK"
+    },
+    "morir": {
+        "categories": [
+            "v. intr.",
+            "v. intr. pron."
+        ],
+        "estat": "OK"
+    }
+}
