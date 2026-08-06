@@ -8,18 +8,18 @@ from datetime import datetime
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
 FITXER_RIMES = os.path.join(base_dir, 'resultat_ordenat_cons.json')
-FITXER_FENIXS = os.path.join(base_dir, '..', 'llistes', 'paraules_fenixs.json')
+FITXER_NAUFRAGUES = os.path.join(base_dir, '..', 'llistes', 'paraules_naufragues.json')
 FITXER_UTILITZATS = os.path.join(base_dir, 'publicades_normal.json')
 
 def carregar_json(nom_fitxer):
     if not os.path.exists(nom_fitxer):
-        return [] if nom_fitxer in (FITXER_UTILITZATS, FITXER_FENIXS) else {}
-    
+        return [] if nom_fitxer in (FITXER_UTILITZATS, FITXER_NAUFRAGUES) else {}
+
     with open(nom_fitxer, 'r', encoding='utf-8') as f:
         try:
             return json.load(f)
         except json.decoder.JSONDecodeError:
-            return [] if nom_fitxer in (FITXER_UTILITZATS, FITXER_FENIXS) else {}
+            return [] if nom_fitxer in (FITXER_UTILITZATS, FITXER_NAUFRAGUES) else {}
 
 def guardar_json(dades, nom_fitxer):
     with open(nom_fitxer, 'w', encoding='utf-8') as f:
@@ -30,23 +30,23 @@ def principal():
     
     dades_rimes = carregar_json(FITXER_RIMES)
     utilitzats = carregar_json(FITXER_UTILITZATS)
-    dades_fenixs = carregar_json(FITXER_FENIXS)
+    dades_naufragues = carregar_json(FITXER_NAUFRAGUES)
 
     if not dades_rimes:
         print("El fitxer de rimes està buit o no s'ha trobat.")
         return
-    
-    if not dades_fenixs:
-        print("El fitxer de paraules fènix està buit o no s'ha trobat.")
+
+    if not dades_naufragues:
+        print("El fitxer de paraules nàufragues està buit o no s'ha trobat.")
         return
 
-    rimes_fenixs = set()
-    for item in dades_fenixs:
+    rimes_naufragues = set()
+    for item in dades_naufragues:
         rima = item.get("rimacons")
         if rima:
-            rimes_fenixs.add(rima)
+            rimes_naufragues.add(rima)
 
-    rimes_disponibles = [rima for rima in dades_rimes.keys() if rima not in utilitzats and rima not in rimes_fenixs]
+    rimes_disponibles = [rima for rima in dades_rimes.keys() if rima not in utilitzats and rima not in rimes_naufragues]
 
     if not rimes_disponibles:
         print("Ja s'han utilitzat totes les rimes del fitxer!")

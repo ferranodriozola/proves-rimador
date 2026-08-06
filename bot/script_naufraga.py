@@ -7,8 +7,8 @@ from datetime import datetime
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
-FITXER_FENIXS = os.path.join(base_dir, '..', 'llistes', 'paraules_fenixs.json')
-FITXER_UTILITZATS = os.path.join(base_dir, 'publicades_fenix.json')
+FITXER_NAUFRAGUES = os.path.join(base_dir, '..', 'llistes', 'paraules_naufragues.json')
+FITXER_UTILITZATS = os.path.join(base_dir, 'publicades_naufraga.json')
 
 def carregar_json(nom_fitxer):
     if not os.path.exists(nom_fitxer):
@@ -28,16 +28,16 @@ def principal():
     print("Iniciant el bot")
     
     utilitzats = carregar_json(FITXER_UTILITZATS)
-    dades_fenixs = carregar_json(FITXER_FENIXS)
+    dades_naufragues = carregar_json(FITXER_NAUFRAGUES)
 
-    if not dades_fenixs:
-        print("El fitxer de paraules fènix està buit o no s'ha trobat.")
+    if not dades_naufragues:
+        print("El fitxer de paraules nàufragues està buit o no s'ha trobat.")
         return
 
-    paraules_disponibles = [item for item in dades_fenixs if item.get("rimacons") not in utilitzats]
+    paraules_disponibles = [item for item in dades_naufragues if item.get("rimacons") not in utilitzats]
 
     if not paraules_disponibles:
-        print("Ja s'han utilitzat totes les rimes fènix del fitxer!")
+        print("Ja s'han utilitzat totes les rimes nàufragues del fitxer!")
         return
 
     item_escollit = random.choice(paraules_disponibles)
@@ -53,11 +53,11 @@ def principal():
     avui = datetime.now()
     data_formatada = f"{avui.day}/{avui.month}/{avui.strftime('%y')}"
 
-    tuit = f"Paraula fènix del dia ({data_formatada}): {paraula_escollida} (/{rima_escollida}/)\n\n"
+    tuit = f"Paraula nàufraga del dia ({data_formatada}): {paraula_escollida} (/{rima_escollida}/)\n\n"
     if codi.startswith("NP"):
-        tuit += "Aquest nom propi no rima amb cap paraula del diccionari, per això és una Paraula fènix.\n\n"
+        tuit += "Aquest nom propi no rima amb cap paraula del diccionari, per això és una Paraula nàufraga.\n\n"
     else:
-        tuit += "Aquesta paraula no rima amb cap paraula del diccionari, per això és una Paraula fènix.\n\n"
+        tuit += "Aquesta paraula no rima amb cap paraula del diccionari, per això és una Paraula nàufraga.\n\n"
 
     paraula_url = urllib.parse.quote(lema)
     
@@ -76,7 +76,7 @@ def principal():
             else:
                 tuit += f"📖 Viquipèdia: https://ca.wikipedia.org/wiki/{paraula_url}\n"
 
-    tuit += "\nConsulta totes les paraules fènix a https://rimador.cat/llistes/llista_fenixs.html"
+    tuit += "\nConsulta totes les paraules nàufragues a https://rimador.cat/llistes/llista_naufragues.html"
 
     print("-" * 50)
     print(tuit)

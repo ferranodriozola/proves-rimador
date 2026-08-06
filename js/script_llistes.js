@@ -111,8 +111,8 @@ async function carregarDades(arxiuJson, clauVersio) {
 document.addEventListener('DOMContentLoaded', () => {
     const tipusLlista = document.body.dataset.llista;
 
-    if (tipusLlista === 'fenixs') {
-        carregarDades('paraules_fenixs.json', 'versio_fenix');
+    if (tipusLlista === 'naufragues') {
+        carregarDades('paraules_naufragues.json', 'versio_naufragues');
 
     } else if (tipusLlista === 'mots_de7_real') {
         carregarDades('mots_de7_real.json', 'versio_hepta_real');

@@ -8,7 +8,7 @@ def generar_llista():
     dir_separat = os.path.join(dir_diccionaris, 'separat')
     
     ruta_json_rimes = os.path.join('..', 'bot', 'resultat_ordenat_cons.json')
-    fitxer_sortida = os.path.join(base_dir, 'paraules_fenixs.json')
+    fitxer_sortida = os.path.join(base_dir, 'paraules_naufragues.json')
     ruta_versions = os.path.join(base_dir, 'versions_llistes.json')
 
     noms_fitxers = [
@@ -22,8 +22,8 @@ def generar_llista():
         with open(ruta_json_rimes, 'r', encoding='utf-8') as f:
             dades_rimes = json.load(f)
 
-        rimes_fenix = {
-            rima for rima, dades in dades_rimes.items() 
+        rimes_naufragues = {
+            rima for rima, dades in dades_rimes.items()
             if len(set(dades.get("paraules", []))) == 1
         }
 
@@ -33,7 +33,7 @@ def generar_llista():
             for linies in zip(*fitxers_oberts):
                 paraula, infinitiu, codi, rima, sil, vicc, viq, diec = [linia.strip() for linia in linies]
 
-                if rima in rimes_fenix:
+                if rima in rimes_naufragues:
                     paraules_orfes.append({
                         'paraula': paraula,
                         'infinitiu': infinitiu,
@@ -55,13 +55,13 @@ def generar_llista():
     with open(fitxer_sortida, 'w', encoding='utf-8') as f:
         json.dump(paraules_orfes, f, ensure_ascii=False, indent=2)
 
-    print(f"Generació completada: {len(paraules_orfes)} paraules fènix guardades a {fitxer_sortida}")
+    print(f"Generació completada: {len(paraules_orfes)} paraules nàufragues guardades a {fitxer_sortida}")
 
     try:
         with open(ruta_versions, 'r', encoding='utf-8') as fitxer:
             dades = json.load(fitxer)
             
-        dades['versio_fenix'] += 1
+        dades['versio_naufragues'] += 1
         
         with open(ruta_versions, 'w', encoding='utf-8') as fitxer:
             json.dump(dades, fitxer, indent=2)

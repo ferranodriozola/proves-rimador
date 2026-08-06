@@ -47,14 +47,14 @@ data_inici = pd.to_datetime(inici_setmana)
 data_fi = pd.to_datetime(ahir) + timedelta(days=1, seconds=-1)
 
 
-#df paraules fènix
-ruta_json_fenix = 'llistes/paraules_fenixs.json' 
+#df paraules nàufragues
+ruta_json_naufragues = 'llistes/paraules_naufragues.json'
 
-with open(ruta_json_fenix, 'r', encoding='utf-8') as arxiu:
-    dades_fenix = json.load(arxiu)
-llista_paraules_fenix = [item['paraula'] for item in dades_fenix]
+with open(ruta_json_naufragues, 'r', encoding='utf-8') as arxiu:
+    dades_naufragues = json.load(arxiu)
+llista_paraules_naufragues = [item['paraula'] for item in dades_naufragues]
 
-df_rimes_fenix = paraules_cercades_usuaris_diferents[paraules_cercades_usuaris_diferents['Paraula'].isin(llista_paraules_fenix)].copy()
+df_rimes_naufragues = paraules_cercades_usuaris_diferents[paraules_cercades_usuaris_diferents['Paraula'].isin(llista_paraules_naufragues)].copy()
 
 
 #les dues llistes
@@ -170,7 +170,7 @@ dades_json = {
         "paraules_cercades_uniques": len(paraules_cercades),
         "numero_usuaris": cerques_totals['Usuari'].nunique(),
         "recompte_tipus_rima": cerques_totals['Tipus de rima'].value_counts().to_dict(),
-        "top_10_fenix": formatar_top_per_json(obtenir_top_paraules(df_rimes_fenix, 10, 'paraula')),
+        "top_10_naufragues": formatar_top_per_json(obtenir_top_paraules(df_rimes_naufragues, 10, 'paraula')),
         "top_10_typos": formatar_top_per_json(obtenir_top_paraules(df_typos, 10, 'paraula')),
         "total_noms_propis": len(noms_propis),
         "recompte_num_sil": cerques_totals['Num. síl·'].value_counts().to_dict(),

@@ -1,4 +1,4 @@
-name: Separació del diccionari (i generació de fènixs i heptasíl·labs)
+name: Separació del diccionari (i generació de nàufragues i heptasíl·labs)
 
 on:
   push:
@@ -62,18 +62,18 @@ jobs:
           git commit -m "Generació automàtica del json de rimes sencer" || echo "No s'han detectat canvis nous per guardar"
           git push
 
-# ------ Crear llista fènixs
-      - name: Crear llista de fenixs
+# ------ Crear llista nàufragues
+      - name: Crear llista de naufragues
         working-directory: llistes
-        run: python generar_fenixs.py
+        run: python generar_naufragues.py
 
-# ----- comit fenix
-      - name: Comit llista de fènixs
+# ----- comit naufragues
+      - name: Comit llista de nàufragues
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .
-          git commit -m "Generació automàtica de la llista de fènixs" || echo "No s'han detectat canvis nous per guardar"
+          git commit -m "Generació automàtica de la llista de nàufragues" || echo "No s'han detectat canvis nous per guardar"
           git push
 
 # ------ Crear llistes mots_de7

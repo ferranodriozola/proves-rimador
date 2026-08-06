@@ -188,7 +188,7 @@ async function carregarEstadistiques(arxiuJson) {
         omplirLlistesHTML('llista-paraules-sempre', dades.sempre.top_10_paraules, false);
         omplirLlistesHTML('llista-rimes-sempre', dades.sempre.top_10_rimes, true);
         
-        omplirLlistesHTML('llista-fenix', dades.sempre.top_10_fenix, false);
+        omplirLlistesHTML('llista-naufragues', dades.sempre.top_10_naufragues, false);
         omplirLlistesHTML('llista-typos', dades.sempre.top_10_typos, false);
         
         if (dades.sempre.top_dies) {

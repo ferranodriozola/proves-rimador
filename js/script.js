@@ -16,16 +16,16 @@ if (debugLevel >= 3) {
   });
 }
 
-//carregar json fènix
-let llistaFenix = [];
+//carregar json nàufragues
+let llistaNaufragues = [];
 
-async function carregarFenix() {
+async function carregarNaufragues() {
   try {
-    const resposta = await fetch(`llistes/paraules_fenixs.json?t=${Date.now()}`); 
-    llistaFenix = await resposta.json();
-    console.log("Paraules fènix carregades:", llistaFenix.length);
+    const resposta = await fetch(`llistes/paraules_naufragues.json?t=${Date.now()}`);
+    llistaNaufragues = await resposta.json();
+    console.log("Paraules nàufragues carregades:", llistaNaufragues.length);
   } catch (err) {
-    console.error("Error carregant el json de paraules fènix", err);
+    console.error("Error carregant el json de paraules nàufragues", err);
   }
 }
 
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         await carregarVersions();
-        await carregarFenix(); 
+        await carregarNaufragues();
         const resultatFitxers = await Promise.all(camins.map(llegirFitxerAmbIndexedDB));
         [array0, array1, array2, array3, array4, array5, array6, array7, array8, array9] = resultatFitxers;
         console.log('Tots els fitxers carregats correctament');
@@ -586,8 +586,8 @@ function actualitzarRimes() {
   if (idPagina === 'principal') {
     text = 'de rimes';
   } else if (idPagina === 'llista') {
-    if (dataLlista === 'fenixs') {
-      text = 'de paraules fènixs';
+    if (dataLlista === 'naufragues') {
+      text = 'de paraules nàufragues';
     } else if (dataLlista === 'mots_de7_real') {
       text = 'de paraules de set síl·labes';
     } else if (dataLlista === 'mots_de7_glosa') {
@@ -607,9 +607,9 @@ function actualitzarRimes() {
   var textNombre = document.getElementById("nombre");
 
   if (matches_provisionals.length > 0) {
-    var esFenix = llistaFenix.some(item => item.paraula.toLowerCase() === paraulacerca[0]);
+    var esNaufraga = llistaNaufragues.some(item => item.paraula.toLowerCase() === paraulacerca[0]);
     var tipusRima = document.getElementById('rimaSelector').value;
-    if (esFenix && tipusRima === 'r.consonant') {
+    if (esNaufraga && tipusRima === 'r.consonant') {
       textNombre.innerHTML = ""; 
 
       contenidorRimes.classList.remove("column-container");
@@ -621,15 +621,15 @@ function actualitzarRimes() {
 
       if (isSober) {       
         rima_enllac = /*html*/`
-          <div class="alerta-fenix" style="text-align: center; width: 100%; margin-top: 20px;">
-            <p><strong>Has trobat una paraula fènix.</strong></p>
+          <div class="alerta-naufraga" style="text-align: center; width: 100%; margin-top: 20px;">
+            <p><strong>Has trobat una paraula nàufraga.</strong></p>
             <p>La paraula <strong>${paraulacerca[0]}</strong> no rima consonantment amb cap altra paraula del diccionari...</p>
-            <p>Consulta la llista de <a id="enllaç" href="llistes/llista_fenixs.html" target="_blank">Paraules fènix</a></p>
+            <p>Consulta la llista de <a id="enllaç" href="llistes/llista_naufragues.html" target="_blank">Paraules nàufragues</a></p>
           </div>
         `;  
       } else {
         rima_enllac = /*html*/`
-          <div class="alerta-fenix" style="
+          <div class="alerta-naufraga" style="
               background-color: #ffff00;
               border: 6px dashed #ff00ff;
               box-shadow: 10px 10px 0px #00ffff;
@@ -643,12 +643,12 @@ function actualitzarRimes() {
               border-radius: 15px;
               transform: rotate(-1deg);
           ">
-            <h2 style="color: #ff0000; text-shadow: 3px 3px 0px #00ff00; font-size: 28px; text-transform: uppercase; margin-top: 0;">Paraula fènix!!!</h2>
+            <h2 style="color: #ff0000; text-shadow: 3px 3px 0px #00ff00; font-size: 28px; text-transform: uppercase; margin-top: 0;">Paraula nàufraga!!!</h2>
             <p style="font-size: 18px;">La paraula <strong style="font-size: 24px; color: #ff00ff; text-decoration: underline;">${paraulacerca[0]}</strong> no rima consonantment amb cap altra paraula del diccionari...</p>
-            
+
             <div style="margin-top: 25px; background: #817f7f; padding: 10px; border-radius: 8px; border: 2px solid #00ffff;">
               <p style="font-weight: bold; font-size: 18px; color: white; margin: 0;">
-                Consulta la llista de <a id="enllaçbrillant" href="llistes/llista_fenixs.html" target="_blank">Paraules fènix</a>
+                Consulta la llista de <a id="enllaçbrillant" href="llistes/llista_naufragues.html" target="_blank">Paraules nàufragues</a>
               </p>
             </div>
           </div>
@@ -1099,7 +1099,7 @@ function toggleTheme() {
   }
 
   aplicarTema(temaNou);
-  if (document.querySelector('.alerta-fenix')) {
+  if (document.querySelector('.alerta-naufraga')) {
       actualitzarRimes();
     }
   if (typeof actualitzarColorsGrafics === 'function') {
