@@ -214,6 +214,73 @@ body#nosaltres #mostrarFormulari:after {
     }
 }
 
+
+/* error.html */
+#formulariError {
+    max-width: 520px;
+    margin: 0 auto 30px;
+    text-align: left;
+}
+
+#formulariError .camp {
+    margin: 0 0 18px;
+}
+
+#formulariError label {
+    display: block;
+    margin-bottom: 6px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#formulariError .opcional {
+    font-weight: normal;
+    opacity: 0.7;
+}
+
+#formulariError input,
+#formulariError textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s ease-in-out;
+}
+
+#formulariError textarea {
+    height: 130px;
+    resize: vertical;
+}
+
+#formulariError input:focus,
+#formulariError textarea:focus {
+    border-color: #d975d9;
+    outline: none;
+}
+
+#formulariError .submit-button {
+    display: block;
+    margin: 0 auto;
+}
+
+
+/* Adaptat telèfons */
+
+@media screen and (max-width: 550px) {
+    #formulariError label {
+        font-size: 13px;
+    }
+    #formulariError .submit-button span {
+        font-size: 20px;
+    }
+}
+
 .gifok {
   width: 35px;
   height: 35px;
@@ -250,4 +317,70 @@ body#nosaltres #mostrarFormulari:after {
     #formulariContainer {
         bottom: 115px;
     }
+}
+
+
+
+
+
+/* error.html (apartat de github) */
+
+hr.separador-error {
+    border: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #FF91FF, transparent);
+    margin: 40px 0;
+    opacity: 0.8;
+}
+
+.explicacio-github {
+    background-color: #fbf0fb; 
+    border-left: 5px solid #FF91FF;
+    padding: 25px;
+    margin: 30px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.explicacio-github h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+}
+
+.explicacio-github p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #444;
+}
+
+.explicacio-github ol {
+    margin: 0;
+    padding-left: 20px;
+    color: #444;
+}
+
+.explicacio-github li {
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.explicacio-github code {
+    background-color: #f1e1f1;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    color: #b500b5; 
+    font-size: 0.95em;
+}
+
+.explicacio-github a {
+    color: #b500b5;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.explicacio-github a:hover {
+    text-decoration: underline;
 }
