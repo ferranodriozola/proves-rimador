@@ -10,7 +10,7 @@
   --sober-accent-dark: #800000;
   --sober-header-bg: #4d4d4d;
   --sober-footer-bg: #aaaaaa;
-  --sober-font: "Arial Narrow", Arial, Helvetica, sans-serif;
+  --sober-font: "Arial Narrow", var(--font-afi), Arial, Helvetica, sans-serif;
 }
 
 [data-theme="sober"] body,
@@ -337,7 +337,7 @@
 }
 
 [data-theme="sober"] .explicacio-github code {
-  font-family: "Courier New", Courier, monospace;
+  font-family: var(--font-mono);
   box-shadow: none;
 }
 

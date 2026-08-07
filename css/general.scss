@@ -9,6 +9,14 @@ html {
 }
 
 body {
+    // Xarxa de seguretat per a l'alfabet fonètic: la font de l'AFI
+    // té el unicode-range limitat als blocs fonètics, o sigui que
+    // NOMÉS s'aplica a caràcters com ɛ ə ʎ; tota la resta del text
+    // continua caient a la font per defecte del navegador, tal com
+    // fins ara. Així les transcripcions de pàgines sense cap
+    // font-family declarada (historial_canvis.html) no es queden a
+    // mans del que tingui instal·lat cada mòbil.
+    font-family: var(--font-afi), serif;
     margin: 0;
     padding: 0;
     background-color: $rosa-principal;
@@ -22,7 +30,7 @@ body {
 }
 
 .titol-pagina {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-family: var(--font-divertida);
     font-size: 2em;
     color: #ff69b4;
     text-align: center;

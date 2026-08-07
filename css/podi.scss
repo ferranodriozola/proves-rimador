@@ -67,7 +67,7 @@
     text-align: center;
     font-size: 15px;
     text-decoration: none;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-family: var(--font-divertida);
     color: $vermell-principal;
 }
 
@@ -128,7 +128,7 @@
 }
 
 .podi-xifra {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--font-mono);
     font-size: 16px;
     font-weight: bold;
     line-height: 1.15;
@@ -141,7 +141,7 @@
    hi queda de xarxa, però no hauria d'arribar a actuar mai. */
 .podi-data {
     max-width: 100%;
-    font-family: Verdana, Geneva, sans-serif; /* la tipografia de web de l'època */
+    font-family: Verdana, var(--font-afi), Geneva, sans-serif;
     font-size: 9px;
     letter-spacing: -0.2px;
     line-height: 1.25;
@@ -191,7 +191,7 @@
 
 /* el numeral, gravat al bloc: llum a dalt i ombra a baix */
 .podi-numero {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--font-mono);
     font-size: 23px;
     font-weight: bold;
     color: rgba($negre, 0.42);

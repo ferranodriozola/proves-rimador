@@ -100,7 +100,7 @@
 #formulariError label {
     display: block;
     margin-bottom: 6px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-sistema);
     font-size: 15px;
     font-weight: bold;
 }
@@ -118,7 +118,7 @@
     border: 2px solid $blau-input;
     border-radius: 5px;
     background-color: $gris-molt-clar;
-    font-family: Arial, sans-serif;
+    font-family: var(--font-arial);
     font-size: 16px;
     color: $gris-text;
     transition: border-color 0.3s ease-in-out;
@@ -238,7 +238,7 @@ hr.separador-error {
     background-color: $terminal-fons; /* Color fosc tipus terminal */
     padding: 4px 8px;
     border-radius: 4px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--font-mono);
     color: $gris-molt-clar;
     font-size: 0.9em;
     display: inline-block;

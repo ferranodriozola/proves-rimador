@@ -32,7 +32,7 @@
 
 #text_presentació a:hover { 
     color: $verd-hover; 
-    font-family: 'Comic Sans MS';
+    font-family: var(--font-divertida-minima);
     text-decoration: underline;
 }
 
@@ -50,7 +50,7 @@
     -webkit-background-clip: text;
     color: transparent;
     font-size: 27px;
-    font-family: 'Comic Sans MS';
+    font-family: var(--font-divertida-minima);
     font-weight: bold;
     position: relative; 
 }

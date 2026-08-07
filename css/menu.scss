@@ -122,7 +122,7 @@
     display: block;
     margin-bottom: 22px;
     text-decoration: none;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: var(--font-serif);
     font-size: 22px;
     color: rgba($blanc, 0.85);
 }
@@ -138,7 +138,7 @@
 
 .menu-grup__titol {
     margin: 0 0 16px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: var(--font-serif);
     font-size: 15px;
     font-weight: normal;
     letter-spacing: 2px;

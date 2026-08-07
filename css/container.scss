@@ -60,7 +60,7 @@ body#llista #separador_rosa1 {
     border-radius: 5px;
     background-color: $gris-molt-clar;
     border: 2px solid $blau-input;
-    font-family: 'Arial', sans-serif;
+    font-family: var(--font-arial);
     color: $gris-text;
     transition: border-color 0.3s ease-in-out;
     padding-left: 12px;
@@ -81,7 +81,7 @@ body#llista #separador_rosa1 {
     box-sizing: border-box;
     color: $blanc;
     display: flex;
-    font-family: Phantomsans, sans-serif;
+    font-family: var(--font-sans);
     font-size: 20px;
     justify-content: center;
     line-height: 1em;
@@ -113,7 +113,7 @@ body#llista #separador_rosa1 {
 .boto:hover span {
     background: none;
     color: $blau-fosquissim;
-    font-family: 'Comic Sans MS';
+    font-family: var(--font-divertida-minima);
     font-weight: bold;
 }
 
@@ -121,7 +121,7 @@ body#llista #separador_rosa1 {
     display: flex;
     flex-wrap: wrap;
     gap: 11px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: var(--font-sistema);
     font-size: 14px;
 }
 

@@ -88,7 +88,7 @@
 
 #text_canvis > p:not(#arimar) a:not(#enllaçbrillant):hover { 
     color: $verd-hover; 
-    font-family: 'Comic Sans MS';
+    font-family: var(--font-divertida-minima);
     text-decoration: underline;
 }
 

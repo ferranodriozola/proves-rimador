@@ -1,7 +1,5 @@
 @use "variables" as *;
 
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
-
 .btn-container {
     position: fixed;
     bottom: 20px;
@@ -24,7 +22,7 @@ a.kofi-button {
     overflow-wrap: break-word;
     vertical-align: middle;
     border: 0 none $blanc;
-    font-family: 'Quicksand', Helvetica, Century Gothic, sans-serif !important;
+    font-family: 'Quicksand', var(--font-afi), Helvetica, Century Gothic, sans-serif !important;
     text-decoration: none !important;
     text-shadow: none !important;
     font-weight: 700 !important;

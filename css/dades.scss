@@ -10,7 +10,7 @@
     gap: 0;
     margin-top: 5px;
     flex-wrap: nowrap;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-family: var(--font-divertida);
     font-size: 13px;
 }
 
@@ -69,7 +69,7 @@
     align-items: center;
     height: 100%;
     color: $negre;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--font-mono);
     font-size: 13px;
     font-weight: bold;
     box-sizing: border-box;
@@ -109,7 +109,7 @@
 
 #data_actualitzacio {
     text-align: center;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-family: var(--font-divertida);
     font-size: 13px;
     margin-top: 0px;
     margin-bottom: 25px;
@@ -137,7 +137,7 @@
     padding: 6px;
     background-color: $vermell-principal;
     color: $groc-principal;
-    font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Arial Black", sans-serif;
+    font-family: Impact, var(--font-afi), Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Arial Black", sans-serif;
     font-size: 17px;
     font-weight: normal;
     letter-spacing: 1px;
@@ -148,7 +148,7 @@
 
 .caixa-dades h4 {
     margin: 14px 10px 4px 10px;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-family: var(--font-divertida);
     font-size: 14px;
     color: $vermell-principal;
     text-decoration: underline;
@@ -161,7 +161,7 @@
     background-color: $negre;
     border: 3px inset #808080;
     color: $verd-comptador;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--font-mono);
     font-size: 28px;
     font-weight: bold;
     text-align: center;
@@ -184,7 +184,7 @@
 .caixa-dades ol {
     margin: 0px 12px 6px 12px;
     padding-left: 28px;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-family: var(--font-divertida);
     font-size: 13px;
     list-style: decimal;
 }
@@ -299,7 +299,7 @@
 
 .caixa-criteris h4 {
     margin: 26px 0px 8px 0px;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-family: var(--font-divertida);
     font-size: 17px;
     font-weight: bold;
     color: $vermell-principal;
