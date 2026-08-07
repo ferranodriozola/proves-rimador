@@ -572,7 +572,7 @@ function crearEnllacViquipedia(paraula) {
 }
 
 function crearEnllacDiec(paraula) {
-  var enllac_diec = '<a href="https://dlc.iec.cat/Results?DecEntradaText=' + paraula + '&AllInfoMorf=False&OperEntrada=0&OperDef=0&OperEx=0&OperSubEntrada=0&OperAreaTematica=0&InfoMorfType=0&OperCatGram=False&AccentSen=False&CurrentPage=0&refineSearch=0&Actualitzacions=False" target="_blank">';
+  var enllac_diec = '<a href="https://dlc.iec.cat/Results?DecEntradaText=' + paraula + '" target="_blank">';
     enllac_diec += '<img src="' + rutaLogos + 'logodiec (200x200).png" loading="lazy" alt="Logo_Diec" class="logo">';
   enllac_diec += '</a>';
   return enllac_diec;
