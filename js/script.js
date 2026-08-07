@@ -579,6 +579,19 @@ function crearEnllacDiec(paraula) {
 }
 
 
+// Amb poques rimes, redueix el nombre de columnes (l'amplada es manté)
+function aplicarNombreDeColumnes(contenidor, nombreResultats) {
+  contenidor.classList.remove("cols-1", "cols-2", "cols-3");
+
+  if (nombreResultats < 6) {
+    contenidor.classList.add("cols-1");
+  } else if (nombreResultats < 14) {
+    contenidor.classList.add("cols-2");
+  } else if (nombreResultats < 20) {
+    contenidor.classList.add("cols-3");
+  }
+}
+
 function actualitzarRimes() {
   Debug.logTime('actualitzarRimes');
 
@@ -612,7 +625,7 @@ function actualitzarRimes() {
     if (esNaufraga && tipusRima === 'r.consonant') {
       textNombre.innerHTML = ""; 
 
-      contenidorRimes.classList.remove("column-container");
+      contenidorRimes.classList.remove("column-container", "cols-1", "cols-2", "cols-3");
 
       if (checkboxContainer) checkboxContainer.style.display = "none";
       if (resultatsContainer) resultatsContainer.style.width = "100%";
@@ -659,7 +672,8 @@ function actualitzarRimes() {
         textNombre.innerHTML = numerorimes;
 
         contenidorRimes.classList.add("column-container");
-        
+        aplicarNombreDeColumnes(contenidorRimes, matches_provisionals.length);
+
         if (checkboxContainer) checkboxContainer.style.display = "";
         if (resultatsContainer) resultatsContainer.style.width = "";
 
@@ -739,7 +753,7 @@ function actualitzarRimes() {
     
   } else {
     textNombre.innerHTML = numerorimes;
-    contenidorRimes.classList.remove("column-container");
+    contenidorRimes.classList.remove("column-container", "cols-1", "cols-2", "cols-3");
     var rimes;
     if (paraulacerca[0] === 0) {
       if (checkboxContainer) checkboxContainer.style.display = "none";

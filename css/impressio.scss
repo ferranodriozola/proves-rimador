@@ -5,10 +5,36 @@
     align-items: flex-start; 
 }
 
+$amplada-columna: 247px;
+$separacio-columnes: 20px;
+
 .column-container {
-    column-count: 5; 
-    column-width: 247px; 
-    column-gap: 20px; 
+    column-count: 5;
+    column-width: $amplada-columna;
+    column-gap: $separacio-columnes;
+}
+
+/* Amb poques rimes, menys columnes (de la mateixa amplada) i centrades */
+.column-container.cols-1,
+.column-container.cols-2,
+.column-container.cols-3 {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.column-container.cols-1 {
+    column-count: 1;
+    max-width: $amplada-columna;
+}
+
+.column-container.cols-2 {
+    column-count: 2;
+    max-width: $amplada-columna * 2 + $separacio-columnes;
+}
+
+.column-container.cols-3 {
+    column-count: 3;
+    max-width: $amplada-columna * 3 + $separacio-columnes * 2;
 }
 
 .column-container p {
@@ -30,6 +56,11 @@
     max-width: 100%;
     margin: 40px;
     margin-top: 0px ;
+    /* Ocupa l'espai lliure encara que hi hagi poques rimes, perquè les
+       columnes reduïdes es puguin centrar (flex-basis auto: no afecta
+       la disposició en columna dels telèfons) */
+    flex-grow: 1;
+    min-width: 0;
 }
 
 .classeParaulaMare {
