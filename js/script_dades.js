@@ -161,6 +161,11 @@ function omplirLlistesHTML(idElement, arrayDades, esRima = false) {
         negreta.textContent = item.paraula;
         li.appendChild(negreta);
         if (esRima) {
+            // Les rimes s'escriuen en transcripció fonètica (aðə, esək):
+            // les dibuixem senceres amb la font que té l'AFI, si no la
+            // 'a' i la 'ð' surten amb tipografies diferents.
+            negreta.className = 'transcripcio';
+
             const tipusNet = String(item.tipus).replace('r.', '');
             li.appendChild(document.createTextNode(` (${tipusNet})`));
         }
@@ -241,6 +246,15 @@ async function carregarEstadistiques(arxiuJson) {
             omplirPodiHTML('podi-usuaris', dades.sempre.top_dies.top_usuaris, 'usuaris');
             omplirPodiHTML('anti-podi-cerques', dades.sempre.top_dies.anti_top_cerques, 'cerques');
             omplirPodiHTML('anti-podi-usuaris', dades.sempre.top_dies.anti_top_usuaris, 'usuaris');
+        }
+
+        // Les etiquetes dels gràfics de formatge també són rimes en
+        // transcripció fonètica, i els gràfics es dibuixen en un canvas,
+        // on el CSS no hi arriba: li hem de dir a Chart.js quina font ha
+        // de fer servir.
+        if (window.Chart) {
+            Chart.defaults.font.family = getComputedStyle(document.documentElement)
+                .getPropertyValue('--font-transcripcio').trim();
         }
 
         const temaSober = document.documentElement.getAttribute('data-theme') === 'sober' || document.body.getAttribute('data-theme') === 'sober';
