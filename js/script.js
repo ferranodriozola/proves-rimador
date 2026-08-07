@@ -744,7 +744,7 @@ function actualitzarRimes() {
     if (paraulacerca[0] === 0) {
       if (checkboxContainer) checkboxContainer.style.display = "none";
       if (resultatsContainer) resultatsContainer.style.width = "100%";
-      rimes = "No s'ha trobat la paraula al diccionari.";
+      rimes = "<span class='missatgeNoTrobat'><br>No s'ha trobat la paraula al diccionari. Revisa l'ortografia i recorda cercar la paraula sencera, no la terminació.</span>";
     } else {
       if (checkboxContainer) checkboxContainer.style.display = "";
       if (resultatsContainer) resultatsContainer.style.width = "";
