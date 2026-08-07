@@ -1,5 +1,5 @@
 {
-    "actualitzacio": "07/08/2026 01:57:29",
+    "actualitzacio": "07/08/2026 03:34:16",
     "setmana": {
         "text_dies": "31/7 > 6/8",
         "top_10_paraules": [
@@ -160,12 +160,12 @@
                 "cerques": 6
             },
             {
-                "paraula": "en",
+                "paraula": "a",
                 "tipus": "r.consonant",
                 "cerques": 6
             },
             {
-                "paraula": "a",
+                "paraula": "en",
                 "tipus": "r.consonant",
                 "cerques": 6
             },
@@ -180,26 +180,26 @@
                 "cerques": 5
             },
             {
+                "paraula": "at",
+                "tipus": "r.consonant",
+                "cerques": 5
+            },
+            {
                 "paraula": "esək",
                 "tipus": "r.consonant",
                 "cerques": 5
             },
             {
-                "paraula": "e",
-                "tipus": "r.consonant",
-                "cerques": 5
-            },
-            {
-                "paraula": "inə",
+                "paraula": "ut",
                 "tipus": "r.consonant",
                 "cerques": 5
             }
         ],
-        "total_cerques": 444,
-        "paraules_cercades_uniques": 317,
+        "total_cerques": 448,
+        "paraules_cercades_uniques": 320,
         "numero_usuaris": 104,
         "recompte_tipus_rima": {
-            "r.consonant": 396,
+            "r.consonant": 400,
             "r.assonant": 48
         },
         "top_10_naufragues": [
@@ -272,7 +272,7 @@
         ],
         "total_noms_propis": 12,
         "recompte_num_sil": {
-            "0": 393,
+            "0": 397,
             "2": 21,
             "3": 17,
             "1": 5,
@@ -281,15 +281,15 @@
             "6": 2
         },
         "recompte_comenca_per": {
-            "indiferent": 442,
+            "indiferent": 446,
             "consonant": 2
         },
         "recompte_incloure_np": {
-            "no": 432,
+            "no": 436,
             "si": 12
         },
         "recompte_incloure_pl": {
-            "si": 427,
+            "si": 431,
             "no": 17
         },
         "top_dies": {
@@ -668,6 +668,10 @@
                 "vegades": 3
             },
             {
+                "rima": "eʎs",
+                "vegades": 2
+            },
+            {
                 "rima": "ɛl",
                 "vegades": 2
             },
@@ -760,6 +764,10 @@
                 "vegades": 2
             },
             {
+                "rima": "arsə",
+                "vegades": 2
+            },
+            {
                 "rima": "ektə",
                 "vegades": 2
             },
@@ -805,10 +813,6 @@
             },
             {
                 "rima": "ɛnə",
-                "vegades": 1
-            },
-            {
-                "rima": "eʎs",
                 "vegades": 1
             },
             {
@@ -1045,10 +1049,6 @@
             },
             {
                 "rima": "eʎə",
-                "vegades": 1
-            },
-            {
-                "rima": "arsə",
                 "vegades": 1
             },
             {
@@ -1381,6 +1381,10 @@
             },
             {
                 "rima": "iskə",
+                "vegades": 1
+            },
+            {
+                "rima": "uzə",
                 "vegades": 1
             }
         ]
