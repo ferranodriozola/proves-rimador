@@ -1,0 +1,283 @@
+@use "variables" as *;
+
+.caixa-podi {
+    flex: 1 1 100%;
+    max-width: 1200px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Contenidor principal: PROHIBITS ELS SALTS DE LÍNIA (flex-wrap nowrap) */
+.podium-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap !important; /* Assegura que mai baixin a una altra línia */
+    gap: 8px;
+    padding: 10px;
+    overflow-x: auto; /* Si la pantalla és excessivament petita, permet fer scroll horitzontal suau sense trencar la fila */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.podium-box {
+    flex: 1;
+    min-width: 240px; /* per sota d'això les tres columnes del podi no respiren */
+    background-color: $groc-clar; 
+    border: 3px dashed $vermell-principal; 
+    padding: 12px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+/* -------------------------------------------------------------
+   DIFERENCIACIÓ VISUAL: Podis de "Menys" (3r i 4t element)
+   ------------------------------------------------------------- */
+.podium-box:nth-child(3),
+.podium-box:nth-child(4) {
+    background-color: $blau-podi-clar; /* Fons blau clar / cel per diferenciar-los */
+    border: 3px dashed $blau-podi; /* Vora de color blau diferent */
+}
+
+.podium-box:nth-child(3) h4,
+.podium-box:nth-child(4) h4 {
+    color: $blau-podi-fosc; /* Títol en blau fosc */
+}
+
+/* el primer lloc de les caixes de "menys" destaca en blau, no en vermell */
+.podium-box:nth-child(3) .podi-lloc-1 .podi-placa,
+.podium-box:nth-child(4) .podi-lloc-1 .podi-placa {
+    border-color: #a8cfe0;
+    background-image: linear-gradient(180deg, #ffffff 0%, #f0faff 45%, #cfe9f5 100%);
+}
+
+.podium-box:nth-child(3) .podi-lloc-1 .podi-xifra,
+.podium-box:nth-child(4) .podi-lloc-1 .podi-xifra {
+    color: $blau-podi-fosc;
+}
+
+/* la tarima, en el to blau d'aquestes caixes */
+.podium-box:nth-child(3) .podi-graella,
+.podium-box:nth-child(4) .podi-graella {
+    border-bottom-color: #b9d8e6;
+}
+
+/* Estils generals dels títols i llistes */
+.podium-box h4 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 15px;
+    text-decoration: none;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: $vermell-principal;
+}
+
+.podium-box ul {
+    list-style-type: none !important;
+    padding-left: 0 !important;
+    margin: 8px 0 0 0 !important;
+}
+
+/* -------------------------------------------------------------
+   EL PODI
+   Tres columnes que recolzen sobre una mateixa línia de terra, amb
+   els blocs de diferent alçada. Sobre cada bloc hi flota la placa
+   amb les dades d'aquell dia.
+   ------------------------------------------------------------- */
+.podi-graella {
+    display: flex;
+    align-items: flex-end; /* els blocs recolzen sobre una base comuna */
+    justify-content: center;
+    gap: 0; /* els blocs es toquen, com en un podi de veritat */
+    margin: 12px 0 6px 0 !important;
+    padding: 0 !important;
+    /* la tarima: bisell tallat a l'estil dels ginys de Windows d'aleshores */
+    border-bottom: 7px ridge #c0c0c0;
+    box-shadow: 0 3px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* Ordre real de podi (2n | 1r | 3r) sense tocar l'ordre del DOM,
+   que es queda per classificació */
+.podi-lloc-1 { order: 2; }
+.podi-lloc-2 { order: 1; }
+.podi-lloc-3 { order: 3; }
+
+.podi-lloc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+/* --- La placa de dades, a sobre del bloc ---
+   Un panell tallat com els quadres de diàleg de l'època: vora "outset",
+   degradat suau de dalt a baix i les xifres amb relleu. */
+.podi-placa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100% - 4px); /* deixa aire entre plaques veïnes */
+    box-sizing: border-box;
+    margin-bottom: 7px;
+    padding: 3px 1px 4px 1px;
+    background-image: linear-gradient(180deg, #ffffff 0%, #fdfbe8 45%, #eae4c0 100%);
+    border: 3px outset #f2edcf;
+    border-radius: 0; /* cantonades vives: aleshores no n'hi havia, d'arrodonides */
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
+    white-space: nowrap;
+}
+
+.podi-xifra {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.15;
+    color: $negre;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Verdana a 9px: la mida a què hi cap la data sencera fins i tot a la columna
+   més estreta que arriba a donar-se (71px, a finestres de ~660px). L'ellipsis
+   hi queda de xarxa, però no hauria d'arribar a actuar mai. */
+.podi-data {
+    max-width: 100%;
+    font-family: Verdana, Geneva, sans-serif; /* la tipografia de web de l'època */
+    font-size: 9px;
+    letter-spacing: -0.2px;
+    line-height: 1.25;
+    color: $gris-text;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* --- El bloc del podi ---
+   Degradat metàl·lic amb reflex a la meitat superior: el "glossy" que
+   es posava a tot arreu cap al 2005. */
+.podi-bloc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    border: 3px outset #cfcfcf;
+    border-bottom: none;
+    border-radius: 0;
+    background-image:
+        linear-gradient(180deg,
+            rgba(255, 255, 255, 0.55) 0%,
+            rgba(255, 255, 255, 0.18) 48%,
+            rgba(255, 255, 255, 0) 49%,
+            rgba(0, 0, 0, 0.14) 100%);
+}
+
+/* les alçades són el que dibuixa el podi; el color va al fons de sota el reflex */
+.podi-lloc-1 .podi-bloc {
+    height: 66px;
+    background-color: $or-podi;
+    border-color: #e8b800;
+}
+
+.podi-lloc-2 .podi-bloc {
+    height: 46px;
+    background-color: $plata-podi;
+    border-color: #bdbdbd;
+}
+
+.podi-lloc-3 .podi-bloc {
+    height: 31px;
+    background-color: $bronze-podi;
+    border-color: #b06f2c;
+}
+
+/* el numeral, gravat al bloc: llum a dalt i ombra a baix */
+.podi-numero {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 23px;
+    font-weight: bold;
+    color: rgba($negre, 0.42);
+    text-shadow:
+        0 -1px 0 rgba(0, 0, 0, 0.25),
+        0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.podi-lloc-2 .podi-numero { font-size: 20px; }
+.podi-lloc-3 .podi-numero { font-size: 16px; }
+
+/* Un peixet al costat de l'1. Als podis de "més" hi neda el de sempre;
+   als de "menys", el que ja fa de logo del mode sobri, que és mort. */
+.podi-lloc-1 .podi-numero::after {
+    content: '';
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    margin-left: 4px;
+    vertical-align: -5px;
+    background-image: url('../../assets/peixet.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.podium-box:nth-child(3) .podi-lloc-1 .podi-numero::after,
+.podium-box:nth-child(4) .podi-lloc-1 .podi-numero::after {
+    background-image: url('../../assets/boringlogo.webp');
+}
+
+/* el primer lloc destaca amb la vora vermella de la marca */
+.podi-lloc-1 .podi-placa {
+    border-color: #f0a3a3;
+    background-image: linear-gradient(180deg, #ffffff 0%, #fff2f2 45%, #f6d5d5 100%);
+}
+
+.podi-lloc-1 .podi-xifra {
+    font-size: 18px;
+    color: $vermell-principal;
+}
+
+
+
+
+/* El podi dibuixat necessita més amplada que una llista de text: per sota
+   d'aquí, quatre columnes en fila deixarien la data sense espai i s'escapçaria,
+   així que passen a dues files de dues. */
+@media screen and (max-width: 1300px) {
+    .podium-container {
+        flex-wrap: wrap !important;
+        justify-content: center;
+        gap: 18px;
+        padding: 15px 25px;
+    }
+
+    .podium-box {
+        flex: 0 1 calc(50% - 30px);
+        max-width: 430px; /* que no s'estirin fins a tocar les vores */
+    }
+}
+
+/* Una sola columna. La caixa continua centrada i amb una amplada màxima,
+   perquè no s'arrapi als costats com feia abans amb width: 100%. */
+@media screen and (max-width: 650px) {
+    .podium-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 20px;
+        gap: 16px;
+    }
+
+    .podium-box {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+/* Per sota d'aquí el podi ja no pot mantenir els 20px de costat sense
+   estrènyer els blocs, però encara li'n queden 12 perquè respiri. */
+@media screen and (max-width: 430px) {
+    .podium-container {
+        padding: 12px;
+    }
+
+    .podium-box {
+        min-width: 0;
+    }
+}

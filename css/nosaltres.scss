@@ -1,5 +1,7 @@
+@use "variables" as *;
+
 #text_presentació {
-    background-color: #00ffff;
+    background-color: $cian-principal;
     padding: 20px;
     text-align: center;
     margin: 150px;
@@ -19,7 +21,7 @@
 }
 
 #text_presentació a {
-    color: #ff00ff; 
+    color: $magenta; 
     text-decoration: none;
     font-weight: bold;
 }
@@ -29,13 +31,13 @@
 }
 
 #text_presentació a:hover { 
-    color: rgb(0, 145, 0); 
+    color: $verd-hover; 
     font-family: 'Comic Sans MS';
     text-decoration: underline;
 }
 
 #text_presentació a:active { 
-    color: #606060; 
+    color: $gris-606; 
 }
 
 #arimar {

@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 .impressio{
     display: none;
     align-items: flex-start; 
@@ -31,7 +33,7 @@
 }
 
 .classeParaulaMare {
-    color: rgb(92, 92, 92);
+    color: $gris-606;
 }
 
 .logo {

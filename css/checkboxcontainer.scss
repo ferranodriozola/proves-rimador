@@ -1,5 +1,7 @@
+@use "variables" as *;
+
 #checkboxContainer {
-    background-color: #d30505;
+    background-color: $vermell-principal;
     padding: 10px;
     text-align: left;
     margin: 40px;

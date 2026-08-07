@@ -1,0 +1,473 @@
+@use "variables" as *;
+
+:root {
+  --sober-bg: #e6e4e5;
+  --sober-panel-bg: #ffffff;
+  --sober-text: #222222;
+  --sober-muted: #555555;
+  --sober-border: #c9c7c8;
+  --sober-accent: #aa0000;
+  --sober-accent-dark: #800000;
+  --sober-header-bg: #4d4d4d;
+  --sober-footer-bg: #aaaaaa;
+  --sober-font: "Arial Narrow", Arial, Helvetica, sans-serif;
+}
+
+[data-theme="sober"] body,
+[data-theme="sober"] body#llista,
+[data-theme="sober"] body#llista #separador_rosa1,
+[data-theme="sober"] body#principal #separador_rosa1,
+[data-theme="sober"] body#llista #separador_rosa2 {
+  background-color: var(--sober-bg);
+  font-family: var(--sober-font);
+  color: var(--sober-text);
+}
+
+[data-theme="sober"] #espai_inicial {
+  color: var(--sober-bg);
+}
+
+[data-theme="sober"] header {
+  background: none;
+  background-color: var(--sober-header-bg);
+  color: $blanc;
+}
+
+[data-theme="sober"] #paper-back {
+  background-color: var(--sober-header-bg);
+}
+
+[data-theme="sober"] .menu-peixet {
+  background-image: url("../../assets/boringlogo.webp");
+}
+
+[data-theme="sober"] .peixet-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: opacity 0.15s ease;
+}
+
+[data-theme="sober"] .peixet-btn:hover {
+  opacity: 0.85;
+}
+
+[data-theme="sober"] .peixet-btn:focus-visible {
+  outline: 2px solid $blanc;
+  outline-offset: 2px;
+}
+
+[data-theme="sober"] #separador_rosa1,
+[data-theme="sober"] #separador_rosa_nosaltres,
+[data-theme="sober"] #separador_rosa2 {
+  background-color: var(--sober-bg);
+}
+
+[data-theme="sober"] #enllaçbrillant,
+[data-theme="sober"] #enllaç {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: var(--sober-accent);
+  text-shadow: none;
+  font-weight: bold;
+  font-size: 14px;
+  transition: color 0.15s ease;
+}
+
+[data-theme="sober"] #enllaçbrillant:visited,
+[data-theme="sober"] #enllaç:visited {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: var(--sober-accent-dark);
+}
+
+[data-theme="sober"] #enllaçbrillant:hover,
+[data-theme="sober"] #enllaç:hover {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: var(--sober-accent-dark);
+  transform: none;
+  text-shadow: none;
+}
+
+[data-theme="sober"] #enllaçbrillant:active,
+[data-theme="sober"] #enllaç:active {
+  transform: none;
+  text-shadow: none;
+}
+
+[data-theme="sober"] .container,
+[data-theme="sober"] body#llista #container {
+  background-color: var(--sober-panel-bg);
+  border: 1px solid var(--sober-border);
+  font-weight: normal;
+}
+
+[data-theme="sober"] #paraulaCercada {
+  background-color: $blanc;
+  border: 1px solid var(--sober-border);
+  border-radius: 3px;
+  box-shadow: none;
+  font-family: var(--sober-font);
+}
+
+[data-theme="sober"] #paraulaCercada:focus {
+  border-color: var(--sober-accent);
+}
+
+[data-theme="sober"] .boto {
+  background-image: none;
+  background-color: var(--sober-accent);
+  border-radius: 4px;
+  box-shadow: none;
+  font-family: var(--sober-font);
+  font-size: 14px;
+}
+
+[data-theme="sober"] .boto span {
+  background-color: var(--sober-accent);
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+[data-theme="sober"] .boto:hover span {
+  background: var(--sober-accent-dark);
+  color: $blanc;
+  font-family: var(--sober-font);
+  font-weight: bold;
+}
+
+[data-theme="sober"] .dropdown-container {
+  font-family: var(--sober-font);
+}
+
+[data-theme="sober"] #checkboxContainer {
+  background-color: var(--sober-panel-bg);
+  border: 1px solid var(--sober-border);
+  font-family: var(--sober-font);
+  color: var(--sober-text);
+}
+
+[data-theme="sober"] .classeParaulaMare {
+  color: var(--sober-muted);
+}
+
+[data-theme="sober"] .loader {
+  background: #f2f2f2bc;
+}
+
+[data-theme="sober"] #loader-text1 {
+  color: var(--sober-accent);
+  font-family: var(--sober-font);
+}
+
+[data-theme="sober"] #loader-text2 {
+  color: var(--sober-muted);
+  font-family: var(--sober-font);
+}
+
+[data-theme="sober"] .loader-line-wrap:nth-child(1) .loader-line {
+  border-color: var(--sober-border);
+}
+[data-theme="sober"] .loader-line-wrap:nth-child(2) .loader-line {
+  border-color: var(--sober-muted);
+}
+[data-theme="sober"] .loader-line-wrap:nth-child(3) .loader-line {
+  border-color: var(--sober-accent);
+}
+[data-theme="sober"] .loader-line-wrap:nth-child(4) .loader-line {
+  border-color: $blanc;
+}
+[data-theme="sober"] .loader-line-wrap:nth-child(5) .loader-line {
+  border-color: var(--sober-header-bg);
+}
+
+[data-theme="sober"] #text_presentació,
+[data-theme="sober"] #text_canvis {
+  background-color: var(--sober-panel-bg);
+  border: 1px solid var(--sober-border);
+  font-weight: normal;
+}
+
+[data-theme="sober"] #text_presentació a,
+[data-theme="sober"] #text_canvis > p:not(#arimar) a:not(#enllaçbrillant) {
+  color: var(--sober-accent);
+  font-weight: bold;
+}
+
+[data-theme="sober"] #text_presentació a:hover,
+[data-theme="sober"] #text_canvis > p:not(#arimar) a:not(#enllaçbrillant):hover {
+  color: var(--sober-accent-dark);
+  font-family: var(--sober-font);
+}
+
+[data-theme="sober"] #text_presentació a:active,
+[data-theme="sober"] #text_canvis > p:not(#arimar) a:not(#enllaçbrillant):active {
+  color: var(--sober-muted);
+}
+
+[data-theme="sober"] .titol-pagina {
+  font-family: var(--sober-font);
+  color: var(--sober-text);
+  text-shadow: none;
+  letter-spacing: normal;
+}
+
+[data-theme="sober"] #arimar a {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: var(--sober-accent);
+  font-size: 18px;
+  font-family: var(--sober-font);
+}
+
+[data-theme="sober"] #arimar a:hover {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: var(--sober-accent-dark);
+}
+
+[data-theme="sober"] #arimar a:after,
+[data-theme="sober"] #arimar a:hover:after {
+  background: var(--sober-accent);
+}
+
+[data-theme="sober"] #footer {
+  background-color: var(--sober-footer-bg);
+  color: $gris-molt-fosc;
+}
+
+[data-theme="sober"] #footer a {
+  color: var(--sober-accent-dark);
+}
+
+[data-theme="sober"] #footer a:hover {
+  color: var(--sober-accent);
+  font-family: var(--sober-font);
+}
+
+[data-theme="sober"] #footer a:active,
+[data-theme="sober"] #footer a:visited {
+  color: var(--sober-accent-dark);
+}
+
+[data-theme="sober"] #formulariError label {
+  color: var(--sober-text);
+  font-family: var(--sober-font);
+}
+
+[data-theme="sober"] #formulariError input,
+[data-theme="sober"] #formulariError textarea {
+  background-color: $blanc;
+  border: 1px solid var(--sober-border);
+  border-radius: 3px;
+  font-family: var(--sober-font);
+}
+
+[data-theme="sober"] #formulariError input:focus,
+[data-theme="sober"] #formulariError textarea:focus {
+  border-color: var(--sober-accent);
+}
+
+[data-theme="sober"] .submit-button {
+  background: var(--sober-accent);
+  border-color: var(--sober-accent-dark);
+  box-shadow: none;
+  border-radius: 4px;
+}
+
+[data-theme="sober"] .submit-button span {
+  color: $blanc;
+  text-shadow: none;
+}
+
+[data-theme="sober"] .submit-button:hover span {
+  color: $gris-molt-clar;
+}
+
+[data-theme="sober"] hr.separador-error {
+  background: var(--sober-border);
+  opacity: 1;
+}
+
+[data-theme="sober"] .explicacio-github {
+  background-color: var(--sober-bg);
+  border-left: 5px solid var(--sober-accent);
+  box-shadow: none;
+  color: var(--sober-text);
+}
+
+[data-theme="sober"] .explicacio-github ol {
+  color: var(--sober-text);
+  font-family: var(--sober-font);
+}
+
+[data-theme="sober"] .explicacio-github li {
+  background: var(--sober-panel-bg);
+  border: 1px solid var(--sober-border);
+  box-shadow: none;
+}
+
+[data-theme="sober"] .explicacio-github li::before {
+  background-color: var(--sober-accent);
+  color: $blanc;
+  box-shadow: none;
+}
+
+[data-theme="sober"] .explicacio-github li strong {
+  color: var(--sober-accent-dark);
+}
+
+[data-theme="sober"] .explicacio-github code {
+  font-family: "Courier New", Courier, monospace;
+  box-shadow: none;
+}
+
+
+[data-theme="sober"] #text_dades {
+  background-color: var(--sober-panel-bg);
+  border: 1px solid var(--sober-border);
+  font-weight: normal;
+}
+
+[data-theme="sober"] #data_actualitzacio,
+[data-theme="sober"] .caixa-dades ol {
+  font-family: var(--sober-font);
+}
+
+[data-theme="sober"] .caixa-dades,
+[data-theme="sober"] .grafic-caixa {
+  background-color: var(--sober-panel-bg);
+  border: 1px solid var(--sober-border);
+}
+
+[data-theme="sober"] .caixa-dades h3,
+[data-theme="sober"] .grafic-caixa h3 {
+  background-color: var(--sober-header-bg);
+  color: $blanc;
+  font-family: var(--sober-font);
+  font-weight: bold;
+  letter-spacing: normal;
+  border-bottom: none;
+}
+
+[data-theme="sober"] .caixa-dades h4 {
+  font-family: var(--sober-font);
+  color: var(--sober-accent);
+  text-decoration: none;
+}
+
+[data-theme="sober"] .comptador {
+  background-color: $gris-molt-clar;
+  border: 1px solid var(--sober-border);
+  color: var(--sober-text);
+  font-family: var(--sober-font);
+}
+
+[data-theme="sober"] .comptador small {
+  color: var(--sober-muted);
+}
+
+[data-theme="sober"] .caixa-dades ol li:nth-child(odd) {
+  background-color: $gris-molt-clar;
+}
+
+[data-theme="sober"] .separador-dades {
+  border-top: 1px solid var(--sober-border);
+}
+
+[data-theme="sober"] ::-webkit-scrollbar-thumb:vertical {
+  background: var(--sober-muted);
+  border: 2px solid var(--sober-border);
+}
+
+[data-theme="sober"] ::-webkit-scrollbar-thumb:hover:vertical {
+  background: var(--sober-accent);
+}
+
+[data-theme="sober"] a.kofi-button,
+[data-theme="sober"] body#llista a.kofi-button,
+[data-theme="sober"] body#canvis a.kofi-button {
+    background-color: var(--sober-header-bg) !important;
+    border: 1px solid var(--sober-muted) !important;
+}
+
+[data-theme="sober"] span.kofitext {
+    color: $blanc !important;
+    font-family: var(--sober-font) !important;
+}
+
+[data-theme="sober"] .podium-box {
+    background-color: var(--sober-panel-bg);
+    border: 1px solid var(--sober-border);
+    border-radius: 0; 
+}
+
+[data-theme="sober"] .podium-box h4 {
+    color: var(--sober-accent);
+    font-family: var(--sober-font);
+}
+
+/* El podi al tema sober: mateixa forma, però sense colors d'or/plata/bronze.
+   Els tres llocs es distingeixen només per l'alçada del bloc i el to de gris. */
+[data-theme="sober"] .podi-graella {
+    border-bottom: 1px solid var(--sober-border) !important;
+    box-shadow: none;
+}
+
+/* el tema sober no fa bisells ni degradats: tot pla */
+[data-theme="sober"] .podi-placa {
+    background-image: none;
+    background-color: $blanc;
+    border: 1px solid var(--sober-border);
+    border-radius: 0;
+    box-shadow: none;
+}
+
+[data-theme="sober"] .podi-data,
+[data-theme="sober"] .podi-xifra,
+[data-theme="sober"] .podi-numero {
+    font-family: var(--sober-font);
+    color: var(--sober-text);
+}
+
+[data-theme="sober"] .podi-lloc-1 .podi-placa,
+[data-theme="sober"] .podium-box:nth-child(3) .podi-lloc-1 .podi-placa,
+[data-theme="sober"] .podium-box:nth-child(4) .podi-lloc-1 .podi-placa {
+    border-color: var(--sober-text);
+    border-width: 2px;
+}
+
+[data-theme="sober"] .podi-lloc-1 .podi-xifra,
+[data-theme="sober"] .podium-box:nth-child(3) .podi-lloc-1 .podi-xifra,
+[data-theme="sober"] .podium-box:nth-child(4) .podi-lloc-1 .podi-xifra {
+    color: var(--sober-text);
+}
+
+[data-theme="sober"] .podi-bloc {
+    background-image: none;
+    border: 1px solid var(--sober-border);
+    border-bottom: none;
+    border-radius: 0;
+}
+
+[data-theme="sober"] .podi-xifra,
+[data-theme="sober"] .podi-numero {
+    text-shadow: none;
+}
+
+/* al mode sobri el peixet taronja no hi pinta res: hi va el mort a tots dos */
+[data-theme="sober"] .podi-lloc-1 .podi-numero::after {
+    background-image: url("../../assets/boringlogo.webp");
+}
+
+[data-theme="sober"] .podi-lloc-1 .podi-bloc { background-color: #9a9a9a; }
+[data-theme="sober"] .podi-lloc-2 .podi-bloc { background-color: #c4c4c4; }
+[data-theme="sober"] .podi-lloc-3 .podi-bloc { background-color: #e2e2e2; }

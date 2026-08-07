@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 .loader {
     background: #000000bc;
     background: radial-gradient(#313131bc, #000000cd);
@@ -15,7 +17,7 @@
 }
 
 #loader-text1 {
-    color: #e60000; 
+    color: $vermell-viu;
     margin-bottom: 40px; 
     font-size: 50px; 
     font-family: monospace;
@@ -77,7 +79,7 @@
 .loader-line-wrap:nth-child(5) { animation-delay: -250ms; }
 
 .loader-line-wrap:nth-child(1) .loader-line {
-    border-color: #ff91ff;
+    border-color: $rosa-principal;
     height: 90px;
     width: 90px;
     top: 7px;
@@ -89,19 +91,19 @@
     top: 14px;
 }
 .loader-line-wrap:nth-child(3) .loader-line {
-    border-color: #00ffff;
+    border-color: $cian-principal;
     height: 62px;
     width: 62px;
     top: 21px;
 }
 .loader-line-wrap:nth-child(4) .loader-line {
-    border-color: #fff;
+    border-color: $blanc;
     height: 48px;
     width: 48px;
     top: 28px;
 }
 .loader-line-wrap:nth-child(5) .loader-line {
-    border-color: #d30505;
+    border-color: $vermell-principal;
     height: 34px; 
     width: 34px;
     top: 35px;

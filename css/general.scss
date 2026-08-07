@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 :root {
     --rmn-top-gap: 30px;
 }
@@ -9,14 +11,14 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background-color: #FF91FF;
+    background-color: $rosa-principal;
     box-sizing: border-box;
     height: 100%;
     overflow: hidden;
 }
 
 #espai_inicial {
-    color: #FF91FF;
+    color: $rosa-principal;
 }
 
 .titol-pagina {
@@ -27,7 +29,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba($negre, 0.3);
 }
 
 @media screen and (max-width: 550px) {

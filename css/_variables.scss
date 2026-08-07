@@ -1,68 +1,73 @@
+// =========================================================
+// PALETA DE COLORS
+// Agrupats segons a QUINES PÀGINES s'utilitzen (comprovat
+// contra el codi HTML/JS real), no per família de to.
+// El tema "sober" (sober.scss) té el seu propi sistema de
+// custom properties --sober-* i no es toca aquí.
+// =========================================================
+
+// --- Bàsics (arreu) ---
 $blanc: #ffffff;
 $negre: #000000;
 
-// --- Vermell (color de marca) ---
-$vermell-principal: #d30505; // header, botons, vores, elements destacats
-$vermell-fosc: #7f0c0c;      // variant fosca (pàgines canvis/nosaltres)
-$vermell-kofi: #d92424;      // variant del botó Ko-fi (pàgines canvis/nosaltres)
-
-// --- Rosa (accent secundari) ---
-$rosa-principal: #ff91ff; // separadors, fons, vores
-$rosa-mitja: #d975d9;     // estat de focus dels inputs
-$rosa-fosc: #b500b5;      // text destacat
-$rosa-clar: #fbf0fb;      // fons de caixes
-$rosa-vora: #f1e1f1;      // vores suaus
-$rosa-boto: #c94fc9;      // botó "mostrar formulari" (pàgina llista)
-$rosa-fort: #ff1493;      // títol del formulari flotant
-
-// --- Cian (accent) ---
+// --- Marca: capçalera, peu de pàgina, menú, botó de Ko-fi, anella
+//     de càrrega... presents a TOTES les pàgines ---
+$vermell-principal: #d30505;
+$rosa-principal: #ff91ff;
 $cian-principal: #00ffff;
-$cian-fosc: #01c8c8; // estat fosc / actiu (botó i enllaç del peu)
+$gris-molt-fosc: #222222; // ombra del text de Ko-fi; text del peu en tema sober
 
-// --- Grocs ---
-$groc-principal: #f6ff00; // text destacat sobre vermell
-$groc-clar: #ffe680;      // ratlles alternes de taules
-$groc-palid: #ffffcc;     // fons de caixes de dades
+// --- Enllaços "de colors" i text destacat: #text_presentació i
+//     #text_canvis (404.html, error.html, nosaltres.html i
+//     historial_canvis.html) ---
+$magenta: #ff00ff;           // enllaç normal
+$verd-hover: rgb(0, 145, 0); // enllaç en :hover
+$gris-606: #606060;          // enllaç en :active (i .classeParaulaMare)
 
-// --- Blaus ---
-$blau-principal: #007bff;
-$blau-fosc: #0056b3;
-$blau-clar: #66b2ff;
-$blau-actiu: #3399ff;
-$blau-input: #3498db;      // vora dels camps de cerca/formulari
-$blau-fosquissim: rgb(5, 6, 45); // text/fons dels botons principals
+// --- Gris clar general: fons de camps de formulari (cercador i
+//     error.html), files senars i comptador de dades.html (també en
+//     tema sober), i text del bloc de codi de error.html ---
+$gris-molt-clar: #f2f2f2;
+
+// --- Camps de formulari: cercador (index.html) i formulari
+//     d'error.html comparteixen aquest mateix estil ---
+$blau-input: #3498db;   // vora dels camps
+$rosa-mitja: #d975d9;   // vora en :focus
+$gris-text: #333;       // color del text escrit (també .explicacio-github ol)
+
+// --- Exclusius d'error.html: capsa "com contribuir a GitHub" i
+//     el botó gran d'enviar el formulari ---
+$rosa-fosc: #b500b5;        // text destacat en negreta
+$rosa-clar: #fbf0fb;        // fons de la capsa
+$rosa-vora: #f1e1f1;        // vora de cada pas
+$vermell-viu: #e50000;      // vora i text del botó, i text del loader
+$vermell-boto-actiu: #f30000; // text del botó en :active
+$terminal-fons: #282a36;    // bloc de codi tipus terminal
+
+// --- Enllaços #enllaç i #enllaçbrillant: NO són exclusius de cap
+//     pàgina concreta. #enllaç surt al banner "revisa els canvis
+//     aquí" (injectat per components.js a totes les pàgines EXCEPTE
+//     historial_canvis.html) i a un enllaç estàtic dins de la pròpia
+//     historial_canvis.html; #enllaçbrillant surt en un altre enllaç
+//     estàtic de historial_canvis.html. Els dos apareixen també,
+//     alternativament segons el tema (sobri/festiu), a l'avís de
+//     "paraula nàufraga" d'index.html (script.js) ---
+$blau-principal: #007bff;   // color base de #enllaç
+$blau-fosc: #0056b3;        // #enllaç en :hover
+$blau-clar: #66b2ff;        // resplendor de #enllaç en :hover
+$blau-actiu: #3399ff;       // resplendor en :active, compartida per #enllaç i #enllaçbrillant
+
+// --- Exclusius de dades.html: taules, gràfics, comptador i el podi ---
+$groc-principal: #f6ff00;  // capçaleres de .caixa-dades / .grafic-caixa
+$groc-clar: #ffe680;       // files senars / fons de caixa del podi
+$groc-palid: #ffffcc;      // fons de caixes de dades
+$verd-comptador: #00ff00;  // xifres del comptador
 $blau-podi: #0077aa;       // podi: vora del 3r i 4t lloc
 $blau-podi-fosc: #005580;  // podi: títol del 3r i 4t lloc
 $blau-podi-clar: #e0f7ff;  // podi: fons del 3r i 4t lloc
-
-// --- Medalles dels podis ---
 $or-podi: #ffcc00;
 $plata-podi: #d4d4d4;
 $bronze-podi: #cd7f32;
 
-// --- Verds ---
-$verd-hover: rgb(0, 145, 0); // enllaços en hover (presentació/canvis)
-$verd-comptador: #00ff00;    // xifres del comptador de dades
-
-// --- Magenta ---
-$magenta: #ff00ff; // enllaços destacats (presentació/canvis)
-
-// --- Grisos ---
-$gris-molt-clar: #f2f2f2;
-$gris-clar: #f7f7f7;
-$gris-vores: #ddd;
-$gris-suau: #eee;
-$gris-text: #333;
-$gris-mitja: #555555;
-$gris-fosc-text: #444;
-$gris-606: #606060;
-$gris-molt-fosc: #222222;
-
-// --- Estats del botó d'enviar (submit-button) i altres vermells vius ---
-$vermell-viu: #e50000;       // vora del botó i text del loader (eren #e50000/#e60000, gairebé idèntics)
-$vermell-boto-text: #db0000;
-$vermell-boto-actiu: #f30000;
-
-// --- Bloc de codi tipus terminal ---
-$terminal-fons: #282a36;
-$terminal-text: #f8f8f2;
+// --- Exclusiu d'index.html: botons "Cercar"/"Actualitza" (.boto) ---
+$blau-fosquissim: rgb(5, 6, 45);

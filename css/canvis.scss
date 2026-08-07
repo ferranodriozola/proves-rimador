@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 #enllaçbrillant {
     background: linear-gradient(to right, red, orange, yellow, green, blue, indigo);
     background-clip: text;
@@ -29,11 +31,11 @@
   
 #enllaçbrillant:active {
     transform: scale(0.95) rotate(1deg);
-    text-shadow: 0 0 8px #3399ff;
+    text-shadow: 0 0 8px $blau-actiu;
 }
 
 #enllaç {
-    color: #007BFF;
+    color: $blau-principal;
     text-decoration: underline;
     font-weight: bold;
     position: relative;
@@ -41,22 +43,22 @@
 }
   
 #enllaç:visited {
-    color: #007BFF;
+    color: $blau-principal;
 }
   
 #enllaç:hover {
-    color: #0056b3;
-    text-shadow: 0 0 4px #66b2ff;
+    color: $blau-fosc;
+    text-shadow: 0 0 4px $blau-clar;
     transform: scale(1.1) rotate(-2deg);
 }
   
 #enllaç:active {
     transform: scale(0.95) rotate(1deg);
-    text-shadow: 0 0 8px #3399ff;
+    text-shadow: 0 0 8px $blau-actiu;
 }
 
 #text_canvis {
-    background-color: #00ffff;
+    background-color: $cian-principal;
     padding: 20px;
     text-align: left;
     margin: 150px;
@@ -75,7 +77,7 @@
 }
 
 #text_canvis > p:not(#arimar) a:not(#enllaçbrillant) {
-    color: #ff00ff; 
+    color: $magenta; 
     text-decoration: none;
     font-weight: bold;
 }
@@ -85,13 +87,13 @@
 }
 
 #text_canvis > p:not(#arimar) a:not(#enllaçbrillant):hover { 
-    color: rgb(0, 145, 0); 
+    color: $verd-hover; 
     font-family: 'Comic Sans MS';
     text-decoration: underline;
 }
 
 #text_canvis > p:not(#arimar) a:not(#enllaçbrillant):active { 
-    color: #606060; 
+    color: $gris-606; 
 }    
 
 

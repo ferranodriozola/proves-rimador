@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
 
 .btn-container {
@@ -11,7 +13,7 @@
 }
 
 a.kofi-button {
-    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 1px 1px 0px rgba($negre, 0.2) !important;
     line-height: 36px !important;
     min-width: 150px;
     display: inline-block !important;
@@ -21,29 +23,30 @@ a.kofi-button {
     cursor: pointer;
     overflow-wrap: break-word;
     vertical-align: middle;
-    border: 0 none #fff;
+    border: 0 none $blanc;
     font-family: 'Quicksand', Helvetica, Century Gothic, sans-serif !important;
     text-decoration: none !important;
     text-shadow: none !important;
     font-weight: 700 !important;
     font-size: 14px;
     transition: transform 0.2s ease-in-out;
-    background-color: #00ffff; 
+    background-color: $cian-principal; 
 }
 
 body#dades a.kofi-button {
-    border: 1px solid black;
+    border: 1px solid $negre;
 }
 
 body#llista a.kofi-button {
-    background-color: #FF91FF !important;
-    border: 1px solid white;
+    background-color: $rosa-principal !important;
+    border: 1px solid $blanc;
 }
 
 body#canvis a.kofi-button,
-body#nosaltres a.kofi-button {
-    background-color: #d92424 !important;
-    border: 1px solid white;
+body#nosaltres a.kofi-button,
+body#error a.kofi-button {
+    background-color: $vermell-principal !important;
+    border: 1px solid $blanc;
 }
 
 a.kofi-button:hover {
@@ -51,7 +54,7 @@ a.kofi-button:hover {
 }
 
 span.kofitext {
-    color: #000000; /* color del text */
+    color: $negre; /* color del text */
     letter-spacing: -0.15px !important;
     white-space: nowrap !important;
     vertical-align: middle;
@@ -59,7 +62,7 @@ span.kofitext {
     padding: 0;
     text-align: center;
     text-decoration: none !important;
-    text-shadow: 0 1px 1px rgba(34, 34, 34, 0.05) !important;
+    text-shadow: 0 1px 1px rgba($gris-molt-fosc, 0.05) !important;
 }
 
 img.kofiimg {

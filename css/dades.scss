@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 .grafic-caixa-filtres .grafic-cos {
     height: auto;
 }
@@ -21,10 +23,11 @@
     box-sizing: border-box;
     padding: 0 2px;
     gap: 4px;
+    min-width: 0;
 }
 
 .item-llegenda span {
-    word-break: break-word;
+    white-space: nowrap;
     font-size: 11px;
 }
 
@@ -56,8 +59,8 @@
     height: 25px;
     border-radius: 8px;
     overflow: hidden;
-    border: 2px solid #d30505;
-    background-color: #eee;
+    border: 2px solid $vermell-principal;
+    background-color: $gris-molt-clar;
 }
 
 .segment-barra {
@@ -65,29 +68,36 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    color: #000;
+    color: $negre;
     font-family: 'Courier New', Courier, monospace;
     font-size: 13px;
     font-weight: bold;
     box-sizing: border-box;
-    border-right: 1px solid rgba(0,0,0,0.3);
+    border-right: 1px solid rgba($negre, 0.3);
     overflow: hidden;
 }
 
 .segment-barra:last-child {
     border-right: none;
+}
 
+.segment-barra span {
+    white-space: nowrap;
+}
+
+.text-segment-amagat {
+    display: none;
 }
 
 .color-box {
     width: 14px;
     height: 14px;
-    border: 1px solid #d30505;
+    border: 1px solid $vermell-principal;
     border-radius: 3px;
 }
 
 #text_dades {
-    background-color: #00ffff;
+    background-color: $cian-principal;
     padding: 20px;
     text-align: left;
     margin: 40px;
@@ -116,8 +126,8 @@
 .caixa-dades {
     flex: 1 1 280px;
     min-width: 260px;
-    background-color: #ffffcc;
-    border: 5px ridge #d30505;
+    background-color: $groc-palid;
+    border: 5px ridge $vermell-principal;
     padding-bottom: 12px;
 }
 
@@ -125,22 +135,22 @@
 .grafic-caixa h3 {
     margin: 0px 0px 10px 0px;
     padding: 6px;
-    background-color: #d30505;
-    color: #f6ff00;
+    background-color: $vermell-principal;
+    color: $groc-principal;
     font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Arial Black", sans-serif;
     font-size: 17px;
     font-weight: normal;
     letter-spacing: 1px;
     text-align: center;
     text-transform: uppercase;
-    border-bottom: 3px solid #000000;
+    border-bottom: 3px solid $negre;
 }
 
 .caixa-dades h4 {
     margin: 14px 10px 4px 10px;
     font-family: 'Comic Sans MS', cursive, sans-serif;
     font-size: 14px;
-    color: #d30505;
+    color: $vermell-principal;
     text-decoration: underline;
 }
 
@@ -148,9 +158,9 @@
     display: block;
     margin: 8px 12px;
     padding: 5px;
-    background-color: #000000;
+    background-color: $negre;
     border: 3px inset #808080;
-    color: #00ff00;
+    color: $verd-comptador;
     font-family: 'Courier New', Courier, monospace;
     font-size: 28px;
     font-weight: bold;
@@ -160,7 +170,7 @@
 
 .comptador small {
     display: block;
-    color: #00ffff;
+    color: $cian-principal;
     font-size: 11px;
     font-weight: normal;
     letter-spacing: 1px;
@@ -186,12 +196,12 @@
 }
 
 .caixa-dades ol li:nth-child(odd) {
-    background-color: #ffe680;
+    background-color: $groc-clar;
 }
 
 .separador-dades {
     border: 0;
-    border-top: 3px double #d30505;
+    border-top: 3px double $vermell-principal;
     margin: 14px 10px;
 }
 
@@ -210,8 +220,8 @@
 }
 
 .grafic-caixa {
-    background-color: #ffffcc;
-    border: 5px ridge #d30505;
+    background-color: $groc-palid;
+    border: 5px ridge $vermell-principal;
     margin-bottom: 25px;
     padding-bottom: 12px;
 }
@@ -231,19 +241,13 @@
 }
 
 
-.amagat-llegenda-mobil-petit {
+.item-llegenda-amagat {
     visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
 }
 
 /* Adaptat telèfons */
-.text-visible-mobil {
-    display: none;
-}
-
-.text-visible-mobil-petit {
-    display: none;
-}
-
 @media screen and (max-width: 750px) {
     #text_dades {
         margin-left: 15px;
@@ -257,17 +261,9 @@
         height: 280px;
     }
 
-    .text-amagat-mobil {
-        display: none;
-    }
-
-    .text-visible-mobil {
-        display: inline;
-    } 
-
     .grafic-caixa.formatge .grafic-cos {
-        height: 320px; 
-    } 
+        height: 320px;
+    }
 }
 
 
@@ -291,12 +287,26 @@
     }
 }
 
+.caixa-criteris .criteris-cos {
+    margin: 0px 16px 6px 16px;
+}
+
+.caixa-criteris p {
+    margin: 0px 0px 10px 0px;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.caixa-criteris h4 {
+    margin: 14px 0px 4px 0px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 14px;
+    color: $vermell-principal;
+    text-decoration: underline;
+}
+
 @media screen and (max-width: 450px) {
     .item-llegenda span {
         font-size: 8px;
-    }
-    
-    .text-amagat-mobil-petit {
-        display: none;
     }
 }

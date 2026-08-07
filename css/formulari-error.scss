@@ -1,0 +1,206 @@
+@use "variables" as *;
+
+.submit-button {
+    cursor: pointer;
+    padding: 12px 18px;
+    border-radius: 30px;
+    border: 5px solid $vermell-viu;
+    display: inline-block;
+    overflow: hidden;
+    background: red;
+    box-shadow:
+      inset 6px 6px 10px rgba($blanc, 0.6),
+      inset -6px -6px 10px rgba($negre, 0.3),
+      2px 2px 10px rgba($negre, 0.3),
+      -2px -2px 10px rgba($blanc, 0.5);
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.1s ease;
+  }
+  
+  .submit-button span {
+    font-weight: 900;
+    font-size: 24px;
+    color: $vermell-viu;
+    text-shadow:
+      1px 1px 1px rgba($blanc, 0.4),
+      -1px -1px 1px rgba($negre, 0.4);
+    position: relative;
+    display: inline-block;
+    transition: transform 0.3s ease-out;
+    z-index: 1;
+    padding: 0px 4px;
+  }
+  
+  .submit-button span:hover {
+    transform: translateY(-7px);
+  }
+  
+  .submit-button:hover span {
+    color: $vermell-principal;
+  }
+  
+  .submit-button:active {
+    box-shadow:
+      inset 2px 2px 1px rgba($negre, 0.3),
+      inset -2px -2px 1px rgba($blanc, 0.5);
+    transform: scale(0.98);
+  }
+  
+  .submit-button:active span {
+    color: $vermell-boto-actiu;
+    text-shadow:
+      1px 1px 1px rgba($blanc, 0.5),
+      -1px -1px 2px rgba($negre, 0.5);
+  }  
+
+/* error.html */
+#formulariError {
+    max-width: 520px;
+    margin: 0 auto 30px;
+    text-align: left;
+}
+
+#formulariError .camp {
+    margin: 0 0 18px;
+}
+
+#formulariError label {
+    display: block;
+    margin-bottom: 6px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#formulariError .opcional {
+    font-weight: normal;
+    opacity: 0.7;
+}
+
+#formulariError input,
+#formulariError textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid $blau-input;
+    border-radius: 5px;
+    background-color: $gris-molt-clar;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: $gris-text;
+    transition: border-color 0.3s ease-in-out;
+}
+
+#formulariError textarea {
+    height: 130px;
+    resize: vertical;
+}
+
+#formulariError input:focus,
+#formulariError textarea:focus {
+    border-color: $rosa-mitja;
+    outline: none;
+}
+
+#formulariError .submit-button {
+    display: block;
+    margin: 0 auto;
+}
+
+
+/* Adaptat telèfons */
+
+@media screen and (max-width: 550px) {
+    #formulariError label {
+        font-size: 13px;
+    }
+    #formulariError .submit-button span {
+        font-size: 20px;
+    }
+}
+
+
+/* error.html (apartat de github) */
+
+hr.separador-error {
+    border: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, $rosa-principal, transparent);
+    margin: 40px 0;
+    opacity: 0.8;
+}
+
+/* Contenidor principal (Manté la base, millora l'ombra) */
+.explicacio-github {
+    background-color: $rosa-clar; 
+    border-left: 5px solid $rosa-principal;
+    padding: 25px 35px;
+    margin: 30px 0;
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba($rosa-fosc, 0.08); /* Ombra lleugerament acolorida */
+}
+
+/* Configuració de la llista fent servir CSS Counters */
+.explicacio-github ol {
+    margin: 20px 0 0 0;
+    padding-left: 0;
+    color: $gris-text;
+    list-style: none; /* Amaguem la llista per defecte */
+    counter-reset: passos-github; /* Iniciem un comptador */
+}
+
+/* Estils de cada element de la llista */
+.explicacio-github li {
+    position: relative;
+    margin-bottom: 20px; /* Més espai per respirar */
+    padding-left: 45px; /* Espai pel número personalitzat */
+    line-height: 1.6;
+    background: $blanc; /* Fons blanc per separar els passos */
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 15px;
+    border-radius: 8px;
+    border: 1px solid $rosa-vora;
+}
+
+/* El número personalitzat de cada pas */
+.explicacio-github li::before {
+    counter-increment: passos-github;
+    content: counter(passos-github);
+    position: absolute;
+    left: -15px;
+    top: 15px;
+    background-color: $rosa-principal;
+    color: $blanc;
+    font-weight: bold;
+    font-size: 1.2em;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 6px rgba($negre, 0.1);
+}
+
+/* Ressaltar la part en negreta (l'acció principal) */
+.explicacio-github li strong {
+    color: $rosa-fosc;
+    font-size: 1.05em;
+    display: block; /* Fa que l'acció tingui la seva pròpia línia */
+    margin-bottom: 5px;
+}
+
+/* Millora del bloc de codi perquè sembli terminal */
+.explicacio-github code {
+    background-color: $terminal-fons; /* Color fosc tipus terminal */
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+    color: $gris-molt-clar;
+    font-size: 0.9em;
+    display: inline-block;
+    margin-top: 5px;
+    box-shadow: inset 0 1px 3px rgba($negre, 0.3);
+}
