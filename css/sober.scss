@@ -283,6 +283,17 @@
   border-radius: 4px;
 }
 
+[data-theme="sober"] .submit-button:focus,
+[data-theme="sober"] .submit-button:hover {
+  background: var(--sober-accent-dark);
+  box-shadow: none;
+  border-color: var(--sober-accent-dark);
+}
+
+[data-theme="sober"] .submit-button::before {
+  display: none;
+}
+
 [data-theme="sober"] .submit-button span {
   color: $blanc;
   text-shadow: none;
