@@ -149,22 +149,6 @@ ${botoactualitzar}
 const dropdowncontainerHTML = document.getElementById('dropdown-container');
 if (dropdowncontainerHTML) { dropdowncontainerHTML.innerHTML = dropdowncontainer; }
 
-const formulariContainer = /*html*/`
-<form action="https://formspree.io/f/xeoazgnl" method="POST">
-    <h3>Ajuda'ns a millorar!!!!!!!!!!!!!!</h3>
-    <p>Si has trobat una errada o tens una suggerència, ens pots enviar un correu a <a href="mailto:hola@rimador.cat">hola@rimador.cat</a></p>
-    
-    <img class="gifok" src="${ruta1}ok1.webp" alt="Ok1">
-    <img class="gifok" src="${ruta1}ok2.webp" alt="Ok2">
-
-    <br>
-                
-</form>
-`
-const formulariContainerHTML = document.getElementById('formulariContainer');
-if (formulariContainerHTML) { formulariContainerHTML.innerHTML = formulariContainer; }
-
-
 const checkboxContainer = /*html*/`
 <!-- Secció "Noms" -->
 <label>

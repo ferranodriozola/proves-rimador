@@ -1009,29 +1009,6 @@ if (containerEl) {
 // ============================================================= //
 // ============================================================= //
 
-//mostrar i amagar formulari contacte
-function toggleForm() {
-  var formContainer = document.getElementById("formulariContainer");
-  if (formContainer.style.display === "none" || formContainer.style.display === "") {
-      formContainer.style.display = "block";
-      document.addEventListener("click", closeFormOnClickOutside);
-  } else {
-      formContainer.style.display = "none";
-      document.removeEventListener("click", closeFormOnClickOutside);
-  }
-}
-
-function closeFormOnClickOutside(event) {
-  var formContainer = document.getElementById("formulariContainer");
-  if (!formContainer.contains(event.target) && event.target.id !== "mostrarFormulari") {
-      formContainer.style.display = "none";
-      document.removeEventListener("click", closeFormOnClickOutside);
-  }
-}
-
-// ============================================================= //
-// ============================================================= //
-
 // boring style
 const PEIXET_IMG_FESTIU = "assets/peixet.webp?v=1";
 const PEIXET_IMG_SOBRI = "assets/boringlogo.webp?v=2";
