@@ -145,14 +145,14 @@
         <div class="taula-grafics">
 
             <div class="grafic-caixa formatge">
-                <h3>Totes les rimes consonants (des de l'1/8/26)</h3>
+                <h3>Totes les rimes consonants (des del 31/07/26)</h3>
                 <div class="grafic-cos">
                     <canvas id="graficFormatgeCONS"></canvas>
                 </div>
             </div>
 
             <div class="grafic-caixa formatge">
-                <h3>Totes les rimes assonants (des de l'1/8/26)</h3>
+                <h3>Totes les rimes assonants (des del 31/07/26)</h3>
                 <div class="grafic-cos">
                     <canvas id="graficFormatgeASS"></canvas>
                 </div>
@@ -166,7 +166,7 @@
             <div class="criteris-cos">
                 <h4>Quan s'actualitzen les dades?</h4>
                 <p>Les dades s'actualitzen automàticament un cop al dia, de matinada. La data i hora a dalt de tot és l'últim cop que es va actualitzar. 
-                    L'històric arrenca l'1 d'agost del 2026, que és quan vam començar a registrar cerques: de tot el que es va cercar abans, no en tenim dades.
+                    L'històric arrenca el 31 de juliol del 2026, que és quan vam començar a registrar cerques: de tot el que es va cercar abans, no en tenim dades.
                 Les dades mai inclouen el dia actual.</p>
 
                 <h4>Què compta com a "cerca"?</h4>
@@ -209,9 +209,10 @@
                 consonantment i 2 assonantment.</p>
 
                 <h4>Què són les paraules nàufragues?</h4>
-                <p>Són aquelles paraules que no rimen amb cap altre mot del diccionari. En fer una cerca, es compara la paraula amb la llista de paraules 
-                    nàufragues, i en cas de coincidir, s'afegeix al Top. Aquest rànquing és una manera de visualitzar quines són les paraules sense rima
-                més freqüents de cercar.</p>
+                <p>Són aquelles paraules que no tenen cap rima consonant amb cap altre mot del diccionari. En fer una cerca consonant, es compara
+                    la paraula amb la llista de paraules nàufragues, i en cas de coincidir, s'afegeix al Top. Les cerques en assonant no compten aquí,
+                    ja que la llista de nàufragues només fa referència a la rima consonant. Aquest rànquing és una manera de visualitzar quines són
+                    les paraules sense rima més freqüents de cercar.</p>
 
                 <h4>Què és el Top errors de cerca?</h4>
                 <p>Són les cerques fetes al Rimador en què el "mot" cercat no coincideix amb cap paraula del diccionari. Són paraules mal escrites, 
@@ -230,15 +231,15 @@
                 Els dies amb més/menys usuaris es refereix al dia amb més/menys usuaris diferents, sense tenir en compte si havien fet cerques anteriorment o no.</p>
 
                 <h4>Què és el percentatge d'ús dels filtres?</h4>
-                <p>Ens referim a com els usuaris tenen configurats els cinc filtres en el moment de cercar, sobre el total de cerques de l'històric. 
+                <p>Ens referim a com els usuaris tenen configurats els filtres en el moment de cercar, sobre el total de cerques de l'històric. 
                     Cada cerca hi aporta la seva combinació una sola vegada. Es pot veure clarament quins són els paràmetres predeterminats, però també
                     quins són els filtres més usats després del principal.<p>
 
                 <h4>Què hi ha als gràfics de formatge?</h4>
-                <p>Hi ha <b>totes</b> les rimes, no només les deu primeres: cada tros és un grup de rima. La mida de cada tros segueix el mateix criteri 
-                    que el Top 10 de rimes, i per això moltíssims trossos són diminuts. Tots els que no arriben a l'1% s'acumulen en un únic tros gris anomenat 
-                    "Altres", que és el més gran precisament perquè agrupa la cua llarga de rimes cercades poques vegades. Un gràfic recull les rimes consonants 
-                    i l'altre les assonants.</p>
+                <p>Hi ha <b>totes</b> les rimes, no només les deu primeres: cada tros és un grup de rima. La mida de cada tros segueix el mateix criteri
+                    que el Top 10 de rimes, i per això hi ha molts trossos petits. Totes les rimes que no arriben a l'1% s'acumulen en un únic tros gris anomenat
+                    "Altres", que agrupa la cua llarga de rimes cercades poques vegades (si no hi ha cap rima per sota de l'1%,
+                    aquest tros no hi surt). Un gràfic recull les rimes consonants i l'altre les assonants.</p>
             </div>
         </div>
 
