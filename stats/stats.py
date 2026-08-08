@@ -14,6 +14,7 @@ url_google_sheet = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQu2bwhVaSdC
 df = pd.read_csv(url_google_sheet)
 
 df['Data'] = pd.to_datetime(df['Data'], format='%d/%m/%Y %H:%M:%S', errors='coerce')
+df = df.dropna(subset=['Data']).copy()
 df['Dia'] = df['Data'].dt.date
 df['Usuari'] = df['Usuari'].astype(str)
 df['Paraula'] = df['Paraula'].astype(str)
