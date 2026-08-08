@@ -25,19 +25,6 @@ df['Comença per'] = df['Comença per'].astype(str)
 df['Incloure NP'] = df['Incloure NP'].astype(str)
 df['Incloure pl.'] = df['Incloure pl.'].astype(str)
 
-# VARIABLES
-cerques_totals = df.drop_duplicates(subset=['Dia', 'Usuari', 'Paraula', 'Tipus de rima', 'Num. síl·', 'Comença per', 'Incloure NP', 'Incloure pl.']).copy()
-
-paraules_cercades = cerques_totals.drop_duplicates(subset=['Paraula']).copy()
-paraules_cercades = paraules_cercades[paraules_cercades['Rima'] != '***'].copy()
-
-paraules_cercades_usuaris_diferents = cerques_totals.drop_duplicates(subset=['Paraula', 'Usuari']).copy()
-
-rimes_usuaris_diferents = cerques_totals.drop_duplicates(subset=['Paraula', 'Tipus de rima', 'Usuari']).copy()
-rimes_usuaris_diferents = rimes_usuaris_diferents[['Rima', 'Tipus de rima']]
-rimes_usuaris_diferents = rimes_usuaris_diferents[rimes_usuaris_diferents['Rima'] != '***'].copy()
-
-
 #dades i coses del temps
 avui = datetime.now(tz_espanya).date()
 inici_setmana = avui - timedelta(days=7)
@@ -45,6 +32,19 @@ ahir = avui - timedelta(days=1)
 
 data_inici = pd.to_datetime(inici_setmana)
 data_fi = pd.to_datetime(ahir) + timedelta(days=1, seconds=-1)
+
+# VARIABLES
+cerques_totals = df.drop_duplicates(subset=['Dia', 'Usuari', 'Paraula', 'Tipus de rima', 'Num. síl·', 'Comença per', 'Incloure NP', 'Incloure pl.']).copy()
+cerques_totals = cerques_totals[cerques_totals['Dia'] < avui].copy()
+
+paraules_cercades = cerques_totals[cerques_totals['Rima'] != '***'].drop_duplicates(subset=['Paraula']).copy()
+
+paraules_cercades_usuaris_diferents = cerques_totals.drop_duplicates(subset=['Paraula', 'Usuari']).copy()
+paraules_cercades_usuaris_diferents_trobades = paraules_cercades_usuaris_diferents[paraules_cercades_usuaris_diferents['Rima'] != '***'].copy()
+
+rimes_usuaris_diferents = cerques_totals.drop_duplicates(subset=['Paraula', 'Tipus de rima', 'Usuari']).copy()
+rimes_usuaris_diferents = rimes_usuaris_diferents[['Rima', 'Tipus de rima']]
+rimes_usuaris_diferents = rimes_usuaris_diferents[rimes_usuaris_diferents['Rima'] != '***'].copy()
 
 
 #df paraules nàufragues
@@ -68,6 +68,7 @@ paraules_cercades_emmascarades = cerques_totals_emmascarat.drop_duplicates(subse
 paraules_cercades_emmascarades = paraules_cercades_emmascarades[paraules_cercades_emmascarades['Rima'] != '***'].copy()
 
 paraules_cercades_usuaris_diferents_emmascarat = cerques_totals_emmascarat.drop_duplicates(subset=['Paraula', 'Usuari']).copy()
+paraules_cercades_usuaris_diferents_emmascarat_trobades = paraules_cercades_usuaris_diferents_emmascarat[paraules_cercades_usuaris_diferents_emmascarat['Rima'] != '***'].copy()
 
 rimes_usuaris_diferents_emmascarat = cerques_totals_emmascarat.drop_duplicates(subset=['Paraula', 'Tipus de rima', 'Usuari']).copy()
 rimes_usuaris_diferents_emmascarat = rimes_usuaris_diferents_emmascarat[['Rima', 'Tipus de rima']]
@@ -156,7 +157,7 @@ dades_json = {
     "actualitzacio": datetime.now(tz_espanya).strftime("%d/%m/%Y %H:%M:%S"),
     "setmana": {
         "text_dies": f"{inici_setmana.day}/{inici_setmana.month} > {ahir.day}/{ahir.month}",
-        "top_10_paraules": formatar_top_per_json(obtenir_top_paraules(paraules_cercades_usuaris_diferents_emmascarat, 10, 'paraula')),
+        "top_10_paraules": formatar_top_per_json(obtenir_top_paraules(paraules_cercades_usuaris_diferents_emmascarat_trobades, 10, 'paraula')),
         "top_10_rimes": formatar_top_per_json(obtenir_top_paraules(rimes_usuaris_diferents_emmascarat, 10, 'rima')),
         "total_cerques": len(cerques_totals_emmascarat),
         "paraules_cercades_uniques": len(paraules_cercades_emmascarades),
@@ -164,7 +165,7 @@ dades_json = {
 
     },
     "sempre": {
-        "top_10_paraules": formatar_top_per_json(obtenir_top_paraules(paraules_cercades_usuaris_diferents, 10, 'paraula')),
+        "top_10_paraules": formatar_top_per_json(obtenir_top_paraules(paraules_cercades_usuaris_diferents_trobades, 10, 'paraula')),
         "top_10_rimes": formatar_top_per_json(obtenir_top_paraules(rimes_usuaris_diferents, 10, 'rima')),
         "total_cerques": len(cerques_totals),
         "paraules_cercades_uniques": len(paraules_cercades),
