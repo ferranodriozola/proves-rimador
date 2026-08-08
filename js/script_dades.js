@@ -12,7 +12,7 @@ function pintarFiltresHTML(dadesSempre) {
 
     const nomsTraduïts = {
         '0': 'Indiferent', '1': '1s', '2': '2s', '3': '3s',
-        '4': '4s', '5': '5s', '6': '6s',
+        '4': '4s', '5': '5s', '6': '6+',
         'indiferent': 'qualsevol lletra', 'consonant': 'consonant', 'vocal+h': 'vocal / h',
         'si': 'Sí', 'no': 'No'
     };
