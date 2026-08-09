@@ -65,14 +65,18 @@
     background-color: $gris-molt-clar;
 }
 
-// El focus automàtic del primer botó en obrir el diàleg no és una
-// "selecció": només indica per on aniria el teclat. Si tingués el mateix
-// aspecte que el :hover, semblaria que dues opcions estan triades alhora
-// quan el ratolí passa per una altra. Per això aquí només un contorn prim,
-// sense tocar fons ni vora.
 .dialeg-opcio:focus-visible {
     outline: 2px solid $rosa-mitja;
     outline-offset: 2px;
+}
+
+// El diàleg posa el focus al primer botó en obrir-se (per poder navegar
+// amb el teclat de seguida), però això no és una "selecció": no hi ha
+// d'haver-hi cap marca fins que l'usuari faci alguna cosa de debò, com
+// prémer Tab. La classe .focus-inicial (js/script.js) es treu al primer
+// keydown i llavors el contorn torna a funcionar amb normalitat.
+.dialeg-homografs.focus-inicial .dialeg-opcio:focus-visible {
+    outline: none;
 }
 
 // La transcripció fonètica: el motiu de ser de tot el diàleg.
@@ -123,6 +127,10 @@
 [data-theme="sober"] .dialeg-opcio:focus-visible {
     outline: 2px solid var(--sober-accent);
     outline-offset: 2px;
+}
+
+[data-theme="sober"] .dialeg-homografs.focus-inicial .dialeg-opcio:focus-visible {
+    outline: none;
 }
 
 [data-theme="sober"] .dialeg-transcripcio {
