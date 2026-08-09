@@ -1,4 +1,16 @@
 {
-  "transcripcions": 32,
-  "general": 34
+  "generat": "2026-08-09 11:55:36 UTC",
+  "files": 619785,
+  "columnes": {
+    "col_0.txt": "83f90fdb2c0e",
+    "col_1.txt": "a0088f3f6456",
+    "col_2.txt": "e5c0ca77a7fb",
+    "col_3.txt": "382096083a1a",
+    "col_4.txt": "f157ea26c257",
+    "col_5.txt": "eeea40377ac8",
+    "col_6.txt": "bf5fc8aa46ec",
+    "col_7.txt": "88edb8a83d77",
+    "col_8.txt": "9f2115af1965",
+    "col_9.txt": "29ef88bf1bec"
+  }
 }
