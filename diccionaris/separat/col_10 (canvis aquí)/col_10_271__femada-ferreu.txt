@@ -1,3 +1,4 @@
+femada € femada € NCFS000 € fəmˈaðə
 femada € femar € VMP00SF0 € fəmˈaðə
 Femades € Femades € NPCNSP0 € fəmˈaðəs
 femades € femada € NCFP000 € fəmˈaðəs
@@ -1240,4 +1241,3 @@ ferreters € ferreter € NCMP000 € fərətˈes
 ferrets € ferret € NCMP000 € fərˈɛts
 ferreu € ferrar € VMIP2P00 € fərˈɛw
 ferreu € ferrar € VMM02P0X € fərˈɛw
-ferreu € ferrar € VMSP2P00 € fərˈɛw

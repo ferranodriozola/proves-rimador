@@ -1,3 +1,4 @@
+fades € fada € NCFP000 € fˈaðəs
 fades € fadar € VMIP2S00 € fˈaðəs
 fades € fat € AQ0FP0 € fˈaðəs
 fadés € fadar € VMSI1S01 € fəðˈes
@@ -1240,4 +1241,3 @@ fanàtica € fanàtic € AQ0FS0 € fənˈatikə
 fanàtica € fanàtic € NCFS000 € fənˈatikə
 fanàticament € fanàticament € ZRG € fənˈatikəmˈen
 fanàtics € fanàtic € AQ0MP0 € fənˈatiks
-fanàtics € fanàtic € NCMP000 € fənˈatiks

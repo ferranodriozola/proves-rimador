@@ -1,3 +1,4 @@
+esbrostima € esbrostimar € VMIP3S00 € əzβɾustˈimə
 esbrostima € esbrostimar € VMM02S00 € əzβɾustˈimə
 esbrostimà € esbrostimar € VMIS3S00 € əzβɾustimˈa
 esbrostimada € esbrostimar € VMP00SF0 € əzβɾustimˈaðə
@@ -1240,4 +1241,3 @@ escajos € escaig € NCMP000 € əskˈaʒus
 Escala € Escala € NPCNSP0 € əskˈalə
 escala € escala € NCFS000 € əskˈalə
 escala € escalar € VMIP3S00 € əskˈalə
-escala € escalar € VMM02S00 € əskˈalə
