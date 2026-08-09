@@ -53,7 +53,7 @@ ruta_json_naufragues = 'llistes/paraules_naufragues.json'
 
 with open(ruta_json_naufragues, 'r', encoding='utf-8') as arxiu:
     dades_naufragues = json.load(arxiu)
-llista_paraules_naufragues = [item['paraula'] for item in dades_naufragues]
+llista_paraules_naufragues = [item['paraula'].lower() for item in dades_naufragues]
 
 df_rimes_naufragues = cerques_totals[cerques_totals['Tipus de rima'] == 'r.consonant'].drop_duplicates(subset=['Paraula', 'Usuari']).copy()
 df_rimes_naufragues = df_rimes_naufragues[df_rimes_naufragues['Paraula'].isin(llista_paraules_naufragues)].copy()
