@@ -57180,7 +57180,7 @@ as
 ɛtiðəs
 iə
 iəs
-akə
+ejk
 aβə
 ɛlə
 ɛləs
@@ -76990,7 +76990,7 @@ ukəs
 ɔjðə
 ɔjðəs
 e
-e
+ɛ
 e
 e
 eə
@@ -149229,7 +149229,7 @@ ajɾə
 ajɾəs
 adʒə
 adʒəs
-akə
+ejk
 ɛ
 e
 upə
@@ -332197,7 +332197,7 @@ as
 aʒus
 ozə
 ozəs
-akə
+ejk
 asit
 asits
 afəl
@@ -337412,7 +337412,7 @@ ets
 ets
 ɛtus
 ɛw
-ɛw
+ew
 ɛw
 ɛw
 ɛw
@@ -373919,7 +373919,7 @@ erməs
 ɛrmiə
 ɛrmiəs
 ɛrms
-e
+er
 ɛɾik
 ɛɾikə
 en
@@ -405525,7 +405525,7 @@ i
 ɔɾu
 ɔrə
 ors
-ors
+ɔrs
 i
 ɛŋ
 ɛŋ
@@ -422166,8 +422166,8 @@ ats
 aɾə
 uə
 ɔtu
-akə
-akəs
+ake
+akes
 amə
 ɛl
 o
@@ -459360,8 +459360,8 @@ eəs
 atikə
 atikəs
 ai
-akə
-akəs
+ejk
+ejks
 at
 ats
 artə
@@ -479758,8 +479758,8 @@ os
 ozə
 ozəs
 ozus
-akə
-akəs
+ejk
+ejks
 inə
 asiə
 asiəs
@@ -521854,7 +521854,7 @@ iðə
 iðəs
 it
 its
-akə
+ejk
 aʎə
 aʎə
 a
@@ -544333,8 +544333,8 @@ aj
 aβə
 aβə
 arjə
-akə
-akəs
+ejk
+ejks
 alin
 i
 a
@@ -557616,7 +557616,7 @@ itəs
 ɛnsk
 ak
 aks
-akə
+ejk
 oart
 oars
 ɔ
@@ -613620,7 +613620,7 @@ itəs
 aŋɡə
 amə
 amə
-akə
+ejk
 ɛl
 an
 aldə
@@ -616814,8 +616814,8 @@ izmə
 izməs
 itə
 itə
-akə
-akəs
+ake
+akes
 itəs
 itəs
 al
