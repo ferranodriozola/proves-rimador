@@ -68,6 +68,23 @@ jobs:
           git commit -m "Cache busting: versions actualitzades als HTML" || echo "No hi ha canvis"
           git push
 
+      - name: Ajustar el 404.html quan el lloc no penja de l'arrel del domini
+        if: github.repository != 'rimador/rimador.github.io'
+        run: |
+          # El 404.html és l'única pàgina amb rutes absolutes des de l'arrel: se
+          # serveix sota qualsevol URL inexistent (/a/b/c/...), i per tant no pot
+          # fer servir rutes relatives, que dependrien de la fondària. La resta
+          # de pàgines van amb rutes relatives i el JS es calcula l'arrel tot sol
+          # (vegeu ARREL a js/components.js), o sigui que no cal tocar-los.
+          #
+          # A rimador.cat el lloc penja de l'arrel i les rutes ja són bones. En
+          # canvi, als repositoris de proves GitHub Pages publica el lloc dins
+          # /NOM-DEL-REPOSITORI/, i cal anteposar-hi aquest prefix.
+          PREFIX="/${{ github.event.repository.name }}"
+          echo "El lloc penja de $PREFIX/: reescrivint les rutes del 404.html"
+          sed -i -E "s|=\"/|=\"$PREFIX/|g" 404.html
+          grep -oE '(src|href)="[^"]*"' 404.html | grep -v 'https\?://'
+
       - name: Treure node_modules abans de publicar
         run: rm -rf node_modules
 
