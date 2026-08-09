@@ -83,7 +83,16 @@ async function carregarDades(arxiuJson, clauVersio) {
         actualitzarLlista();
 
         const btnActualitza = document.getElementById('actualitzaButton');
-        if (btnActualitza) btnActualitza.addEventListener('click', actualitzarLlista);
+        if (btnActualitza) btnActualitza.addEventListener('click', () => {
+            actualitzarLlista();
+
+            // Filtrar una llista compta com un dia d'ús per a l'avís
+            // periòdic de donatius (avis/avis.js). Va enganxat al clic
+            // del botó i no pas dins d'actualitzarLlista() perquè
+            // aquesta també es crida en carregar la pàgina (unes línies
+            // més amunt), i llavors una simple visita ja comptaria.
+            if (window.AvisRimador) window.AvisRimador.registraUs();
+        });
 
         document.querySelectorAll('.clickable-checkbox').forEach(cb => cb.checked = true);
         
