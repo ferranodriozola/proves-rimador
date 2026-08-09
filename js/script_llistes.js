@@ -55,7 +55,7 @@ let VERSIO_ACTUAL = "v.1";
 
 async function carregarVersionsLlistes(clauVersio) {
     try {
-        const resposta = await fetch(`versions_llistes.json?t=${Date.now()}`);
+        const resposta = await fetch(`${ARREL}llistes/versions_llistes.json?t=${Date.now()}`);
         const dades = await resposta.json();
         VERSIO_ACTUAL = `v.${dades[clauVersio] || '1'}`;
         console.log("Versions carregades correctament:", dades);
@@ -72,7 +72,7 @@ async function carregarDades(arxiuJson, clauVersio) {
     try {
         await carregarVersionsLlistes(clauVersio);
 
-        const resParaules = await fetch(`${arxiuJson}?v=${VERSIO_ACTUAL}`);
+        const resParaules = await fetch(`${ARREL}llistes/${arxiuJson}?v=${VERSIO_ACTUAL}`);
         if (!resParaules.ok) throw new Error(`Error HTTP: ${resParaules.status}`);
 
         if (loaderText2) loaderText2.textContent = "Carregant fitxer (1/2)";
