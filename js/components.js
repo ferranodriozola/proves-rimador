@@ -1,10 +1,24 @@
 const idPagina = document.body ? document.body.id : '';
 const dataLlista = document.body ? document.body.dataset.llista : '';
 
-// Rutes absolutes des de l'arrel: funcionen igual des de qualsevol pàgina,
-// incloent-hi el 404.html, que se serveix sota una URL arbitrària.
-const ruta1 = '/assets/';
-const ruta2 = '/historial_canvis.html';
+// L'arrel del lloc, deduïda de la URL d'aquest mateix <script>.
+//
+// Aquest fitxer sempre se serveix des de dist/js/, o sigui que pujant-ne dos
+// nivells s'arriba a l'arrel: a rimador.cat dona "/" i al repositori de proves
+// (usuari.github.io/proves-rimador/) dona "/proves-rimador/". Com que és una
+// ruta des de l'arrel, val igual des de qualsevol pàgina i a qualsevol
+// fondària, inclòs el 404.html, que se serveix sota una URL arbitrària.
+//
+// És l'única definició de rutes de tot el JS: la fan servir menu.js,
+// script.js, script_llistes.js i script_dades.js. No s'ha de tocar enlloc més.
+const ARREL = (function () {
+    const jo = document.currentScript;
+    if (!jo || !jo.src) return '/';
+    return new URL('../../', jo.src).pathname;
+})();
+
+const ruta1 = ARREL + 'assets/';
+const ruta2 = ARREL + 'historial_canvis.html';
 let estilSilabes = '';
 let botoactualitzar = '';
 let opcionsSilabes = /*html*/`
@@ -75,7 +89,7 @@ if (loaderHTML) { loaderHTML.innerHTML = loader; }
 
 
 const header = /*html*/`
-<a href="/"><img class="rimador" id="rimadorImg" src="${ruta1}Rimador-1.webp?v=2" alt="Logo del Rimador en català"></a>
+<a href="${ARREL}"><img class="rimador" id="rimadorImg" src="${ruta1}Rimador-1.webp?v=2" alt="Logo del Rimador en català"></a>
 <div class="header-icons">
     <button type="button" id="themeToggleBtn" class="peixet-btn" onclick="toggleTheme()" aria-label="Canvia entre mode festiu i mode sobri" title="Canvia d'estil"><img class="peixet" id="peixetImg" src="${ruta1}peixet.webp" alt="Peixet decoratiu"></button>
     <button type="button" id="menuToggleBtn" class="menu-hamburger" aria-label="Obre el menú" aria-expanded="false" aria-controls="paper-back" title="Menú">
