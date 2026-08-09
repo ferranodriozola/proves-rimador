@@ -1,30 +1,3 @@
-"""Escriu diccionaris/versions.json amb una versió per columna.
-
-La versió de cada columna és un resum (hash) del seu contingut. Això vol dir
-que el navegador es torna a baixar EXACTAMENT les columnes que han canviat:
-
-  - Si toques el diccionari general (separar_arxiu...py), es reescriuen les deu
-    columnes i totes deu canvien de versió.
-  - Si toques la columna 10 (creador_rima...py), només canvien de versió les
-    columnes que aquell script ha reescrit de debò (paraula, d'on ve, codi,
-    rima consonant, rima assonant i transcripció) i, d'aquestes, només les que
-    hagin quedat diferents. Les síl·labes, el Vicc, la Viquipèdia i el DIEC no
-    es tornen a baixar.
-
-Abans hi havia dos comptadors a mà, "general" i "transcripcions", i calia
-recordar quin script escrivia quina columna. No coincidia: el pipeline del
-diccionari reescrivia les columnes de rimes i transcripció però només pujava
-el comptador general, i els navegadors es quedaven aquelles tres columnes
-d'una generació anterior. Amb el diccionari desplaçat una fila, la rima que
-es llegia era la de la paraula del costat, i una cerca de 'dona' arribava a
-treure 'arjau' o 'Arp'. Amb un resum del contingut això no pot passar: si el
-fitxer canvia, la versió canvia.
-
-També comprova que les deu columnes tinguin el mateix nombre de files. Si no
-el tenen, no són el mateix diccionari i el programa acaba amb error perquè el
-workflow s'aturi abans de publicar res.
-"""
-
 import hashlib
 import json
 import sys
@@ -38,7 +11,6 @@ COLUMNES = [f"col_{i}.txt" for i in range(10)]
 
 
 def resum(cami):
-    """Hash curt del contingut del fitxer."""
     calculador = hashlib.sha256()
     with open(cami, "rb") as fitxer:
         for tros in iter(lambda: fitxer.read(1024 * 1024), b""):
@@ -47,7 +19,6 @@ def resum(cami):
 
 
 def nombre_de_files(cami):
-    """Files del fitxer, tant si acaba amb salt de línia com si no."""
     with open(cami, "rb") as fitxer:
         contingut = fitxer.read()
     if not contingut:
