@@ -2,22 +2,26 @@
   var body = document.body;
   if (!body) return;
 
+  // L'arrel del lloc la calcula components.js, que es carrega abans que aquest
+  // fitxer. El valor de reserva només actua si algú carrega menu.js tot sol.
+  var arrel = typeof ARREL === 'string' ? ARREL : '/';
+
   var navHTML = /*html*/`
     <button type="button" class="menu-close" aria-label="Tanca el menú"></button>
     <nav aria-label="Menú principal">
-      <a href="/">Rimador</a>
-      <a href="/joc/">El Joc</a>
+      <a href="${arrel}">Rimador</a>
+      <a href="${arrel}joc/">El Joc</a>
       <div class="menu-grup" role="group" aria-labelledby="menu-grup-llistes">
         <p class="menu-grup__titol" id="menu-grup-llistes"><span class="menu-grup__ratlla"></span>Llistes</p>
-        <a href="/llistes/llista_heptasilabs.html">Mots heptasil·làbics</a>
-        <a href="/llistes/llista_mots_de7.html">Mots de set síl·labes</a>
-        <a href="/llistes/llista_naufragues.html">Paraules nàufragues</a>
+        <a href="${arrel}llistes/llista_heptasilabs.html">Mots heptasil·làbics</a>
+        <a href="${arrel}llistes/llista_mots_de7.html">Mots de set síl·labes</a>
+        <a href="${arrel}llistes/llista_naufragues.html">Paraules nàufragues</a>
         <span class="menu-grup__ratlla menu-grup__ratlla--tanca"></span>
       </div>
-      <a href="/dades.html">Estadístiques</a>
-      <a href="/nosaltres.html">Qui som?</a>
-      <a href="/historial_canvis.html">Historial de canvis</a>
-      <a href="/error.html">Has trobat un error?</a>
+      <a href="${arrel}dades.html">Estadístiques</a>
+      <a href="${arrel}nosaltres.html">Qui som?</a>
+      <a href="${arrel}historial_canvis.html">Historial de canvis</a>
+      <a href="${arrel}error.html">Has trobat un error?</a>
       <a href="https://ko-fi.com/rimadorcat" target="_blank" rel="noopener">Regala'ns un cafè</a>
     </nav>
   `;
