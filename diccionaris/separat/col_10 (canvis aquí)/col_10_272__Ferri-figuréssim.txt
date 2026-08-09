@@ -559,7 +559,7 @@ fets € fer € VMP00PM0 € fˈets
 fets € fet € NCMP000 € fˈets
 fetus € fetus € NCMN000 € fˈɛtus
 feu € fer € VMIP2P00 € fˈɛw
-feu € fer € VMIS3S00 € fˈɛw
+feu € fer € VMIS3S00 € fˈew
 feu € fer € VMM02P00 € fˈɛw
 feu € fer € VMSP2P00 € fˈɛw
 feu € feu € NCMS000 € fˈɛw
