@@ -1,8 +1,10 @@
 const idPagina = document.body ? document.body.id : '';
 const dataLlista = document.body ? document.body.dataset.llista : '';
 
-let ruta1 = '';
-let ruta2 = '';
+// Rutes absolutes des de l'arrel: funcionen igual des de qualsevol pàgina,
+// incloent-hi el 404.html, que se serveix sota una URL arbitrària.
+const ruta1 = '/assets/';
+const ruta2 = '/historial_canvis.html';
 let estilSilabes = '';
 let botoactualitzar = '';
 let opcionsSilabes = /*html*/`
@@ -15,18 +17,7 @@ let opcionsSilabes = /*html*/`
     <option value="6">6 o +</option>
 `;
 
-const PAGINES_ARREL = ['principal', 'canvis', 'dades', 'nosaltres', 'error'];
-
-if (PAGINES_ARREL.includes(idPagina)) {
-  ruta1 = 'assets/';
-  ruta2 = 'historial_canvis.html';
-} else if (idPagina === 'error404') {
-  ruta1 = '/assets/';
-  ruta2 = '/historial_canvis.html';
-} else if (idPagina === 'llista') {
-  ruta1 = '../assets/';
-  ruta2 = '../historial_canvis.html';
-  
+if (idPagina === 'llista') {
   botoactualitzar = '<button class="boto" role="button" id="actualitzaButton"><span class="text">Actualitzar</span></button>';
     if (dataLlista === 'mots_de7_real') {
         estilSilabes = 'style="display: none;"';
@@ -84,7 +75,7 @@ if (loaderHTML) { loaderHTML.innerHTML = loader; }
 
 
 const header = /*html*/`
-<a href="https://rimador.cat"><img class="rimador" id="rimadorImg" src="${ruta1}Rimador-1.webp?v=2" alt="Logo del Rimador en català"></a>
+<a href="/"><img class="rimador" id="rimadorImg" src="${ruta1}Rimador-1.webp?v=2" alt="Logo del Rimador en català"></a>
 <div class="header-icons">
     <button type="button" id="themeToggleBtn" class="peixet-btn" onclick="toggleTheme()" aria-label="Canvia entre mode festiu i mode sobri" title="Canvia d'estil"><img class="peixet" id="peixetImg" src="${ruta1}peixet.webp" alt="Peixet decoratiu"></button>
     <button type="button" id="menuToggleBtn" class="menu-hamburger" aria-label="Obre el menú" aria-expanded="false" aria-controls="paper-back" title="Menú">
