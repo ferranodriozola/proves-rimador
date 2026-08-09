@@ -32,7 +32,11 @@ jobs:
             echo "any_changed=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          if git diff --name-only "$ABANS" "${{ github.sha }}" -- 'css/*.scss' 'js/*.js' | grep -q .; then
+          # avis/ no passa pel gulp (és un mòdul a part, vegeu avis/README.md),
+          # però els HTML hi apunten amb ?v=, o sigui que també ha de refrescar
+          # les versions. El missatges.json no hi és a posta: el llegeix el
+          # navegador en temps real i canviar-ne un text no ha de tocar cap HTML.
+          if git diff --name-only "$ABANS" "${{ github.sha }}" -- 'css/*.scss' 'js/*.js' 'avis/*.js' 'avis/*.css' | grep -q .; then
             echo "any_changed=true" >> "$GITHUB_OUTPUT"
           else
             echo "any_changed=false" >> "$GITHUB_OUTPUT"
