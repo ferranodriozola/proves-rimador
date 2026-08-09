@@ -21,7 +21,7 @@ let llistaNaufragues = [];
 
 async function carregarNaufragues() {
   try {
-    const resposta = await fetch(`llistes/paraules_naufragues.json?t=${Date.now()}`);
+    const resposta = await fetch(`${ARREL}llistes/paraules_naufragues.json?t=${Date.now()}`);
     llistaNaufragues = await resposta.json();
     console.log("Paraules nàufragues carregades:", llistaNaufragues.length);
   } catch (err) {
@@ -35,30 +35,24 @@ let VERSIONS_FITXERS = {};
 
 async function carregarVersions() {
   try {
-    const resposta = await fetch(`diccionaris/versions.json?t=${Date.now()}`);
+    const resposta = await fetch(`${ARREL}diccionaris/versions.json?t=${Date.now()}`);
     const dades = await resposta.json();
 
-    const verTrans = `v.${dades.transcripcions}`;
-    const verTotal = `v.${dades.general}`;
+    // La versió de cada columna és un resum del seu contingut, calculat
+    // pels workflows amb diccionaris/generar_versions.py. Cada columna es
+    // refresca exactament quan el seu fitxer ha canviat: ni abans (com
+    // passava quan una columna reescrita mantenia el número vell i es
+    // barrejaven generacions del diccionari) ni de més.
+    if (!dades.columnes) throw new Error("versions.json no porta la llista de columnes");
 
-    VERSIONS_FITXERS = {
-      "col_0.txt": verTotal, // paraula
-      "col_1.txt": verTotal, // infinitiu (+-)
-      "col_2.txt": verTotal, // codi
-      "col_3.txt": verTrans, // consonant
-      "col_4.txt": verTrans, // assonant
-      "col_5.txt": verTotal, // síl·labes
-      "col_6.txt": verTotal, // Vicc
-      "col_7.txt": verTotal, // Viq
-      "col_8.txt": verTotal, // Diec
-      "col_9.txt": verTrans  // transcripció sencera
-    };
-    console.log("Versions carregades correctament:", dades);
+    VERSIONS_FITXERS = dades.columnes;
+    console.log("Versions carregades correctament:", VERSIONS_FITXERS);
   } catch (err) {
-    console.error("Error carregant versio.json, utilitzant valors per defecte", err);
-    const verDefecte = "v.1";
-    ["col_0.txt","col_1.txt","col_2.txt","col_3.txt","col_4.txt","col_5.txt","col_6.txt","col_7.txt","col_8.txt","col_9.txt"]
-      .forEach(f => VERSIONS_FITXERS[f] = verDefecte);
+    // Sense versions de confiança no podem saber si el que tenim guardat
+    // encara val. Es deixa la llista buida: llavors cada columna es baixa
+    // del servidor i no se'n desa cap còpia (vegeu llegirFitxerAmbIndexedDB).
+    console.error("Error carregant versions.json: es baixarà tot el diccionari sense memòria cau", err);
+    VERSIONS_FITXERS = {};
   }
 }
 
@@ -70,7 +64,7 @@ let fitxersLlegits = 0;
 let nombresDeFitxers = 10;
 
 const nombresSeleccionats = [0,1,2,3,4,5,6,7,8,9];
-const camins = nombresSeleccionats.map(i => `diccionaris/separat/col_${i}.txt`);
+const camins = nombresSeleccionats.map(i => `${ARREL}diccionaris/separat/col_${i}.txt`);
 
 document.addEventListener('DOMContentLoaded', async () => {
     if (idPagina !== 'principal') return;
@@ -146,8 +140,12 @@ async function llegirFitxerAmbIndexedDB(rutaFitxer) {
   };
 
   try {
+    // Sense una versió de confiança no sabem si la còpia guardada encara
+    // val: la baixem del servidor i no en desem cap (ho fa el catch).
+    if (!versioActual) throw new Error(`Sense versió per a ${nomFitxer}`);
+
     const db = await obrirIndexedDB();
-    if (!db) throw new Error("IndexedDB no disponible"); 
+    if (!db) throw new Error("IndexedDB no disponible");
 
     const fitxerDesat = await recuperarFitxer(db, nomFitxer); 
     const versioGuardada = fitxerDesat ? fitxerDesat.versio : "cap";
@@ -187,7 +185,11 @@ function processarFitxerEnParalel(contingut) {
 // FETCH NORMAL
 async function fetchFitxer(url) {
     const nomFitxer = url.split("/").pop();
-    const response = await fetch(`${url}?v=${VERSIONS_FITXERS[nomFitxer]}`);
+    // Si no sabem la versió (versions.json ha fallat), posem un valor
+    // sempre diferent perquè el navegador tampoc no ens doni una còpia
+    // seva que podria ser vella.
+    const versio = VERSIONS_FITXERS[nomFitxer] || `sense-versio-${Date.now()}`;
+    const response = await fetch(`${url}?v=${versio}`);
     if (!response.ok) throw new Error(`Error en llegir ${url}`);
     return await response.text();
 }
@@ -338,14 +340,31 @@ function registrarCerca(paraulaBuscada, rimaTrobada, tipusRima, codiParaula, num
 
 
 //FUNCIONS PRINCIPALS
+// Mentre el diàleg d'homògrafs és obert, la cerca està a mitges. Si
+// se'n comencés una altra, tindríem dues cerques en marxa i dos diàlegs
+// oberts alhora. Amb el prompt() d'abans això no podia passar, perquè
+// aturava tota la pàgina.
+let cercaEnCurs = false;
+
 async function realitzarCerca() {
   Debug.log("Botó clicat!");
   Debug.logTime('realitzarCerca');
+
+  if (cercaEnCurs) {
+    Debug.log("Ja hi ha una cerca en marxa; ignorem la nova.");
+    return;
+  }
+  cercaEnCurs = true;
+
   document.getElementById("espai_inicial").style.display = "none";
 
   try {
-    matches = [];
-    
+    // Abans aquí hi havia `matches = []`. Ara que la cerca es pot aturar
+    // esperant el diàleg d'homògrafs, buidar-ho d'entrada deixava la
+    // pàgina en un estat incoherent mentre el diàleg era obert: a la
+    // pantalla encara s'hi veien els resultats de la cerca anterior,
+    // però la llista que els sosté era buida. Les substituïm de cop
+    // quan les noves ja estan fetes (línia de sota del buscarParaula).
     var paraulaCercada = document.getElementById('paraulaCercada').value.trim().toLowerCase();
     var numeroSeleccionat = document.getElementById('numeroSelector').value;
     var tipusRima = document.getElementById('rimaSelector').value;
@@ -353,10 +372,18 @@ async function realitzarCerca() {
     var inclourePropis = document.getElementById('nomsPropis').value;
     var inclourePlurals = document.getElementById('plurals').value;
     
-    const buscaparaula = buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals, array0, array1, array2, array3, array4, array5, array6, array7, array8, array9);
+    const buscaparaula = await buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals, array0, array1, array2, array3, array4, array5, array6, array7, array8, array9);
+
+    // null = s'ha tancat el diàleg d'homògrafs sense triar cap paraula.
+    // No toquem res: ni els resultats de la pantalla ni el registre de
+    // cerques.
+    if (buscaparaula === null) {
+      Debug.log("Cerca cancel·lada des del diàleg d'homògrafs.");
+      return;
+    }
+
     matches = buscaparaula[0];
     paraulacerca = buscaparaula[1];
-
 
     // lògica per a registrar les cerques
     let rimaTrobada = "***"; 
@@ -391,9 +418,18 @@ async function realitzarCerca() {
 
     mostrarTotesLesLlistes();
     document.querySelector('.impressio').style.display = 'flex';
+
+    // Una cerca acabada compta com un dia d'ús per a l'avís periòdic
+    // de donatius (avis/avis.js). És ell qui decideix si toca ensenyar
+    // res o no; aquí només l'informem. Va aquí baix, i no al principi
+    // de la funció, perquè només compti quan la cerca ha anat bé.
+    if (window.AvisRimador) window.AvisRimador.registraUs();
+
     Debug.logTimeEnd('realitzarCerca');
   } catch (error) {
     Debug.logError('Error en realitzar la cerca:', error);
+  } finally {
+    cercaEnCurs = false;
   }
 }
 
@@ -426,8 +462,125 @@ function obtenirPesJerarquia(codi) {
   return 10;
 }
 
-function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals, array0, array1, array2, array3, array4, array5, array6, array7, array8, array9) {
+// Diàleg per triar entre paraules homògrafes ('dona', 'soc', 'coure'...).
+// Abans això era un prompt() del navegador: una finestra que no es pot
+// estilar de cap manera, o sigui que les transcripcions hi sortien amb
+// la tipografia del sistema i cada aparell hi feia el que volia amb els
+// caràcters de l'AFI. Fet a casa, hereta les fonts del web.
+// Retorna una promesa amb l'opció triada, o amb null si es tanca sense
+// triar res. Mai no tria per compte de l'usuari: si la cerca continués
+// amb una opció posada per nosaltres, sortirien les rimes de l'altra
+// paraula sense que ningú ho hagués demanat.
+function triarHomograf(paraulaCercada, opcions) {
+  return new Promise(resolve => {
+    // Xarxa de seguretat per a navegadors sense <dialog> (iOS anterior
+    // al 15.4): tornem al prompt() de tota la vida.
+    if (typeof HTMLDialogElement === 'undefined' || !HTMLDialogElement.prototype.showModal) {
+      const text = opcions.map(o => `${o.numero}: ${o.paraula} (${o.categoria}, ${o.arrel}) ${o.transcripcio}`).join("\n");
+      const eleccio = parseInt(prompt(`Hi ha ${opcions.length} coincidències per "${paraulaCercada}".\nEscull una opció:\n\n${text}`));
+      resolve(isNaN(eleccio) || eleccio <= 0 || eleccio > opcions.length ? null : opcions[eleccio - 1]);
+      return;
+    }
+
+    const dialeg = document.createElement('dialog');
+    dialeg.className = 'dialeg-homografs focus-inicial';
+
+    const titol = document.createElement('h2');
+    titol.textContent = `Quina "${paraulaCercada}" cerques?`;
+    dialeg.appendChild(titol);
+
+    const explicacio = document.createElement('p');
+    explicacio.className = 'dialeg-explicacio';
+    explicacio.textContent = `S'escriuen igual però es pronuncien de manera diferent, i per tant no rimen amb les mateixes paraules.`;
+    dialeg.appendChild(explicacio);
+
+    const llista = document.createElement('div');
+    llista.className = 'dialeg-opcions';
+
+    // Tanquem, netegem i responem sempre des d'aquí. No ens refiem de
+    // l'esdeveniment 'close' del <dialog> (hi ha navegadors que no
+    // l'envien, i llavors el diàleg es quedaria enganxat al document i
+    // la cerca no acabaria mai).
+    let tancat = false;
+
+    const tancar = opcio => {
+      if (tancat) return;
+      tancat = true;
+      dialeg.close();
+      dialeg.remove();
+      resolve(opcio);
+    };
+
+    opcions.forEach(opcio => {
+      const boto = document.createElement('button');
+      boto.type = 'button';
+      boto.className = 'dialeg-opcio';
+
+      const transcripcio = document.createElement('span');
+      transcripcio.className = 'transcripcio dialeg-transcripcio';
+      transcripcio.textContent = opcio.transcripcio;
+
+      const detall = document.createElement('span');
+      detall.className = 'dialeg-detall';
+      detall.textContent = `${opcio.categoria}, ${opcio.arrel}`;
+
+      boto.appendChild(transcripcio);
+      boto.appendChild(detall);
+      boto.addEventListener('click', () => tancar(opcio));
+
+      llista.appendChild(boto);
+    });
+
+    dialeg.appendChild(llista);
+
+    // Esc: es cancel·la la cerca sencera. No triem nosaltres cap opció.
+    dialeg.addEventListener('cancel', event => {
+      event.preventDefault();
+      tancar(null);
+    });
+    dialeg.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        tancar(null);
+      }
+      // El primer keydown de debò (normalment Tab) vol dir que l'usuari
+      // navega amb teclat: a partir d'aquí el contorn de focus ha de
+      // funcionar amb normalitat. Vegeu la classe .focus-inicial a
+      // css/dialeg.scss.
+      dialeg.classList.remove('focus-inicial');
+    });
+
+    // Clic al fons fosc: també cancel·la. Compte, que event.target és el
+    // <dialog> tant si es clica el fons com si es clica el farciment del
+    // quadre o l'espai entre dues opcions; si no ho distingíssim, un toc
+    // una mica desviat tancaria el diàleg com si fos un clic a fora.
+    // Comparem les coordenades amb el rectangle del quadre.
+    dialeg.addEventListener('click', event => {
+      if (event.target !== dialeg) return;
+
+      const caixa = dialeg.getBoundingClientRect();
+      const aDins = event.clientX >= caixa.left && event.clientX <= caixa.right &&
+                    event.clientY >= caixa.top && event.clientY <= caixa.bottom;
+
+      if (!aDins) tancar(null);
+    });
+
+    document.body.appendChild(dialeg);
+    dialeg.showModal();
+    llista.querySelector('button').focus();
+  });
+}
+
+async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals, array0, array1, array2, array3, array4, array5, array6, array7, array8, array9) {
   Debug.logTime('buscarParaula');
+
+  // Aquestes dues eren variables globals. Ara que la funció és asíncrona
+  // (s'atura a esperar el diàleg d'homògrafs), dues cerques poden estar
+  // en marxa alhora, i si totes dues escrivien a la mateixa llista global
+  // els resultats es barrejaven: sortien rimes d'una altra paraula. Cada
+  // cerca es guarda les seves i les retorna al final.
+  let llistaParaulaCerca;
+  const matches = [];
 
   const coincidencies = array0
     .map((item, index) => ({ paraula: item, index }))
@@ -458,26 +611,38 @@ function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, i
         array6[indexparaula], array7[indexparaula], array8[indexparaula], array9[indexparaula]
       ];
     } else {
-      const ordenat = coincidencies; // podríem afegir `.sort(...)` si volem ordenar els resultats???
+      // Només oferim una opció per transcripció: si dues entrades es
+      // pronuncien igual (per exemple dues formes verbals de 'donar'),
+      // rimen exactament amb les mateixes paraules i al diàleg hi
+      // sortirien dues opcions idèntiques.
+      const vistes = new Set();
+      const opcions = [];
 
-      let opcions = coincidencies.map((c, i) => {
+      coincidencies.forEach(c => {
         const index = c.index;
-        const paraula = array0[index];
-        const arrel = array1[index];
-        const categoria = descriureCategoria(array2[index]);
         const transcripcio = array9[index];
-        return `${i + 1}: ${paraula} (${categoria}, ${arrel}) ${transcripcio.startsWith("/") ? transcripcio : "/" + transcripcio + "/"}`;
-      }).join("\n");
+        if (vistes.has(transcripcio)) return;
+        vistes.add(transcripcio);
 
-      let eleccio = prompt(`Hi ha ${ordenat.length} coincidències per "${paraulaCercada}".\nEscull una opció:\n\n${opcions}`);
+        opcions.push({
+          index,
+          numero: opcions.length + 1,
+          paraula: array0[index],
+          arrel: array1[index],
+          categoria: descriureCategoria(array2[index]),
+          transcripcio: transcripcio.startsWith("/") ? transcripcio : "/" + transcripcio + "/"
+        });
+      });
 
-      let num = parseInt(eleccio);
-      if (isNaN(num) || num <= 0 || num > ordenat.length) {
-              alert("Selecció invàlida. S'ha seleccionat la primera opció per defecte.");
-              num = 1; 
-      }
+      const triada = await triarHomograf(paraulaCercada, opcions);
 
-      const indexparaula = ordenat[num - 1].index;
+      // S'ha tancat el diàleg sense triar: la cerca s'atura aquí i la
+      // pantalla es queda tal com estava. Abans agafàvem la primera
+      // opció, i això volia dir ensenyar les rimes d'una altra paraula
+      // (les de 'dona' nom quan potser volies el verb) sense avisar.
+      if (!triada) return null;
+
+      const indexparaula = triada.index;
       llistaParaulaCerca = [
         array0[indexparaula], array1[indexparaula], array2[indexparaula],
         array3[indexparaula], array4[indexparaula], array5[indexparaula],
@@ -550,12 +715,8 @@ function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, i
 }
 
 //gestió logos per a imprimir
-let rutaLogos = '';
-if (idPagina === 'principal') {
-  rutaLogos = 'assets/';
-} else if (idPagina === 'llista') {
-  rutaLogos = '../assets/';
-}
+// La ruta dels assets surt de components.js, només s'ha de tocar allà.
+const rutaLogos = ruta1;
 
 function crearEnllacViccionari(paraula) {
   var enllac_vicc = '<a href="https://ca.wiktionary.org/wiki/' + paraula + '" target="_blank">';
@@ -620,7 +781,7 @@ function actualitzarRimes() {
   var textNombre = document.getElementById("nombre");
 
   if (matches_provisionals.length > 0) {
-    var esNaufraga = llistaNaufragues.some(item => item.paraula.toLowerCase() === paraulacerca[0]);
+    var esNaufraga = llistaNaufragues.some(item => item.paraula.toLowerCase() === paraulacerca[0].toLowerCase());
     var tipusRima = document.getElementById('rimaSelector').value;
     if (esNaufraga && tipusRima === 'r.consonant') {
       textNombre.innerHTML = ""; 
@@ -637,7 +798,7 @@ function actualitzarRimes() {
           <div class="alerta-naufraga" style="text-align: center; width: 100%; margin-top: 20px;">
             <p><strong>Has trobat una paraula nàufraga.</strong></p>
             <p>La paraula <strong>${paraulacerca[0]}</strong> no rima consonantment amb cap altra paraula del diccionari...</p>
-            <p>Consulta la llista de <a id="enllaç" href="llistes/llista_naufragues.html" target="_blank">Paraules nàufragues</a></p>
+            <p>Consulta la llista de <a id="enllaç" href="${ARREL}llistes/llista_naufragues.html" target="_blank">Paraules nàufragues</a></p>
           </div>
         `;  
       } else {
@@ -651,7 +812,7 @@ function actualitzarRimes() {
               width: 80%;
               max-width: 600px;
               margin: 40px auto;
-              font-family: 'Comic Sans MS', cursive, sans-serif;
+              font-family: var(--font-divertida);
               color: #0000cc;
               border-radius: 15px;
               transform: rotate(-1deg);
@@ -661,7 +822,7 @@ function actualitzarRimes() {
 
             <div style="margin-top: 25px; background: #817f7f; padding: 10px; border-radius: 8px; border: 2px solid #00ffff;">
               <p style="font-weight: bold; font-size: 18px; color: white; margin: 0;">
-                Consulta la llista de <a id="enllaçbrillant" href="llistes/llista_naufragues.html" target="_blank">Paraules nàufragues</a>
+                Consulta la llista de <a id="enllaçbrillant" href="${ARREL}llistes/llista_naufragues.html" target="_blank">Paraules nàufragues</a>
               </p>
             </div>
           </div>
@@ -762,7 +923,7 @@ function actualitzarRimes() {
     } else {
       if (checkboxContainer) checkboxContainer.style.display = "";
       if (resultatsContainer) resultatsContainer.style.width = "";
-      rimes = "No s'han trobat rimes amb aquestes condicions. Ets massa exigent!";
+      rimes = "Ets massa exigent! Aquesta paraula existeix i té més resultats, però per trobar-los hauràs de canviar els filtres";
     }
     
     rima_enllac = "<ul><li>" + rimes + "</li></ul>";
@@ -1024,11 +1185,7 @@ if (containerEl) {
 // ============================================================= //
 
 // boring style
-const PEIXET_IMG_FESTIU = "assets/peixet.webp?v=1";
-const PEIXET_IMG_SOBRI = "assets/boringlogo.webp?v=2";
 const THEME_STORAGE_KEY = "rimadorTheme";
-const RIMADOR_IMG_FESTIU = "assets/Rimador-1.webp?v=1";
-const RIMADOR_IMG_SOBRI = "assets/Rimador-1-sober.webp?v=1";
 
 let colorFestiuOriginal = null;
 
