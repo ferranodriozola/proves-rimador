@@ -14330,36 +14330,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "en",
-    "infinitiu": "en",
-    "codi": "DA0MS0",
-    "rimacons": "ən",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "Viq",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "en",
-    "infinitiu": "en",
-    "codi": "PP3CN000",
-    "rimacons": "ən",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "Viq",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "en",
-    "infinitiu": "en",
-    "codi": "ZSPS00",
-    "rimacons": "ən",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "Viq",
-    "diec": "Diec"
-  },
-  {
     "paraula": "encontren",
     "infinitiu": "encontrar",
     "codi": "VMIP3P00",
@@ -17096,16 +17066,6 @@
     "rimacons": "ɔlβu",
     "sil": "3",
     "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "et",
-    "infinitiu": "tu",
-    "codi": "P020S000",
-    "rimacons": "ət",
-    "sil": "1",
-    "vicc": "Vicc",
     "viq": "NO",
     "diec": "Diec"
   },
@@ -32537,26 +32497,6 @@
     "sil": "2",
     "vicc": "NO",
     "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "per",
-    "infinitiu": "per",
-    "codi": "NCMS000",
-    "rimacons": "əɾ",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "Viq",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "per",
-    "infinitiu": "per",
-    "codi": "ZSPS00",
-    "rimacons": "əɾ",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "Viq",
     "diec": "Diec"
   },
   {
