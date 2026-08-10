@@ -352,11 +352,49 @@ Queda **una decisió nova**, sorgida en previsualitzar (§2.4): la segona matriu
 
 ---
 
-## 8. Ordre de treball proposat
+## 8. Ordre de treball
 
-1. Validar aquest document (sobretot **P1** i **P6**).
-2. `enclisi.py` — mou-hi la lògica dels tres scripts actuals, sense canviar-ne el comportament.
-3. `llicencies.py` — el classificador i la matriu.
-4. `generar_tot.py` limitat a `hi` + `en` → **ha de reproduir byte a byte** el que ja hi ha a `pronoms/txt_fets/`, tret del codi nou de 10 caràcters.
-5. Obrir-lo als 13 pronoms i mesurar.
-6. Comprovacions de sanitat: 10 camps per línia, un sol accent primari, cap col·lisió amb `col_0`, rimes coherents amb `col_3`/`col_4`.
+1. ✅ Validar aquest document (sobretot **P1** i **P6**).
+2. ✅ `enclisi.py` — la lògica dels tres scripts vells, unificada. Reprodueix els infinitius i els gerundis al 100 %; als imperatius canvia 15 formes en generalitzar la sensibilització de la consonant final muda (`sent-hi` → `/sˈenti/`), que abans només s'aplicava a l'infinitiu i al gerundi.
+3. ✅ `llicencies.py` — el classificador i les dues matrius.
+4. ✅ `generar_tot.py` limitat a `hi` + `en`: 0 línies inventades, i les 8.442 absències respecte dels fitxers vells s'expliquen **totes** pel filtre nou (5.528 inherents + 2.914 sense informació).
+5. ✅ Obert als 13 pronoms: **626.786 línies**, exactament el volum previst a §6.
+6. ✅ Comprovacions de sanitat (vegeu §9).
+
+## 9. Resultat de la generació
+
+`python3 pronoms/generar_tot.py --tots` → **13 fitxers `verb_pronom_<pronom>.txt`, 626.786 línies, 47,5 MB.**
+
+| Comprovació | Resultat |
+|---|---|
+| 10 camps per línia, camps clau plens | ✅ |
+| codis de 10 caràcters, tots `W…`, `npron`=1, pronom2=`00` | ✅ |
+| un sol accent primari per forma | ✅ 0 excepcions |
+| `col_3` = tot el que va darrere de l'accent | ✅ |
+| `col_4` = vocals de `col_3` | ✅ |
+| cap caràcter AFI que no surti ja al diccionari | ✅ |
+| col·lisions amb paraules del diccionari | ✅ 0 |
+| files duplicades exactes | ⚠️ 7 (vegeu sota) |
+
+**81 codis diferents, no 91.** Els 10 que falten són exactament els que bloqueja la matriu de concordança: `es` amb 02S/01P/02P, `et` amb 02P/03S/03P, `us` amb 02S/03S/03P i `em` amb 01P.
+
+**Les 7 files duplicades vénen del diccionari base, no d'aquí**: `ves` hi surt dues vegades amb el lema `anar`, idèntiques tret del flag `Viq` (`Viq` / `NO`). Es propaguen a `ves-me`, `ves-te`, `ves-hi`, `ves-li`, `ves-los`, `ves-ne` i `ves-nos`. Convé esborrar la fila sobrera a `col_10`.
+
+### Cobertura de rima
+
+| | Formes | Rimen amb el diccionari actual | Rimen amb alguna cosa |
+|---|---|---|---|
+| `et` | 34.164 | 76,1 % | 99,6 % |
+| `es` | 28.835 | 73,5 % | 99,6 % |
+| `en` | 57.649 | 68,3 % | 99,8 % |
+| `ho` | 47.514 | 60,3 % | 99,3 % |
+| `hi` | 57.649 | 58,7 % | 99,4 % |
+| `em` | 50.214 | 55,4 % | 99,4 % |
+| `la` `el` `les` | 47.514 | ~30 % | 99,3 % |
+| `li` | 57.649 | 29,6 % | 99,4 % |
+| `ens` | 58.831 | 27,7 % | 99,4 % |
+| `us` | 34.090 | 26,7 % | 100,0 % |
+| `els` | 57.649 | 15,7 % | 99,4 % |
+| **TOTAL** | **626.786** | **43,4 %** | |
+
+De les 16.368 classes de rima que generen aquestes formes, **1.997 ja existien** al diccionari i **14.371 són noves**: la major part d'aquestes formes es rimen entre elles, tal com anticipava §3.1.
