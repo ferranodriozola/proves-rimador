@@ -703,7 +703,7 @@ premem € prémer € VMSP1P00 € pɾəmˈɛm
 premen € prémer € VMIP3P00 € pɾˈɛmən
 premenstrual € premenstrual € AQ0CS0 € pɾəmənstɾuˈal
 premenstruals € premenstrual € AQ0CP0 € pɾəmənstɾuˈals
-prement € prémer € VMG00000 € pɾˈemˈen
+prement € prémer € VMG00000 € pɾəmˈen
 prémer € prémer € VMN00000 € pɾˈemə
 premerà € prémer € VMIF3S00 € pɾəməɾˈa
 premeran € prémer € VMIF3P00 € pɾəməɾˈan

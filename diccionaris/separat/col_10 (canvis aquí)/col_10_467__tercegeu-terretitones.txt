@@ -973,7 +973,7 @@ terratremem € terratrémer € VMIP1P00 € tərətɾəmˈɛm
 terratremem € terratrémer € VMM01P00 € tərətɾəmˈɛm
 terratremem € terratrémer € VMSP1P00 € tərətɾəmˈɛm
 terratremen € terratrémer € VMIP3P00 € tərətɾˈɛmən
-terratrement € terratrémer € VMG00000 € tərˈatɾəmˈen
+terratrement € terratrémer € VMG00000 € tˌɛrətɾəmˈen
 terratrémer € terratrémer € VMN00000 € tˌɛrətɾˈemə
 terratremerà € terratrémer € VMIF3S00 € tərətɾəməɾˈa
 terratremeran € terratrémer € VMIF3P00 € tərətɾəməɾˈan
