@@ -191,7 +191,7 @@ desmenjaves € desmenjar € VMII2S00 € dəzmənʒˈaβəs
 desmenjàveu € desmenjar € VMII2P00 € dəzmənʒˈaβəw
 desmenjo € desmenjar € VMIP1S0C € dəzmˈɛnʒu
 desment € desmentir € VMIP3S00 € dˈesmˈen
-desment € desmentir € VMM02S00 € dˈesmˈen
+desment € desmentir € VMM02S00 € dəsmˈen
 desmenteix € desmentir € VMIP3S00 € dəzməntˈɛʃ
 desmenteix € desmentir € VMM02S00 € dəzməntˈɛʃ
 desmenteixen € desmentir € VMIP3P00 € dəzməntˈɛʃən
