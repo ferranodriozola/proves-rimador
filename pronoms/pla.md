@@ -360,24 +360,34 @@ El dataset nou es carrega **la primera vegada que l'usuari marca la casella**, a
 
 Comprovat: les primeres lletres ocupades són només `A`, `D`, `N`, `P`, `V`, `Z`. **`W` és lliure.**
 
-### Format proposat
+### Format (implementat des dels infinitius)
 
 ```
-W · <forma> · <persona> · _ · <pronom>
+W · <forma> · <persona> · _ · <npron> · <pronom1> [pronom2]
 
     forma    N infinitiu · G gerundi · M imperatiu
     persona  00  (infinitiu i gerundi)
              02S 01P 02P 03S 03P  (imperatiu)
-    pronom   EM ET ES NS US EL LA LS LE LI EN HO HI
+    npron    1 o 2 — nombre de pronoms combinats, com a xifra explícita
+    pronomN  codi de 2 lletres, en l'ordre gramatical (CI abans que CD…)
 ```
+
+`npron` és tècnicament redundant (el nombre de pronoms ja es dedueix de la llargada del que ve després), però es guarda **explícit i a posició fixa** perquè un filtre futur de "combinacions dobles" el pugui mirar directament sense haver d'enumerar totes les parelles de pronoms possibles.
+
+Codi de 2 lletres per pronom (els 14 de `pronoms/pronoms.json`; avui només es generen `HI` i `EN`, la resta queden reservats):
+
+| em | et | es | ens | us | el | la | els (ac.) | les | li | els (dat.) | en | ho | hi |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| `EM` | `ET` | `ES` | `NS` | `US` | `EL` | `LA` | `EA` | `LE` | `LI` | `ED` | `EN` | `HO` | `HI` |
 
 | Forma | Codi | `col_1` |
 |---|---|---|
-| `anar-hi` | `WN00_HI` | `anar` |
-| `anant-hi` | `WG00_HI` | `anar` |
-| `ves-hi` | `WM02S_HI` | `anar` |
-| `penedeix-te` | `WM02S_ET` | `penedir` |
-| `cantar-lo` | `WN00_EL` | `cantar` |
+| `anar-hi` | `WN00_1HI` | `anar` |
+| `anar-ne` | `WN00_1EN` | `anar` |
+| `anant-hi` *(pendent)* | `WG00_1HI` | `anar` |
+| `ves-hi` *(pendent)* | `WM02S_1HI` | `anar` |
+| `penedeix-te` *(pendent)* | `WM02S_1ET` | `penedir` |
+| `porta-l'hi` *(doble pronom, fase 2, pendent)* | `WM02S_2LIEL` | `portar` |
 
 Per què aquest ordre i no un altre:
 
@@ -492,17 +502,17 @@ Calculats amb el mètode de §6 i **contrastats contra `col_3` real** del diccio
 
 | Forma | Codi `W` | AFI | Rima cons. | Rima ass. | Síl. | Rimes al diccionari actual |
 |---|---|---|---|---|---|---|
-| **`anar-hi`** | `WN00_HI` | `ənˈaɾi` | `aɾi` | `ai` | 3 | **755** — *escenari*, abecedari, acapari… ✅ |
-| `cantar-ho` | `WN00_HO` | `kəntˈaɾu` | `aɾu` | `au` | 3 | 51 — acaparo, amaro, aclaparo |
-| `cantar-me` | `WN00_EM` | `kəntˈarmə` | `armə` | `aə` | 3 | 22 — alarma, arma *(la `-r` sona, §D5)* |
-| `cantar-ne` | `WN00_EN` | `kəntˈarnə` | `arnə` | `aə` | 3 | 26 — arna, sarna, encarna |
-| `anant-hi` | `WG00_HI` | `ənˈanti` | `anti` | `ai` | 3 | 84 — aguanti, abrillanti |
-| **`ves-hi`** *(imperatiu, tu)* | `WM02S_HI` | `bˈezi` | `ezi` | `ei` | 2 | 6 — desi, pesi *(sonorització, §6.2-2)* |
-| `aneu-hi` *(imperatiu, vosaltres)* | `WM02P_HI` | `ənˈɛwi` | `ɛwi` | `ɛi` | 3 | 18 — creui, apreui |
-| `penedeix-te` *(pronominal)* | `WM02S_ET` | `pənəðˈɛʃtə` | `ɛʃtə` | `ɛə` | 4 | 0 — només rimaria amb formes germanes |
-| `digues-ho` | `WM02S_HO` | `dˈiɣəzu` | `iɣəzu` | `iəu` | 3 | 0 |
-| `emporta-te'n` *(doble pronom)* | *(fase 2)* | `əmpˈɔrtətən` | `ɔrtətən` | `ɔəə` | 4 | 0 |
-| `porta-l'hi` *(doble pronom)* | *(fase 2)* | `pˈɔrtəli` | `ɔrtəli` | `ɔəi` | 3 | 0 |
+| **`anar-hi`** ✅ generat | `WN00_1HI` | `ənˈaɾi` | `aɾi` | `ai` | 3 | **755** — *escenari*, abecedari, acapari… ✅ |
+| `anar-ne` ✅ generat | `WN00_1EN` | `ənˈarnə` | `arnə` | `aə` | 3 | 26 — arna, sarna, encarna |
+| `cantar-ho` *(pendent, no és `hi`/`en`)* | `WN00_1HO` | `kəntˈaɾu` | `aɾu` | `au` | 3 | 51 — acaparo, amaro, aclaparo |
+| `cantar-me` *(pendent)* | `WN00_1EM` | `kəntˈarmə` | `armə` | `aə` | 3 | 22 — alarma, arma *(la `-r` sona, §D5)* |
+| `anant-hi` *(pendent, gerundi)* | `WG00_1HI` | `ənˈanti` | `anti` | `ai` | 3 | 84 — aguanti, abrillanti |
+| **`ves-hi`** *(pendent, imperatiu tu)* | `WM02S_1HI` | `bˈezi` | `ezi` | `ei` | 2 | 6 — desi, pesi *(sonorització, §6.2-2)* |
+| `aneu-hi` *(pendent, imperatiu vosaltres)* | `WM02P_1HI` | `ənˈɛwi` | `ɛwi` | `ɛi` | 3 | 18 — creui, apreui |
+| `penedeix-te` *(pendent, pronominal)* | `WM02S_1ET` | `pənəðˈɛʃtə` | `ɛʃtə` | `ɛə` | 4 | 0 — només rimaria amb formes germanes |
+| `digues-ho` *(pendent)* | `WM02S_1HO` | `dˈiɣəzu` | `iɣəzu` | `iəu` | 3 | 0 |
+| `emporta-te'n` *(pendent, doble pronom, fase 2)* | `WN00_2ETEN` | `əmpˈɔrtətən` | `ɔrtətən` | `ɔəə` | 4 | 0 |
+| `porta-l'hi` *(pendent, doble pronom, fase 2)* | `WM02S_2LIEL` | `pˈɔrtəli` | `ɔrtəli` | `ɔəi` | 3 | 0 |
 
 El cas d'origen queda validat: **`anar-hi` i `escenari` comparteixen `col_3 = aɾi` i `col_4 = ai`**, i cauen en grups de síl·labes diferents (3 i 4), que és exactament com el rimador ja presenta els resultats.
 
