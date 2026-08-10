@@ -177,7 +177,7 @@ ako € ako € NCMS000 € ˈaku
 Akron € Akron € NPCSG00 € əkɾˈon
 Akure € Akure € NPCSG00 € əkˈuɾə
 Akureyri € Akureyri € NPCSG00 € əkuɾəˈiri
-al € a+el € ZSP+DA € ˈəl
+al € a+el € ZSP+DA € ˈal
 Al-Aaiun € Al-Aaiun € NPCSG00 € ələˈajwn
 Al-Àndalus € Al-Àndalus € NPCSG00 € əlˈandəlus
 al-Àndalus € al-Àndalus € NPCSG00 € əlˈandəlus

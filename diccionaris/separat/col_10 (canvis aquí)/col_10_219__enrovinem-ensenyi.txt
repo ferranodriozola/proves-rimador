@@ -166,8 +166,8 @@ enrunin € enrunar € VMM03P0Y € ənrˈunin
 enrunin € enrunar € VMSP3P0Y € ənrˈunin
 enrunis € enrunar € VMSP2S0Y € ənrˈunis
 enruno € enrunar € VMIP1S0C € ənrˈunu
-ens € ens € NCMN000 € ˈəns
-ens € jo € P010P000 € ˈəns
+ens € ens € NCMN000 € ˈans
+ens € jo € P010P000 € ˈans
 ensaba € ensabar € VMIP3S00 € ənsˈaβə
 ensaba € ensabar € VMM02S00 € ənsˈaβə
 ensabà € ensabar € VMIS3S00 € ənsəβˈa

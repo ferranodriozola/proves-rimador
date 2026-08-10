@@ -535,8 +535,8 @@ alquisser € alquisser € NCMS000 € əlkisˈe
 alquissers € alquisser € NCMP000 € əlkisˈes
 alruna € alruna € NCFS000 € əlrˈunə
 alrunes € alruna € NCFP000 € əlrˈunəs
-Als € Als € NPCSG00 € ˈəls
-als € a+els € ZSP+DA € ˈəls
+Als € Als € NPCSG00 € ˈals
+als € a+els € ZSP+DA € ˈals
 alsacià € alsacià € AQ0MS0 € əlsəsiˈa
 alsacià € alsacià € NCMS000 € əlsəsiˈa
 Alsàcia € Alsàcia € NPFSG00 € əlsˈasiə

@@ -763,7 +763,7 @@ delmis € delmar € VMSP2S0Y € dˈɛlmis
 delmo € delmar € VMIP1S0C € dˈɛlmu
 delònix € delònix € NCMS000 € dəlˈɔniks
 Delos € Delos € NPCSG00 € dˈɛlus
-dels € de+els € ZSP+DA € dˈəls
+dels € de+els € ZSP+DA € dˈals
 delta € delta € NCCS000 € dˈɛltə
 deltaic € deltaic € AQ0MS0 € dəltˈajk
 deltaica € deltaic € AQ0FS0 € dəltˈajkə

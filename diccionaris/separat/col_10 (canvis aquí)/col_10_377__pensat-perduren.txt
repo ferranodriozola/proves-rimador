@@ -547,8 +547,8 @@ pequineses € pequinès € NCFP000 € pəkinˈɛzəs
 pequinesos € pequinès € AQ0MP0 € pəkinˈɛzus
 pequinesos € pequinès € NCMP000 € pəkinˈɛzus
 pequis € pecar € VMSP2S0Y € pˈekis
-per € per € NCMS000 € pˈəɾ
-per € per € ZSPS00 € pˈəɾ
+per € per € NCMS000 € pˈaɾ
+per € per € ZSPS00 € pˈaɾ
 Pera € Pera € NPFSG00 € pˈɛɾə
 pera € pera € NCFS000 € pˈɛɾə
 Peracalç € Peracalç € NPCSG00 € pəɾəkˈals

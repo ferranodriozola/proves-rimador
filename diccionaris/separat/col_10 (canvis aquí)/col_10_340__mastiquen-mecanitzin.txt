@@ -1161,7 +1161,7 @@ McGraw-Hill € McGraw-Hill € NPCNO00 € məɡ ɡɾˈapχˈil
 McKinley € McKinley € NPCSG00 € mək kinlˈei
 McLaren € McLaren € NPCNO00 € məɡ lˈaɾən
 McNamara € McNamara € NPCNSP0 € məɡ nəmˈaɾə
-me € jo € P010S000 € mˈə
+me € jo € P010S000 € mˈa
 meandre € meandre € NCMS000 € meˈandɾə
 meandres € meandre € NCMP000 € meˈandɾəs
 meandriforme € meandriforme € AQ0CS0 € meəndɾifˈormə

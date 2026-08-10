@@ -744,10 +744,10 @@ kyrieleisons € kyrieleison € NCMP000 € kiriələjzˈons
 Kyushu € Kyushu € NPCSG00 € kjˈuʃu
 Kyzyl € Kyzyl € NPCSG00 € kizˈil
 L'Aquila € L'Aquila € NPCSG00 € ləkˈilə
-la € el € DA0FS0 € lˈə
-la € ell € PP3FSA00 € lˈə
-la € la € ZI € lˈə
-la € la € NCMS000 € lˈə
+la € el € DA0FS0 € lˈa
+la € ell € PP3FSA00 € lˈa
+la € la € ZI € lˈa
+la € la € NCMS000 € lˈa
 Laban € Laban € NPMSSP0 € ləβˈan
 làbar € làbar € NCMS000 € lˈaβə
 làbarum € làbarum € NCMS000 € lˈaβəɾum

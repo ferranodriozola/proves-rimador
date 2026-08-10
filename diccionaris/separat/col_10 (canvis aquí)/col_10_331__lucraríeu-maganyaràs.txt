@@ -345,7 +345,7 @@ Lviv € Lviv € NPCSG00 € lβˈip
 Lydda € Lydda € NPCSG00 € lˈiddə
 Lyell € Lyell € NPCNSP0 € ljˈeʎ
 lyn € lyn € NCFS000 € lˈin
-ma € mon € DP1FSS € mˈə
+ma € mon € DP1FSS € mˈa
 mà € mà € NCFS000 € mˈa
 Ma'rib € Ma'rib € NPCSG00 € məəksˈenrip
 mà-llarg € mà-llarg € AQ0MS0 € mˈaʎˈark

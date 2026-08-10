@@ -440,8 +440,8 @@ eloqüentment € eloqüentment € ZRG € əlukwəmmˈen
 eloqüents € eloqüent € AQ0CP0 € əlukwˈens
 Elpidi € Elpidi € NPMSSP0 € əlpˈiði
 Élrond € Élrond € NPCNSP0 € ˈelrˌɔn
-els € el € DA0MP0 € ˈəls
-els € ell € PP3CP000 € ˈəls
+els € el € DA0MP0 € ˈals
+els € ell € PP3CP000 € ˈals
 Elsa € Elsa € NPFSSP0 € ˈɛlsə
 Elsene € Elsene € NPCSG00 € əlsˈɛnə
 elucida € elucidar € VMIP3S00 € əlusˈiðə
@@ -703,7 +703,7 @@ el·líptica € el·líptic € AQ0FS0 € əllˈiptikə
 el·lípticament € el·lípticament € ZRG € əllˈiptikəmˈen
 el·líptics € el·líptic € AQ0MP0 € əllˈiptiks
 el·líptiques € el·líptic € AQ0FP0 € əllˈiptikəs
-em € jo € P010S000 € ˈəm
+em € jo € P010S000 € ˈam
 ema € ema € NCFS000 € ˈemə
 emaciació € emaciació € NCFS000 € əməsiəsiˈo
 emaciacions € emaciació € NCFP000 € əməsiəsiˈons

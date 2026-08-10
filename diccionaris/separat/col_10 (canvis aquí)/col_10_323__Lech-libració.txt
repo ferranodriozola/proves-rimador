@@ -600,9 +600,9 @@ lerrouxisme € lerrouxisme € NCMS000 € lərɔwksˈizmə
 lerrouxismes € lerrouxisme € NCMP000 € lərɔwksˈizməs
 lerrouxista € lerrouxista € AQ0CS0 € lərɔwksˈistə
 lerrouxistes € lerrouxista € AQ0CP0 € lərɔwksˈistəs
-les € el € DA0FP0 € lˈəs
-les € ell € PP3FPA00 € lˈəs
-les € les € AQ0MS0 € lˈəs
+les € el € DA0FP0 € lˈas
+les € ell € PP3FPA00 € lˈas
+les € les € AQ0MS0 € lˈas
 lesa € les € AQ0FS0 € lˈɛzə
 lesbi € lesbi € NCMS000 € lˈɛzβi
 lesbià € lesbià € AQ0MS0 € ləzβiˈa

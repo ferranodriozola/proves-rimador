@@ -1,4 +1,3 @@
-secundem € secundar € VMM01P00 € səkundˈɛm
 secundem € secundar € VMSP1P00 € səkundˈɛm
 secunden € secundar € VMIP3P00 € səkˈundən
 secundes € secundar € VMIP2S00 € səkˈundəs
@@ -1241,3 +1240,4 @@ seixantè € seixantè € AO0MS0 € səʃəntˈɛ
 seixanté € seixantè € AO0MS0 € səʃəntˈe
 seixantegem € seixantejar € VMIP1P00 € səʃəntəʒˈɛm
 seixantegem € seixantejar € VMM01P00 € səʃəntəʒˈɛm
+seixantegem € seixantejar € VMSP1P00 € səʃəntəʒˈɛm

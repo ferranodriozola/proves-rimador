@@ -390,7 +390,7 @@ pelosos € pelós € AQ0MP0 € pəlˈozus
 pelotari € pelotari € NCMS000 € pəlutˈaɾi
 pelotaris € pelotari € NCMP000 € pəlutˈaɾis
 Pelotas € Pelotas € NPCSG00 € pəlˈɔtəs
-pels € per+els € ZSP+DA € pˈəls
+pels € per+els € ZSP+DA € pˈals
 pèls € pèl € NCMP000 € pˈɛls
 pelta € pelta € NCFS000 € pˈɛltə
 peltada € peltat € AQ0FS0 € pəltˈaðə

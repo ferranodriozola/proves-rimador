@@ -1126,9 +1126,9 @@ erythrina € erythrina € NCFS000 € əritɾˈinə
 erza € erza € NCMS000 € ˈɛrzə
 Erzincan € Erzincan € NPCSG00 € ərziŋkˈan
 Erzurum € Erzurum € NPCSG00 € ərzuɾˈum
-es € e € NCFP000 € ˈəs
-es € es € DA0MN0 € ˈəs
-es € es € P0300000 € ˈəs
+es € e € NCFP000 € ˈɛs
+es € es € DA0MN0 € ˈas
+es € es € P0300000 € ˈas
 és € ser € VSIP3S00 € ˈes
 ésAdir € ésAdir € NPMSO00 € ˈez əðˈi
 Esaú € Esaú € NPMSSP0 € əzəˈu

@@ -812,8 +812,8 @@ Davos € Davos € NPCSG00 € dˈaβus
 Dawkins € Dawkins € NPCNSP0 € dəpkˈins
 Dax € Dax € NPCSG00 € dˈaks
 Dayton € Dayton € NPCSG00 € dəitˈon
-de € de € NCFS000 € dˈə
-de € de € ZSPS00 € dˈə
+de € de € NCFS000 € dˈa
+de € de € ZSPS00 € dˈa
 dea € dea € NCFS000 € dˈeə
 deadjectival € deadjectival € AQ0CS0 € deədʒəktiβˈal
 deadjectivals € deadjectival € AQ0CP0 € deədʒəktiβˈals

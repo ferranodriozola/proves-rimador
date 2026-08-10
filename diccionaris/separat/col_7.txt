@@ -542760,7 +542760,6 @@ Viq
 Viq
 Viq
 Viq
-Viq
 NO
 NO
 NO
@@ -607700,7 +607699,6 @@ Viq
 Viq
 Viq
 Viq
-NO
 Viq
 Viq
 NO
