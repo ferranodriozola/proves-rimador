@@ -218824,6 +218824,7 @@ Dniéper
 Dnièster
 Dnipropetrovsk
 do
+do
 dobla
 doblar
 doblar
@@ -337416,7 +337417,6 @@ fer
 fer
 fer
 feu
-fer
 feuater
 feuater
 feuater

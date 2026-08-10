@@ -218824,6 +218824,7 @@ epə
 ɛstər
 opsk
 ɔ
+o
 obblə
 obblə
 obblə
@@ -337416,7 +337417,6 @@ ew
 ɛw
 ɛw
 ɛw
-ew
 e
 eɾə
 eɾəs
