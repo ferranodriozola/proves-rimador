@@ -21,6 +21,11 @@ const ruta1 = ARREL + 'assets/';
 const ruta2 = ARREL + 'historial_canvis.html';
 let estilSilabes = '';
 let botoactualitzar = '';
+let atributsRima = '';
+let opcionsRima = /*html*/`
+    <option value="r.consonant">Consonant</option>
+    <option value="r.assonant">Assonant</option>
+`;
 let opcionsSilabes = /*html*/`
     <option value="0">Indiferent</option>
     <option value="1">1</option>
@@ -33,9 +38,16 @@ let opcionsSilabes = /*html*/`
 
 if (idPagina === 'llista') {
   botoactualitzar = '<button class="boto" role="button" id="actualitzaButton"><span class="text">Actualitzar</span></button>';
-    if (dataLlista === 'mots_de7_real') {
+    if (dataLlista === 'naufragues') {
+        // Una paraula és nàufraga justament perquè no rima consonantment amb
+        // cap altra: la llista només té sentit en rima consonant. El desplegable
+        // es queda a la vista perquè es vegi de quina rima parlem, però bloquejat.
+        opcionsRima = /*html*/`<option value="r.consonant">Consonant</option>`;
+        atributsRima = 'disabled';
+
+  } else if (dataLlista === 'mots_de7_real') {
         estilSilabes = 'style="display: none;"';
-    
+
   } else if (dataLlista === 'mots_de7_glosa') {
         opcionsSilabes = /*html*/`
             <option value="0">Indiferent</option>
@@ -112,9 +124,8 @@ if (separador_rosa1HTML) { separador_rosa1HTML.innerHTML = separador_rosa1; }
 const dropdowncontainer = /*html*/`
 <div>
     <label for="rimaSelector">Tipus de rima:</label>
-    <select id="rimaSelector">
-        <option value="r.consonant">Consonant</option>
-        <option value="r.assonant">Assonant</option>
+    <select id="rimaSelector" ${atributsRima}>
+        ${opcionsRima}
     </select>
 </div>
 
