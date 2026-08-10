@@ -12,3 +12,6 @@ dist/
 
 # HTML's
 html/
+
+#cache py
+__pycache__/
