@@ -67,11 +67,32 @@ $separacio-columnes: 20px;
     color: $gris-606;
 }
 
+/* Els logos del costat de cada rima. Van de fons de l'enllaç i no com a
+   <img> a dins: amb desenes de milers de resultats a la pantalla, els
+   elements que ens estalviem es noten (vegeu crearEnllacViccionari i
+   companyia a js/script.js).
+
+   Les rutes són relatives al CSS ja construït (dist/css/styles.min.css),
+   que és des d'on les llegeix el navegador, no pas a aquest fitxer.
+
+   El ?v= s'ha de pujar a mà si algun dia es reexporta un logo sense
+   canviar-li el nom. El rebentament de memòria cau del deploy.yml no
+   arriba fins aquí: només reescriu els ?v= dels .js i .css dels HTML, i
+   una imatge cridada des del CSS no hi passa. És la mateixa convenció
+   que peixet.webp?v=1 i Rimador-1.webp?v=2 a js/script.js. */
 .logo {
+    display: inline-block;
     width: 18px;
     height: 18px;
     margin-bottom: -3px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
+
+.logo-vicc { background-image: url("../../assets/logovicc.webp?v=1"); }
+.logo-viq  { background-image: url("../../assets/logowiki.webp?v=1"); }
+.logo-diec { background-image: url("../../assets/logodiec.webp?v=1"); }
 
 
 /* Adaptat telèfons */
