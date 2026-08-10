@@ -309,7 +309,7 @@ async function carregarEstadistiques(arxiuJson) {
 
             dadesArray.forEach(item => {
                 const percentatge = (item.vegades / total) * 100;
-                if (percentatge < 1) {
+                if (percentatge < 0.5) {
                     altres += item.vegades;
                 } else {
                     resultat.push(item);
