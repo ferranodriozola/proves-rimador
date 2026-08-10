@@ -4743,7 +4743,7 @@
     "paraula": "Bayern",
     "infinitiu": "Bayern",
     "codi": "NPCSO00",
-    "rimacons": "b'ajərn",
+    "rimacons": "ajərn",
     "sil": "2",
     "vicc": "Vicc",
     "viq": "Viq",
@@ -6868,16 +6868,6 @@
     "vicc": "Vicc",
     "viq": "NO",
     "diec": "Diec"
-  },
-  {
-    "paraula": "Bush",
-    "infinitiu": "Bush",
-    "codi": "NPCNSP0",
-    "rimacons": "bwʃ",
-    "sil": "1",
-    "vicc": "NO",
-    "viq": "Viq",
-    "diec": "NO"
   },
   {
     "paraula": "butla",
@@ -10308,16 +10298,6 @@
     "vicc": "Vicc",
     "viq": "NO",
     "diec": "Diec"
-  },
-  {
-    "paraula": "Cook",
-    "infinitiu": "Cook",
-    "codi": "NPCNG00",
-    "rimacons": "kwk",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "Viq",
-    "diec": "NO"
   },
   {
     "paraula": "copaiba",
@@ -19350,16 +19330,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "Gaius",
-    "infinitiu": "Gaius",
-    "codi": "NPMSSP0",
-    "rimacons": "ajws",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "Viq",
-    "diec": "NO"
-  },
-  {
     "paraula": "Galàdriel",
     "infinitiu": "Galàdriel",
     "codi": "NPFSSP0",
@@ -21338,16 +21308,6 @@
     "vicc": "Vicc",
     "viq": "Viq",
     "diec": "Diec"
-  },
-  {
-    "paraula": "Hawaii",
-    "infinitiu": "Hawaii",
-    "codi": "NPFPG00",
-    "rimacons": "ajj",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "Viq",
-    "diec": "NO"
   },
   {
     "paraula": "Haydn",
@@ -23948,26 +23908,6 @@
     "vicc": "Vicc",
     "viq": "NO",
     "diec": "Diec"
-  },
-  {
-    "paraula": "Iu",
-    "infinitiu": "Iu",
-    "codi": "NPMSSP0",
-    "rimacons": "jw",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "Viq",
-    "diec": "NO"
-  },
-  {
-    "paraula": "Ius",
-    "infinitiu": "Iu",
-    "codi": "NPMPSP0",
-    "rimacons": "jws",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "Viq",
-    "diec": "NO"
   },
   {
     "paraula": "Ivano-Frankivsk",
@@ -29207,16 +29147,6 @@
     "sil": "3",
     "vicc": "Vicc",
     "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "Múnter",
-    "infinitiu": "Múnter",
-    "codi": "NPCSG00",
-    "rimacons": "untər",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "Viq",
     "diec": "NO"
   },
   {
@@ -41423,7 +41353,7 @@
     "paraula": "terràqüia",
     "infinitiu": "terraqüi",
     "codi": "AQ0FS0",
-    "rimacons": "akwjə",
+    "rimacons": "akwiə",
     "sil": "3",
     "vicc": "Vicc",
     "viq": "NO",
@@ -41433,7 +41363,7 @@
     "paraula": "terràqüies",
     "infinitiu": "terraqüi",
     "codi": "AQ0FP0",
-    "rimacons": "akwjəs",
+    "rimacons": "akwiəs",
     "sil": "3",
     "vicc": "Vicc",
     "viq": "NO",
@@ -45108,16 +45038,6 @@
     "vicc": "NO",
     "viq": "Viq",
     "diec": "Diec"
-  },
-  {
-    "paraula": "Wood",
-    "infinitiu": "Wood",
-    "codi": "NPCNSP0",
-    "rimacons": "wwt",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "Viq",
-    "diec": "NO"
   },
   {
     "paraula": "Wordle",
