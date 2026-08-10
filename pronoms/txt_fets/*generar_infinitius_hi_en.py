@@ -2,7 +2,7 @@ import os
 from collections import Counter
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DIR_SEPARAT = os.path.join(BASE_DIR, "..", "diccionaris", "separat")
+DIR_SEPARAT = os.path.join(BASE_DIR, "..", "..", "diccionaris", "separat")
 FITXER_SORTIDA = os.path.join(BASE_DIR, "infinitius_hi_en.txt")
 
 CODI_INFINITIU = "VMN00000"
