@@ -433,7 +433,10 @@ ass  = "".join(c for c in cons if c in "ɔəaeiou@Eɛ")
 
 Totes tenen precedent al diccionari actual (§1.6):
 
-1. **`-r` d'infinitiu** — muda davant enclític consonàntic (`dur-la` /ˈdulə/, `estimar-nos` /əstimˈanus/), `[ɾ]` davant enclític vocàlic (`anar-hi` /ənˈaɾi/, `fer-ho` /ˈfɛɾu/). *Precedent: `agar-agar` → `əɣˈaɾəɣˈar`.*
+1. **`-r` d'infinitiu** — muda quan el verb va sol (`cantar` /kəntˈa/), **sona sempre que hi ha enclític** (decisió D5, resolta). Quina ròtica depèn de la posició:
+   · entre vocals, bategant `[ɾ]`: `anar-hi` /ənˈaɾi/, `fer-ho` /ˈfɛɾu/ — *precedent: `agar-agar` → `əɣˈaɾəɣˈar`*;
+   · en coda, davant consonant `[r]`: `cantar-ne` /kəntˈarnə/, `dur-la` /ˈdurlə/ — *precedent: `abaderna` → `əβəðˈɛrnə`*.
+   Els infinitius en `-re` no hi entren: no acaben en `-r` i ja duen la ròtica a dins (`veure'n` → `bˈɛwɾən`).
 2. **Sonorització de `-s` final** davant vocal o consonant sonora: `digues-ho` → `dˈiɣəzu`, `digues-ne` → `dˈiɣəznə`. *Precedent: `despús-ahir` → `dəspˈuzəˈi`.*
 3. **Espirantització de `v-`** de `-vos` darrere vocal: `[b]` → `[β]`. *Precedent: `vis-a-vis` → `bˈizəβˈis`.*
 4. **Semivocalització de `-ho`/`-hi`** darrere vocal: `canta-ho` → `[ˈkantəw]`, `canta-hi` → `[ˈkantəj]`. *Precedent: `taula` → `tˈawlə`, `remei` → `rəmˈɛj`.*
@@ -461,7 +464,19 @@ síl·labes(verb+pronom) = col_5(forma base) + (1 si l'enclític va amb guionet,
 
 ### 6.4 Ambigüitats que NO resolc
 
-⚠️ **D5 — La `-r` davant enclític consonàntic.** La font normativa és clara (`dur-la` = /ˈdulə/), però a la parla real molts parlants diuen /ˈdurlə/. Afecta **desenes de milers** d'entrades: `cantar-me` rima amb `aclama` si la `r` és muda, i amb res si es pronuncia. *Confirmes que seguim la norma?*
+✅ **D5 — La `-r` davant enclític consonàntic: RESOLTA (agost del 2026).** Es pronuncia. La font normativa deia el contrari (`dur-la` = /ˈdulə/), però s'ha decidit seguir la parla real.
+
+El cost és alt i convé tenir-lo present, perquè les formes en `-ne` queden gairebé aïllades:
+
+| Infinitius en | Verbs | Rimes si la `r` fos muda | Rimes amb la `r` sonora |
+|---|---|---|---|
+| `-ar` | 7.668 | /anə/ → 1.448 (1.290 comunes) | /arnə/ → **26** (14 comunes) |
+| `-ir` | 883 | /inə/ → 2.493 (2.337 comunes) | /irnə/ → **3, totes noms propis** |
+| `-er` tònic | 29 | /enə/ → 9 | /ernə/ → **0** |
+| `-er` àton | 81 | /ənə/ → 0 | /ərnə/ → 0 |
+| `-ur` | 2 | /unə/ → 101 | /urnə/ → 19 |
+
+Amb el filtre de noms propis en "No" (el valor per defecte), `sortir-ne` no ensenyarà **cap** rima. En canvi `hi` no en queda afectat (la `r` ja hi sonava): manté el 96,2 % de cobertura. L'asimetria reforça la lectura de §3.1: el valor d'aquesta funció és sobretot a `hi`.
 
 ⚠️ **D6 — `-ho` i `-hi` darrere vocal: `[u]/[i]` o `[w]/[j]`?** No és cosmètic: `col_4` descarta `j` i `w`, o sigui que la **rima assonant canvia**. `veure-ho` amb `w` → assonant `ɛə`; amb `u` → assonant `ɛəu`. Recomano `[w]`/`[j]` (és el que fa el diccionari amb els diftongs), però és una decisió teva.
 
@@ -479,7 +494,8 @@ Calculats amb el mètode de §6 i **contrastats contra `col_3` real** del diccio
 |---|---|---|---|---|---|---|
 | **`anar-hi`** | `WN00_HI` | `ənˈaɾi` | `aɾi` | `ai` | 3 | **755** — *escenari*, abecedari, acapari… ✅ |
 | `cantar-ho` | `WN00_HO` | `kəntˈaɾu` | `aɾu` | `au` | 3 | 51 — acaparo, amaro, aclaparo |
-| `cantar-me` | `WN00_EM` | `kəntˈamə` | `amə` | `aə` | 3 | 252 — aclama, aerograma *(la `-r` muda, §D5)* |
+| `cantar-me` | `WN00_EM` | `kəntˈarmə` | `armə` | `aə` | 3 | 22 — alarma, arma *(la `-r` sona, §D5)* |
+| `cantar-ne` | `WN00_EN` | `kəntˈarnə` | `arnə` | `aə` | 3 | 26 — arna, sarna, encarna |
 | `anant-hi` | `WG00_HI` | `ənˈanti` | `anti` | `ai` | 3 | 84 — aguanti, abrillanti |
 | **`ves-hi`** *(imperatiu, tu)* | `WM02S_HI` | `bˈezi` | `ezi` | `ei` | 2 | 6 — desi, pesi *(sonorització, §6.2-2)* |
 | `aneu-hi` *(imperatiu, vosaltres)* | `WM02P_HI` | `ənˈɛwi` | `ɛwi` | `ɛi` | 3 | 18 — creui, apreui |
@@ -502,7 +518,7 @@ Les dues últimes files reforcen la recomanació de §2.4: les formes de doble p
 | **D2** | `ho` obert a tots els transitius (sobregenera) o llista curada? | Obert, i revisar-ho amb resultats reals |
 | **D3** | `li`/`els` datiu: obert a tots, limitat a transitius, o camp nou? | **Obert a tots** (com el datiu ètic) |
 | **D4** | Filtre per tipus de pronom a la v1? | **No**; si cal, desplegable, no tercer nivell de caselles |
-| **D5** | La `-r` d'infinitiu davant enclític consonàntic és muda? | Sí (norma) — **però confirma-ho, afecta desenes de milers d'entrades** |
+| ~~**D5**~~ | ~~La `-r` d'infinitiu davant enclític consonàntic és muda?~~ | ✅ **Resolta: sona.** Implementat |
 | **D6** | `-ho`/`-hi` darrere vocal: `[w]`/`[j]` o `[u]`/`[i]`? | `[w]`/`[j]` |
 | **D7** | `vagi-hi`: fusió o hiat? | Sense precedent — decideix tu |
 | **D9** | Abast de la v1: només infinitius (115.882 formes, 96 % de cobertura de rima) o tot (804.258, 43 %)? | **Infinitius + gerundis primer**; imperatius en una segona tongada |
