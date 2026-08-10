@@ -28800,7 +28800,7 @@ ndɾəŋɡˈɛtə
 əʎˈɛŋ
 əʎˈɛŋs
 əʎˈendə
-əʎəntˈobn
+əʎəntˈawn
 əʎˈɛɲə
 əʎˈɛɲə
 əʎəɲˈa
@@ -89687,7 +89687,7 @@ bɾˈiðəs
 bɾˈidʒə
 bɾidʒəpˈɔr
 bɾˈidʒəs
-bɾidʒətˈobn
+bɾidʒətˈawn
 bɾiðˈo
 bɾiðˈons
 bɾˈi
@@ -113014,7 +113014,7 @@ tʃərləβˈiʎəmˈeziˌɛɾəs
 tʃˈali
 tʃərlˈɔt
 ʃˈalət
-tʃərlutətˈobn
+tʃərlutətˈawn
 tʃəɾuˈitə
 tʃərpəntiˈe
 tʃˈartɾəs
@@ -113079,7 +113079,7 @@ tʃiʎˈan
 tʃiluˈe
 tʃimbˈɔtə
 tʃimitʃˈuri
-tʃinətˈobn
+tʃinətˈawn
 tʃiŋɡˈɛti
 tʃiuɡʒˈiə
 tʃipiˈonə
@@ -139165,7 +139165,7 @@ kuufisiˈals
 kˈɔk
 kˈuki
 kˈukis
-kˈɔkstown
+kˈɔkstˈawn
 kˈul
 kˈupər
 kuupˈeɾə
@@ -348217,7 +348217,7 @@ fɾˈɛts
 fɾˈɛts
 fɾəəlˈansə
 fɾəəmˈiwm
-fɾəətˈobn
+fɾəətˈawn
 fɾˈɛɣə
 fɾˈɛɣə
 fɾˈɛɣə
@@ -358647,7 +358647,7 @@ fˈimbus
 ʒeuɾəfəɾənsiəsiˈo
 ʒeˈɔrk
 dʒˈɔdʒ
-ʒeurʒətˈobn
+ʒeurʒətˈawn
 ʒeurʒiˈa
 ʒeurʒiˈa
 ʒeˈɔrʒiə
@@ -398299,7 +398299,7 @@ kˈindlə
 kinətuskˈɔpi
 kˈiŋ
 kiŋkstˈon
-kiŋkstˈobn
+kiŋkstˈawn
 kinʃˈazə
 kintˈirə
 kiˈoβə
@@ -618910,7 +618910,7 @@ jˈɔrk
 jurkʃˈiɾə
 juzəmˈitə
 jutəβˈitə
-jɔwŋkstˈobn
+jɔwŋkstˈawn
 jɔwrsənˈa
 jɔwsɔwfˈiə
 jˈɔw tˈuβə

@@ -1139,7 +1139,7 @@ York € York € NPCNSP0 € jˈɔrk
 Yorkshire € Yorkshire € NPCNG00 € jurkʃˈiɾə
 Yosemite € Yosemite € NPCSG00 € juzəmˈitə
 yottabyte € yottabyte € NCMS000 € jutəβˈitə
-Youngstown € Youngstown € NPCSG00 € jɔwŋkstˈobn
+Youngstown € Youngstown € NPCSG00 € jɔwŋkstˈawn
 Yourcenar € Yourcenar € NPCNSP0 € jɔwrsənˈa
 Youssoufia € Youssoufia € NPCSG00 € jɔwsɔwfˈiə
 YouTube € YouTube € NPMSO00 € jˈɔw tˈuβə

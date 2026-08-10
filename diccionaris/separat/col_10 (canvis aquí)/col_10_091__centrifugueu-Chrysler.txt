@@ -1144,7 +1144,7 @@ Charleville-Mézières € Charleville-Mézières € NPCSG00 € tʃərləβˈi
 Charlie € Charlie € NPMSSP0 € tʃˈali
 Charlot € Charlot € NPMSSP0 € tʃərlˈɔt
 Charlotte € Charlotte € NPCSG00 € ʃˈalət
-Charlottetown € Charlottetown € NPCSG00 € tʃərlutətˈobn
+Charlottetown € Charlottetown € NPCSG00 € tʃərlutətˈawn
 charoïta € charoïta € NCFS000 € tʃəɾuˈitə
 Charpentier € Charpentier € NPCNSP0 € tʃərpəntiˈe
 Chartres € Chartres € NPCSG00 € tʃˈartɾəs
@@ -1209,7 +1209,7 @@ Chillán € Chillán € NPCSG00 € tʃiʎˈan
 Chiloé € Chiloé € NPCSG00 € tʃiluˈe
 Chimbote € Chimbote € NPCSG00 € tʃimbˈɔtə
 chimichurri € chimichurri € NCMS000 € tʃimitʃˈuri
-Chinatown € Chinatown € NPCSG00 € tʃinətˈobn
+Chinatown € Chinatown € NPCSG00 € tʃinətˈawn
 Chinguetti € Chinguetti € NPCSG00 € tʃiŋɡˈɛti
 Chioggia € Chioggia € NPCSG00 € tʃiuɡʒˈiə
 Chipiona € Chipiona € NPCSG00 € tʃipiˈonə

@@ -539,7 +539,7 @@ Kindle € Kindle € NPMNO00 € kˈindlə
 kinetoscopi € kinetoscopi € NCMS000 € kinətuskˈɔpi
 King € King € NPCNSP0 € kˈiŋ
 Kingston € Kingston € NPCSG00 € kiŋkstˈon
-Kingstown € Kingstown € NPCSG00 € kiŋkstˈobn
+Kingstown € Kingstown € NPCSG00 € kiŋkstˈawn
 Kinshasa € Kinshasa € NPCSG00 € kinʃˈazə
 Kintyre € Kintyre € NPCSG00 € kintˈirə
 kiowa € kiowa € AQ0CS0 € kiˈoβə

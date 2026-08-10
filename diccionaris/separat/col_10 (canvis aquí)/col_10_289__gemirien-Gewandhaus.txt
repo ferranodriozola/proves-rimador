@@ -663,7 +663,7 @@ georames € georama € NCMP000 € ʒeuɾˈaməs
 georeferenciació € georeferenciació € NCFS000 € ʒeuɾəfəɾənsiəsiˈo
 Georg € Georg € NPMSSP0 € ʒeˈɔrk
 George € George € NPMSSP0 € dʒˈɔdʒ
-Georgetown € Georgetown € NPCSG00 € ʒeurʒətˈobn
+Georgetown € Georgetown € NPCSG00 € ʒeurʒətˈawn
 georgià € georgià € AQ0MS0 € ʒeurʒiˈa
 georgià € georgià € NCMS000 € ʒeurʒiˈa
 Geòrgia € Geòrgia € NPFSG00 € ʒeˈɔrʒiə

@@ -28800,7 +28800,7 @@ en
 ɛŋ
 ɛŋs
 endə
-obn
+awn
 ɛɲə
 ɛɲə
 a
@@ -65164,7 +65164,7 @@ aðəs
 at
 ats
 us
-ot
+ut
 atʃə
 ɛm
 ɛm
@@ -84672,7 +84672,7 @@ o
 o
 ons
 oʎs
-ot
+ut
 ɔlu
 o
 ɔmətɾə
@@ -89687,7 +89687,7 @@ iðəs
 idʒə
 ɔr
 idʒəs
-obn
+awn
 o
 ons
 i
@@ -113014,7 +113014,7 @@ eziˌɛɾəs
 ali
 ɔt
 alət
-obn
+awn
 itə
 e
 artɾəs
@@ -113079,7 +113079,7 @@ an
 e
 ɔtə
 uri
-obn
+awn
 ɛti
 iə
 onə
@@ -139162,12 +139162,12 @@ al
 at
 ats
 als
-uk
+ɔk
 uki
 ukis
-obn
-ɔl
-upə
+awn
+ul
+upər
 eɾə
 eɾə
 a
@@ -222448,7 +222448,7 @@ iβuks
 ajl
 ajls
 ɔwrnə
-ot
+ut
 onnə
 inə
 ai
@@ -348217,7 +348217,7 @@ ozus
 ɛts
 ansə
 iwm
-obn
+awn
 ɛɣə
 ɛɣə
 ɛɣə
@@ -358647,7 +358647,7 @@ aməs
 o
 ɔrk
 ɔdʒ
-obn
+awn
 a
 a
 ɔrʒiə
@@ -373655,7 +373655,7 @@ istik
 istikə
 istiks
 istikəs
-aliwwt
+ut
 ɔlmz
 ɔlmi
 ɔlmik
@@ -398299,7 +398299,7 @@ indlə
 ɔpi
 iŋ
 on
-obn
+awn
 azə
 irə
 oβə
@@ -554422,7 +554422,7 @@ ei
 aŋ
 ɛnzən
 ɔk
-ot
+ut
 an
 eβə
 atsu
@@ -618910,7 +618910,7 @@ onnə
 iɾə
 itə
 itə
-obn
+awn
 a
 iə
 uβə

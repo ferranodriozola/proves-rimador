@@ -177,7 +177,7 @@ freds € fred € AQ0MP0 € fɾˈɛts
 freds € fred € NCMP000 € fɾˈɛts
 freelance € freelance € NCCN000 € fɾəəlˈansə
 freemium € freemium € AQ0CN0 € fɾəəmˈiwm
-Freetown € Freetown € NPCSG00 € fɾəətˈobn
+Freetown € Freetown € NPCSG00 € fɾəətˈawn
 frega € frega € NCFS000 € fɾˈɛɣə
 frega € fregar € VMIP3S00 € fɾˈɛɣə
 frega € fregar € VMM02S00 € fɾˈɛɣə

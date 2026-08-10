@@ -211,7 +211,7 @@ allén € allèn € ZRG € əʎˈen
 allenc € allenc € NCMS000 € əʎˈɛŋ
 allencs € allenc € NCMP000 € əʎˈɛŋs
 Allende € Allende € NPCNSP0 € əʎˈendə
-Allentown € Allentown € NPCSG00 € əʎəntˈobn
+Allentown € Allentown € NPCSG00 € əʎəntˈawn
 allenya € allenyar € VMIP3S00 € əʎˈɛɲə
 allenya € allenyar € VMM02S00 € əʎˈɛɲə
 allenyà € allenyar € VMIS3S00 € əʎəɲˈa

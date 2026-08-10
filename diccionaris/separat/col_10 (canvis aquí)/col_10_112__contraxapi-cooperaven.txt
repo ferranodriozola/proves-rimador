@@ -1192,7 +1192,7 @@ cooficials € cooficial € AQ0CP0 € kuufisiˈals
 Cook € Cook € NPCNG00 € kˈɔk
 cookie € cookie € NCFS000 € kˈuki
 cookies € cookie € NCFP000 € kˈukis
-Cookstown € Cookstown € NPCSG00 € kˈɔkstown
+Cookstown € Cookstown € NPCSG00 € kˈɔkstˈawn
 cool € cool € AQ0CN0 € kˈul
 Cooper € Cooper € NPCNSP0 € kˈupər
 coopera € cooperar € VMIP3S00 € kuupˈeɾə
