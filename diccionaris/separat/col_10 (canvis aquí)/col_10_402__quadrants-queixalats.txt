@@ -1110,8 +1110,8 @@ quatretondetina € quatretondetí € AQ0FS0 € kwətɾətundətˈinə
 quatretondí € quatretondí € AQ0MS0 € kwətɾətundˈi
 quatretondina € quatretondí € AQ0FS0 € kwətɾətundˈinə
 qubba € qubba € NCFS000 € kˈubbə
-que € que € ZCC € kˈə
-que € que € PR0CN000 € kˈə
+que € que € ZCC € kˈa
+que € que € PR0CN000 € kˈa
 què € què € PR0CN000 € kˈɛ
 Quebec € Quebec € NPMSG00 € kəβˈɛk
 quebequès € quebequès € AQ0MS0 € kəβəkˈɛs

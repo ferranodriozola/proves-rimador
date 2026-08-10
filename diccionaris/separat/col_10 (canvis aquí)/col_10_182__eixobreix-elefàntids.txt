@@ -558,8 +558,8 @@ ejector € ejector € NCMS000 € əʒəktˈo
 ejectors € ejector € NCMP000 € əʒəktˈos
 ekanita € ekanita € NCFS000 € əkənˈitə
 Ekaterinburg € Ekaterinburg € NPCSG00 € əkətəɾimbˈurk
-el € el € DA0MS0 € ˈəl
-el € ell € PP3MSA00 € ˈəl
+el € el € DA0MS0 € ˈal
+el € ell € PP3MSA00 € ˈal
 ela € ela € ZI € ˈelə
 ela € ela € NCFS000 € ˈelə
 elabora € elaborar € VMIP3S00 € ələβˈoɾə

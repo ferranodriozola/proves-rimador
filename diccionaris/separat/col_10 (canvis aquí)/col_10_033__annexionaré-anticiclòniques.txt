@@ -636,8 +636,8 @@ anquilòtic € anquilòtic € AQ0MS0 € əŋkilˈɔtik
 anquilòtica € anquilòtic € AQ0FS0 € əŋkilˈɔtikə
 anquilòtics € anquilòtic € AQ0MP0 € əŋkilˈɔtiks
 anquilòtiques € anquilòtic € AQ0FP0 € əŋkilˈɔtikəs
-Ans € Ans € NPCSG00 € ˈəns
-ans € ans € ZCC € ˈəns
+Ans € Ans € NPCSG00 € ˈans
+ans € ans € ZCC € ˈans
 Ansa € Ansa € NPCNSP0 € ˈansə
 ansa € ansa € NCFS000 € ˈansə
 ansa € ansar € VMIP3S00 € ˈansə

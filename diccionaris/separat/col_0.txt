@@ -542746,7 +542746,6 @@ Rzeszów
 S'Agaró
 sa
 sa
-sa
 Saale
 Saar
 Saarbrücken
@@ -607696,7 +607695,6 @@ vertisòls
 vèrtola
 vèrtoles
 Verviers
-ves
 ves
 ves
 ves

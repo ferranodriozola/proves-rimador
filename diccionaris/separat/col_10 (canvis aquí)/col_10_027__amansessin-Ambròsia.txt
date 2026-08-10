@@ -976,7 +976,7 @@ amazònics € amazònic € AQ0MP0 € əməzˈɔniks
 amazòniques € amazònic € AQ0FP0 € əməzˈɔnikəs
 amazonita € amazonita € NCFS000 € əməzunˈitə
 amazonites € amazonita € NCFP000 € əməzunˈitəs
-amb € amb € ZSPS00 € ˈəm
+amb € amb € ZSPS00 € ˈam
 ambages € ambages € NCMP000 € əmbˈaʒəs
 ambaixada € ambaixada € NCFS000 € əmbəʃˈaðə
 ambaixades € ambaixada € NCFP000 € əmbəʃˈaðəs

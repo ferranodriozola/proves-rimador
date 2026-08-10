@@ -1148,7 +1148,7 @@ dejunis € dejuni € NCMP000 € dəʒˈunis
 dejuno € dejunar € VMIP1S0C € dəʒˈunu
 dejuns € dejú € AQ0MP0 € dəʒˈuns
 dejús € dejús € ZRG € dəʒˈus
-del € de+el € ZSP+DA € dˈəl
+del € de+el € ZSP+DA € dˈal
 delació € delació € NCFS000 € dələsiˈo
 delacions € delació € NCFP000 € dələsiˈons
 Delacroix € Delacroix € NPCNSP0 € dələkɾˈɔʃ

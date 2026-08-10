@@ -910,7 +910,7 @@ pejoratius € pejoratiu € AQ0MP0 € pəʒuɾətˈiws
 pejorativa € pejoratiu € AQ0FS0 € pəʒuɾətˈiβə
 pejorativament € pejorativament € ZRG € pəʒuɾətˈiβəmˈen
 pejoratives € pejoratiu € AQ0FP0 € pəʒuɾətˈiβəs
-pel € per+el € ZSP+DA € pˈəl
+pel € per+el € ZSP+DA € pˈal
 pèl € pèl € NCMS000 € pˈɛl
 pèl-blanc € pèl-blanc € AQ0MS0 € pˈɛlβlˈaŋ
 pèl-blanca € pèl-blanc € AQ0FS0 € pˈɛlβlˈaŋkə

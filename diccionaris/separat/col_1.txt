@@ -542744,7 +542744,6 @@ Rybinsk
 Rybnik
 Rzeszów
 S'Agaró
-es
 sa
 son
 Saale
@@ -607700,7 +607699,6 @@ anar
 ve
 ves
 veure
-anar
 vesar
 vesar
 vesar

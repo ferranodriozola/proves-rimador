@@ -443,7 +443,7 @@ esvoris € esvorar € VMSP2S0Y € əzβˈɔɾis
 esvoro € esvorar € VMIP1S0C € əzβˈɔɾu
 Eswatini € Eswatini € NPCSG00 € əsbətˈini
 Esztergom € Esztergom € NPCSG00 € əzztərɣˈɔm
-et € tu € P020S000 € ˈət
+et € tu € P020S000 € ˈat
 et € et € NCMS000 € ˈɛt
 eta € eta € NCFS000 € ˈɛtə
 età € età € NCMS000 € ətˈa

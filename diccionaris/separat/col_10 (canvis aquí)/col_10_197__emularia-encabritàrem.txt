@@ -111,9 +111,9 @@ emuntòries € emuntori € AQ0FP0 € əmuntˈɔɾiəs
 emuntoris € emuntori € AQ0MP0 € əmuntˈɔɾis
 emuntoris € emuntori € NCMP000 € əmuntˈɔɾis
 emús € emú € NCMP000 € əmˈus
-en € en € DA0MS0 € ˈən
-en € en € PP3CN000 € ˈən
-en € en € ZSPS00 € ˈən
+en € en € DA0MS0 € ˈan
+en € en € PP3CN000 € ˈan
+en € en € ZSPS00 € ˈan
 ena € ena € NCFS000 € ˈenə
 enagos € enagos € NCMP000 € ənˈaɣus
 enagreix € enagrir € VMIP3S00 € ənəɣɾˈɛʃ
