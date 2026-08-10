@@ -22120,16 +22120,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "Hollywood",
-    "infinitiu": "Hollywood",
-    "codi": "NPCSG00",
-    "rimacons": "aliwwt",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "Viq",
-    "diec": "NO"
-  },
-  {
     "paraula": "Holmes",
     "infinitiu": "Holmes",
     "codi": "NPCNSP0",
@@ -40476,36 +40466,6 @@
     "rimacons": "unnəs",
     "sil": "2",
     "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "súper",
-    "infinitiu": "súper",
-    "codi": "AQ0CN0",
-    "rimacons": "upər",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "súper",
-    "infinitiu": "súper",
-    "codi": "ZRG",
-    "rimacons": "upər",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "súper",
-    "infinitiu": "súper",
-    "codi": "NCMS000",
-    "rimacons": "upər",
-    "sil": "2",
-    "vicc": "Vicc",
     "viq": "NO",
     "diec": "Diec"
   },
