@@ -1186,7 +1186,7 @@ espremem € esprémer € VMM01P00 € əspɾəmˈɛm
 espremem € esprémer € VMSP1P00 € əspɾəmˈɛm
 espremen € esprémer € VMIP3P00 € əspɾˈɛmən
 esprement € esprémer € VMG00000 € ˈɛspɾəmˈen
-esprémer € esprémer € VMN00000 € əspɾˈemər
+esprémer € esprémer € VMN00000 € əspɾˈemə
 espremerà € esprémer € VMIF3S00 € əspɾəməɾˈa
 espremeran € esprémer € VMIF3P00 € əspɾəməɾˈan
 espremeràs € esprémer € VMIF2S00 € əspɾəməɾˈas

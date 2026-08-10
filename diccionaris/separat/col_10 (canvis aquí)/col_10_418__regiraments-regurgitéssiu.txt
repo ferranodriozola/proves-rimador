@@ -1090,7 +1090,7 @@ reguladors € regulador € NCMP000 € rəɣuləðˈos
 regulant € regular € VMG00000 € rəɣulˈan
 regular € regular € AQ0CS0 € rəɣulˈar
 regular € regular € NCMS000 € rəɣulˈar
-regular € regular € VMN00000 € rəɣulˈar
+regular € regular € VMN00000 € rəɣulˈa
 regularà € regular € VMIF3S00 € rəɣuləɾˈa
 regularan € regular € VMIF3P00 € rəɣuləɾˈan
 regularàs € regular € VMIF2S00 € rəɣuləɾˈas

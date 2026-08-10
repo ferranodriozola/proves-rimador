@@ -762,7 +762,7 @@ trementinaire € trementinaire € NCFS000 € tɾəməntinˈajɾə
 trementinaires € trementinaire € NCFP000 € tɾəməntinˈajɾəs
 trementines € trementina € NCFP000 € tɾəməntˈinəs
 trements € trement € AQ0CP0 € tɾəmˈens
-trémer € trémer € VMN00000 € tɾˈemər
+trémer € trémer € VMN00000 € tɾˈemə
 tremerà € trémer € VMIF3S00 € tɾəməɾˈa
 tremeran € trémer € VMIF3P00 € tɾəməɾˈan
 tremeràs € trémer € VMIF2S00 € tɾəməɾˈas

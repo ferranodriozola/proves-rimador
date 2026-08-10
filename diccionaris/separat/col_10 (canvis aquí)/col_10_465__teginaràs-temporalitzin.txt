@@ -856,7 +856,7 @@ tèmenos € tèmenos € NCMN000 € tˈɛmənus
 tement € tement € AQ0CS0 € təmˈen
 tement € témer € VMG00000 € təmˈen
 tements € tement € AQ0CP0 € təmˈens
-témer € témer € VMN00000 € tˈemər
+témer € témer € VMN00000 € tˈemə
 temerà € témer € VMIF3S00 € təməɾˈa
 temeran € témer € VMIF3P00 € təməɾˈan
 temerari € temerari € AQ0MS0 € təməɾˈaɾi

@@ -569,7 +569,7 @@ jugulades € jugular € VMP00PF0 € ʒuɣulˈaðəs
 jugulant € jugular € VMG00000 € ʒuɣulˈan
 jugular € jugular € AQ0CS0 € ʒuɣulˈar
 jugular € jugular € NCFS000 € ʒuɣulˈar
-jugular € jugular € VMN00000 € ʒuɣulˈar
+jugular € jugular € VMN00000 € ʒuɣulˈa
 jugularà € jugular € VMIF3S00 € ʒuɣuləɾˈa
 jugularan € jugular € VMIF3P00 € ʒuɣuləɾˈan
 jugularàs € jugular € VMIF2S00 € ʒuɣuləɾˈas

@@ -115,7 +115,7 @@ militants € militant € AQ0CP0 € militˈans
 militants € militant € NCCP000 € militˈans
 militar € militar € AQ0CS0 € militˈar
 militar € militar € NCCS000 € militˈar
-militar € militar € VMN00000 € militˈar
+militar € militar € VMN00000 € militˈa
 militarà € militar € VMIF3S00 € militəɾˈa
 militaran € militar € VMIF3P00 € militəɾˈan
 militaràs € militar € VMIF2S00 € militəɾˈas

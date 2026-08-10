@@ -382,7 +382,7 @@ titulades € titular € VMP00PF0 € titulˈaðəs
 titulant € titular € VMG00000 € titulˈan
 titular € titular € AQ0CS0 € titulˈar
 titular € titular € NCCS000 € titulˈar
-titular € titular € VMN00000 € titulˈar
+titular € titular € VMN00000 € titulˈa
 titularà € titular € VMIF3S00 € tituləɾˈa
 titularan € titular € VMIF3P00 € tituləɾˈan
 titularàs € titular € VMIF2S00 € tituləɾˈas

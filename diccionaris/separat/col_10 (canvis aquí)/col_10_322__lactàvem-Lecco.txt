@@ -360,7 +360,7 @@ laminadors € laminador € AQ0MP0 € ləminəðˈos
 laminadors € laminador € NCMP000 € ləminəðˈos
 laminant € laminar € VMG00000 € ləminˈan
 laminar € laminar € AQ0CS0 € ləminˈar
-laminar € laminar € VMN00000 € ləminˈar
+laminar € laminar € VMN00000 € ləminˈa
 laminarà € laminar € VMIF3S00 € ləminəɾˈa
 laminaran € laminar € VMIF3P00 € ləminəɾˈan
 laminaràs € laminar € VMIF2S00 € ləminəɾˈas

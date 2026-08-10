@@ -753,7 +753,7 @@ articuladors € articulador € AQ0MP0 € ərtikuləðˈos
 articuladors € articulador € NCMP000 € ərtikuləðˈos
 articulant € articular € VMG00000 € ərtikulˈan
 articular € articular € AQ0CS0 € ərtikulˈar
-articular € articular € VMN00000 € ərtikulˈar
+articular € articular € VMN00000 € ərtikulˈa
 articularà € articular € VMIF3S00 € ərtikuləɾˈa
 articularan € articular € VMIF3P00 € ərtikuləɾˈan
 articularàs € articular € VMIF2S00 € ərtikuləɾˈas

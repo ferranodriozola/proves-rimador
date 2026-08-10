@@ -607,7 +607,7 @@ alaquaseres € alaquaser € NCFP000 € ələkwəzˈeɾəs
 alaquasers € alaquaser € AQ0MP0 € ələkwəzˈes
 alaquasers € alaquaser € NCMP000 € ələkwəzˈes
 alar € alar € AQ0CS0 € əlˈar
-alar € alar € VMN00000 € əlˈar
+alar € alar € VMN00000 € əlˈa
 alarà € alar € VMIF3S00 € ələɾˈa
 alaran € alar € VMIF3P00 € ələɾˈan
 alaràs € alar € VMIF2S00 € ələɾˈas

@@ -25467,7 +25467,7 @@ ndɾəŋɡˈɛtə
 ələkwəzˈes
 ələkwəzˈes
 əlˈar
-əlˈar
+əlˈa
 ələɾˈa
 ələɾˈan
 ələɾˈas
@@ -56688,7 +56688,7 @@ ndɾəŋɡˈɛtə
 ərtikuləðˈos
 ərtikulˈan
 ərtikulˈar
-ərtikulˈar
+ərtikulˈa
 ərtikuləɾˈa
 ərtikuləɾˈan
 ərtikuləɾˈas
@@ -75191,7 +75191,7 @@ bəzənˈitə
 bəzənˈitəs
 bəzˈan
 bəzˈar
-bəzˈar
+bəzˈa
 bəzəɾˈa
 bəzəɾˈan
 bəzəɾˈas
@@ -84052,7 +84052,7 @@ bujˈaðəs
 bujˈan
 bujˈan
 bujˈar
-bujˈar
+bujˈa
 bujəɾˈa
 bujəɾˈan
 bujəɾˈas
@@ -296416,7 +296416,7 @@ eskoβˈaɾ
 əskulˈapis
 əskulˈar
 əskulˈar
-əskulˈar
+əskulˈa
 əskuləɾˈa
 əskuləɾˈan
 əskuləɾˈas
@@ -313179,7 +313179,7 @@ eskoβˈaɾ
 əspɾəmˈɛm
 əspɾˈɛmən
 ˈɛspɾəmˈen
-əspɾˈemər
+əspɾˈemə
 əspɾəməɾˈa
 əspɾəməɾˈan
 əspɾəməɾˈas
@@ -318693,7 +318693,7 @@ eskoβˈaɾ
 əstilˈaðəs
 əstilˈan
 əstilˈar
-əstilˈar
+əstilˈa
 əstiləɾˈa
 əstiləɾˈan
 əstiləɾˈas
@@ -350623,7 +350623,7 @@ fˈumən
 fˈumən
 fˈumˈen
 fumˈe
-fˈumər
+fˈumə
 fumˈeɾə
 fumˈeɾə
 fuməɾˈa
@@ -389890,7 +389890,7 @@ intərkəlˈaðə
 intərkəlˈaðəs
 intərkəlˈan
 intərkəlˈar
-intərkəlˈar
+intərkəlˈa
 intərkələɾˈa
 intərkələɾˈan
 intərkələɾˈas
@@ -397086,7 +397086,7 @@ izuˈart
 ʒuɣulˈan
 ʒuɣulˈar
 ʒuɣulˈar
-ʒuɣulˈar
+ʒuɣulˈa
 ʒuɣuləɾˈa
 ʒuɣuləɾˈan
 ʒuɣuləɾˈas
@@ -399363,7 +399363,7 @@ ləminəðˈos
 ləminəðˈos
 ləminˈan
 ləminˈar
-ləminˈar
+ləminˈa
 ləminəɾˈa
 ləminəɾˈan
 ləminəɾˈas
@@ -428950,7 +428950,7 @@ militˈans
 militˈans
 militˈar
 militˈar
-militˈar
+militˈa
 militəɾˈa
 militəɾˈan
 militəɾˈas
@@ -432227,7 +432227,7 @@ muðuləðˈos
 muðulˈan
 muðulˈan
 muðulˈar
-muðulˈar
+muðulˈa
 muðuləɾˈa
 muðuləɾˈan
 muðuləɾˈas
@@ -432519,7 +432519,7 @@ mulˈan
 mulˈar
 mulˈar
 mulˈar
-mulˈar
+mulˈa
 muləɾˈa
 muləɾˈan
 muləɾˈas
@@ -444947,7 +444947,7 @@ numˈɛnin
 numˈɛnis
 numˈɛnu
 nˈomˈen
-nˈɔmər
+nˈɔmə
 numəɾˈa
 numəɾˈan
 numəɾˈas
@@ -456058,7 +456058,7 @@ uβulˈaðə
 uβulˈaðəs
 uβulˈan
 uβulˈar
-uβulˈar
+uβulˈa
 uβuləɾˈa
 uβuləɾˈan
 uβuləɾˈas
@@ -477805,7 +477805,7 @@ pləntəmˈens
 pləntˈan
 pləntˈar
 pləntˈar
-pləntˈar
+pləntˈa
 pləntəɾˈa
 pləntəɾˈan
 pləntəɾˈas
@@ -487960,7 +487960,7 @@ pɾˈɛmən
 pɾəmənstɾuˈal
 pɾəmənstɾuˈals
 pɾˈemˈen
-pɾˈemər
+pɾˈemə
 pɾəməɾˈa
 pɾəməɾˈan
 pɾəməɾˈas
@@ -519421,7 +519421,7 @@ rəɣuləðˈos
 rəɣulˈan
 rəɣulˈar
 rəɣulˈar
-rəɣulˈar
+rəɣulˈa
 rəɣuləɾˈa
 rəɣuləɾˈan
 rəɣuləɾˈas
@@ -561571,7 +561571,7 @@ suləpəmˈens
 sulˈapəs
 sulˈar
 sulˈar
-sulˈar
+sulˈa
 suləɾˈa
 suləɾˈan
 suləɾˈas
@@ -568565,7 +568565,7 @@ suptituləsiˈo
 suptitulˈaðə
 suptitulˈaðəs
 suptitulˈan
-suptitulˈar
+suptitulˈa
 suptituləɾˈa
 suptituləɾˈan
 suptituləɾˈas
@@ -572895,7 +572895,7 @@ təlˈamikəs
 təlˈan
 təlˈapi
 təlˈar
-təlˈar
+təlˈa
 tələɾˈa
 tələɾˈan
 tələɾˈas
@@ -577608,7 +577608,7 @@ tˈɛmənus
 təmˈen
 təmˈen
 təmˈens
-tˈemər
+tˈemə
 təməɾˈa
 təməɾˈan
 təməɾˈaɾi
@@ -583349,7 +583349,7 @@ titulˈaðəs
 titulˈan
 titulˈar
 titulˈar
-titulˈar
+titulˈa
 tituləɾˈa
 tituləɾˈan
 tituləɾˈas
@@ -592430,7 +592430,7 @@ tɾəməntinˈajɾə
 tɾəməntinˈajɾəs
 tɾəməntˈinəs
 tɾəmˈens
-tɾˈemər
+tɾˈemə
 tɾəməɾˈa
 tɾəməɾˈan
 tɾəməɾˈas
@@ -593831,7 +593831,7 @@ tɾiəŋɡulˈaðə
 tɾiəŋɡulˈaðəs
 tɾiəŋɡulˈan
 tɾiəŋɡulˈar
-tɾiəŋɡulˈar
+tɾiəŋɡulˈa
 tɾiəŋɡuləɾˈa
 tɾiəŋɡuləɾˈan
 tɾiəŋɡuləɾˈas
@@ -598470,7 +598470,7 @@ tutəlˈaðə
 tutəlˈaðəs
 tutəlˈan
 tutəlˈar
-tutəlˈar
+tutəlˈa
 tutələɾˈa
 tutələɾˈan
 tutələɾˈas
@@ -604776,7 +604776,7 @@ bəikulˈaðə
 bəikulˈaðəs
 bəikulˈan
 bəikulˈar
-bəikulˈar
+bəikulˈa
 bəikuləɾˈa
 bəikuləɾˈan
 bəikuləɾˈas

@@ -678,7 +678,7 @@ vehiculada € vehicular € VMP00SF0 € bəikulˈaðə
 vehiculades € vehicular € VMP00PF0 € bəikulˈaðəs
 vehiculant € vehicular € VMG00000 € bəikulˈan
 vehicular € vehicular € AQ0CS0 € bəikulˈar
-vehicular € vehicular € VMN00000 € bəikulˈar
+vehicular € vehicular € VMN00000 € bəikulˈa
 vehicularà € vehicular € VMIF3S00 € bəikuləɾˈa
 vehicularan € vehicular € VMIF3P00 € bəikuləɾˈan
 vehicularàs € vehicular € VMIF2S00 € bəikuləɾˈas

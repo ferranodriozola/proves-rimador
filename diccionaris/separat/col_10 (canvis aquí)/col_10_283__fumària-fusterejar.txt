@@ -97,7 +97,7 @@ fumen € fumar € VMIP3P00 € fˈumən
 fumen € fúmer € VMIP3P00 € fˈumən
 fument € fúmer € VMG00000 € fˈumˈen
 fumer € fumer € AQ0MS0 € fumˈe
-fúmer € fúmer € VMN00000 € fˈumər
+fúmer € fúmer € VMN00000 € fˈumə
 fumera € fumer € AQ0FS0 € fumˈeɾə
 fumera € fumera € NCFS000 € fumˈeɾə
 fumerà € fúmer € VMIF3S00 € fuməɾˈa

@@ -582,7 +582,7 @@ escolapis € escolapi € AQ0MP0 € əskulˈapis
 escolapis € escolapi € NCMP000 € əskulˈapis
 escolar € escolar € AQ0CS0 € əskulˈar
 escolar € escolar € NCCS000 € əskulˈar
-escolar € escolar € VMN00000 € əskulˈar
+escolar € escolar € VMN00000 € əskulˈa
 escolarà € escolar € VMIF3S00 € əskuləɾˈa
 escolaran € escolar € VMIF3P00 € əskuləɾˈan
 escolaràs € escolar € VMIF2S00 € əskuləɾˈas

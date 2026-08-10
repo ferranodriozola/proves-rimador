@@ -1196,7 +1196,7 @@ nomenin € nomenar € VMSP3P0Y € numˈɛnin
 nomenis € nomenar € VMSP2S0Y € numˈɛnis
 nomeno € nomenar € VMIP1S0C € numˈɛnu
 noment € nòmer € VMG00000 € nˈomˈen
-nòmer € nòmer € VMN00000 € nˈɔmər
+nòmer € nòmer € VMN00000 € nˈɔmə
 nomerà € nòmer € VMIF3S00 € numəɾˈa
 nomeran € nòmer € VMIF3P00 € numəɾˈan
 nomeràs € nòmer € VMIF2S00 € numəɾˈas

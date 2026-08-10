@@ -920,7 +920,7 @@ triangulada € triangular € VMP00SF0 € tɾiəŋɡulˈaðə
 triangulades € triangular € VMP00PF0 € tɾiəŋɡulˈaðəs
 triangulant € triangular € VMG00000 € tɾiəŋɡulˈan
 triangular € triangular € AQ0CS0 € tɾiəŋɡulˈar
-triangular € triangular € VMN00000 € tɾiəŋɡulˈar
+triangular € triangular € VMN00000 € tɾiəŋɡulˈa
 triangularà € triangular € VMIF3S00 € tɾiəŋɡuləɾˈa
 triangularan € triangular € VMIF3P00 € tɾiəŋɡuləɾˈan
 triangularàs € triangular € VMIF2S00 € tɾiəŋɡuləɾˈas

@@ -514,7 +514,7 @@ subtitulació € subtitulació € NCFS000 € suptituləsiˈo
 subtitulada € subtitular € VMP00SF0 € suptitulˈaðə
 subtitulades € subtitular € VMP00PF0 € suptitulˈaðəs
 subtitulant € subtitular € VMG00000 € suptitulˈan
-subtitular € subtitular € VMN00000 € suptitulˈar
+subtitular € subtitular € VMN00000 € suptitulˈa
 subtitularà € subtitular € VMIF3S00 € suptituləɾˈa
 subtitularan € subtitular € VMIF3P00 € suptituləɾˈan
 subtitularàs € subtitular € VMIF2S00 € suptituləɾˈas

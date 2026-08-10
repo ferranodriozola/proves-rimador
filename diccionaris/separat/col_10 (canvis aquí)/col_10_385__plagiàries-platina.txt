@@ -493,7 +493,7 @@ plantaments € plantament € NCMP000 € pləntəmˈens
 plantant € plantar € VMG00000 € pləntˈan
 plantar € plantar € AQ0CS0 € pləntˈar
 plantar € plantar € NCMS000 € pləntˈar
-plantar € plantar € VMN00000 € pləntˈar
+plantar € plantar € VMN00000 € pləntˈa
 plantarà € plantar € VMIF3S00 € pləntəɾˈa
 plantaran € plantar € VMIF3P00 € pləntəɾˈan
 plantaràs € plantar € VMIF2S00 € pləntəɾˈas

@@ -587,7 +587,7 @@ tutelada € tutelar € VMP00SF0 € tutəlˈaðə
 tutelades € tutelar € VMP00PF0 € tutəlˈaðəs
 tutelant € tutelar € VMG00000 € tutəlˈan
 tutelar € tutelar € AQ0CS0 € tutəlˈar
-tutelar € tutelar € VMN00000 € tutəlˈar
+tutelar € tutelar € VMN00000 € tutəlˈa
 tutelarà € tutelar € VMIF3S00 € tutələɾˈa
 tutelaran € tutelar € VMIF3P00 € tutələɾˈan
 tutelaràs € tutelar € VMIF2S00 € tutələɾˈas

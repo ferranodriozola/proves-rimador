@@ -485,7 +485,7 @@ estilada € estilar € VMP00SF0 € əstilˈaðə
 estilades € estilar € VMP00PF0 € əstilˈaðəs
 estilant € estilar € VMG00000 € əstilˈan
 estilar € estilar € AQ0CS0 € əstilˈar
-estilar € estilar € VMN00000 € əstilˈar
+estilar € estilar € VMN00000 € əstilˈa
 estilarà € estilar € VMIF3S00 € əstiləɾˈa
 estilaran € estilar € VMIF3P00 € əstiləɾˈan
 estilaràs € estilar € VMIF2S00 € əstiləɾˈas

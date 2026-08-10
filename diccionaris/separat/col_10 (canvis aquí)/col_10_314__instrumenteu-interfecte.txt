@@ -831,7 +831,7 @@ intercalada € intercalar € VMP00SF0 € intərkəlˈaðə
 intercalades € intercalar € VMP00PF0 € intərkəlˈaðəs
 intercalant € intercalar € VMG00000 € intərkəlˈan
 intercalar € intercalar € AQ0CS0 € intərkəlˈar
-intercalar € intercalar € VMN00000 € intərkəlˈar
+intercalar € intercalar € VMN00000 € intərkəlˈa
 intercalarà € intercalar € VMIF3S00 € intərkələɾˈa
 intercalaran € intercalar € VMIF3P00 € intərkələɾˈan
 intercalaràs € intercalar € VMIF2S00 € intərkələɾˈas

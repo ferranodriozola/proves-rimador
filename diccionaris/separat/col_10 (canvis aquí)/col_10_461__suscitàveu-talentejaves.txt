@@ -1115,7 +1115,7 @@ talàmiques € talàmic € AQ0FP0 € təlˈamikəs
 talant € talar € VMG00000 € təlˈan
 Talapi € Talapi € NPCSG00 € təlˈapi
 talar € talar € AQ0CS0 € təlˈar
-talar € talar € VMN00000 € təlˈar
+talar € talar € VMN00000 € təlˈa
 talarà € talar € VMIF3S00 € tələɾˈa
 talaran € talar € VMIF3P00 € tələɾˈan
 talaràs € talar € VMIF2S00 € tələɾˈas

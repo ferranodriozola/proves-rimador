@@ -978,7 +978,7 @@ solapaments € solapament € NCMP000 € suləpəmˈens
 solapes € solapa € NCFP000 € sulˈapəs
 solar € solar € AQ0CS0 € sulˈar
 solar € solar € NCMS000 € sulˈar
-solar € solar € VMN00000 € sulˈar
+solar € solar € VMN00000 € sulˈa
 solarà € solar € VMIF3S00 € suləɾˈa
 solaran € solar € VMIF3P00 € suləɾˈan
 solaràs € solar € VMIF2S00 € suləɾˈas

@@ -906,7 +906,7 @@ moduladors € modulador € NCMP000 € muðuləðˈos
 modulant € modulant € AQ0CS0 € muðulˈan
 modulant € modular € VMG00000 € muðulˈan
 modular € modular € AQ0CS0 € muðulˈar
-modular € modular € VMN00000 € muðulˈar
+modular € modular € VMN00000 € muðulˈa
 modularà € modular € VMIF3S00 € muðuləɾˈa
 modularan € modular € VMIF3P00 € muðuləɾˈan
 modularàs € modular € VMIF2S00 € muðuləɾˈas
@@ -1198,7 +1198,7 @@ molant € molar € VMG00000 € mulˈan
 Molar € Molar € NPCNSP0 € mulˈar
 molar € molar € AQ0CS0 € mulˈar
 molar € molar € NCFS000 € mulˈar
-molar € molar € VMN00000 € mulˈar
+molar € molar € VMN00000 € mulˈa
 molarà € molar € VMIF3S00 € muləɾˈa
 molaran € molar € VMIF3P00 € muləɾˈan
 molaràs € molar € VMIF2S00 € muləɾˈas

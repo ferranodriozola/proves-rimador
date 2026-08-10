@@ -611,7 +611,7 @@ basanita € basanita € NCFS000 € bəzənˈitə
 basanites € basanita € NCFP000 € bəzənˈitəs
 basant € basar € VMG00000 € bəzˈan
 basar € basar € NCMS000 € bəzˈar
-basar € basar € VMN00000 € bəzˈar
+basar € basar € VMN00000 € bəzˈa
 basarà € basar € VMIF3S00 € bəzəɾˈa
 basaran € basar € VMIF3P00 € bəzəɾˈan
 basaràs € basar € VMIF2S00 € bəzəɾˈas

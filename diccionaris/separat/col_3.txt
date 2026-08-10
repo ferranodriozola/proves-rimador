@@ -25467,7 +25467,7 @@ eɾəs
 es
 es
 ar
-ar
+a
 a
 an
 as
@@ -56688,7 +56688,7 @@ os
 os
 an
 ar
-ar
+a
 a
 an
 as
@@ -75191,7 +75191,7 @@ itə
 itəs
 an
 ar
-ar
+a
 a
 an
 as
@@ -84052,7 +84052,7 @@ aðəs
 an
 an
 ar
-ar
+a
 a
 an
 as
@@ -296416,7 +296416,7 @@ apis
 apis
 ar
 ar
-ar
+a
 a
 an
 as
@@ -313179,7 +313179,7 @@ os
 ɛm
 ɛmən
 en
-emər
+emə
 a
 an
 as
@@ -318693,7 +318693,7 @@ aðə
 aðəs
 an
 ar
-ar
+a
 a
 an
 as
@@ -350623,7 +350623,7 @@ umən
 umən
 en
 e
-umər
+umə
 eɾə
 eɾə
 a
@@ -389890,7 +389890,7 @@ aðə
 aðəs
 an
 ar
-ar
+a
 a
 an
 as
@@ -397086,7 +397086,7 @@ aðəs
 an
 ar
 ar
-ar
+a
 a
 an
 as
@@ -399363,7 +399363,7 @@ os
 os
 an
 ar
-ar
+a
 a
 an
 as
@@ -428950,7 +428950,7 @@ ans
 ans
 ar
 ar
-ar
+a
 a
 an
 as
@@ -432227,7 +432227,7 @@ os
 an
 an
 ar
-ar
+a
 a
 an
 as
@@ -432519,7 +432519,7 @@ an
 ar
 ar
 ar
-ar
+a
 a
 an
 as
@@ -444947,7 +444947,7 @@ i
 ɛnis
 ɛnu
 en
-ɔmər
+ɔmə
 a
 an
 as
@@ -456058,7 +456058,7 @@ aðə
 aðəs
 an
 ar
-ar
+a
 a
 an
 as
@@ -477805,7 +477805,7 @@ ens
 an
 ar
 ar
-ar
+a
 a
 an
 as
@@ -487960,7 +487960,7 @@ itu
 al
 als
 en
-emər
+emə
 a
 an
 as
@@ -519421,7 +519421,7 @@ os
 an
 ar
 ar
-ar
+a
 a
 an
 as
@@ -561571,7 +561571,7 @@ ens
 apəs
 ar
 ar
-ar
+a
 a
 an
 as
@@ -568565,7 +568565,7 @@ o
 aðə
 aðəs
 an
-ar
+a
 a
 an
 as
@@ -572895,7 +572895,7 @@ amikəs
 an
 api
 ar
-ar
+a
 a
 an
 as
@@ -577608,7 +577608,7 @@ emən
 en
 en
 ens
-emər
+emə
 a
 an
 aɾi
@@ -583349,7 +583349,7 @@ aðəs
 an
 ar
 ar
-ar
+a
 a
 an
 as
@@ -592430,7 +592430,7 @@ ajɾə
 ajɾəs
 inəs
 ens
-emər
+emə
 a
 an
 as
@@ -593831,7 +593831,7 @@ aðə
 aðəs
 an
 ar
-ar
+a
 a
 an
 as
@@ -598470,7 +598470,7 @@ aðə
 aðəs
 an
 ar
-ar
+a
 a
 an
 as
@@ -604776,7 +604776,7 @@ aðə
 aðəs
 an
 ar
-ar
+a
 a
 an
 as

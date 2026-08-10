@@ -1120,7 +1120,7 @@ ovulada € ovular € VMP00SF0 € uβulˈaðə
 ovulades € ovular € VMP00PF0 € uβulˈaðəs
 ovulant € ovular € VMG00000 € uβulˈan
 ovular € ovular € AQ0CS0 € uβulˈar
-ovular € ovular € VMN00000 € uβulˈar
+ovular € ovular € VMN00000 € uβulˈa
 ovularà € ovular € VMIF3S00 € uβuləɾˈa
 ovularan € ovular € VMIF3P00 € uβuləɾˈan
 ovularàs € ovular € VMIF2S00 € uβuləɾˈas

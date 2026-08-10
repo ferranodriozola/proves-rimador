@@ -771,7 +771,7 @@ boiades € boiar € VMP00PF0 € bujˈaðəs
 boiant € boiant € AQ0CS0 € bujˈan
 boiant € boiar € VMG00000 € bujˈan
 boiar € boiar € NCMS000 € bujˈar
-boiar € boiar € VMN00000 € bujˈar
+boiar € boiar € VMN00000 € bujˈa
 boiarà € boiar € VMIF3S00 € bujəɾˈa
 boiaran € boiar € VMIF3P00 € bujəɾˈan
 boiaràs € boiar € VMIF2S00 € bujəɾˈas
