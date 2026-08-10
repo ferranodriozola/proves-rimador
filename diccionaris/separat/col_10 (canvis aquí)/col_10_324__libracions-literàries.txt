@@ -4,7 +4,7 @@ librària € librari € AQ0FS0 € liβɾˈaɾiə
 libràries € librari € AQ0FP0 € liβɾˈaɾiəs
 libraris € librari € AQ0MP0 € liβɾˈaɾis
 LibreCAD € LibreCAD € NPCNO00 € lˈiβɾə sˌeˌaðˈe
-LibreOffice € LibreOffice € NPMSO00 € lˈiβɾə wfˈisə
+LibreOffice € LibreOffice € NPMSO00 € liβɾə ˈɔfis
 Libreville € Libreville € NPCSG00 € liβɾəβˈiʎə
 liburna € liburna € NCFS000 € liβˈurnə
 liburnes € liburna € NCFP000 € liβˈurnəs

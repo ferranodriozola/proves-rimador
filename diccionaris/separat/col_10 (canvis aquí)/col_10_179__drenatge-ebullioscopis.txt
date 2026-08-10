@@ -1194,7 +1194,7 @@ e-books € e-book € NCMP000 € ˈiβuks
 e-mail € e-mail € NCMS000 € ɛmˈajl
 e-mails € e-mail € NCMP000 € ɛmˈajls
 Eastbourne € Eastbourne € NPCSG00 € eəsdbˈɔwrnə
-Eastwood € Eastwood € NPCNSP0 € eəsdbuˈot
+Eastwood € Eastwood € NPCNSP0 € eəsdbˈut
 Eaubonne € Eaubonne € NPCSG00 € eəwβˈonnə
 ebastina € ebastina € NCFS000 € əβəstˈinə
 eBay € eBay € NPCNO00 € ˈɛ βˈai

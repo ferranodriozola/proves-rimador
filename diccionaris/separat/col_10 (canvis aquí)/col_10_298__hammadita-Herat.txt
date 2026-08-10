@@ -360,7 +360,7 @@ hawaianes € hawaià € AQ0FP0 € χəβəjˈanəs
 hawaianes € hawaià € NCFP000 € χəβəjˈanəs
 hawaians € hawaià € AQ0MP0 € χəβəjˈans
 hawaians € hawaià € NCMP000 € χəβəjˈans
-Hawaii € Hawaii € NPFPG00 € əβˈajj
+Hawaii € Hawaii € NPFPG00 € əwˈai
 Hawthorne € Hawthorne € NPCNSP0 € əptˈɔrnə
 Haydn € Haydn € NPCNSP0 € əˈidn
 haydnianes € haydnià € AQ0FP0 € əidniˈanəs

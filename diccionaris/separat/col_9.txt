@@ -65164,7 +65164,7 @@ ndɾəŋɡˈɛtə
 ətuɾunˈat
 ətuɾunˈats
 ətˈus
-ədbuˈot
+ədbˈut
 ˈatʃə
 ətʃˈɛm
 ətʃˈɛm
@@ -76976,7 +76976,7 @@ bəβˈozus
 bˈai
 bəjəmˈon
 bəjˈe
-b'ajərn
+bˈajərn
 bˈajəs
 bəjˈɛwks
 bəirˈɛwt
@@ -84672,7 +84672,7 @@ buʎˈo
 buʎˈo
 buʎˈons
 bˈoʎs
-buʎiβuˈot
+bɔʎiβˈut
 bˈɔlu
 bulˈo
 bulˈɔmətɾə
@@ -92946,12 +92946,12 @@ bulˈimiks
 bulˈimiəs
 bulˈimikəs
 bulˈimikəs
-bwl
-bwl
-bwl
-bwl
-bwl
-bwl
+bˈul
+bˈuʎ
+bˈuʎ
+bˈuʎ
+bˈuʎ
+bˈuʎ
 buʎəβˈɛsə
 buʎəβˈɛsəs
 buʎˈaŋɡə
@@ -93720,7 +93720,7 @@ buskˈaβəs
 buskˈaβəw
 bˈusku
 buzˈɛw
-bwʃ
+bˈuʃ
 buʃˈɛl
 buzˈinəs
 buzˈiɾis
@@ -139162,12 +139162,12 @@ kuufisiˈal
 kuufisiəlitˈat
 kuufisiəlitˈats
 kuufisiˈals
-kwk
+kˈɔk
 kˈuki
 kˈukis
-kuukstˈobn
-kuˈɔl
-kˈupə
+kˈɔkstown
+kˈul
+kˈupər
 kuupˈeɾə
 kuupˈeɾə
 kuupəɾˈa
@@ -222448,7 +222448,7 @@ dˈilən
 ɛmˈajl
 ɛmˈajls
 eəsdbˈɔwrnə
-eəsdbuˈot
+eəsdbˈut
 eəwβˈonnə
 əβəstˈinə
 ˈɛ βˈai
@@ -350352,7 +350352,7 @@ fuʎˈɛm
 fuʎˈɛm
 fuʎˈɛm
 fˈuʎən
-fwlˈa
+fˈulə
 fˈuʎəs
 fˈuʎəs
 fuʎˈes
@@ -352230,7 +352230,7 @@ fˈimbus
 ɡəjtˈeɾəs
 ɡəjtˈes
 ɡəˈitəs
-ɡˈajws
+ɡˈajus
 ɡəʃˈiβə
 ɡəʃˈiβəs
 ɡˈaʒus
@@ -368349,7 +368349,7 @@ kstəˈat
 ɡunˈitin
 ɡunˈitis
 ɡunˈitu
-ɡwntˈer
+ɡˈuntər
 ɡwumindˈaŋ
 ɡˈuppi
 ɡˈuptə
@@ -369531,7 +369531,7 @@ kstəˈat
 χəβəjˈanəs
 χəβəjˈans
 χəβəjˈans
-əβˈajj
+əwˈai
 əptˈɔrnə
 əˈidn
 əidniˈanəs
@@ -373655,7 +373655,7 @@ ulˈistik
 ulˈistikə
 ulˈistiks
 ulˈistikəs
-χˈaliwwt
+χaliˈut
 χˈɔlmz
 ˈɔlmi
 ˈɔlmik
@@ -395328,10 +395328,10 @@ itinəɾˈaɾis
 ˈitɾis
 i tˈunəs
 ituɾˈeə
-jw
-jwˈan
-jwˈans
-jwkˈa
+ˈiw
+juˈan
+juˈans
+jukˈa
 jwɣuzlˈaw
 jwɣuzlˈaw
 jwɣuzlˈaws
@@ -395341,14 +395341,14 @@ jwɣuzlˈaβə
 jwɣuzlˈaβəs
 jwɣuzlˈaβəs
 jwɣuzlˈaβiə
-jwkˈɛs
-jwɾˈak
-jwɾˈak
-jwɾˈaks
-jwɾˈaks
-jwrtˈa
-jwrtˈɛs
-jws
+jukˈɛs
+juɾˈak
+juɾˈak
+juɾˈaks
+juɾˈaks
+jurtˈa
+jurtˈɛs
+ˈiws
 ˈiβə
 iβəsˈos
 iβəsˈozə
@@ -401493,7 +401493,7 @@ liβɾˈaɾiə
 liβɾˈaɾiəs
 liβɾˈaɾis
 lˈiβɾə sˌeˌaðˈe
-lˈiβɾə wfˈisə
+liβɾə ˈɔfis
 liβɾəβˈiʎə
 liβˈurnə
 liβˈurnəs
@@ -554422,7 +554422,7 @@ sfumˈatus
 ʃəɲˈaŋ
 ʃˈɛnzən
 ʃərlˈɔk
-ʃərβuˈot
+ʃərβˈut
 ʃədlˈan
 ʃˈeβə
 ʃiˈatsu
@@ -580167,8 +580167,8 @@ tərəplˈɛns
 tˌerəpɾˈim
 tərəpɾˈims
 tərˈakwi
-tərˈakwjə
-tərˈakwjəs
+tərˈakwiə
+tərˈakwiəs
 tərˈakwis
 tərˈaɾi
 tərəɾˈiə
@@ -613801,7 +613801,7 @@ bulβərəmtˈon
 bulləstunˈitə
 bulləstunˈitəs
 buntˈon
-wwt
+wˈut
 buutstˈɔk
 bursəstˈe
 wˈoɾt

@@ -54,10 +54,10 @@ itri € itri € NCMS000 € ˈitɾi
 itris € itri € NCMP000 € ˈitɾis
 iTunes € iTunes € NPMNO00 € i tˈunəs
 Iturea € Iturea € NPCSG00 € ituɾˈeə
-Iu € Iu € NPMSSP0 € jw
-iuan € iuan € NCMS000 € jwˈan
-iuans € iuan € NCMP000 € jwˈans
-iuca € iuca € NCFS000 € jwkˈa
+Iu € Iu € NPMSSP0 € ˈiw
+iuan € iuan € NCMS000 € juˈan
+iuans € iuan € NCMP000 € juˈans
+iuca € iuca € NCFS000 € jukˈa
 iugoslau € iugoslau € AQ0MS0 € jwɣuzlˈaw
 iugoslau € iugoslau € NCMS000 € jwɣuzlˈaw
 iugoslaus € iugoslau € AQ0MP0 € jwɣuzlˈaws
@@ -67,14 +67,14 @@ iugoslava € iugoslava € NCFS000 € jwɣuzlˈaβə
 iugoslaves € iugoslau € AQ0FP0 € jwɣuzlˈaβəs
 iugoslaves € iugoslava € NCFP000 € jwɣuzlˈaβəs
 Iugoslàvia € Iugoslàvia € NPFSG00 € jwɣuzlˈaβiə
-iuques € iuca € NCFP000 € jwkˈɛs
-iurac € iurac € AQ0MS0 € jwɾˈak
-iurac € iurac € NCMS000 € jwɾˈak
-iuracs € iurac € AQ0MP0 € jwɾˈaks
-iuracs € iurac € NCMP000 € jwɾˈaks
-iurta € iurta € NCFS000 € jwrtˈa
-iurtes € iurta € NCFP000 € jwrtˈɛs
-Ius € Iu € NPMPSP0 € jws
+iuques € iuca € NCFP000 € jukˈɛs
+iurac € iurac € AQ0MS0 € juɾˈak
+iurac € iurac € NCMS000 € juɾˈak
+iuracs € iurac € AQ0MP0 € juɾˈaks
+iuracs € iurac € NCMP000 € juɾˈaks
+iurta € iurta € NCFS000 € jurtˈa
+iurtes € iurta € NCFP000 € jurtˈɛs
+Ius € Iu € NPMPSP0 € ˈiws
 iva € iva € NCFS000 € ˈiβə
 ivaçós € ivaçós € AQ0MS0 € iβəsˈos
 ivaçosa € ivaçós € AQ0FS0 € iβəsˈozə

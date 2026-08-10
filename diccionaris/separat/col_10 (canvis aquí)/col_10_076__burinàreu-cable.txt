@@ -495,7 +495,7 @@ buscaves € buscar € VMII2S00 € buskˈaβəs
 buscàveu € buscar € VMII2P00 € buskˈaβəw
 busco € buscar € VMIP1S0C € bˈusku
 Buseu € Buseu € NPCNSP0 € buzˈɛw
-Bush € Bush € NPCNSP0 € bwʃ
+Bush € Bush € NPCNSP0 € bˈuʃ
 bushel € bushel € NCMS000 € buʃˈɛl
 business € business € AQ0CN0 € buzˈinəs
 Busiris € Busiris € NPCSG00 € buzˈiɾis

@@ -44,7 +44,7 @@ Shelley € Shelley € NPCNSP0 € ʃəʎˈei
 Shenyang € Shenyang € NPCSG00 € ʃəɲˈaŋ
 Shenzhen € Shenzhen € NPCSG00 € ʃˈɛnzən
 Sherlock € Sherlock € NPCNSP0 € ʃərlˈɔk
-Sherwood € Sherwood € NPCNSP0 € ʃərβuˈot
+Sherwood € Sherwood € NPCNSP0 € ʃərβˈut
 Shetland € Shetland € NPFPG00 € ʃədlˈan
 Shewa € Shewa € NPCSG00 € ʃˈeβə
 shiatsu € shiatsu € NCMS000 € ʃiˈatsu

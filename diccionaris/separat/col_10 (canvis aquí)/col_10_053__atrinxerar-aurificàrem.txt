@@ -528,7 +528,7 @@ aturonades € aturonat € AQ0FP0 € ətuɾunˈaðəs
 aturonat € aturonat € AQ0MS0 € ətuɾunˈat
 aturonats € aturonat € AQ0MP0 € ətuɾunˈats
 aturs € atur € NCMP000 € ətˈus
-Atwood € Atwood € NPCNSP0 € ədbuˈot
+Atwood € Atwood € NPCNSP0 € ədbˈut
 atxa € atxa € NCFS000 € ˈatʃə
 atxem € atxem € ZI € ətʃˈɛm
 atxem € atxem € NCMS000 € ətʃˈɛm

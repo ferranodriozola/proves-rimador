@@ -1189,12 +1189,12 @@ cooficial € cooficial € AQ0CS0 € kuufisiˈal
 cooficialitat € cooficialitat € NCFS000 € kuufisiəlitˈat
 cooficialitats € cooficialitat € NCFP000 € kuufisiəlitˈats
 cooficials € cooficial € AQ0CP0 € kuufisiˈals
-Cook € Cook € NPCNG00 € kwk
+Cook € Cook € NPCNG00 € kˈɔk
 cookie € cookie € NCFS000 € kˈuki
 cookies € cookie € NCFP000 € kˈukis
-Cookstown € Cookstown € NPCSG00 € kuukstˈobn
-cool € cool € AQ0CN0 € kuˈɔl
-Cooper € Cooper € NPCNSP0 € kˈupə
+Cookstown € Cookstown € NPCSG00 € kˈɔkstown
+cool € cool € AQ0CN0 € kˈul
+Cooper € Cooper € NPCNSP0 € kˈupər
 coopera € cooperar € VMIP3S00 € kuupˈeɾə
 coopera € cooperar € VMM02S00 € kuupˈeɾə
 cooperà € cooperar € VMIS3S00 € kuupəɾˈa

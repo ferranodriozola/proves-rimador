@@ -1153,7 +1153,7 @@ bavosos € bavós € AQ0MP0 € bəβˈozus
 Bay € Bay € NPCSG00 € bˈai
 Bayamón € Bayamón € NPCSG00 € bəjəmˈon
 Bayer € Bayer € NPCNO00 € bəjˈe
-Bayern € Bayern € NPCSO00 € b'ajərn
+Bayern € Bayern € NPCSO00 € bˈajərn
 Bayes € Bayes € NPCNSP0 € bˈajəs
 Bayeux € Bayeux € NPCSG00 € bəjˈɛwks
 Bayreuth € Bayreuth € NPCSG00 € bəirˈɛwt

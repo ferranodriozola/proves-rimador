@@ -929,8 +929,8 @@ terraplens € terraplè € NCMP000 € tərəplˈɛns
 terraprim € terraprim € NCMS000 € tˌerəpɾˈim
 terraprims € terraprim € NCMP000 € tərəpɾˈims
 terraqüi € terraqüi € AQ0MS0 € tərˈakwi
-terràqüia € terraqüi € AQ0FS0 € tərˈakwjə
-terràqüies € terraqüi € AQ0FP0 € tərˈakwjəs
+terràqüia € terraqüi € AQ0FS0 € tərˈakwiə
+terràqüies € terraqüi € AQ0FP0 € tərˈakwiəs
 terraqüis € terraqüi € AQ0MP0 € tərˈakwis
 terrari € terrari € NCMS000 € tərˈaɾi
 terraria € terrar € VMCC1S00 € tərəɾˈiə

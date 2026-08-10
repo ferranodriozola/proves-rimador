@@ -76976,7 +76976,7 @@ ozus
 ai
 on
 e
-b'ajərn
+ajərn
 ajəs
 ɛwks
 ɛwt
@@ -92946,12 +92946,12 @@ imiks
 imiəs
 imikəs
 imikəs
-bwl
-bwl
-bwl
-bwl
-bwl
-bwl
+ul
+uʎ
+uʎ
+uʎ
+uʎ
+uʎ
 ɛsə
 ɛsəs
 aŋɡə
@@ -93720,7 +93720,7 @@ aβəs
 aβəw
 usku
 ɛw
-bwʃ
+uʃ
 ɛl
 inəs
 iɾis
@@ -139162,7 +139162,7 @@ al
 at
 ats
 als
-kwk
+uk
 uki
 ukis
 obn
@@ -350352,7 +350352,7 @@ aβəw
 ɛm
 ɛm
 uʎən
-a
+ulə
 uʎəs
 uʎəs
 es
@@ -352230,7 +352230,7 @@ eɾə
 eɾəs
 es
 itəs
-ajws
+ajus
 iβə
 iβəs
 aʒus
@@ -368349,7 +368349,7 @@ itin
 itin
 itis
 itu
-er
+untər
 aŋ
 uppi
 uptə
@@ -369531,7 +369531,7 @@ anəs
 anəs
 ans
 ans
-ajj
+ai
 ɔrnə
 idn
 anəs
@@ -395328,7 +395328,7 @@ itɾikəs
 itɾis
 unəs
 eə
-jw
+iw
 an
 ans
 a
@@ -395348,7 +395348,7 @@ aks
 aks
 a
 ɛs
-jws
+iws
 iβə
 os
 ozə
@@ -401493,7 +401493,7 @@ aɾiə
 aɾiəs
 aɾis
 e
-isə
+ɔfis
 iʎə
 urnə
 urnəs
@@ -580167,8 +580167,8 @@ i
 im
 ims
 akwi
-akwjə
-akwjəs
+akwiə
+akwiəs
 akwis
 aɾi
 iə
@@ -613801,7 +613801,7 @@ on
 itə
 itəs
 on
-wwt
+ut
 ɔk
 e
 oɾt

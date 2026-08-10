@@ -148,7 +148,7 @@ Bolló € Bolló € NPCNSP0 € buʎˈo
 bolló € bolló € NCMS000 € buʎˈo
 bollons € bolló € NCMP000 € buʎˈons
 bolls € boll € NCMP000 € bˈoʎs
-Bollywood € Bollywood € NPCSG00 € buʎiβuˈot
+Bollywood € Bollywood € NPCSG00 € bɔʎiβˈut
 bolo € bolo € NCMS000 € bˈɔlu
 boló € boló € NCMS000 € bulˈo
 bolòmetre € bolòmetre € NCMS000 € bulˈɔmətɾə

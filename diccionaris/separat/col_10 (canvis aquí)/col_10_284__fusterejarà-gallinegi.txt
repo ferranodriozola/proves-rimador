@@ -461,7 +461,7 @@ gaitera € gaiter € NCFS000 € ɡəjtˈeɾə
 gaiteres € gaiter € NCFP000 € ɡəjtˈeɾəs
 gaiters € gaiter € NCMP000 € ɡəjtˈes
 gaites € gaita € NCFP000 € ɡəˈitəs
-Gaius € Gaius € NPMSSP0 € ɡˈajws
+Gaius € Gaius € NPMSSP0 € ɡˈajus
 gaixiva € gaixiva € NCFS000 € ɡəʃˈiβə
 gaixives € gaixiva € NCFP000 € ɡəʃˈiβəs
 gajos € gaig € NCMP000 € ɡˈaʒus

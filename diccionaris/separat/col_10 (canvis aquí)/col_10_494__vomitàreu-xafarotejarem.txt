@@ -1002,7 +1002,7 @@ Wolverhampton € Wolverhampton € NPCSG00 € bulβərəmtˈon
 wol·lastonita € wol·lastonita € NCFS000 € bulləstunˈitə
 wol·lastonites € wol·lastonita € NCFP000 € bulləstunˈitəs
 wonton € wonton € AQ0CN0 € buntˈon
-Wood € Wood € NPCNSP0 € wwt
+Wood € Wood € NPCNSP0 € wˈut
 Woodstock € Woodstock € NPCSG00 € buutstˈɔk
 Worcester € Worcester € NPCSG00 € bursəstˈe
 Word € Word € NPMSO00 € wˈoɾt
