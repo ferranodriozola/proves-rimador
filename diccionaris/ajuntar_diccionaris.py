@@ -1,12 +1,18 @@
 import glob
 import os
-import sys
 import unicodedata
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 FITXER_BASE = os.path.join(BASE_DIR, "diccionari.5.2.3.txt")
 FITXER_SORTIDA = os.path.join(BASE_DIR, "diccionari.6.0.txt")
+
+# Fitxers .txt o carpetes a ajuntar amb FITXER_BASE. Cada entrada pot ser un
+# .txt concret o una carpeta (se n'agafen tots els .txt de dins, vegeu
+# expandir_entrades). Edita aquesta llista abans d'executar l'script.
+ENTRADES = [
+    os.path.join(BASE_DIR, "..", "pronoms", "txt_fets"),
+]
 
 NOMBRE_CAMPS = 10
 
@@ -80,13 +86,9 @@ def ajuntar(entrades):
 
 
 if __name__ == "__main__":
-    entrades = sys.argv[1:]
-    if not entrades:
-        sys.exit(
-            "Cal indicar almenys un fitxer .txt o una carpeta per ajuntar amb "
-            f"{os.path.basename(FITXER_BASE)}.\n"
-            "Ús: python3 ajuntar_diccionaris.py fitxer1.txt [fitxer2.txt ...]\n"
-            "    python3 ajuntar_diccionaris.py carpeta_amb_txt/\n"
-            "Es poden barrejar fitxers i carpetes en una mateixa crida."
+    if not ENTRADES:
+        raise SystemExit(
+            "ENTRADES és buida: afegeix-hi almenys un fitxer .txt o una carpeta "
+            f"per ajuntar amb {os.path.basename(FITXER_BASE)}."
         )
-    ajuntar(entrades)
+    ajuntar(ENTRADES)
