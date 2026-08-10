@@ -16,14 +16,134 @@ if (debugLevel >= 3) {
   });
 }
 
+// ============================================================= //
+// LOADER
+//
+// Ensenyar el loader no és tan senzill com posar-li display i prou. El
+// navegador té un sol fil per a la nostra feina i per a pintar: si li
+// diem que ensenyi el loader i tot seguit ens passem tres segons
+// escrivint HTML, no arriba a pintar res fins que hem acabat, i el
+// loader s'ensenya i s'amaga dins el mateix fotograma. O sigui, com si
+// no hi fos. Per això Loader.mentre() espera dos fotogrames abans de
+// posar-se a treballar: el primer es programa abans del pròxim pintat i
+// el segon no arriba fins que aquell pintat ja s'ha entregat a pantalla.
+//
+// La pila serveix per als encavallaments: una cerca demana el loader i,
+// a mitges, la càrrega de les transcripcions el torna a demanar. Si el
+// de dins l'apagués en acabar, la cerca es quedaria fent la feina grossa
+// amb la pantalla destapada i tornaríem a on érem.
+// A partir de quantes rimes val la pena ensenyar el loader. Per sota, la
+// feina s'acaba de seguida i el loader només seria una pampallugada
+// negra que s'encén i s'apaga. Calibrat amb el temps real de repintar:
+//
+//     500 rimes -> 11 ms | 2.000 -> 48 ms | 8.000 -> 172 ms | 20.000 -> 488 ms
+//
+// El quart de segon cau cap a les 11.000; ho deixem a 10.000, una mica
+// per sota, que val més ensenyar-lo un pèl abans d'hora que tard.
+const RIMES_PER_ENSENYAR_LOADER = 10000;
+
+const Loader = {
+  _pila: [],
+
+  _pintar() {
+    const caixa = document.getElementById('loader');
+    if (!caixa) return;
+    const text = document.getElementById('loader-text2');
+
+    if (this._pila.length) {
+      if (text) text.textContent = this._pila[this._pila.length - 1];
+      caixa.style.display = '';
+    } else {
+      caixa.style.display = 'none';
+      if (text) text.textContent = '';
+    }
+  },
+
+  // Espera que el navegador hagi dibuixat de debò. El primer
+  // requestAnimationFrame es programa abans del pròxim pintat i el segon
+  // no arriba fins que aquell pintat ja s'ha entregat a la pantalla.
+  //
+  // Ara bé: si la pestanya no es veu (l'usuari ha canviat de pestanya o
+  // ha abaixat la finestra), el navegador no dibuixa i aquests avisos no
+  // arriben mai. Sense les dues sortides d'emergència d'aquí sota, la
+  // cerca es quedaria esperant un fotograma que no ha de venir i no
+  // arrencaria fins que algú tornés a mirar la pàgina.
+  _dosFotogrames() {
+    if (document.hidden) return Promise.resolve();
+
+    return new Promise(resolve => {
+      let fet = false;
+      const acabar = () => { if (!fet) { fet = true; resolve(); } };
+
+      requestAnimationFrame(() => requestAnimationFrame(acabar));
+      setTimeout(acabar, 200); // per si els fotogrames no arriben igualment
+    });
+  },
+
+  // Ensenya el loader, fa la feina i el treu passi el que passi.
+  async mentre(missatge, feina) {
+    this._pila.push(missatge);
+    this._pintar();
+    await this._dosFotogrames();
+
+    try {
+      return await feina();
+    } finally {
+      this._pila.pop();
+      this._pintar();
+    }
+  },
+
+  // Com mentre(), però només ensenya el loader quan la feina serà prou
+  // llarga perquè valgui la pena.
+  //
+  // No es pot fer amb un temporitzador de veritat ("ensenya'l si al cap
+  // d'un quart de segon encara no he acabat"), que és el que demanaria el
+  // sentit comú. El navegador té un sol fil: mentre repintem les rimes no
+  // pot fer res més, ni tan sols mirar si un setTimeout ha vençut. El
+  // temporitzador no saltaria fins que la feina ja estigués acabada, i el
+  // loader sortiria just per apagar-se tot seguit, que és exactament la
+  // pampallugada que volem evitar. Per això es decideix per endavant, per
+  // la mida de la feina, que és el que en mana el temps.
+  async mentreSiEsLlarg(missatge, rimes, feina) {
+    if (rimes < RIMES_PER_ENSENYAR_LOADER) return feina();
+    return this.mentre(missatge, feina);
+  },
+
+  // Per a les estones en què la pàgina espera que l'usuari decideixi (el
+  // diàleg d'homògrafs): el loader hi fa nosa, i deixar-lo donant voltes
+  // al darrere fa pensar que la pàgina encara està carregant. El treu
+  // mentre duri l'espera i el torna a deixar com estava.
+  async apartat(feina) {
+    const desada = this._pila;
+    this._pila = [];
+    this._pintar();
+
+    try {
+      return await feina();
+    } finally {
+      this._pila = desada;
+      this._pintar();
+      if (this._pila.length) await this._dosFotogrames();
+    }
+  }
+};
+
+// ============================================================= //
+
 //carregar json nàufragues
-let llistaNaufragues = [];
+// Un Set de paraules en minúscules, i no pas la llista tal com arriba: la
+// comprovació es fa a cada actualitzarRimes(), o sigui a cada clic de
+// casella, i recórrer tota la llista comparant-la paraula per paraula era
+// feina repetida per no res.
+let naufragues = new Set();
 
 async function carregarNaufragues() {
   try {
     const resposta = await fetch(`${ARREL}llistes/paraules_naufragues.json?t=${Date.now()}`);
-    llistaNaufragues = await resposta.json();
-    console.log("Paraules nàufragues carregades:", llistaNaufragues.length);
+    const dades = await resposta.json();
+    naufragues = new Set(dades.map(item => item.paraula.toLowerCase()));
+    console.log("Paraules nàufragues carregades:", naufragues.size);
   } catch (err) {
     console.error("Error carregant el json de paraules nàufragues", err);
   }
@@ -61,9 +181,13 @@ async function carregarVersions() {
 
 let array0, array1, array2, array3, array4, array5, array6, array7, array8, array9;
 let fitxersLlegits = 0;
-let nombresDeFitxers = 10;
+let nombresDeFitxers = 9;
 
-const nombresSeleccionats = [0,1,2,3,4,5,6,7,8,9];
+// col_9 (les transcripcions senceres) no hi és: fa 10 MB, una quarta part
+// de tot el diccionari, i només fa falta per al diàleg d'homògrafs. La
+// immensa majoria de cerques no el necessiten mai, o sigui que es baixa a
+// part i només quan toca (vegeu assegurarArray9).
+const nombresSeleccionats = [0,1,2,3,4,5,6,7,8];
 const camins = nombresSeleccionats.map(i => `${ARREL}diccionaris/separat/col_${i}.txt`);
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -78,7 +202,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         await carregarVersions();
         await carregarNaufragues();
         const resultatFitxers = await Promise.all(camins.map(llegirFitxerAmbIndexedDB));
-        [array0, array1, array2, array3, array4, array5, array6, array7, array8, array9] = resultatFitxers;
+        [array0, array1, array2, array3, array4, array5, array6, array7, array8] = resultatFitxers;
         console.log('Tots els fitxers carregats correctament');
 
         document.getElementById("loader").style.display = "none";
@@ -197,6 +321,33 @@ async function fetchFitxer(url) {
 // PROCESSAR TXT
 function processarFitxerDeText(contingut) {
     return contingut.split('\n');
+}
+
+// CÀRREGA A PART DE LES TRANSCRIPCIONS (col_9)
+//
+// Només fa falta quan una paraula surt escrita més d'una vegada al
+// diccionari, per saber si les entrades es pronuncien igual (i llavors
+// tant se val quina s'agafi) o no (i llavors s'ha de preguntar amb el
+// diàleg d'homògrafs). Baixar-lo d'entrada volia dir fer esperar
+// tothom per 10 MB que la majoria de gent no farà servir mai.
+//
+// La promesa es guarda perquè dues cerques seguides no el demanin dues
+// vegades; si falla, s'esborra i el proper cop es torna a intentar.
+let promesaArray9 = null;
+
+function assegurarArray9() {
+  if (array9) return Promise.resolve(array9);
+  if (promesaArray9) return promesaArray9;
+
+  promesaArray9 = Loader.mentre('Carregant les transcripcions...', async () => {
+    array9 = await llegirFitxerAmbIndexedDB(`${ARREL}diccionaris/separat/col_9.txt`);
+    return array9;
+  }).catch(err => {
+    promesaArray9 = null;
+    throw err;
+  });
+
+  return promesaArray9;
 }
 
 // NETEJAR INDEXEDDB
@@ -340,6 +491,28 @@ function registrarCerca(paraulaBuscada, rimaTrobada, tipusRima, codiParaula, num
 
 
 //FUNCIONS PRINCIPALS
+
+// Els resultats que hi ha ara mateix a la pantalla. Fins ara naixien
+// sols, sense declarar enlloc, de la primera assignació que se'ls feia;
+// això vol dir que amb el mode estricte el programa peta, i que una
+// errada de tecleig en comptes de queixar-se crea una variable nova.
+//
+// - matches: tot el que ha trobat l'última cerca.
+// - matches_provisionals: el subconjunt que passa el filtre de categories
+//   de les caselles, que és el que s'imprimeix.
+// - paraulacerca: la fila del diccionari de la paraula cercada.
+// - codiParaula: la seva categoria gramatical.
+//
+// Van amb var i no amb let a posta: script_llistes.js les escriu com a
+// window.matches, window.matches_provisionals i window.paraulacerca, i
+// només var deixa la variable penjada del window. Amb let serien una
+// variable del guió i les pàgines de llistes escriurien a un lloc que
+// aquest fitxer no llegeix mai.
+var matches = [];
+var matches_provisionals = [];
+var paraulacerca = [0, 0, 0, 0, 0, 0, 0];
+var codiParaula = "";
+
 // Mentre el diàleg d'homògrafs és obert, la cerca està a mitges. Si
 // se'n comencés una altra, tindríem dues cerques en marxa i dos diàlegs
 // oberts alhora. Amb el prompt() d'abans això no podia passar, perquè
@@ -372,58 +545,68 @@ async function realitzarCerca() {
     var inclourePropis = document.getElementById('nomsPropis').value;
     var inclourePlurals = document.getElementById('plurals').value;
     
-    const buscaparaula = await buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals, array0, array1, array2, array3, array4, array5, array6, array7, array8, array9);
+    // Tota la feina va sota el loader. Aquí no hi posem el llindar que
+    // fan servir les caselles (mentreSiEsLlarg) perquè no hi ha cap
+    // cerca curta: buscarParaula recorre les 619.788 files del
+    // diccionari sigui quina sigui la paraula, i això ja són entre 280 i
+    // 540 mil·lisegons abans de començar a pintar res.
+    //
+    // El diàleg d'homògrafs, si surt, s'obre amb el loader apartat
+    // (vegeu buscarParaula).
+    await Loader.mentre("Cercant les rimes...", async () => {
+      const buscaparaula = await buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals, array0, array1, array2, array3, array4, array5, array6, array7, array8);
 
-    // null = s'ha tancat el diàleg d'homògrafs sense triar cap paraula.
-    // No toquem res: ni els resultats de la pantalla ni el registre de
-    // cerques.
-    if (buscaparaula === null) {
-      Debug.log("Cerca cancel·lada des del diàleg d'homògrafs.");
-      return;
-    }
+      // null = s'ha tancat el diàleg d'homògrafs sense triar cap paraula.
+      // No toquem res: ni els resultats de la pantalla ni el registre de
+      // cerques.
+      if (buscaparaula === null) {
+        Debug.log("Cerca cancel·lada des del diàleg d'homògrafs.");
+        return;
+      }
 
-    matches = buscaparaula[0];
-    paraulacerca = buscaparaula[1];
+      matches = buscaparaula[0];
+      paraulacerca = buscaparaula[1];
 
-    // lògica per a registrar les cerques
-    let rimaTrobada = "***"; 
+      // lògica per a registrar les cerques
+      let rimaTrobada = "***";
 
-    if (paraulacerca[0] !== 0) {
-        if (tipusRima === 'r.consonant') {
-            rimaTrobada = paraulacerca[3];}
-        else if (tipusRima === 'r.assonant') {
-            rimaTrobada = paraulacerca[4];}
-    }
-    codiParaula = paraulacerca[2];
+      if (paraulacerca[0] !== 0) {
+          if (tipusRima === 'r.consonant') {
+              rimaTrobada = paraulacerca[3];}
+          else if (tipusRima === 'r.assonant') {
+              rimaTrobada = paraulacerca[4];}
+      }
+      codiParaula = paraulacerca[2];
 
-    registrarCerca(
-          paraulaCercada, 
-          rimaTrobada, 
-          tipusRima, 
-          codiParaula, 
-          numeroSeleccionat, 
-          comença, 
-          inclourePropis, 
-          inclourePlurals
-        );
-      
-    matches_provisionals = matches.slice();
+      registrarCerca(
+            paraulaCercada,
+            rimaTrobada,
+            tipusRima,
+            codiParaula,
+            numeroSeleccionat,
+            comença,
+            inclourePropis,
+            inclourePlurals
+          );
 
-    actualitzarRimes();
-    var checkboxes = document.querySelectorAll('.clickable-checkbox');
+      matches_provisionals = matches.slice();
 
-    checkboxes.forEach(function(checkbox) {
-      checkbox.checked = true;
+      actualitzarRimes();
+      var checkboxes = document.querySelectorAll('.clickable-checkbox');
+
+      checkboxes.forEach(function(checkbox) {
+        checkbox.checked = true;
+      });
+
+      mostrarTotesLesLlistes();
+      document.querySelector('.impressio').style.display = 'flex';
+
+      // Una cerca acabada compta com un dia d'ús per a l'avís periòdic
+      // de donatius (avis/avis.js). És ell qui decideix si toca ensenyar
+      // res o no; aquí només l'informem. Va aquí baix, i no al principi
+      // de la funció, perquè només compti quan la cerca ha anat bé.
+      if (window.AvisRimador) window.AvisRimador.registraUs();
     });
-
-    mostrarTotesLesLlistes();
-    document.querySelector('.impressio').style.display = 'flex';
-
-    // Una cerca acabada compta com un dia d'ús per a l'avís periòdic
-    // de donatius (avis/avis.js). És ell qui decideix si toca ensenyar
-    // res o no; aquí només l'informem. Va aquí baix, i no al principi
-    // de la funció, perquè només compti quan la cerca ha anat bé.
-    if (window.AvisRimador) window.AvisRimador.registraUs();
 
     Debug.logTimeEnd('realitzarCerca');
   } catch (error) {
@@ -571,8 +754,17 @@ function triarHomograf(paraulaCercada, opcions) {
   });
 }
 
-async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals, array0, array1, array2, array3, array4, array5, array6, array7, array8, array9) {
+// Compte: array9 (les transcripcions) no és un paràmetre com la resta,
+// perquè es carrega a part i pot arribar enmig d'aquesta mateixa funció
+// (vegeu assegurarArray9). Si vingués de fora ens quedaríem amb el valor
+// que tenia quan la cerca ha començat, que sovint és cap.
+async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals, array0, array1, array2, array3, array4, array5, array6, array7, array8) {
   Debug.logTime('buscarParaula');
+
+  // La transcripció de la paraula cercada no la fa servir ningú més; si
+  // encara no s'ha carregat, val més deixar-la buida que no pas baixar
+  // 10 MB per emplenar un lloc de la llista que ningú no mira.
+  const transcripcioDe = i => (array9 ? array9[i] : undefined);
 
   // Aquestes dues eren variables globals. Ara que la funció és asíncrona
   // (s'atura a esperar el diàleg d'homògrafs), dues cerques poden estar
@@ -599,16 +791,20 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
     llistaParaulaCerca = [
       array0[indexparaula], array1[indexparaula], array2[indexparaula],
       array3[indexparaula], array4[indexparaula], array5[indexparaula],
-      array6[indexparaula], array7[indexparaula], array8[indexparaula], array9[indexparaula]
+      array6[indexparaula], array7[indexparaula], array8[indexparaula], transcripcioDe(indexparaula)
     ];
   } else {
+    // Aquí sí que calen les transcripcions: són l'única manera de saber si
+    // aquestes entrades es pronuncien totes igual o si s'ha de preguntar.
+    await assegurarArray9();
+
     const transcripcions = new Set(coincidencies.map(c => array9[c.index]));
     if (transcripcions.size === 1) {
       var indexparaula = coincidencies[0].index;
       llistaParaulaCerca = [
         array0[indexparaula], array1[indexparaula], array2[indexparaula],
         array3[indexparaula], array4[indexparaula], array5[indexparaula],
-        array6[indexparaula], array7[indexparaula], array8[indexparaula], array9[indexparaula]
+        array6[indexparaula], array7[indexparaula], array8[indexparaula], transcripcioDe(indexparaula)
       ];
     } else {
       // Només oferim una opció per transcripció: si dues entrades es
@@ -634,7 +830,10 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
         });
       });
 
-      const triada = await triarHomograf(paraulaCercada, opcions);
+      // Amb el loader tapant la pantalla, el diàleg sortiria amb la roda
+      // donant voltes al darrere i semblaria que encara carrega alguna
+      // cosa. Mentre esperem que l'usuari triï, fora.
+      const triada = await Loader.apartat(() => triarHomograf(paraulaCercada, opcions));
 
       // S'ha tancat el diàleg sense triar: la cerca s'atura aquí i la
       // pantalla es queda tal com estava. Abans agafàvem la primera
@@ -646,7 +845,7 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
       llistaParaulaCerca = [
         array0[indexparaula], array1[indexparaula], array2[indexparaula],
         array3[indexparaula], array4[indexparaula], array5[indexparaula],
-        array6[indexparaula], array7[indexparaula], array8[indexparaula], array9[indexparaula]
+        array6[indexparaula], array7[indexparaula], array8[indexparaula], transcripcioDe(indexparaula)
       ];
     }
   }
@@ -715,28 +914,24 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
 }
 
 //gestió logos per a imprimir
-// La ruta dels assets surt de components.js, només s'ha de tocar allà.
-const rutaLogos = ruta1;
-
+//
+// Els logos són el fons de l'enllaç (.logo-vicc, .logo-viq i .logo-diec a
+// css/impressio.scss), no pas una imatge a dins. Una cerca ampla ensenya
+// desenes de milers de rimes amb fins a tres enllaços cadascuna, i cada
+// <img> era un element més del DOM, una entrada més al registre de
+// càrrega mandrosa i una feina més per al navegador abans de poder
+// pintar res. Com que el dibuix no diu res que l'enllaç no digui,
+// l'aria-label fa la feina que abans feia l'alt.
 function crearEnllacViccionari(paraula) {
-  var enllac_vicc = '<a href="https://ca.wiktionary.org/wiki/' + paraula + '" target="_blank">';
-    enllac_vicc += '<img src="' + rutaLogos + 'logovicc (240x240).png" loading="lazy" alt="Logo_Viccionari" class="logo">';
-  enllac_vicc += '</a>';
-  return enllac_vicc;
+  return '<a href="https://ca.wiktionary.org/wiki/' + paraula + '" target="_blank" class="logo logo-vicc" aria-label="Viccionari"></a>';
 }
 
 function crearEnllacViquipedia(paraula) {
-  var enllac_viq = '<a href="https://ca.wikipedia.org/wiki/' + paraula + '" target="_blank">';
-    enllac_viq += '<img src="' + rutaLogos + 'logowiki (263x240).png" loading="lazy" alt="Logo_Viquipedia" class="logo">';
-  enllac_viq += '</a>';
-  return enllac_viq;
+  return '<a href="https://ca.wikipedia.org/wiki/' + paraula + '" target="_blank" class="logo logo-viq" aria-label="Viquipèdia"></a>';
 }
 
 function crearEnllacDiec(paraula) {
-  var enllac_diec = '<a href="https://dlc.iec.cat/Results?DecEntradaText=' + paraula + '" target="_blank">';
-    enllac_diec += '<img src="' + rutaLogos + 'logodiec (200x200).png" loading="lazy" alt="Logo_Diec" class="logo">';
-  enllac_diec += '</a>';
-  return enllac_diec;
+  return '<a href="https://dlc.iec.cat/Results?DecEntradaText=' + paraula + '" target="_blank" class="logo logo-diec" aria-label="DIEC"></a>';
 }
 
 
@@ -781,7 +976,7 @@ function actualitzarRimes() {
   var textNombre = document.getElementById("nombre");
 
   if (matches_provisionals.length > 0) {
-    var esNaufraga = llistaNaufragues.some(item => item.paraula.toLowerCase() === paraulacerca[0].toLowerCase());
+    var esNaufraga = naufragues.has(String(paraulacerca[0]).toLowerCase());
     var tipusRima = document.getElementById('rimaSelector').value;
     if (esNaufraga && tipusRima === 'r.consonant') {
       textNombre.innerHTML = ""; 
@@ -1004,11 +1199,18 @@ function toggleList(listID, checkboxID) {
 }
 
 
-function handleCheckboxClick(event, checkboxCriteria) {
+async function handleCheckboxClick(event, checkboxCriteria) {
   Debug.logTime('handleCheckboxClick');
 
   if (event.target.type === 'checkbox') {
-      const checkboxLabel = event.target.parentNode.innerText.trim();
+      // textContent, no pas innerText. Tots dos donen la mateixa paraula
+      // ("Verbs", "Propis"...), però innerText promet el text tal com es
+      // veu, i per poder-ho prometre el navegador ha de tenir la pàgina
+      // ben col·locada: en demanar-lo, atura tot i recalcula la
+      // disposició sencera. Amb cent mil rimes repartides en columnes
+      // això eren vint segons per llegir una etiqueta que ja tenim
+      // escrita a l'HTML. El textContent el llegeix de l'arbre i prou.
+      const checkboxLabel = event.target.parentNode.textContent.trim();
 
       const elementLi = event.target.closest('li');
       if (elementLi) {
@@ -1032,22 +1234,40 @@ function handleCheckboxClick(event, checkboxCriteria) {
       if (checkboxLabel in checkboxCriteria) {
           const { filterFunction } = checkboxCriteria[checkboxLabel];
 
-          if (event.target.checked) {
-              const linesToAdd = matches.filter(filterFunction);
+          // Es llegeix ara i no pas a dins del Loader.mentre: allà dins
+          // ja hem cedit el fil un parell de fotogrames i la casella
+          // podria haver canviat pel camí.
+          const marcada = event.target.checked;
 
-              const uniqueLinesToAdd = linesToAdd.filter(line => !matches_provisionals.includes(line));
+          // Mirem matches i no pas matches_provisionals perquè és el
+          // sostre del que pot arribar a haver-hi a la pantalla, i el
+          // sabem abans de començar.
+          await Loader.mentreSiEsLlarg("Actualitzant la llista...", matches.length, () => {
+              if (marcada) {
+                  // Unió del que ja hi havia amb el que acaba d'entrar,
+                  // d'una sola passada i ordenat com el diccionari.
+                  //
+                  // Abans això es feia amb un includes() per cada resultat
+                  // nou i un sort() que a dins hi tenia un indexOf(): totes
+                  // dues coses recorren la llista sencera cada vegada. Amb
+                  // una rima ampla (n'hi ha que passen de les cent mil
+                  // paraules) volia dir milers de milions de comparacions
+                  // per un sol clic, i el navegador es quedava penjat.
+                  const inclosos = new Set(matches_provisionals);
+                  for (let i = 0; i < matches.length; i++) {
+                      if (filterFunction(matches[i])) inclosos.add(matches[i]);
+                  }
+                  matches_provisionals = matches.filter(item => inclosos.has(item));
 
-              matches_provisionals = matches_provisionals.concat(uniqueLinesToAdd);
-              matches_provisionals.sort((a, b) => matches.indexOf(a) - matches.indexOf(b));
+                  Debug.log(`Checkbox "${checkboxLabel}" marcada`);
 
-              Debug.log(`Checkbox "${checkboxLabel}" marcada`);
-          
-          } else {
-              Debug.log(`Checkbox "${checkboxLabel}" desclicat`);
-              matches_provisionals = matches_provisionals.filter(item => !filterFunction(item));
-          }
+              } else {
+                  Debug.log(`Checkbox "${checkboxLabel}" desclicat`);
+                  matches_provisionals = matches_provisionals.filter(item => !filterFunction(item));
+              }
 
-          actualitzarRimes();
+              actualitzarRimes();
+          });
   }   }
   Debug.logTimeEnd('handleCheckboxClick');
 }
