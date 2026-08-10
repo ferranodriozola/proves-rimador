@@ -13,6 +13,21 @@ VOCALS_GRAFIQUES = set("aeioàèéíòóú")
 
 VOCALS_AFI = set("aeiouəɛɔ")
 
+FORMA_CODI = "N"
+PERSONA_CODI = "000"
+
+PRONOM_CODI = {
+    "em": "EM", "et": "ET", "es": "ES", "ens": "NS", "us": "US",
+    "el": "EL", "la": "LA", "els_ac": "EA", "les": "LE",
+    "li": "LI", "els_dat": "ED",
+    "en": "EN", "ho": "HO", "hi": "HI",
+}
+
+
+def construir_codi(pronoms):
+    lletres = "".join(PRONOM_CODI[p] for p in pronoms)
+    return f"W{FORMA_CODI}{PERSONA_CODI}{len(pronoms)}{lletres}"
+
 
 def llegir_columna(n):
     ruta = os.path.join(DIR_SEPARAT, f"col_{n}.txt")
@@ -45,25 +60,6 @@ def forma_enclitica(pronom, forma):
 
 
 def transcriure(forma, transcripcio, enclitic):
-    """
-    Munta la transcripció AFI del grup infinitiu+pronom a partir de la del verb sol.
-
-    Dues regles de sàndhi hi intervenen:
-
-      1) La -r de l'infinitiu, muda quan el verb va sol (cantar -> kəntˈa), SONA
-         sempre que hi ha enclític. Quina ròtica, depèn de la posició:
-           · entre vocals, bategant [ɾ]:  anar-hi   -> ənˈaɾi   (com 'escenari' -> əsənˈaɾi)
-           · en coda, davant consonant [r]: cantar-ne -> kəntˈarnə (com 'abaderna' -> əβəðˈɛrnə)
-         Els infinitius en -re no hi entren: no acaben en -r i ja duen la ròtica
-         a dins (veure -> bˈɛwɾə, veure'n -> bˈɛwɾən).
-
-      2) Darrere vocal, '-hi' es realitza com a semivocal [j] (veure-hi -> bˈɛwɾəj).
-         La semivocal es fon amb la vocal anterior en un sol nucli sil·làbic
-         (no en forma un de nou), i per això no compta com a síl·laba a part.
-
-    Retorna (transcripcio_completa, fonema_de_l'enclitic) — el fonema el
-    necessita qui compti síl·labes.
-    """
     if enclitic == "-hi":
         fonema = "i"
     elif enclitic == "-ne":
@@ -123,7 +119,8 @@ def generar():
             comptador["saltats (sense forma o transcripció)"] += 1
             continue
 
-        for pronom, codi in (("hi", "WN00_HI"), ("en", "WN00_EN")):
+        for pronom in ("hi", "en"):
+            codi = construir_codi([pronom])
             enclitic = forma_enclitica(pronom, forma)
             transcripcio, fonema = transcriure(forma, transcripcio_base, enclitic)
             consonant, assonant = calcular_rimes(transcripcio)
