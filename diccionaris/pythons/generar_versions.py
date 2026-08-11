@@ -4,7 +4,11 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-BASE = Path(__file__).resolve().parent
+# .parent.parent perquè aquest fitxer viu a diccionaris/pythons/ i tot el que
+# toca és a diccionaris/. Es calcula des de __file__ i no des d'on s'executa
+# l'script, perquè així funciona tant des dels workflows com si l'obres a mà
+# des de qualsevol carpeta.
+BASE = Path(__file__).resolve().parent.parent
 DIRECTORI_COLUMNES = BASE / "separat"
 FITXER_VERSIONS = BASE / "versions.json"
 COLUMNES = [f"col_{i}.txt" for i in range(10)]

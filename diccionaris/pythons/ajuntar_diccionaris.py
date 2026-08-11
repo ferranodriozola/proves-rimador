@@ -2,7 +2,10 @@ import glob
 import os
 import unicodedata
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# Dos dirname perquè aquest fitxer viu a diccionaris/pythons/ i els diccionaris
+# són a diccionaris/. Es calcula des de __file__ i no des d'on s'executa
+# l'script, perquè així funciona des de qualsevol carpeta.
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 FITXER_BASE = os.path.join(BASE_DIR, "diccionari.5.2.3.txt")
 FITXER_SORTIDA = os.path.join(BASE_DIR, "diccionari.6.0.txt")

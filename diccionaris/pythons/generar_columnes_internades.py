@@ -30,8 +30,12 @@ from pathlib import Path
 # Les col_N.txt continuen sent la font de veritat: les llegeixen els altres
 # scripts d'aquesta carpeta i el bot. Aquí només se'n deriva una segona forma.
 
-BASE = Path(__file__).resolve().parent
+# .parent.parent perquè aquest fitxer viu a diccionaris/pythons/ i les columnes
+# són a diccionaris/separat/. Es calcula des de __file__ i no des d'on s'executa
+# l'script, perquè així funciona tant des dels workflows com si l'obres a mà.
+BASE = Path(__file__).resolve().parent.parent
 DIRECTORI_COLUMNES = BASE / "separat"
+DIRECTORI_INTERNAT = DIRECTORI_COLUMNES / "internat"
 COLUMNES = list(range(1, 9))
 
 # Columnes que són nombres i que no s'internen "a cegues".
@@ -119,6 +123,8 @@ def main():
         print(f"ERROR: no hi ha el directori {DIRECTORI_COLUMNES}")
         return 1
 
+    DIRECTORI_INTERNAT.mkdir(exist_ok=True)
+
     columnes = {}
     for i in COLUMNES:
         cami = DIRECTORI_COLUMNES / f"col_{i}.txt"
@@ -160,8 +166,8 @@ def main():
         # Sense salt de línia al final, com les col_N.txt d'origen. Si n'hi
         # posàvem un, el navegador, que munta l'array comptant salts de línia,
         # es trobaria amb una fila de més que no existeix.
-        cami_taula = DIRECTORI_COLUMNES / f"col_{i}.taula.txt"
-        cami_indexs = DIRECTORI_COLUMNES / f"col_{i}.idx.txt"
+        cami_taula = DIRECTORI_INTERNAT / f"col_{i}.taula.txt"
+        cami_indexs = DIRECTORI_INTERNAT / f"col_{i}.idx.txt"
         cami_taula.write_bytes(b"\n".join(taula))
         cami_indexs.write_bytes(b"\n".join(str(n).encode() for n in indexs))
 

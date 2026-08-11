@@ -15,15 +15,13 @@ jobs:
 
 # ------ Separar diccionari (i preparar la generació de [500]col_10.txt) i POSTPROCÉS (generació [500]col_10.txt)
       - name: Separar diccionari
-        working-directory: diccionaris
-        run: python "separar_arxiu (per canvis a diccionari_txt).py"
+        run: python "diccionaris/pythons/separar_arxiu (per canvis a diccionari_txt).py"
 
 # ----- versions de les columnes (i comprovació que van totes a l'una)
 #       Ha d'anar ABANS del comit: si les columnes no quadren, el script
 #       peta, el workflow s'atura i no es publica un diccionari trencat.
       - name: Actualitzar versions.json
-        working-directory: diccionaris
-        run: python generar_versions.py
+        run: python diccionaris/pythons/generar_versions.py
 
 # ----- comit columnes diccionari i diccionari (i versions.json)
       - name: Comit diccionari i columnes

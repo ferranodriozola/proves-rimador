@@ -20,13 +20,11 @@ jobs:
 
 # ------ PREPROCÉS (preparació generació [500]col_10.txt)
       - name: Preprocés (generar col_10provisional a partir de les parts de col_10)
-        working-directory: diccionaris
-        run: python "pre_proces.py"
+        run: python "diccionaris/pythons/pre_proces.py"
 
 # ------ generar diccionari.txt
       - name: Crear diccionari
-        working-directory: diccionaris
-        run: python "creador_rima + dicc (a partir de col_10).py"
+        run: python "diccionaris/pythons/creador_rima + dicc (a partir de col_10).py"
 
 # ----- versions de les columnes (i comprovació que van totes a l'una)
 #       Ha d'anar ABANS del comit: aquest script només reescriu sis de les
@@ -34,8 +32,7 @@ jobs:
 #       línia, les síl·labes i els enllaços es quedarien desquadrats. Si
 #       passa, generar_versions.py peta i el workflow s'atura aquí.
       - name: Actualitzar versions.json
-        working-directory: diccionaris
-        run: python generar_versions.py
+        run: python diccionaris/pythons/generar_versions.py
 
 # ------ comit columnes diccionari i diccionari (i versions.json)
       - name: Comit diccionari i columnes
@@ -48,8 +45,7 @@ jobs:
 
 # ------ POSTPROCÉS (generació [500]col_10.txt)
       - name: Postprocés (regenerar les parts de col_10 i eliminar col_10provisional)
-        working-directory: diccionaris
-        run: python "post_proces.py"
+        run: python "diccionaris/pythons/post_proces.py"
 
 # ----- comit [500]col_10.txt
       - name: Comit columna 10 separada

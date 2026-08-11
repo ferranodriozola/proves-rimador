@@ -2,9 +2,17 @@ import os
 import sys
 import subprocess
 
-nom_document = "diccionari.5.2.3.txt"
-directori_destinacio = os.path.join("..", "diccionaris", "separat")
-directori_extra = os.path.join("..", "diccionaris", "separat", "col_10 (canvis aquí)")
+# Aquest script viu a diccionaris/pythons/ i escriu a diccionaris/separat/.
+# Les rutes surten d'on és el fitxer i no d'on s'executa: abans eren relatives a
+# la carpeta de treball, i com que aquí baix hi ha un os.makedirs, una carpeta
+# equivocada no donava cap error, sinó que es fabricava un arbre de carpetes nou
+# i hi deixava el diccionari, ben lluny d'on el va a buscar tothom.
+DIR_SCRIPTS = os.path.dirname(os.path.abspath(__file__))
+BASE = os.path.dirname(DIR_SCRIPTS)
+
+nom_document = os.path.join(BASE, "diccionari.5.2.3.txt")
+directori_destinacio = os.path.join(BASE, "separat")
+directori_extra = os.path.join(BASE, "separat", "col_10 (canvis aquí)")
 os.makedirs(directori_destinacio, exist_ok=True)
 os.makedirs(directori_extra, exist_ok=True)
 
@@ -98,6 +106,10 @@ if rimes_refetes:
 
 print(f"Funció acabada! {max_columnes} fitxers generats al directori: {directori_destinacio}")
 
-subprocess.run(["python3", "post_proces.py"])
+# El post_procés és aquí al costat, no pas a la carpeta de treball. I es crida
+# amb el mateix python que ens executa a nosaltres, que és l'únic que sabem
+# segur que existeix (als workflows, "python3" no té per què ser el que ha
+# preparat el setup-python).
+subprocess.run([sys.executable, os.path.join(DIR_SCRIPTS, "post_proces.py")])
 
 print("Post-procés finalitzat. Els fitxers han estat dividits i guardats correctament.")

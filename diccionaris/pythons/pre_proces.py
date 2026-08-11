@@ -1,7 +1,11 @@
 import glob
 import os
 
-ruta_dicc_separats = "separat/col_10 (canvis aquí)"
+# Des d'aquest fitxer (diccionaris/pythons/) fins a diccionaris/separat/. Abans
+# la ruta era relativa a la carpeta des d'on s'executés l'script, i en moure els
+# pythons a la seva pròpia carpeta això va deixar de trobar res.
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ruta_dicc_separats = os.path.join(BASE, "separat", "col_10 (canvis aquí)")
 arxiu_temporal = os.path.join(ruta_dicc_separats, "col_10provisional.txt")
 
 print("Iniciant el pre-procés: unint arxius col_10_*.txt...")
