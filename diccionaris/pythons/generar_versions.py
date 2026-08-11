@@ -11,7 +11,13 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent.parent
 DIRECTORI_COLUMNES = BASE / "separat"
 FITXER_VERSIONS = BASE / "versions.json"
+DIRECTORI_INTERNAT = DIRECTORI_COLUMNES / "internat"
 COLUMNES = [f"col_{i}.txt" for i in range(10)]
+
+# Les columnes que generar_columnes_internades.py desa a separat/internat/, en
+# parelles: un fitxer amb els valors diferents i un altre amb un número per
+# fila que hi apunta.
+COLUMNES_INTERNADES = list(range(1, 9))
 
 
 def resum(cami):
@@ -53,9 +59,50 @@ def main():
         print("afegit o tret cap línia, cal passar pel diccionari general.")
         return 1
 
+    total_files = files[COLUMNES[0]]
+
+    # --- les columnes internades ---
+    #
+    # Van a la mateixa llista "columnes" i no pas a un apartat seu perquè el
+    # navegador les busca pel nom del fitxer tot sol, sense la carpeta (vegeu
+    # llegirFitxerAmbIndexedDB a js/script.js). Com que col_2.idx.txt i
+    # col_2.txt no es diuen igual, no es trepitgen, i així la memòria cau del
+    # navegador els tracta a tots igual sense haver de tocar res.
+    for i in COLUMNES_INTERNADES:
+        cami_taula = DIRECTORI_INTERNAT / f"col_{i}.taula.txt"
+        cami_idx = DIRECTORI_INTERNAT / f"col_{i}.idx.txt"
+
+        for cami in (cami_taula, cami_idx):
+            if not cami.exists():
+                print(f"ERROR: falta {cami}")
+                print("       Passa el generar_columnes_internades.py.")
+                return 1
+
+        # L'índex ha de tenir una fila per paraula, com les columnes d'origen.
+        # Si no en té, és que les internades són d'una generació anterior del
+        # diccionari i el navegador llegiria la fila equivocada de cada paraula.
+        files_idx = nombre_de_files(cami_idx)
+        if files_idx != total_files:
+            print(f"ERROR: {cami_idx.name} té {files_idx} files i les columnes en tenen {total_files}.")
+            print("       Les columnes internades s'han quedat endarrerides:")
+            print("       passa el generar_columnes_internades.py.")
+            return 1
+
+        # I cap número pot assenyalar fora de la seva taula.
+        entrades_taula = nombre_de_files(cami_taula)
+        with open(cami_idx, "rb") as fitxer:
+            major = max(int(n) for n in fitxer.read().split(b"\n"))
+        if major >= entrades_taula:
+            print(f"ERROR: col_{i}.idx.txt arriba fins al {major} i la seva taula només té {entrades_taula} entrades.")
+            print("       La parella no es correspon: passa el generar_columnes_internades.py.")
+            return 1
+
+        versions[cami_taula.name] = resum(cami_taula)
+        versions[cami_idx.name] = resum(cami_idx)
+
     contingut = {
         "generat": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
-        "files": files[COLUMNES[0]],
+        "files": total_files,
         "columnes": versions,
     }
 
@@ -66,6 +113,10 @@ def main():
     print(f"versions.json actualitzat ({contingut['files']} files per columna):")
     for columna in COLUMNES:
         print(f"  {columna}: {versions[columna]}")
+    print("  internat/")
+    for i in COLUMNES_INTERNADES:
+        print(f"    col_{i}.taula.txt: {versions[f'col_{i}.taula.txt']}"
+              f"   col_{i}.idx.txt: {versions[f'col_{i}.idx.txt']}")
     return 0
 
 
