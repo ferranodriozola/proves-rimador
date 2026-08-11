@@ -515,8 +515,18 @@ function crearCriterisTriples(nom, prefix1, prefix2, prefix3) {
 
 
 //excel per guardar cerques
-//const URL_GOOGLE_SCRIPT = "https://script.google.com/macros/s/AKfycbw5uSetN-OKIEQjmEo9PFFJp0r7UclUnHEYhbkghbqQ4q7JnIM7i0Ljfa3W_Q7Z-s5f/exec";
-const URL_GOOGLE_SCRIPT = ""
+const URL_GOOGLE_SCRIPT = "https://script.google.com/macros/s/AKfycbw5uSetN-OKIEQjmEo9PFFJp0r7UclUnHEYhbkghbqQ4q7JnIM7i0Ljfa3W_Q7Z-s5f/exec";
+
+// Les cerques només es registren des del web de debò: rimador.cat (el domini
+// del CNAME) i rimador.github.io (l'adreça que GitHub Pages dona al
+// repositori oficial). Al repositori de proves i en local, l'amfitrió no és
+// cap d'aquests dos i no s'envia res, que és el que evita que les proves
+// embrutin el full de càlcul.
+//
+// Va aquí fora i no dins de registrarCerca perquè l'amfitrió no canvia mentre
+// la pàgina és oberta: no cal tornar-ho a mirar a cada cerca.
+const ES_WEB_OFICIAL = window.location.hostname === 'rimador.cat'
+                    || window.location.hostname === 'rimador.github.io';
 
 function getUsuariID() {
   let usuariID = localStorage.getItem('rimador_usuari_id');
@@ -529,7 +539,15 @@ function getUsuariID() {
   return usuariID;
 }
 
-function registrarCerca(paraulaBuscada, rimaTrobada, tipusRima, codiParaula, numeroSeleccionat, comenca, inclourePropis, inclourePlurals) {  if (!paraulaBuscada || paraulaBuscada.trim().length < 2) return;
+function registrarCerca(paraulaBuscada, rimaTrobada, tipusRima, codiParaula, numeroSeleccionat, comenca, inclourePropis, inclourePlurals) {
+  // Aquesta comprovació va la primera de totes. Abans era al final, just
+  // abans del fetch, i per tant el web de proves i el navegador en local
+  // arribaven a passar pel getUsuariID(), que fabrica un identificador
+  // d'usuari i el desa al localStorage. Es creaven identificadors de
+  // seguiment en llocs on no s'envia res i que no serviran mai per a res.
+  if (!ES_WEB_OFICIAL) return;
+  if (!paraulaBuscada || paraulaBuscada.trim().length < 2) return;
+
   const dades = new URLSearchParams();
   dades.append('paraula', paraulaBuscada.trim().toLowerCase());
   dades.append('rima', rimaTrobada || "***");
@@ -539,7 +557,7 @@ function registrarCerca(paraulaBuscada, rimaTrobada, tipusRima, codiParaula, num
   dades.append('inclourePropis', inclourePropis);
   dades.append('inclourePlurals', inclourePlurals);
   dades.append('tipusRima', tipusRima);
-  dades.append('usuari', getUsuariID()); 
+  dades.append('usuari', getUsuariID());
 
   fetch(URL_GOOGLE_SCRIPT, {
     method: 'POST',
