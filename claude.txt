@@ -1,3 +1,4 @@
 que carreguin les dades ràpid
 progressive web app
 pronoms
+missatge d'error (quan no hi ha coincidències i és NP + flitres nom propi / plural + filtre plural / pronom feble + filtre pronoms)
