@@ -17,6 +17,15 @@ jobs:
       - name: Separar diccionari
         run: python "diccionaris/pythons/separar_arxiu (per canvis a diccionari_txt).py"
 
+# ----- columnes internades (separat/internat/)
+#       Va SEMPRE aquí, just després de refer les columnes i just abans de
+#       les versions. Així les internades no poden quedar endarrerides:
+#       es tornen a fer a cada passada, surtin o no canviades. Si algun dia
+#       s'escapa (perquè algú les ha comitejat a mà), el generar_versions.py
+#       de sota se n'adona i atura el workflow.
+      - name: Generar columnes internades
+        run: python diccionaris/pythons/generar_columnes_internades.py
+
 # ----- versions de les columnes (i comprovació que van totes a l'una)
 #       Ha d'anar ABANS del comit: si les columnes no quadren, el script
 #       peta, el workflow s'atura i no es publica un diccionari trencat.

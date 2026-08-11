@@ -26,6 +26,15 @@ jobs:
       - name: Crear diccionari
         run: python "diccionaris/pythons/creador_rima + dicc (a partir de col_10).py"
 
+# ----- columnes internades (separat/internat/)
+#       Va SEMPRE aquí, just després de refer les columnes i just abans de
+#       les versions. Així les internades no poden quedar endarrerides:
+#       es tornen a fer a cada passada, surtin o no canviades. Si algun dia
+#       s'escapa (perquè algú les ha comitejat a mà), el generar_versions.py
+#       de sota se n'adona i atura el workflow.
+      - name: Generar columnes internades
+        run: python diccionaris/pythons/generar_columnes_internades.py
+
 # ----- versions de les columnes (i comprovació que van totes a l'una)
 #       Ha d'anar ABANS del comit: aquest script només reescriu sis de les
 #       deu columnes, i si des de la columna 10 s'hi ha afegit o tret cap
