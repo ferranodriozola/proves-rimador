@@ -179,16 +179,70 @@ async function carregarVersions() {
 
 //INICI
 
-let array0, array1, array2, array3, array4, array5, array6, array7, array8, array9;
+// array0 (les paraules) i array9 (les transcripcions) són llistes de text de
+// toda la vida. La resta de columnes van internades: en lloc de repetir el
+// mateix text milers de vegades, cadascuna és { taula, idx }, amb els valors
+// diferents a la taula i un número per fila que hi apunta. Guardades així
+// ocupen 11,6 MB en comptes de 111 (vegeu generar_columnes_internades.py).
+let array0, array9;
+let col1, col2, col3, col4, col5, col6, col7, col8;
+
 let fitxersLlegits = 0;
-let nombresDeFitxers = 9;
+let nombresDeFitxers = 17; // la col_0 i, de cada columna internada, la taula i els índexs
 
 // col_9 (les transcripcions senceres) no hi és: fa 10 MB, una quarta part
 // de tot el diccionari, i només fa falta per al diàleg d'homògrafs. La
 // immensa majoria de cerques no el necessiten mai, o sigui que es baixa a
 // part i només quan toca (vegeu assegurarArray9).
-const nombresSeleccionats = [0,1,2,3,4,5,6,7,8];
-const camins = nombresSeleccionats.map(i => `${ARREL}diccionaris/separat/col_${i}.txt`);
+const CAMI_PARAULES = `${ARREL}diccionaris/separat/col_0.txt`;
+const COLUMNES_INTERNADES = [1, 2, 3, 4, 5, 6, 7, 8];
+
+// El tipus surt de la mida de la taula i no es declara enlloc: així el dia que
+// el diccionari creixi i una columna passi dels 65.536 valors diferents, això
+// puja de tipus tot sol.
+function menaDArray(quantsValors) {
+  if (quantsValors <= 256) return Uint8Array;
+  if (quantsValors <= 65536) return Uint16Array;
+  return Uint32Array;
+}
+
+// Els índexs es llegeixen xifra a xifra cap a un array de mida fixa. No es fa
+// servir split('\n') a posta: partiria el text en 619.783 objectes de text, que
+// és exactament el que estem mirant de no tenir.
+function textAIndexs(contingut, Tipus) {
+  let files = 1;
+  for (let i = 0; i < contingut.length; i++) {
+    if (contingut.charCodeAt(i) === 10) files++;
+  }
+
+  const indexs = new Tipus(files);
+  let valor = 0;
+  let fila = 0;
+
+  for (let i = 0; i < contingut.length; i++) {
+    const codi = contingut.charCodeAt(i);
+    if (codi === 10) {
+      indexs[fila++] = valor;
+      valor = 0;
+    } else {
+      valor = valor * 10 + (codi - 48);
+    }
+  }
+  indexs[fila] = valor;
+
+  return indexs;
+}
+
+// La taula va primer perquè és qui diu de quina mena ha de ser l'array dels
+// índexs. Totes dues passen pel mateix llegirFitxerAmbIndexedDB que la resta,
+// o sigui que hereten la memòria cau i el control de versions sense res especial.
+async function carregarColumnaInternada(numero) {
+  const arrel = `${ARREL}diccionaris/separat/internat/col_${numero}`;
+  const taula = await llegirFitxerAmbIndexedDB(`${arrel}.taula.txt`);
+  const Tipus = menaDArray(taula.length);
+  const idx = await llegirFitxerAmbIndexedDB(`${arrel}.idx.txt`, contingut => textAIndexs(contingut, Tipus));
+  return { taula, idx };
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
     if (idPagina !== 'principal') return;
@@ -201,8 +255,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         await carregarVersions();
         await carregarNaufragues();
-        const resultatFitxers = await Promise.all(camins.map(llegirFitxerAmbIndexedDB));
-        [array0, array1, array2, array3, array4, array5, array6, array7, array8] = resultatFitxers;
+        const [paraules, ...internades] = await Promise.all([
+            llegirFitxerAmbIndexedDB(CAMI_PARAULES),
+            ...COLUMNES_INTERNADES.map(carregarColumnaInternada)
+        ]);
+        array0 = paraules;
+        [col1, col2, col3, col4, col5, col6, col7, col8] = internades;
         console.log('Tots els fitxers carregats correctament');
 
         document.getElementById("loader").style.display = "none";
@@ -251,7 +309,10 @@ function guardarFitxer(db, nom, contingut, versio) {
 }
 
 // LECTURA AMB INDEXEDDB + VERSIÓ + BACKUP
-async function llegirFitxerAmbIndexedDB(rutaFitxer) {
+// `processar` diu què s'ha de fer amb el text un cop el tenim. Per defecte,
+// partir-lo per línies com sempre; els fitxers d'índexs passen el seu, que els
+// converteix en un array de nombres sense crear cap objecte de text pel camí.
+async function llegirFitxerAmbIndexedDB(rutaFitxer, processar = processarFitxerDeText) {
   const nomFitxer = rutaFitxer.split("/").pop();
   const versioActual = VERSIONS_FITXERS[nomFitxer];
 
@@ -277,7 +338,7 @@ async function llegirFitxerAmbIndexedDB(rutaFitxer) {
     if (fitxerDesat && fitxerDesat.versio === versioActual) { 
       console.log(`[${nomFitxer}] Carregat d'IndexedDB (${versioGuardada} = ${versioActual})`);
       comptarFitxer();
-      return processarFitxerEnParalel(fitxerDesat.contingut);
+      return processarFitxerEnParalel(fitxerDesat.contingut, processar);
     }
 
     console.log(`[${nomFitxer}] obsolet o no guardat, fent fetch i guardant arxiu a IndexedDB (${versioGuardada} =/= ${versioActual})`);
@@ -285,7 +346,7 @@ async function llegirFitxerAmbIndexedDB(rutaFitxer) {
     await guardarFitxer(db, nomFitxer, contingut, versioActual);
 
     comptarFitxer();
-    return processarFitxerEnParalel(contingut);
+    return processarFitxerEnParalel(contingut, processar);
 
   } catch (err) {
     Debug.logError(`IndexedDB fallida per ${nomFitxer}, intentant fetch directe`);
@@ -294,14 +355,14 @@ async function llegirFitxerAmbIndexedDB(rutaFitxer) {
 
     const contingut = await fetchFitxer(rutaFitxer);
     comptarFitxer();
-    return processarFitxerEnParalel(contingut);
+    return processarFitxerEnParalel(contingut, processar);
   }
 }
 
-function processarFitxerEnParalel(contingut) {
+function processarFitxerEnParalel(contingut, processar) {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(processarFitxerDeText(contingut));
+      resolve(processar(contingut));
     }, 0);
   });
 }
@@ -554,7 +615,7 @@ async function realitzarCerca() {
     // El diàleg d'homògrafs, si surt, s'obre amb el loader apartat
     // (vegeu buscarParaula).
     await Loader.mentre("Cercant les rimes...", async () => {
-      const buscaparaula = await buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals, array0, array1, array2, array3, array4, array5, array6, array7, array8);
+      const buscaparaula = await buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals, array0, col1, col2, col3, col4, col5, col6, col7, col8);
 
       // null = s'ha tancat el diàleg d'homògrafs sense triar cap paraula.
       // No toquem res: ni els resultats de la pantalla ni el registre de
@@ -758,8 +819,20 @@ function triarHomograf(paraulaCercada, opcions) {
 // perquè es carrega a part i pot arribar enmig d'aquesta mateixa funció
 // (vegeu assegurarArray9). Si vingués de fora ens quedaríem amb el valor
 // que tenia quan la cerca ha començat, que sovint és cap.
-async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals, array0, array1, array2, array3, array4, array5, array6, array7, array8) {
+async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals, array0, col1, col2, col3, col4, col5, col6, col7, col8) {
   Debug.logTime('buscarParaula');
+
+  // Les columnes de la 1 a la 8 venen internades: guarden un número per fila
+  // que assenyala la taula dels valors diferents. Aquestes funcions en tornen
+  // el text de sempre, o sigui que d'aquí avall tot es llegeix igual que abans.
+  const t1 = i => col1.taula[col1.idx[i]];
+  const t2 = i => col2.taula[col2.idx[i]];
+  const t3 = i => col3.taula[col3.idx[i]];
+  const t4 = i => col4.taula[col4.idx[i]];
+  const t5 = i => col5.taula[col5.idx[i]];
+  const t6 = i => col6.taula[col6.idx[i]];
+  const t7 = i => col7.taula[col7.idx[i]];
+  const t8 = i => col8.taula[col8.idx[i]];
 
   // La transcripció de la paraula cercada no la fa servir ningú més; si
   // encara no s'ha carregat, val més deixar-la buida que no pas baixar
@@ -778,8 +851,8 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
     .map((item, index) => ({ paraula: item, index }))
     .filter(obj => obj.paraula.toLowerCase() === paraulaCercada.toLowerCase())
     .sort((a, b) => {
-      const codiA = array2[a.index];
-      const codiB = array2[b.index];
+      const codiA = t2(a.index);
+      const codiB = t2(b.index);
       return obtenirPesJerarquia(codiA) - obtenirPesJerarquia(codiB);
     });
 
@@ -789,9 +862,9 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
   } else if (coincidencies.length === 1) {
     var indexparaula = coincidencies[0].index;
     llistaParaulaCerca = [
-      array0[indexparaula], array1[indexparaula], array2[indexparaula],
-      array3[indexparaula], array4[indexparaula], array5[indexparaula],
-      array6[indexparaula], array7[indexparaula], array8[indexparaula], transcripcioDe(indexparaula)
+      array0[indexparaula], t1(indexparaula), t2(indexparaula),
+      t3(indexparaula), t4(indexparaula), t5(indexparaula),
+      t6(indexparaula), t7(indexparaula), t8(indexparaula), transcripcioDe(indexparaula)
     ];
   } else {
     // Aquí sí que calen les transcripcions: són l'única manera de saber si
@@ -802,9 +875,9 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
     if (transcripcions.size === 1) {
       var indexparaula = coincidencies[0].index;
       llistaParaulaCerca = [
-        array0[indexparaula], array1[indexparaula], array2[indexparaula],
-        array3[indexparaula], array4[indexparaula], array5[indexparaula],
-        array6[indexparaula], array7[indexparaula], array8[indexparaula], transcripcioDe(indexparaula)
+        array0[indexparaula], t1(indexparaula), t2(indexparaula),
+        t3(indexparaula), t4(indexparaula), t5(indexparaula),
+        t6(indexparaula), t7(indexparaula), t8(indexparaula), transcripcioDe(indexparaula)
       ];
     } else {
       // Només oferim una opció per transcripció: si dues entrades es
@@ -824,8 +897,8 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
           index,
           numero: opcions.length + 1,
           paraula: array0[index],
-          arrel: array1[index],
-          categoria: descriureCategoria(array2[index]),
+          arrel: t1(index),
+          categoria: descriureCategoria(t2(index)),
           transcripcio: transcripcio.startsWith("/") ? transcripcio : "/" + transcripcio + "/"
         });
       });
@@ -843,9 +916,9 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
 
       const indexparaula = triada.index;
       llistaParaulaCerca = [
-        array0[indexparaula], array1[indexparaula], array2[indexparaula],
-        array3[indexparaula], array4[indexparaula], array5[indexparaula],
-        array6[indexparaula], array7[indexparaula], array8[indexparaula], transcripcioDe(indexparaula)
+        array0[indexparaula], t1(indexparaula), t2(indexparaula),
+        t3(indexparaula), t4(indexparaula), t5(indexparaula),
+        t6(indexparaula), t7(indexparaula), t8(indexparaula), transcripcioDe(indexparaula)
       ];
     }
   }
@@ -853,11 +926,11 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
   for (var i = 0; i < array0.length; i++) {
     let bona = 1;
     while (bona === 1) {
-      if (array5[i] !== numeroSeleccionat && numeroSeleccionat !== "0" && numeroSeleccionat !== "6") {
+      if (t5(i) !== numeroSeleccionat && numeroSeleccionat !== "0" && numeroSeleccionat !== "6") {
         break;
       }
 
-      if (numeroSeleccionat === "6" && parseInt(array5[i]) < 6) {
+      if (numeroSeleccionat === "6" && parseInt(t5(i)) < 6) {
         break;
       }
 
@@ -872,39 +945,39 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
       }
 
       if (tipusRima === 'r.consonant') {
-        if (array3[i] !== llistaParaulaCerca[3]) {
+        if (t3(i) !== llistaParaulaCerca[3]) {
           break;
         }
       }
 
       if (tipusRima === 'r.assonant') {
-        if (array4[i] !== llistaParaulaCerca[4]) {
+        if (t4(i) !== llistaParaulaCerca[4]) {
           break;
         }
       }
 
       if (inclourePropis === 'no') {
-        if (array2[i][0] === "N" && array2[i][1] === "P") {
+        if (t2(i)[0] === "N" && t2(i)[1] === "P") {
           break;
         }
       }
 
       if (inclourePlurals === 'no') {
-        if (array2[i][0] === "D" && array2[i][4] === "P") { //Determinants
+        if (t2(i)[0] === "D" && t2(i)[4] === "P") { //Determinants
           break;
         }
-        if (array2[i][0] === "A" && array2[i][4] === "P") { //Adjectius
+        if (t2(i)[0] === "A" && t2(i)[4] === "P") { //Adjectius
           break;
         }
-        if (array2[i][0] === "N" && array2[i][3] === "P") { //Noms
+        if (t2(i)[0] === "N" && t2(i)[3] === "P") { //Noms
           break;
         }
-        if (array2[i][0] === "P" && array2[i][4] === "P") { //Pronoms
+        if (t2(i)[0] === "P" && t2(i)[4] === "P") { //Pronoms
           break;
         }
       }
       
-      let paraula = [array0[i], array1[i], array2[i], array5[i], array6[i], array7[i], array8[i]] //no cal guardar les rimes (array3 i 4)
+      let paraula = [array0[i], t1(i), t2(i), t5(i), t6(i), t7(i), t8(i)] //no cal guardar les rimes (col3 i col4)
       matches.push(paraula);
       bona = 0;
     }
