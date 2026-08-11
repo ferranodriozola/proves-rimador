@@ -43,8 +43,8 @@ const CASOS = [
   { nom: "abeuren, nàufraga",            paraula: "abeuren", rima: "r.consonant" },
   { nom: "abordi, nàufraga",             paraula: "abordi",  rima: "r.consonant" },
 
-  // --- codis curts: aquí array2[i][3] i [4] no existeixen, i el filtre de
-  //     plurals els ha de deixar passar igualment ---
+  // --- codis curts: aquí el 4t i el 5è caràcter del codi no existeixen, i el
+  //     filtre de plurals els ha de deixar passar igualment ---
   { nom: "adeu, codi de 2 lletres (ZI)",   paraula: "adeu",  rima: "r.consonant", plurals: "no" },
   { nom: "abans, codi de 3 lletres (ZRG)", paraula: "abans", rima: "r.consonant", plurals: "no" },
   { nom: "adeu-siau, amb guionet",         paraula: "adeu-siau", rima: "r.consonant" },
@@ -108,7 +108,7 @@ async function executarBateria(informar = () => {}) {
       const sortida = await buscarParaula(
         params.paraula, params.silabes, params.comenca, params.rima,
         params.propis, params.plurals,
-        array0, array1, array2, array3, array4, array5, array6, array7, array8
+        array0, col1, col2, col3, col4, col5, col6, col7, col8
       );
 
       if (sortida === null) {
