@@ -8,11 +8,15 @@
     <meta name="robots" content="noindex, nofollow">
     <title>Bateria de proves de la cerca</title>
 
-    <link rel="stylesheet" href="../dist/css/styles.min.css">
-    <script src="../dist/js/components.min.js" defer></script>
-    <script src="../dist/js/menu.min.js" defer></script>
-    <script src="../dist/js/script.min.js" defer></script>
-    <script src="bateria.js" defer></script>
+    <!-- Els ?v= hi són perquè el rebentament de memòria cau del deploy.yml
+         els reescriu (busca .js?v= i .css?v= a tots els HTML). Sense això,
+         aquesta pàgina es quedaria provant una versió vella del codi, que és
+         justament el pitjor que pot fer una pàgina de proves. -->
+    <link rel="stylesheet" href="../dist/css/styles.min.css?v=dev">
+    <script src="../dist/js/components.min.js?v=dev" defer></script>
+    <script src="../dist/js/menu.min.js?v=dev" defer></script>
+    <script src="../dist/js/script.min.js?v=dev" defer></script>
+    <script src="bateria.js?v=dev" defer></script>
 
     <style>
         #eines { font-family: system-ui, sans-serif; margin: 20px; max-width: 1000px; }
