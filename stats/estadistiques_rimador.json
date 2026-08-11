@@ -1,5 +1,5 @@
 {
-    "actualitzacio": "12/08/2026 00:18:56",
+    "actualitzacio": "12/08/2026 01:04:44",
     "setmana": {
         "text_dies": "5/8 > 11/8",
         "top_10_paraules": [
@@ -56,12 +56,12 @@
                 "cerques": 11
             },
             {
-                "paraula": "i",
+                "paraula": "at",
                 "tipus": "r.consonant",
                 "cerques": 10
             },
             {
-                "paraula": "at",
+                "paraula": "i",
                 "tipus": "r.consonant",
                 "cerques": 10
             },
@@ -81,18 +81,18 @@
                 "cerques": 6
             },
             {
-                "paraula": "or",
-                "tipus": "r.consonant",
-                "cerques": 6
-            },
-            {
                 "paraula": "a",
                 "tipus": "r.consonant",
                 "cerques": 6
             },
             {
-                "paraula": "o",
-                "tipus": "r.assonant",
+                "paraula": "or",
+                "tipus": "r.consonant",
+                "cerques": 6
+            },
+            {
+                "paraula": "azə",
+                "tipus": "r.consonant",
                 "cerques": 5
             }
         ],
@@ -155,12 +155,12 @@
                 "cerques": 14
             },
             {
-                "paraula": "an",
+                "paraula": "e",
                 "tipus": "r.consonant",
                 "cerques": 13
             },
             {
-                "paraula": "e",
+                "paraula": "an",
                 "tipus": "r.consonant",
                 "cerques": 13
             },
@@ -180,12 +180,12 @@
                 "cerques": 10
             },
             {
-                "paraula": "a",
+                "paraula": "al",
                 "tipus": "r.consonant",
                 "cerques": 9
             },
             {
-                "paraula": "al",
+                "paraula": "a",
                 "tipus": "r.consonant",
                 "cerques": 9
             },
