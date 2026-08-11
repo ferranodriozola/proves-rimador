@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Pàgina d'eines, no és per a ningú de fora. -->
+    <meta name="robots" content="noindex, nofollow">
+    <title>Bateria de proves de la cerca</title>
+
+    <link rel="stylesheet" href="../dist/css/styles.min.css">
+    <script src="../dist/js/components.min.js" defer></script>
+    <script src="../dist/js/menu.min.js" defer></script>
+    <script src="../dist/js/script.min.js" defer></script>
+    <script src="bateria.js" defer></script>
+
+    <style>
+        #eines { font-family: system-ui, sans-serif; margin: 20px; max-width: 1000px; }
+        #eines button { font-size: 15px; padding: 8px 14px; margin-right: 8px; cursor: pointer; }
+        #estat { margin: 14px 0; font-family: monospace; white-space: pre-wrap; }
+        #veredicte { font-size: 20px; font-weight: bold; padding: 12px; margin: 14px 0; border-radius: 6px; }
+        .be { background: #d7f5d7; color: #14561e; }
+        .malament { background: #ffd7d7; color: #8b0000; }
+        #detall { font-family: monospace; font-size: 12px; white-space: pre-wrap;
+                  background: #f4f4f4; color: #222; padding: 12px; border-radius: 6px;
+                  max-height: 60vh; overflow: auto; }
+    </style>
+</head>
+
+<!--
+  Cal que el body sigui "principal": és el que fa que script.js carregui el
+  diccionari (vegeu el DOMContentLoaded de dalt de tot d'aquell fitxer). La
+  resta de caixes buides hi són perquè el programa dona per fet que existeixen.
+-->
+<body id="principal">
+
+    <div class="loader" id="loader"></div>
+    <header id="header"></header>
+    <div id="separador_rosa1"></div>
+
+    <div class="container" id="container">
+        <div class="search-container">
+            <input type="text" id="paraulaCercada">
+            <button class="boto" id="cercaButton"><span class="text">Cercar</span></button>
+        </div>
+        <div class="dropdown-container" id="dropdown-container"></div>
+    </div>
+
+    <div class="impressio">
+        <div id="checkboxContainer"></div>
+        <div class="resultats">
+            <div id="separador_rosa2"><p id="nombre"></p></div>
+            <p id="rima_enllac" class="column-container"></p>
+        </div>
+    </div>
+
+    <div id="espai_inicial"><p>.</p></div>
+
+    <div id="eines">
+        <h1>Bateria de proves de la cerca</h1>
+        <p>
+            Abans de tocar <code>buscarParaula</code>, prem <strong>Desar la instantània</strong>. Després de
+            cada canvi, prem <strong>Comparar amb l'última</strong>. Si surt una sola diferència, el canvi
+            ha trencat alguna cosa.
+        </p>
+        <p>
+            La instantània es desa al navegador i també es baixa com a fitxer, per si vols comparar
+            d'un dia per l'altre. <strong>No la guardis al repositori</strong>: el diccionari es regenera
+            sol i una instantània vella donaria diferències que no són culpa de cap canvi de codi.
+            Es fa just abans de tocar res i es llença quan la feina està acabada.
+        </p>
+
+        <button id="botoDesar">Desar la instantània</button>
+        <button id="botoUltima">Comparar amb l'última</button>
+        <button id="botoComparar">Comparar amb un fitxer…</button>
+        <input type="file" id="fitxer" accept="application/json" hidden>
+
+        <div id="estat"></div>
+        <div id="veredicte" hidden></div>
+        <div id="detall" hidden></div>
+    </div>
+
+    <footer id="footer"></footer>
+
+<script>
+(function () {
+    const estat = document.getElementById('estat');
+    const veredicte = document.getElementById('veredicte');
+    const detall = document.getElementById('detall');
+    const fitxer = document.getElementById('fitxer');
+
+    const informar = (fet, total, nom) => {
+        estat.textContent = `Cas ${fet}/${total}: ${nom}`;
+    };
+
+    async function esperarDiccionari() {
+        estat.textContent = 'Carregant el diccionari…';
+        const inici = Date.now();
+        while (typeof array0 === 'undefined' && Date.now() - inici < 180000) {
+            await new Promise(r => setTimeout(r, 300));
+        }
+        if (typeof array0 === 'undefined') throw new Error('El diccionari no ha carregat.');
+    }
+
+    function ensenyar(bo, missatge, cos) {
+        veredicte.hidden = false;
+        veredicte.className = bo ? 'be' : 'malament';
+        veredicte.textContent = missatge;
+        detall.hidden = cos === undefined;
+        if (cos !== undefined) detall.textContent = cos;
+    }
+
+    const CLAU = 'rimador_instantania_cerca';
+
+    function comparaAmb(abans, ara) {
+        if (abans.files !== ara.files) {
+            ensenyar(false, `El diccionari ha canviat de mida (${abans.files} → ${ara.files} files).`,
+                     'La comparació no val: torna a desar la instantània amb el diccionari nou.');
+            return;
+        }
+        const diferencies = comparar(abans, ara);
+        if (diferencies.length === 0) {
+            ensenyar(true, `TOT IGUAL — ${ara.casos.length} casos, cap diferència.`);
+        } else {
+            ensenyar(false, `${diferencies.length} DIFERÈNCIES`, JSON.stringify(diferencies, null, 1));
+        }
+    }
+
+    document.getElementById('botoDesar').addEventListener('click', async () => {
+        veredicte.hidden = detall.hidden = true;
+        await esperarDiccionari();
+        const instantania = await executarBateria(informar);
+        const text = JSON.stringify(instantania, null, 1);
+
+        let avis = '';
+        try {
+            localStorage.setItem(CLAU, text);
+        } catch (e) {
+            avis = "\n\n(No ha cabut al navegador; queda només el fitxer.)";
+        }
+
+        const url = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `instantania-cerca-${new Date().toISOString().slice(0, 10)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+
+        estat.textContent = '';
+        ensenyar(true, `Instantània desada: ${instantania.casos.length} casos, ${instantania.files} files de diccionari.`,
+                 JSON.stringify(instantania.casos.map(c => ({ nom: c.nom, rimes: c.trobades ?? 'cancel·lat', resum: c.resum })), null, 1) + avis);
+    });
+
+    document.getElementById('botoUltima').addEventListener('click', async () => {
+        veredicte.hidden = detall.hidden = true;
+        const desada = localStorage.getItem(CLAU);
+        if (!desada) {
+            ensenyar(false, "No hi ha cap instantània desada en aquest navegador.",
+                     "Prem abans «Desar la instantània».");
+            return;
+        }
+        await esperarDiccionari();
+        const ara = await executarBateria(informar);
+        estat.textContent = '';
+        comparaAmb(JSON.parse(desada), ara);
+    });
+
+    document.getElementById('botoComparar').addEventListener('click', () => fitxer.click());
+
+    fitxer.addEventListener('change', async () => {
+        const f = fitxer.files[0];
+        if (!f) return;
+        fitxer.value = '';
+        veredicte.hidden = detall.hidden = true;
+
+        const abans = JSON.parse(await f.text());
+        await esperarDiccionari();
+        const ara = await executarBateria(informar);
+        estat.textContent = '';
+        comparaAmb(abans, ara);
+    });
+})();
+</script>
+</body>
+</html>
