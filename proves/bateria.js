@@ -107,8 +107,7 @@ async function executarBateria(informar = () => {}) {
 
       const sortida = await buscarParaula(
         params.paraula, params.silabes, params.comenca, params.rima,
-        params.propis, params.plurals,
-        array0, col1, col2, col3, col4, col5, col6, col7, col8
+        params.propis, params.plurals
       );
 
       if (sortida === null) {
