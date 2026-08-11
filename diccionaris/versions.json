@@ -1,5 +1,5 @@
 {
-  "generat": "2026-08-10 23:04:31 UTC",
+  "generat": "2026-08-11 14:57:32 UTC",
   "files": 619783,
   "columnes": {
     "col_0.txt": "d15583094efd",
@@ -11,6 +11,22 @@
     "col_6.txt": "abec8850c656",
     "col_7.txt": "78b3c77842af",
     "col_8.txt": "be6f69d346a1",
-    "col_9.txt": "c02c5e85de26"
+    "col_9.txt": "c02c5e85de26",
+    "col_1.taula.txt": "313ce1ff9ba2",
+    "col_1.idx.txt": "884100476ebe",
+    "col_2.taula.txt": "3e7d8ead93a9",
+    "col_2.idx.txt": "41a25c58950c",
+    "col_3.taula.txt": "98694d27b7f4",
+    "col_3.idx.txt": "63cc7019896f",
+    "col_4.taula.txt": "c9f0fdca5ce6",
+    "col_4.idx.txt": "9ecd2bb66d01",
+    "col_5.taula.txt": "6392c376c4f8",
+    "col_5.idx.txt": "a4554723a705",
+    "col_6.taula.txt": "f84513ef107e",
+    "col_6.idx.txt": "096ca4d234b8",
+    "col_7.taula.txt": "43646e13b652",
+    "col_7.idx.txt": "d18d5e23312b",
+    "col_8.taula.txt": "701d2f19a981",
+    "col_8.idx.txt": "f5dd2b5f4f4d"
   }
 }
