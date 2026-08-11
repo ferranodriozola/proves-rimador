@@ -187,6 +187,28 @@ async function carregarVersions() {
 let array0, array9;
 let col1, col2, col3, col4, col5, col6, col7, col8;
 
+// Les tres últimes columnes són sí/no (surt al Viccionari, a la Viquipèdia, al
+// DIEC). Tres arrays d'un byte per fila per guardar tres bits és malbaratar-ne
+// vint-i-un: aquí van totes tres al mateix byte. Val null si algun dia alguna
+// d'aquestes columnes deixa de tenir només dos valors, i llavors es llegeixen
+// com les altres.
+let banderes = null;
+
+// Per a cada rima, quines files la tenen (vegeu indexarPerRima).
+let indexConsonant = null;
+let indexAssonant = null;
+
+// Lectors de les columnes internades: tornen el text de sempre a partir del
+// número que hi ha guardat a cada fila.
+const t1 = i => col1.taula[col1.idx[i]];
+const t2 = i => col2.taula[col2.idx[i]];
+const t3 = i => col3.taula[col3.idx[i]];
+const t4 = i => col4.taula[col4.idx[i]];
+const t5 = i => col5.taula[col5.idx[i]];
+const t6 = i => (banderes ? col6.taula[banderes[i] & 1] : col6.taula[col6.idx[i]]);
+const t7 = i => (banderes ? col7.taula[(banderes[i] >> 1) & 1] : col7.taula[col7.idx[i]]);
+const t8 = i => (banderes ? col8.taula[(banderes[i] >> 2) & 1] : col8.taula[col8.idx[i]]);
+
 let fitxersLlegits = 0;
 let nombresDeFitxers = 17; // la col_0 i, de cada columna internada, la taula i els índexs
 
@@ -244,6 +266,48 @@ async function carregarColumnaInternada(numero) {
   return { taula, idx };
 }
 
+// Per a cada rima, les files que la tenen, amb dos arrays plans en lloc d'un
+// array d'arrays: `inici` diu on comença cada grup dins de `files`, i `files`
+// són els números de fila seguits, agrupats per rima. Deu mil arrays petits
+// serien deu mil objectes i molta memòria de capçaleres.
+//
+// Dins de cada grup les files queden en ordre creixent, perquè s'omple
+// recorrent el diccionari de dalt a baix. Això importa: és el que fa que les
+// rimes surtin en el mateix ordre que quan es mirava el diccionari sencer.
+function indexarPerRima(columna) {
+  const quantesRimes = columna.taula.length;
+  const inici = new Uint32Array(quantesRimes + 1);
+
+  for (let i = 0; i < columna.idx.length; i++) inici[columna.idx[i] + 1]++;
+  for (let r = 0; r < quantesRimes; r++) inici[r + 1] += inici[r];
+
+  const files = new Uint32Array(columna.idx.length);
+  const posicio = inici.slice(0, quantesRimes);
+  for (let i = 0; i < columna.idx.length; i++) files[posicio[columna.idx[i]]++] = i;
+
+  return { inici, files };
+}
+
+// El que es prepara un cop, en carregar, i estalvia feina a cada cerca.
+function prepararColumnes() {
+  // Les tres banderes al mateix byte. El bit que ocupa cadascuna és el mateix
+  // número que ja tenia a la seva taula, o sigui que llegir-lo torna el text bo.
+  // El col6.idx i companyia s'alliberen aquí sota, o sigui que això només es
+  // pot fer un cop: si algun dia es torna a cridar, que no hi torni a entrar.
+  if (col6.idx && col7.idx && col8.idx &&
+      col6.taula.length <= 2 && col7.taula.length <= 2 && col8.taula.length <= 2) {
+    const empaquetades = new Uint8Array(col6.idx.length);
+    for (let i = 0; i < empaquetades.length; i++) {
+      empaquetades[i] = col6.idx[i] | (col7.idx[i] << 1) | (col8.idx[i] << 2);
+    }
+    banderes = empaquetades;
+    col6.idx = col7.idx = col8.idx = null; // ja no calen
+  }
+
+  indexConsonant = indexarPerRima(col3);
+  indexAssonant = indexarPerRima(col4);
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     if (idPagina !== 'principal') return;
     Debug.logTime('Temps de càrrega');
@@ -261,6 +325,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         ]);
         array0 = paraules;
         [col1, col2, col3, col4, col5, col6, col7, col8] = internades;
+        prepararColumnes();
         console.log('Tots els fitxers carregats correctament');
 
         document.getElementById("loader").style.display = "none";
@@ -274,16 +339,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 // --- FUNCIONS INDEXEDDB ---
+// Versió 2: abans aquí s'hi desava el text tal com baixava del servidor i es
+// tornava a interpretar a cada visita. Ara s'hi desa ja interpretat (la llista
+// de paraules feta, els índexs com a array de nombres), que és el que estalvia
+// la feina. Com que el que hi ha a dins canvia de forma però les claus i les
+// versions es diuen igual, el codi nou llegiria text on ara espera estructures:
+// per això puja el número i es buida la caixa. Els visitants de sempre es
+// tornen a baixar el diccionari una vegada i s'acaba.
 function obrirIndexedDB() {
     return new Promise((resolve, reject) => {
-        const request = indexedDB.open('rimadorDB', 1);
+        const request = indexedDB.open('rimadorDB', 2);
         request.onerror = () => reject(null);
         request.onsuccess = () => resolve(request.result);
         request.onupgradeneeded = (event) => {
             const db = event.target.result;
-            if (!db.objectStoreNames.contains('fitxers')) {
-                db.createObjectStore('fitxers', { keyPath: 'nom' });
+            if (db.objectStoreNames.contains('fitxers')) {
+                db.deleteObjectStore('fitxers');
             }
+            db.createObjectStore('fitxers', { keyPath: 'nom' });
         };
     });
 }
@@ -335,18 +408,21 @@ async function llegirFitxerAmbIndexedDB(rutaFitxer, processar = processarFitxerD
     const fitxerDesat = await recuperarFitxer(db, nomFitxer); 
     const versioGuardada = fitxerDesat ? fitxerDesat.versio : "cap";
 
-    if (fitxerDesat && fitxerDesat.versio === versioActual) { 
+    // El que hi ha desat ja està interpretat: es torna tal com surt, sense
+    // tornar a partir cap text ni tornar a llegir cap xifra.
+    if (fitxerDesat && fitxerDesat.versio === versioActual) {
       console.log(`[${nomFitxer}] Carregat d'IndexedDB (${versioGuardada} = ${versioActual})`);
       comptarFitxer();
-      return processarFitxerEnParalel(fitxerDesat.contingut, processar);
+      return fitxerDesat.contingut;
     }
 
     console.log(`[${nomFitxer}] obsolet o no guardat, fent fetch i guardant arxiu a IndexedDB (${versioGuardada} =/= ${versioActual})`);
     const contingut = await fetchFitxer(rutaFitxer);
-    await guardarFitxer(db, nomFitxer, contingut, versioActual);
+    const interpretat = await processarFitxerEnParalel(contingut, processar);
+    await guardarFitxer(db, nomFitxer, interpretat, versioActual);
 
     comptarFitxer();
-    return processarFitxerEnParalel(contingut, processar);
+    return interpretat;
 
   } catch (err) {
     Debug.logError(`IndexedDB fallida per ${nomFitxer}, intentant fetch directe`);
@@ -633,7 +709,7 @@ async function realitzarCerca() {
     // El diàleg d'homògrafs, si surt, s'obre amb el loader apartat
     // (vegeu buscarParaula).
     await Loader.mentre("Cercant les rimes...", async () => {
-      const buscaparaula = await buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals, array0, col1, col2, col3, col4, col5, col6, col7, col8);
+      const buscaparaula = await buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals);
 
       // null = s'ha tancat el diàleg d'homògrafs sense triar cap paraula.
       // No toquem res: ni els resultats de la pantalla ni el registre de
@@ -833,24 +909,13 @@ function triarHomograf(paraulaCercada, opcions) {
   });
 }
 
-// Compte: array9 (les transcripcions) no és un paràmetre com la resta,
-// perquè es carrega a part i pot arribar enmig d'aquesta mateixa funció
-// (vegeu assegurarArray9). Si vingués de fora ens quedaríem amb el valor
-// que tenia quan la cerca ha començat, que sovint és cap.
-async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals, array0, col1, col2, col3, col4, col5, col6, col7, col8) {
+// Les columnes no són paràmetres: es llegeixen d'on són. Ho eren, i ja hi
+// havia una excepció (array9, que es carrega a part i pot arribar enmig
+// d'aquesta funció); ara que a més hi ha les banderes empaquetades i els
+// índexs de rima, passar-ho tot per la porta era una llista de nou arguments
+// que no deia res que no se sabés.
+async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals) {
   Debug.logTime('buscarParaula');
-
-  // Les columnes de la 1 a la 8 venen internades: guarden un número per fila
-  // que assenyala la taula dels valors diferents. Aquestes funcions en tornen
-  // el text de sempre, o sigui que d'aquí avall tot es llegeix igual que abans.
-  const t1 = i => col1.taula[col1.idx[i]];
-  const t2 = i => col2.taula[col2.idx[i]];
-  const t3 = i => col3.taula[col3.idx[i]];
-  const t4 = i => col4.taula[col4.idx[i]];
-  const t5 = i => col5.taula[col5.idx[i]];
-  const t6 = i => col6.taula[col6.idx[i]];
-  const t7 = i => col7.taula[col7.idx[i]];
-  const t8 = i => col8.taula[col8.idx[i]];
 
   // La transcripció de la paraula cercada no la fa servir ningú més; si
   // encara no s'ha carregat, val més deixar-la buida que no pas baixar
@@ -865,20 +930,29 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
   let llistaParaulaCerca;
   const matches = [];
 
-  const coincidencies = array0
-    .map((item, index) => ({ paraula: item, index }))
-    .filter(obj => obj.paraula.toLowerCase() === paraulaCercada.toLowerCase())
-    .sort((a, b) => {
-      const codiA = t2(a.index);
-      const codiB = t2(b.index);
-      return obtenirPesJerarquia(codiA) - obtenirPesJerarquia(codiB);
-    });
+  // Quina fila del diccionari és la paraula que s'ha cercat, o -1 si no hi és.
+  // Ens la guardem perquè és d'on surt el número de la rima que hem de buscar.
+  let filaTrobada = -1;
+
+  // Abans això era un .map() que fabricava 619.783 objectes { paraula, index }
+  // a cada cerca, només per trobar-ne un grapat. Un bucle normal fa la mateixa
+  // feina sense deixar res per escombrar.
+  const buscada = paraulaCercada.toLowerCase();
+  const coincidencies = [];
+  for (let i = 0; i < array0.length; i++) {
+    if (array0[i].toLowerCase() === buscada) coincidencies.push(i);
+  }
+
+  // L'ordenació és estable, o sigui que les del mateix pes es queden en
+  // l'ordre del diccionari, com abans.
+  coincidencies.sort((a, b) => obtenirPesJerarquia(t2(a)) - obtenirPesJerarquia(t2(b)));
 
   if (coincidencies.length === 0) {
     llistaParaulaCerca = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    
+
   } else if (coincidencies.length === 1) {
-    var indexparaula = coincidencies[0].index;
+    var indexparaula = coincidencies[0];
+    filaTrobada = indexparaula;
     llistaParaulaCerca = [
       array0[indexparaula], t1(indexparaula), t2(indexparaula),
       t3(indexparaula), t4(indexparaula), t5(indexparaula),
@@ -889,9 +963,10 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
     // aquestes entrades es pronuncien totes igual o si s'ha de preguntar.
     await assegurarArray9();
 
-    const transcripcions = new Set(coincidencies.map(c => array9[c.index]));
+    const transcripcions = new Set(coincidencies.map(fila => array9[fila]));
     if (transcripcions.size === 1) {
-      var indexparaula = coincidencies[0].index;
+      var indexparaula = coincidencies[0];
+      filaTrobada = indexparaula;
       llistaParaulaCerca = [
         array0[indexparaula], t1(indexparaula), t2(indexparaula),
         t3(indexparaula), t4(indexparaula), t5(indexparaula),
@@ -905,8 +980,7 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
       const vistes = new Set();
       const opcions = [];
 
-      coincidencies.forEach(c => {
-        const index = c.index;
+      coincidencies.forEach(index => {
         const transcripcio = array9[index];
         if (vistes.has(transcripcio)) return;
         vistes.add(transcripcio);
@@ -933,6 +1007,7 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
       if (!triada) return null;
 
       const indexparaula = triada.index;
+      filaTrobada = indexparaula;
       llistaParaulaCerca = [
         array0[indexparaula], t1(indexparaula), t2(indexparaula),
         t3(indexparaula), t4(indexparaula), t5(indexparaula),
@@ -941,65 +1016,69 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
     }
   }
 
-  for (var i = 0; i < array0.length; i++) {
-    let bona = 1;
-    while (bona === 1) {
-      if (t5(i) !== numeroSeleccionat && numeroSeleccionat !== "0" && numeroSeleccionat !== "6") {
-        break;
-      }
+  // Els filtres de síl·labes i de categoria no depenen de la paraula sinó del
+  // seu valor de columna, i valors diferents només n'hi ha 15 i 337. En lloc
+  // de fer la mateixa pregunta 619.783 vegades, es respon un cop per valor i
+  // el bucle només mira la resposta a la taula.
+  const silabesOK = new Uint8Array(col5.taula.length);
+  for (let v = 0; v < col5.taula.length; v++) {
+    const silabes = col5.taula[v];
+    let passa = true;
+    if (silabes !== numeroSeleccionat && numeroSeleccionat !== "0" && numeroSeleccionat !== "6") passa = false;
+    if (numeroSeleccionat === "6" && parseInt(silabes) < 6) passa = false;
+    silabesOK[v] = passa ? 1 : 0;
+  }
 
-      if (numeroSeleccionat === "6" && parseInt(t5(i)) < 6) {
-        break;
-      }
+  const codiOK = new Uint8Array(col2.taula.length);
+  for (let v = 0; v < col2.taula.length; v++) {
+    const codi = col2.taula[v];
+    let passa = true;
+    if (inclourePropis === 'no' && codi[0] === "N" && codi[1] === "P") passa = false;
+    if (inclourePlurals === 'no') {
+      if (codi[0] === "D" && codi[4] === "P") passa = false; //Determinants
+      if (codi[0] === "A" && codi[4] === "P") passa = false; //Adjectius
+      if (codi[0] === "N" && codi[3] === "P") passa = false; //Noms
+      if (codi[0] === "P" && codi[4] === "P") passa = false; //Pronoms
+    }
+    codiOK[v] = passa ? 1 : 0;
+  }
 
-      const vocalsValides = 'haeiouàèéíïòóúü';
+  // Quines files s'han de mirar. Amb l'índex de rimes no cal recórrer el
+  // diccionari sencer: n'hi ha prou amb les files de la rima que busquem, que
+  // en consonant són dues de mediana. I la rima es compara com a número, que
+  // és el que hi ha guardat: no cal anar a buscar-ne el text.
+  let candidates = null; // null = mirar-les totes, de la primera a l'última
+  let desDe = 0;
+  let finsA = array0.length;
 
-      if (comença === "vocal+h" && !vocalsValides.includes(array0[i][0])) {
-        break;
-      }
-
-      if (comença === "consonant" && vocalsValides.includes(array0[i][0])) {
-        break;
-      }
-
-      if (tipusRima === 'r.consonant') {
-        if (t3(i) !== llistaParaulaCerca[3]) {
-          break;
-        }
-      }
-
-      if (tipusRima === 'r.assonant') {
-        if (t4(i) !== llistaParaulaCerca[4]) {
-          break;
-        }
-      }
-
-      if (inclourePropis === 'no') {
-        if (t2(i)[0] === "N" && t2(i)[1] === "P") {
-          break;
-        }
-      }
-
-      if (inclourePlurals === 'no') {
-        if (t2(i)[0] === "D" && t2(i)[4] === "P") { //Determinants
-          break;
-        }
-        if (t2(i)[0] === "A" && t2(i)[4] === "P") { //Adjectius
-          break;
-        }
-        if (t2(i)[0] === "N" && t2(i)[3] === "P") { //Noms
-          break;
-        }
-        if (t2(i)[0] === "P" && t2(i)[4] === "P") { //Pronoms
-          break;
-        }
-      }
-      
-      let paraula = [array0[i], t1(i), t2(i), t5(i), t6(i), t7(i), t8(i)] //no cal guardar les rimes (col3 i col4)
-      matches.push(paraula);
-      bona = 0;
+  if (tipusRima === 'r.consonant' || tipusRima === 'r.assonant') {
+    if (filaTrobada < 0) {
+      finsA = 0; // la paraula no és al diccionari: no rima amb res
+    } else {
+      const columna = tipusRima === 'r.consonant' ? col3 : col4;
+      const index = tipusRima === 'r.consonant' ? indexConsonant : indexAssonant;
+      const rima = columna.idx[filaTrobada];
+      candidates = index.files;
+      desDe = index.inici[rima];
+      finsA = index.inici[rima + 1];
     }
   }
+
+  const vocalsValides = 'haeiouàèéíïòóúü';
+
+  for (let k = desDe; k < finsA; k++) {
+    const i = candidates ? candidates[k] : k;
+
+    if (!silabesOK[col5.idx[i]]) continue;
+    if (!codiOK[col2.idx[i]]) continue;
+
+    const inicial = array0[i][0];
+    if (comença === "vocal+h" && !vocalsValides.includes(inicial)) continue;
+    if (comença === "consonant" && vocalsValides.includes(inicial)) continue;
+
+    matches.push([array0[i], t1(i), t2(i), t5(i), t6(i), t7(i), t8(i)]); //no cal guardar les rimes (col3 i col4)
+  }
+
   Debug.logTimeEnd('buscarParaula');
   return [matches, llistaParaulaCerca];
 }
