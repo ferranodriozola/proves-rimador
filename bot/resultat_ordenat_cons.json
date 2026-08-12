@@ -624843,6 +624843,16 @@
             "diàlegs"
         ]
     },
+    "ɛpsi": {
+        "frequencia": 5,
+        "paraules": [
+            "analepsi",
+            "epanalepsi",
+            "metalepsi",
+            "prolepsi",
+            "sil·lepsi"
+        ]
+    },
     "iktikə": {
         "frequencia": 5,
         "paraules": [
@@ -631401,15 +631411,6 @@
             "xautis"
         ]
     },
-    "ɛpsi": {
-        "frequencia": 4,
-        "paraules": [
-            "epanalepsi",
-            "metalepsi",
-            "prolepsi",
-            "sil·lepsi"
-        ]
-    },
     "ɛpsis": {
         "frequencia": 4,
         "paraules": [
@@ -633291,14 +633292,6 @@
             "anacrúsic",
             "músic",
             "músic"
-        ]
-    },
-    "epsi": {
-        "frequencia": 3,
-        "paraules": [
-            "analepsi",
-            "antilepsi",
-            "Pepsi"
         ]
     },
     "imənəs": {
@@ -639288,6 +639281,13 @@
         "paraules": [
             "Antígona",
             "trígona"
+        ]
+    },
+    "epsi": {
+        "frequencia": 2,
+        "paraules": [
+            "antilepsi",
+            "Pepsi"
         ]
     },
     "ilups": {
