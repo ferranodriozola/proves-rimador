@@ -1119,7 +1119,7 @@ analemàtica € analemàtic € AQ0FS0 € ənələmˈatikə
 analemàtics € analemàtic € AQ0MP0 € ənələmˈatiks
 analemàtiques € analemàtic € AQ0FP0 € ənələmˈatikəs
 analemes € analema € NCMP000 € ənəlˈeməs
-analepsi € analepsi € NCFS000 € ənəlˈepsi
+analepsi € analepsi € NCFS000 € ənəlˈɛpsi
 analèpsia € analèpsia € NCFS000 € ənəlˈɛpsiə
 analèpsies € analèpsia € NCFP000 € ənəlˈɛpsiəs
 analèptic € analèptic € AQ0MS0 € ənəlˈɛptik
