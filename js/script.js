@@ -418,7 +418,7 @@ async function llegirFitxerAmbIndexedDB(rutaFitxer, processar = processarFitxerD
 
     console.log(`[${nomFitxer}] obsolet o no guardat, fent fetch i guardant arxiu a IndexedDB (${versioGuardada} =/= ${versioActual})`);
     const contingut = await fetchFitxer(rutaFitxer);
-    const interpretat = await processarFitxerEnParalel(contingut, processar);
+    const interpretat = processar(contingut);
     await guardarFitxer(db, nomFitxer, interpretat, versioActual);
 
     comptarFitxer();
@@ -431,16 +431,8 @@ async function llegirFitxerAmbIndexedDB(rutaFitxer, processar = processarFitxerD
 
     const contingut = await fetchFitxer(rutaFitxer);
     comptarFitxer();
-    return processarFitxerEnParalel(contingut, processar);
+    return processar(contingut);
   }
-}
-
-function processarFitxerEnParalel(contingut, processar) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(processar(contingut));
-    }, 0);
-  });
 }
 
 // FETCH NORMAL
