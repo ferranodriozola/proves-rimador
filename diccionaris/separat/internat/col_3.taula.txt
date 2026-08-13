@@ -2463,7 +2463,7 @@ inrə
 alək
 aləks
 eməs
-epsi
+ɛpsi
 alizi
 alizis
 aluɣə
@@ -2756,6 +2756,7 @@ aʒik
 aʒikə
 aʒiks
 aʒikəs
+epsi
 epsis
 apɾit
 apɾits
@@ -6387,7 +6388,6 @@ awtis
 ifuns
 ipilə
 ipiləs
-ɛpsi
 ɛpsis
 ɛndimə
 ɛndiməs
