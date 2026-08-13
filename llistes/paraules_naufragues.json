@@ -10873,8 +10873,8 @@
     "paraula": "country",
     "infinitiu": "country",
     "codi": "AQ0CN0",
-    "rimacons": "ɔwndri",
-    "sil": "1",
+    "rimacons": "ɔwntri",
+    "sil": "2",
     "vicc": "Vicc",
     "viq": "Viq",
     "diec": "NO"
@@ -10883,8 +10883,8 @@
     "paraula": "country",
     "infinitiu": "country",
     "codi": "NCMS000",
-    "rimacons": "ɔwndri",
-    "sil": "1",
+    "rimacons": "ɔwntri",
+    "sil": "2",
     "vicc": "Vicc",
     "viq": "Viq",
     "diec": "NO"
@@ -20754,7 +20754,7 @@
     "infinitiu": "grizzly",
     "codi": "NCMS000",
     "rimacons": "izzli",
-    "sil": "1",
+    "sil": "2",
     "vicc": "NO",
     "viq": "Viq",
     "diec": "NO"
@@ -21474,7 +21474,7 @@
     "infinitiu": "henry",
     "codi": "NCMP000",
     "rimacons": "ɛnris",
-    "sil": "1",
+    "sil": "2",
     "vicc": "NO",
     "viq": "NO",
     "diec": "Diec"
@@ -23914,7 +23914,7 @@
     "infinitiu": "jansky",
     "codi": "NCMP000",
     "rimacons": "anskis",
-    "sil": "1",
+    "sil": "2",
     "vicc": "NO",
     "viq": "NO",
     "diec": "Diec"
@@ -24540,6 +24540,16 @@
     "diec": "Diec"
   },
   {
+    "paraula": "kirsch",
+    "infinitiu": "kirsch",
+    "codi": "NCMS000",
+    "rimacons": "irstʃ",
+    "sil": "1",
+    "vicc": "Vicc",
+    "viq": "Viq",
+    "diec": "Diec"
+  },
+  {
     "paraula": "kirschs",
     "infinitiu": "kirsch",
     "codi": "NCMP000",
@@ -24553,7 +24563,7 @@
     "paraula": "kitsch",
     "infinitiu": "kitsch",
     "codi": "AQ0CN0",
-    "rimacons": "itsk",
+    "rimacons": "itstʃ",
     "sil": "1",
     "vicc": "Vicc",
     "viq": "Viq",
@@ -24563,7 +24573,7 @@
     "paraula": "kitsch",
     "infinitiu": "kitsch",
     "codi": "NCMS000",
-    "rimacons": "itsk",
+    "rimacons": "itstʃ",
     "sil": "1",
     "vicc": "Vicc",
     "viq": "Viq",
@@ -30820,10 +30830,20 @@
     "diec": "NO"
   },
   {
+    "paraula": "olm",
+    "infinitiu": "olm",
+    "codi": "NCMS000",
+    "rimacons": "olm",
+    "sil": "1",
+    "vicc": "Vicc",
+    "viq": "Viq",
+    "diec": "Diec"
+  },
+  {
     "paraula": "olms",
     "infinitiu": "olm",
     "codi": "NCMP000",
-    "rimacons": "ɔlms",
+    "rimacons": "olms",
     "sil": "1",
     "vicc": "Vicc",
     "viq": "NO",
