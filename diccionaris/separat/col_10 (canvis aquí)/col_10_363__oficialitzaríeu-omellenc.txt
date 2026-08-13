@@ -967,12 +967,12 @@ Ollers € Ollers € NPCNG00 € uʎˈes
 ollers € oller € NCMP000 € uʎˈes
 olles € olla € NCFP000 € ˈɔʎəs
 olleta € olleta € NCFS000 € uʎˈɛtə
-olm € olm € NCMS000 € ˈɔlm
+olm € olm € NCMS000 € ˈolm
 olmeca € olmeca € AQ0CS0 € ulmˈɛkə
 olmeca € olmeca € NCCS000 € ulmˈɛkə
 olmeques € olmeca € AQ0CP0 € ulmˈekəs
 olmeques € olmeca € NCCP000 € ulmˈekəs
-olms € olm € NCMP000 € ˈɔlms
+olms € olm € NCMP000 € ˈolms
 Oló € Oló € NPCNSP0 € ulˈo
 Olocau € Olocau € NPCSG00 € ulukˈaw
 olocauí € olocauí € AQ0MS0 € ulukəwˈi

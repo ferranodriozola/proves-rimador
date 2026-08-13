@@ -5286,7 +5286,7 @@ inʒit
 ɔtuns
 ɔdbus
 ɔtʃus
-ɔwndri
+ɔwntri
 ɔwɾən
 ɔwɾəs
 ɔwɾi
@@ -7769,9 +7769,9 @@ ujws
 imtʃi
 indlə
 ɛjzun
-irsk
+irstʃ
 irstʃs
-itsk
+itstʃ
 itstʃs
 idbə
 adnu
@@ -8473,6 +8473,7 @@ oβiu
 ɔβius
 oβius
 iʒsk
+irsk
 ɔpskə
 uβil
 uβils
@@ -8541,7 +8542,8 @@ impikə
 impiks
 impiəs
 impikəs
-ɔlms
+olm
+olms
 ɔlpə
 ɔlpəs
 ɔlli

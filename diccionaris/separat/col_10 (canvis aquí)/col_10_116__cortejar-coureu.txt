@@ -1184,8 +1184,8 @@ coulombimetria € coulombimetria € NCFS000 € kɔwlumbimətɾˈiə
 coulombimetries € coulombimetria € NCFP000 € kɔwlumbimətɾˈiəs
 coulombs € coulomb € NCMP000 € kɔwlˈɔms
 countries € country € NCMP000 € kɔwntɾˈiəs
-country € country € AQ0CN0 € kˈɔwndri
-country € country € NCMS000 € kˈɔwndri
+country € country € AQ0CN0 € kˈɔwntri
+country € country € NCMS000 € kˈɔwntri
 Couperin € Couperin € NPCNSP0 € kɔwpˈɛɾin
 coura € courar € VMIP3S00 € kˈɔwɾə
 coura € courar € VMM02S00 € kˈɔwɾə
