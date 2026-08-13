@@ -634310,14 +634310,6 @@
             "orèada"
         ]
     },
-    "ɔlm": {
-        "frequencia": 3,
-        "paraules": [
-            "Bornholm",
-            "Estocolm",
-            "olm"
-        ]
-    },
     "otʃə": {
         "frequencia": 3,
         "paraules": [
@@ -637364,14 +637356,6 @@
             "Juneteenth",
             "panxacontent",
             "panxacontent"
-        ]
-    },
-    "irsk": {
-        "frequencia": 3,
-        "paraules": [
-            "kirsch",
-            "Novosibirsk",
-            "Simbirsk"
         ]
     },
     "ɔlsk": {
@@ -640459,6 +640443,13 @@
             "orlo"
         ]
     },
+    "ɔlm": {
+        "frequencia": 2,
+        "paraules": [
+            "Bornholm",
+            "Estocolm"
+        ]
+    },
     "ɔsfur": {
         "frequencia": 2,
         "paraules": [
@@ -641887,7 +641878,7 @@
             "cotnin"
         ]
     },
-    "ɔwndri": {
+    "ɔwntri": {
         "frequencia": 2,
         "paraules": [
             "country",
@@ -645779,7 +645770,7 @@
             "lutz"
         ]
     },
-    "itsk": {
+    "itstʃ": {
         "frequencia": 2,
         "paraules": [
             "kitsch",
@@ -646876,6 +646867,13 @@
         "paraules": [
             "novii",
             "Wii"
+        ]
+    },
+    "irsk": {
+        "frequencia": 2,
+        "paraules": [
+            "Novosibirsk",
+            "Simbirsk"
         ]
     },
     "uklit": {
@@ -660183,6 +660181,12 @@
             "kirieleison"
         ]
     },
+    "irstʃ": {
+        "frequencia": 1,
+        "paraules": [
+            "kirsch"
+        ]
+    },
     "irstʃs": {
         "frequencia": 1,
         "paraules": [
@@ -663135,7 +663139,13 @@
             "Olímpies"
         ]
     },
-    "ɔlms": {
+    "olm": {
+        "frequencia": 1,
+        "paraules": [
+            "olm"
+        ]
+    },
+    "olms": {
         "frequencia": 1,
         "paraules": [
             "olms"
