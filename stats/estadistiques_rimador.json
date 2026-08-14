@@ -1,5 +1,5 @@
 {
-    "actualitzacio": "15/08/2026 00:21:15",
+    "actualitzacio": "15/08/2026 00:23:34",
     "setmana": {
         "text_dies": "8/8 > 14/8",
         "top_10_paraules": [
@@ -16,23 +16,19 @@
                 "cerques": 4
             },
             {
-                "paraula": "cap",
-                "cerques": 3
-            },
-            {
                 "paraula": "llum",
                 "cerques": 3
             },
             {
-                "paraula": "versos",
+                "paraula": "cap",
+                "cerques": 3
+            },
+            {
+                "paraula": "casa",
                 "cerques": 2
             },
             {
-                "paraula": "cor",
-                "cerques": 2
-            },
-            {
-                "paraula": "mes",
+                "paraula": "vacances",
                 "cerques": 2
             },
             {
@@ -40,7 +36,11 @@
                 "cerques": 2
             },
             {
-                "paraula": "ella",
+                "paraula": "major",
+                "cerques": 2
+            },
+            {
+                "paraula": "mal",
                 "cerques": 2
             }
         ],
@@ -76,17 +76,17 @@
                 "cerques": 7
             },
             {
+                "paraula": "azə",
+                "tipus": "r.consonant",
+                "cerques": 6
+            },
+            {
                 "paraula": "or",
                 "tipus": "r.consonant",
                 "cerques": 6
             },
             {
                 "paraula": "en",
-                "tipus": "r.consonant",
-                "cerques": 6
-            },
-            {
-                "paraula": "azə",
                 "tipus": "r.consonant",
                 "cerques": 6
             },
@@ -111,11 +111,11 @@
                 "cerques": 6
             },
             {
-                "paraula": "préssec",
+                "paraula": "eclipsi",
                 "cerques": 5
             },
             {
-                "paraula": "eclipsi",
+                "paraula": "préssec",
                 "cerques": 5
             },
             {
@@ -123,7 +123,7 @@
                 "cerques": 4
             },
             {
-                "paraula": "vida",
+                "paraula": "alegria",
                 "cerques": 3
             },
             {
@@ -131,15 +131,15 @@
                 "cerques": 3
             },
             {
-                "paraula": "versos",
-                "cerques": 3
-            },
-            {
                 "paraula": "ulls",
                 "cerques": 3
             },
             {
-                "paraula": "cel",
+                "paraula": "llum",
+                "cerques": 3
+            },
+            {
+                "paraula": "mal",
                 "cerques": 3
             }
         ],
@@ -165,12 +165,12 @@
                 "cerques": 16
             },
             {
-                "paraula": "an",
+                "paraula": "e",
                 "tipus": "r.consonant",
                 "cerques": 14
             },
             {
-                "paraula": "e",
+                "paraula": "an",
                 "tipus": "r.consonant",
                 "cerques": 14
             },
@@ -180,7 +180,7 @@
                 "cerques": 12
             },
             {
-                "paraula": "uɾə",
+                "paraula": "a",
                 "tipus": "r.consonant",
                 "cerques": 11
             },
@@ -190,7 +190,7 @@
                 "cerques": 11
             },
             {
-                "paraula": "a",
+                "paraula": "uɾə",
                 "tipus": "r.consonant",
                 "cerques": 11
             }
@@ -212,27 +212,19 @@
                 "cerques": 3
             },
             {
-                "paraula": "micro",
+                "paraula": "prènsil",
                 "cerques": 1
             },
             {
-                "paraula": "mínims",
+                "paraula": "publi",
                 "cerques": 1
             },
             {
-                "paraula": "horòscop",
+                "paraula": "lleida",
                 "cerques": 1
             },
             {
-                "paraula": "nàufrag",
-                "cerques": 1
-            },
-            {
-                "paraula": "cúpula",
-                "cerques": 1
-            },
-            {
-                "paraula": "números",
+                "paraula": "esmòquing",
                 "cerques": 1
             },
             {
@@ -240,7 +232,15 @@
                 "cerques": 1
             },
             {
-                "paraula": "lleida",
+                "paraula": "números",
+                "cerques": 1
+            },
+            {
+                "paraula": "cúpula",
+                "cerques": 1
+            },
+            {
+                "paraula": "nàufrag",
                 "cerques": 1
             }
         ],
@@ -250,39 +250,39 @@
                 "cerques": 3
             },
             {
-                "paraula": "ina",
-                "cerques": 2
-            },
-            {
                 "paraula": "ipsi",
                 "cerques": 2
             },
             {
-                "paraula": "petjarsonar",
+                "paraula": "ina",
+                "cerques": 2
+            },
+            {
+                "paraula": "sobreix",
                 "cerques": 1
             },
             {
-                "paraula": "ejar",
+                "paraula": "ebro",
                 "cerques": 1
             },
             {
-                "paraula": "airea",
+                "paraula": "moixiganguers",
                 "cerques": 1
             },
             {
-                "paraula": "erós",
+                "paraula": "ost",
                 "cerques": 1
             },
             {
-                "paraula": "ós",
+                "paraula": "pàlid",
                 "cerques": 1
             },
             {
-                "paraula": "llagrima",
+                "paraula": "pàñid",
                 "cerques": 1
             },
             {
-                "paraula": "arlen",
+                "paraula": "coblas",
                 "cerques": 1
             }
         ],
