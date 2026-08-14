@@ -3,30 +3,73 @@ name: Deploy Gulp site to Pages
 on:
   push:
     branches: ["main"]
+  # Els workflows que comiten amb el GITHUB_TOKEN no disparen cap "push": és
+  # la regla de GitHub per evitar bucles infinits. Per tant, tot workflow que
+  # generi fitxers que el lloc publica ha de ser en aquesta llista, o els seus
+  # canvis es quedarien al repositori sense arribar mai a Pages.
   workflow_run:
-    workflows: ["Actualització automàtica de les estadístiques"]
+    workflows:
+      - "Actualització automàtica de les estadístiques"
+      - "Separació del diccionari (i generació de nàufragues i heptasíl·labs)"
+      - "Generador de diccionaris (i de nàufragues i heptasíl·labs)"
     types:
       - completed
-  workflow_dispatch:  
-  
+  workflow_dispatch:
+
 permissions:
   contents: write
   pages: write
   id-token: write
 
+# Un sol desplegament a la vegada. Sense això, dos push seguits fan córrer dos
+# deploys en paral·lel: l'actions/deploy-pages peta si en troba un altre en
+# marxa, i els dos jobs es barallen pel git push del cache busting.
+#
+# cancel-in-progress: false i no pas true: aquest job fa commits, i cancel·lar-lo
+# a mig push deixaria el repositori a mitges. Encuant-los, a més, hi ha l'ordre
+# garantit: quan un canvi al diccionari dispara alhora el deploy del push i el
+# de la cadena, el segon entra després i és l'últim que publica. GitHub només
+# guarda una execució en espera per grup i descarta les anteriors, o sigui que
+# una ratxa de push no fa cua sinó que es queda amb l'última.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build:
+    # Si les estadístiques (o la generació del diccionari) han petat, no hi ha
+    # res de nou per publicar i el que hi hagi al repositori pot estar a mitges.
+    if: >-
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # Sempre la punta de main, no pas el SHA de l'esdeveniment. En els
+          # workflow_run, el SHA pot ser anterior als commits que acaba de fer
+          # el workflow d'abans, que són justament els que hem de publicar.
+          ref: main
 
       - name: Detectar canvis en CSS o JS
         id: canvis
         run: |
+          # Els workflows encadenats només toquen dades (estadístiques, columnes
+          # del diccionari, llistes), mai css ni js. Aquí no hi ha cap push de
+          # codi al darrere per comparar, i el github.event.before ni tan sols
+          # existeix: si ho deixéssim caure a la branca de sota, cada nit
+          # rebentaríem la memòria cau del css i el js de tots els visitants
+          # sense que hagués canviat res.
+          if [ "${{ github.event_name }}" = "workflow_run" ]; then
+            echo "Ve d'un workflow encadenat (només dades): no cal refrescar les versions."
+            echo "any_changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           ABANS="${{ github.event.before }}"
+          # El workflow_dispatch no té cap "abans" i cau aquí a posta: engegar-lo
+          # a mà vol dir justament demanar un refresc complet de les versions.
           if [ -z "$ABANS" ] || [ "$ABANS" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$ABANS^{commit}" 2>/dev/null; then
             echo "No hi ha commit anterior per comparar; refresquem les versions per si de cas."
             echo "any_changed=true" >> "$GITHUB_OUTPUT"
@@ -70,6 +113,10 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add '*.html'
           git commit -m "Cache busting: versions actualitzades als HTML" || echo "No hi ha canvis"
+          # Mentre corríem, un altre workflow pot haver comitejat (estadístiques,
+          # columnes...). Sense rebase, el push seria rebutjat i el deploy es
+          # posaria vermell sense que hi hagi res de dolent.
+          git pull --rebase origin main
           git push
 
       - name: Ajustar el 404.html quan el lloc no penja de l'arrel del domini
