@@ -1,5 +1,6 @@
 import pandas as pd
 import json
+import re
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 import ssl
@@ -203,10 +204,45 @@ dades_json_versio = {
 ruta_json = 'stats/estadistiques_rimador.json'
 ruta_json_versio = 'stats/versio_estadistiques_rimador.json'
 
-with open(ruta_json, 'w', encoding='utf-8') as arxiu:
-    json.dump(dades_json, arxiu, ensure_ascii=False, indent=4)
 
-with open(ruta_json_versio, 'w', encoding='utf-8') as arxiu:
-    json.dump(dades_json_versio, arxiu, ensure_ascii=False, indent=4)
+def sense_hora(text):
+    """El JSON tal com quedaria sense la línia de l'hora.
 
-print(f"Exportació completada amb èxit (hora: {datetime.now(tz_espanya).strftime('%H:%M:%S')})")
+    El camp "actualitzacio" porta l'hora d'ara, o sigui que si l'escrivíem
+    sempre el fitxer sortiria diferent a cada passada encara que les dades
+    fossin idèntiques. I com que el workflow fa "git add" i comita el que
+    trobi canviat, això volia dir un commit cada nit, i un commit vol dir un
+    desplegament sencer a Pages: 200 MB de pujada per canviar una hora que no
+    mira ningú. Comparant el fitxer sense aquesta línia sabem si les dades han
+    canviat de debò.
+    """
+    return re.sub(r'^ *"actualitzacio":.*$', '', text, count=1, flags=re.MULTILINE)
+
+
+# Es compara el text ja serialitzat, no pas els diccionaris. Comparar els
+# objectes seria fràgil: el que surt del pandas i el que es torna a llegir del
+# JSON no sempre són del mateix tipus (una tupla se'n va a llista, un int64 a
+# int...) i tindríem diferències que no ho són, que és justament el que volem
+# evitar. El text és el que acaba al disc i és el que git mira.
+nou_text = json.dumps(dades_json, ensure_ascii=False, indent=4)
+
+try:
+    with open(ruta_json, 'r', encoding='utf-8') as arxiu:
+        text_anterior = arxiu.read()
+except FileNotFoundError:
+    text_anterior = None
+
+if text_anterior is not None and sense_hora(text_anterior) == sense_hora(nou_text):
+    hora_vella = json.loads(text_anterior).get('actualitzacio', '?')
+    print(f"Les estadístiques no han canviat des de les {hora_vella}: "
+          f"no es toca cap fitxer.")
+else:
+    with open(ruta_json, 'w', encoding='utf-8') as arxiu:
+        arxiu.write(nou_text)
+
+    # Aquest només porta l'hora, i per tant només té sentit moure'l quan les
+    # dades de sobre han canviat: si no, seria l'única cosa del commit.
+    with open(ruta_json_versio, 'w', encoding='utf-8') as arxiu:
+        json.dump(dades_json_versio, arxiu, ensure_ascii=False, indent=4)
+
+    print(f"Exportació completada amb èxit (hora: {datetime.now(tz_espanya).strftime('%H:%M:%S')})")
