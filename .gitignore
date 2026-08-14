@@ -15,3 +15,12 @@ html/
 
 #cache py
 __pycache__/
+
+# Intermedi del diccionari
+# El pre_proces.py ajunta les 499 parts de la col_10 en aquest fitxer de 35 MB,
+# el creador_rima el llegeix i el post_proces.py el torna a partir i l'esborra:
+# neix i mor dins la mateixa execució del workflow. Però el primer "git add ."
+# queia enmig i el comitejava, i el commit següent el treia. Cada regeneració
+# del diccionari ficava 35 MB a la història per a res, i de la història no en
+# surt mai més res.
+diccionaris/separat/col_10 (canvis aquí)/col_10provisional.txt
