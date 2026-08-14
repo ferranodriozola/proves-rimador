@@ -78,15 +78,29 @@ rimes_usuaris_diferents_emmascarat = rimes_usuaris_diferents_emmascarat[rimes_us
 
 noms_propis = paraules_cercades[paraules_cercades['Codi'].str.startswith('NP')].copy()
 
+#dfs de recència: només serveixen per desempatar els tops (data de l'última cerca),
+#no intervenen en cap recompte
+recencia_paraules = cerques_totals[cerques_totals['Rima'] != '***']
+recencia_paraules_emmascarat = cerques_totals_emmascarat[cerques_totals_emmascarat['Rima'] != '***']
+recencia_naufragues = cerques_totals[(cerques_totals['Tipus de rima'] == 'r.consonant') & (cerques_totals['Paraula'].isin(llista_paraules_naufragues))]
+recencia_typos = cerques_totals[cerques_totals['Rima'] == '***']
+
 #funcions
-def obtenir_top_paraules(df_dades, n, paraula):
+def obtenir_top_paraules(df_dades, n, paraula, df_recencia):
     if paraula == 'paraula':
-        return df_dades['Paraula'].value_counts().head(n)
+        claus = ['Paraula']
     elif paraula == 'rima':
-        recompte = df_dades.groupby(['Rima', 'Tipus de rima']).size().reset_index(name='cerques')
-        return recompte.sort_values(by='cerques', ascending=False).head(n)
+        claus = ['Rima', 'Tipus de rima']
     else:
         raise ValueError("El paràmetre 'paraula' només pot ser 'paraula' o 'rima'.")
+
+    recompte = df_dades.groupby(claus).size().reset_index(name='cerques')
+    ultima_cerca = df_recencia.groupby(claus)['Data'].max().rename('ultima_cerca')
+    recompte = recompte.merge(ultima_cerca, on=claus, how='left')
+
+    #en cas d'empat de cerques, primer la que s'ha cercat més recentment
+    recompte = recompte.sort_values(by=['cerques', 'ultima_cerca'], ascending=[False, False], kind='stable')
+    return recompte.head(n).drop(columns='ultima_cerca')
 
 def obtenir_top_dies(df_dades):
     df_dades = df_dades[df_dades['Dia'] < avui]  
@@ -144,14 +158,8 @@ def dades_grafic_formatge_totes(df_dades, tipus_rima):
 
 
 def formatar_top_per_json(dades):
-    if isinstance(dades, pd.Series):
-        df_temp = dades.reset_index()
-        df_temp.columns = ['paraula', 'cerques']
-        return df_temp.to_dict(orient='records')
-
-    elif isinstance(dades, pd.DataFrame):
-        df_temp = dades.rename(columns={'Rima': 'paraula', 'Tipus de rima': 'tipus'})
-        return df_temp.to_dict(orient='records')
+    df_temp = dades.rename(columns={'Paraula': 'paraula', 'Rima': 'paraula', 'Tipus de rima': 'tipus'})
+    return df_temp.to_dict(orient='records')
 
 
 #execució
@@ -159,22 +167,22 @@ dades_json = {
     "actualitzacio": datetime.now(tz_espanya).strftime("%d/%m/%Y %H:%M:%S"),
     "setmana": {
         "text_dies": f"{inici_setmana.day}/{inici_setmana.month} > {ahir.day}/{ahir.month}",
-        "top_10_paraules": formatar_top_per_json(obtenir_top_paraules(paraules_cercades_usuaris_diferents_emmascarat_trobades, 10, 'paraula')),
-        "top_10_rimes": formatar_top_per_json(obtenir_top_paraules(rimes_usuaris_diferents_emmascarat, 10, 'rima')),
+        "top_10_paraules": formatar_top_per_json(obtenir_top_paraules(paraules_cercades_usuaris_diferents_emmascarat_trobades, 10, 'paraula', recencia_paraules_emmascarat)),
+        "top_10_rimes": formatar_top_per_json(obtenir_top_paraules(rimes_usuaris_diferents_emmascarat, 10, 'rima', recencia_paraules_emmascarat)),
         "total_cerques": len(cerques_totals_emmascarat),
         "paraules_cercades_uniques": len(paraules_cercades_emmascarades),
         "numero_usuaris": cerques_totals_emmascarat['Usuari'].nunique(),
 
     },
     "sempre": {
-        "top_10_paraules": formatar_top_per_json(obtenir_top_paraules(paraules_cercades_usuaris_diferents_trobades, 10, 'paraula')),
-        "top_10_rimes": formatar_top_per_json(obtenir_top_paraules(rimes_usuaris_diferents, 10, 'rima')),
+        "top_10_paraules": formatar_top_per_json(obtenir_top_paraules(paraules_cercades_usuaris_diferents_trobades, 10, 'paraula', recencia_paraules)),
+        "top_10_rimes": formatar_top_per_json(obtenir_top_paraules(rimes_usuaris_diferents, 10, 'rima', recencia_paraules)),
         "total_cerques": len(cerques_totals),
         "paraules_cercades_uniques": len(paraules_cercades),
         "numero_usuaris": cerques_totals['Usuari'].nunique(),
         "recompte_tipus_rima": cerques_totals['Tipus de rima'].value_counts().to_dict(),
-        "top_10_naufragues": formatar_top_per_json(obtenir_top_paraules(df_rimes_naufragues, 10, 'paraula')),
-        "top_10_typos": formatar_top_per_json(obtenir_top_paraules(df_typos, 10, 'paraula')),
+        "top_10_naufragues": formatar_top_per_json(obtenir_top_paraules(df_rimes_naufragues, 10, 'paraula', recencia_naufragues)),
+        "top_10_typos": formatar_top_per_json(obtenir_top_paraules(df_typos, 10, 'paraula', recencia_typos)),
         "total_noms_propis": len(noms_propis),
         "recompte_num_sil": cerques_totals['Num. síl·'].value_counts().to_dict(),
         "recompte_comenca_per": cerques_totals['Comença per'].value_counts().to_dict(),
