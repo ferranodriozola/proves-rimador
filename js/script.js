@@ -32,16 +32,6 @@ if (debugLevel >= 3) {
 // a mitges, la càrrega de les transcripcions el torna a demanar. Si el
 // de dins l'apagués en acabar, la cerca es quedaria fent la feina grossa
 // amb la pantalla destapada i tornaríem a on érem.
-// A partir de quantes rimes val la pena ensenyar el loader. Per sota, la
-// feina s'acaba de seguida i el loader només seria una pampallugada
-// negra que s'encén i s'apaga. Calibrat amb el temps real de repintar:
-//
-//     500 rimes -> 11 ms | 2.000 -> 48 ms | 8.000 -> 172 ms | 20.000 -> 488 ms
-//
-// El quart de segon cau cap a les 11.000; ho deixem a 10.000, una mica
-// per sota, que val més ensenyar-lo un pèl abans d'hora que tard.
-const RIMES_PER_ENSENYAR_LOADER = 10000;
-
 const Loader = {
   _pila: [],
 
@@ -92,22 +82,6 @@ const Loader = {
       this._pila.pop();
       this._pintar();
     }
-  },
-
-  // Com mentre(), però només ensenya el loader quan la feina serà prou
-  // llarga perquè valgui la pena.
-  //
-  // No es pot fer amb un temporitzador de veritat ("ensenya'l si al cap
-  // d'un quart de segon encara no he acabat"), que és el que demanaria el
-  // sentit comú. El navegador té un sol fil: mentre repintem les rimes no
-  // pot fer res més, ni tan sols mirar si un setTimeout ha vençut. El
-  // temporitzador no saltaria fins que la feina ja estigués acabada, i el
-  // loader sortiria just per apagar-se tot seguit, que és exactament la
-  // pampallugada que volem evitar. Per això es decideix per endavant, per
-  // la mida de la feina, que és el que en mana el temps.
-  async mentreSiEsLlarg(missatge, rimes, feina) {
-    if (rimes < RIMES_PER_ENSENYAR_LOADER) return feina();
-    return this.mentre(missatge, feina);
   },
 
   // Per a les estones en què la pàgina espera que l'usuari decideixi (el
@@ -692,11 +666,10 @@ async function realitzarCerca() {
     var inclourePropis = document.getElementById('nomsPropis').value;
     var inclourePlurals = document.getElementById('plurals').value;
     
-    // Tota la feina va sota el loader. Aquí no hi posem el llindar que
-    // fan servir les caselles (mentreSiEsLlarg) perquè no hi ha cap
-    // cerca curta: buscarParaula recorre les 619.788 files del
-    // diccionari sigui quina sigui la paraula, i això ja són entre 280 i
-    // 540 mil·lisegons abans de començar a pintar res.
+    // Tota la feina va sota el loader. Aquí sí, i al clic de casella no,
+    // perquè la cerca és l'única part que encara triga: pintar les rimes
+    // per primera vegada són segons quan la rima és ampla. Amagar-ne unes
+    // quantes després, en canvi, són mil·lisegons.
     //
     // El diàleg d'homògrafs, si surt, s'obre amb el loader apartat
     // (vegeu buscarParaula).
@@ -1079,21 +1052,63 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
 //
 // Els logos són el fons de l'enllaç (.logo-vicc, .logo-viq i .logo-diec a
 // css/impressio.scss), no pas una imatge a dins. Una cerca ampla ensenya
-// desenes de milers de rimes amb fins a tres enllaços cadascuna, i cada
-// <img> era un element més del DOM, una entrada més al registre de
-// càrrega mandrosa i una feina més per al navegador abans de poder
-// pintar res. Com que el dibuix no diu res que l'enllaç no digui,
-// l'aria-label fa la feina que abans feia l'alt.
-function crearEnllacViccionari(paraula) {
-  return '<a href="https://ca.wiktionary.org/wiki/' + paraula + '" target="_blank" class="logo logo-vicc" aria-label="Viccionari"></a>';
+// desenes de milers de rimes amb fins a tres enllaços cadascuna, i cada <img>
+// era un element més del DOM i una feina més per al navegador abans de pintar
+// res. Com que el dibuix no diu res que l'enllaç no digui, l'aria-label fa la
+// feina que abans feia l'alt.
+//
+// Les ADRECES tampoc no s'imprimeixen: cada enllaç surt amb un href="#" i la
+// bona s'hi posa el primer cop que el ratolí hi passa per sobre o que hi
+// arriba el focus del teclat, coses que sempre passen abans del clic. Escrites
+// a l'HTML eren una tercera part de tot el que el navegador havia de llegir, i
+// de cent mil rimes la gent no en clica cap o en clica una.
+const ADRECES = {
+  'logo-vicc': 'https://ca.wiktionary.org/wiki/',
+  'logo-viq': 'https://ca.wikipedia.org/wiki/',
+  'logo-diec': 'https://dlc.iec.cat/Results?DecEntradaText='
+};
+
+function completarEnllac(event) {
+  const enllac = event.target.closest ? event.target.closest('a.logo') : null;
+  if (!enllac || enllac.dataset.fet) return;
+
+  const fila = enllac.closest('li');
+  const paraula = fila && fila.dataset.e;
+  if (!paraula) return;
+
+  for (const classe in ADRECES) {
+    if (enllac.classList.contains(classe)) {
+      enllac.href = ADRECES[classe] + paraula;
+      enllac.target = '_blank';
+      enllac.dataset.fet = '1';
+      return;
+    }
+  }
 }
 
-function crearEnllacViquipedia(paraula) {
-  return '<a href="https://ca.wikipedia.org/wiki/' + paraula + '" target="_blank" class="logo logo-viq" aria-label="Viquipèdia"></a>';
+let enllacosEscoltats = false;
+
+function escoltarElsEnllacos() {
+  if (enllacosEscoltats) return;
+  const contenidor = document.getElementById('rima_enllac');
+  if (!contenidor) return;
+  // Un sol escoltador per a tot el contenidor: cent mil enllaços amb el seu
+  // escoltador cadascun tornaria a ser el problema que estem evitant.
+  contenidor.addEventListener('pointerover', completarEnllac);
+  contenidor.addEventListener('focusin', completarEnllac);
+  enllacosEscoltats = true;
 }
 
-function crearEnllacDiec(paraula) {
-  return '<a href="https://dlc.iec.cat/Results?DecEntradaText=' + paraula + '" target="_blank" class="logo logo-diec" aria-label="DIEC"></a>';
+function crearEnllacViccionari() {
+  return '<a href="#" class="logo logo-vicc" aria-label="Viccionari"></a>';
+}
+
+function crearEnllacViquipedia() {
+  return '<a href="#" class="logo logo-viq" aria-label="Viquipèdia"></a>';
+}
+
+function crearEnllacDiec() {
+  return '<a href="#" class="logo logo-diec" aria-label="DIEC"></a>';
 }
 
 
@@ -1234,14 +1249,20 @@ function actualitzarRimes() {
           if (!grup) { grup = { trossos: [], codis: new Set() }; perSilabes.set(parts[3], grup); }
           grup.codis.add(numCodi);
 
-          const paraulaMare = codi[0] === "V" ? " (" + parts[1] + ") " : "";
-          let enllacos = "";
-          if (parts[4] === "Vicc") enllacos += crearEnllacViccionari(parts[1]) + " ";
-          if (parts[5] === "Viq") enllacos += crearEnllacViquipedia(parts[1]) + " ";
-          if (parts[6] === "Diec") enllacos += crearEnllacDiec(parts[1]) + " ";
+          // El data-e és la paraula amb què es munten les adreces dels enllaços
+          // (vegeu completarEnllac). No sempre és la que es veu: de cada cent
+          // rimes, noranta-tres vénen d'una altra forma.
+          let tros = "<li class='k" + numCodi + "' data-e=\"" + parts[1] + "\">" + parts[0];
 
-          grup.trossos.push("<li class='k" + numCodi + "'><span class='classeParaula'>" + parts[0] +
-            "</span><span class='classeParaulaMare'>" + paraulaMare + "</span> " + enllacos.trim() + "</li>");
+          // Abans hi havia un <span class='classeParaula'> al voltant de la
+          // paraula. No el gastava ningú: no hi ha cap regla de CSS que el miri.
+          if (codi[0] === "V") tros += "<span class='classeParaulaMare'> (" + parts[1] + ") </span>";
+
+          if (parts[4] === "Vicc") tros += " " + crearEnllacViccionari();
+          if (parts[5] === "Viq") tros += " " + crearEnllacViquipedia();
+          if (parts[6] === "Diec") tros += " " + crearEnllacDiec();
+
+          grup.trossos.push(tros + "</li>");
         }
 
         const grups = [];
@@ -1293,6 +1314,7 @@ function actualitzarRimes() {
   }
 
   document.getElementById("rima_enllac").innerHTML = rima_enllac;
+  escoltarElsEnllacos();
   aplicarFiltres();
 
   Debug.logTimeEnd('actualitzarRimes');
@@ -1463,40 +1485,35 @@ async function handleCheckboxClick(event, checkboxCriteria) {
       if (checkboxLabel in checkboxCriteria) {
           const { filterFunction } = checkboxCriteria[checkboxLabel];
 
-          // Es llegeix ara i no pas a dins del Loader.mentre: allà dins
-          // ja hem cedit el fil un parell de fotogrames i la casella
-          // podria haver canviat pel camí.
-          const marcada = event.target.checked;
-
-          // Mirem matches i no pas matches_provisionals perquè és el
-          // sostre del que pot arribar a haver-hi a la pantalla, i el
-          // sabem abans de començar.
-          await Loader.mentreSiEsLlarg("Actualitzant la llista...", matches.length, () => {
-              if (marcada) {
-                  // Unió del que ja hi havia amb el que acaba d'entrar,
-                  // d'una sola passada i ordenat com el diccionari.
-                  //
-                  // Abans això es feia amb un includes() per cada resultat
-                  // nou i un sort() que a dins hi tenia un indexOf(): totes
-                  // dues coses recorren la llista sencera cada vegada. Amb
-                  // una rima ampla (n'hi ha que passen de les cent mil
-                  // paraules) volia dir milers de milions de comparacions
-                  // per un sol clic, i el navegador es quedava penjat.
-                  const inclosos = new Set(matches_provisionals);
-                  for (let i = 0; i < matches.length; i++) {
-                      if (filterFunction(matches[i])) inclosos.add(matches[i]);
-                  }
-                  matches_provisionals = matches.filter(item => inclosos.has(item));
-
-                  Debug.log(`Checkbox "${checkboxLabel}" marcada`);
-
-              } else {
-                  Debug.log(`Checkbox "${checkboxLabel}" desclicat`);
-                  matches_provisionals = matches_provisionals.filter(item => !filterFunction(item));
+          // Sense loader. En tenia un, amb un llindar de deu mil rimes, de
+          // quan clicar una casella volia dir refer la llista sencera i podia
+          // trigar segons. Ara que amagar-les és una regla de CSS, la feina
+          // més llarga que s'ha mesurat són 46 mil·lisegons: el loader només
+          // hi feia una pampalluga negra.
+          if (event.target.checked) {
+              // Unió del que ja hi havia amb el que acaba d'entrar, d'una
+              // sola passada i ordenat com el diccionari.
+              //
+              // Abans això es feia amb un includes() per cada resultat nou
+              // i un sort() que a dins hi tenia un indexOf(): totes dues
+              // coses recorren la llista sencera cada vegada. Amb una rima
+              // ampla (n'hi ha que passen de les cent mil paraules) volia
+              // dir milers de milions de comparacions per un sol clic, i
+              // el navegador es quedava penjat.
+              const inclosos = new Set(matches_provisionals);
+              for (let i = 0; i < matches.length; i++) {
+                  if (filterFunction(matches[i])) inclosos.add(matches[i]);
               }
+              matches_provisionals = matches.filter(item => inclosos.has(item));
 
-              aplicarFiltres();
-          });
+              Debug.log(`Checkbox "${checkboxLabel}" marcada`);
+
+          } else {
+              Debug.log(`Checkbox "${checkboxLabel}" desclicat`);
+              matches_provisionals = matches_provisionals.filter(item => !filterFunction(item));
+          }
+
+          aplicarFiltres();
   }   }
   Debug.logTimeEnd('handleCheckboxClick');
 }
