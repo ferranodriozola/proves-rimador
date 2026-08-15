@@ -67,6 +67,27 @@ $separacio-columnes: 20px;
     color: $gris-606;
 }
 
+/* Les rimes s'imprimeixen totes i les caselles només n'amaguen amb una regla
+   de CSS (vegeu aplicarFiltres a js/script.js). D'aquí surten les tres peces
+   que aquella regla necessita. */
+
+/* El missatge de quan les caselles ho amaguen tot. Va imprès des del principi
+   i normalment no es veu. */
+#rima_enllac .capRima {
+    display: none;
+}
+
+/* El primer títol que es veu no porta el salt de línia de davant ni separació
+   a sobre. Quin és depèn de quins grups de síl·labes hagin quedat buits, i per
+   això ho marca el JavaScript amb una classe en lloc de fer-ho amb :first. */
+#rima_enllac h3.primer {
+    margin-top: 0;
+}
+
+#rima_enllac h3.primer br.salt {
+    display: none;
+}
+
 /* Els logos del costat de cada rima. Van de fons de l'enllaç i no com a
    <img> a dins: amb desenes de milers de resultats a la pantalla, els
    elements que ens estalviem es noten (vegeu crearEnllacViccionari i
