@@ -1097,6 +1097,16 @@ function crearEnllacDiec(paraula) {
 }
 
 
+// El que s'ha imprès a la pantalla i que aplicarFiltres necessita per saber
+// què amagar: quin número de classe té cada codi gramatical, i quins codis hi
+// ha a cada grup de síl·labes. Val null quan el que hi ha imprès no és una
+// llista de rimes (la paraula nàufraga, o el missatge de no trobada).
+let impressio = null;
+
+// El full d'estil que amaga les categories desmarcades. És sempre el mateix i
+// se'n reescriu el contingut sencer a cada clic: una sola assignació.
+let fullDeFiltres = null;
+
 // Amb poques rimes, redueix el nombre de columnes (l'amplada es manté)
 function aplicarNombreDeColumnes(contenidor, nombreResultats) {
   contenidor.classList.remove("cols-1", "cols-2", "cols-3");
@@ -1110,9 +1120,7 @@ function aplicarNombreDeColumnes(contenidor, nombreResultats) {
   }
 }
 
-function actualitzarRimes() {
-  Debug.logTime('actualitzarRimes');
-
+function textDelNombre() {
   let text = '';
   if (idPagina === 'principal') {
     text = 'de rimes';
@@ -1125,7 +1133,13 @@ function actualitzarRimes() {
       text = "d'heptasíl·labs";
     }
   }
-  var numerorimes = "Nombre " + text + ": " + matches_provisionals.length;
+  return "Nombre " + text + ": " + matches_provisionals.length;
+}
+
+function actualitzarRimes() {
+  Debug.logTime('actualitzarRimes');
+
+  var numerorimes = textDelNombre();
   document.getElementById("nombre").innerHTML = numerorimes;
 
   var rimesPerSilabes = {};
@@ -1137,10 +1151,11 @@ function actualitzarRimes() {
 
   var textNombre = document.getElementById("nombre");
 
-  if (matches_provisionals.length > 0) {
+  if (matches.length > 0) {
     var esNaufraga = naufragues.has(String(paraulacerca[0]).toLowerCase());
     var tipusRima = document.getElementById('rimaSelector').value;
     if (esNaufraga && tipusRima === 'r.consonant') {
+      impressio = null;
       textNombre.innerHTML = ""; 
 
       contenidorRimes.classList.remove("column-container", "cols-1", "cols-2", "cols-3");
@@ -1187,89 +1202,80 @@ function actualitzarRimes() {
       }
       
     } else {
-        textNombre.innerHTML = numerorimes;
-
-        contenidorRimes.classList.add("column-container");
-        aplicarNombreDeColumnes(contenidorRimes, matches_provisionals.length);
-
         if (checkboxContainer) checkboxContainer.style.display = "";
         if (resultatsContainer) resultatsContainer.style.width = "";
+        contenidorRimes.classList.add("column-container");
 
-        for (var i = 0; i < matches_provisionals.length; i++) {
-          var parts = matches_provisionals[i];
-          var paraula = parts[0];
-          var paraula_mare = "";
+        // Es pinten TOTES les rimes trobades, no només les que passen el filtre
+        // de categories d'ara mateix. Amagar-ne unes quantes passa a ser una
+        // sola regla de CSS (vegeu aplicarFiltres). Abans, cada clic de casella
+        // refeia l'HTML sencer: muntar-lo són mig segon i que el navegador se'l
+        // torni a llegir, dos segons més.
+        //
+        // El que fa possible que una regla de CSS n'hi hagi prou: tots els
+        // criteris de les caselles miren el codi gramatical i res més, o sigui
+        // que dues rimes amb el mateix codi sempre hi entren i en surten
+        // juntes. Amb una classe per codi n'hi ha prou per a totes.
+        //
+        // Els trossos de text s'apilen directament al seu grup de síl·labes. La
+        // versió d'abans fabricava un objecte per rima només per reagrupar-les
+        // i tot seguit els tornava a recórrer.
+        const codis = new Map();
+        const perSilabes = new Map();
 
-          if (parts[2][0] === "V") {
-            paraula_mare = " (" + parts[1] + ") ";
-          }      
-          var enllac_vicc = "";
-          var enllac_viq = "";
-          var enllac_diec = "";
+        for (let i = 0; i < matches.length; i++) {
+          const parts = matches[i];
+          const codi = parts[2];
 
-          if (parts[4] === "Vicc") {
-            enllac_vicc = crearEnllacViccionari(parts[1]);
-          }
+          let numCodi = codis.get(codi);
+          if (numCodi === undefined) { numCodi = codis.size; codis.set(codi, numCodi); }
 
-          if (parts[5] === "Viq") {
-            enllac_viq = crearEnllacViquipedia(parts[1]);
-          }
-          
-          if (parts[6] === "Diec") {
-            enllac_diec = crearEnllacDiec(parts[1]);
-          }
+          let grup = perSilabes.get(parts[3]);
+          if (!grup) { grup = { trossos: [], codis: new Set() }; perSilabes.set(parts[3], grup); }
+          grup.codis.add(numCodi);
 
-          var numsilabes = parts[3];
+          const paraulaMare = codi[0] === "V" ? " (" + parts[1] + ") " : "";
+          let enllacos = "";
+          if (parts[4] === "Vicc") enllacos += crearEnllacViccionari(parts[1]) + " ";
+          if (parts[5] === "Viq") enllacos += crearEnllacViquipedia(parts[1]) + " ";
+          if (parts[6] === "Diec") enllacos += crearEnllacDiec(parts[1]) + " ";
 
-          if (!rimesPerSilabes[numsilabes]) {
-            rimesPerSilabes[numsilabes] = [];
-          }
-
-          rimesPerSilabes[numsilabes].push({ paraula: paraula, paraula_mare: paraula_mare, enllac_vicc: enllac_vicc, enllac_viq: enllac_viq, enllac_diec: enllac_diec });
+          grup.trossos.push("<li class='k" + numCodi + "'><span class='classeParaula'>" + parts[0] +
+            "</span><span class='classeParaulaMare'>" + paraulaMare + "</span> " + enllacos.trim() + "</li>");
         }
 
-        let primerTitol = true;
+        const grups = [];
+        const ordenades = [...perSilabes.keys()].sort((a, b) => a - b);
 
-        for (var silabes in rimesPerSilabes) {
-          
-          let saltLinia = primerTitol ? "" : "<br>";
-          let estilPrimerTitol = primerTitol ? ' style="margin-top: 0px;"' : "";
-          
-          primerTitol = false; 
+        for (const sil of ordenades) {
+          const grup = perSilabes.get(sil);
+          const classe = "g" + grups.length;
+          grups.push({ classe, codis: grup.codis });
 
+          let titol = "";
           if (dataLlista === 'mots_de7_glosa') {
-            if (silabes == 7) {
-              rima_enllac += "<h3" + estilPrimerTitol + ">" + saltLinia + "7 síl·labes (mots aguts):</h3><ul>";
-          } else if (silabes == 8) {
-              rima_enllac += "<h3" + estilPrimerTitol + ">" + saltLinia + "8 síl·labes (mots plans):</h3><ul>";
-          } else if (silabes == 9) {
-              rima_enllac += "<h3" + estilPrimerTitol + ">" + saltLinia + "9 síl·labes (mots esdrúixols):</h3><ul>";
-        }} else {
-            rima_enllac += "<h3" + estilPrimerTitol + ">" + saltLinia + silabes + (silabes > 1 ? " síl·labes" : " síl·laba") + ":</h3><ul>";
+            if (sil == 7) titol = "7 síl·labes (mots aguts):";
+            else if (sil == 8) titol = "8 síl·labes (mots plans):";
+            else if (sil == 9) titol = "9 síl·labes (mots esdrúixols):";
+          } else {
+            titol = sil + (sil > 1 ? " síl·labes" : " síl·laba") + ":";
           }
-          
-          
-          for (var j = 0; j < rimesPerSilabes[silabes].length; j++) {
-            var item = rimesPerSilabes[silabes][j];
-            var enllacText = "";
-            
-            if (item.enllac_vicc) {
-              enllacText += item.enllac_vicc + " ";
-            }
-            if (item.enllac_viq) {
-              enllacText += item.enllac_viq + " ";
-            }
-            if (item.enllac_diec) {
-              enllacText += item.enllac_diec + " ";
-            }
 
-            rima_enllac += "<li><span class='classeParaula'>" + item.paraula + "</span><span class='classeParaulaMare'>" + item.paraula_mare + "</span> " + enllacText.trim() + "</li>";
-          }
-          rima_enllac += "</ul>";
+          // El <br> el treu el CSS al primer títol que es veu, que no sempre és
+          // el mateix: depèn de quins grups hagin quedat buits pel filtre.
+          if (titol) rima_enllac += "<h3 class='" + classe + "'><br class='salt'>" + titol + "</h3>";
+          rima_enllac += "<ul class='" + classe + "'>" + grup.trossos.join("") + "</ul>";
         }
-      }
-    
+
+        // Surt quan les caselles ho amaguen tot. Va imprès des del principi
+        // perquè ensenyar-lo també sigui cosa de la regla de CSS.
+        rima_enllac += "<ul class='capRima'><li>Ets massa exigent! Aquesta paraula existeix i té més resultats, però per trobar-los hauràs de canviar els filtres</li></ul>";
+
+        impressio = { codis, grups };
+    }
+
   } else {
+    impressio = null;
     textNombre.innerHTML = numerorimes;
     contenidorRimes.classList.remove("column-container", "cols-1", "cols-2", "cols-3");
     var rimes;
@@ -1287,8 +1293,69 @@ function actualitzarRimes() {
   }
 
   document.getElementById("rima_enllac").innerHTML = rima_enllac;
+  aplicarFiltres();
 
   Debug.logTimeEnd('actualitzarRimes');
+}
+
+
+// Amaga i ensenya les rimes segons les caselles marcades, sense tocar l'HTML:
+// escriu una sola regla de CSS. Abans, cada clic refeia la llista sencera.
+function aplicarFiltres() {
+  const contenidorRimes = document.getElementById("rima_enllac");
+  const textNombre = document.getElementById("nombre");
+  if (textNombre && impressio) textNombre.innerHTML = textDelNombre();
+  if (!impressio) return;
+
+  Debug.logTime('aplicarFiltres');
+
+  // Quins codis han quedat. Com que els criteris de les caselles només miren
+  // el codi, saber quins codis hi ha és saber quines rimes s'han de veure.
+  const visibles = new Set();
+  for (let i = 0; i < matches_provisionals.length; i++) {
+    const numero = impressio.codis.get(matches_provisionals[i][2]);
+    if (numero !== undefined) visibles.add(numero);
+  }
+
+  const amagats = [];
+  for (const numero of impressio.codis.values()) {
+    if (!visibles.has(numero)) amagats.push(".k" + numero);
+  }
+
+  // Un grup de síl·labes que es queda sense cap rima visible perd el títol.
+  let primerGrup = null;
+  for (const grup of impressio.grups) {
+    let enTeAlguna = false;
+    for (const numero of grup.codis) {
+      if (visibles.has(numero)) { enTeAlguna = true; break; }
+    }
+    if (!enTeAlguna) amagats.push("." + grup.classe);
+    else if (!primerGrup) primerGrup = grup.classe;
+  }
+
+  const capRima = matches_provisionals.length === 0;
+  let css = amagats.length ? "#rima_enllac " + amagats.join(",#rima_enllac ") + "{display:none}" : "";
+  if (capRima) css += "#rima_enllac .capRima{display:block}";
+
+  if (!fullDeFiltres) {
+    fullDeFiltres = document.createElement("style");
+    document.head.appendChild(fullDeFiltres);
+  }
+  fullDeFiltres.textContent = css;
+
+  // El primer títol que es veu no porta el salt de línia de davant, i quin és
+  // depèn de quins grups hagin quedat buits.
+  const anterior = contenidorRimes.querySelector("h3.primer");
+  if (anterior) anterior.classList.remove("primer");
+  if (primerGrup) {
+    const titol = contenidorRimes.querySelector("h3." + primerGrup);
+    if (titol) titol.classList.add("primer");
+  }
+
+  contenidorRimes.classList.toggle("column-container", !capRima);
+  aplicarNombreDeColumnes(contenidorRimes, matches_provisionals.length);
+
+  Debug.logTimeEnd('aplicarFiltres');
 }
 
 
@@ -1428,7 +1495,7 @@ async function handleCheckboxClick(event, checkboxCriteria) {
                   matches_provisionals = matches_provisionals.filter(item => !filterFunction(item));
               }
 
-              actualitzarRimes();
+              aplicarFiltres();
           });
   }   }
   Debug.logTimeEnd('handleCheckboxClick');
