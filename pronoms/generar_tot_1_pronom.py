@@ -2,9 +2,9 @@
 Genera totes les combinacions verb + 1 pronom feble, en el format de
 diccionari.5.2.3.txt (10 camps separats per '$').
 
-    python3 generar_tot.py            # els pronoms de PRONOMS (avui: hi, en)
-    python3 generar_tot.py hi en ho   # només aquests
-    python3 generar_tot.py --tots     # els 13
+    python3 generar_tot_1_pronom.py            # els 13 pronoms
+    python3 generar_tot_1_pronom.py hi en ho   # només aquests
+    python3 generar_tot_1_pronom.py --tots     # els 13, explícit (equival a no passar res)
 
 NO toca el diccionari de producció: escriu el seu propi fitxer.
 
@@ -30,9 +30,9 @@ DIR_SEPARAT = os.path.join(BASE_DIR, "..", "diccionaris", "separat")
 DIR_SORTIDA = os.path.join(BASE_DIR, "txt_fets", "1_pronom")
 PATRO_SORTIDA = "verb_pronom_{pronom}.txt"
 
-# Pas 4 del pla: de moment només 'hi' i 'en', per poder comparar la sortida
-# amb la dels tres scripts vells abans d'obrir-ho a tot.
-PRONOMS = ("hi", "en")
+# Per defecte, els 13 pronoms (enclisi.ORDRE_PRONOMS). La validació contra els
+# scripts vells (pla_un_pronom.md, pas 4) ja es va fer i és a done/1a versio/.
+PRONOMS = enclisi.ORDRE_PRONOMS
 
 # Codi EAGLES del diccionari -> (forma verbal, persona)
 # Les 14 etiquetes d'imperatiu es fonen en 5 persones; el sufix 'Y' només marca
@@ -136,17 +136,15 @@ def generar(pronoms=PRONOMS, dir_sortida=DIR_SORTIDA):
 
 
 def main():
-    args = [a for a in sys.argv[1:]]
-    if args == ["--tots"]:
-        pronoms = tuple(enclisi.ORDRE_PRONOMS)
-    elif args:
+    args = [a for a in sys.argv[1:] if a != "--tots"]
+    if args:
         desconeguts = [a for a in args if a not in enclisi.ENCLISI]
         if desconeguts:
             raise SystemExit(f"Pronoms desconeguts: {', '.join(desconeguts)}\n"
                              f"Disponibles: {', '.join(enclisi.ORDRE_PRONOMS)}")
         pronoms = tuple(a for a in enclisi.ORDRE_PRONOMS if a in args)
     else:
-        pronoms = PRONOMS
+        pronoms = tuple(PRONOMS)
 
     linies, fitxers, per_forma, descartades = generar(pronoms)
 
