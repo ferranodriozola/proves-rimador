@@ -314,11 +314,11 @@ def generar_forma(forma, transcripcio, silabes_base, pronoms,
     silabes, transcripcio.
     """
     pronoms = ordenar_pronoms(pronoms)
+    if len(pronoms) == 2:
+        return _generar_forma_2(forma, transcripcio, silabes_base, pronoms,
+                                 forma_verbal, persona)
     if len(pronoms) != 1:
-        raise NotImplementedError(
-            "de moment només 1 pronom; les combinacions dobles són la fase 2 "
-            "i necessiten les seves pròpies regles d'apòstrof (pla.md §2.4)"
-        )
+        raise ValueError(f"calen 1 o 2 pronoms, no {len(pronoms)}")
 
     enclitic = forma_enclitica(pronoms[0], forma)
     transcripcio_nova, fonema = transcriure(forma, transcripcio, enclitic)
@@ -330,5 +330,38 @@ def generar_forma(forma, transcripcio, silabes_base, pronoms,
         "rima_consonant": consonant,
         "rima_assonant": assonant,
         "silabes": silabes(silabes_base, enclitic, fonema),
+        "transcripcio": transcripcio_nova,
+    }
+
+
+def _generar_forma_2(forma, transcripcio, silabes_base, pronoms, forma_verbal, persona):
+    """
+    Cas de 2 pronoms (pla_dos_pronoms.md): l'ortografia i la fonètica surten
+    literalment del Quadre 8.9, transcrit a llicencies.PARELLES -- no es
+    deriven aquí amb cap regla general. `pronoms` ja ve en ordre gramatical
+    (li abans que el/la/els/les, etc.); el codi es construeix amb aquest
+    ordre encara que la parella s'hagi transformat ortogràficament
+    (li+el -> "l'hi", però el codi és LI+EL, no HI+EL).
+    """
+    import llicencies   # importació diferida: llicencies també importa enclisi
+
+    p1, p2 = pronoms
+    clau, _ = llicencies.parella_efectiva(p1, p2)
+    escrit, fonema = llicencies.PARELLES[clau]
+    if isinstance(escrit, tuple):
+        vocal = acaba_en_vocal(forma)
+        escrit = escrit[1] if vocal else escrit[0]
+        fonema = fonema[1] if vocal else fonema[0]
+
+    transcripcio_nova = transcripcio + fonema
+    consonant, assonant = calcular_rimes(transcripcio_nova)
+    sil_extra = sum(1 for c in fonema if c in VOCALS_AFI)
+
+    return {
+        "paraula": escriure(forma, escrit),
+        "codi": construir_codi(forma_verbal, persona, pronoms),
+        "rima_consonant": consonant,
+        "rima_assonant": assonant,
+        "silabes": int(silabes_base) + sil_extra,
         "transcripcio": transcripcio_nova,
     }
