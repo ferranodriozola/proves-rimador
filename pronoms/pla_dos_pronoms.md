@@ -13,10 +13,11 @@
 |---|---|
 | Quines parelles de pronoms existeixen | Les del **Quadre 8.9** (font aportada per l'usuari, agost del 2026) — no un producte cartesià ni un algorisme derivat |
 | Quin verb pot dur quina parella | **Heurística d'unió**: es permet si el verb admet cada pronom per separat (mateix criteri de sobregeneració que P2/P3 al pla d'1 pronom) |
-| Fonètica de les parelles | Aproximació pròpia (el quadre només dona l'ortografia), pendent de repàs amb oïda nativa |
+| Els pronominals **inherents** | Excepció a la unió (§5): el reflexiu va sempre primer i el 2n pronom és el que admetria un intransitiu — és el cas que `pla_un_pronom.md` §2.2 reservava per a aquesta fase (`penedir-se'n`) |
+| Fonètica de les parelles | Els fragments d'AFI del quadre **més les 6 regles de sàndhi d'1 pronom**, aplicades als dos límits del grup (§2) |
 | Arquitectura | Mateixos 3 mòduls que la fase d'1 pronom, ampliats: `llicencies.PARELLES`/`permet_parella`, `enclisi._generar_forma_2`, `generar_tot_2_pronoms.py` |
 
-**Volum obtingut: 2.751.676 formes**, 69 fitxers, 220 MB.
+**Volum obtingut: 2.779.304 formes**, 69 fitxers, 234 MB.
 
 ---
 
@@ -76,38 +77,61 @@ Reaprofita al màxim la maquinària d'1 pronom, en lloc de duplicar-la.
 ### `llicencies.py`
 
 - `PARELLES`: el Quadre 8.9 transcrit, `(pronom1, pronom2) -> (escrit,
-  fonema)`. Quan la fila varia amb el verb, `escrit`/`fonema` són parelles
-  `(consonant, vocal)`.
+  (fonema1, fonema2))`. La fonètica va **partida en els dos pronoms** a
+  posta: és el que permet aplicar el sàndhi al límit que els separa. Quan la
+  fila varia amb el verb, tots dos camps són parelles `(consonant, vocal)`.
 - `parella_efectiva(p1, p2)`: resol la transformació `li`+CD → CD+`hi` i la
-  distinció `els_dat`/`els_ac`; retorna la clau real a `PARELLES` i el
-  pronom "net" (sense sufix intern) per a la llicència.
+  distinció `els_dat`/`els_ac`; retorna la clau real a `PARELLES`.
 - `PARELLES_VALIDES`: les 69 parelles, en ordre gramatical.
 - `permet_parella(lema, p1, p2, persona)`: la **heurística d'unió** — la
   parella es permet si el verb admet cada membre per separat
   (`permet(lema, p, None)`), sense necessitat de dades noves de
   ditransitivitat. Amb persona donada, aplica la concordança existent
   (`MATRIU_PERSONA`) al membre que sigui `es`/`et`/`em`/`ens`/`us`.
+- `_parella_inherent()` + `admet_cd()`: l'excepció dels pronominals
+  inherents (§5).
 
 ### `enclisi.py`
 
 `generar_forma()` deriva ara cap a `_generar_forma_2()` quan rep 2 pronoms:
-busca la parella a `llicencies.PARELLES` (via `parella_efectiva`), tria la
+busca la parella a `llicencies.PARELLES` (via `parella_efectiva`) i tria la
 variant consonant/vocal si cal amb `acaba_en_vocal()` (la mateixa funció que
-ja hi havia), concatena l'ortografia i la fonètica **literalment** (sense
-tornar a aplicar les regles de sàndhi de `transcriure()`, que són per a 1
-pronom) i compta les síl·labes noves comptant els nuclis vocàlics del
-fragment fonètic afegit.
+ja hi havia). L'**ortografia** surt d'allà literalment. La **fonètica** no:
+els dos fragments d'AFI del quadre passen per les mateixes regles de sàndhi
+que amb 1 pronom, ara als **dos** límits que té un grup de dos pronoms.
 
-**Limitació coneguda**: la fonètica de les parelles és una aproximació
-pròpia construïda encadenant els mateixos fragments d'AFI que ja hi havia a
-`FONEMA`, més uns quants fragments nous per a les formes "nues" (`en`→`ən`,
-`el`→`əl`, `els`→`əls`, `em`→`əm`, `et`→`ət`, `ens`→`əns`). No s'hi ha
-tornat a aplicar cap regla de sàndhi (semivocalització, sonorització...):
-en un grapat de casos limítrofs (`li`+`hi` = `-li-hi`, on la `i` final de
-`li` topa amb la `i` de `hi`) la transcripció pot no ser exacta. Es
-recomana un repàs amb oïda nativa abans de donar-la per definitiva; les
-formes **escrites** no en depenen i es donen per bones (verificades contra
-el quadre).
+Perquè això fos possible, les regles de `transcriure()` s'han partit en tres
+funcions reaprofitables:
+
+| Funció | Regles | On s'aplica amb 2 pronoms |
+|---|---|---|
+| `_sensibilitzar()` | (1) `-r` d'infinitiu, (2) consonant muda de grup — les que necessiten la **grafia** | límit verb\|pronom1 |
+| `_sandhi()` | (3) sonorització de `-s`, (4) espirantització de `-vos`, (5) assimilació de `-n` — només miren els **sons** | als **dos** límits |
+| `_semivocal()` | (6) `-hi`/`-ho` en semivocal darrere vocal | final del grup |
+
+```
+cantar-los-els  /kəntˈarluzəls/   (1) la -r reapareix, (3) la -s de "los" sonoritza
+digues-los-ho   /dˈiɣəzluzu/      (3) dues vegades: verb|pronom i pronom|pronom
+cantant-me'l    /kəntˈamməl/      (5) la -n del gerundi assimila
+canteu-vos-en   /kəntˈɛwβuzən/    (4) + (3)
+porta-li-ho     /pˈɔrtəliw/       (6) igual que veure-hi /bˈɛwɾəj/
+canta-s'hi      /kˈantəsi/        (3) NO s'hi aplica: la "s" de "-s'hi" obre síl·laba
+```
+
+La (3) demana un matís que amb 1 pronom no calia: només sonoritza una `-s`
+de **coda**. Un fragment d'un sol so (`-s'hi`, `-t'ho`, `-l'hi`) és
+l'obertura de la síl·laba següent, i per això `renta-s'hi` fa /rˈentəsi/ i
+no *[zi]*, mentre que `porta'ls-hi` fa /pˈɔrtəlzi/.
+
+Les síl·labes es compten com abans, pels nuclis vocàlics del que s'afegeix:
+com que una semivocal no és un nucli, la regla (6) ja hi queda inclosa sense
+excepcions (`porta-la-hi` = 3 síl·labes, com `porta-la`).
+
+**El que continua sent una reconstrucció nostra** són els fragments de les
+formes "nues" (`en`→`ən`, `el`→`əl`, `els`→`əls`, `em`→`əm`, `et`→`ət`,
+`ens`→`əns`), que apareixen com a 2n pronom rere consonant: el quadre les
+dona escrites, no transcrites. La resta són els fragments de `FONEMA`, que
+ja estaven validats contra el diccionari amb 1 pronom.
 
 ### `generar_tot_2_pronoms.py`
 
@@ -124,23 +148,26 @@ python3 pronoms/generar_tot_2_pronoms.py li:el es:hi   # només aquestes
 
 ## 3. Resultat de la generació
 
-`python3 pronoms/generar_tot_2_pronoms.py` → **69 fitxers, 2.751.676
-línies, 220 MB.**
+`python3 pronoms/generar_tot_2_pronoms.py` → **69 fitxers, 2.779.304
+línies, 234 MB.**
 
 | Comprovació | Resultat |
 |---|---|
 | 10 camps per línia, codi de 10 caràcters | ✅ 0 excepcions |
 | un sol accent primari per forma | ✅ 0 excepcions |
+| `col_3` = tot el que va darrere l'accent, `col_4` = les seves vocals | ✅ 0 excepcions |
 | col·lisions amb el diccionari base (`col_0.txt`) | ✅ 0 |
 | files duplicades exactes | ✅ 0 |
-| casos de prova coneguts (`porta-l'hi`, `treu-l'en`, `renta-te-la`, `avisa'ns-hi`/`digues-nos-hi`) | ✅ tots coincideixen amb el Quadre 8.9 |
+| límit verb\|pronom idèntic al que dona el camí d'1 pronom | ✅ a les 2.779.304 |
+| cua fonètica esperada per a cada parella | ✅ a les 2.779.304 |
+| casos de prova coneguts (`porta-l'hi`, `treu-l'en`, `renta-te-la`, `avisa'ns-hi`/`digues-nos-hi`, `anem-nos-en`, `ves-te'n`, `penedir-se'n`, `endur-se'l`) | ✅ tots coincideixen amb el Quadre 8.9 |
 
-Repartiment per forma verbal: 512.756 infinitius, 508.538 gerundis,
-1.730.382 imperatius. **1.517.285 combinacions descartades** per la
-heurística d'unió o la concordança de persona.
+Repartiment per forma verbal: 520.956 infinitius, 516.638 gerundis,
+1.741.710 imperatius. **1.489.657 combinacions descartades** per la
+heurística d'unió o la concordança de persona. Són 373 codis diferents.
 
 Per comparació: el diccionari actual (1 pronom inclòs) fa uns 90 MB en
-columnes; aquestes 220 MB noves confirmen que segueix fent falta un
+columnes; aquests 234 MB nous confirmen que segueix fent falta un
 **dataset separat, carregat sota demanda** (mateixa decisió de `pla.md`
 §4.3).
 
@@ -148,9 +175,33 @@ columnes; aquestes 220 MB noves confirmen que segueix fent falta un
 
 ## 4. Pendent
 
-- **Repàs fonètic** amb oïda nativa dels fragments nous (§2, limitació
-  coneguda), sobretot els casos `li`+`hi`/`ho`, `la`+`hi`, `les`+`hi` on hi
-  ha una vocal final del primer pronom seguida directament d'un segon
-  pronom que comença en vocal.
 - **Integració al rimador** (Fase 3 de `pla.md`): segueix sense començar,
-  tant per a 1 com per a 2 pronoms.
+  tant per a 1 com per a 2 pronoms. És l'únic que queda.
+
+---
+
+## 5. Els pronominals inherents: l'excepció a la unió
+
+La heurística d'unió, tal com està formulada a §0, no serveix per als 392
+verbs **inherentment pronominals**: amb 1 pronom no n'admeten cap tret del
+reflexiu (`penedir-ne` ❌, és correcte), i si demanem que el verb admeti
+cada membre per separat, cap parella no hi passa mai. El resultat seria que
+`penedir-se'n` no existiria — precisament la forma que `pla_un_pronom.md`
+§2.2 posava com a exemple del que aquesta fase havia de recuperar, i que
+§4 d'aquell mateix document ja donava codificada (`WN0002ESNE`).
+
+La regla que hi aplica `_parella_inherent()`:
+
+| | |
+|---|---|
+| 1r pronom | el **reflexiu** i prou. A l'imperatiu, el que concorda amb el subjecte (`REFLEXIU_EXACTE`, com amb 1 pronom): `penedeix-te'n` sí, `*penedeix-se'n` no |
+| 2n pronom | el que admetria un intransitiu: datius, `hi` i `en` (`adonar-se'n`, `abalançar-s'hi`, `queixar-se-li`) |
+| 2n pronom acusatiu | només si el DIEC dona alguna construcció `v. tr. pron.` — són **13** dels 392 (`endur-se'l`, `empassar-se-la`). Els altres 379 són `v. intr. pron.` i no tenen CD: `*penedir-se-la` |
+| concordança | la matriu general (`MATRIU_PERSONA`) s'aplica al 2n pronom, que és un datiu, no el reflexiu: `*penedim-nos-em` |
+
+Ho decideix `admet_cd(lema)`, que mira si alguna construcció del DIEC és
+transitiva encara que sigui pronominal. Compte amb el detall: `"intr"`
+conté `"tr"` com a substring, i per això la comprovació es fa sobre la
+primera paraula de la construcció, no amb un `in`.
+
+Aporta **27.628 formes** que abans no hi eren.
