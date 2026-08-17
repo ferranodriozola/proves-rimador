@@ -9,7 +9,8 @@ generar_infinitius / generar_gerundis / generar_imperatius.
 No llegeix ni escriu fitxers, no sap res de llicències de verbs: només transforma
 (forma verbal, transcripció, pronom) -> (forma nova, transcripció nova, ...).
 
-Documentació de les decisions: pronoms/pla.md i pronoms/pla_un_pronom.md.
+Documentació de les decisions: pronoms/pla.md i pronoms/pla_un_pronom.md; el
+cas de 2 pronoms, a pronoms/pla_dos_pronoms.md.
 """
 
 # ---------------------------------------------------------------- alfabets
@@ -165,6 +166,69 @@ def _consonant_muda(forma, transcripcio):
     return None, None
 
 
+def _sensibilitzar(forma, transcripcio, fonema_seguent):
+    """
+    Regles (1) i (2): recupera la consonant final muda del verb quan hi ha
+    alguna cosa enganxada al darrere. Necessita la GRAFIA, i per això va a
+    part del sàndhi pur, que només mira els sons.
+    """
+    comenca_en_vocal = fonema_seguent[0] in VOCALS_AFI
+    tipus, muda = _consonant_muda(forma, transcripcio)
+    if tipus == "r":
+        return transcripcio + ("ɾ" if comenca_en_vocal else "r")
+    if tipus == "grup" and comenca_en_vocal:
+        return transcripcio + muda
+    return transcripcio
+
+
+def _sandhi(esquerra, dreta):
+    """
+    Regles (3), (4) i (5): el que passa al LÍMIT entre dos trossos d'AFI.
+
+    Retorna els dos trossos modificats. Com que només mira sons, serveix tant
+    per al límit verb|pronom com per al límit pronom1|pronom2 dels grups de
+    dos pronoms (digues-los-ho /dˈiɣəzluzu/: la mateixa regla, dues vegades).
+    """
+    if not esquerra or not dreta:
+        return esquerra, dreta
+
+    # (3) sonorització de la -s final davant vocal o consonant sonora.
+    #     Només si la -s fa CODA: un fragment d'un sol so ('-s'hi', '-t'ho')
+    #     és l'obertura de la síl·laba següent, no una coda, i no sonoritza
+    #     (renta-s'hi /rˈentəsi/, mai *[zi]).
+    if len(esquerra) > 1 and esquerra.endswith("s") and (
+            dreta[0] in VOCALS_AFI or dreta[0] in CONSONANTS_SONORES_AFI):
+        esquerra = esquerra[:-1] + "z"
+
+    # (4) espirantització de la v- de '-vos'
+    if dreta.startswith("b") and esquerra[-1] in VOCALS_AFI | {"j", "w"}:
+        dreta = "β" + dreta[1:]
+
+    # (5) assimilació de la -n final al punt d'articulació del que ve.
+    #     Va DESPRÉS de l'espirantització: si abans hi ha una -n, l'enclític
+    #     '-vos' es queda en [b] (no és darrere vocal) i és la -n qui es mou.
+    if esquerra.endswith("n"):
+        for nasal, contextos in ASSIMILACIO_NASAL.items():
+            if dreta[0] in contextos:
+                esquerra = esquerra[:-1] + nasal
+                break
+
+    return esquerra, dreta
+
+
+def _semivocal(anterior, enclitic, fonema):
+    """
+    Regla (6): '-hi' i '-ho' es realitzen en semivocal [j]/[w] darrere vocal,
+    i es fonen amb la vocal anterior dins el mateix nucli sil·làbic.
+    """
+    if anterior and anterior[-1] in VOCALS_AFI:
+        if enclitic == "-hi":
+            return "j"
+        if enclitic == "-ho":
+            return "w"
+    return fonema
+
+
 def transcriure(forma, transcripcio, enclitic):
     """
     Munta la transcripció AFI del grup verb+enclític a partir de la del verb sol.
@@ -202,39 +266,9 @@ def transcriure(forma, transcripcio, enclitic):
          (cf. aire /ˈajɾə/, taula /tˈawlə/)
     """
     fonema = FONEMA[enclitic]
-    comenca_en_vocal = fonema[0] in VOCALS_AFI
-
-    # (1) i (2) sensibilització de la consonant final muda
-    tipus, muda = _consonant_muda(forma, transcripcio)
-    if tipus == "r":
-        transcripcio += "ɾ" if comenca_en_vocal else "r"
-    elif tipus == "grup" and comenca_en_vocal:
-        transcripcio += muda
-
-    # (3) sonorització de la -s final
-    if transcripcio.endswith("s") and (comenca_en_vocal or fonema[0] in CONSONANTS_SONORES_AFI):
-        transcripcio = transcripcio[:-1] + "z"
-
-    # (4) espirantització de la v- de '-vos'
-    if fonema.startswith("b") and transcripcio and transcripcio[-1] in VOCALS_AFI | {"j", "w"}:
-        fonema = "β" + fonema[1:]
-
-    # (5) assimilació de la -n final al punt d'articulació de l'enclític.
-    #     Va DESPRÉS de l'espirantització: si abans hi ha una -n, l'enclític
-    #     '-vos' es queda en [b] (no és darrere vocal) i és la -n qui es mou.
-    if transcripcio.endswith("n"):
-        for nasal, contextos in ASSIMILACIO_NASAL.items():
-            if fonema[0] in contextos:
-                transcripcio = transcripcio[:-1] + nasal
-                break
-
-    # (6) semivocalització de '-hi' / '-ho' darrere vocal
-    if transcripcio and transcripcio[-1] in VOCALS_AFI:
-        if enclitic == "-hi":
-            fonema = "j"
-        elif enclitic == "-ho":
-            fonema = "w"
-
+    transcripcio = _sensibilitzar(forma, transcripcio, fonema)       # (1) i (2)
+    transcripcio, fonema = _sandhi(transcripcio, fonema)             # (3), (4) i (5)
+    fonema = _semivocal(transcripcio, enclitic, fonema)              # (6)
     return transcripcio + fonema, fonema
 
 
@@ -336,32 +370,47 @@ def generar_forma(forma, transcripcio, silabes_base, pronoms,
 
 def _generar_forma_2(forma, transcripcio, silabes_base, pronoms, forma_verbal, persona):
     """
-    Cas de 2 pronoms (pla_dos_pronoms.md): l'ortografia i la fonètica surten
-    literalment del Quadre 8.9, transcrit a llicencies.PARELLES -- no es
-    deriven aquí amb cap regla general. `pronoms` ja ve en ordre gramatical
-    (li abans que el/la/els/les, etc.); el codi es construeix amb aquest
-    ordre encara que la parella s'hagi transformat ortogràficament
-    (li+el -> "l'hi", però el codi és LI+EL, no HI+EL).
+    Cas de 2 pronoms (pla_dos_pronoms.md). L'ORTOGRAFIA surt literalment del
+    Quadre 8.9, transcrit a llicencies.PARELLES: no es deriva aquí amb cap
+    regla. La FONÈTICA parteix dels dos fragments d'AFI del quadre i hi aplica
+    les mateixes regles de sàndhi que amb 1 pronom, ara als DOS límits que hi
+    ha (verb|pronom1 i pronom1|pronom2):
+
+        cantar-los-els  /kəntˈarluzəls/   (1) la -r d'infinitiu reapareix
+        digues-los-ho   /dˈiɣəzluzu/      (3) les dues -s sonoritzen
+        cantant-me'l    /kəntˈamməl/     (5) la -n assimila
+        porta-li-ho     /pˈɔrtəliw/       (6) '-ho' en semivocal
+
+    `pronoms` ja ve en ordre gramatical (li abans que el/la/els/les, etc.); el
+    codi es construeix amb aquest ordre encara que la parella s'hagi
+    transformat ortogràficament (li+el -> "l'hi", però el codi és LI+EL).
     """
     import llicencies   # importació diferida: llicencies també importa enclisi
 
     p1, p2 = pronoms
-    clau, _ = llicencies.parella_efectiva(p1, p2)
-    escrit, fonema = llicencies.PARELLES[clau]
+    escrit, fonemes = llicencies.PARELLES[llicencies.parella_efectiva(p1, p2)]
     if isinstance(escrit, tuple):
         vocal = acaba_en_vocal(forma)
         escrit = escrit[1] if vocal else escrit[0]
-        fonema = fonema[1] if vocal else fonema[0]
+        fonemes = fonemes[1] if vocal else fonemes[0]
+    fon1, fon2 = fonemes
 
-    transcripcio_nova = transcripcio + fonema
+    transcripcio = _sensibilitzar(forma, transcripcio, fon1)         # (1) i (2)
+    transcripcio, fon1 = _sandhi(transcripcio, fon1)                 # límit verb|pronom1
+    fon1, fon2 = _sandhi(fon1, fon2)                                 # límit pronom1|pronom2
+    fon2 = _semivocal(fon1, "-" + p2, fon2)                          # (6)
+
+    cua = fon1 + fon2
+    transcripcio_nova = transcripcio + cua
     consonant, assonant = calcular_rimes(transcripcio_nova)
-    sil_extra = sum(1 for c in fonema if c in VOCALS_AFI)
 
     return {
         "paraula": escriure(forma, escrit),
         "codi": construir_codi(forma_verbal, persona, pronoms),
         "rima_consonant": consonant,
         "rima_assonant": assonant,
-        "silabes": int(silabes_base) + sil_extra,
+        # cada nucli vocàlic de la cua és una síl·laba nova; una semivocal
+        # ([j]/[w]) no ho és, i per això no cal cap excepció a part.
+        "silabes": int(silabes_base) + sum(1 for c in cua if c in VOCALS_AFI),
         "transcripcio": transcripcio_nova,
     }
