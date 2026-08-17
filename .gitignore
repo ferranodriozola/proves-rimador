@@ -25,3 +25,6 @@ __pycache__/
 # del diccionari ficava 35 MB a la història per a res, i de la història no en
 # surt mai més res.
 diccionaris/separat/col_10 (canvis aquí)/col_10provisional.txt
+
+#pronoms txt
+txt_fets/
