@@ -9,12 +9,13 @@ no el toca mai — escriu els seus propis fitxers a part.
 
 ## Estat
 
-La generació **amb un pronom està acabada**: 13 fitxers `verb_pronom_*.txt`,
-626.779 línies, 45 MB, a `txt_fets/1_pronom/`. La **integració al web no està
-començada** (no hi ha cap `W` a `js/script.js`, el dataset no existeix en
-format columnes ni surt a `diccionaris/versions.json`, i no hi ha caselles a la
-UI). Les combinacions de **dos** pronoms (`porta-l'hi`, `anar-se'n`) són la
-fase 2; `txt_fets/2_pronoms/` ja hi és preparada, però encara buida.
+La generació **amb un pronom** i la **amb dos pronoms** estan totes dues
+acabades. 1 pronom: 13 fitxers, 626.779 línies, 45 MB, a `txt_fets/1_pronom/`.
+2 pronoms: 69 fitxers, 2.751.676 línies, 220 MB, a `txt_fets/2_pronoms/`. La
+**integració al web no està començada** (no hi ha cap `W` a `js/script.js`, el
+dataset no existeix en format columnes ni surt a `diccionaris/versions.json`,
+i no hi ha caselles a la UI) — és la Fase 3 de `pla.md`, encara pendent per a
+totes dues generacions.
 
 ---
 
@@ -25,11 +26,13 @@ pronoms/
 ├── README.md                    aquest fitxer
 ├── pla.md                       el pla general del projecte (5 fases)
 ├── pla_un_pronom.md             el pla concret de la generació amb 1 pronom
+├── pla_dos_pronoms.md           el pla concret de la generació amb 2 pronoms
 ├── pronoms.docx                 el quadre normatiu de l'enclisi (material d'origen)
 │
 ├── enclisi.py                   ortografia + fonètica + rima de l'enclisi
-├── llicencies.py                quins pronoms admet cada verb i cada persona
-├── generar_tot_1_pronom.py      el driver: llegeix el diccionari i escriu la sortida
+├── llicencies.py                quins pronoms/parelles admet cada verb i cada persona
+├── generar_tot_1_pronom.py      driver d'1 pronom
+├── generar_tot_2_pronoms.py     driver de 2 pronoms
 ├── llista_verbs.py              treu la llista de lemes verbals del diccionari
 │
 ├── verbs.json                   9.016 lemes verbals (entrada del scraper)
@@ -37,7 +40,7 @@ pronoms/
 │
 ├── txt_fets/                    LA SORTIDA generada, per nombre de pronoms
 │   ├── 1_pronom/                   els 13 verb_pronom_*.txt (fet)
-│   └── 2_pronoms/                  fase 2, encara buida
+│   └── 2_pronoms/                  els 69 verb_pronom_<p1>_<p2>.txt (fet)
 │
 └── done/                        scripts i dades ja consumits, desats per traça
     └── 1a versio/                  la primera generació (hi + en), ja substituïda
@@ -51,6 +54,7 @@ pronoms/
 |---|---|
 | `pla.md` | El pla general, en 5 fases: què hi ha ara (§1), quines combinacions són vàlides (§2), estratègia de generació (§3), **integració a la UI** (§4), esquema de codis (§5) i càlcul de la rima (§6). És el document a rellegir per continuar, perquè la feina que queda és la Fase 3. |
 | `pla_un_pronom.md` | El pla d'execució de la generació amb un sol pronom: les 5 classes de verb, les decisions P1–P6, el format del codi (§4), l'arquitectura de mòduls (§5), el volum previst (§6) i el resultat real amb totes les comprovacions de sanitat (§9). Aquest és el document que manà: on contradiu `pla.md`, guanya. |
+| `pla_dos_pronoms.md` | El pla d'execució de la generació amb dos pronoms: el Quadre 8.9 transcrit (la font de totes les 69 parelles vàlides i la seva ortografia exacta), la heurística d'unió per decidir quin verb admet quina parella, l'arquitectura estesa, i el resultat real amb les comprovacions de sanitat. Documenta també la limitació coneguda de la fonètica (aproximació pròpia, pendent de repàs). |
 | `pronoms.docx` | El quadre de l'enclisi (forma plena i reduïda de cada pronom, per funció: acusatiu, datiu, reflexiu) i l'ordre de col·locació dels dos pronoms. És el material de partida contra el qual es va verificar la taula `ENCLISI` d'`enclisi.py`. |
 
 > ⚠️ **Referències obsoletes a `pla.md`.** La §5 encara descriu el format de codi
@@ -109,9 +113,12 @@ necessita una línia del diccionari.
 - **`silabes()`**: el guionet suma síl·laba, l'apòstrof no, i la semivocal
   tampoc (`veure-hi` = 2, com `veure`).
 - **`construir_codi()`** munta el codi de 10 caràcters i comprova l'amplada.
-- **`generar_forma()`** és la porta d'entrada que fa servir el driver. Amb dos
-  pronoms llança `NotImplementedError`: la fase 2 necessita les seves regles
-  d'apòstrof.
+- **`generar_forma()`** és la porta d'entrada que fan servir els dos drivers.
+  Amb 1 pronom fa el que s'ha descrit més amunt; amb 2 pronoms deriva cap a
+  **`_generar_forma_2()`**, que ja no torna a aplicar les regles de sàndhi de
+  `transcriure()` — busca la parella directament a `llicencies.PARELLES` (el
+  Quadre 8.9 transcrit, vegeu més avall) i en concatena l'ortografia i la
+  fonètica literalment.
 
 ### `llicencies.py` — qui pot dur què
 
@@ -138,6 +145,22 @@ Executable pel seu compte, treu l'informe de verbs per classe i per pronom:
 python3 pronoms/llicencies.py
 ```
 
+**Per a 2 pronoms**, el mateix mòdul hi afegeix:
+
+- **`PARELLES`**: el Quadre 8.9 (`pla_dos_pronoms.md` §1) transcrit
+  literalment, `(pronom1, pronom2) -> (escrit, fonema)` — les 4 files que
+  varien amb el verb (`us`, `ens`, `els` datiu, `els` acusatiu) guarden una
+  parella `(consonant, vocal)` en lloc d'un sol valor.
+- **`parella_efectiva()`** resol la transformació `li`+CD → CD+`hi`
+  (`porta-l'hi`) i la distinció interna `els_dat`/`els_ac` (mateixa paraula,
+  comportament diferent: el datiu es comporta com `li`, l'acusatiu només
+  admet `hi`/`en`).
+- **`PARELLES_VALIDES`**: les 69 parelles reals, en ordre gramatical.
+- **`permet_parella()`**: la **heurística d'unió** — una parella es permet
+  si el verb admet cada membre per separat, sense necessitat de dades noves
+  de ditransitivitat (decisió presa amb l'usuari per no haver de tornar a
+  fer scraping del DIEC).
+
 ### `generar_tot_1_pronom.py` — el driver
 
 - Llegeix les 10 columnes de `diccionaris/separat/col_*.txt` i comprova que
@@ -154,6 +177,19 @@ python3 pronoms/llicencies.py
   el motiu.
 - Per defecte (`PRONOMS = enclisi.ORDRE_PRONOMS`) genera els 13; es pot cridar
   amb una llista de pronoms concrets per fer-ne només alguns.
+
+### `generar_tot_2_pronoms.py` — el driver de 2 pronoms
+
+Mateix disseny que el d'1 pronom (`llegir_columnes`, `comprovar_base`,
+`FORMES` reaprofitats): en lloc d'un pronom sol, itera
+`llicencies.PARELLES_VALIDES` i crida `llicencies.permet_parella()` +
+`enclisi.generar_forma(..., [p1, p2], ...)`. Escriu un fitxer per parella a
+`txt_fets/2_pronoms/`.
+
+```bash
+python3 pronoms/generar_tot_2_pronoms.py             # les 69 parelles
+python3 pronoms/generar_tot_2_pronoms.py li:el es:hi  # només aquestes
+```
 
 ### `llista_verbs.py`
 
@@ -240,6 +276,41 @@ amb `generar_tot_1_pronom.py` ja no les torna a produir.
 
 ---
 
+## La sortida: `txt_fets/2_pronoms/verb_pronom_<p1>_<p2>.txt`
+
+Mateix format de 10 camps que la sortida d'1 pronom. **69 fitxers, un per
+parella del Quadre 8.9** (`pla_dos_pronoms.md` §1) — per exemple
+`verb_pronom_li_el.txt` (`porta-l'hi`) o `verb_pronom_es_hi.txt`
+(`avisar-s'hi`).
+
+```
+porta-l'hi$portar$WM02S2LIEL$ɔrtəli$ɔəi$3$Vicc$Viq$Diec$pˈɔrtəli
+```
+
+El codi conserva sempre la **identitat gramatical original** dels dos
+pronoms (`LI`+`EL`), encara que l'ortografia surti transformada (`li`+`el`
+s'escriu "l'hi", mai "hi"+"el") — el mateix criteri que ja apuntava
+`pla_un_pronom.md` §4 per a aquest exemple concret.
+
+| | Total |
+|---|---:|
+| Fitxers | 69 |
+| Línies | 2.751.676 |
+| Mida | 220 MB |
+
+Comprovacions de sanitat (`pla_dos_pronoms.md` §3): 10 camps i codi de 10
+caràcters a totes les línies, un sol accent primari per forma, 0
+col·lisions amb el diccionari base, 0 duplicats exactes.
+
+⚠️ **La fonètica de 2 pronoms és una primera aproximació**, no reaplica les
+regles de sàndhi de `transcriure()` sinó que encadena fragments d'AFI fixos.
+Les formes **escrites** estan verificades contra el Quadre 8.9 i es donen
+per bones; la pronunciació d'un grapat de casos limítrofs (`li`+`hi`/`ho`,
+`la`+`hi`, `les`+`hi`) queda pendent de repàs amb oïda nativa
+(`pla_dos_pronoms.md` §4).
+
+---
+
 ## `done/` — ja consumit
 
 Scripts que van fer la seva feina i dades que en van sortir. Es desen per poder
@@ -287,10 +358,14 @@ python3 "pronoms/done/scrap_diec+num.py"
 # 3. comprovar la classificació abans de generar res
 python3 pronoms/llicencies.py
 
-# 4. generar  ->  txt_fets/1_pronom/verb_pronom_*.txt
+# 4. generar 1 pronom  ->  txt_fets/1_pronom/verb_pronom_*.txt
 python3 pronoms/generar_tot_1_pronom.py
+
+# 5. generar 2 pronoms  ->  txt_fets/2_pronoms/verb_pronom_*_*.txt
+python3 pronoms/generar_tot_2_pronoms.py
 ```
 
-El pas 2 depèn de `requests`, `beautifulsoup4` i `tqdm`; els passos 1, 3 i 4 no
-necessiten res que no sigui la biblioteca estàndard. En condicions normals
-només cal el pas 4: les categories del DIEC no canvien.
+El pas 2 depèn de `requests`, `beautifulsoup4` i `tqdm`; la resta no necessita
+res que no sigui la biblioteca estàndard. En condicions normals només calen
+els passos 4 i 5: les categories del DIEC no canvien, i el Quadre 8.9 ja és
+al codi (`llicencies.PARELLES`), no cal tornar-lo a llegir de cap font.
