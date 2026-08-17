@@ -56726,7 +56726,6 @@ vertebri-li$vertebrar$WM03S1LI00$eβɾili$eii$4$Vicc$NO$Diec$bərtˈeβɾili
 vertebrin-li$vertebrar$WM03P1LI00$eβɾinli$eii$4$Vicc$NO$Diec$bərtˈeβɾinli
 ves-li$anar$WM02S1LI00$ezli$ei$2$Vicc$Viq$Diec$bˈezli
 ves-li$veure$WM02S1LI00$ezli$ei$2$Vicc$Viq$Diec$bˈezli
-ves-li$anar$WM02S1LI00$ezli$ei$2$Vicc$NO$Diec$bˈezli
 vesa-li$vesar$WM02S1LI00$ɛzəli$ɛəi$3$Vicc$Viq$Diec$bˈɛzəli
 vesant-li$vesar$WG0001LI00$anli$ai$3$Vicc$NO$Diec$bəzˈanli
 vesar-li$vesar$WN0001LI00$arli$ai$3$Vicc$NO$Diec$bəzˈarli

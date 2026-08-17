@@ -57905,7 +57905,6 @@ vertebri'ns$vertebrar$WM03S1NS00$eβɾins$ei$3$Vicc$NO$Diec$bərtˈeβɾins
 vertebrin-nos$vertebrar$WM03P1NS00$eβɾinnus$eiu$4$Vicc$NO$Diec$bərtˈeβɾinnus
 ves-nos$anar$WM02S1NS00$eznus$eu$2$Vicc$Viq$Diec$bˈeznus
 ves-nos$veure$WM02S1NS00$eznus$eu$2$Vicc$Viq$Diec$bˈeznus
-ves-nos$anar$WM02S1NS00$eznus$eu$2$Vicc$NO$Diec$bˈeznus
 vesa'ns$vesar$WM02S1NS00$ɛzəns$ɛə$2$Vicc$Viq$Diec$bˈɛzəns
 vesant-nos$vesar$WG0001NS00$annus$au$3$Vicc$NO$Diec$bəzˈannus
 vesar-nos$vesar$WN0001NS00$arnus$au$3$Vicc$NO$Diec$bəzˈarnus

@@ -33631,7 +33631,6 @@ vertebrar-te$vertebrar$WN0001ET00$artə$aə$4$Vicc$NO$Diec$bərtəβɾˈartə
 vertebrem-te$vertebrar$WM01P1ET00$ɛmtə$ɛə$4$Vicc$NO$Diec$bərtəβɾˈɛmtə
 ves-te$anar$WM02S1ET00$estə$eə$2$Vicc$Viq$Diec$bˈestə
 ves-te$veure$WM02S1ET00$estə$eə$2$Vicc$Viq$Diec$bˈestə
-ves-te$anar$WM02S1ET00$estə$eə$2$Vicc$NO$Diec$bˈestə
 vesa't$vesar$WM02S1ET00$ɛzət$ɛə$2$Vicc$Viq$Diec$bˈɛzət
 vesant-te$vesar$WG0001ET00$antə$aə$3$Vicc$NO$Diec$bəzˈantə
 vesar-te$vesar$WN0001ET00$artə$aə$3$Vicc$NO$Diec$bəzˈartə
