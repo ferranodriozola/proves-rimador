@@ -46,8 +46,6 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add .
           git commit -m "Generació automàtica del json de rimes sencer" || echo "No s'han detectat canvis nous per guardar"
-          # Mentre corríem, un altre workflow pot haver comitejat. Sense
-          # rebase, el push seria rebutjat i el workflow es posaria vermell.
           git pull --rebase origin main
           git push
 
@@ -63,8 +61,6 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add .
           git commit -m "Generació automàtica de la llista de nàufragues" || echo "No s'han detectat canvis nous per guardar"
-          # Mentre corríem, un altre workflow pot haver comitejat. Sense
-          # rebase, el push seria rebutjat i el workflow es posaria vermell.
           git pull --rebase origin main
           git push
 
@@ -82,7 +78,5 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add .
           git commit -m "Generació automàtica de la llista de mots de 7" || echo "No s'han detectat canvis nous per guardar"
-          # Mentre corríem, un altre workflow pot haver comitejat. Sense
-          # rebase, el push seria rebutjat i el workflow es posaria vermell.
           git pull --rebase origin main
           git push
