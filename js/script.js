@@ -1550,6 +1550,13 @@ function obtenirValorsSegonsPrimerCaracter(matches) {
       var primerCaracter = terceraColumna.charAt(0);
       var segonCaracter = terceraColumna.charAt(1);
       var tercerCaracter = terceraColumna.charAt(2);
+      // Les preposicions (ZSPS) i les contraccions (ZSP+) es distingeixen per
+      // la QUARTA lletra del codi, no per la tercera: totes dues tenen una P
+      // a la tercera. Mirant-hi el tercerCaracter no s'hi acomplia mai cap
+      // dels dos casos i les dues subcaselles no s'ensenyaven mai, tot i que
+      // les paraules (a, amb, de, per, sense, al, del, pel...) sí que
+      // s'imprimien a les rimes.
+      var quartCaracter = terceraColumna.charAt(3);
 
       switch (primerCaracter) {   
           
@@ -1616,9 +1623,11 @@ function obtenirValorsSegonsPrimerCaracter(matches) {
                   case "I": resultatsAlt.push(2); break; // Interjeccions
                   case "F": resultatsAlt.push(5); break; // "etcètera"
               }
-              switch (tercerCaracter) {
-                  case "S": resultatsAlt.push(3); break; // Preposicions
-                  case "+": resultatsAlt.push(4); break; // Contraccions
+              if (segonCaracter === "S") {
+                  switch (quartCaracter) {
+                      case "S": resultatsAlt.push(3); break; // Preposicions
+                      case "+": resultatsAlt.push(4); break; // Contraccions
+                  }
               }
               break;
       }
