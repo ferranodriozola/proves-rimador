@@ -7,7 +7,8 @@ diccionari.5.2.3.txt (10 camps separats per '$').
 
 NO toca el diccionari de producció: escriu el seu propi fitxer.
 
-Mateix repartiment de feina que generar_tot_1_pronom.py:
+Mateix repartiment de feina que generar_tot_1_pronom.py, del qual reaprofita
+la lectura del diccionari base (FORMES, llegir_columnes, comprovar_base):
     llicencies.py  -> quines parelles existeixen (Quadre 8.9) i quin verb
                       les admet (heurística d'unió, pla_dos_pronoms.md)
     enclisi.py     -> com s'escriu, com sona, quantes síl·labes i quina rima fa
@@ -24,56 +25,17 @@ if BASE_DIR not in sys.path:
 import enclisi
 import llicencies
 
-DIR_SEPARAT = os.path.join(BASE_DIR, "..", "diccionaris", "separat")
+# La lectura del diccionari base és exactament la mateixa que amb 1 pronom:
+# s'importa, no es copia, perquè les dues sortides no puguin divergir mai
+# (és la raó de ser de l'arquitectura de mòduls, pla_un_pronom.md §5).
+from generar_tot_1_pronom import (FORMES, NOM_FORMA, comprovar_base,
+                                  llegir_columnes)
 
 # Un fitxer per parella: verb_pronom_li_el.txt, verb_pronom_es_hi.txt...
 DIR_SORTIDA = os.path.join(BASE_DIR, "txt_fets", "2_pronoms")
 PATRO_SORTIDA = "verb_pronom_{p1}_{p2}.txt"
 
 PARELLES = llicencies.PARELLES_VALIDES
-
-# Mateix mapa que generar_tot_1_pronom.py (pla_un_pronom.md §3.2).
-FORMES = {
-    "VMN00000": ("N", None),
-    "VMG00000": ("G", None),
-    "VMM02S00": ("M", "02S"), "VMM02S0Y": ("M", "02S"), "VSM02S00": ("M", "02S"),
-    "VMM01P00": ("M", "01P"), "VSM01P00": ("M", "01P"),
-    "VMM02P0X": ("M", "02P"), "VMM02P00": ("M", "02P"), "VSM02P00": ("M", "02P"),
-    "VMM03S0Y": ("M", "03S"), "VMM03S00": ("M", "03S"), "VSM03S0Y": ("M", "03S"),
-    "VMM03P0Y": ("M", "03P"), "VMM03P00": ("M", "03P"), "VSM03P0Y": ("M", "03P"),
-}
-
-NOM_FORMA = {"N": "infinitiu", "G": "gerundi", "M": "imperatiu"}
-
-
-def llegir_columnes():
-    col = {}
-    for n in range(10):
-        with open(os.path.join(DIR_SEPARAT, f"col_{n}.txt"), "r", encoding="utf-8") as f:
-            col[n] = f.read().splitlines()
-    mida = len(col[0])
-    if any(len(col[n]) != mida for n in col):
-        raise SystemExit("Les columnes no tenen el mateix nombre de línies: no es pot continuar.")
-    return col
-
-
-def comprovar_base(col):
-    """Mateixa xarxa de seguretat que generar_tot_1_pronom.py."""
-    dolents = []
-    for i in range(len(col[0])):
-        if col[2][i] not in FORMES:
-            continue
-        if not col[0][i] or not col[9][i] or not col[5][i].isdigit():
-            dolents.append((col[0][i], "camp buit o síl·labes no numèriques"))
-        elif col[9][i].count("ˈ") > 1 and "-" not in col[0][i]:
-            dolents.append((col[0][i], f"{col[9][i]} té 2 accents primaris"))
-    if dolents:
-        mostra = ", ".join(f"{f} ({m})" for f, m in dolents[:6])
-        raise SystemExit(
-            f"Hi ha {len(dolents)} formes base amb la transcripció sospitosa: {mostra}"
-            f"{'...' if len(dolents) > 6 else ''}\n"
-            "Corregeix-les a col_10 abans de generar res."
-        )
 
 
 def generar(parelles=PARELLES, dir_sortida=DIR_SORTIDA):
