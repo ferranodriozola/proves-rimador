@@ -10,14 +10,11 @@ no el toca mai — escriu els seus propis fitxers a part.
 ## Estat
 
 La generació **amb un pronom està acabada**: 13 fitxers `verb_pronom_*.txt`,
-626.779 línies, 45 MB. La **integració al web no està començada** (no hi ha cap
-`W` a `js/script.js`, el dataset no existeix en format columnes ni surt a
-`diccionaris/versions.json`, i no hi ha caselles a la UI). Les combinacions de
-**dos** pronoms (`porta-l'hi`, `anar-se'n`) són la fase 2 i no s'han tocat.
-
-Detall que convé recordar: els `.txt` es van generar l'11 d'agost del 2026 i el
-diccionari base es va regenerar el 13 d'agost, o sigui que van una mica
-endarrerits respecte de `diccionaris/separat/`.
+626.779 línies, 45 MB, a `txt_fets/1_pronom/`. La **integració al web no està
+començada** (no hi ha cap `W` a `js/script.js`, el dataset no existeix en
+format columnes ni surt a `diccionaris/versions.json`, i no hi ha caselles a la
+UI). Les combinacions de **dos** pronoms (`porta-l'hi`, `anar-se'n`) són la
+fase 2; `txt_fets/2_pronoms/` ja hi és preparada, però encara buida.
 
 ---
 
@@ -32,16 +29,18 @@ pronoms/
 │
 ├── enclisi.py                   ortografia + fonètica + rima de l'enclisi
 ├── llicencies.py                quins pronoms admet cada verb i cada persona
-├── generar_tot.py               el driver: llegeix el diccionari i escriu la sortida
+├── generar_tot_1_pronom.py      el driver: llegeix el diccionari i escriu la sortida
 ├── llista_verbs.py              treu la llista de lemes verbals del diccionari
 │
 ├── verbs.json                   9.016 lemes verbals (entrada del scraper)
 ├── verbs_anotats_num.json       els mateixos 9.016 amb les categories del DIEC
 │
-├── verb_pronom_*.txt            LA SORTIDA: 13 fitxers, un per pronom
+├── txt_fets/                    LA SORTIDA generada, per nombre de pronoms
+│   ├── 1_pronom/                   els 13 verb_pronom_*.txt (fet)
+│   └── 2_pronoms/                  fase 2, encara buida
 │
-├── done/                        scripts i dades ja consumits, desats per traça
-└── txt_fets/                    la primera generació (hi + en), ja substituïda
+└── done/                        scripts i dades ja consumits, desats per traça
+    └── 1a versio/                  la primera generació (hi + en), ja substituïda
 ```
 
 ---
@@ -56,7 +55,7 @@ pronoms/
 
 > ⚠️ **Referències obsoletes a `pla.md`.** La §5 encara descriu el format de codi
 > antic (`WN00_1HI`, amb guió baix, i els codis `EA`/`ED` per a `els`) i cita un
-> `pronoms/pronoms.json` que ja no existeix. El format viu és el de
+> `pronoms/pronoms.json` que ja no existeix (esborrat). El format viu és el de
 > `pla_un_pronom.md` §4: 10 caràcters, sense separador, i els 13 pronoms estan
 > definits a `enclisi.py`.
 
@@ -64,22 +63,23 @@ pronoms/
 
 ## El generador
 
-Tres mòduls i un driver, en comptes dels tres scripts duplicats de `txt_fets/`:
+Tres mòduls i un driver:
 
 ```
 diccionaris/separat/col_*.txt ──┐
-                                ├──> generar_tot.py ──> verb_pronom_<pronom>.txt
+                                ├──> generar_tot_1_pronom.py ──> txt_fets/1_pronom/verb_pronom_<pronom>.txt
 verbs_anotats_num.json ─────────┘         │
                                           ├── llicencies.py   quins pronoms pot dur el verb
                                           └── enclisi.py      com s'escriu i com sona
 ```
 
 ```bash
-python3 pronoms/generar_tot.py --tots
+python3 pronoms/generar_tot_1_pronom.py
 ```
 
-Sense arguments només fa `hi` i `en` (era el pas de validació contra els fitxers
-vells); també accepta una llista solta: `python3 pronoms/generar_tot.py hi ho en`.
+Sense arguments genera **els 13 pronoms** (equival a passar `--tots`); també
+accepta una llista solta per generar-ne només alguns:
+`python3 pronoms/generar_tot_1_pronom.py hi ho en`.
 
 ### `enclisi.py` — com s'escriu i com sona
 
@@ -138,7 +138,7 @@ Executable pel seu compte, treu l'informe de verbs per classe i per pronom:
 python3 pronoms/llicencies.py
 ```
 
-### `generar_tot.py` — el driver
+### `generar_tot_1_pronom.py` — el driver
 
 - Llegeix les 10 columnes de `diccionaris/separat/col_*.txt` i comprova que
   tinguin el mateix nombre de línies.
@@ -149,8 +149,11 @@ python3 pronoms/llicencies.py
 - `comprovar_base()` és una xarxa de seguretat: si una forma base porta dos
   accents primaris o té camps buits, atura la generació, perquè el càlcul de la
   rima (tot el que va darrere de l'últim accent) sortiria malament **en silenci**.
-- Escriu un fitxer per pronom i informa del recompte, de la mida, del repartiment
-  per forma verbal i de les formes descartades amb el motiu.
+- Escriu, a `txt_fets/1_pronom/`, un fitxer per pronom i informa del recompte,
+  de la mida, del repartiment per forma verbal i de les formes descartades amb
+  el motiu.
+- Per defecte (`PRONOMS = enclisi.ORDRE_PRONOMS`) genera els 13; es pot cridar
+  amb una llista de pronoms concrets per fer-ne només alguns.
 
 ### `llista_verbs.py`
 
@@ -169,7 +172,7 @@ a `verbs.json`. És el que va produir la llista de 9.016 lemes.
 
 ---
 
-## La sortida: `verb_pronom_*.txt`
+## La sortida: `txt_fets/1_pronom/verb_pronom_*.txt`
 
 Un fitxer per pronom, en el mateix format que `diccionaris/diccionari.5.2.3.txt`:
 10 camps separats per `$`, una línia per forma.
@@ -230,9 +233,10 @@ per al nombre de pronoms.
 | **TOTAL** | **626.779** | **45 MB** |
 
 Són 81 codis diferents dels 91 possibles: els 10 que falten són exactament els
-que bloqueja la matriu de concordança. La generació va donar 626.786 línies i
-ara n'hi ha 7 menys: són les files duplicades de `ves` que arrossegava el
-diccionari base i que s'han esborrat a mà (`pla_un_pronom.md` §9).
+que bloqueja la matriu de concordança. La generació original va donar 626.786
+línies i n'hi ha 7 menys: eren les files duplicades de `ves` que arrossegava el
+diccionari base (`pla_un_pronom.md` §9), ja corregides a l'origen — regenerar
+amb `generar_tot_1_pronom.py` ja no les torna a produir.
 
 ---
 
@@ -243,22 +247,17 @@ reconstruir d'on venen les categories dels verbs, no per tornar-los a executar.
 
 | Fitxer | Què va fer |
 |---|---|
-| `scrap_diec+num.py` | El scraper que va produir `verbs_anotats_num.json`: per a cada lema consulta `dlc.iec.cat`, i es queda amb **tots** els resultats de la cerca (`haver1`, `haver2`…), no només el primer. |
-| `scrap_diec.py` | La versió anterior, que només llegia el primer resultat i va produir `verbs_anotats.json`. Substituïda per l'anterior. |
-| `verbs_anotats.json` | La sortida d'aquell primer scraper. **No la fa servir ningú**; hi és per poder comparar. |
-| `verbs_prova.json` | 7 verbs triats per provar els scrapers: `voler`, `haver`, `esdevenir`, `ploure`, `queixar`, `dinyar`, `morir`. |
-| `verbs_anotats_prova.json` / `..._prova_num.json` | El resultat dels dos scrapers sobre aquells 7 verbs. La diferència entre els dos fitxers és justament el motiu de la reescriptura: `haver` surt com a `v. aux.` al primer i com a `v. aux.` **+ `v. tr.`** al segon. |
-| `filtrar_resultats.py` | Informe sobre `verbs_anotats.json`: quins verbs no van quedar `OK` i quines categories úniques va tornar el DIEC (és el que va donar la llista de categories a classificar). |
+| `scrap_diec+num.py` | El scraper que va produir `verbs_anotats_num.json`: per a cada lema consulta `dlc.iec.cat`, i es queda amb **tots** els resultats de la cerca (`haver1`, `haver2`…), no només el primer. És l'únic scraper que queda; la versió que només llegia el primer resultat s'ha esborrat. |
+| `filtrar_resultats.py` | Informe sobre l'anotació d'un scraper: quins verbs no van quedar `OK` i quines categories úniques va tornar el DIEC (és el que va donar la llista de categories a classificar). |
 | `revisar_r_infinitius.py` | Auditoria del diccionari base: quins infinitius tenen la transcripció acabada en `r` quan no hauria de sonar. Sol ser contaminació d'un homògraf no verbal (`militar` nom). Es pot passar per les columnes o per un `.txt` de 10 camps. |
 
----
-
-## `txt_fets/` — la primera generació
+### `done/1a versio/` — la primera generació
 
 La tongada inicial, feta amb tres scripts separats (un per forma verbal) i només
 amb `hi` i `en`. **Substituïda** per `enclisi.py` + `llicencies.py` +
-`generar_tot.py`, que reprodueixen els infinitius i els gerundis al 100 % i
-canvien 15 imperatius en generalitzar la sensibilització de la consonant muda.
+`generar_tot_1_pronom.py`, que reprodueixen els infinitius i els gerundis al
+100 % i canvien 15 imperatius en generalitzar la sensibilització de la
+consonant muda.
 
 | Fitxer | Línies |
 |---|---:|
@@ -288,8 +287,8 @@ python3 "pronoms/done/scrap_diec+num.py"
 # 3. comprovar la classificació abans de generar res
 python3 pronoms/llicencies.py
 
-# 4. generar  ->  verb_pronom_*.txt
-python3 pronoms/generar_tot.py --tots
+# 4. generar  ->  txt_fets/1_pronom/verb_pronom_*.txt
+python3 pronoms/generar_tot_1_pronom.py
 ```
 
 El pas 2 depèn de `requests`, `beautifulsoup4` i `tqdm`; els passos 1, 3 i 4 no
