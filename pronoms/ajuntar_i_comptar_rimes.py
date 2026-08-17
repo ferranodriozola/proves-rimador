@@ -22,6 +22,12 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DIR_TXT = os.path.join(BASE_DIR, "txt_fets")
 FITXER_TOT = os.path.join(DIR_TXT, "tot.txt")
 
+# La mateixa columna, però del diccionari de producció: serveix per saber si
+# una rima d'aquí ja existeix o si és nova. Les dues columnes són comparables
+# perquè enclisi.calcular_rimes() fa servir el mateix càlcul que el creador
+# de rimes del diccionari.
+COL_3_BASE = os.path.join(BASE_DIR, "..", "diccionaris", "separat", "col_3.txt")
+
 CAMPS = 10
 COL_RIMA_CONSONANT = 3
 
@@ -88,6 +94,68 @@ def comptar_rimes(ruta):
     return total, rimes, exemple, dolentes
 
 
+def rimes_base(ruta=COL_3_BASE):
+    """La columna de rima consonant del diccionari de producció, tal qual."""
+    with open(ruta, "r", encoding="utf-8") as f:
+        return Counter(f.read().splitlines())
+
+
+def comparar(rimes, exemple):
+    """
+    Creua les rimes generades amb les del diccionari base: quantes n'hi ha de
+    diferents i quantes són d'una sola paraula, abans i després d'ajuntar-los.
+
+    Una rima "d'un sol cop" és una classe amb una única forma: aquella paraula
+    no rima amb res dins del conjunt que s'estigui mirant. Per això la xifra
+    només vol dir alguna cosa quan es diu DE QUIN conjunt es parla, que és
+    justament el que compara aquesta taula.
+    """
+    base = rimes_base()
+    buides = base.pop("", 0)
+    junts = base + rimes
+
+    print("\n" + "=" * 66)
+    print("CREUAMENT AMB EL DICCIONARI BASE (diccionaris/separat/col_3.txt)")
+    if buides:
+        print(f"  (descartades {buides:,} línies buides de col_3)")
+    print(f"\n  {'':28s} {'col_3':>13s} {'col_3 + tot.txt':>17s}")
+    for etiqueta, quants in (
+            ("entrades", (sum(base.values()), sum(junts.values()))),
+            ("rimes consonants diferents", (len(base), len(junts))),
+            ("que només surten un cop",
+             (sum(1 for n in base.values() if n == 1),
+              sum(1 for n in junts.values() if n == 1)))):
+        print(f"  {etiqueta:28s} {quants[0]:13,} {quants[1]:17,}")
+
+    noves = [r for r in rimes if r not in base]
+    orfes = [r for r, n in rimes.items() if n == 1 and r not in base]
+    formes_amb_rima_vella = sum(n for r, n in rimes.items() if r in base)
+    rescatades = sum(1 for r, n in base.items() if n == 1 and r in rimes)
+
+    # La fila "que només surten un cop" PUJA en ajuntar els dos conjunts, cosa
+    # que despista si no es desglossa: les d'una banda no es compensen amb les
+    # de l'altra, s'hi sumen (menys les que es troben, que és el que fa baixar
+    # la xifra de col_3).
+    print(f"\n  d'on surten les {sum(1 for n in junts.values() if n == 1):,}"
+          f" rimes d'un sol cop del conjunt:")
+    print(f"    de col_3, que continuen soles"
+          f"  {sum(1 for n in base.values() if n == 1) - rescatades:11,}")
+    print(f"    de tot.txt, que continuen soles {len(orfes):11,}")
+    print(f"  (i {rescatades:,} paraules del diccionari que abans no rimaven"
+          f" amb res ara sí)")
+
+    print(f"\n  de les {len(rimes):,} rimes de tot.txt:")
+    print(f"    ja existien al diccionari  {len(rimes) - len(noves):11,}")
+    print(f"    noves                      {len(noves):11,}")
+    print(f"\n  formes de tot.txt que rimen amb el diccionari actual:"
+          f" {formes_amb_rima_vella:,}"
+          f" ({formes_amb_rima_vella / sum(rimes.values()) * 100:.1f} %)")
+    print(f"  formes que no rimen amb res, ni tan sols amb el diccionari:"
+          f" {len(orfes):,}")
+    for rima in orfes[:10]:
+        print(f"    {rima:16s} {exemple[rima]}")
+
+
 def main():
     sortida = sys.argv[1] if len(sys.argv) > 1 else FITXER_TOT
 
@@ -117,6 +185,11 @@ def main():
           f" (en ordre d'aparició):")
     for rima in uniques[:10]:
         print(f"    {rima:16s} {exemple[rima]}")
+
+    if os.path.exists(COL_3_BASE):
+        comparar(rimes, exemple)
+    else:
+        print(f"\n  (no hi ha {COL_3_BASE}: em salto el creuament)")
 
 
 if __name__ == "__main__":
