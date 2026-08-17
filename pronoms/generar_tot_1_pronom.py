@@ -27,7 +27,7 @@ import llicencies
 DIR_SEPARAT = os.path.join(BASE_DIR, "..", "diccionaris", "separat")
 
 # Un fitxer per pronom: verb_pronom_hi.txt, verb_pronom_en.txt...
-DIR_SORTIDA = BASE_DIR
+DIR_SORTIDA = os.path.join(BASE_DIR, "txt_fets", "1_pronom")
 PATRO_SORTIDA = "verb_pronom_{pronom}.txt"
 
 # Pas 4 del pla: de moment només 'hi' i 'en', per poder comparar la sortida
