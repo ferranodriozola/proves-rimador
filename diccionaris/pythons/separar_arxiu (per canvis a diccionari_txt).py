@@ -11,9 +11,7 @@ DIR_SCRIPTS = os.path.dirname(os.path.abspath(__file__))
 BASE = os.path.dirname(DIR_SCRIPTS)
 
 nom_document = os.path.join(BASE, "diccionari.5.2.3.txt")
-directori_destinacio = os.path.join(BASE, "separat")
 directori_extra = os.path.join(BASE, "separat", "col_10 (canvis aquí)")
-os.makedirs(directori_destinacio, exist_ok=True)
 os.makedirs(directori_extra, exist_ok=True)
 
 try:
@@ -70,17 +68,17 @@ for fila in columnes:
 print(f"Rimes recalculades a partir de la transcripció: {rimes_refetes} files corregides"
       f"{f', {rimes_saltades} saltades (sense transcripció)' if rimes_saltades else ''}")
 
-columnes_transposades = list(zip(*columnes))
-
-for i, columna in enumerate(columnes_transposades):
-    nou_nom_fitxer = f"col_{i}.txt"
-    nom_fitxer = os.path.join(directori_destinacio, nou_nom_fitxer)
-    
-    with open(nom_fitxer, "w", encoding="utf-8") as sortida:
-        sortida.write("\n".join(columna))
-
-    nombre_linees = len(columna)
-    print(f"Generat: {nou_nom_fitxer} amb {nombre_linees} línies")
+# ------------------------------------------------------------------
+# Aquest script NO escriu cap col_N.txt.
+#
+# Abans hi deixava les deu columnes del diccionari base, i tot seguit el
+# generar_columnes_publicades.py les tornava a escriure a partir del diccionari
+# que digui config.py (que pot ser el v.6, amb les formes amb pronom). Eren
+# 42 MB escrits per res.
+#
+# L'única cosa que ha de sortir d'aquí és la columna 10, que és la que s'edita
+# a mà i que NOMÉS pot sortir del diccionari base.
+# ------------------------------------------------------------------
 
 extra_linies = []
 for line_parts in columnes:
@@ -104,7 +102,7 @@ if rimes_refetes:
         sortida_dicc.write("\n".join("$".join(fila) for fila in columnes) + "\n")
     print(f"Actualitzat: {nom_document} amb les {rimes_refetes} rimes corregides")
 
-print(f"Funció acabada! {max_columnes} fitxers generats al directori: {directori_destinacio}")
+print(f"Funció acabada! Columna 10 generada a partir de {len(columnes)} files.")
 
 # El post_procés és aquí al costat, no pas a la carpeta de treball. I es crida
 # amb el mateix python que ens executa a nosaltres, que és l'únic que sabem
