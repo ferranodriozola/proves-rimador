@@ -758,7 +758,7 @@ Zúric € Zúric € NPCSG00 € zˈuɾik
 zurvanisme € zurvanisme € NCMS000 € zurβənˈizmə
 Zutphen € Zutphen € NPCSG00 € zˈutfən
 Zuwarah € Zuwarah € NPCSG00 € zuβˈaɾə
-Zweibrücken € Zweibrücken € NPCSG00 € zβəjβɾˈukən
+Zweibrücken € Zweibrücken € NPCSG00 € zwəjβɾˈukən
 Zweig € Zweig € NPCNSP0 € zβˈɛtʃ
 Zwickau € Zwickau € NPCSG00 € zwikˈaw
 zwitterió € zwitterió € NCMS000 € zwitəɾiˈo
