@@ -78,6 +78,32 @@ Quatre coses que semblen rares i no ho són:
   `diccionari.6.txt`, que no es comiteja. Per això el tram compartit és una
   acció composta (`.github/actions/publicar-diccionari/`).
 
+## El fitxer d'homògrafs
+
+`separat/homografs.txt` porta les transcripcions de les paraules que
+**s'escriuen igual i sonen diferent**, amb el número de fila al davant.
+
+El web el necessita per decidir, quan cerques una paraula que surt més d'un cop,
+si les entrades es pronuncien totes igual (i agafa la primera) o no (i t'ho
+pregunta). Per saber-ho es baixava la `col_9` sencera: amb el diccionari base ja
+eren 9,8 MB per respondre un sí o un no, i amb el publicat són **73 MB i quatre
+milions de línies**, prou per deixar el navegador penjat amb el loader en cercar
+qualsevol paraula repetida.
+
+| | files | mida |
+|---|---|---|
+| `col_9.txt` sencera | 4.025.866 | 72,9 MB |
+| `homografs.txt` | 95.255 (2,37 %) | 1,7 MB |
+
+Una paraula que **no** hi surt vol dir que totes les seves entrades sonen igual.
+Per això el `transcripcio()` del navegador pot tornar `undefined` sense trencar
+res: un conjunt de `undefined` té una sola entrada, que és justament la
+resposta bona.
+
+Com que ja no la demana ningú, la `col_9.txt` s'esborra del paquet que es
+publica a Pages (al repositori s'hi queda: d'ella surten el `homografs.txt` i
+les llistes de mots de 7).
+
 ## Aturat de moment
 
 `bot/resultat_ordenat_cons.json` (el json de rimes sencer) **ja no es genera**:
