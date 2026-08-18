@@ -1685,7 +1685,7 @@ function aplicarTema(tema) {
     }
     if (rimadorImg) {
       rimadorImg.src = ruta + "Rimador-1-sober.webp?v=1";
-      rimadorImg.alt = "El Rimador (mode sobri)";
+      rimadorImg.alt = "El Rimador.cat (mode sobri)";
     }
     if (themeColorMeta) {
       themeColorMeta.setAttribute("content", "#e6e4e5");
@@ -1698,7 +1698,7 @@ function aplicarTema(tema) {
     }
     if (rimadorImg) {
       rimadorImg.src = ruta + "Rimador-1.webp?v=1";
-      rimadorImg.alt = "Logo del Rimador en català";
+      rimadorImg.alt = "Logo del Rimador.cat";
     }
     if (themeColorMeta && colorFestiuOriginal) {
       themeColorMeta.setAttribute("content", colorFestiuOriginal);

@@ -1,4 +1,4 @@
-# Pla: combinacions verb + pronom feble al Rimador
+# Pla: combinacions verb + pronom feble al Rimador.cat
 
 > Document de disseny. **No s'ha escrit cap generador ni s'ha tocat el diccionari de producció.**
 > Totes les xifres d'aquest document surten de mesures reals sobre `diccionaris/separat/col_*.txt`

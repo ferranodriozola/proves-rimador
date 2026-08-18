@@ -1,7 +1,7 @@
 # `pronoms/` — verb + pronom feble
 
 Tot el que genera les combinacions de verb amb pronom feble enclític (`anar-hi`,
-`cantar-me`, `digues-ho`, `ves-hi`) en el format del diccionari del Rimador.
+`cantar-me`, `digues-ho`, `ves-hi`) en el format del diccionari del Rimador.cat.
 
 És una carpeta **de treball**, no de producció: res d'aquí no el llegeix el web.
 El diccionari que serveix `js/script.js` viu a `diccionaris/` i aquesta carpeta

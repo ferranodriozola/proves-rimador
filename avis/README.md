@@ -1,6 +1,6 @@
 # Avís periòdic de donatius
 
-Quadre que surt al mig de la pantalla recordant que el Rimador és voluntari.
+Quadre que surt al mig de la pantalla recordant que el Rimador.cat és voluntari.
 No surt sempre: surt quan es compleixen alhora dues condicions, i el text que
 hi apareix depèn del mes en què som.
 
@@ -20,7 +20,7 @@ base de dades: l'únic rastre és una clau de `localStorage` amb quatre xifres.
 
 Han de complir-se **les dues** condicions:
 
-1. **4 dies naturals diferents** amb ús del Rimador. Un dia amb quaranta
+1. **4 dies naturals diferents** amb ús del Rimador.cat. Un dia amb quaranta
    cerques compta 1.
 2. **26 dies naturals** des de l'últim avís.
 
@@ -134,7 +134,7 @@ Dues línies al `<head>` (amb els `../` que calguin segons la fondària):
 <script src="avis/avis.js?v=xxxxxxx" defer></script>
 ```
 
-I una línia allà on es consideri que l'usuari ha fet servir el Rimador:
+I una línia allà on es consideri que l'usuari ha fet servir el Rimador.cat:
 
 ```js
 if (window.AvisRimador) window.AvisRimador.registraUs();

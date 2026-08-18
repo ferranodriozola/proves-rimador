@@ -9,7 +9,7 @@
   var navHTML = /*html*/`
     <button type="button" class="menu-close" aria-label="Tanca el menú"></button>
     <nav aria-label="Menú principal">
-      <a href="${arrel}">Rimador</a>
+      <a href="${arrel}">Rimador.cat</a>
       <a href="${arrel}joc/">El Joc</a>
       <div class="menu-grup" role="group" aria-labelledby="menu-grup-llistes">
         <p class="menu-grup__titol" id="menu-grup-llistes"><span class="menu-grup__ratlla"></span>Llistes</p>

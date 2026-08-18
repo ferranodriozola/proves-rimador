@@ -2,7 +2,7 @@
 // AVÍS PERIÒDIC DE DONATIUS
 //
 // Ensenya un quadre al mig de la pantalla recordant que el
-// Rimador és voluntari. La gràcia és que NO surt sempre: surt
+// Rimador.cat és voluntari. La gràcia és que NO surt sempre: surt
 // quan es compleixen alhora dues condicions (vegeu POTMOSTRAR),
 // i el text que hi apareix depèn del mes en què som.
 //
@@ -13,7 +13,7 @@
 // Aquest fitxer i tot el que necessita (estils, textos i
 // documentació) viuen dins la carpeta avis/ i no depenen de la
 // resta del codi. L'única cosa que cal des de fora és avisar-lo
-// que l'usuari ha fet servir el Rimador:
+// que l'usuari ha fet servir el Rimador.cat:
 //
 //     if (window.AvisRimador) window.AvisRimador.registraUs();
 //
@@ -29,7 +29,7 @@
     // Tot el comportament es controla des d'aquestes vuit línies.
     // ---------------------------------------------------------
 
-    // Dies naturals DIFERENTS en què cal haver fet servir el Rimador
+    // Dies naturals DIFERENTS en què cal haver fet servir el Rimador.cat
     // perquè surti l'avís. Un dia amb quaranta cerques compta 1.
     const DIES_US = 4;
 
@@ -349,7 +349,7 @@
     // API
     // ---------------------------------------------------------
 
-    // Es crida des de fora cada cop que algú fa servir el Rimador de
+    // Es crida des de fora cada cop que algú fa servir el Rimador.cat de
     // debò (una cerca acabada, una llista actualitzada).
     function registraUs() {
         const estat = llegirEstat();
