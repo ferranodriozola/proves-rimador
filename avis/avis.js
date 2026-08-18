@@ -45,6 +45,9 @@
     const CLAU = 'rimador_avis';
     const FITXER = 'avis/missatges.json';
 
+    // Enllaç únic del botó principal de l'avís.
+    const ENLLAC_ACCIO = 'https://ko-fi.com/rimadorcat';
+
     // Nom del paràmetre d'URL per provar-lo sense esperar (vegeu més avall).
     const PARAM_PROVA = 'avis';
 
@@ -219,11 +222,9 @@
         const accio = document.createElement('a');
         accio.className = 'avis-boto-accio';
         accio.textContent = missatge.botoAccio || 'Ajuda\'ns';
-        accio.href = missatge.enllac || 'https://ko-fi.com/rimadorcat';
-        if (accio.href.indexOf('mailto:') !== 0) {
-            accio.target = '_blank';
-            accio.rel = 'noopener';
-        }
+        accio.href = ENLLAC_ACCIO;
+        accio.target = '_blank';
+        accio.rel = 'noopener';
         accio.addEventListener('click', () => alTancar('accio'));
 
         const araNo = document.createElement('button');
