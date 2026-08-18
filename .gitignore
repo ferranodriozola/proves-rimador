@@ -11,27 +11,11 @@ Thumbs.db
 # Minimitzats
 dist/
 
-# HTML's
-html/
-
-#cache py
-__pycache__/
-
-# Intermedi del diccionari
-# El pre_proces.py ajunta les 499 parts de la col_10 en aquest fitxer de 35 MB,
-# el creador_rima el llegeix i el post_proces.py el torna a partir i l'esborra:
-# neix i mor dins la mateixa execució del workflow. Però el primer "git add ."
-# queia enmig i el comitejava, i el commit següent el treia. Cada regeneració
-# del diccionari ficava 35 MB a la història per a res, i de la història no en
-# surt mai més res.
+# Intermedi del diccionari (preproces.py / postproces.py)
 diccionaris/separat/col_10 (canvis aquí)/col_10provisional.txt
 
 #pronoms txt
 txt_fets/
-# El diccionari amb les formes amb pronom
-# Es refà a cada canvi del diccionari i fa ~324 MB (4.025.866 línies). GitHub
-# rebutja qualsevol fitxer de més de 100 MiB, o sigui que un "git add ." que
-# se l'endugués deixaria el repositori sense poder pujar. Al repositori hi va
-# el seu contingut partit en columnes (diccionaris/separat/col_*.txt), que és
-# el que es baixa el navegador; el fitxer sencer és un pas intermedi.
+
+#diccionari de pronoms
 diccionaris/diccionari.6*.txt
