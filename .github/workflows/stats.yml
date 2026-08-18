@@ -34,4 +34,4 @@ jobs:
           # workflow corre cada nit per l'horari, i el repositori pot tenir
           # canvis d'un altre workflow a mig fer. Només han de sortir les dues
           # estadístiques.
-          fitxers: stats/estadistiques_rimador.json stats/versio_estadistiques_rimador.json
+          fitxers: stats/estadistiques_rimador.json stats/versions_stats.json
