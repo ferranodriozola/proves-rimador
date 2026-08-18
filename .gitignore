@@ -28,3 +28,9 @@ diccionaris/separat/col_10 (canvis aquí)/col_10provisional.txt
 
 #pronoms txt
 txt_fets/
+# El diccionari amb les formes amb pronom
+# El pronoms.yml el refà a cada canvi del diccionari i fa ~324 MB (4.025.866
+# línies). GitHub rebutja qualsevol fitxer de més de 100 MB, o sigui que un
+# "git add ." que se l'endugués deixaria el repositori sense poder pujar.
+# Del workflow en surt com a artefacte (vegeu .github/workflows/pronoms.yml).
+diccionaris/diccionari.6*.txt
