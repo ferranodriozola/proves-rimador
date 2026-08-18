@@ -1,5 +1,18 @@
 name: Separació del diccionari (i generació de nàufragues i heptasíl·labs)
 
+# S'engega quan s'edita el diccionari BASE a mà. Fa, per aquest ordre:
+#
+#   1. separa el diccionari base   -> NOMÉS la "col_10 (canvis aquí)"
+#   2. formes amb pronom           -> llegides del diccionari base
+#   3. diccionari.6.txt            -> base + formes amb pronom
+#   4. columnes del web            -> del diccionari que digui config.py
+#   5. llistes derivades           -> ja sobre les columnes noves
+#
+# Els passos 2 i 3 se salten si config.py publica el diccionari base.
+#
+# Els passos 2 a 4 són el tram compartit amb el bessó diccionaris.yml i viuen
+# a .github/actions/publicar-diccionari/.
+
 on:
   push:
     paths:
@@ -9,53 +22,38 @@ on:
 jobs:
   update-general-version:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
+      # El checkout va sempre primer i no es pot amagar dins de cap acció
+      # compartida: les accions de .github/actions/ són fitxers d'aquest
+      # repositori, i fins que no hi ha checkout no existeixen al disc.
       - name: Baixa el codi
         uses: actions/checkout@v4
 
       # Fixa la versió en comptes de dependre de la que porti la imatge
-      # d'Ubuntu, que canvia sota teu sense avisar. El bessó diccionaris.yml
-      # ja ho feia així.
+      # d'Ubuntu, que canvia sota teu sense avisar.
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-# ------ Separar diccionari (i preparar la generació de [500]col_10.txt) i POSTPROCÉS (generació [500]col_10.txt)
+# ------ Separar el diccionari base. NOMÉS en treu la columna 10: les
+#        col_0..col_9 les fa després el generar_columnes_publicades.py, a
+#        partir del diccionari que toqui. (Aquest script ja crida el
+#        post_procés, que és qui reparteix la columna 10 en els seus fitxers.)
       - name: Separar diccionari
         run: python "diccionaris/pythons/separar_arxiu (per canvis a diccionari_txt).py"
 
-# ----- columnes internades (separat/internat/)
-#       Va SEMPRE aquí, just després de refer les columnes i just abans de
-#       les versions. Així les internades no poden quedar endarrerides:
-#       es tornen a fer a cada passada, surtin o no canviades. Si algun dia
-#       s'escapa (perquè algú les ha comitejat a mà), el generar_versions.py
-#       de sota se n'adona i atura el workflow.
-      - name: Generar columnes internades
-        run: python diccionaris/pythons/generar_columnes_internades.py
-
-# ----- versions de les columnes (i comprovació que van totes a l'una)
-#       Ha d'anar ABANS del comit: si les columnes no quadren, el script
-#       peta, el workflow s'atura i no es publica un diccionari trencat.
-      - name: Actualitzar versions.json
-        run: python diccionaris/pythons/generar_versions.py
-
-# ----- comit columnes diccionari i diccionari (i versions.json)
-      - name: Comit diccionari i columnes
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add .
-          git commit -m "Separació automàtica del diccionari" || echo "No s'han detectat canvis nous per guardar"
-          # Mentre corríem, un altre workflow pot haver comitejat. Sense
-          # rebase, el push seria rebutjat i el workflow es posaria vermell.
-          git pull --rebase origin main
-          git push
+# ------ Pronoms, diccionari.6.txt, columnes del web, versions i comit
+      - name: Publicar el diccionari
+        uses: ./.github/actions/publicar-diccionari
+        with:
+          missatge: Separació automàtica del diccionari
 
 # ------ Llistes derivades (json de rimes, nàufragues i mots de 7)
-#        El bloc viu a generar_llistes.yml perquè aquest workflow i el bessó
-#        el necessiten igual. Va en un job a part, amb "needs", perquè ha de
-#        començar quan les columnes noves ja són comitejades a main.
+#        Job a part, amb "needs", perquè ha de començar quan les columnes noves
+#        ja són comitejades a main: és d'allà que se les baixa.
   llistes:
     needs: update-general-version
     uses: ./.github/workflows/generar_llistes.yml
