@@ -1,95 +1,95 @@
 import os
 
-# Aquest script viu a diccionaris/pythons/ però escriu a diccionaris/separat/ i
-# a diccionaris/. Les rutes es calculen des d'on és el fitxer i no des d'on
-# s'executa: abans eren relatives a la carpeta de treball, i com que aquest
-# script SOBREESCRIU les deu columnes, una carpeta de treball equivocada volia
-# dir escriure el diccionari en un lloc que no toca.
+# Aquest script viu a diccionaris/pythons/ però escriu a diccionaris/. Les rutes
+# es calculen des d'on és el fitxer i no des d'on s'executa: abans eren relatives
+# a la carpeta de treball, i com que aquest script SOBREESCRIU el diccionari
+# base, una carpeta de treball equivocada volia dir escriure'l en un lloc que no
+# toca.
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+DICCIONARI = os.path.join(BASE, "diccionari.5.2.3.txt")
+COL_10 = os.path.join(BASE, "separat", "col_10 (canvis aquí)", "col_10provisional.txt")
 
-def sep(nom):
-    return os.path.join(BASE, "separat", nom)
+# Els quatre camps que la columna 10 NO porta: síl·labes i els tres enllaços.
+# Surten del diccionari que ja hi ha, fila per fila.
+CAMPS_DEL_DICCIONARI = (5, 6, 7, 8)
 
+# ------------------------------------------------------------------
+# Aquest script NO escriu cap col_N.txt.
+#
+# Abans en deixava sis a separat/ i tot seguit les tornava a llegir (amb les
+# quatre que no toca) per remuntar el diccionari. Aquelles columnes eren un pas
+# intermedi que no servia per a res més: les que es baixa el navegador les fa el
+# generar_columnes_publicades.py a partir del diccionari que digui config.py,
+# que pot no ser aquest.
+#
+# I mentre separat/ contingués les columnes PUBLICADES, llegir-ne els camps 5 a
+# 8 hauria estat un desastre silenciós: el diccionari publicat té quatre milions
+# de files i la columna 10 en té sis-centes mil, o sigui que cada paraula hauria
+# heretat les síl·labes i els enllaços d'una altra. Ara aquests quatre camps
+# surten del diccionari base, que va fila per fila amb la columna 10.
+# ------------------------------------------------------------------
 
-with open(sep("col_10 (canvis aquí)/col_10provisional.txt"), "r", encoding="utf-8") as doc2:
-    linies = [linia.strip() for linia in doc2 if "€" in linia]
+with open(COL_10, "r", encoding="utf-8") as doc:
+    linies = [linia.strip() for linia in doc if "€" in linia]
 
-paraula = []
+paraules = []
 donve = []
-codi = []
+codis = []
 transcripcions = []
 
 for linia in linies:
     parts = linia.split(" € ")
     if len(parts) >= 4:
-        paraula.append(parts[0])
+        paraules.append(parts[0])
         donve.append(parts[1])
-        codi.append(parts[2])
+        codis.append(parts[2])
         transcripcions.append(parts[3])
     else:
         print("Línia amb format incorrecte:", linia)
 
-with open(sep("col_0.txt"), "w", encoding="utf-8") as doc0:
-    for i in paraula:
-        doc0.write(i + "\n")
-
-with open(sep("col_1.txt"), "w", encoding="utf-8") as doc1:
-    for i in donve:
-        doc1.write(i + "\n")
-     
-with open(sep("col_2.txt"), "w", encoding="utf-8") as doc2:
-    for i in codi:
-        doc2.write(i + "\n")
-
-with open(sep("col_9.txt"), "w", encoding="utf-8") as doc9:
-    for i in transcripcions:
-        doc9.write(i + "\n")
-        
-with open(sep("col_3.txt"), "w", encoding="utf-8") as doc3:
-    finals = []
-    for linia in transcripcions:
-        paraula = linia.split(" € ")[-1]
-        final = paraula.split("ˈ")[-1]
-        finals.append(final)
-        doc3.write(final + '\n')
-
-with open(sep("col_4.txt"), "w", encoding="utf-8") as doc4:
-    vocals = []
-    for linia in finals:
-        vocal = ''.join([lletra for lletra in linia if lletra in "ɔəaeiou@Eɛˈ"])
-        vocals.append(vocal)
-        doc4.write(vocal + '\n')
+# La rima es calcula IGUAL que al "separar_arxiu (per canvis a diccionari_txt).py",
+# a posta: són les dues vies d'entrar canvis al diccionari i no poden divergir.
+rimes_consonants = []
+rimes_assonants = []
+for transcripcio in transcripcions:
+    consonant = transcripcio.split(" € ")[-1].split("ˈ")[-1]
+    rimes_consonants.append(consonant)
+    rimes_assonants.append("".join(l for l in consonant if l in "ɔəaeiou@Eɛˈ"))
 
 print("Fet! (rima creada)")
 
 print("Es comença a fer diccionari")
-files = [sep('col_0.txt'),  #paraula
-         sep('col_1.txt'),  #d'on ve
-         sep('col_2.txt'),  #codi
-         sep('col_3.txt'),  #rima consonant 
-         sep('col_4.txt'),  #rima assonant 
-         sep('col_5.txt'),  #síl·labes
-         sep('col_6.txt'),  #Vicc
-         sep('col_7.txt'),  #Wiki
-         sep('col_8.txt'),  #Diec
-         sep('col_9.txt'),  #transcripció  
-]
 
-lines_per_file = []
-for file in files:
-    with open(file, 'r') as f:
-        lines = f.readlines()
-        lines_per_file.append(lines)
+with open(DICCIONARI, "r", encoding="utf-8") as doc:
+    velles = [linia.rstrip("\n").split("$") for linia in doc if linia.strip()]
 
+# Xarxa de seguretat. Aquest script no regenera les síl·labes ni els enllaços:
+# els pren del diccionari d'abans, fila per fila. Si a la columna 10 s'hi ha
+# afegit o tret cap línia, tot el que ve de sota es desplaça i cada paraula
+# hereta les síl·labes d'una altra, sense que res no se'n queixi.
+#
+# Abans qui ho enxampava era el generar_versions.py, perquè les columnes
+# quedaven de mides diferents. Ara totes surten d'un sol fitxer i sempre van a
+# l'una, o sigui que la comprovació ha de ser aquí.
+if len(velles) != len(paraules):
+    raise SystemExit(
+        f"La columna 10 té {len(paraules)} files i el diccionari en té {len(velles)}.\n"
+        "Aquest script no regenera les síl·labes ni els enllaços (camps 5 a 8):\n"
+        "els pren del diccionari fila per fila, i així quedarien desplaçats.\n"
+        "Si hi has afegit o tret paraules, cal passar pel diccionari general."
+    )
 
-output_file = os.path.join(BASE, 'diccionari.5.2.3.txt')
+with open(DICCIONARI, "w", encoding="utf-8") as f:
+    for i in range(len(paraules)):
+        f.write("$".join([
+            paraules[i],              # 0 paraula
+            donve[i],                 # 1 d'on ve
+            codis[i],                 # 2 codi
+            rimes_consonants[i],      # 3 rima consonant
+            rimes_assonants[i],       # 4 rima assonant
+            *(velles[i][c] for c in CAMPS_DEL_DICCIONARI),   # 5-8 síl·labes i enllaços
+            transcripcions[i],        # 9 transcripció
+        ]) + "\n")
 
-with open(output_file, 'w', encoding="utf-8") as f:
-    for i in range(len(lines_per_file[0])):
-        line_parts = [lines[i].strip() for lines in lines_per_file]
-        
-        line_to_write = '$'.join(line_parts)
-        f.write(line_to_write + '\n')
-
-print("Fet! (diccionari creat)")
+print(f"Fet! (diccionari creat, {len(paraules)} files)")
