@@ -70,9 +70,8 @@ Camps de cada missatge:
 | `mes` | 1–12. En quin mes natural surt. Si dos comparteixen mes, guanya el primer. |
 | `id` | Identificador únic. Serveix per no repetir dos cops seguits el mateix text. |
 | `titol` | El títol vermell de dalt. |
-| `text` | El cos. Admet HTML (enllaços dins la frase, `<br>`...). |
+| `text` | El cos. Admet HTML (`<br>`, `<strong>`...). |
 | `botoAccio` | Etiqueta del botó principal. |
-| `enllac` | On va el botó principal. **No cal que sempre sigui Ko-fi**: pot ser un `mailto:`, una enquesta, el que vulgueu. |
 | `botoTancar` | Opcional. Etiqueta del botó secundari; per defecte, "Ara no". |
 
 Un missatge extraordinari, fora del cicle mensual, va a `extraordinaris` i mana
@@ -82,11 +81,16 @@ mentre és dins la seva finestra:
 "extraordinaris": [
   { "id": "servidor-2027", "des": "2027-03-01", "fins": "2027-03-15",
     "titol": "Se'ns acaba l'allotjament", "text": "...",
-    "botoAccio": "Ajuda'ns", "enllac": "https://ko-fi.com/rimadorcat" }
+    "botoAccio": "Ajuda'ns" }
 ]
 ```
 
 Quan passa la data, tot torna al calendari mensual sol.
+
+**On va el botó no es diu aquí.** L'adreça és una sola, a `ENLLAC_ACCIO`
+d'`avis.js`, i val per a tots els missatges: així no hi ha dotze còpies de la
+mateixa URL per canviar el dia que canviï. Del `missatges.json` només en surt
+l'etiqueta del botó.
 
 ## Canviar el comportament
 
@@ -97,6 +101,7 @@ Els paràmetres són les primeres línies d'`avis.js`:
 | `DIES_US` | `4` | Dies diferents d'ús que calen. |
 | `DIES_ESPERA` | `26` | Dies naturals mínims entre dos avisos. |
 | `RETARD` | `2500` | Mil·lisegons entre la cerca i l'obertura del quadre. |
+| `ENLLAC_ACCIO` | Ko-fi | On va el botó principal, en tots els missatges. |
 
 Totes les sortides del quadre valen igual: la creu, l'Esc, el clic al fons,
 "Ara no" i "Ja hi he col·laborat" reinicien el cicle exactament de la mateixa
