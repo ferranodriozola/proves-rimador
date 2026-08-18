@@ -1,5 +1,5 @@
 {
-  "generat": "2026-08-18 11:07:37 UTC",
+  "generat": "2026-08-18 14:33:47 UTC",
   "files": 4025866,
   "columnes": {
     "col_0.txt": "c9ea94944f0a",
@@ -27,6 +27,7 @@
     "col_7.taula.txt": "43646e13b652",
     "col_7.idx.txt": "86aac446ff2b",
     "col_8.taula.txt": "701d2f19a981",
-    "col_8.idx.txt": "8432bf3febaf"
+    "col_8.idx.txt": "8432bf3febaf",
+    "homografs.txt": "805d4d02c47a"
   }
 }
