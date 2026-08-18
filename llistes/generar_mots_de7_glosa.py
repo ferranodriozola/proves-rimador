@@ -2,6 +2,8 @@ import os
 import json
 import re
 
+from versions import actualitzar_versio
+
 def obtenir_accent_fonetic(transcripcio):
     accents = [m.start() for m in re.finditer(r'ˈ', transcripcio)]
     
@@ -92,15 +94,8 @@ def generar_llista():
 
     print(f"Generació completada: {len(mots_filtrats)} paraules guardades a {fitxer_sortida}")
 
-    #+1 a json
-    with open('versions_llistes.json', 'r') as fitxer:
-        dades = json.load(fitxer)
+    actualitzar_versio('mots_de7_glosa.json', fitxer_sortida)
 
-    dades['versio_hepta_glosa'] += 1
-
-    with open('versions_llistes.json', 'w') as fitxer:
-        json.dump(dades, fitxer, indent=2)
-        
 
 if __name__ == '__main__':
     generar_llista()

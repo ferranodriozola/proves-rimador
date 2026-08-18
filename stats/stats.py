@@ -1,6 +1,6 @@
+import hashlib
 import pandas as pd
 import json
-import re
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 import ssl
@@ -198,40 +198,28 @@ dades_json = {
     }
 }
 
-dades_json_versio = {
-    "actualitzacio": datetime.now(tz_espanya).strftime("%d/%m/%Y %H:%M:%S")}
-
 ruta_json = 'stats/estadistiques_rimador.json'
-ruta_json_versio = 'stats/versio_estadistiques_rimador.json'
+ruta_versions = 'stats/versions_stats.json'
 
-def sense_hora(text):
-    return re.sub(r'^ *"actualitzacio":.*$', '', text, count=1, flags=re.MULTILINE)
+with open(ruta_json, 'w', encoding='utf-8') as arxiu:
+    json.dump(dades_json, arxiu, ensure_ascii=False, indent=4)
 
 
-# Es compara el text ja serialitzat, no pas els diccionaris. Comparar els
-# objectes seria fràgil: el que surt del pandas i el que es torna a llegir del
-# JSON no sempre són del mateix tipus (una tupla se'n va a llista, un int64 a
-# int...) i tindríem diferències que no ho són, que és justament el que volem
-# evitar. El text és el que acaba al disc i és el que git mira.
-nou_text = json.dumps(dades_json, ensure_ascii=False, indent=4)
+def resum(cami):
+    """Sha256 truncat, igual que diccionaris/python/generar_versions.py i
+    llistes/versions.py: la versió és un resum del contingut, no un
+    comptador ni una hora que caldria recordar de pujar."""
+    calculador = hashlib.sha256()
+    with open(cami, 'rb') as fitxer:
+        for tros in iter(lambda: fitxer.read(1024 * 1024), b''):
+            calculador.update(tros)
+    return calculador.hexdigest()[:12]
 
-try:
-    with open(ruta_json, 'r', encoding='utf-8') as arxiu:
-        text_anterior = arxiu.read()
-except FileNotFoundError:
-    text_anterior = None
 
-if text_anterior is not None and sense_hora(text_anterior) == sense_hora(nou_text):
-    hora_vella = json.loads(text_anterior).get('actualitzacio', '?')
-    print(f"Les estadístiques no han canviat des de les {hora_vella}: "
-          f"no es toca cap fitxer.")
-else:
-    with open(ruta_json, 'w', encoding='utf-8') as arxiu:
-        arxiu.write(nou_text)
+with open(ruta_versions, 'w', encoding='utf-8') as arxiu:
+    json.dump({
+        "fitxers": {"estadistiques_rimador.json": resum(ruta_json)},
+        "generat": datetime.now(tz_espanya).strftime("%Y-%m-%d %H:%M:%S %Z"),
+    }, arxiu, ensure_ascii=False, indent=2)
 
-    # Aquest només porta l'hora, i per tant només té sentit moure'l quan les
-    # dades de sobre han canviat: si no, seria l'única cosa del commit.
-    with open(ruta_json_versio, 'w', encoding='utf-8') as arxiu:
-        json.dump(dades_json_versio, arxiu, ensure_ascii=False, indent=4)
-
-    print(f"Exportació completada amb èxit (hora: {datetime.now(tz_espanya).strftime('%H:%M:%S')})")
+print(f"Exportació completada amb èxit (hora: {datetime.now(tz_espanya).strftime('%H:%M:%S')})")

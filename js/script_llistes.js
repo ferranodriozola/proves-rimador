@@ -51,33 +51,37 @@ function actualitzarLlista() {
     if (typeof mostrarTotesLesLlistes === 'function') mostrarTotesLesLlistes();
 }
 
-let VERSIO_ACTUAL = "v.1";
-
-async function carregarVersionsLlistes(clauVersio) {
+// Gestió de versions de les llistes: igual que el diccionari principal
+// (vegeu carregarVersions i llegirFitxerAmbIndexedDB a js/script.js), amb la
+// mateixa memòria cau d'IndexedDB i el mateix format de versions (un resum
+// sha256 del contingut, no un comptador manual). Es fonen amb VERSIONS_FITXERS
+// en lloc de tenir el seu propi mapa perquè és la variable que fa servir
+// llegirFitxerAmbIndexedDB per saber si una còpia guardada encara val; les
+// claus no es trepitgen amb les del diccionari perquè els noms de fitxer no
+// es repeteixen entre tots dos mons.
+async function carregarVersionsLlistes() {
     try {
         const resposta = await fetch(`${ARREL}llistes/versions_llistes.json?t=${Date.now()}`);
         const dades = await resposta.json();
-        VERSIO_ACTUAL = `v.${dades[clauVersio] || '1'}`;
-        console.log("Versions carregades correctament:", dades);
+        if (!dades.fitxers) throw new Error("versions_llistes.json no porta la llista de fitxers");
+
+        Object.assign(VERSIONS_FITXERS, dades.fitxers);
+        console.log("Versions de les llistes carregades correctament:", dades.fitxers);
     } catch (err) {
-        console.error("Error carregant versions_llistes.json, utilitzant valors per defecte", err);
-        VERSIO_ACTUAL = "v.1";
+        // Sense versió de confiança, llegirFitxerAmbIndexedDB no en desa cap
+        // còpia i el fitxer es baixa del servidor cada cop (vegeu allà mateix).
+        console.error("Error carregant versions_llistes.json: la llista es baixarà sense memòria cau", err);
     }
 }
 
-async function carregarDades(arxiuJson, clauVersio) {
+async function carregarDades(arxiuJson) {
     const loaderText2 = document.getElementById('loader-text2');
-    if (loaderText2) loaderText2.textContent = "Carregant fitxer (0/2)"; //és fals que hi hagi 2 fitxers, però es queda congelat mentre fa l'"await resParaules.json();".
+    if (loaderText2) loaderText2.textContent = "Carregant fitxer...";
 
     try {
-        await carregarVersionsLlistes(clauVersio);
+        await carregarVersionsLlistes();
 
-        const resParaules = await fetch(`${ARREL}llistes/${arxiuJson}?v=${VERSIO_ACTUAL}`);
-        if (!resParaules.ok) throw new Error(`Error HTTP: ${resParaules.status}`);
-
-        if (loaderText2) loaderText2.textContent = "Carregant fitxer (1/2)";
-
-        const dades = await resParaules.json();
+        const dades = await llegirFitxerAmbIndexedDB(`${ARREL}llistes/${arxiuJson}`, JSON.parse);
         window.matches_base = dades;
 
         actualitzarLlista();
@@ -121,13 +125,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const tipusLlista = document.body.dataset.llista;
 
     if (tipusLlista === 'naufragues') {
-        carregarDades('paraules_naufragues.json', 'versio_naufragues');
+        carregarDades('paraules_naufragues.json');
 
     } else if (tipusLlista === 'mots_de7_real') {
-        carregarDades('mots_de7_real.json', 'versio_hepta_real');
-    
+        carregarDades('mots_de7_real.json');
+
     } else if (tipusLlista === 'mots_de7_glosa') {
-        carregarDades('mots_de7_glosa.json', 'versio_hepta_glosa');
+        carregarDades('mots_de7_glosa.json');
 
     } else {
         console.warn('Tipus de llista desconegut o no definit al data-llista de l\'etiqueta body.');

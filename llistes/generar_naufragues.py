@@ -2,6 +2,8 @@ import os
 import json
 from contextlib import ExitStack
 
+from versions import actualitzar_versio
+
 def rimes_amb_una_sola_paraula(ruta_paraules, ruta_rimes):
     """
     Les rimes que només tenen UNA paraula diferent: les nàufragues.
@@ -42,7 +44,6 @@ def generar_llista():
     dir_separat = os.path.join(dir_diccionaris, 'separat')
     
     fitxer_sortida = os.path.join(base_dir, 'paraules_naufragues.json')
-    ruta_versions = os.path.join(base_dir, 'versions_llistes.json')
 
     noms_fitxers = [
         'col_0.txt', 'col_1.txt', 'col_2.txt', 'col_3.txt', 'col_5.txt', 'col_6.txt', 'col_7.txt', 'col_8.txt'
@@ -87,19 +88,7 @@ def generar_llista():
 
     print(f"Generació completada: {len(paraules_orfes)} paraules nàufragues guardades a {fitxer_sortida}")
 
-    try:
-        with open(ruta_versions, 'r', encoding='utf-8') as fitxer:
-            dades = json.load(fitxer)
-            
-        dades['versio_naufragues'] += 1
-        
-        with open(ruta_versions, 'w', encoding='utf-8') as fitxer:
-            json.dump(dades, fitxer, indent=2)
-            
-    except FileNotFoundError:
-        print(f"Avís: No s'ha trobat l'arxiu {ruta_versions}. Versió no actualitzada.")
-    except Exception as e:
-        print(f"Avís: Error en intentar actualitzar la versió: {e}")
+    actualitzar_versio('paraules_naufragues.json', fitxer_sortida)
 
 if __name__ == "__main__":
     generar_llista()

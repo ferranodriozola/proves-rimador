@@ -13,7 +13,7 @@ El navegador no llegeix mai cap `diccionari*.txt`: llegeix `separat/col_0..col_9
 
 ## L'interruptor
 
-`pythons/config.py`, una línia:
+`python/config.py`, una línia:
 
 ```python
 DICCIONARI_PUBLICAT = "diccionari.6.txt"      # amb formes amb pronom (ara)
@@ -78,31 +78,27 @@ Quatre coses que semblen rares i no ho són:
   `diccionari.6.txt`, que no es comiteja. Per això el tram compartit és una
   acció composta (`.github/actions/publicar-diccionari/`).
 
-## El fitxer d'homògrafs
+## El diàleg d'homògrafs
 
-`separat/homografs.txt` porta les transcripcions de les paraules que
-**s'escriuen igual i sonen diferent**, amb el número de fila al davant.
+Quan cerques una paraula que surt més d'un cop al diccionari, el web ha de
+decidir si les entrades rimen totes igual (i tant se val quina agafi) o no (i
+t'ho pregunta amb el diàleg d'homògrafs). Abans això calia esbrinar-ho amb la
+`col_9` (les transcripcions senceres): amb el diccionari base ja eren 9,8 MB
+per respondre un sí o un no, i amb el publicat són **73 MB i quatre milions de
+línies**, prou per deixar el navegador penjat amb el loader en cercar
+qualsevol paraula repetida. Per això hi va haver un `homografs.txt` intermedi
+amb només les files discrepants.
 
-El web el necessita per decidir, quan cerques una paraula que surt més d'un cop,
-si les entrades es pronuncien totes igual (i agafa la primera) o no (i t'ho
-pregunta). Per saber-ho es baixava la `col_9` sencera: amb el diccionari base ja
-eren 9,8 MB per respondre un sí o un no, i amb el publicat són **73 MB i quatre
-milions de línies**, prou per deixar el navegador penjat amb el loader en cercar
-qualsevol paraula repetida.
-
-| | files | mida |
-|---|---|---|
-| `col_9.txt` sencera | 4.025.866 | 72,9 MB |
-| `homografs.txt` | 95.255 (2,37 %) | 1,7 MB |
-
-Una paraula que **no** hi surt vol dir que totes les seves entrades sonen igual.
-Per això el `transcripcio()` del navegador pot tornar `undefined` sense trencar
-res: un conjunt de `undefined` té una sola entrada, que és justament la
-resposta bona.
+Ara no cal cap fitxer a part: la cerca ja té carregades `col_3.idx` (rima
+consonant) i `col_4.idx` (rima assonant) per fer la cerca de rimes, i n'hi ha
+prou de mirar-hi el número de rima de cada entrada (segons `tipusRima`). Si
+totes les entrades tenen el mateix número, rimen amb les mateixes paraules i
+tant se val quina s'agafi; si no, es demana (vegeu `buscarParaula` a
+`js/script.js`).
 
 Com que ja no la demana ningú, la `col_9.txt` s'esborra del paquet que es
-publica a Pages (al repositori s'hi queda: d'ella surten el `homografs.txt` i
-les llistes de mots de 7).
+publica a Pages (al repositori s'hi queda: d'ella surten les llistes de mots
+de 7).
 
 ## Aturat de moment
 
