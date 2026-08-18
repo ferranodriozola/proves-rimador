@@ -1,108 +1,95 @@
 {
   "defecte": {
     "id": "generic",
-    "titol": "El Rimador el fem entre dos",
-    "text": "Som dues persones i el mantenim als vespres, sense publicitat ni cap empresa al darrere. Si el fas servir sovint, ens pots ajudar a pagar el domini i l'allotjament.",
-    "botoAccio": "Regala'ns un cafè",
-    "enllac": "https://ko-fi.com/rimadorcat"
+    "titol": "El Rimador.cat el fem entre dos",
+    "text": "Som dues persones que el mantenim als vespres, sense anuncis, sense empresa al darrere i amb el codi obert perquè el pugui mirar qui vulgui. Si el fas servir sovint, convida'ns a un cafè: és el que paga el domini i l'allotjament.",
+    "botoAccio": "Convida'ns a un cafè"
   },
 
   "mesos": [
     {
       "mes": 1,
       "id": "gener-any-nou",
-      "titol": "Any nou, el Rimador de sempre",
-      "text": "Comencem l'any amb el diccionari més gran que hem tingut mai. Si el Rimador t'acompanya, ens pots convidar a un cafè per continuar fent-lo créixer.",
-      "botoAccio": "Regala'ns un cafè",
-      "enllac": "https://ko-fi.com/rimadorcat"
+      "titol": "Feliç any, i que rimi!",
+      "text": "Comencem l'any amb els propòsits de sempre: cap anunci, el codi obert i el Rimador.cat gratuït per a tothom. Si vols que ens duri tot l'any, comença'l convidant-nos a un cafè.",
+      "botoAccio": "Convida'ns a un cafè"
     },
     {
       "mes": 2,
-      "id": "febrer-manteniment",
-      "titol": "Què costa el Rimador?",
-      "text": "El domini, l'allotjament i les hores de dos aficionats. Els diners no cobreixen les hores, però sí que paguen que el web segueixi dret.",
-      "botoAccio": "Ajuda'ns a pagar-ho",
-      "enllac": "https://ko-fi.com/rimadorcat"
+      "id": "febrer-hivern",
+      "titol": "El mes més curt, i el més fred",
+      "text": "Es fa de nit d'hora i ve de gust quedar-se a casa escrivint. Nosaltres també hi som, fent-hi hores que ningú no cobra. Col·labora amb nosaltres i ens ajudes a arribar a la primavera.",
+      "botoAccio": "Col·labora amb nosaltres"
     },
     {
       "mes": 3,
-      "id": "marc-errades",
-      "titol": "Has trobat cap errada?",
-      "text": "Aquest mes ens dediquem a polir el diccionari. Si has vist una transcripció que no et quadra o una rima que no hi hauria de ser, ens ho pots dir: ho arreglem tot.",
-      "botoAccio": "Escriu-nos",
-      "enllac": "mailto:hola@rimador.cat"
+      "id": "marc-primavera",
+      "titol": "Ja treu el nas la primavera",
+      "text": "Els dies s'allarguen i tornen les ganes de fer versos. El Rimador.cat el reguem dos voluntaris, a estones i sense publicitat enlloc. Rega'l tu també amb un cafè.",
+      "botoAccio": "Regala'ns un cafè"
     },
     {
       "mes": 4,
       "id": "abril-sant-jordi",
       "titol": "Bon Sant Jordi!",
-      "text": "És el mes dels llibres i dels versos. Si el Rimador t'ha ajudat a escriure'n algun, ens pots convidar a un cafè per celebrar-ho.",
-      "botoAccio": "Regala'ns un cafè",
-      "enllac": "https://ko-fi.com/rimadorcat"
+      "text": "És el mes de les roses, dels llibres i dels versos que costen de tancar. Si el Rimador.cat t'ha ajudat amb algun, celebra-ho amb nosaltres: aquí no venem res ni posem anuncis, i així volem seguir.",
+      "botoAccio": "Regala'ns un cafè"
     },
     {
       "mes": 5,
       "id": "maig-voluntari",
-      "titol": "Això és voluntari",
-      "text": "Ningú no cobra res per fer el Rimador i no hi ha cap anunci enlloc. Es manté només amb el que ens doneu vosaltres.",
-      "botoAccio": "Regala'ns un cafè",
-      "enllac": "https://ko-fi.com/rimadorcat"
+      "titol": "Tot això és voluntari",
+      "text": "Ningú no cobra per fer el Rimador.cat i no hi trobaràs ni un sol anunci. Es manté amb les estones que hi posem nosaltres i amb el que hi poseu vosaltres. Ajuda'ns a arribar a l'estiu.",
+      "botoAccio": "Ajuda'ns"
     },
     {
       "mes": 6,
-      "id": "juny-comparteix",
-      "titol": "El coneix algú més?",
-      "text": "La millor manera d'ajudar-nos no sempre són els diners: passar el Rimador a qui escriu cançons, gloses o poemes ens serveix igual.",
-      "botoAccio": "Comparteix-lo",
-      "enllac": "https://rimador.cat/"
+      "id": "juny-revetlla",
+      "titol": "Cap a la revetlla",
+      "text": "S'acaben els cursos i comencen les cançons, les gloses i els versos de foguera. Si n'has fet cap amb nosaltres, convida'ns a un cafè per pagar el que costa tenir el web dret.",
+      "botoAccio": "Convida'ns a un cafè"
     },
     {
       "mes": 7,
-      "id": "juliol-estiu",
-      "titol": "Bon estiu!",
-      "text": "Si aquestes vacances tens temps per escriure, aquí ens tens. I si ens hi vols donar un cop de mà, també.",
-      "botoAccio": "Regala'ns un cafè",
-      "enllac": "https://ko-fi.com/rimadorcat"
+      "id": "juliol-festa-major",
+      "titol": "Estiu de festa major",
+      "text": "Temps de pregons, de versots i de cançons que han de rimar sí o sí. Nosaltres seguim aquí, de franc i sense anuncis. Fes-nos costat amb un cafè, i si se t'acut res, escriu-nos a hola@rimador.cat.",
+      "botoAccio": "Fes-nos costat"
     },
     {
       "mes": 8,
-      "id": "agost-servidors",
-      "titol": "Un cafè per l'agost",
-      "text": "El Rimador no fa vacances: els servidors continuen funcionant tot l'estiu. Si te'n serveixes, ens pots ajudar a pagar-los.",
-      "botoAccio": "Regala'ns un cafè",
-      "enllac": "https://ko-fi.com/rimadorcat"
+      "id": "agost-vacances",
+      "titol": "Bones vacances!",
+      "text": "Nosaltres en fem, però el Rimador.cat no plega: el domini i el servidor es paguen igual els dies d'agost. Dona'ns un cop de mà i al setembre tornem amb les piles noves.",
+      "botoAccio": "Dona'ns un cop de mà"
     },
     {
       "mes": 9,
       "id": "setembre-aniversari",
       "titol": "Fem anys!",
-      "text": "L'11 de setembre celebrem l'aniversari del llançament del Rimador. Gràcies per fer-lo servir tot aquest temps.",
-      "botoAccio": "Fes-nos un regal d'aniversari",
-      "enllac": "https://ko-fi.com/rimadorcat"
+      "text": "L'onze de setembre el Rimador.cat celebra l'aniversari del llançament. Tot aquest temps ha estat feina de dos voluntaris, sense publicitat i amb el codi a la vista de tothom. Fes-nos un regal d'aniversari i ho celebrem plegats.",
+      "botoAccio": "Fes-nos un regal"
     },
     {
       "mes": 10,
-      "id": "octubre-suggeriments",
-      "titol": "Què hi trobes a faltar?",
-      "text": "Estem preparant les novetats de l'any que ve i ens agradaria saber què t'aniria bé tenir. Ens ho pots explicar en dues línies.",
-      "botoAccio": "Digue'ns-ho",
-      "enllac": "mailto:hola@rimador.cat"
+      "id": "octubre-tardor",
+      "titol": "Ha arribat la tardor",
+      "text": "Fosqueja aviat i les tardes es fan llargues i bones per escriure. Si el Rimador.cat t'hi acompanya, ajuda'ns a pagar-lo: no hi ha anuncis ni n'hi haurà mai. I si hi trobes res a faltar, escriu-nos a hola@rimador.cat.",
+      "botoAccio": "Ajuda'ns"
     },
     {
       "mes": 11,
-      "id": "novembre-diccionari",
-      "titol": "Cada paraula és feta a mà",
-      "text": "Darrere de cada rima hi ha una transcripció fonètica revisada una per una. És molta estona, i la fem de gust.",
-      "botoAccio": "Regala'ns un cafè",
-      "enllac": "https://ko-fi.com/rimadorcat"
+      "id": "novembre-codi-obert",
+      "titol": "Aquí no hi ha res amagat",
+      "text": "El Rimador.cat és de codi obert: qualsevol pot veure com està fet i dir-nos-hi la seva. El que no es veu són les hores i els rebuts que hi ha al darrere. Ajuda'ns a cobrir-los amb un cafè.",
+      "botoAccio": "Regala'ns un cafè"
     },
     {
       "mes": 12,
       "id": "desembre-nadal",
       "titol": "Bones festes!",
-      "text": "Si aquest any el Rimador t'ha tret d'algun destret, ens pots fer un regal de Nadal. Serveix per mantenir-lo dret un any més.",
-      "botoAccio": "Fes-nos un regal",
-      "enllac": "https://ko-fi.com/rimadorcat"
+      "text": "Arriba el temps de nadales, de versos per al tió i de rimes forçades a taula. Si aquest any el Rimador.cat t'ha tret d'algun destret, fes-nos un regal de Nadal i el mantindrem dret un any més.",
+      "botoAccio": "Fes-nos un regal"
     }
   ],
 
