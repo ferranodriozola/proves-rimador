@@ -204,18 +204,7 @@ dades_json_versio = {
 ruta_json = 'stats/estadistiques_rimador.json'
 ruta_json_versio = 'stats/versio_estadistiques_rimador.json'
 
-
 def sense_hora(text):
-    """El JSON tal com quedaria sense la línia de l'hora.
-
-    El camp "actualitzacio" porta l'hora d'ara, o sigui que si l'escrivíem
-    sempre el fitxer sortiria diferent a cada passada encara que les dades
-    fossin idèntiques. I com que el workflow fa "git add" i comita el que
-    trobi canviat, això volia dir un commit cada nit, i un commit vol dir un
-    desplegament sencer a Pages: 200 MB de pujada per canviar una hora que no
-    mira ningú. Comparant el fitxer sense aquesta línia sabem si les dades han
-    canviat de debò.
-    """
     return re.sub(r'^ *"actualitzacio":.*$', '', text, count=1, flags=re.MULTILINE)
 
 
