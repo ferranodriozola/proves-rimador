@@ -87,6 +87,9 @@ def comprovar_base(col):
 
 
 def generar(pronoms=PRONOMS, dir_sortida=DIR_SORTIDA):
+    # La carpeta de sortida és .gitignore: en un clon net (o al runner
+    # del workflow) pot no existir, i l'open() de més avall petaria.
+    os.makedirs(dir_sortida, exist_ok=True)
     col = llegir_columnes()
     comprovar_base(col)
 
