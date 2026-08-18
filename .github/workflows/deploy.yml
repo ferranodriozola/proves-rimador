@@ -131,16 +131,13 @@ jobs:
 
       - name: Guardar els HTML actualitzats al repositori
         if: github.repository == 'rimador/rimador.github.io' && steps.canvis.outputs.any_changed == 'true'
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add '*.html'
-          git commit -m "Cache busting: versions actualitzades als HTML" || echo "No hi ha canvis"
-          # Mentre corríem, un altre workflow pot haver comitejat (estadístiques,
-          # columnes...). Sense rebase, el push seria rebutjat i el deploy es
-          # posaria vermell sense que hi hagi res de dolent.
-          git pull --rebase origin main
-          git push
+        uses: ./.github/actions/comitejar
+        with:
+          missatge: 'Cache busting: versions actualitzades als HTML'
+          # Només els HTML: en aquest job també s'hi ha compilat el gulp i,
+          # més avall, s'hi esborren carpetes senceres per aprimar el paquet.
+          # Amb un "git add ." tot allò també entraria al commit.
+          fitxers: "*.html"
 
       - name: Ajustar el 404.html quan el lloc no penja de l'arrel del domini
         if: github.repository != 'rimador/rimador.github.io'
