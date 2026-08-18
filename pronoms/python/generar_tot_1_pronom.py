@@ -26,13 +26,15 @@ import llicencies
 
 # El nom del diccionari base surt de config.py, que és l'únic lloc del
 # repositori que diu quin diccionari és quin.
-sys.path.insert(0, os.path.join(BASE_DIR, "..", "diccionaris", "pythons"))
+# .parent perquè aquest fitxer viu a pronoms/python/.
+PRONOMS_DIR = os.path.dirname(BASE_DIR)
+sys.path.insert(0, os.path.join(PRONOMS_DIR, "..", "diccionaris", "python"))
 import config
 
 CAMPS = 10
 
 # Un fitxer per pronom: verb_pronom_hi.txt, verb_pronom_en.txt...
-DIR_SORTIDA = os.path.join(BASE_DIR, "txt_fets", "1_pronom")
+DIR_SORTIDA = os.path.join(PRONOMS_DIR, "txt_fets", "1_pronom")
 PATRO_SORTIDA = "verb_pronom_{pronom}.txt"
 
 # Per defecte, els 13 pronoms (enclisi.ORDRE_PRONOMS). La validació contra els

@@ -2,7 +2,7 @@ import glob
 import os
 import unicodedata
 
-# Dos dirname perquè aquest fitxer viu a diccionaris/pythons/ i els diccionaris
+# Dos dirname perquè aquest fitxer viu a diccionaris/python/ i els diccionaris
 # són a diccionaris/. Es calcula des de __file__ i no des d'on s'executa
 # l'script, perquè així funciona des de qualsevol carpeta.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

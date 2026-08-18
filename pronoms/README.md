@@ -24,27 +24,29 @@ totes dues generacions.
 ```
 pronoms/
 ├── README.md                    aquest fitxer
-├── pla.md                       el pla general del projecte (5 fases)
-├── pla_un_pronom.md             el pla concret de la generació amb 1 pronom
-├── pla_dos_pronoms.md           el pla concret de la generació amb 2 pronoms
-├── pronoms.docx                 el quadre normatiu de l'enclisi (material d'origen)
 │
-├── enclisi.py                   ortografia + fonètica + rima de l'enclisi
-├── llicencies.py                quins pronoms/parelles admet cada verb i cada persona
-├── generar_tot_1_pronom.py      driver d'1 pronom
-├── generar_tot_2_pronoms.py     driver de 2 pronoms
-├── ajuntar_diccionari_6.py      diccionari + formes amb pronom -> diccionari.6.txt
-├── ajuntar_i_comptar_rimes.py   l'estudi: què passaria amb les rimes
-├── llista_verbs.py              treu la llista de lemes verbals del diccionari
+├── python/                      tot el codi
+│   ├── enclisi.py                  ortografia + fonètica + rima de l'enclisi
+│   ├── llicencies.py               quins pronoms/parelles admet cada verb i cada persona
+│   ├── generar_tot_1_pronom.py     driver d'1 pronom
+│   ├── generar_tot_2_pronoms.py    driver de 2 pronoms
+│   ├── ajuntar_diccionari_6.py     diccionari + formes amb pronom -> diccionari.6.txt
+│   ├── ajuntar_i_comptar_rimes.py  l'estudi: què passaria amb les rimes
+│   └── llista_verbs.py             treu la llista de lemes verbals del diccionari
 │
-├── verbs.json                   9.016 lemes verbals (entrada del scraper)
-├── verbs_anotats_num.json       els mateixos 9.016 amb les categories del DIEC
+├── docs/                        documents i dades d'entrada
+│   ├── pla.md                      el pla general del projecte (5 fases)
+│   ├── pla_un_pronom.md            el pla concret de la generació amb 1 pronom
+│   ├── pla_dos_pronoms.md          el pla concret de la generació amb 2 pronoms
+│   ├── pronoms.docx                el quadre normatiu de l'enclisi (material d'origen)
+│   ├── verbs.json                  9.016 lemes verbals (entrada del scraper)
+│   └── verbs_anotats_num.json      els mateixos 9.016 amb les categories del DIEC
 │
 ├── txt_fets/                    LA SORTIDA generada, per nombre de pronoms
 │   ├── 1_pronom/                   els 13 verb_pronom_*.txt (fet)
 │   └── 2_pronoms/                  els 69 verb_pronom_<p1>_<p2>.txt (fet)
 │
-└── done/                        scripts i dades ja consumits, desats per traça
+└── antics(done)/                scripts i dades ja consumits, desats per traça
     └── 1a versio/                  la primera generació (hi + en), ja substituïda
 ```
 
@@ -80,12 +82,12 @@ verbs_anotats_num.json ─────────┘         │
 ```
 
 ```bash
-python3 pronoms/generar_tot_1_pronom.py
+python3 pronoms/python/generar_tot_1_pronom.py
 ```
 
 Sense arguments genera **els 13 pronoms** (equival a passar `--tots`); també
 accepta una llista solta per generar-ne només alguns:
-`python3 pronoms/generar_tot_1_pronom.py hi ho en`.
+`python3 pronoms/python/generar_tot_1_pronom.py hi ho en`.
 
 ### `enclisi.py` — com s'escriu i com sona
 
@@ -113,7 +115,7 @@ necessita una línia del diccionari.
   fa /pˈɔrt/ (sona), i perquè una consonant **assordida** no és una consonant
   muda (`perd` → /pˈɛrt/ no recupera cap [d]).
 - **`calcular_rimes()`** fa servir el mateix càlcul que
-  `diccionaris/pythons/creador_rima + dicc (a partir de col_10).py`, a posta,
+  `diccionaris/python/creador_rima + dicc (a partir de col_10).py`, a posta,
   perquè les dues rimes no puguin divergir mai.
 - **`silabes()`**: el guionet suma síl·laba, l'apòstrof no, i la semivocal
   tampoc (`veure-hi` = 2, com `veure`).
@@ -150,7 +152,7 @@ el subjecte (`penedeix-te` sí, `*penedeix-me` no).
 Executable pel seu compte, treu l'informe de verbs per classe i per pronom:
 
 ```bash
-python3 pronoms/llicencies.py
+python3 pronoms/python/llicencies.py
 ```
 
 **Per a 2 pronoms**, el mateix mòdul hi afegeix:
@@ -208,8 +210,8 @@ a les dues sortides alhora). En lloc d'un pronom sol, itera
 `txt_fets/2_pronoms/`.
 
 ```bash
-python3 pronoms/generar_tot_2_pronoms.py             # les 69 parelles
-python3 pronoms/generar_tot_2_pronoms.py li:el es:hi  # només aquestes
+python3 pronoms/python/generar_tot_2_pronoms.py             # les 69 parelles
+python3 pronoms/python/generar_tot_2_pronoms.py li:el es:hi  # només aquestes
 ```
 
 ### `ajuntar_diccionari_6.py` — el diccionari sencer
@@ -233,7 +235,7 @@ la paraula (camp 0) sense accents ni majúscules, i les que empaten es desfan
 amb la paraula tal com s'escriu (`Índia` abans que `índia`).
 
 ```bash
-python3 pronoms/ajuntar_diccionari_6.py
+python3 pronoms/python/ajuntar_diccionari_6.py
 ```
 
 > `diccionari.6.txt` és a `.gitignore`: fa 324 MB i GitHub rebutja els fitxers
@@ -246,7 +248,7 @@ python3 pronoms/ajuntar_diccionari_6.py
 > (`diccionaris/diccionari.5.2.3.txt`), no pas de `diccionaris/separat/`. Les
 > columnes de `separat/` són les del diccionari **publicat**, que ja porta les
 > formes amb pronom: partir-ne seria fer pronoms de formes que ja en duen. El
-> nom del diccionari base surt de `diccionaris/pythons/config.py`.
+> nom del diccionari base surt de `diccionaris/python/config.py`.
 
 ### `llista_verbs.py`
 
@@ -373,7 +375,7 @@ que el quadre només dona escrites.
 
 ---
 
-## `done/` — ja consumit
+## `antics(done)/` — ja consumit
 
 Scripts que van fer la seva feina i dades que en van sortir. Es desen per poder
 reconstruir d'on venen les categories dels verbs, no per tornar-los a executar.
@@ -384,7 +386,7 @@ reconstruir d'on venen les categories dels verbs, no per tornar-los a executar.
 | `filtrar_resultats.py` | Informe sobre l'anotació d'un scraper: quins verbs no van quedar `OK` i quines categories úniques va tornar el DIEC (és el que va donar la llista de categories a classificar). |
 | `revisar_r_infinitius.py` | Auditoria del diccionari base: quins infinitius tenen la transcripció acabada en `r` quan no hauria de sonar. Sol ser contaminació d'un homògraf no verbal (`militar` nom). Es pot passar per les columnes o per un `.txt` de 10 camps. |
 
-### `done/1a versio/` — la primera generació
+### `antics(done)/1a versio/` — la primera generació
 
 La tongada inicial, feta amb tres scripts separats (un per forma verbal) i només
 amb `hi` i `en`. **Substituïda** per `enclisi.py` + `llicencies.py` +
@@ -412,19 +414,19 @@ verbs sense informació).
 
 ```bash
 # 1. la llista de lemes verbals, del diccionari  ->  verbs.json
-python3 pronoms/llista_verbs.py
+python3 pronoms/python/llista_verbs.py
 
 # 2. les categories del DIEC  ->  verbs_anotats_num.json   (lent: 9.016 consultes)
-python3 "pronoms/done/scrap_diec+num.py"
+python3 "pronoms/antics(done)/scrap_diec+num.py"
 
 # 3. comprovar la classificació abans de generar res
-python3 pronoms/llicencies.py
+python3 pronoms/python/llicencies.py
 
 # 4. generar 1 pronom  ->  txt_fets/1_pronom/verb_pronom_*.txt
-python3 pronoms/generar_tot_1_pronom.py
+python3 pronoms/python/generar_tot_1_pronom.py
 
 # 5. generar 2 pronoms  ->  txt_fets/2_pronoms/verb_pronom_*_*.txt
-python3 pronoms/generar_tot_2_pronoms.py
+python3 pronoms/python/generar_tot_2_pronoms.py
 ```
 
 El pas 2 depèn de `requests`, `beautifulsoup4` i `tqdm`; la resta no necessita

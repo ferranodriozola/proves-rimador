@@ -33,12 +33,14 @@ import os
 import sys
 import unicodedata
 
+# .parent perquè aquest fitxer viu a pronoms/python/ i txt_fets/ és a pronoms/.
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DIR_TXT = os.path.join(BASE_DIR, "txt_fets")
+PRONOMS_DIR = os.path.dirname(BASE_DIR)
+DIR_TXT = os.path.join(PRONOMS_DIR, "txt_fets")
 
 # Quin diccionari és el base i quin es publica ho diu config.py, que és l'únic
 # lloc del repositori que ho diu.
-sys.path.insert(0, os.path.join(BASE_DIR, "..", "diccionaris", "pythons"))
+sys.path.insert(0, os.path.join(PRONOMS_DIR, "..", "diccionaris", "python"))
 import config
 
 FITXER_BASE = config.CAMI_BASE

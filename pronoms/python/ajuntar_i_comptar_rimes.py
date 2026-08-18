@@ -28,8 +28,10 @@ El pas 3 compta dues coses que no són la mateixa:
 import os
 from collections import Counter
 
+# .parent perquè aquest fitxer viu a pronoms/python/ i txt_fets/ és a pronoms/.
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DIR_TXT = os.path.join(BASE_DIR, "txt_fets")
+PRONOMS_DIR = os.path.dirname(BASE_DIR)
+DIR_TXT = os.path.join(PRONOMS_DIR, "txt_fets")
 
 FITXER_TOT = os.path.join(DIR_TXT, "tot.txt")
 FITXER_PROVA = os.path.join(DIR_TXT, "col_3_prova_v.6.txt")
@@ -37,11 +39,11 @@ FITXER_PROVA = os.path.join(DIR_TXT, "col_3_prova_v.6.txt")
 # La mateixa columna, però del diccionari de producció. Les dues són
 # comparables perquè enclisi.calcular_rimes() fa servir el mateix càlcul que
 # el creador de rimes del diccionari, a posta.
-COL_3_BASE = os.path.join(BASE_DIR, "..", "diccionaris", "separat", "col_3.txt")
+COL_3_BASE = os.path.join(PRONOMS_DIR, "..", "diccionaris", "separat", "col_3.txt")
 
 # La columna de les paraules, alineada línia per línia amb col_3: serveix per
 # dir QUINA paraula hi ha darrere d'una rima del diccionari.
-COL_0_BASE = os.path.join(BASE_DIR, "..", "diccionaris", "separat", "col_0.txt")
+COL_0_BASE = os.path.join(PRONOMS_DIR, "..", "diccionaris", "separat", "col_0.txt")
 
 CAMPS = 10
 COL_RIMA_CONSONANT = 3

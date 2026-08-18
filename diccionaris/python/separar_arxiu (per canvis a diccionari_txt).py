@@ -2,7 +2,7 @@ import os
 import sys
 import subprocess
 
-# Aquest script viu a diccionaris/pythons/ i escriu a diccionaris/separat/.
+# Aquest script viu a diccionaris/python/ i escriu a diccionaris/separat/.
 # Les rutes surten d'on és el fitxer i no d'on s'executa: abans eren relatives a
 # la carpeta de treball, i com que aquí baix hi ha un os.makedirs, una carpeta
 # equivocada no donava cap error, sinó que es fabricava un arbre de carpetes nou

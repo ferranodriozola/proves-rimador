@@ -30,7 +30,7 @@ from pathlib import Path
 # Les col_N.txt continuen sent la font de veritat: les llegeixen els altres
 # scripts d'aquesta carpeta i el bot. Aquí només se'n deriva una segona forma.
 
-# .parent.parent perquè aquest fitxer viu a diccionaris/pythons/ i les columnes
+# .parent.parent perquè aquest fitxer viu a diccionaris/python/ i les columnes
 # són a diccionaris/separat/. Es calcula des de __file__ i no des d'on s'executa
 # l'script, perquè així funciona tant des dels workflows com si l'obres a mà.
 BASE = Path(__file__).resolve().parent.parent

@@ -32,7 +32,8 @@ from generar_tot_1_pronom import (FORMES, NOM_FORMA, comprovar_base,
                                   llegir_columnes)
 
 # Un fitxer per parella: verb_pronom_li_el.txt, verb_pronom_es_hi.txt...
-DIR_SORTIDA = os.path.join(BASE_DIR, "txt_fets", "2_pronoms")
+# .parent perquè aquest fitxer viu a pronoms/python/ i txt_fets/ és a pronoms/.
+DIR_SORTIDA = os.path.join(os.path.dirname(BASE_DIR), "txt_fets", "2_pronoms")
 PATRO_SORTIDA = "verb_pronom_{p1}_{p2}.txt"
 
 PARELLES = llicencies.PARELLES_VALIDES

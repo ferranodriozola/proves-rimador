@@ -1,6 +1,6 @@
 import os
 
-# Aquest script viu a diccionaris/pythons/ però escriu a diccionaris/. Les rutes
+# Aquest script viu a diccionaris/python/ però escriu a diccionaris/. Les rutes
 # es calculen des d'on és el fitxer i no des d'on s'executa: abans eren relatives
 # a la carpeta de treball, i com que aquest script SOBREESCRIU el diccionari
 # base, una carpeta de treball equivocada volia dir escriure'l en un lloc que no

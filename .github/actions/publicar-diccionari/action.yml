@@ -30,19 +30,19 @@ runs:
     - name: Generar les formes amb 1 pronom
       if: steps.config.outputs.cal_v6 == 'true'
       shell: bash
-      working-directory: pronoms
+      working-directory: pronoms/python
       run: python generar_tot_1_pronom.py
 
     - name: Generar les formes amb 2 pronoms
       if: steps.config.outputs.cal_v6 == 'true'
       shell: bash
-      working-directory: pronoms
+      working-directory: pronoms/python
       run: python generar_tot_2_pronoms.py
 
     - name: Ajuntar-ho tot a diccionari.6.txt
       if: steps.config.outputs.cal_v6 == 'true'
       shell: bash
-      working-directory: pronoms
+      working-directory: pronoms/python
       run: python ajuntar_diccionari_6.py
 
 # ------ Les columnes que es baixa el navegador

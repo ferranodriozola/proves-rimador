@@ -1,7 +1,7 @@
 import glob
 import os
 
-# Des d'aquest fitxer (diccionaris/pythons/) fins a diccionaris/separat/. Abans
+# Des d'aquest fitxer (diccionaris/python/) fins a diccionaris/separat/. Abans
 # la ruta era relativa a la carpeta des d'on s'executés l'script, i en moure els
 # pythons a la seva pròpia carpeta això va deixar de trobar res.
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

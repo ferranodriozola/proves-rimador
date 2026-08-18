@@ -19,7 +19,8 @@ from collections import Counter
 from functools import lru_cache
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FITXER_VERBS = os.path.join(BASE_DIR, "verbs_anotats_num.json")
+# verbs_anotats_num.json és a pronoms/docs/, no pas al costat d'aquest fitxer.
+FITXER_VERBS = os.path.join(os.path.dirname(BASE_DIR), "docs", "verbs_anotats_num.json")
 
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)

@@ -39,19 +39,19 @@ jobs:
 
 # ------ PREPROCÉS (ajuntar les parts de la col_10 en el provisional)
       - name: Preprocés (generar col_10provisional a partir de les parts de col_10)
-        run: python "diccionaris/pythons/pre_proces.py"
+        run: python "diccionaris/python/pre_proces.py"
 
 # ------ Muntar el diccionari base. Els camps que la columna 10 no porta
 #        (síl·labes i enllaços) els pren del diccionari que ja hi ha, fila per
 #        fila; per això no en pot sortir cap columna del diccionari publicat.
       - name: Crear diccionari
-        run: python "diccionaris/pythons/creador_rima + dicc (a partir de col_10).py"
+        run: python "diccionaris/python/creador_rima + dicc (a partir de col_10).py"
 
 # ------ POSTPROCÉS (tornar a repartir la col_10 i esborrar el provisional)
 #        Puja aquí, abans de publicar: així tot el que ha canviat entra en un
 #        sol commit, en comptes dels dos que hi havia.
       - name: Postprocés (regenerar les parts de col_10 i eliminar col_10provisional)
-        run: python "diccionaris/pythons/post_proces.py"
+        run: python "diccionaris/python/post_proces.py"
 
 # ------ Pronoms, diccionari.6.txt, columnes del web, versions i comit
       - name: Publicar el diccionari

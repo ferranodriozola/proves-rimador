@@ -43,7 +43,7 @@ jobs:
 #        partir del diccionari que toqui. (Aquest script ja crida el
 #        post_procés, que és qui reparteix la columna 10 en els seus fitxers.)
       - name: Separar diccionari
-        run: python "diccionaris/pythons/separar_arxiu (per canvis a diccionari_txt).py"
+        run: python "diccionaris/python/separar_arxiu (per canvis a diccionari_txt).py"
 
 # ------ Pronoms, diccionari.6.txt, columnes del web, versions i comit
       - name: Publicar el diccionari

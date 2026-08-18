@@ -28,7 +28,7 @@ DICCIONARI_BASE = "diccionari.5.2.3.txt"
 # El diccionari que es publica: d'aquest en surten les columnes del web.
 DICCIONARI_PUBLICAT = DICCIONARI_BASE
 
-# Tots dos viuen a diccionaris/, i aquest fitxer a diccionaris/pythons/.
+# Tots dos viuen a diccionaris/, i aquest fitxer a diccionaris/python/.
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 CAMI_BASE = os.path.join(BASE, DICCIONARI_BASE)
@@ -45,7 +45,7 @@ def main():
     workflow sàpiga quins passos se salta sense haver de repetir enlloc més
     quin diccionari es publica.
 
-        python diccionaris/pythons/config.py >> "$GITHUB_OUTPUT"
+        python diccionaris/python/config.py >> "$GITHUB_OUTPUT"
     """
     print(f"base={DICCIONARI_BASE}")
     print(f"publicat={DICCIONARI_PUBLICAT}")
