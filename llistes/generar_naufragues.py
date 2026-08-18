@@ -2,12 +2,45 @@ import os
 import json
 from contextlib import ExitStack
 
+def rimes_amb_una_sola_paraula(ruta_paraules, ruta_rimes):
+    """
+    Les rimes que només tenen UNA paraula diferent: les nàufragues.
+
+    Abans això sortia de bot/resultat_ordenat_cons.json, que és el mateix
+    recompte fet pel generador_rimes_cons.py. Es compta aquí perquè aquell
+    fitxer ja no es genera a cada passada, i fer servir el que hi hagués
+    quedat voldria dir buscar les nàufragues d'un diccionari en un altre:
+    sortirien paraules que sí que rimen amb alguna cosa.
+
+    "Una sola paraula DIFERENT" i no pas "una sola fila", igual que abans: una
+    rima amb tres files de la mateixa paraula (homògrafes de codi diferent)
+    també és nàufraga, perquè no rima amb res que no sigui ella mateixa.
+
+    Es compta amb un diccionari de rimes i prou (85.914 entrades), i no pas
+    guardant totes les paraules de cada rima: sobre el diccionari publicat
+    això últim voldria dir tenir-ne quatre milions a la memòria.
+    """
+    primera = {}
+    amb_mes_duna = set()
+    with open(ruta_paraules, 'r', encoding='utf-8') as fp, \
+         open(ruta_rimes, 'r', encoding='utf-8') as fr:
+        for linia_paraula, linia_rima in zip(fp, fr):
+            rima = linia_rima.strip()
+            if not rima:
+                continue
+            paraula = linia_paraula.strip()
+            if rima not in primera:
+                primera[rima] = paraula
+            elif primera[rima] != paraula:
+                amb_mes_duna.add(rima)
+    return set(primera) - amb_mes_duna
+
+
 def generar_llista():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     dir_diccionaris = os.path.join(base_dir, '..', 'diccionaris')
     dir_separat = os.path.join(dir_diccionaris, 'separat')
     
-    ruta_json_rimes = os.path.join('..', 'bot', 'resultat_ordenat_cons.json')
     fitxer_sortida = os.path.join(base_dir, 'paraules_naufragues.json')
     ruta_versions = os.path.join(base_dir, 'versions_llistes.json')
 
@@ -19,13 +52,10 @@ def generar_llista():
     paraules_orfes = []
 
     try:
-        with open(ruta_json_rimes, 'r', encoding='utf-8') as f:
-            dades_rimes = json.load(f)
-
-        rimes_naufragues = {
-            rima for rima, dades in dades_rimes.items()
-            if len(set(dades.get("paraules", []))) == 1
-        }
+        rimes_naufragues = rimes_amb_una_sola_paraula(
+            os.path.join(dir_separat, 'col_0.txt'),
+            os.path.join(dir_separat, 'col_3.txt'),
+        )
 
         with ExitStack() as stack:
             fitxers_oberts = [stack.enter_context(open(ruta, 'r', encoding='utf-8')) for ruta in rutes_txt]
