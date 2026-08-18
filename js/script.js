@@ -170,10 +170,6 @@ async function carregarVersions() {
 // de 111 (vegeu generar_columnes_internades.py).
 let array0;
 
-// Les transcripcions NO es carreguen: només se'n guarda un mapa petit amb les
-// files de les paraules que s'escriuen igual i sonen diferent (vegeu
-// assegurarHomografs).
-let homografs = null;
 let col1, col2, col3, col4, col5, col6, col7, col8;
 
 // Les tres últimes columnes són sí/no (surt al Viccionari, a la Viquipèdia, al
@@ -203,8 +199,8 @@ let nombresDeFitxers = 17; // la col_0 i, de cada columna internada, la taula i 
 
 // col_9 (les transcripcions senceres) no hi és, i no s'hi baixa mai: fa 73 MB
 // i quatre milions de línies. L'única cosa que en necessitava el web era el
-// diàleg d'homògrafs, i per a això n'hi ha prou amb el homografs.txt, que fa
-// 1,7 MB (vegeu assegurarHomografs i diccionaris/pythons/generar_homografs.py).
+// diàleg d'homògrafs, i per a saber-ho ja n'hi ha prou amb els números de rima
+// de col_3 i col_4, que es carreguen igualment per cercar (vegeu buscarParaula).
 const CAMI_PARAULES = `${ARREL}diccionaris/separat/col_0.txt`;
 const COLUMNES_INTERNADES = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -438,60 +434,6 @@ async function fetchFitxer(url) {
 // PROCESSAR TXT
 function processarFitxerDeText(contingut) {
     return contingut.split('\n');
-}
-
-// CÀRREGA A PART DE LES TRANSCRIPCIONS QUE FAN FALTA
-//
-// Només fan falta quan una paraula surt escrita més d'una vegada al
-// diccionari, per saber si les entrades es pronuncien igual (i llavors
-// tant se val quina s'agafi) o no (i llavors s'ha de preguntar amb el
-// diàleg d'homògrafs).
-//
-// Això es feia baixant la col_9 SENCERA. Amb el diccionari d'ara són 73 MB i
-// quatre milions de cadenes de text: el navegador es quedava penjat amb el
-// loader en cercar qualsevol paraula repetida ('compreu', posem per cas). I
-// gairebé sempre la resposta era "totes sonen igual", o sigui que tota
-// aquella feina no servia per a res.
-//
-// El homografs.txt només porta les files de les paraules que sonen de més
-// d'una manera: 1,7 MB en lloc de 73. Una paraula que no hi surt vol dir que
-// totes les seves entrades sonen igual, i és per això que transcripcio() pot
-// tornar undefined sense que res es trenqui: un conjunt de undefined té una
-// sola entrada, que és exactament la resposta que buscàvem.
-//
-// La promesa es guarda perquè dues cerques seguides no el demanin dues
-// vegades; si falla, s'esborra i el proper cop es torna a intentar.
-let promesaHomografs = null;
-
-// La transcripció d'una fila, si és una de les que poden fer sortir el diàleg.
-// Per a la resta de files, undefined: no se'n guarda cap.
-const transcripcio = fila => (homografs ? homografs.get(fila) : undefined);
-
-function textAHomografs(contingut) {
-  const mapa = new Map();
-  if (!contingut) return mapa;
-  for (const linia of contingut.split('\n')) {
-    if (!linia) continue;
-    const tall = linia.indexOf('$');
-    mapa.set(Number(linia.slice(0, tall)), linia.slice(tall + 1));
-  }
-  return mapa;
-}
-
-function assegurarHomografs() {
-  if (homografs) return Promise.resolve(homografs);
-  if (promesaHomografs) return promesaHomografs;
-
-  promesaHomografs = Loader.mentre('Carregant les transcripcions...', async () => {
-    homografs = await llegirFitxerAmbIndexedDB(
-      `${ARREL}diccionaris/separat/homografs.txt`, textAHomografs);
-    return homografs;
-  }).catch(err => {
-    promesaHomografs = null;
-    throw err;
-  });
-
-  return promesaHomografs;
 }
 
 // NETEJAR INDEXEDDB
@@ -915,26 +857,17 @@ function triarHomograf(paraulaCercada, opcions) {
   });
 }
 
-// Les columnes no són paràmetres: es llegeixen d'on són. Ho eren, i ja hi
-// havia una excepció (les transcripcions, que es carreguen a part i poden arribar enmig
-// d'aquesta funció); ara que a més hi ha les banderes empaquetades i els
-// índexs de rima, passar-ho tot per la porta era una llista de nou arguments
-// que no deia res que no se sabés.
+// Les columnes no són paràmetres: es llegeixen d'on són. Ho eren, però passar-
+// ho tot per la porta (les banderes empaquetades, els índexs de rima...) era
+// una llista d'arguments que no deia res que no se sabés.
 async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals) {
   Debug.logTime('buscarParaula');
 
-  // La transcripció de la paraula cercada omple l'últim lloc de la llista,
-  // que efectivament no llegeix ningú (només se'n fan servir el 0, el 2, el 3
-  // i el 4). Si la fila no és de cap paraula que soni de dues maneres, aquí hi
-  // queda undefined, igual que abans quedava quan encara no s'havia carregat
-  // res.
-  const transcripcioDe = i => transcripcio(i);
-
-  // Aquestes dues eren variables globals. Ara que la funció és asíncrona
-  // (s'atura a esperar el diàleg d'homògrafs), dues cerques poden estar
-  // en marxa alhora, i si totes dues escrivien a la mateixa llista global
-  // els resultats es barrejaven: sortien rimes d'una altra paraula. Cada
-  // cerca es guarda les seves i les retorna al final.
+  // Aquesta era una variable global. Ara que la funció és asíncrona (s'atura
+  // a esperar el diàleg d'homògrafs), dues cerques poden estar en marxa
+  // alhora, i si totes dues hi escrivien els resultats es barrejaven: sortien
+  // rimes d'una altra paraula. Cada cerca es guarda les seves i les retorna
+  // al final.
   let llistaParaulaCerca;
   const matches = [];
 
@@ -964,45 +897,49 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
     llistaParaulaCerca = [
       array0[indexparaula], t1(indexparaula), t2(indexparaula),
       t3(indexparaula), t4(indexparaula), t5(indexparaula),
-      t6(indexparaula), t7(indexparaula), t8(indexparaula), transcripcioDe(indexparaula)
+      t6(indexparaula), t7(indexparaula), t8(indexparaula)
     ];
   } else {
-    // Aquí sí que calen les transcripcions: són l'única manera de saber si
-    // aquestes entrades es pronuncien totes igual o si s'ha de preguntar.
-    await assegurarHomografs();
+    // No fa falta la transcripció sencera de la col_9 per saber si aquestes
+    // entrades "sonen igual": ens val que rimin igual, i això ja ho diu el
+    // número de rima que porten col_3 (consonant) o col_4 (assonant), que
+    // igualment es carreguen per cercar. És el mateix criteri que la cerca
+    // fa servir més avall per triar les files candidates (vegeu la "rima").
+    const columna = tipusRima === 'r.consonant' ? col3 : col4;
+    const rimes = new Set(coincidencies.map(fila => columna.idx[fila]));
 
-    // Si cap d'aquestes files no surt al homografs.txt, totes tornen undefined
-    // i el conjunt en té una de sola: vol dir que sonen totes igual i no cal
-    // preguntar res. És el cas de gairebé totes les paraules repetides.
-    const transcripcions = new Set(coincidencies.map(fila => transcripcio(fila)));
-    if (transcripcions.size === 1) {
+    // Si totes les entrades tenen el mateix número de rima, tant se val
+    // quina agafem: no cal preguntar res. És el cas de gairebé totes les
+    // paraules repetides.
+    if (rimes.size === 1) {
       var indexparaula = coincidencies[0];
       filaTrobada = indexparaula;
       llistaParaulaCerca = [
         array0[indexparaula], t1(indexparaula), t2(indexparaula),
         t3(indexparaula), t4(indexparaula), t5(indexparaula),
-        t6(indexparaula), t7(indexparaula), t8(indexparaula), transcripcioDe(indexparaula)
+        t6(indexparaula), t7(indexparaula), t8(indexparaula)
       ];
     } else {
-      // Només oferim una opció per transcripció: si dues entrades es
-      // pronuncien igual (per exemple dues formes verbals de 'donar'),
-      // rimen exactament amb les mateixes paraules i al diàleg hi
-      // sortirien dues opcions idèntiques.
+      // Només oferim una opció per número de rima: si dues entrades rimen
+      // igual (per exemple dues formes verbals de 'donar'), donarien
+      // exactament les mateixes rimes i al diàleg hi sortirien dues opcions
+      // idèntiques.
       const vistes = new Set();
       const opcions = [];
 
       coincidencies.forEach(index => {
-        const seva = transcripcio(index);
+        const seva = columna.idx[index];
         if (vistes.has(seva)) return;
         vistes.add(seva);
 
+        const terminacio = tipusRima === 'r.consonant' ? t3(index) : t4(index);
         opcions.push({
           index,
           numero: opcions.length + 1,
           paraula: array0[index],
           arrel: t1(index),
           categoria: descriureCategoria(t2(index)),
-          transcripcio: seva.startsWith("/") ? seva : "/" + seva + "/"
+          transcripcio: "/-" + terminacio + "/"
         });
       });
 
@@ -1022,7 +959,7 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
       llistaParaulaCerca = [
         array0[indexparaula], t1(indexparaula), t2(indexparaula),
         t3(indexparaula), t4(indexparaula), t5(indexparaula),
-        t6(indexparaula), t7(indexparaula), t8(indexparaula), transcripcioDe(indexparaula)
+        t6(indexparaula), t7(indexparaula), t8(indexparaula)
       ];
     }
   }
