@@ -3,6 +3,8 @@ import json
 import locale
 from collections import Counter
 
+from versions import actualitzar_versio
+
 def generar_llista():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     
@@ -68,16 +70,8 @@ def generar_llista():
 
     print(f"Generació completada: {len(mots_de7)} paraules de 7 síl·labes guardades a {fitxer_sortida}")
 
+    actualitzar_versio('mots_de7_real.json', fitxer_sortida)
 
-    #+1 a json
-    with open('versions_llistes.json', 'r') as fitxer:
-        dades = json.load(fitxer)
-
-    dades['versio_hepta_real'] += 1
-
-    with open('versions_llistes.json', 'w') as fitxer:
-        json.dump(dades, fitxer, indent=2)
-        
 
 if __name__ == "__main__":
     generar_llista()
