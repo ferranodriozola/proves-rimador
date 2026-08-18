@@ -45,7 +45,8 @@
     const CLAU = 'rimador_avis';
     const FITXER = 'avis/missatges.json';
 
-    // Enllaç únic del botó principal de l'avís.
+    // Enllaç del botó principal. És únic i val per a tots els
+    // missatges: el missatges.json només hi posa l'etiqueta.
     const ENLLAC_ACCIO = 'https://ko-fi.com/rimadorcat';
 
     // Nom del paràmetre d'URL per provar-lo sense esperar (vegeu més avall).
@@ -211,7 +212,7 @@
         text.className = 'avis-text';
         // El contingut surt d'avis/missatges.json, un fitxer del
         // repositori escrit per nosaltres, no de cap font externa:
-        // per això s'hi admet HTML (enllaços dins la frase, <br>...).
+        // per això s'hi admet HTML (<br>, <strong>...).
         text.innerHTML = missatge.text || '';
 
         const botons = document.createElement('div');
