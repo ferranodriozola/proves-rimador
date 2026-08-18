@@ -24,7 +24,12 @@ if BASE_DIR not in sys.path:
 import enclisi
 import llicencies
 
-DIR_SEPARAT = os.path.join(BASE_DIR, "..", "diccionaris", "separat")
+# El nom del diccionari base surt de config.py, que és l'únic lloc del
+# repositori que diu quin diccionari és quin.
+sys.path.insert(0, os.path.join(BASE_DIR, "..", "diccionaris", "pythons"))
+import config
+
+CAMPS = 10
 
 # Un fitxer per pronom: verb_pronom_hi.txt, verb_pronom_en.txt...
 DIR_SORTIDA = os.path.join(BASE_DIR, "txt_fets", "1_pronom")
@@ -52,13 +57,31 @@ NOM_FORMA = {"N": "infinitiu", "G": "gerundi", "M": "imperatiu"}
 
 
 def llegir_columnes():
-    col = {}
-    for n in range(10):
-        with open(os.path.join(DIR_SEPARAT, f"col_{n}.txt"), "r", encoding="utf-8") as f:
-            col[n] = f.read().splitlines()
-    mida = len(col[0])
-    if any(len(col[n]) != mida for n in col):
-        raise SystemExit("Les columnes no tenen el mateix nombre de línies: no es pot continuar.")
+    """
+    Els deu camps del diccionari BASE, cada un en una llista.
+
+    Es llegeix del diccionari i no pas de diccionaris/separat/col_*.txt, que és
+    d'on sortien abans. Les columnes de separat/ són les del diccionari
+    PUBLICAT, que pot ser el v.6: partir-ne seria fer pronoms de formes que ja
+    en duen. I les columnes del base ja no existeixen enlloc, perquè eren un
+    pas intermedi que no servia per a res més que això.
+    """
+    col = {n: [] for n in range(CAMPS)}
+    with open(config.CAMI_BASE, "r", encoding="utf-8") as f:
+        for numero, linia in enumerate(f, 1):
+            linia = linia.rstrip("\n")
+            if not linia:
+                continue
+            camps = linia.split("$")
+            if len(camps) != CAMPS:
+                raise SystemExit(
+                    f"{config.DICCIONARI_BASE}, línia {numero}: hi ha "
+                    f"{len(camps)} camps i n'hi ha d'haver {CAMPS}."
+                )
+            for n in range(CAMPS):
+                col[n].append(camps[n])
+    if not col[0]:
+        raise SystemExit(f"{config.CAMI_BASE} és buit.")
     return col
 
 
