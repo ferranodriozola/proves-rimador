@@ -33,6 +33,8 @@ pronoms/
 ├── llicencies.py                quins pronoms/parelles admet cada verb i cada persona
 ├── generar_tot_1_pronom.py      driver d'1 pronom
 ├── generar_tot_2_pronoms.py     driver de 2 pronoms
+├── ajuntar_diccionari_6.py      diccionari + formes amb pronom -> diccionari.6.txt
+├── ajuntar_i_comptar_rimes.py   l'estudi: què passaria amb les rimes
 ├── llista_verbs.py              treu la llista de lemes verbals del diccionari
 │
 ├── verbs.json                   9.016 lemes verbals (entrada del scraper)
@@ -209,6 +211,35 @@ a les dues sortides alhora). En lloc d'un pronom sol, itera
 python3 pronoms/generar_tot_2_pronoms.py             # les 69 parelles
 python3 pronoms/generar_tot_2_pronoms.py li:el es:hi  # només aquestes
 ```
+
+### `ajuntar_diccionari_6.py` — el diccionari sencer
+
+L'última passa: ajunta `diccionaris/diccionari.5.2.3.txt` amb els 82 fitxers
+de les subcarpetes de `txt_fets/` i escriu `diccionaris/diccionari.6.txt`,
+**ordenat alfabèticament** (4.025.866 línies, ~324 MB, uns 50 segons).
+
+Dues coses hi són a posta:
+
+* **Cap fitxer intermedi.** Les línies de `txt_fets/` no passen mai per un
+  fitxer amb només les rimes de pronom: es llegeixen, es barregen amb les del
+  diccionari i surten directament al fitxer final.
+* **Només mira dins de les subcarpetes** de `txt_fets/`. A `txt_fets/` mateix
+  hi ha el `tot.txt` de l'`ajuntar_i_comptar_rimes.py`, que ja és la suma
+  d'aquests 82 fitxers: si s'hi colés, cada forma amb pronom sortiria dues
+  vegades.
+
+L'ordre és el del diccionari: à=a=À=A, è=é=e=È=É=E, ç=c, ï=i... S'ordena per
+la paraula (camp 0) sense accents ni majúscules, i les que empaten es desfan
+amb la paraula tal com s'escriu (`Índia` abans que `índia`).
+
+```bash
+python3 pronoms/ajuntar_diccionari_6.py
+```
+
+> `diccionari.6.txt` és a `.gitignore`: fa 324 MB i GitHub rebutja els fitxers
+> de més de 100 MB. Del workflow en surt com a **artefacte**, no pas com a
+> commit. Si algun dia ha d'anar al repositori, cal partir-lo com ja es fa amb
+> la columna 10.
 
 ### `llista_verbs.py`
 
