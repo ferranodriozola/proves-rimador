@@ -19,6 +19,12 @@ COLUMNES = [f"col_{i}.txt" for i in range(10)]
 # fila que hi apunta.
 COLUMNES_INTERNADES = list(range(1, 9))
 
+# El homografs.txt no és cap columna (no té una fila per paraula), però el
+# navegador se'l baixa igual i ha de poder saber quan ha canviat: sense entrada
+# aquí, el llegirFitxerAmbIndexedDB no el desa mai a la memòria cau i se'l torna
+# a baixar a cada cerca d'una paraula repetida.
+FITXER_HOMOGRAFS = "homografs.txt"
+
 
 def resum(cami):
     calculador = hashlib.sha256()
@@ -99,6 +105,25 @@ def main():
 
         versions[cami_taula.name] = resum(cami_taula)
         versions[cami_idx.name] = resum(cami_idx)
+
+    # --- el fitxer dels homògrafs ---
+    cami_homografs = DIRECTORI_COLUMNES / FITXER_HOMOGRAFS
+    if not cami_homografs.exists():
+        print(f"ERROR: falta {cami_homografs}")
+        print("       Passa el generar_homografs.py.")
+        return 1
+
+    # Cap fila seva no pot assenyalar fora del diccionari. Si ho fa, el fitxer
+    # és d'una generació anterior i el navegador miraria la fila equivocada.
+    with open(cami_homografs, encoding="utf-8") as fitxer:
+        files_homografs = [int(l.split("$", 1)[0]) for l in fitxer if l.strip()]
+    if files_homografs and max(files_homografs) >= total_files:
+        print(f"ERROR: {FITXER_HOMOGRAFS} arriba fins a la fila {max(files_homografs)}")
+        print(f"       i el diccionari només en té {total_files}.")
+        print("       S'ha quedat endarrerit: passa el generar_homografs.py.")
+        return 1
+
+    versions[FITXER_HOMOGRAFS] = resum(cami_homografs)
 
     contingut = {
         "generat": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
