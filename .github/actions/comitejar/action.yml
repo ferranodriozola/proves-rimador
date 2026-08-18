@@ -1,0 +1,38 @@
+name: Fer commit i pujar
+description: >-
+  El bloc de git que hi havia copiat literalment a cada pas de cada workflow:
+  identificar-se com el bot, afegir, comitejar només si hi ha res de nou i
+  pujar-ho a main. Eren vuit còpies del mateix, i tot retoc s'havia de fer
+  vuit vegades (o quedava a mitges en alguna).
+
+inputs:
+  missatge:
+    description: El text del commit.
+    required: true
+  fitxers:
+    description: >-
+      Què s'afegeix a l'índex, en format de "pathspec" de git i separat per
+      espais. Per defecte, tot el que hagi canviat.
+    required: false
+    default: "."
+
+runs:
+  using: composite
+  steps:
+    - name: Comitejar i pujar
+      shell: bash
+      env:
+        MISSATGE: ${{ inputs.missatge }}
+        FITXERS: ${{ inputs.fitxers }}
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+
+        set -f
+        git add -- $FITXERS
+        set +f
+
+        git commit -m "$MISSATGE" || echo "No s'han detectat canvis nous per guardar"
+
+        git pull --rebase origin main
+        git push
