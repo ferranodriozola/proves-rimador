@@ -761,7 +761,7 @@ Zuwarah € Zuwarah € NPCSG00 € zuβˈaɾə
 Zweibrücken € Zweibrücken € NPCSG00 € zβəjβɾˈukən
 Zweig € Zweig € NPCNSP0 € zβˈɛtʃ
 Zwickau € Zwickau € NPCSG00 € zβikˈaw
-zwitterió € zwitterió € NCMS000 € zβitəɾiˈo
+zwitterió € zwitterió € NCMS000 € zwitəɾiˈo
 zwitterions € zwitterió € NCMP000 € zwitəɾiˈons
 Zwolle € Zwolle € NPCSG00 € zβˈɔʎə
 Ærø € Ærø € NPCSG00 € ˈaɾu
