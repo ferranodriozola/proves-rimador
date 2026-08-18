@@ -2,3 +2,11 @@ que carreguin les dades ràpid
 progressive web app
 pronoms
 missatge d'error (quan no hi ha coincidències i és NP + flitres nom propi / plural + filtre plural / pronom feble + filtre pronoms)
+
+- A on s'utilitza "versio_estadistiques_rimador.json"? És necessari tenir-lo?
+
+- He canviat els pythons de pronoms de carpeta, arregla els directoris que pot ser que estiguin malament, dels pythons i dels workflows
+
+- He canviat el nom de la carpeta de pythons del diccionari, arregla els directoris que pot ser que estiguin malament, dels pythons i dels workflows
+
+- No m'agraden els texts dels missatges. Vull que siguin missatges bonics, cukis, agradables, però que no diguin "és el diccionari més gran de sempre" o "estem polint el diccionari", no. Que el missatge de cada mes sigui per demanar un donatiu, però adaptat a l'època i al que passi aquell mes (any nou, primavera, sant jordi, estiu, vacances, 11 de setembre aniversari del rimador, nadal..). Posa en valor que és voluntari, que no posem anuncis, que és de codi obert, que ens poden escriure per correu per qualsevol cosa... Mantén els imepratius i la primera persona del plural (ajuda'ns, col·labora amb nosaltres...). Intenta fer que els missatges no siguin iguals.
