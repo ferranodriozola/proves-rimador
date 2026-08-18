@@ -229,6 +229,25 @@ function formatarMitjana(valor) {
     return valor.toFixed(1).replace('.', ',');
 }
 
+// Gestió de versions igual que el diccionari i les llistes (vegeu
+// carregarVersions a js/script.js i carregarVersionsLlistes a
+// js/script_llistes.js): un resum sha256 del contingut, fusionat a
+// VERSIONS_FITXERS perquè és la variable que fa servir
+// llegirFitxerAmbIndexedDB per saber si la còpia guardada a IndexedDB
+// encara val.
+async function carregarVersionsStats() {
+    try {
+        const resposta = await fetch(`${ARREL}stats/versions_stats.json?t=${Date.now()}`);
+        const dades = await resposta.json();
+        if (!dades.fitxers) throw new Error("versions_stats.json no porta la llista de fitxers");
+
+        Object.assign(VERSIONS_FITXERS, dades.fitxers);
+        console.log("Versions de les estadístiques carregades correctament:", dades.fitxers);
+    } catch (err) {
+        console.error("Error carregant versions_stats.json: les estadístiques es baixaran sense memòria cau", err);
+    }
+}
+
 async function carregarEstadistiques(arxiuJson) {
     const loaderText2 = document.getElementById('loader-text2');
     const loader = document.getElementById('loader');
@@ -236,13 +255,11 @@ async function carregarEstadistiques(arxiuJson) {
     try {
         if (loaderText2) loaderText2.textContent = "Descarregant estadístiques (0/2)";
 
-        const resposta = await fetch(`${ARREL}${arxiuJson}?t=${Date.now()}`);
-
-        if (!resposta.ok) throw new Error(`Error HTTP: ${resposta.status}`);
+        await carregarVersionsStats();
 
         if (loaderText2) loaderText2.textContent = "Dibuixant els gràfics (1/2)";
 
-        const dades = await resposta.json();
+        const dades = await llegirFitxerAmbIndexedDB(`${ARREL}${arxiuJson}`, JSON.parse);
 
         document.getElementById('data-actualitzacio').textContent = dades.actualitzacio;
         document.getElementById('rang-setmana').textContent = "(" + dades.setmana.text_dies + ")";
