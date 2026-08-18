@@ -28,7 +28,13 @@ def agrupar_rimes_amb_paraules(ruta_rimes, ruta_paraules, ruta_json):
             }
         
         with open(ruta_json, 'w', encoding='utf-8') as arxiu_sortida:
-            json.dump(dades_ordenades, arxiu_sortida, indent=4, ensure_ascii=False)
+            # Sense indent=4 a posta. Amb el diccionari publicat d'ara (el v.6,
+            # 4 milions de formes) el fitxer sagnat fa 127,6 MB, i GitHub
+            # rebutja qualsevol fitxer de més de 100 MB: el commit del workflow
+            # no es podria pujar mai. Sense sagnat en fa 76,2. El JSON és
+            # exactament el mateix; aquí l'única cosa que hi havia de més eren
+            # els espais, i qui el llegeix són dos scripts, no pas ningú.
+            json.dump(dades_ordenades, arxiu_sortida, ensure_ascii=False)
             
         print("S'ha generat l'arxiu.")
         
