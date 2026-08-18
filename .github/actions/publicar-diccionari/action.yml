@@ -72,12 +72,16 @@ runs:
       uses: ./.github/actions/comitejar
       with:
         missatge: ${{ inputs.missatge }}
-        # pronoms/txt_fets/ és a .gitignore, però els 82 fitxers encara estan
-        # SEGUITS de quan s'hi van comitejar, i el .gitignore no desfà el
-        # seguiment. Sense excloure'ls, cada passada n'hi ficaria 280 MB de
-        # canvis. Per treure'ls del repositori de debò:
-        #     git rm -r --cached pronoms/txt_fets
-        fitxers: ". :!pronoms/txt_fets"
+        # Només diccionaris/, que és on és TOT el que fa aquesta acció: les
+        # columnes, les internades, el versions.json, la columna 10 i el
+        # diccionari base. Amb "." s'hi afegiria també pronoms/txt_fets/, que
+        # són 280 MB refets a cada passada.
+        #
+        # I no s'exclou amb un pathspec negatiu (". :!pronoms/txt_fets"), que
+        # és com estava i com petava: en topar amb una ruta ignorada, el git
+        # add no l'afegeix però SURT AMB CODI 1, i el pas es posa vermell. Amb
+        # un pathspec normal, les ignorades se les salta en silenci i surt amb 0.
+        fitxers: diccionaris
 
 # ------ El diccionari.6.txt sencer, per si el vols mirar
 #        No es comiteja: fa 324 MB i GitHub rebutja els fitxers de més de 100.
