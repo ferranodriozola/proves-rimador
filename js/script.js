@@ -105,22 +105,32 @@ const Loader = {
 
 // ============================================================= //
 
-//carregar json nàufragues
-// Un Set de paraules en minúscules, i no pas la llista tal com arriba: la
-// comprovació es fa a cada actualitzarRimes(), o sigui a cada clic de
-// casella, i recórrer tota la llista comparant-la paraula per paraula era
-// feina repetida per no res.
-let naufragues = new Set();
+// PARAULES NÀUFRAGUES
+//
+// Una paraula és nàufraga quan no rima consonantment amb cap altra: el seu grup
+// de rima només la conté a ella, encara que hi surti diverses vegades amb codis
+// diferents.
+//
+// Abans això es mirava en un paraules_naufragues.json de 3,9 MB que es baixava
+// a CADA visita (anava amb ?t=Date.now(), o sigui que no es cachejava mai).
+// Amb la memòria cau calenta era gairebé l'única cosa que quedava per baixar.
+//
+// Però la resposta ja la tenim: l'índex de rimes diu quines files comparteixen
+// rima amb la paraula cercada, i mirar-ne les poques que són (47 de mitjana) és
+// instantani. La llista només la necessita la pàgina que les ensenya totes.
+let paraulaEsNaufraga = false;
 
-async function carregarNaufragues() {
-  try {
-    const resposta = await fetch(`${ARREL}llistes/paraules_naufragues.json?t=${Date.now()}`);
-    const dades = await resposta.json();
-    naufragues = new Set(dades.map(item => item.paraula.toLowerCase()));
-    console.log("Paraules nàufragues carregades:", naufragues.size);
-  } catch (err) {
-    console.error("Error carregant el json de paraules nàufragues", err);
+function calcularSiEsNaufraga(fila) {
+  if (fila < 0 || !indexConsonant) return false;
+
+  const rima = col3.idx[fila];
+  const paraula = array0[fila].toLowerCase();
+  const { inici, files } = indexConsonant;
+
+  for (let k = inici[rima]; k < inici[rima + 1]; k++) {
+    if (array0[files[k]].toLowerCase() !== paraula) return false;
   }
+  return true;
 }
 
 
@@ -297,7 +307,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         await carregarVersions();
-        await carregarNaufragues();
         const [paraules, ...internades] = await Promise.all([
             llegirFitxerAmbIndexedDB(CAMI_PARAULES),
             ...COLUMNES_INTERNADES.map(carregarColumnaInternada)
@@ -1018,6 +1027,8 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
     }
   }
 
+  paraulaEsNaufraga = calcularSiEsNaufraga(filaTrobada);
+
   // Els filtres de síl·labes i de categoria no depenen de la paraula sinó del
   // seu valor de columna, i valors diferents només n'hi ha 15 i 337. En lloc
   // de fer la mateixa pregunta 619.783 vegades, es respon un cop per valor i
@@ -1204,7 +1215,7 @@ function actualitzarRimes() {
   var textNombre = document.getElementById("nombre");
 
   if (matches.length > 0) {
-    var esNaufraga = naufragues.has(String(paraulacerca[0]).toLowerCase());
+    var esNaufraga = paraulaEsNaufraga;
     var tipusRima = document.getElementById('rimaSelector').value;
     if (esNaufraga && tipusRima === 'r.consonant') {
       impressio = null;
