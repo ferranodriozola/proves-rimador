@@ -35,10 +35,14 @@ import unicodedata
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DIR_TXT = os.path.join(BASE_DIR, "txt_fets")
-DIR_DICCIONARIS = os.path.join(BASE_DIR, "..", "diccionaris")
 
-FITXER_BASE = os.path.join(DIR_DICCIONARIS, "diccionari.5.2.3.txt")
-FITXER_SORTIDA = os.path.join(DIR_DICCIONARIS, "diccionari.6.txt")
+# Quin diccionari és el base i quin es publica ho diu config.py, que és l'únic
+# lloc del repositori que ho diu.
+sys.path.insert(0, os.path.join(BASE_DIR, "..", "diccionaris", "pythons"))
+import config
+
+FITXER_BASE = config.CAMI_BASE
+FITXER_SORTIDA = config.CAMI_PUBLICAT
 
 CAMPS = 10
 
@@ -158,6 +162,15 @@ def ajuntar(base=FITXER_BASE, sortida=FITXER_SORTIDA, fitxers=None):
 
 
 def main():
+    # Si l'interruptor publica el diccionari base, aquest script no té cap
+    # feina: no hi ha cap v.6 a fer, i escriure'l voldria dir sobreescriure el
+    # diccionari que s'edita a mà amb ell mateix més les formes amb pronom.
+    if not config.CAL_V6:
+        raise SystemExit(
+            f"config.py publica {config.DICCIONARI_PUBLICAT}, que és el "
+            "diccionari base:\nno hi ha cap diccionari amb pronoms per fer."
+        )
+
     print(f"Ajuntant a {os.path.basename(FITXER_SORTIDA)}:\n")
     total, velles = ajuntar()
     mida = os.path.getsize(FITXER_SORTIDA) / 1e6
