@@ -168,18 +168,24 @@ jobs:
           #   diccionari*.txt                   font d'on surten les columnes
           #   separat/col_10 (canvis aquí)/     font que edites a mà
           #   pronoms/                          no hi ha res del lloc que hi apunti
-          #   bot/resultat_ordenat_cons.json    el llegeixen el bot i el
-          #                                     generar_naufragues.py, mai el navegador
+          #   bot/resultat_ordenat_cons.json    el llegeix el bot, mai el navegador
+          #   separat/col_9.txt                 les transcripcions senceres: 73 MB
+          #                                     que el navegador ja no demana mai
+          #                                     (en té prou amb el homografs.txt).
+          #                                     Al repositori s'hi queda: d'ella
+          #                                     surt el homografs.txt i els mots de 7.
           #
-          # El que SÍ que s'ha de publicar de diccionaris/ són les col_0..col_9,
-          # la carpeta internat/ i el versions.json: això és el que es baixa el
-          # navegador (vegeu llegirFitxerAmbIndexedDB a js/script.js).
+          # El que SÍ que s'ha de publicar de diccionaris/ són les col_0..col_8,
+          # el homografs.txt, la carpeta internat/ i el versions.json: això és el
+          # que es baixa el navegador (vegeu llegirFitxerAmbIndexedDB a
+          # js/script.js).
           abans=$(du -sm . | cut -f1)
           rm -rf node_modules
           rm -f  diccionaris/diccionari*.txt
           rm -rf "diccionaris/separat/col_10 (canvis aquí)"
           rm -rf pronoms
           rm -f  bot/resultat_ordenat_cons.json
+          rm -f  diccionaris/separat/col_9.txt
           echo "Paquet: ${abans} MB -> $(du -sm . | cut -f1) MB"
 
           # Xarxa de seguretat: si un dia el lloc passa a demanar alguna
@@ -187,7 +193,7 @@ jobs:
           # silenciós als visitants.
           for cal in diccionaris/versions.json \
                      diccionaris/separat/col_0.txt \
-                     diccionaris/separat/col_9.txt \
+                     diccionaris/separat/homografs.txt \
                      diccionaris/separat/internat \
                      dist/css/styles.min.css \
                      dist/js/script.min.js; do
