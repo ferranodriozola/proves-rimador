@@ -182,7 +182,7 @@ python3 pronoms/llicencies.py
 
 ### `generar_tot_1_pronom.py` — el driver
 
-- Llegeix les 10 columnes de `diccionaris/separat/col_*.txt` i comprova que
+- Llegeix els 10 camps del diccionari base i comprova que
   tinguin el mateix nombre de línies.
 - `FORMES` tradueix els 16 codis EAGLES que ens interessen a `(forma verbal,
   persona)`: infinitiu, gerundi i les 14 etiquetes d'imperatiu foses en 5
@@ -237,9 +237,15 @@ python3 pronoms/ajuntar_diccionari_6.py
 ```
 
 > `diccionari.6.txt` és a `.gitignore`: fa 324 MB i GitHub rebutja els fitxers
-> de més de 100 MB. Del workflow en surt com a **artefacte**, no pas com a
-> commit. Si algun dia ha d'anar al repositori, cal partir-lo com ja es fa amb
-> la columna 10.
+> de més de 100 MB. El que sí que va al repositori és **partit en columnes**,
+> que és el que es baixa el navegador (vegeu `diccionaris/README.md`). Del
+> workflow en surt, a més, com a artefacte de 3 dies, per si el vols mirar.
+
+> **D'on llegeixen els generadors.** Del diccionari base
+> (`diccionaris/diccionari.5.2.3.txt`), no pas de `diccionaris/separat/`. Les
+> columnes de `separat/` són les del diccionari **publicat**, que ja porta les
+> formes amb pronom: partir-ne seria fer pronoms de formes que ja en duen. El
+> nom del diccionari base surt de `diccionaris/pythons/config.py`.
 
 ### `llista_verbs.py`
 
