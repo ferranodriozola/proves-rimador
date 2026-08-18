@@ -202,6 +202,33 @@ function omplirPodiHTML(idElement, arrayDades, etiqueta) {
     });
 }
 
+function colorsGraficLinia(temaSober) {
+    return {
+        cerques: {
+            linia: temaSober ? '#aa0000' : '#d30505',
+            fons: temaSober ? 'rgba(170, 0, 0, 0.2)' : 'rgba(255, 145, 255, 0.55)'
+        },
+        usuaris: {
+            linia: temaSober ? '#555555' : '#0055ff',
+            fons: temaSober ? 'rgba(85, 85, 85, 0.2)' : 'rgba(0, 85, 255, 0.2)'
+        }
+    };
+}
+
+function calcularMitjanesDiaries(dadesLinia) {
+    // La mitjana és la del que es veu dibuixat: tots els dies de la finestra,
+    // hi hagi hagut cerques o no. Els dies a zero també hi compten.
+    if (dadesLinia.length === 0) return { cerques: 0, usuaris: 0, dies: 0 };
+
+    const mitjana = clau => dadesLinia.reduce((suma, item) => suma + item[clau], 0) / dadesLinia.length;
+
+    return { cerques: mitjana('cerques'), usuaris: mitjana('usuaris'), dies: dadesLinia.length };
+}
+
+function formatarMitjana(valor) {
+    return valor.toFixed(1).replace('.', ',');
+}
+
 async function carregarEstadistiques(arxiuJson) {
     const loaderText2 = document.getElementById('loader-text2');
     const loader = document.getElementById('loader');
@@ -259,8 +286,13 @@ async function carregarEstadistiques(arxiuJson) {
 
         const temaSober = document.documentElement.getAttribute('data-theme') === 'sober' || document.body.getAttribute('data-theme') === 'sober';
         const dadesLinia = dades.grafics.grafic_linia_diaria;
+        const colorsLinia = colorsGraficLinia(temaSober);
+        const mitjanes = calcularMitjanesDiaries(dadesLinia);
         const ctxLinia = document.getElementById('graficLinia').getContext('2d');
-        
+
+        document.getElementById('mitjana-cerques').textContent = formatarMitjana(mitjanes.cerques);
+        document.getElementById('mitjana-usuaris').textContent = formatarMitjana(mitjanes.usuaris);
+
         window.graficLiniaObj = new Chart(ctxLinia, {
             type: 'line',
             data: {
@@ -268,19 +300,49 @@ async function carregarEstadistiques(arxiuJson) {
                 datasets: [{
                     label: 'Cerques',
                     data: dadesLinia.map(item => item.cerques),
-                    borderColor: temaSober ? '#aa0000' : '#d30505',
-                    backgroundColor: temaSober ? 'rgba(170, 0, 0, 0.2)' : 'rgba(255, 145, 255, 0.55)',                    borderWidth: 2,
+                    borderColor: colorsLinia.cerques.linia,
+                    backgroundColor: colorsLinia.cerques.fons,
+                    borderWidth: 2,
                     fill: true,
                     tension: 0.3
                 },
                 {
                     label: 'Usuaris únics',
                     data: dadesLinia.map(item => item.usuaris),
-                    borderColor: temaSober ? '#555555' : '#0055ff', 
-                    backgroundColor: temaSober ? 'rgba(85, 85, 85, 0.2)' : 'rgba(0, 85, 255, 0.2)',
+                    borderColor: colorsLinia.usuaris.linia,
+                    backgroundColor: colorsLinia.usuaris.fons,
                     borderWidth: 2,
                     fill: true,
                     tension: 0.3
+                },
+                // Les mitjanes són ratlles horitzontals: Chart.js no en fa sense
+                // el plugin d'anotacions, o sigui que les dibuixem com un dataset
+                // més amb el mateix valor a tots els dies i sense punts.
+                {
+                    label: 'Mitjana de cerques',
+                    data: dadesLinia.map(() => mitjanes.cerques),
+                    borderColor: colorsLinia.cerques.linia,
+                    backgroundColor: colorsLinia.cerques.linia,
+                    borderWidth: 2,
+                    borderDash: [6, 5],
+                    pointRadius: 0,
+                    pointHoverRadius: 0,
+                    fill: false,
+                    tension: 0,
+                    esMitjana: true
+                },
+                {
+                    label: 'Mitjana d\'usuaris únics',
+                    data: dadesLinia.map(() => mitjanes.usuaris),
+                    borderColor: colorsLinia.usuaris.linia,
+                    backgroundColor: colorsLinia.usuaris.linia,
+                    borderWidth: 2,
+                    borderDash: [6, 5],
+                    pointRadius: 0,
+                    pointHoverRadius: 0,
+                    fill: false,
+                    tension: 0,
+                    esMitjana: true
                 }]
             },
             options: {
@@ -292,7 +354,19 @@ async function carregarEstadistiques(arxiuJson) {
                         ticks: { stepSize: 1 }
                     }
                 },
-                plugins: { legend: { display: true } }
+                plugins: {
+                    // Les mitjanes no van a la llegenda: ja tenen el seu peu de
+                    // text a sobre del gràfic, amb el color i tot, i posar-les
+                    // aquí fa créixer la llegenda fins a menjar-se l'alçada del
+                    // dibuix (al mòbil, sobretot).
+                    legend: {
+                        display: true,
+                        labels: { filter: item => !item.text.startsWith('Mitjana') }
+                    },
+                    // La mitjana val el mateix tots els dies i ja surt escrita
+                    // sobre el gràfic: al tooltip només faria nosa.
+                    tooltip: { filter: context => !context.dataset.esMitjana }
+                }
             }
         });
 
@@ -430,12 +504,27 @@ function actualitzarColorsGrafics() {
     }
 
     if (window.graficLiniaObj) {
-        window.graficLiniaObj.data.datasets[0].borderColor = temaSober ? '#aa0000' : '#d30505';
-        window.graficLiniaObj.data.datasets[0].backgroundColor = temaSober ? 'rgba(170, 0, 0, 0.2)' : 'rgba(255, 145, 255, 0.55)';
-        
-        window.graficLiniaObj.data.datasets[1].borderColor = temaSober ? '#555555' : '#0055ff';
-        window.graficLiniaObj.data.datasets[1].backgroundColor = temaSober ? 'rgba(85, 85, 85, 0.2)' : 'rgba(0, 85, 255, 0.2)';
-        
+        const colorsLinia = colorsGraficLinia(temaSober);
+        const datasets = window.graficLiniaObj.data.datasets;
+
+        datasets[0].borderColor = colorsLinia.cerques.linia;
+        datasets[0].backgroundColor = colorsLinia.cerques.fons;
+
+        datasets[1].borderColor = colorsLinia.usuaris.linia;
+        datasets[1].backgroundColor = colorsLinia.usuaris.fons;
+
+        // Les mitjanes van del color de la seva línia, farcit inclòs: així el
+        // quadradet de la llegenda no queda de l'altre color.
+        if (datasets[2]) {
+            datasets[2].borderColor = colorsLinia.cerques.linia;
+            datasets[2].backgroundColor = colorsLinia.cerques.linia;
+        }
+
+        if (datasets[3]) {
+            datasets[3].borderColor = colorsLinia.usuaris.linia;
+            datasets[3].backgroundColor = colorsLinia.usuaris.linia;
+        }
+
         window.graficLiniaObj.update();
     }
 

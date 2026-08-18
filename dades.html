@@ -137,6 +137,10 @@
         <!-- Gràfics -->
         <div class="grafic-caixa">
             <h3>Evolució de cerques (darrers 30 dies)</h3>
+            <p class="mitjanes-grafic">
+                <span class="mitjana-item mitjana-cerques"><i></i>Mitjana de <b>cerques</b> al dia: <b id="mitjana-cerques">0</b></span>
+                <span class="mitjana-item mitjana-usuaris"><i></i>Mitjana de <b>dispositius únics</b> al dia: <b id="mitjana-usuaris">0</b></span>
+            </p>
             <div class="grafic-cos">
                 <canvas id="graficLinia"></canvas>
             </div>
@@ -232,6 +236,11 @@
                 <h4>Què són el nombre de cerques dels podis? I el del gràfic de línies?</h4>
                 <p>Són el nombre de "cerques úniques" d'aquell dia. El dia present queda fora.
                 Els dies amb més/menys dispositius es refereix al dia amb més/menys dispositius diferents, sense tenir en compte si havien fet cerques anteriorment o no.</p>
+
+                <h4>Què són les dues ratlles horitzontals del gràfic de línies?</h4>
+                <p>Són les mitjanes diàries de cerques i de dispositius únics, cadascuna del color de la seva línia. Es calculen sobre els 30 dies
+                    del gràfic, exactament els mateixos que hi ha dibuixats: els dies a zero també hi compten. El dia present queda fora, com a la resta
+                    del gràfic.</p>
 
                 <h4>Què és el percentatge d'ús dels filtres?</h4>
                 <p>Ens referim a com els usuaris tenen configurats els filtres en el moment de cercar, sobre el total de cerques de l'històric. 
