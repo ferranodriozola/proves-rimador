@@ -232,6 +232,39 @@
     margin: 0px 12px;
 }
 
+/* Mitjanes diàries: fan de peu del gràfic d'evolució i alhora de llegenda de
+   les dues ratlles horitzontals, per això cada ítem va del color de la seva. */
+.mitjanes-grafic {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 22px;
+    margin: 0px 12px 12px 12px;
+    font-family: var(--font-divertida);
+    font-size: 13px;
+}
+
+.mitjana-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.mitjana-item i {
+    display: inline-block;
+    flex: 0 0 auto;
+    width: 26px;
+    border-top: 2px dashed currentColor;
+}
+
+.mitjana-cerques {
+    color: $vermell-principal;
+}
+
+.mitjana-usuaris {
+    color: $blau-grafic;
+}
+
 .grafic-caixa.formatge .grafic-cos {
     height: 500px;
     width: 100%;
@@ -284,6 +317,10 @@
 
     .grafic-caixa.formatge .grafic-cos {
         height: 280px;
+    }
+
+    .mitjanes-grafic {
+        font-size: 12px;
     }
 }
 

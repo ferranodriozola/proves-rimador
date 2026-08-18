@@ -394,6 +394,20 @@
   border-top: 1px solid var(--sober-border);
 }
 
+[data-theme="sober"] .mitjanes-grafic {
+  font-family: var(--sober-font);
+}
+
+/* Els mateixos colors que agafen les línies del gràfic en tema sobri
+   (vegeu colorsGraficLinia() a js/script_dades.js). */
+[data-theme="sober"] .mitjana-cerques {
+  color: var(--sober-accent);
+}
+
+[data-theme="sober"] .mitjana-usuaris {
+  color: var(--sober-muted);
+}
+
 [data-theme="sober"] ::-webkit-scrollbar-thumb:vertical {
   background: var(--sober-muted);
   border: 2px solid var(--sober-border);
