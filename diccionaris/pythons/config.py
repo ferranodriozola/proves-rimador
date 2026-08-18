@@ -26,7 +26,7 @@ import os
 DICCIONARI_BASE = "diccionari.5.2.3.txt"
 
 # El diccionari que es publica: d'aquest en surten les columnes del web.
-DICCIONARI_PUBLICAT = "diccionari.6.txt"
+DICCIONARI_PUBLICAT = DICCIONARI_BASE
 
 # Tots dos viuen a diccionaris/, i aquest fitxer a diccionaris/pythons/.
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
