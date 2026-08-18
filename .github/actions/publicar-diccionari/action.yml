@@ -61,6 +61,14 @@ runs:
       shell: bash
       run: python diccionaris/pythons/generar_columnes_internades.py
 
+    # Les transcripcions de les paraules que s'escriuen igual i sonen diferent.
+    # És l'única cosa que el navegador necessitava de la col_9, que fa 73 MB:
+    # sense això, cercar qualsevol paraula repetida se la baixava sencera i
+    # deixava el loader penjat.
+    - name: Generar el fitxer d'homògrafs
+      shell: bash
+      run: python diccionaris/pythons/generar_homografs.py
+
     # Ha d'anar ABANS del comit: comprova que les deu columnes tenen el mateix
     # nombre de files. Si no quadren, peta i el workflow s'atura aquí, sense
     # publicar un diccionari trencat.
@@ -82,16 +90,3 @@ runs:
         # add no l'afegeix però SURT AMB CODI 1, i el pas es posa vermell. Amb
         # un pathspec normal, les ignorades se les salta en silenci i surt amb 0.
         fitxers: diccionaris
-
-# ------ El diccionari.6.txt sencer, per si el vols mirar
-#        No es comiteja: fa 324 MB i GitHub rebutja els fitxers de més de 100.
-#        El seu contingut ja queda al repositori partit en columnes.
-    - name: Publicar diccionari.6.txt com a artefacte
-      if: steps.config.outputs.cal_v6 == 'true'
-      uses: actions/upload-artifact@v4
-      with:
-        name: diccionari.6
-        path: diccionaris/diccionari.6.txt
-        # Poc temps a posta: el pla gratuït de GitHub té 500 MB per a
-        # artefactes i cada execució n'hi deixa una cinquantena.
-        retention-days: 3
