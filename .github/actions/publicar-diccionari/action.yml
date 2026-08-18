@@ -1,0 +1,93 @@
+name: Publicar el diccionari (pronoms, v.6, columnes i versions)
+description: >-
+  El tram compartit dels dos workflows que refan el diccionari: del diccionari
+  BASE, que qui ens crida acaba de deixar al workspace, fins a les columnes que
+  es baixa el navegador. Tot en un sol job i un sol commit.
+
+  Ha de ser una acció composta i no pas un workflow reutilitzable: un workflow a
+  part tindria el seu propi workspace i no veuria ni el diccionari base acabat
+  de refer ni el diccionari.6.txt, que no es comiteja.
+
+inputs:
+  missatge:
+    description: El text del commit (cada workflow hi diu com ha refet el diccionari).
+    required: true
+
+runs:
+  using: composite
+  steps:
+    # L'interruptor viu a diccionaris/pythons/config.py, en una sola línia.
+    # Aquí només se'n llegeix el resultat: així no hi ha dos llocs que diguin
+    # quin diccionari es publica i puguin acabar dient coses diferents.
+    - name: Quin diccionari es publica
+      id: config
+      shell: bash
+      run: python diccionaris/pythons/config.py >> "$GITHUB_OUTPUT"
+
+# ------ Formes amb pronom i diccionari.6.txt
+#        Se salten si l'interruptor publica el diccionari base: llavors les
+#        columnes que hi ha al workspace ja són les bones.
+    - name: Generar les formes amb 1 pronom
+      if: steps.config.outputs.cal_v6 == 'true'
+      shell: bash
+      working-directory: pronoms
+      run: python generar_tot_1_pronom.py
+
+    - name: Generar les formes amb 2 pronoms
+      if: steps.config.outputs.cal_v6 == 'true'
+      shell: bash
+      working-directory: pronoms
+      run: python generar_tot_2_pronoms.py
+
+    - name: Ajuntar-ho tot a diccionari.6.txt
+      if: steps.config.outputs.cal_v6 == 'true'
+      shell: bash
+      working-directory: pronoms
+      run: python ajuntar_diccionari_6.py
+
+# ------ Les columnes que es baixa el navegador
+#        Sense "if": corre sempre, publiqui's el que es publiqui. És el pas que
+#        garanteix que separat/col_0..col_9 són SEMPRE les del diccionari que
+#        diu config.py. Si el publicat és el base, torna a escriure exactament
+#        les columnes que ja hi havia.
+#
+#        La columna 10 no s'hi toca: continua sortint del diccionari base, que
+#        és el que s'edita a mà.
+    - name: Partir el diccionari publicat en columnes
+      shell: bash
+      run: python diccionaris/pythons/generar_columnes_publicades.py
+
+    - name: Generar columnes internades
+      shell: bash
+      run: python diccionaris/pythons/generar_columnes_internades.py
+
+    # Ha d'anar ABANS del comit: comprova que les deu columnes tenen el mateix
+    # nombre de files. Si no quadren, peta i el workflow s'atura aquí, sense
+    # publicar un diccionari trencat.
+    - name: Actualitzar versions.json
+      shell: bash
+      run: python diccionaris/pythons/generar_versions.py
+
+    - name: Comitejar el diccionari publicat
+      uses: ./.github/actions/comitejar
+      with:
+        missatge: ${{ inputs.missatge }}
+        # pronoms/txt_fets/ és a .gitignore, però els 82 fitxers encara estan
+        # SEGUITS de quan s'hi van comitejar, i el .gitignore no desfà el
+        # seguiment. Sense excloure'ls, cada passada n'hi ficaria 280 MB de
+        # canvis. Per treure'ls del repositori de debò:
+        #     git rm -r --cached pronoms/txt_fets
+        fitxers: ". :!pronoms/txt_fets"
+
+# ------ El diccionari.6.txt sencer, per si el vols mirar
+#        No es comiteja: fa 324 MB i GitHub rebutja els fitxers de més de 100.
+#        El seu contingut ja queda al repositori partit en columnes.
+    - name: Publicar diccionari.6.txt com a artefacte
+      if: steps.config.outputs.cal_v6 == 'true'
+      uses: actions/upload-artifact@v4
+      with:
+        name: diccionari.6
+        path: diccionaris/diccionari.6.txt
+        # Poc temps a posta: el pla gratuït de GitHub té 500 MB per a
+        # artefactes i cada execució n'hi deixa una cinquantena.
+        retention-days: 3
