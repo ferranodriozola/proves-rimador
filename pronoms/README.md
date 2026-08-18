@@ -237,9 +237,10 @@ python3 pronoms/ajuntar_diccionari_6.py
 ```
 
 > `diccionari.6.txt` és a `.gitignore`: fa 324 MB i GitHub rebutja els fitxers
-> de més de 100 MB. El que sí que va al repositori és **partit en columnes**,
-> que és el que es baixa el navegador (vegeu `diccionaris/README.md`). Del
-> workflow en surt, a més, com a artefacte de 3 dies, per si el vols mirar.
+> de més de 100 MiB. El que va al repositori és el seu contingut **partit en
+> columnes**, que és el que es baixa el navegador (vegeu
+> `diccionaris/README.md`). El fitxer sencer és un pas intermedi i no se'n
+> guarda cap còpia: si el vols mirar, refes-lo en local.
 
 > **D'on llegeixen els generadors.** Del diccionari base
 > (`diccionaris/diccionari.5.2.3.txt`), no pas de `diccionaris/separat/`. Les
