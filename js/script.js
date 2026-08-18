@@ -153,12 +153,17 @@ async function carregarVersions() {
 
 //INICI
 
-// array0 (les paraules) i array9 (les transcripcions) són llistes de text de
-// toda la vida. La resta de columnes van internades: en lloc de repetir el
-// mateix text milers de vegades, cadascuna és { taula, idx }, amb els valors
-// diferents a la taula i un número per fila que hi apunta. Guardades així
-// ocupen 11,6 MB en comptes de 111 (vegeu generar_columnes_internades.py).
-let array0, array9;
+// array0 (les paraules) és una llista de text de tota la vida. La resta de
+// columnes van internades: en lloc de repetir el mateix text milers de
+// vegades, cadascuna és { taula, idx }, amb els valors diferents a la taula i
+// un número per fila que hi apunta. Guardades així ocupen 11,6 MB en comptes
+// de 111 (vegeu generar_columnes_internades.py).
+let array0;
+
+// Les transcripcions NO es carreguen: només se'n guarda un mapa petit amb les
+// files de les paraules que s'escriuen igual i sonen diferent (vegeu
+// assegurarHomografs).
+let homografs = null;
 let col1, col2, col3, col4, col5, col6, col7, col8;
 
 // Les tres últimes columnes són sí/no (surt al Viccionari, a la Viquipèdia, al
@@ -186,10 +191,10 @@ const t8 = i => (banderes ? col8.taula[(banderes[i] >> 2) & 1] : col8.taula[col8
 let fitxersLlegits = 0;
 let nombresDeFitxers = 17; // la col_0 i, de cada columna internada, la taula i els índexs
 
-// col_9 (les transcripcions senceres) no hi és: fa 10 MB, una quarta part
-// de tot el diccionari, i només fa falta per al diàleg d'homògrafs. La
-// immensa majoria de cerques no el necessiten mai, o sigui que es baixa a
-// part i només quan toca (vegeu assegurarArray9).
+// col_9 (les transcripcions senceres) no hi és, i no s'hi baixa mai: fa 73 MB
+// i quatre milions de línies. L'única cosa que en necessitava el web era el
+// diàleg d'homògrafs, i per a això n'hi ha prou amb el homografs.txt, que fa
+// 1,7 MB (vegeu assegurarHomografs i diccionaris/pythons/generar_homografs.py).
 const CAMI_PARAULES = `${ARREL}diccionaris/separat/col_0.txt`;
 const COLUMNES_INTERNADES = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -426,31 +431,58 @@ function processarFitxerDeText(contingut) {
     return contingut.split('\n');
 }
 
-// CÀRREGA A PART DE LES TRANSCRIPCIONS (col_9)
+// CÀRREGA A PART DE LES TRANSCRIPCIONS QUE FAN FALTA
 //
-// Només fa falta quan una paraula surt escrita més d'una vegada al
+// Només fan falta quan una paraula surt escrita més d'una vegada al
 // diccionari, per saber si les entrades es pronuncien igual (i llavors
 // tant se val quina s'agafi) o no (i llavors s'ha de preguntar amb el
-// diàleg d'homògrafs). Baixar-lo d'entrada volia dir fer esperar
-// tothom per 10 MB que la majoria de gent no farà servir mai.
+// diàleg d'homògrafs).
+//
+// Això es feia baixant la col_9 SENCERA. Amb el diccionari d'ara són 73 MB i
+// quatre milions de cadenes de text: el navegador es quedava penjat amb el
+// loader en cercar qualsevol paraula repetida ('compreu', posem per cas). I
+// gairebé sempre la resposta era "totes sonen igual", o sigui que tota
+// aquella feina no servia per a res.
+//
+// El homografs.txt només porta les files de les paraules que sonen de més
+// d'una manera: 1,7 MB en lloc de 73. Una paraula que no hi surt vol dir que
+// totes les seves entrades sonen igual, i és per això que transcripcio() pot
+// tornar undefined sense que res es trenqui: un conjunt de undefined té una
+// sola entrada, que és exactament la resposta que buscàvem.
 //
 // La promesa es guarda perquè dues cerques seguides no el demanin dues
 // vegades; si falla, s'esborra i el proper cop es torna a intentar.
-let promesaArray9 = null;
+let promesaHomografs = null;
 
-function assegurarArray9() {
-  if (array9) return Promise.resolve(array9);
-  if (promesaArray9) return promesaArray9;
+// La transcripció d'una fila, si és una de les que poden fer sortir el diàleg.
+// Per a la resta de files, undefined: no se'n guarda cap.
+const transcripcio = fila => (homografs ? homografs.get(fila) : undefined);
 
-  promesaArray9 = Loader.mentre('Carregant les transcripcions...', async () => {
-    array9 = await llegirFitxerAmbIndexedDB(`${ARREL}diccionaris/separat/col_9.txt`);
-    return array9;
+function textAHomografs(contingut) {
+  const mapa = new Map();
+  if (!contingut) return mapa;
+  for (const linia of contingut.split('\n')) {
+    if (!linia) continue;
+    const tall = linia.indexOf('$');
+    mapa.set(Number(linia.slice(0, tall)), linia.slice(tall + 1));
+  }
+  return mapa;
+}
+
+function assegurarHomografs() {
+  if (homografs) return Promise.resolve(homografs);
+  if (promesaHomografs) return promesaHomografs;
+
+  promesaHomografs = Loader.mentre('Carregant les transcripcions...', async () => {
+    homografs = await llegirFitxerAmbIndexedDB(
+      `${ARREL}diccionaris/separat/homografs.txt`, textAHomografs);
+    return homografs;
   }).catch(err => {
-    promesaArray9 = null;
+    promesaHomografs = null;
     throw err;
   });
 
-  return promesaArray9;
+  return promesaHomografs;
 }
 
 // NETEJAR INDEXEDDB
@@ -875,17 +907,19 @@ function triarHomograf(paraulaCercada, opcions) {
 }
 
 // Les columnes no són paràmetres: es llegeixen d'on són. Ho eren, i ja hi
-// havia una excepció (array9, que es carrega a part i pot arribar enmig
+// havia una excepció (les transcripcions, que es carreguen a part i poden arribar enmig
 // d'aquesta funció); ara que a més hi ha les banderes empaquetades i els
 // índexs de rima, passar-ho tot per la porta era una llista de nou arguments
 // que no deia res que no se sabés.
 async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusRima, inclourePropis, inclourePlurals) {
   Debug.logTime('buscarParaula');
 
-  // La transcripció de la paraula cercada no la fa servir ningú més; si
-  // encara no s'ha carregat, val més deixar-la buida que no pas baixar
-  // 10 MB per emplenar un lloc de la llista que ningú no mira.
-  const transcripcioDe = i => (array9 ? array9[i] : undefined);
+  // La transcripció de la paraula cercada omple l'últim lloc de la llista,
+  // que efectivament no llegeix ningú (només se'n fan servir el 0, el 2, el 3
+  // i el 4). Si la fila no és de cap paraula que soni de dues maneres, aquí hi
+  // queda undefined, igual que abans quedava quan encara no s'havia carregat
+  // res.
+  const transcripcioDe = i => transcripcio(i);
 
   // Aquestes dues eren variables globals. Ara que la funció és asíncrona
   // (s'atura a esperar el diàleg d'homògrafs), dues cerques poden estar
@@ -926,9 +960,12 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
   } else {
     // Aquí sí que calen les transcripcions: són l'única manera de saber si
     // aquestes entrades es pronuncien totes igual o si s'ha de preguntar.
-    await assegurarArray9();
+    await assegurarHomografs();
 
-    const transcripcions = new Set(coincidencies.map(fila => array9[fila]));
+    // Si cap d'aquestes files no surt al homografs.txt, totes tornen undefined
+    // i el conjunt en té una de sola: vol dir que sonen totes igual i no cal
+    // preguntar res. És el cas de gairebé totes les paraules repetides.
+    const transcripcions = new Set(coincidencies.map(fila => transcripcio(fila)));
     if (transcripcions.size === 1) {
       var indexparaula = coincidencies[0];
       filaTrobada = indexparaula;
@@ -946,9 +983,9 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
       const opcions = [];
 
       coincidencies.forEach(index => {
-        const transcripcio = array9[index];
-        if (vistes.has(transcripcio)) return;
-        vistes.add(transcripcio);
+        const seva = transcripcio(index);
+        if (vistes.has(seva)) return;
+        vistes.add(seva);
 
         opcions.push({
           index,
@@ -956,7 +993,7 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
           paraula: array0[index],
           arrel: t1(index),
           categoria: descriureCategoria(t2(index)),
-          transcripcio: transcripcio.startsWith("/") ? transcripcio : "/" + transcripcio + "/"
+          transcripcio: seva.startsWith("/") ? seva : "/" + seva + "/"
         });
       });
 
