@@ -13,6 +13,12 @@ inputs:
     description: >-
       Què s'afegeix a l'índex, en format de "pathspec" de git i separat per
       espais. Per defecte, tot el que hagi canviat.
+
+      COMPTE amb els pathspecs negatius (":!alguna/cosa"): si l'ordre en porta
+      cap i pel camí hi ha rutes ignorades pel .gitignore, el git add no les
+      afegeix però surt amb codi 1 i el pas es posa vermell. Amb pathspecs
+      normals se les salta en silenci. Val més dir què s'ha d'afegir que no
+      pas què s'ha de deixar fora.
     required: false
     default: "."
 
