@@ -1,0 +1,21 @@
+# El Rimador — https://rimador.cat/
+#
+# Tot obert: el lloc no té cap racó privat, i el que no s'ha de publicar ja no
+# arriba ni tan sols al paquet de Pages (vegeu el pas «Aprimar el paquet abans
+# de publicar» a .github/workflows/deploy.yml).
+User-agent: *
+Allow: /
+
+# El 404.html no cal barrar-lo des d'aquí: ell mateix duu
+# <meta name="robots" content="noindex, nofollow">. Barrar-lo amb un Disallow
+# fins i tot seria contraproduent, perquè aleshores el rastrejador no podria
+# arribar a llegir aquell noindex.
+
+# Si algun dia el rastreig de diccionaris/ fa nosa (són desenes de fitxers de
+# text que només demana el JS, mai cap visitant), es pot descomentar la línia
+# de sota. No hi és de sèrie perquè barrar fitxers que la pàgina es baixa fa
+# que Google la renderitzi a mitges, i no val la pena arriscar-s'hi sense que
+# hi hagi cap problema real.
+# Disallow: /diccionaris/
+
+Sitemap: https://rimador.cat/sitemap.xml
