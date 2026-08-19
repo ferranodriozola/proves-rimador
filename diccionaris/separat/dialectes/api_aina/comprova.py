@@ -120,6 +120,9 @@ def main():
     p.add_argument("--entrada", default="../../col_0.txt")
     p.add_argument("--dialectes", default=",".join(DIALECTES))
     p.add_argument("--cache", default="cache")
+    p.add_argument("--perfil", default="rapid", choices=list(PERFILS),
+                   help="ritme de les peticions de la verificació "
+                        "(per defecte, %(default)s)")
     p.add_argument("--mostra", type=int, default=0,
                    help="mots per dialecte que es tornen a demanar a l'API "
                         "(0 = només revisió interna)")
@@ -141,7 +144,7 @@ def main():
 
     if args.mostra:
         print(f"\nVerificació contra l'API ({args.mostra} mots per dialecte):")
-        sessio, regulador = sessio_nova(), Regulador(PERFILS["rapid"])
+        sessio, regulador = sessio_nova(), Regulador(PERFILS[args.perfil])
         for d in dialectes:
             if verifica(d, linies, args, sessio, regulador):
                 greus.append(f"{d}: hi ha transcripcions que no coincideixen amb "
