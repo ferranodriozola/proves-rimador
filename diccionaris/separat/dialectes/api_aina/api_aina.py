@@ -16,6 +16,9 @@ Transcripció fonètica multidialectal (API del Projecte Aina) amb:
     python3 api_aina.py --entrada ../../col_1.txt
     python3 api_aina.py --estat              # només mostra quant queda i surt
     python3 api_aina.py --marge 500          # descarta més cua de caché en començar
+
+Quan hagi acabat, comprova el resultat amb:
+    python3 comprova.py --mostra 200
 """
 
 import argparse
@@ -88,6 +91,7 @@ class Regulador:
         self.descans = perfil["descans"]
         self.factor = 1.0            # multiplicador de frenada
         self.peticions = 0
+        self.demanats_sols = 0       # mots reenviats d'un en un pel sedàs
         self.finestra = deque()      # marques de temps de l'últim minut
         self.pany = threading.Lock()
 
@@ -118,6 +122,16 @@ class Regulador:
             print(f"\n  · descans de {llarg:.0f} s després de {self.peticions} peticions…",
                   flush=True)
             time.sleep(llarg)
+
+    def apunta_demanats_sols(self, quants):
+        with self.pany:
+            self.demanats_sols += quants
+
+    def buida_demanats_sols(self):
+        """Torna el compte i el posa a zero (per fer un resum per dialecte)."""
+        with self.pany:
+            quants, self.demanats_sols = self.demanats_sols, 0
+        return quants
 
     def ha_anat_be(self):
         with self.pany:
@@ -245,8 +259,11 @@ def transcriure_lot(sessio, lot, dialecte, regulador):
             resultats = {m: x for m, x in zip(lot, linies) if not sospitosa(x, m)}
             dubtosos = [m for m in lot if m not in resultats]
             if dubtosos:
-                print(f"\n  ! {dialecte}: {len(dubtosos)} de {len(lot)} mots fan "
-                      f"pudor de restes; es tornen a demanar sols", flush=True)
+                # No ho diem lot per lot: al diccionari hi ha 1.721 mots que es
+                # transcriuen amb espais de debò («BlaBlaCar» → «blˈa βlˈa
+                # kˈar») i ompliria la pantalla d'avisos per no res. Al final de
+                # cada dialecte se'n fa un resum.
+                regulador.apunta_demanats_sols(len(dubtosos))
         else:
             # Aquí sí que s'ha de refer tot: sense correspondència 1:1 no sabem
             # quina línia és de quin mot.
@@ -255,11 +272,37 @@ def transcriure_lot(sessio, lot, dialecte, regulador):
     # pla B: un per un (lent però segur)
     for mot in dubtosos:
         r = demanar_amb_reintents(sessio, mot + ".", dialecte, regulador)
-        if r is not None:
-            r = neteja(r)
-            if not sospitosa(r):        # mot a mot: sedàs bàsic, si no hi ha
-                resultats[mot] = r      # mots que no s'acceptarien mai
+        if r is None:
+            continue
+        r = neteja(r)
+        if not r:
+            continue                    # buida: cap mot no sona a res
+        if sospitosa(r) and not confirmat(sessio, mot, r, dialecte, regulador):
+            continue
+        resultats[mot] = r
     return resultats
+
+
+def confirmat(sessio, mot, transcripcio, dialecte, regulador):
+    """Segona opinió per a un mot que fa mala cara demanat tot sol.
+
+    sospitosa() és una regla de polze, i una regla de polze no pot condemnar cap
+    mot per sempre: si un mot es transcrivís de debò amb dos espais seguits,
+    rebutjar-lo sempre deixaria el fitxer d'aquell dialecte sense escriure per
+    sempre més, per moltes vegades que tornessis a executar l'script. (N'hem
+    provat els 1.721 mots del diccionari amb guió, apòstrof o majúscula
+    interior, als 6 dialectes: cap dels 10.326 no duu dos espais. Però el
+    diccionari en té 529.206 i no els hem vist tots.)
+
+    Ho resolem preguntant-ho un segon cop: les restes d'una altra petició són
+    fortuïtes i no tornen a sortir igual, mentre que una transcripció bona sí.
+    """
+    segon = demanar_amb_reintents(sessio, mot + ".", dialecte, regulador)
+    if segon is None or neteja(segon) != transcripcio:
+        return False
+    print(f"\n  · {dialecte}: «{mot}» → «{transcripcio}» surt igual dos cops "
+          f"seguits; ho donem per bo", flush=True)
+    return True
 
 
 def neteja(transcripcio):
@@ -397,6 +440,7 @@ def processar_dialecte(dialecte, mots_unics, linies_originals, args, regulador):
     except KeyboardInterrupt:
         cache.tanca()
         raise
+    resum_demanats_sols(regulador, dialecte)
     escriure_final(dialecte, cache, mots_unics, linies_originals, args)
     cache.tanca()
 
@@ -425,6 +469,17 @@ def completar(dialectes, caches, mots_unics, args, regulador, voltes=4):
             time.sleep(espera)
             regulador.frenar(3.0 * volta)
         executar(tasques, caches, total, args, regulador, fils=1 if volta else None)
+
+
+def resum_demanats_sols(regulador, dialecte=""):
+    """Diu quants mots ha hagut de repescar el sedàs, tot d'una vegada."""
+    quants = regulador.buida_demanats_sols()
+    if not quants:
+        return
+    qui = f"{dialecte}: " if dialecte else ""
+    print(f"  · {qui}{mil(quants)} mots demanats d'un en un perquè al lot "
+          f"sortien amb espais. És l'esperat: n'hi ha que en duen de debò "
+          f"(«BlaBlaCar» → «blˈa βlˈa kˈar»).", flush=True)
 
 
 def escriure_final(dialecte, cache, mots_unics, linies_originals, args):
@@ -459,6 +514,7 @@ def processar_alhora(dialectes, mots_unics, linies_originals, args, regulador):
               f"{mil(len(pendents))} pendents", flush=True)
 
     completar(dialectes, caches, mots_unics, args, regulador)
+    resum_demanats_sols(regulador)
     for dialecte in dialectes:
         escriure_final(dialecte, caches[dialecte], mots_unics, linies_originals, args)
         caches[dialecte].tanca()
