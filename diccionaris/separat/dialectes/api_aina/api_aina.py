@@ -4,7 +4,7 @@ from tqdm import tqdm
 # 1. Connectar amb el servidor de l'API
 client = Client("https://projecte-aina-transcripcio-fonetica-catala.hf.space/")
 
-nom_fitxer_entrada = "prova.txt" 
+nom_fitxer_entrada = "../../col_0.txt" 
 dialectes = ["Central", "Valencia", "Occidental", "Balear", "Alguerès", "Rosellonès"]
 
 # 2. Llegir totes les línies mantenint l'ordre original
