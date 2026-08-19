@@ -45,9 +45,15 @@ PRONOMS = enclisi.ORDRE_PRONOMS
 # Les 14 etiquetes d'imperatiu es fonen en 5 persones; el sufix 'Y' només marca
 # homografia amb una altra cel·la del paradigma i la 'X' marca 1a conjugació:
 # cap de les dues no canvia la persona (pla_un_pronom.md §3.2).
+#
+# La 2a lletra és el TIPUS de verb, no la forma: M principal, S semiauxiliar
+# (ser/ésser) i A auxiliar (haver). L'imperatiu ja duia les tres files 'VSM…',
+# però l'infinitiu i el gerundi només tenien la principal, i per això 'ser',
+# 'ésser', 'sent', 'essent', 'haver' i 'havent' no generaven res: hi faltaven
+# 'haver-hi' i 'ser-hi', que són de les formes amb pronom més freqüents que hi ha.
 FORMES = {
-    "VMN00000": ("N", None),
-    "VMG00000": ("G", None),
+    "VMN00000": ("N", None), "VSN00000": ("N", None), "VAN00000": ("N", None),
+    "VMG00000": ("G", None), "VSG00000": ("G", None), "VAG00000": ("G", None),
     "VMM02S00": ("M", "02S"), "VMM02S0Y": ("M", "02S"), "VSM02S00": ("M", "02S"),
     "VMM01P00": ("M", "01P"), "VSM01P00": ("M", "01P"),
     "VMM02P0X": ("M", "02P"), "VMM02P00": ("M", "02P"), "VSM02P00": ("M", "02P"),
