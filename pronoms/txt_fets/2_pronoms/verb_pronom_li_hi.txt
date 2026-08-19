@@ -32260,6 +32260,8 @@ esquivem-li-hi$esquivar$WM01P2LIHI$ɛmlij$ɛi$4$NO$NO$Diec$əskiβˈɛmlij
 esquiveu-li-hi$esquivar$WM02P2LIHI$ɛwlij$ɛi$4$NO$NO$Diec$əskiβˈɛwlij
 esquivi-li-hi$esquivar$WM03S2LIHI$iβilij$iii$4$NO$NO$Diec$əskˈiβilij
 esquivin-li-hi$esquivar$WM03P2LIHI$iβinlij$iii$4$NO$NO$Diec$əskˈiβinlij
+essent-li-hi$ser$WG0002LIHI$enlij$ei$3$Vicc$NO$Diec$əsˈenlij
+ésser-li-hi$ser$WN0002LIHI$esərlij$eəi$3$Vicc$Viq$Diec$ˈesərlij
 estabilitza-li-hi$estabilitzar$WM02S2LIHI$idzəlij$iəi$6$NO$NO$Diec$əstəβilˈidzəlij
 estabilitzant-li-hi$estabilitzar$WG0002LIHI$anlij$ai$6$NO$Viq$Diec$əstəβilidzˈanlij
 estabilitzar-li-hi$estabilitzar$WN0002LIHI$arlij$ai$6$Vicc$NO$Diec$əstəβilidzˈarlij
@@ -37014,7 +37016,9 @@ harmonitzi-li-hi$harmonitzar$WM03S2LIHI$idzilij$iii$5$Vicc$NO$Diec$ərmunˈidzil
 harmonitzin-li-hi$harmonitzar$WM03P2LIHI$idzinlij$iii$5$Vicc$NO$Diec$ərmunˈidzinlij
 hau-li-hi$heure$WM02S2LIHI$awlij$ai$2$Vicc$NO$Diec$ˈawlij
 haure-li-hi$heure$WN0002LIHI$awɾəlij$aəi$3$Vicc$NO$Diec$ˈawɾəlij
+havent-li-hi$haver$WG0002LIHI$ɛnlij$ɛi$3$Vicc$NO$Diec$əβˈɛnlij
 havent-li-hi$heure$WG0002LIHI$ɛnlij$ɛi$3$Vicc$NO$Diec$əβˈɛnlij
+haver-li-hi$haver$WN0002LIHI$ɛrlij$ɛi$3$Vicc$Viq$Diec$əβˈɛrlij
 haver-li-hi$heure$WN0002LIHI$ɛrlij$ɛi$3$Vicc$Viq$Diec$əβˈɛrlij
 haveu-li-hi$heure$WM02P2LIHI$ɛwlij$ɛi$3$Vicc$NO$Diec$əβˈɛwlij
 hebraïtza-li-hi$hebraïtzar$WM02S2LIHI$idzəlij$iəi$5$Vicc$NO$Diec$əβɾəˈidzəlij
@@ -52029,6 +52033,7 @@ sensibilitzeu-li-hi$sensibilitzar$WM02P2LIHI$ɛwlij$ɛi$6$NO$NO$Diec$sənsiβili
 sensibilitzi-li-hi$sensibilitzar$WM03S2LIHI$idzilij$iii$6$NO$NO$Diec$sənsiβilˈidzilij
 sensibilitzin-li-hi$sensibilitzar$WM03P2LIHI$idzinlij$iii$6$NO$NO$Diec$sənsiβilˈidzinlij
 sent-li-hi$sentir$WM02S2LIHI$enlij$ei$2$Vicc$NO$Diec$sˈenlij
+sent-li-hi$ser$WG0002LIHI$enlij$ei$2$Vicc$NO$Diec$sˈenlij
 sentencia-li-hi$sentenciar$WM02S2LIHI$iəlij$iəi$5$Vicc$NO$Diec$səntənsˈiəlij
 sentenciant-li-hi$sentenciar$WG0002LIHI$anlij$ai$5$NO$NO$Diec$səntənsiˈanlij
 sentenciar-li-hi$sentenciar$WN0002LIHI$arlij$ai$5$Vicc$NO$Diec$səntənsiˈarlij
@@ -52098,6 +52103,7 @@ sepultem-li-hi$sepultar$WM01P2LIHI$ɛmlij$ɛi$4$NO$NO$Diec$səpultˈɛmlij
 sepulteu-li-hi$sepultar$WM02P2LIHI$ɛwlij$ɛi$4$NO$NO$Diec$səpultˈɛwlij
 sepulti-li-hi$sepultar$WM03S2LIHI$ultilij$uii$4$NO$NO$Diec$səpˈultilij
 sepultin-li-hi$sepultar$WM03P2LIHI$ultinlij$uii$4$NO$NO$Diec$səpˈultinlij
+ser-li-hi$ser$WN0002LIHI$erlij$ei$2$Vicc$Viq$Diec$sˈerlij
 seria-li-hi$seriar$WM02S2LIHI$iəlij$iəi$4$Vicc$NO$Diec$səɾˈiəlij
 seriant-li-hi$seriar$WG0002LIHI$anlij$ai$4$NO$NO$Diec$səɾiˈanlij
 seriar-li-hi$seriar$WN0002LIHI$arlij$ai$4$Vicc$NO$Diec$səɾiˈarlij

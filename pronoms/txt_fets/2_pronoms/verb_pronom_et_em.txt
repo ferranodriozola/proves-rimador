@@ -14780,6 +14780,8 @@ esquitxotejar-te'm$esquitxotejar$WN0002ETEM$artəm$aə$6$Vicc$NO$Diec$əskitʃut
 esquiva-te'm$esquivar$WM02S2ETEM$iβətəm$iəə$4$Vicc$NO$Diec$əskˈiβətəm
 esquivant-te'm$esquivar$WG0002ETEM$antəm$aə$4$NO$NO$Diec$əskiβˈantəm
 esquivar-te'm$esquivar$WN0002ETEM$artəm$aə$4$Vicc$NO$Diec$əskiβˈartəm
+essent-te'm$ser$WG0002ETEM$entəm$eə$3$Vicc$NO$Diec$əsˈentəm
+ésser-te'm$ser$WN0002ETEM$esərtəm$eəə$3$Vicc$Viq$Diec$ˈesərtəm
 estabilitza-te'm$estabilitzar$WM02S2ETEM$idzətəm$iəə$6$NO$NO$Diec$əstəβilˈidzətəm
 estabilitzant-te'm$estabilitzar$WG0002ETEM$antəm$aə$6$NO$Viq$Diec$əstəβilidzˈantəm
 estabilitzar-te'm$estabilitzar$WN0002ETEM$artəm$aə$6$Vicc$NO$Diec$əstəβilidzˈartəm
@@ -16875,7 +16877,9 @@ harmonitzant-te'm$harmonitzar$WG0002ETEM$antəm$aə$5$Vicc$NO$Diec$ərmunidzˈan
 harmonitzar-te'm$harmonitzar$WN0002ETEM$artəm$aə$5$Vicc$NO$Diec$ərmunidzˈartəm
 hau-te'm$heure$WM02S2ETEM$awtəm$aə$2$Vicc$NO$Diec$ˈawtəm
 haure-te'm$heure$WN0002ETEM$awɾətəm$aəə$3$Vicc$NO$Diec$ˈawɾətəm
+havent-te'm$haver$WG0002ETEM$ɛntəm$ɛə$3$Vicc$NO$Diec$əβˈɛntəm
 havent-te'm$heure$WG0002ETEM$ɛntəm$ɛə$3$Vicc$NO$Diec$əβˈɛntəm
+haver-te'm$haver$WN0002ETEM$ɛrtəm$ɛə$3$Vicc$Viq$Diec$əβˈɛrtəm
 haver-te'm$heure$WN0002ETEM$ɛrtəm$ɛə$3$Vicc$Viq$Diec$əβˈɛrtəm
 hebraïtza-te'm$hebraïtzar$WM02S2ETEM$idzətəm$iəə$5$Vicc$NO$Diec$əβɾəˈidzətəm
 hebraïtzant-te'm$hebraïtzar$WG0002ETEM$antəm$aə$5$Vicc$NO$Diec$əβɾəidzˈantəm
@@ -23475,6 +23479,7 @@ sensibilitza-te'm$sensibilitzar$WM02S2ETEM$idzətəm$iəə$6$NO$NO$Diec$sənsiβ
 sensibilitzant-te'm$sensibilitzar$WG0002ETEM$antəm$aə$6$NO$NO$Diec$sənsiβilidzˈantəm
 sensibilitzar-te'm$sensibilitzar$WN0002ETEM$artəm$aə$6$Vicc$NO$Diec$sənsiβilidzˈartəm
 sent-te'm$sentir$WM02S2ETEM$entəm$eə$2$Vicc$NO$Diec$sˈentəm
+sent-te'm$ser$WG0002ETEM$entəm$eə$2$Vicc$NO$Diec$sˈentəm
 sentencia-te'm$sentenciar$WM02S2ETEM$iətəm$iəə$5$Vicc$NO$Diec$səntənsˈiətəm
 sentenciant-te'm$sentenciar$WG0002ETEM$antəm$aə$5$NO$NO$Diec$səntənsiˈantəm
 sentenciar-te'm$sentenciar$WN0002ETEM$artəm$aə$5$Vicc$NO$Diec$səntənsiˈartəm
@@ -23504,6 +23509,7 @@ septuplicar-te'm$septuplicar$WN0002ETEM$artəm$aə$5$Vicc$NO$Diec$səptuplikˈar
 sepulta-te'm$sepultar$WM02S2ETEM$ultətəm$uəə$4$NO$NO$Diec$səpˈultətəm
 sepultant-te'm$sepultar$WG0002ETEM$antəm$aə$4$NO$NO$Diec$səpultˈantəm
 sepultar-te'm$sepultar$WN0002ETEM$artəm$aə$4$Vicc$NO$Diec$səpultˈartəm
+ser-te'm$ser$WN0002ETEM$ertəm$eə$2$Vicc$Viq$Diec$sˈertəm
 seria-te'm$seriar$WM02S2ETEM$iətəm$iəə$4$Vicc$NO$Diec$səɾˈiətəm
 seriant-te'm$seriar$WG0002ETEM$antəm$aə$4$NO$NO$Diec$səɾiˈantəm
 seriar-te'm$seriar$WN0002ETEM$artəm$aə$4$Vicc$NO$Diec$səɾiˈartəm

@@ -31931,7 +31931,9 @@ harmonitzi-l'hi$harmonitzar$WM03S2LIEL$idzili$iii$5$Vicc$NO$Diec$ərmunˈidzili
 harmonitzin-l'hi$harmonitzar$WM03P2LIEL$idzinli$iii$5$Vicc$NO$Diec$ərmunˈidzinli
 hau-l'hi$heure$WM02S2LIEL$awli$ai$2$Vicc$NO$Diec$ˈawli
 haure-l'hi$heure$WN0002LIEL$awɾəli$aəi$3$Vicc$NO$Diec$ˈawɾəli
+havent-l'hi$haver$WG0002LIEL$ɛnli$ɛi$3$Vicc$NO$Diec$əβˈɛnli
 havent-l'hi$heure$WG0002LIEL$ɛnli$ɛi$3$Vicc$NO$Diec$əβˈɛnli
+haver-l'hi$haver$WN0002LIEL$ɛrli$ɛi$3$Vicc$Viq$Diec$əβˈɛrli
 haver-l'hi$heure$WN0002LIEL$ɛrli$ɛi$3$Vicc$Viq$Diec$əβˈɛrli
 haveu-l'hi$heure$WM02P2LIEL$ɛwli$ɛi$3$Vicc$NO$Diec$əβˈɛwli
 hebraïtza-l'hi$hebraïtzar$WM02S2LIEL$idzəli$iəi$5$Vicc$NO$Diec$əβɾəˈidzəli

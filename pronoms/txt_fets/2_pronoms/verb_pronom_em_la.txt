@@ -27401,7 +27401,9 @@ harmonitzi-me-la$harmonitzar$WM03S2EMLA$idzimələ$iiəə$6$Vicc$NO$Diec$ərmun�
 harmonitzin-me-la$harmonitzar$WM03P2EMLA$idzimmələ$iiəə$6$Vicc$NO$Diec$ərmunˈidzimmələ
 hau-me-la$heure$WM02S2EMLA$awmələ$aəə$3$Vicc$NO$Diec$ˈawmələ
 haure-me-la$heure$WN0002EMLA$awɾəmələ$aəəə$4$Vicc$NO$Diec$ˈawɾəmələ
+havent-me-la$haver$WG0002EMLA$ɛmmələ$ɛəə$4$Vicc$NO$Diec$əβˈɛmmələ
 havent-me-la$heure$WG0002EMLA$ɛmmələ$ɛəə$4$Vicc$NO$Diec$əβˈɛmmələ
+haver-me-la$haver$WN0002EMLA$ɛrmələ$ɛəə$4$Vicc$Viq$Diec$əβˈɛrmələ
 haver-me-la$heure$WN0002EMLA$ɛrmələ$ɛəə$4$Vicc$Viq$Diec$əβˈɛrmələ
 haveu-me-la$heure$WM02P2EMLA$ɛwmələ$ɛəə$4$Vicc$NO$Diec$əβˈɛwmələ
 hebraïtza-me-la$hebraïtzar$WM02S2EMLA$idzəmələ$iəəə$6$Vicc$NO$Diec$əβɾəˈidzəmələ

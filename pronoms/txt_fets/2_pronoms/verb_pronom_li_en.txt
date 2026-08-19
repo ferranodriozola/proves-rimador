@@ -32260,6 +32260,8 @@ esquivem-li'n$esquivar$WM01P2LINE$ɛmlin$ɛi$4$NO$NO$Diec$əskiβˈɛmlin
 esquiveu-li'n$esquivar$WM02P2LINE$ɛwlin$ɛi$4$NO$NO$Diec$əskiβˈɛwlin
 esquivi-li'n$esquivar$WM03S2LINE$iβilin$iii$4$NO$NO$Diec$əskˈiβilin
 esquivin-li'n$esquivar$WM03P2LINE$iβinlin$iii$4$NO$NO$Diec$əskˈiβinlin
+essent-li'n$ser$WG0002LINE$enlin$ei$3$Vicc$NO$Diec$əsˈenlin
+ésser-li'n$ser$WN0002LINE$esərlin$eəi$3$Vicc$Viq$Diec$ˈesərlin
 estabilitza-li'n$estabilitzar$WM02S2LINE$idzəlin$iəi$6$NO$NO$Diec$əstəβilˈidzəlin
 estabilitzant-li'n$estabilitzar$WG0002LINE$anlin$ai$6$NO$Viq$Diec$əstəβilidzˈanlin
 estabilitzar-li'n$estabilitzar$WN0002LINE$arlin$ai$6$Vicc$NO$Diec$əstəβilidzˈarlin
@@ -37014,7 +37016,9 @@ harmonitzi-li'n$harmonitzar$WM03S2LINE$idzilin$iii$5$Vicc$NO$Diec$ərmunˈidzili
 harmonitzin-li'n$harmonitzar$WM03P2LINE$idzinlin$iii$5$Vicc$NO$Diec$ərmunˈidzinlin
 hau-li'n$heure$WM02S2LINE$awlin$ai$2$Vicc$NO$Diec$ˈawlin
 haure-li'n$heure$WN0002LINE$awɾəlin$aəi$3$Vicc$NO$Diec$ˈawɾəlin
+havent-li'n$haver$WG0002LINE$ɛnlin$ɛi$3$Vicc$NO$Diec$əβˈɛnlin
 havent-li'n$heure$WG0002LINE$ɛnlin$ɛi$3$Vicc$NO$Diec$əβˈɛnlin
+haver-li'n$haver$WN0002LINE$ɛrlin$ɛi$3$Vicc$Viq$Diec$əβˈɛrlin
 haver-li'n$heure$WN0002LINE$ɛrlin$ɛi$3$Vicc$Viq$Diec$əβˈɛrlin
 haveu-li'n$heure$WM02P2LINE$ɛwlin$ɛi$3$Vicc$NO$Diec$əβˈɛwlin
 hebraïtza-li'n$hebraïtzar$WM02S2LINE$idzəlin$iəi$5$Vicc$NO$Diec$əβɾəˈidzəlin
@@ -52029,6 +52033,7 @@ sensibilitzeu-li'n$sensibilitzar$WM02P2LINE$ɛwlin$ɛi$6$NO$NO$Diec$sənsiβilid
 sensibilitzi-li'n$sensibilitzar$WM03S2LINE$idzilin$iii$6$NO$NO$Diec$sənsiβilˈidzilin
 sensibilitzin-li'n$sensibilitzar$WM03P2LINE$idzinlin$iii$6$NO$NO$Diec$sənsiβilˈidzinlin
 sent-li'n$sentir$WM02S2LINE$enlin$ei$2$Vicc$NO$Diec$sˈenlin
+sent-li'n$ser$WG0002LINE$enlin$ei$2$Vicc$NO$Diec$sˈenlin
 sentencia-li'n$sentenciar$WM02S2LINE$iəlin$iəi$5$Vicc$NO$Diec$səntənsˈiəlin
 sentenciant-li'n$sentenciar$WG0002LINE$anlin$ai$5$NO$NO$Diec$səntənsiˈanlin
 sentenciar-li'n$sentenciar$WN0002LINE$arlin$ai$5$Vicc$NO$Diec$səntənsiˈarlin
@@ -52098,6 +52103,7 @@ sepultem-li'n$sepultar$WM01P2LINE$ɛmlin$ɛi$4$NO$NO$Diec$səpultˈɛmlin
 sepulteu-li'n$sepultar$WM02P2LINE$ɛwlin$ɛi$4$NO$NO$Diec$səpultˈɛwlin
 sepulti-li'n$sepultar$WM03S2LINE$ultilin$uii$4$NO$NO$Diec$səpˈultilin
 sepultin-li'n$sepultar$WM03P2LINE$ultinlin$uii$4$NO$NO$Diec$səpˈultinlin
+ser-li'n$ser$WN0002LINE$erlin$ei$2$Vicc$Viq$Diec$sˈerlin
 seria-li'n$seriar$WM02S2LINE$iəlin$iəi$4$Vicc$NO$Diec$səɾˈiəlin
 seriant-li'n$seriar$WG0002LINE$anlin$ai$4$NO$NO$Diec$səɾiˈanlin
 seriar-li'n$seriar$WN0002LINE$arlin$ai$4$Vicc$NO$Diec$səɾiˈarlin

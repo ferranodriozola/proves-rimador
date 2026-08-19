@@ -32260,6 +32260,8 @@ esquivem-hi$esquivar$WM01P1HI00$ɛmi$ɛi$4$NO$NO$Diec$əskiβˈɛmi
 esquiveu-hi$esquivar$WM02P1HI00$ɛwi$ɛi$4$NO$NO$Diec$əskiβˈɛwi
 esquivi-hi$esquivar$WM03S1HI00$iβij$ii$3$NO$NO$Diec$əskˈiβij
 esquivin-hi$esquivar$WM03P1HI00$iβini$iii$4$NO$NO$Diec$əskˈiβini
+essent-hi$ser$WG0001HI00$enti$ei$3$Vicc$NO$Diec$əsˈenti
+ésser-hi$ser$WN0001HI00$esəri$eəi$3$Vicc$Viq$Diec$ˈesəri
 estabilitza-hi$estabilitzar$WM02S1HI00$idzəj$iə$5$NO$NO$Diec$əstəβilˈidzəj
 estabilitzant-hi$estabilitzar$WG0001HI00$anti$ai$6$NO$Viq$Diec$əstəβilidzˈanti
 estabilitzar-hi$estabilitzar$WN0001HI00$aɾi$ai$6$Vicc$NO$Diec$əstəβilidzˈaɾi
@@ -37014,7 +37016,9 @@ harmonitzi-hi$harmonitzar$WM03S1HI00$idzij$ii$4$Vicc$NO$Diec$ərmunˈidzij
 harmonitzin-hi$harmonitzar$WM03P1HI00$idzini$iii$5$Vicc$NO$Diec$ərmunˈidzini
 hau-hi$heure$WM02S1HI00$awi$ai$2$Vicc$NO$Diec$ˈawi
 haure-hi$heure$WN0001HI00$awɾəj$aə$2$Vicc$NO$Diec$ˈawɾəj
+havent-hi$haver$WG0001HI00$ɛnti$ɛi$3$Vicc$NO$Diec$əβˈɛnti
 havent-hi$heure$WG0001HI00$ɛnti$ɛi$3$Vicc$NO$Diec$əβˈɛnti
+haver-hi$haver$WN0001HI00$ɛɾi$ɛi$3$Vicc$Viq$Diec$əβˈɛɾi
 haver-hi$heure$WN0001HI00$ɛɾi$ɛi$3$Vicc$Viq$Diec$əβˈɛɾi
 haveu-hi$heure$WM02P1HI00$ɛwi$ɛi$3$Vicc$NO$Diec$əβˈɛwi
 hebraïtza-hi$hebraïtzar$WM02S1HI00$idzəj$iə$4$Vicc$NO$Diec$əβɾəˈidzəj
@@ -52029,6 +52033,7 @@ sensibilitzeu-hi$sensibilitzar$WM02P1HI00$ɛwi$ɛi$6$NO$NO$Diec$sənsiβilidzˈ�
 sensibilitzi-hi$sensibilitzar$WM03S1HI00$idzij$ii$5$NO$NO$Diec$sənsiβilˈidzij
 sensibilitzin-hi$sensibilitzar$WM03P1HI00$idzini$iii$6$NO$NO$Diec$sənsiβilˈidzini
 sent-hi$sentir$WM02S1HI00$enti$ei$2$Vicc$NO$Diec$sˈenti
+sent-hi$ser$WG0001HI00$enti$ei$2$Vicc$NO$Diec$sˈenti
 sentencia-hi$sentenciar$WM02S1HI00$iəj$iə$4$Vicc$NO$Diec$səntənsˈiəj
 sentenciant-hi$sentenciar$WG0001HI00$anti$ai$5$NO$NO$Diec$səntənsiˈanti
 sentenciar-hi$sentenciar$WN0001HI00$aɾi$ai$5$Vicc$NO$Diec$səntənsiˈaɾi
@@ -52098,6 +52103,7 @@ sepultem-hi$sepultar$WM01P1HI00$ɛmi$ɛi$4$NO$NO$Diec$səpultˈɛmi
 sepulteu-hi$sepultar$WM02P1HI00$ɛwi$ɛi$4$NO$NO$Diec$səpultˈɛwi
 sepulti-hi$sepultar$WM03S1HI00$ultij$ui$3$NO$NO$Diec$səpˈultij
 sepultin-hi$sepultar$WM03P1HI00$ultini$uii$4$NO$NO$Diec$səpˈultini
+ser-hi$ser$WN0001HI00$eɾi$ei$2$Vicc$Viq$Diec$sˈeɾi
 seria-hi$seriar$WM02S1HI00$iəj$iə$3$Vicc$NO$Diec$səɾˈiəj
 seriant-hi$seriar$WG0001HI00$anti$ai$4$NO$NO$Diec$səɾiˈanti
 seriar-hi$seriar$WN0001HI00$aɾi$ai$4$Vicc$NO$Diec$səɾiˈaɾi

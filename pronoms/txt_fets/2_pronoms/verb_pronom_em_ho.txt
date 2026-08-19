@@ -27401,7 +27401,9 @@ harmonitzi-m'ho$harmonitzar$WM03S2EMHO$idzimu$iiu$5$Vicc$NO$Diec$ərmunˈidzimu
 harmonitzin-m'ho$harmonitzar$WM03P2EMHO$idzimmu$iiu$5$Vicc$NO$Diec$ərmunˈidzimmu
 hau-m'ho$heure$WM02S2EMHO$awmu$au$2$Vicc$NO$Diec$ˈawmu
 haure-m'ho$heure$WN0002EMHO$awɾəmu$aəu$3$Vicc$NO$Diec$ˈawɾəmu
+havent-m'ho$haver$WG0002EMHO$ɛmmu$ɛu$3$Vicc$NO$Diec$əβˈɛmmu
 havent-m'ho$heure$WG0002EMHO$ɛmmu$ɛu$3$Vicc$NO$Diec$əβˈɛmmu
+haver-m'ho$haver$WN0002EMHO$ɛrmu$ɛu$3$Vicc$Viq$Diec$əβˈɛrmu
 haver-m'ho$heure$WN0002EMHO$ɛrmu$ɛu$3$Vicc$Viq$Diec$əβˈɛrmu
 haveu-m'ho$heure$WM02P2EMHO$ɛwmu$ɛu$3$Vicc$NO$Diec$əβˈɛwmu
 hebraïtza-m'ho$hebraïtzar$WM02S2EMHO$idzəmu$iəu$5$Vicc$NO$Diec$əβɾəˈidzəmu

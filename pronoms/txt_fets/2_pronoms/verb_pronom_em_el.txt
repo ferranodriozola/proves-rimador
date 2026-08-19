@@ -27401,7 +27401,9 @@ harmonitzi-me'l$harmonitzar$WM03S2EMEL$idziməl$iiə$5$Vicc$NO$Diec$ərmunˈidzi
 harmonitzin-me'l$harmonitzar$WM03P2EMEL$idzimməl$iiə$5$Vicc$NO$Diec$ərmunˈidzimməl
 hau-me'l$heure$WM02S2EMEL$awməl$aə$2$Vicc$NO$Diec$ˈawməl
 haure-me'l$heure$WN0002EMEL$awɾəməl$aəə$3$Vicc$NO$Diec$ˈawɾəməl
+havent-me'l$haver$WG0002EMEL$ɛmməl$ɛə$3$Vicc$NO$Diec$əβˈɛmməl
 havent-me'l$heure$WG0002EMEL$ɛmməl$ɛə$3$Vicc$NO$Diec$əβˈɛmməl
+haver-me'l$haver$WN0002EMEL$ɛrməl$ɛə$3$Vicc$Viq$Diec$əβˈɛrməl
 haver-me'l$heure$WN0002EMEL$ɛrməl$ɛə$3$Vicc$Viq$Diec$əβˈɛrməl
 haveu-me'l$heure$WM02P2EMEL$ɛwməl$ɛə$3$Vicc$NO$Diec$əβˈɛwməl
 hebraïtza-me'l$hebraïtzar$WM02S2EMEL$idzəməl$iəə$5$Vicc$NO$Diec$əβɾəˈidzəməl

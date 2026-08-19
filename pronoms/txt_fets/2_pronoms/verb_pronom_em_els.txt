@@ -28275,6 +28275,8 @@ esquivar-me'ls$esquivar$WN0002EMLS$arməls$aə$4$Vicc$NO$Diec$əskiβˈarməls
 esquiveu-me'ls$esquivar$WM02P2EMLS$ɛwməls$ɛə$4$NO$NO$Diec$əskiβˈɛwməls
 esquivi-me'ls$esquivar$WM03S2EMLS$iβiməls$iiə$4$NO$NO$Diec$əskˈiβiməls
 esquivin-me'ls$esquivar$WM03P2EMLS$iβimməls$iiə$4$NO$NO$Diec$əskˈiβimməls
+essent-me'ls$ser$WG0002EMLS$emməls$eə$3$Vicc$NO$Diec$əsˈemməls
+ésser-me'ls$ser$WN0002EMLS$esərməls$eəə$3$Vicc$Viq$Diec$ˈesərməls
 estabilitza-me'ls$estabilitzar$WM02S2EMLS$idzəməls$iəə$6$NO$NO$Diec$əstəβilˈidzəməls
 estabilitzant-me'ls$estabilitzar$WG0002EMLS$amməls$aə$6$NO$Viq$Diec$əstəβilidzˈamməls
 estabilitzar-me'ls$estabilitzar$WN0002EMLS$arməls$aə$6$Vicc$NO$Diec$əstəβilidzˈarməls
@@ -32388,7 +32390,9 @@ harmonitzi-me'ls$harmonitzar$WM03S2EMLS$idziməls$iiə$5$Vicc$NO$Diec$ərmunˈid
 harmonitzin-me'ls$harmonitzar$WM03P2EMLS$idzimməls$iiə$5$Vicc$NO$Diec$ərmunˈidzimməls
 hau-me'ls$heure$WM02S2EMLS$awməls$aə$2$Vicc$NO$Diec$ˈawməls
 haure-me'ls$heure$WN0002EMLS$awɾəməls$aəə$3$Vicc$NO$Diec$ˈawɾəməls
+havent-me'ls$haver$WG0002EMLS$ɛmməls$ɛə$3$Vicc$NO$Diec$əβˈɛmməls
 havent-me'ls$heure$WG0002EMLS$ɛmməls$ɛə$3$Vicc$NO$Diec$əβˈɛmməls
+haver-me'ls$haver$WN0002EMLS$ɛrməls$ɛə$3$Vicc$Viq$Diec$əβˈɛrməls
 haver-me'ls$heure$WN0002EMLS$ɛrməls$ɛə$3$Vicc$Viq$Diec$əβˈɛrməls
 haveu-me'ls$heure$WM02P2EMLS$ɛwməls$ɛə$3$Vicc$NO$Diec$əβˈɛwməls
 hebraïtza-me'ls$hebraïtzar$WM02S2EMLS$idzəməls$iəə$5$Vicc$NO$Diec$əβɾəˈidzəməls
@@ -45365,6 +45369,7 @@ sensibilitzeu-me'ls$sensibilitzar$WM02P2EMLS$ɛwməls$ɛə$6$NO$NO$Diec$sənsiβ
 sensibilitzi-me'ls$sensibilitzar$WM03S2EMLS$idziməls$iiə$6$NO$NO$Diec$sənsiβilˈidziməls
 sensibilitzin-me'ls$sensibilitzar$WM03P2EMLS$idzimməls$iiə$6$NO$NO$Diec$sənsiβilˈidzimməls
 sent-me'ls$sentir$WM02S2EMLS$emməls$eə$2$Vicc$NO$Diec$sˈemməls
+sent-me'ls$ser$WG0002EMLS$emməls$eə$2$Vicc$NO$Diec$sˈemməls
 sentencia-me'ls$sentenciar$WM02S2EMLS$iəməls$iəə$5$Vicc$NO$Diec$səntənsˈiəməls
 sentenciant-me'ls$sentenciar$WG0002EMLS$amməls$aə$5$NO$NO$Diec$səntənsiˈamməls
 sentenciar-me'ls$sentenciar$WN0002EMLS$arməls$aə$5$Vicc$NO$Diec$səntənsiˈarməls
@@ -45424,6 +45429,7 @@ sepultar-me'ls$sepultar$WN0002EMLS$arməls$aə$4$Vicc$NO$Diec$səpultˈarməls
 sepulteu-me'ls$sepultar$WM02P2EMLS$ɛwməls$ɛə$4$NO$NO$Diec$səpultˈɛwməls
 sepulti-me'ls$sepultar$WM03S2EMLS$ultiməls$uiə$4$NO$NO$Diec$səpˈultiməls
 sepultin-me'ls$sepultar$WM03P2EMLS$ultimməls$uiə$4$NO$NO$Diec$səpˈultimməls
+ser-me'ls$ser$WN0002EMLS$erməls$eə$2$Vicc$Viq$Diec$sˈerməls
 seria-me'ls$seriar$WM02S2EMLS$iəməls$iəə$4$Vicc$NO$Diec$səɾˈiəməls
 seriant-me'ls$seriar$WG0002EMLS$amməls$aə$4$NO$NO$Diec$səɾiˈamməls
 seriar-me'ls$seriar$WN0002EMLS$arməls$aə$4$Vicc$NO$Diec$səɾiˈarməls

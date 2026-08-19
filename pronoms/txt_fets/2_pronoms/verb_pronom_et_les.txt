@@ -18294,7 +18294,9 @@ harmonitzar-te-les$harmonitzar$WN0002ETLE$artələs$aəə$6$Vicc$NO$Diec$ərmuni
 harmonitzem-te-les$harmonitzar$WM01P2ETLE$ɛmtələs$ɛəə$6$Vicc$NO$Diec$ərmunidzˈɛmtələs
 hau-te-les$heure$WM02S2ETLE$awtələs$aəə$3$Vicc$NO$Diec$ˈawtələs
 haure-te-les$heure$WN0002ETLE$awɾətələs$aəəə$4$Vicc$NO$Diec$ˈawɾətələs
+havent-te-les$haver$WG0002ETLE$ɛntələs$ɛəə$4$Vicc$NO$Diec$əβˈɛntələs
 havent-te-les$heure$WG0002ETLE$ɛntələs$ɛəə$4$Vicc$NO$Diec$əβˈɛntələs
+haver-te-les$haver$WN0002ETLE$ɛrtələs$ɛəə$4$Vicc$Viq$Diec$əβˈɛrtələs
 haver-te-les$heure$WN0002ETLE$ɛrtələs$ɛəə$4$Vicc$Viq$Diec$əβˈɛrtələs
 hebraïtza-te-les$hebraïtzar$WM02S2ETLE$idzətələs$iəəə$6$Vicc$NO$Diec$əβɾəˈidzətələs
 hebraïtzant-te-les$hebraïtzar$WG0002ETLE$antələs$aəə$6$Vicc$NO$Diec$əβɾəidzˈantələs

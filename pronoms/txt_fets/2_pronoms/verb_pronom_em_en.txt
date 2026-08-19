@@ -28275,6 +28275,8 @@ esquivar-me'n$esquivar$WN0002EMNE$armən$aə$4$Vicc$NO$Diec$əskiβˈarmən
 esquiveu-me'n$esquivar$WM02P2EMNE$ɛwmən$ɛə$4$NO$NO$Diec$əskiβˈɛwmən
 esquivi-me'n$esquivar$WM03S2EMNE$iβimən$iiə$4$NO$NO$Diec$əskˈiβimən
 esquivin-me'n$esquivar$WM03P2EMNE$iβimmən$iiə$4$NO$NO$Diec$əskˈiβimmən
+essent-me'n$ser$WG0002EMNE$emmən$eə$3$Vicc$NO$Diec$əsˈemmən
+ésser-me'n$ser$WN0002EMNE$esərmən$eəə$3$Vicc$Viq$Diec$ˈesərmən
 estabilitza-me'n$estabilitzar$WM02S2EMNE$idzəmən$iəə$6$NO$NO$Diec$əstəβilˈidzəmən
 estabilitzant-me'n$estabilitzar$WG0002EMNE$ammən$aə$6$NO$Viq$Diec$əstəβilidzˈammən
 estabilitzar-me'n$estabilitzar$WN0002EMNE$armən$aə$6$Vicc$NO$Diec$əstəβilidzˈarmən
@@ -32388,7 +32390,9 @@ harmonitzi-me'n$harmonitzar$WM03S2EMNE$idzimən$iiə$5$Vicc$NO$Diec$ərmunˈidzi
 harmonitzin-me'n$harmonitzar$WM03P2EMNE$idzimmən$iiə$5$Vicc$NO$Diec$ərmunˈidzimmən
 hau-me'n$heure$WM02S2EMNE$awmən$aə$2$Vicc$NO$Diec$ˈawmən
 haure-me'n$heure$WN0002EMNE$awɾəmən$aəə$3$Vicc$NO$Diec$ˈawɾəmən
+havent-me'n$haver$WG0002EMNE$ɛmmən$ɛə$3$Vicc$NO$Diec$əβˈɛmmən
 havent-me'n$heure$WG0002EMNE$ɛmmən$ɛə$3$Vicc$NO$Diec$əβˈɛmmən
+haver-me'n$haver$WN0002EMNE$ɛrmən$ɛə$3$Vicc$Viq$Diec$əβˈɛrmən
 haver-me'n$heure$WN0002EMNE$ɛrmən$ɛə$3$Vicc$Viq$Diec$əβˈɛrmən
 haveu-me'n$heure$WM02P2EMNE$ɛwmən$ɛə$3$Vicc$NO$Diec$əβˈɛwmən
 hebraïtza-me'n$hebraïtzar$WM02S2EMNE$idzəmən$iəə$5$Vicc$NO$Diec$əβɾəˈidzəmən
@@ -45365,6 +45369,7 @@ sensibilitzeu-me'n$sensibilitzar$WM02P2EMNE$ɛwmən$ɛə$6$NO$NO$Diec$sənsiβil
 sensibilitzi-me'n$sensibilitzar$WM03S2EMNE$idzimən$iiə$6$NO$NO$Diec$sənsiβilˈidzimən
 sensibilitzin-me'n$sensibilitzar$WM03P2EMNE$idzimmən$iiə$6$NO$NO$Diec$sənsiβilˈidzimmən
 sent-me'n$sentir$WM02S2EMNE$emmən$eə$2$Vicc$NO$Diec$sˈemmən
+sent-me'n$ser$WG0002EMNE$emmən$eə$2$Vicc$NO$Diec$sˈemmən
 sentencia-me'n$sentenciar$WM02S2EMNE$iəmən$iəə$5$Vicc$NO$Diec$səntənsˈiəmən
 sentenciant-me'n$sentenciar$WG0002EMNE$ammən$aə$5$NO$NO$Diec$səntənsiˈammən
 sentenciar-me'n$sentenciar$WN0002EMNE$armən$aə$5$Vicc$NO$Diec$səntənsiˈarmən
@@ -45424,6 +45429,7 @@ sepultar-me'n$sepultar$WN0002EMNE$armən$aə$4$Vicc$NO$Diec$səpultˈarmən
 sepulteu-me'n$sepultar$WM02P2EMNE$ɛwmən$ɛə$4$NO$NO$Diec$səpultˈɛwmən
 sepulti-me'n$sepultar$WM03S2EMNE$ultimən$uiə$4$NO$NO$Diec$səpˈultimən
 sepultin-me'n$sepultar$WM03P2EMNE$ultimmən$uiə$4$NO$NO$Diec$səpˈultimmən
+ser-me'n$ser$WN0002EMNE$ermən$eə$2$Vicc$Viq$Diec$sˈermən
 seria-me'n$seriar$WM02S2EMNE$iəmən$iəə$4$Vicc$NO$Diec$səɾˈiəmən
 seriant-me'n$seriar$WG0002EMNE$ammən$aə$4$NO$NO$Diec$səɾiˈammən
 seriar-me'n$seriar$WN0002EMNE$armən$aə$4$Vicc$NO$Diec$səɾiˈarmən

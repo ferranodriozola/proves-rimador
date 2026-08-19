@@ -18293,7 +18293,9 @@ harmonitzar-se'l$harmonitzar$WN0002ESEL$arsəl$aə$5$Vicc$NO$Diec$ərmunidzˈars
 harmonitzi-se'l$harmonitzar$WM03S2ESEL$idzisəl$iiə$5$Vicc$NO$Diec$ərmunˈidzisəl
 harmonitzin-se'l$harmonitzar$WM03P2ESEL$idzinsəl$iiə$5$Vicc$NO$Diec$ərmunˈidzinsəl
 haure-se'l$heure$WN0002ESEL$awɾəsəl$aəə$3$Vicc$NO$Diec$ˈawɾəsəl
+havent-se'l$haver$WG0002ESEL$ɛnsəl$ɛə$3$Vicc$NO$Diec$əβˈɛnsəl
 havent-se'l$heure$WG0002ESEL$ɛnsəl$ɛə$3$Vicc$NO$Diec$əβˈɛnsəl
+haver-se'l$haver$WN0002ESEL$ɛrsəl$ɛə$3$Vicc$Viq$Diec$əβˈɛrsəl
 haver-se'l$heure$WN0002ESEL$ɛrsəl$ɛə$3$Vicc$Viq$Diec$əβˈɛrsəl
 hebraïtzant-se'l$hebraïtzar$WG0002ESEL$ansəl$aə$5$Vicc$NO$Diec$əβɾəidzˈansəl
 hebraïtzar-se'l$hebraïtzar$WN0002ESEL$arsəl$aə$5$Vicc$NO$Diec$əβɾəidzˈarsəl

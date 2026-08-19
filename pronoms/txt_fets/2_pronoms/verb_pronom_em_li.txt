@@ -28275,6 +28275,8 @@ esquivar-me-li$esquivar$WN0002EMLI$arməli$aəi$5$Vicc$NO$Diec$əskiβˈarməli
 esquiveu-me-li$esquivar$WM02P2EMLI$ɛwməli$ɛəi$5$NO$NO$Diec$əskiβˈɛwməli
 esquivi-me-li$esquivar$WM03S2EMLI$iβiməli$iiəi$5$NO$NO$Diec$əskˈiβiməli
 esquivin-me-li$esquivar$WM03P2EMLI$iβimməli$iiəi$5$NO$NO$Diec$əskˈiβimməli
+essent-me-li$ser$WG0002EMLI$emməli$eəi$4$Vicc$NO$Diec$əsˈemməli
+ésser-me-li$ser$WN0002EMLI$esərməli$eəəi$4$Vicc$Viq$Diec$ˈesərməli
 estabilitza-me-li$estabilitzar$WM02S2EMLI$idzəməli$iəəi$7$NO$NO$Diec$əstəβilˈidzəməli
 estabilitzant-me-li$estabilitzar$WG0002EMLI$amməli$aəi$7$NO$Viq$Diec$əstəβilidzˈamməli
 estabilitzar-me-li$estabilitzar$WN0002EMLI$arməli$aəi$7$Vicc$NO$Diec$əstəβilidzˈarməli
@@ -32388,7 +32390,9 @@ harmonitzi-me-li$harmonitzar$WM03S2EMLI$idziməli$iiəi$6$Vicc$NO$Diec$ərmunˈi
 harmonitzin-me-li$harmonitzar$WM03P2EMLI$idzimməli$iiəi$6$Vicc$NO$Diec$ərmunˈidzimməli
 hau-me-li$heure$WM02S2EMLI$awməli$aəi$3$Vicc$NO$Diec$ˈawməli
 haure-me-li$heure$WN0002EMLI$awɾəməli$aəəi$4$Vicc$NO$Diec$ˈawɾəməli
+havent-me-li$haver$WG0002EMLI$ɛmməli$ɛəi$4$Vicc$NO$Diec$əβˈɛmməli
 havent-me-li$heure$WG0002EMLI$ɛmməli$ɛəi$4$Vicc$NO$Diec$əβˈɛmməli
+haver-me-li$haver$WN0002EMLI$ɛrməli$ɛəi$4$Vicc$Viq$Diec$əβˈɛrməli
 haver-me-li$heure$WN0002EMLI$ɛrməli$ɛəi$4$Vicc$Viq$Diec$əβˈɛrməli
 haveu-me-li$heure$WM02P2EMLI$ɛwməli$ɛəi$4$Vicc$NO$Diec$əβˈɛwməli
 hebraïtza-me-li$hebraïtzar$WM02S2EMLI$idzəməli$iəəi$6$Vicc$NO$Diec$əβɾəˈidzəməli
@@ -45365,6 +45369,7 @@ sensibilitzeu-me-li$sensibilitzar$WM02P2EMLI$ɛwməli$ɛəi$7$NO$NO$Diec$sənsi�
 sensibilitzi-me-li$sensibilitzar$WM03S2EMLI$idziməli$iiəi$7$NO$NO$Diec$sənsiβilˈidziməli
 sensibilitzin-me-li$sensibilitzar$WM03P2EMLI$idzimməli$iiəi$7$NO$NO$Diec$sənsiβilˈidzimməli
 sent-me-li$sentir$WM02S2EMLI$emməli$eəi$3$Vicc$NO$Diec$sˈemməli
+sent-me-li$ser$WG0002EMLI$emməli$eəi$3$Vicc$NO$Diec$sˈemməli
 sentencia-me-li$sentenciar$WM02S2EMLI$iəməli$iəəi$6$Vicc$NO$Diec$səntənsˈiəməli
 sentenciant-me-li$sentenciar$WG0002EMLI$amməli$aəi$6$NO$NO$Diec$səntənsiˈamməli
 sentenciar-me-li$sentenciar$WN0002EMLI$arməli$aəi$6$Vicc$NO$Diec$səntənsiˈarməli
@@ -45424,6 +45429,7 @@ sepultar-me-li$sepultar$WN0002EMLI$arməli$aəi$5$Vicc$NO$Diec$səpultˈarməli
 sepulteu-me-li$sepultar$WM02P2EMLI$ɛwməli$ɛəi$5$NO$NO$Diec$səpultˈɛwməli
 sepulti-me-li$sepultar$WM03S2EMLI$ultiməli$uiəi$5$NO$NO$Diec$səpˈultiməli
 sepultin-me-li$sepultar$WM03P2EMLI$ultimməli$uiəi$5$NO$NO$Diec$səpˈultimməli
+ser-me-li$ser$WN0002EMLI$erməli$eəi$3$Vicc$Viq$Diec$sˈerməli
 seria-me-li$seriar$WM02S2EMLI$iəməli$iəəi$5$Vicc$NO$Diec$səɾˈiəməli
 seriant-me-li$seriar$WG0002EMLI$amməli$aəi$5$NO$NO$Diec$səɾiˈamməli
 seriar-me-li$seriar$WN0002EMLI$arməli$aəi$5$Vicc$NO$Diec$səɾiˈarməli

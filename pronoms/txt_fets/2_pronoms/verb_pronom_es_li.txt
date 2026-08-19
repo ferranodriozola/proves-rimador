@@ -19646,7 +19646,9 @@ harmonitzar-se-li$harmonitzar$WN0002ESLI$arsəli$aəi$6$Vicc$NO$Diec$ərmunidzˈ
 harmonitzi-se-li$harmonitzar$WM03S2ESLI$idzisəli$iiəi$6$Vicc$NO$Diec$ərmunˈidzisəli
 harmonitzin-se-li$harmonitzar$WM03P2ESLI$idzinsəli$iiəi$6$Vicc$NO$Diec$ərmunˈidzinsəli
 haure-se-li$heure$WN0002ESLI$awɾəsəli$aəəi$4$Vicc$NO$Diec$ˈawɾəsəli
+havent-se-li$haver$WG0002ESLI$ɛnsəli$ɛəi$4$Vicc$NO$Diec$əβˈɛnsəli
 havent-se-li$heure$WG0002ESLI$ɛnsəli$ɛəi$4$Vicc$NO$Diec$əβˈɛnsəli
+haver-se-li$haver$WN0002ESLI$ɛrsəli$ɛəi$4$Vicc$Viq$Diec$əβˈɛrsəli
 haver-se-li$heure$WN0002ESLI$ɛrsəli$ɛəi$4$Vicc$Viq$Diec$əβˈɛrsəli
 hebraïtzant-se-li$hebraïtzar$WG0002ESLI$ansəli$aəi$6$Vicc$NO$Diec$əβɾəidzˈansəli
 hebraïtzar-se-li$hebraïtzar$WN0002ESLI$arsəli$aəi$6$Vicc$NO$Diec$əβɾəidzˈarsəli

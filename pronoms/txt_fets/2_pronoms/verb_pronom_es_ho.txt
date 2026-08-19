@@ -18293,7 +18293,9 @@ harmonitzar-s'ho$harmonitzar$WN0002ESHO$arsu$au$5$Vicc$NO$Diec$ərmunidzˈarsu
 harmonitzi-s'ho$harmonitzar$WM03S2ESHO$idzisu$iiu$5$Vicc$NO$Diec$ərmunˈidzisu
 harmonitzin-s'ho$harmonitzar$WM03P2ESHO$idzinsu$iiu$5$Vicc$NO$Diec$ərmunˈidzinsu
 haure-s'ho$heure$WN0002ESHO$awɾəsu$aəu$3$Vicc$NO$Diec$ˈawɾəsu
+havent-s'ho$haver$WG0002ESHO$ɛnsu$ɛu$3$Vicc$NO$Diec$əβˈɛnsu
 havent-s'ho$heure$WG0002ESHO$ɛnsu$ɛu$3$Vicc$NO$Diec$əβˈɛnsu
+haver-s'ho$haver$WN0002ESHO$ɛrsu$ɛu$3$Vicc$Viq$Diec$əβˈɛrsu
 haver-s'ho$heure$WN0002ESHO$ɛrsu$ɛu$3$Vicc$Viq$Diec$əβˈɛrsu
 hebraïtzant-s'ho$hebraïtzar$WG0002ESHO$ansu$au$5$Vicc$NO$Diec$əβɾəidzˈansu
 hebraïtzar-s'ho$hebraïtzar$WN0002ESHO$arsu$au$5$Vicc$NO$Diec$əβɾəidzˈarsu

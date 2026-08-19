@@ -9824,7 +9824,9 @@ handicapar-se't$handicapar$WN0002ESET$arsət$aə$5$Vicc$NO$Diec$əndikəpˈarsə
 harmonitzant-se't$harmonitzar$WG0002ESET$ansət$aə$5$Vicc$NO$Diec$ərmunidzˈansət
 harmonitzar-se't$harmonitzar$WN0002ESET$arsət$aə$5$Vicc$NO$Diec$ərmunidzˈarsət
 haure-se't$heure$WN0002ESET$awɾəsət$aəə$3$Vicc$NO$Diec$ˈawɾəsət
+havent-se't$haver$WG0002ESET$ɛnsət$ɛə$3$Vicc$NO$Diec$əβˈɛnsət
 havent-se't$heure$WG0002ESET$ɛnsət$ɛə$3$Vicc$NO$Diec$əβˈɛnsət
+haver-se't$haver$WN0002ESET$ɛrsət$ɛə$3$Vicc$Viq$Diec$əβˈɛrsət
 haver-se't$heure$WN0002ESET$ɛrsət$ɛə$3$Vicc$Viq$Diec$əβˈɛrsət
 hebraïtzant-se't$hebraïtzar$WG0002ESET$ansət$aə$5$Vicc$NO$Diec$əβɾəidzˈansət
 hebraïtzar-se't$hebraïtzar$WN0002ESET$arsət$aə$5$Vicc$NO$Diec$əβɾəidzˈarsət

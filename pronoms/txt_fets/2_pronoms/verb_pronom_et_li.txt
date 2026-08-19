@@ -19385,6 +19385,8 @@ esquiva-te-li$esquivar$WM02S2ETLI$iβətəli$iəəi$5$Vicc$NO$Diec$əskˈiβət�
 esquivant-te-li$esquivar$WG0002ETLI$antəli$aəi$5$NO$NO$Diec$əskiβˈantəli
 esquivar-te-li$esquivar$WN0002ETLI$artəli$aəi$5$Vicc$NO$Diec$əskiβˈartəli
 esquivem-te-li$esquivar$WM01P2ETLI$ɛmtəli$ɛəi$5$NO$NO$Diec$əskiβˈɛmtəli
+essent-te-li$ser$WG0002ETLI$entəli$eəi$4$Vicc$NO$Diec$əsˈentəli
+ésser-te-li$ser$WN0002ETLI$esərtəli$eəəi$4$Vicc$Viq$Diec$ˈesərtəli
 estabilitza-te-li$estabilitzar$WM02S2ETLI$idzətəli$iəəi$7$NO$NO$Diec$əstəβilˈidzətəli
 estabilitzant-te-li$estabilitzar$WG0002ETLI$antəli$aəi$7$NO$Viq$Diec$əstəβilidzˈantəli
 estabilitzar-te-li$estabilitzar$WN0002ETLI$artəli$aəi$7$Vicc$NO$Diec$əstəβilidzˈartəli
@@ -22159,7 +22161,9 @@ harmonitzar-te-li$harmonitzar$WN0002ETLI$artəli$aəi$6$Vicc$NO$Diec$ərmunidzˈ
 harmonitzem-te-li$harmonitzar$WM01P2ETLI$ɛmtəli$ɛəi$6$Vicc$NO$Diec$ərmunidzˈɛmtəli
 hau-te-li$heure$WM02S2ETLI$awtəli$aəi$3$Vicc$NO$Diec$ˈawtəli
 haure-te-li$heure$WN0002ETLI$awɾətəli$aəəi$4$Vicc$NO$Diec$ˈawɾətəli
+havent-te-li$haver$WG0002ETLI$ɛntəli$ɛəi$4$Vicc$NO$Diec$əβˈɛntəli
 havent-te-li$heure$WG0002ETLI$ɛntəli$ɛəi$4$Vicc$NO$Diec$əβˈɛntəli
+haver-te-li$haver$WN0002ETLI$ɛrtəli$ɛəi$4$Vicc$Viq$Diec$əβˈɛrtəli
 haver-te-li$heure$WN0002ETLI$ɛrtəli$ɛəi$4$Vicc$Viq$Diec$əβˈɛrtəli
 hebraïtza-te-li$hebraïtzar$WM02S2ETLI$idzətəli$iəəi$6$Vicc$NO$Diec$əβɾəˈidzətəli
 hebraïtzant-te-li$hebraïtzar$WG0002ETLI$antəli$aəi$6$Vicc$NO$Diec$əβɾəidzˈantəli
@@ -30898,6 +30902,7 @@ sensibilitzant-te-li$sensibilitzar$WG0002ETLI$antəli$aəi$7$NO$NO$Diec$sənsiβ
 sensibilitzar-te-li$sensibilitzar$WN0002ETLI$artəli$aəi$7$Vicc$NO$Diec$sənsiβilidzˈartəli
 sensibilitzem-te-li$sensibilitzar$WM01P2ETLI$ɛmtəli$ɛəi$7$NO$NO$Diec$sənsiβilidzˈɛmtəli
 sent-te-li$sentir$WM02S2ETLI$entəli$eəi$3$Vicc$NO$Diec$sˈentəli
+sent-te-li$ser$WG0002ETLI$entəli$eəi$3$Vicc$NO$Diec$sˈentəli
 sentencia-te-li$sentenciar$WM02S2ETLI$iətəli$iəəi$6$Vicc$NO$Diec$səntənsˈiətəli
 sentenciant-te-li$sentenciar$WG0002ETLI$antəli$aəi$6$NO$NO$Diec$səntənsiˈantəli
 sentenciar-te-li$sentenciar$WN0002ETLI$artəli$aəi$6$Vicc$NO$Diec$səntənsiˈartəli
@@ -30937,6 +30942,7 @@ sepulta-te-li$sepultar$WM02S2ETLI$ultətəli$uəəi$5$NO$NO$Diec$səpˈultətəl
 sepultant-te-li$sepultar$WG0002ETLI$antəli$aəi$5$NO$NO$Diec$səpultˈantəli
 sepultar-te-li$sepultar$WN0002ETLI$artəli$aəi$5$Vicc$NO$Diec$səpultˈartəli
 sepultem-te-li$sepultar$WM01P2ETLI$ɛmtəli$ɛəi$5$NO$NO$Diec$səpultˈɛmtəli
+ser-te-li$ser$WN0002ETLI$ertəli$eəi$3$Vicc$Viq$Diec$sˈertəli
 seria-te-li$seriar$WM02S2ETLI$iətəli$iəəi$5$Vicc$NO$Diec$səɾˈiətəli
 seriant-te-li$seriar$WG0002ETLI$antəli$aəi$5$NO$NO$Diec$səɾiˈantəli
 seriar-te-li$seriar$WN0002ETLI$artəli$aəi$5$Vicc$NO$Diec$səɾiˈartəli

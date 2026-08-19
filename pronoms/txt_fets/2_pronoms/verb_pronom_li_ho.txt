@@ -31931,7 +31931,9 @@ harmonitzi-li-ho$harmonitzar$WM03S2LIHO$idziliw$iii$5$Vicc$NO$Diec$ərmunˈidzil
 harmonitzin-li-ho$harmonitzar$WM03P2LIHO$idzinliw$iii$5$Vicc$NO$Diec$ərmunˈidzinliw
 hau-li-ho$heure$WM02S2LIHO$awliw$ai$2$Vicc$NO$Diec$ˈawliw
 haure-li-ho$heure$WN0002LIHO$awɾəliw$aəi$3$Vicc$NO$Diec$ˈawɾəliw
+havent-li-ho$haver$WG0002LIHO$ɛnliw$ɛi$3$Vicc$NO$Diec$əβˈɛnliw
 havent-li-ho$heure$WG0002LIHO$ɛnliw$ɛi$3$Vicc$NO$Diec$əβˈɛnliw
+haver-li-ho$haver$WN0002LIHO$ɛrliw$ɛi$3$Vicc$Viq$Diec$əβˈɛrliw
 haver-li-ho$heure$WN0002LIHO$ɛrliw$ɛi$3$Vicc$Viq$Diec$əβˈɛrliw
 haveu-li-ho$heure$WM02P2LIHO$ɛwliw$ɛi$3$Vicc$NO$Diec$əβˈɛwliw
 hebraïtza-li-ho$hebraïtzar$WM02S2LIHO$idzəliw$iəi$5$Vicc$NO$Diec$əβɾəˈidzəliw

@@ -19385,6 +19385,8 @@ esquiva-te'n$esquivar$WM02S2ETNE$iβətən$iəə$4$Vicc$NO$Diec$əskˈiβətən
 esquivant-te'n$esquivar$WG0002ETNE$antən$aə$4$NO$NO$Diec$əskiβˈantən
 esquivar-te'n$esquivar$WN0002ETNE$artən$aə$4$Vicc$NO$Diec$əskiβˈartən
 esquivem-te'n$esquivar$WM01P2ETNE$ɛmtən$ɛə$4$NO$NO$Diec$əskiβˈɛmtən
+essent-te'n$ser$WG0002ETNE$entən$eə$3$Vicc$NO$Diec$əsˈentən
+ésser-te'n$ser$WN0002ETNE$esərtən$eəə$3$Vicc$Viq$Diec$ˈesərtən
 estabilitza-te'n$estabilitzar$WM02S2ETNE$idzətən$iəə$6$NO$NO$Diec$əstəβilˈidzətən
 estabilitzant-te'n$estabilitzar$WG0002ETNE$antən$aə$6$NO$Viq$Diec$əstəβilidzˈantən
 estabilitzar-te'n$estabilitzar$WN0002ETNE$artən$aə$6$Vicc$NO$Diec$əstəβilidzˈartən
@@ -22159,7 +22161,9 @@ harmonitzar-te'n$harmonitzar$WN0002ETNE$artən$aə$5$Vicc$NO$Diec$ərmunidzˈart
 harmonitzem-te'n$harmonitzar$WM01P2ETNE$ɛmtən$ɛə$5$Vicc$NO$Diec$ərmunidzˈɛmtən
 hau-te'n$heure$WM02S2ETNE$awtən$aə$2$Vicc$NO$Diec$ˈawtən
 haure-te'n$heure$WN0002ETNE$awɾətən$aəə$3$Vicc$NO$Diec$ˈawɾətən
+havent-te'n$haver$WG0002ETNE$ɛntən$ɛə$3$Vicc$NO$Diec$əβˈɛntən
 havent-te'n$heure$WG0002ETNE$ɛntən$ɛə$3$Vicc$NO$Diec$əβˈɛntən
+haver-te'n$haver$WN0002ETNE$ɛrtən$ɛə$3$Vicc$Viq$Diec$əβˈɛrtən
 haver-te'n$heure$WN0002ETNE$ɛrtən$ɛə$3$Vicc$Viq$Diec$əβˈɛrtən
 hebraïtza-te'n$hebraïtzar$WM02S2ETNE$idzətən$iəə$5$Vicc$NO$Diec$əβɾəˈidzətən
 hebraïtzant-te'n$hebraïtzar$WG0002ETNE$antən$aə$5$Vicc$NO$Diec$əβɾəidzˈantən
@@ -30898,6 +30902,7 @@ sensibilitzant-te'n$sensibilitzar$WG0002ETNE$antən$aə$6$NO$NO$Diec$sənsiβili
 sensibilitzar-te'n$sensibilitzar$WN0002ETNE$artən$aə$6$Vicc$NO$Diec$sənsiβilidzˈartən
 sensibilitzem-te'n$sensibilitzar$WM01P2ETNE$ɛmtən$ɛə$6$NO$NO$Diec$sənsiβilidzˈɛmtən
 sent-te'n$sentir$WM02S2ETNE$entən$eə$2$Vicc$NO$Diec$sˈentən
+sent-te'n$ser$WG0002ETNE$entən$eə$2$Vicc$NO$Diec$sˈentən
 sentencia-te'n$sentenciar$WM02S2ETNE$iətən$iəə$5$Vicc$NO$Diec$səntənsˈiətən
 sentenciant-te'n$sentenciar$WG0002ETNE$antən$aə$5$NO$NO$Diec$səntənsiˈantən
 sentenciar-te'n$sentenciar$WN0002ETNE$artən$aə$5$Vicc$NO$Diec$səntənsiˈartən
@@ -30937,6 +30942,7 @@ sepulta-te'n$sepultar$WM02S2ETNE$ultətən$uəə$4$NO$NO$Diec$səpˈultətən
 sepultant-te'n$sepultar$WG0002ETNE$antən$aə$4$NO$NO$Diec$səpultˈantən
 sepultar-te'n$sepultar$WN0002ETNE$artən$aə$4$Vicc$NO$Diec$səpultˈartən
 sepultem-te'n$sepultar$WM01P2ETNE$ɛmtən$ɛə$4$NO$NO$Diec$səpultˈɛmtən
+ser-te'n$ser$WN0002ETNE$ertən$eə$2$Vicc$Viq$Diec$sˈertən
 seria-te'n$seriar$WM02S2ETNE$iətən$iəə$4$Vicc$NO$Diec$səɾˈiətən
 seriant-te'n$seriar$WG0002ETNE$antən$aə$4$NO$NO$Diec$səɾiˈantən
 seriar-te'n$seriar$WN0002ETNE$artən$aə$4$Vicc$NO$Diec$səɾiˈartən
