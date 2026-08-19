@@ -4,10 +4,10 @@ El diccionari de producció + totes les formes amb pronom, en un sol fitxer.
     python3 ajuntar_diccionari_6.py
 
     diccionaris/diccionari.5.2.3.txt        619.783 línies
-  + pronoms/txt_fets/1_pronom/*.txt         626.779 línies
-  + pronoms/txt_fets/2_pronoms/*.txt      2.779.304 línies
+  + pronoms/txt_fets/1_pronom/*.txt         626.837 línies
+  + pronoms/txt_fets/2_pronoms/*.txt      2.779.550 línies
   ------------------------------------------------------
-  = diccionaris/diccionari.6.txt         ~4.025.866 línies
+  = diccionaris/diccionari.6.txt         ~4.026.170 línies
 
 L'última passa del workflow pronoms.yml, que abans hi executa els dos
 generadors. Aquí no s'hi genera cap forma: només s'ajunta i s'ordena el que
