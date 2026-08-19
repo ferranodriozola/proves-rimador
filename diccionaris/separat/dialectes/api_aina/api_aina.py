@@ -564,6 +564,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--entrada", default="../../col_0.txt")
+#    p.add_argument("--entrada", default="proves.txt")
     p.add_argument("--dialectes", default=",".join(DIALECTES))
     p.add_argument("--perfil", default="normal", choices=list(PERFILS))
     p.add_argument("--fils", type=int, default=None,
