@@ -365,6 +365,11 @@ Queda **una decisió nova**, sorgida en previsualitzar (§2.4): la segona matriu
 
 `python3 pronoms/generar_tot.py --tots` → **13 fitxers `verb_pronom_<pronom>.txt`, 626.786 línies, 47,5 MB.**
 
+> Xifra d'aleshores. Avui en són **626.837**: −7 files duplicades de `ves`
+> (corregides al diccionari base) i +58 formes de `ser`, `ésser`, `sent`,
+> `essent`, `haver` i `havent`, que no es generaven. A més, 10.592 formes
+> han canviat de grafia o de transcripció. Vegeu «Correccions» al `README.md`.
+
 | Comprovació | Resultat |
 |---|---|
 | 10 camps per línia, camps clau plens | ✅ |
