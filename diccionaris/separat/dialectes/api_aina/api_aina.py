@@ -3,7 +3,7 @@ from gradio_client import Client
 from tqdm import tqdm
 
 nom_fitxer_entrada = "../../col_0.txt" 
-dialectes = ["Central", "Valencia", "Occidental", "Balear", "Alguerès", "Rosellonès"]
+dialectes = ["Central", "Alguerès", "Rosellonès", "Balear", "Valencia", "Occidental"]
 
 # 1. Llegir l'arxiu i extreure línies úniques
 with open(nom_fitxer_entrada, "r", encoding="utf-8") as f_entrada:
