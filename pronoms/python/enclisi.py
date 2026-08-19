@@ -18,13 +18,22 @@ cas de 2 pronoms, a pronoms/pla_dos_pronoms.md.
 # Vocals GRÀFIQUES, per decidir guionet o apòstrof. La 'u' en queda fora
 # expressament: la regla normativa és "forma plena darrere consonant O DIFTONG",
 # i una -u final sempre fa diftong (canteu-me, no *canteu'm).
-VOCALS_GRAFIQUES = set("aeioàèéíòóú")
+#
+# La dièresi hi ÉS justament perquè marca el contrari: que la vocal no fa
+# diftong. Els 396 imperatius de vostè acabats en -ï (actuï, canviï, estudiï)
+# acaben en vocal plena i demanen la forma reduïda -- actuï'l, no *actuï-lo.
+VOCALS_GRAFIQUES = set("aeioàèéíòóúïü")
 
 # Vocals de l'AFI, per decidir sonoritzacions i semivocalitzacions.
 VOCALS_AFI = set("aeiouəɛɔ")
 
 # Consonants sonores de l'AFI, per a la sonorització de la -s final.
 CONSONANTS_SONORES_AFI = set("bdgβðɣmnɲŋlʎrɾzʒjw")
+
+# Nasals de l'AFI. Són l'únic context on una oclusiva sonora es queda
+# oclusiva: el diccionari fa bum-bum /bˈumbˈum/ però pèl-blanc /pˈɛlβlˈaŋ/,
+# corba /kˈorβə/ i arbre /ˈaβɾə/.
+NASALS_AFI = set("mnɲŋɱ")
 
 
 # ------------------------------------------------------- taula de l'enclisi
@@ -200,13 +209,17 @@ def _sandhi(esquerra, dreta):
             dreta[0] in VOCALS_AFI or dreta[0] in CONSONANTS_SONORES_AFI):
         esquerra = esquerra[:-1] + "z"
 
-    # (4) espirantització de la v- de '-vos'
-    if dreta.startswith("b") and esquerra[-1] in VOCALS_AFI | {"j", "w"}:
+    # (4) espirantització de la v- de '-vos'. L'única cosa que la manté
+    #     oclusiva és una nasal al davant, no pas el fet de no ser vocal:
+    #     canteu-vos /kəntˈɛwβus/ i cantar-vos /kəntˈarβus/ (cf. corba
+    #     /kˈorβə/, pèl-blanc /pˈɛlβlˈaŋ/), però cantem-vos /kəntˈɛmbus/
+    #     (cf. bum-bum /bˈumbˈum/).
+    if dreta.startswith("b") and esquerra[-1] not in NASALS_AFI:
         dreta = "β" + dreta[1:]
 
     # (5) assimilació de la -n final al punt d'articulació del que ve.
-    #     Va DESPRÉS de l'espirantització: si abans hi ha una -n, l'enclític
-    #     '-vos' es queda en [b] (no és darrere vocal) i és la -n qui es mou.
+    #     És la mateixa -n que acaba de deixar '-vos' en [b] a la (4): el
+    #     resultat és cantant-vos /kəntˈambus/, amb les dues coses alhora.
     if esquerra.endswith("n"):
         for nasal, contextos in ASSIMILACIO_NASAL.items():
             if dreta[0] in contextos:
@@ -253,8 +266,10 @@ def transcriure(forma, transcripcio, enclitic):
              digues-hi /dˈiɣəzi/, digues-ne /dˈiɣəznə/
          (cf. esdevenir /əzðəβənˈi/, despús-ahir /dəspˈuzəˈi/)
 
-      4) La v- de '-vos' s'espirantitza en [β] darrere vocal
-         (cf. vis-a-vis /bˈizəβˈis/)
+      4) La v- de '-vos' s'espirantitza en [β] a tot arreu MENYS darrere nasal:
+             canteu-vos /kəntˈɛwβus/  (cf. vis-a-vis /bˈizəβˈis/)
+             cantar-vos /kəntˈarβus/  (cf. corba /kˈorβə/, pèl-blanc /pˈɛlβlˈaŋ/)
+             cantem-vos /kəntˈɛmbus/  (cf. bum-bum /bˈumbˈum/)
 
       5) Una -n final assimila el punt d'articulació de l'enclític:
              cantant-me  /kəntˈammə/   (cf. granment /ɡɾˈammˈen/)
@@ -380,6 +395,7 @@ def _generar_forma_2(forma, transcripcio, silabes_base, pronoms, forma_verbal, p
         digues-los-ho   /dˈiɣəzluzu/      (3) les dues -s sonoritzen
         cantant-me'l    /kəntˈamməl/     (5) la -n assimila
         porta-li-ho     /pˈɔrtəliw/       (6) '-ho' en semivocal
+        porta-la-hi     /pˈɔrtələj/       (6) també per la via li+la
 
     `pronoms` ja ve en ordre gramatical (li abans que el/la/els/les, etc.); el
     codi es construeix amb aquest ordre encara que la parella s'hagi
@@ -388,7 +404,12 @@ def _generar_forma_2(forma, transcripcio, silabes_base, pronoms, forma_verbal, p
     import llicencies   # importació diferida: llicencies també importa enclisi
 
     p1, p2 = pronoms
-    escrit, fonemes = llicencies.PARELLES[llicencies.parella_efectiva(p1, p2)]
+    # La parella EFECTIVA (li+la -> la+hi) és la que mana en tot el que és
+    # so i grafia; la original només sobreviu al codi. Es desa sencera perquè
+    # la (6) necessita saber quin pronom sona AL FINAL de debò: a li+la el
+    # que es diu és "-la-hi", i és aquell '-hi' el que fa semivocal.
+    efectiva = llicencies.parella_efectiva(p1, p2)
+    escrit, fonemes = llicencies.PARELLES[efectiva]
     if isinstance(escrit, tuple):
         vocal = acaba_en_vocal(forma)
         escrit = escrit[1] if vocal else escrit[0]
@@ -398,7 +419,7 @@ def _generar_forma_2(forma, transcripcio, silabes_base, pronoms, forma_verbal, p
     transcripcio = _sensibilitzar(forma, transcripcio, fon1)         # (1) i (2)
     transcripcio, fon1 = _sandhi(transcripcio, fon1)                 # límit verb|pronom1
     fon1, fon2 = _sandhi(fon1, fon2)                                 # límit pronom1|pronom2
-    fon2 = _semivocal(fon1, "-" + p2, fon2)                          # (6)
+    fon2 = _semivocal(fon1, "-" + efectiva[1], fon2)                 # (6)
 
     cua = fon1 + fon2
     transcripcio_nova = transcripcio + cua
