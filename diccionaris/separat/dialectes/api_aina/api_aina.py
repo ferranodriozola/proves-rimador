@@ -6,6 +6,8 @@ Transcripció fonètica multidialectal (API del Projecte Aina) amb:
   · PETICIONS PER LOTS -> ~25 mots per petició en comptes d'1 (unes 25x més ràpid).
   · REGULADOR DE RITME -> pauses aleatòries + frenada automàtica si el servidor es queixa.
   · REINTENTS amb espera creixent i, si cal, mot a mot.
+  · UNA PETICIÓ CADA COP -> el servidor barreja les respostes si en rep dues
+    alhora, i llavors hi ha mots que reben la transcripció d'un altre.
 
 Ús:
     python3 api_aina.py                      # perfil normal
@@ -13,6 +15,7 @@ Transcripció fonètica multidialectal (API del Projecte Aina) amb:
     python3 api_aina.py --dialectes Central,Balear
     python3 api_aina.py --entrada ../../col_1.txt
     python3 api_aina.py --estat              # només mostra quant queda i surt
+    python3 api_aina.py --marge 500          # descarta més cua de caché en començar
 """
 
 import argparse
@@ -40,11 +43,25 @@ DIALECTES = ["Central", "Alguerès", "Rosellonès", "Balear", "Valencia", "Occid
 #   concurrency_limit  = 2    -> més de 2-3 peticions alhora només genera errors
 MAX_CARACTERS_LOT = 300
 
+# Quantes entrades de la cua de la caché es llencen en començar. El que es pot
+# haver quedat a mig escriure és, com a molt, l'últim lot (~25 mots), perquè
+# desa() fa flush+fsync lot a lot; 200 és vuit vegades això i només costa uns
+# segons de tornar-los a demanar.
+MARGE_SEGURETAT = 200
+
 PERFILS = {
     # nom          fils  pausa entre peticions  peticions/minut  descans llarg
-    # 3 fils és l'òptim mesurat: 96 mots/s. Amb 4 baixa a 93 i falla més sovint.
-    "rapid":    dict(fils=3, pausa=(0.05, 0.20), per_minut=0,   descans_cada=0,   descans=(0, 0)),
-    "normal":   dict(fils=2, pausa=(0.15, 0.50), per_minut=150, descans_cada=600, descans=(20, 45)),
+    # Sempre 1 fil, i no és negociable. Amb 2 o més, el servidor (que té
+    # concurrency_limit=2) barreja les respostes de les peticions simultànies i
+    # un 2% dels mots torna la transcripció d'un altre. A vegades es veu
+    # ("rəstɾinʒˈen" surt com "ənsərkəɾˈa  rəstɾinʒˈen") i a vegades no es veu
+    # gens ("conegudes" -> "insistiɾˈiəm", que és una transcripció perfecta...
+    # d'un altre mot). Mesurat sobre 3.000 mots transcrits dues vegades:
+    # 1 fil -> 0 discrepàncies; 3 fils -> 61 (2,03%).
+    # I no perdem res: 1 fil fa 100 mots/s i 3 fils en fan 94, perquè cada lot
+    # brut s'ha de repetir mot a mot.
+    "rapid":    dict(fils=1, pausa=(0.05, 0.20), per_minut=0,   descans_cada=0,   descans=(0, 0)),
+    "normal":   dict(fils=1, pausa=(0.15, 0.50), per_minut=150, descans_cada=600, descans=(20, 45)),
     "discret":  dict(fils=1, pausa=(0.40, 1.20), per_minut=90,  descans_cada=300, descans=(45, 120)),
     "paranoic": dict(fils=1, pausa=(1.50, 4.00), per_minut=40,  descans_cada=150, descans=(120, 300)),
 }
@@ -219,21 +236,29 @@ def transcriure_lot(sessio, lot, dialecte, regulador):
     """
     text = ".\n".join(lot) + "."
     resposta = demanar_amb_reintents(sessio, text, dialecte, regulador)
+    resultats, dubtosos = {}, lot
     if resposta is not None:
         linies = [neteja(x) for x in resposta.split("\n")]
-        if len(linies) == len(lot) and not any(sospitosa(x) for x in linies):
-            return dict(zip(lot, linies))
-        motiu = ("desalineat" if len(linies) != len(lot) else "contaminat")
-        print(f"\n  ! {dialecte}: lot {motiu} ({len(lot)} mots → {len(linies)} "
-              f"línies); es fa mot a mot", flush=True)
+        if len(linies) == len(lot):
+            # Ens quedem les línies netes i tornem a demanar només les que fan
+            # pudor: que una faci mala cara no invalida les altres vint-i-quatre.
+            resultats = {m: x for m, x in zip(lot, linies) if not sospitosa(x, m)}
+            dubtosos = [m for m in lot if m not in resultats]
+            if dubtosos:
+                print(f"\n  ! {dialecte}: {len(dubtosos)} de {len(lot)} mots fan "
+                      f"pudor de restes; es tornen a demanar sols", flush=True)
+        else:
+            # Aquí sí que s'ha de refer tot: sense correspondència 1:1 no sabem
+            # quina línia és de quin mot.
+            print(f"\n  ! {dialecte}: lot desalineat ({len(lot)} mots → "
+                  f"{len(linies)} línies); es fa mot a mot", flush=True)
     # pla B: un per un (lent però segur)
-    resultats = {}
-    for mot in lot:
+    for mot in dubtosos:
         r = demanar_amb_reintents(sessio, mot + ".", dialecte, regulador)
         if r is not None:
             r = neteja(r)
-            if not sospitosa(r):
-                resultats[mot] = r
+            if not sospitosa(r):        # mot a mot: sedàs bàsic, si no hi ha
+                resultats[mot] = r      # mots que no s'acceptarien mai
     return resultats
 
 
@@ -241,10 +266,27 @@ def neteja(transcripcio):
     return re.sub(r"\s*\.\s*$", "", transcripcio.strip()).strip()
 
 
-def sospitosa(transcripcio):
-    """Una transcripció d'un sol mot pot dur un espai (McDonald's → 'məɡ
-    dˈonəlts'), però mai dos seguits: això delata restes d'una altra resposta."""
-    return "  " in transcripcio or not transcripcio
+def sospitosa(transcripcio, mot=None):
+    """Detecta restes d'una altra resposta enganxades a la transcripció.
+
+    Sense `mot` el sedàs és el bàsic: buida o amb dos espais seguits. Serveix
+    per als mots demanats d'un en un, on no hi ha res a desalinear.
+
+    Amb `mot` és més estricte i es fa servir per als lots: un mot sense espais,
+    guions ni apòstrofs no pot donar una transcripció amb espais, i si en duu
+    són restes d'una altra petició ('esquilarien' → 'əskiləɾˈiən tisiunˈi').
+    Aquí sí que hi ha falsos positius —'JuntsxCat' → 'ʒˈunʃʃ kˈat' és bo—, però
+    surten barats: el lot es repeteix mot a mot i allà s'accepten.
+
+    Ull: això no ho enxampa tot. Quan el servidor substitueix una línia sencera
+    per la d'un altre mot no queda cap rastre visible. L'únic remei de debò és
+    no enviar mai dues peticions alhora: mira el comentari de PERFILS.
+    """
+    if not transcripcio or "  " in transcripcio:
+        return True
+    if mot is None:
+        return False
+    return " " in transcripcio and not re.search(r"[\s'’\-]", mot)
 
 # ---------------------------------------------------------------------- caché
 
@@ -267,9 +309,50 @@ class Cache:
                     dades[mot] = trans
         return dades
 
-    def __init__(self, cami):
+    @staticmethod
+    def sanejar(cami, marge):
+        """Deixa el fitxer llest per continuar-hi escrivint al darrere.
+
+        Si l'script s'atura de cop, l'última línia pot quedar a mitges. Obrir el
+        fitxer en mode «afegir» i escriure-hi de dret enganxaria el mot següent
+        a aquella resta: 'peix\tpˈe' + 'aigua\tˈajɣwə' dona
+        'peix\tpˈeaigua\tˈajɣwə', una entrada falsa que després es donaria per
+        bona i acabaria al fitxer final.
+
+        Per no dependre de com va quedar el disc, retallem el fitxer per
+        l'última línia sencera, llencem les línies mal formades (les que ja
+        haguessin quedat enganxades d'abans) i, de propina, les últimes `marge`
+        entrades. Tot això es torna a demanar: costa segons i evita maldecaps.
+        """
+        if not os.path.exists(cami):
+            return
+        with open(cami, "rb") as f:
+            original = f.read()
+        # Partint per "\n", l'últim tros és buit si el fitxer acaba en salt de
+        # línia; si no hi acaba, aquest últim tros és la línia a mitges. En tots
+        # dos casos el volem fora, així que el descartem sempre.
+        senceres = original.split(b"\n")[:-1]
+        bones = [l for l in senceres if l.count(b"\t") == 1]
+        if marge:
+            bones = bones[:max(0, len(bones) - marge)]
+        nou = b"".join(l + b"\n" for l in bones)
+        if nou == original:
+            return
+        temporal = cami + ".tmp"
+        with open(temporal, "wb") as f:
+            f.write(nou)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(temporal, cami)          # mai una caché a mitges
+        a_mitges = " i una línia a mitges" if not original.endswith(b"\n") else ""
+        print(f"  · {os.path.basename(cami)}: descarto {len(senceres) - len(bones)} "
+              f"entrades del final{a_mitges}; en queden {mil(len(bones))} "
+              f"(la resta es tornarà a demanar)", flush=True)
+
+    def __init__(self, cami, marge=MARGE_SEGURETAT):
         self.cami = cami
         self.pany = threading.Lock()
+        self.sanejar(cami, marge)           # abans de llegir res
         self.dades = self.llegir(cami)
         self.fitxer = open(cami, "a", encoding="utf-8")
 
@@ -304,7 +387,8 @@ def temps_llegible(segons):
 def processar_dialecte(dialecte, mots_unics, linies_originals, args, regulador):
     """Un dialecte de cap a peus, i després el següent: així tens el primer
     fitxer acabat i utilitzable molt abans que no pas si van tots a mitges."""
-    cache = Cache(os.path.join(args.cache, f"{args.prefix}__{dialecte}.tsv"))
+    cache = Cache(os.path.join(args.cache, f"{args.prefix}__{dialecte}.tsv"),
+                  args.marge)
     pendents = [m for m in mots_unics if m not in cache.dades]
     print(f"\n=== {dialecte}: {mil(len(mots_unics) - len(pendents))} ja fets, "
           f"{mil(len(pendents))} pendents", flush=True)
@@ -367,7 +451,8 @@ def processar_alhora(dialectes, mots_unics, linies_originals, args, regulador):
     """Tots els dialectes avancen a la vegada, entrellaçant-ne les peticions."""
     caches = {}
     for dialecte in dialectes:
-        cache = Cache(os.path.join(args.cache, f"{args.prefix}__{dialecte}.tsv"))
+        cache = Cache(os.path.join(args.cache, f"{args.prefix}__{dialecte}.tsv"),
+                      args.marge)
         caches[dialecte] = cache
         pendents = [m for m in mots_unics if m not in cache.dades]
         print(f"  {dialecte:12} {mil(len(mots_unics) - len(pendents)):>9} fets, "
@@ -428,6 +513,10 @@ def main():
     p.add_argument("--fils", type=int, default=None,
                    help="peticions simultànies (per defecte, la del perfil)")
     p.add_argument("--cache", default="cache")
+    p.add_argument("--marge", type=int, default=MARGE_SEGURETAT,
+                   help="entrades que es descarten del final de cada caché en "
+                        "començar, per si l'última escriptura va quedar a "
+                        "mitges (per defecte, %(default)s)")
     p.add_argument("--alhora", action="store_true",
                    help="avança els 6 dialectes a la vegada en comptes d'un rere "
                         "l'altre (mateix temps total, però cap fitxer no s'acaba "
@@ -453,6 +542,11 @@ def main():
           f"{mil(len(mots_unics))} mots únics")
     print(f"Perfil: {args.perfil} ({args.fils} fil(s), "
           f"{perfil['per_minut'] or 'sense'} peticions/minut)")
+    if args.fils > 1:
+        print("  ATENCIÓ: amb més d'un fil el servidor barreja les respostes de "
+              "les peticions simultànies i un 2% dels mots surt amb la "
+              "transcripció d'un altre. No ho facis servir per a la feina bona.",
+              flush=True)
 
     if args.estat:
         for d in dialectes:
