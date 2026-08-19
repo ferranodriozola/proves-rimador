@@ -17,7 +17,12 @@
 | Fonètica de les parelles | Els fragments d'AFI del quadre **més les 6 regles de sàndhi d'1 pronom**, aplicades als dos límits del grup (§2) |
 | Arquitectura | Mateixos 3 mòduls que la fase d'1 pronom, ampliats: `llicencies.PARELLES`/`permet_parella`, `enclisi._generar_forma_2`, `generar_tot_2_pronoms.py` |
 
-**Volum obtingut: 2.779.304 formes**, 69 fitxers, 234 MB.
+**Volum obtingut: 2.779.550 formes**, 69 fitxers, 234 MB.
+
+> Xifra corregida: la generació original en va donar 2.779.304. La
+> diferència són els 246 grups de `ser` i `haver` que hi faltaven i els
+> 130.196 que van canviar de transcripció (vegeu «Correccions» al
+> `README.md`).
 
 ---
 
@@ -148,7 +153,7 @@ python3 pronoms/generar_tot_2_pronoms.py li:el es:hi   # només aquestes
 
 ## 3. Resultat de la generació
 
-`python3 pronoms/generar_tot_2_pronoms.py` → **69 fitxers, 2.779.304
+`python3 pronoms/generar_tot_2_pronoms.py` → **69 fitxers, 2.779.550
 línies, 234 MB.**
 
 | Comprovació | Resultat |
@@ -158,12 +163,12 @@ línies, 234 MB.**
 | `col_3` = tot el que va darrere l'accent, `col_4` = les seves vocals | ✅ 0 excepcions |
 | col·lisions amb el diccionari base (`col_0.txt`) | ✅ 0 |
 | files duplicades exactes | ✅ 0 |
-| límit verb\|pronom idèntic al que dona el camí d'1 pronom | ✅ a les 2.779.304 |
-| cua fonètica esperada per a cada parella | ✅ a les 2.779.304 |
+| límit verb\|pronom idèntic al que dona el camí d'1 pronom | ✅ a les 2.779.550 |
+| cua fonètica esperada per a cada parella | ⚠️ la comprovació no veia l'error de `li`+`la`: comparava contra una cua calculada igual de malament |
 | casos de prova coneguts (`porta-l'hi`, `treu-l'en`, `renta-te-la`, `avisa'ns-hi`/`digues-nos-hi`, `anem-nos-en`, `ves-te'n`, `penedir-se'n`, `endur-se'l`) | ✅ tots coincideixen amb el Quadre 8.9 |
 
-Repartiment per forma verbal: 520.956 infinitius, 516.638 gerundis,
-1.741.710 imperatius. **1.489.657 combinacions descartades** per la
+Repartiment per forma verbal: 521.079 infinitius, 516.761 gerundis,
+1.741.710 imperatius. **1.489.825 combinacions descartades** per la
 heurística d'unió o la concordança de persona. Són 373 codis diferents.
 
 Per comparació: el diccionari actual (1 pronom inclòs) fa uns 90 MB en
