@@ -6,7 +6,7 @@
     <meta name="theme-color" id="themeColor" content="#FF91FF">
     <meta name="robots" content="index, follow">
 
-    <title>El Rimador.cat</title>
+    <title>Rimador.cat</title>
     <meta name="description" content="El Rimador.cat et permet cercar paraules que rimen amb rimes assonants i consonants segons la fonètica. Conté filtres per categories gramaticals. Prova'l!">
     <meta name="author" content="Marc i Ferran">
     <link rel="canonical" href="https://rimador.cat/">
@@ -26,6 +26,41 @@
     <meta name="twitter:title" content="El Rimador.cat">
     <meta name="twitter:description" content="El primer cercador funcional de rimes en català segons la fonètica.">
     <meta name="twitter:image" content="https://rimador.cat/assets/R.webp">
+
+    <!--
+        Dades estructurades del lloc (schema.org, en JSON-LD).
+
+        El WebSite lliga el domini amb un nom: sense això, els cercadors han
+        d'endevinar com es diu el lloc a partir del <title> i del text, i
+        acaben ensenyant el que volen. L'alternateName hi és perquè la gent
+        ens anomena de maneres diferents (Rimador.cat, el Rimador català).
+
+        El SearchAction declara que el cercador es pot obrir per URL amb ?q=.
+        Això només és veritat perquè el js/script.js ho implementa (vegeu-hi
+        cercarDesDeLaURL): si algun dia s'hi treu, aquest bloc s'ha de treure
+        també, perquè declarar una cerca que no funciona és pitjor que no
+        declarar-ne cap.
+    -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://rimador.cat/#lloc",
+      "url": "https://rimador.cat/",
+      "name": "El Rimador",
+      "alternateName": ["Rimador.cat", "El Rimador català"],
+      "description": "Diccionari de rimes en català: cerca rimes consonants i assonants segons la fonètica, amb filtres per categories gramaticals.",
+      "inLanguage": "ca",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://rimador.cat/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
 
     <link rel="stylesheet" href="dist/css/styles.min.css?v=d44dac4">
     <link rel="stylesheet" href="avis/avis.css?v=d44dac4">
