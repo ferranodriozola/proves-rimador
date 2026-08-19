@@ -25,3 +25,5 @@ txt_fets/
 
 #diccionari de pronoms
 diccionaris/diccionari.6*.txt
+# Caché de transcripcions dialectals (regenerable)
+diccionaris/separat/dialectes/api_aina/cache/
