@@ -98,6 +98,45 @@ body#llista #separador_rosa1 {
     width: 120px;
 }
 
+/* Petit i discret: al costat del botó de cercar no hi ha de competir, només
+   ha de ser-hi quan hi ha alguna cosa per compartir. El blau és el de tota la
+   vida del Twitter, que és el que la gent reconeix, i no pas el negre d'ara. */
+#compartirButton {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 6px;
+    margin-left: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background-color: #1DA1F2;
+    color: $blanc;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 150ms ease-in-out;
+}
+
+#compartirButton:hover {
+    background-color: #1483c2;
+}
+
+#compartirButton svg {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+}
+
+/* La regla de dalt posa display:inline-flex, que guanyaria al display:none que
+   el navegador dona de sèrie a [hidden]: sense això el botó es veuria sempre,
+   també abans de cap cerca. */
+#compartirButton[hidden] {
+    display: none;
+}
+
 #actualitzaButton {
     width: 142px;
 }
@@ -198,6 +237,13 @@ body#llista #separador_rosa1 {
     }
     #cercaButton {
         width: 100%;
+    }
+
+    /* Amb el .search-container en flex-wrap, el botó de cercar ja ocupa tota
+       l'amplada i aquest cau a la línia de sota tot sol. Es queda petit (que és
+       la gràcia) i el margin auto el centra sota el botó gros. */
+    #compartirButton {
+        margin: 10px auto 0;
     }
 
     .dropdown-container > div {
