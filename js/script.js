@@ -313,6 +313,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log('Tots els fitxers carregats correctament');
 
         document.getElementById("loader").style.display = "none";
+
+        // Va aquí i no pas al principi del DOMContentLoaded: la cerca
+        // necessita el diccionari llegit i indexat, que és justament el que
+        // s'acaba de fer. Dins el try, perquè si la càrrega ha petat no hi ha
+        // res per on cercar.
+        cercarDesDeLaURL();
     } catch (error) {
         Debug.logError('Error en carregar els fitxers:', error);
         document.getElementById("loader").style.display = "none";
@@ -461,6 +467,29 @@ if (inputParaula) {
 const cercaButton = document.getElementById('cercaButton');
 if (cercaButton) {
   cercaButton.addEventListener('click', realitzarCerca);
+}
+
+// Cerca demanada des de l'adreça: rimador.cat/?q=paraula
+//
+// Serveix per a dues coses. La primera, poder enllaçar una cerca concreta
+// (compartir-la, desar-la, posar-la de cercador al navegador). La segona, que
+// el SearchAction del JSON-LD de l'index.html digui la veritat: allà hi ha
+// declarat exactament aquest patró d'URL, i sense això seria una mentida —
+// l'adreça obriria la pàgina d'inici buida i no cercaria res.
+//
+// Només omple el camp i pitja el botó: tota la feina la fa el realitzarCerca
+// de sempre, amb els filtres tal com els deixa el components.js. No toca la
+// barra d'adreces quan es cerca des del formulari; el ?q= és una porta
+// d'entrada, no un estat que la pàgina vagi mantenint.
+function cercarDesDeLaURL() {
+  const paraula = new URLSearchParams(window.location.search).get('q');
+  if (!paraula || !paraula.trim()) return;
+
+  const camp = document.getElementById('paraulaCercada');
+  if (!camp) return;
+
+  camp.value = paraula.trim();
+  realitzarCerca();
 }
 
 const CriterisNoms = {
