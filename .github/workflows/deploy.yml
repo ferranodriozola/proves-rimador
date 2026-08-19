@@ -156,6 +156,59 @@ jobs:
           sed -i -E "s|=\"/|=\"$PREFIX/|g" 404.html
           grep -oE '(src|href)="[^"]*"' 404.html | grep -v 'https\?://'
 
+      # Va aquí i no abans per la mateixa raó que el pas de sota: després de
+      # tots els git push. Així el sitemap.xml regenerat entra al paquet que es
+      # publica però no s'acosta mai a cap commit, i el que hi ha al repositori
+      # es queda tal com el vam escriure a mà.
+      - name: Regenerar el sitemap.xml
+        run: |
+          python3 - <<'PY'
+          import glob, os, re
+
+          # La font de la veritat és el <link rel="canonical"> de cada pàgina,
+          # no pas la ruta del fitxer. Així el sitemap no es pot desdir del que
+          # diu la pàgina mateixa: si un dia un canonical canvia, el sitemap el
+          # segueix tot sol. I una pàgina nova hi entra sense tocar res, sempre
+          # que dugui canonical (que és el que ha de dur igualment).
+          #
+          # Les noindex en queden fora: dir-li a Google "indexa aquesta" al
+          # sitemap i "no la indexis" a la pàgina és un senyal contradictori.
+          # Avui això vol dir el 404.html, que a més no té canonical.
+          canonical = re.compile(r'<link\s+rel="canonical"\s+href="([^"]+)"')
+          noindex   = re.compile(r'<meta\s+name="robots"\s+content="[^"]*noindex')
+
+          urls = []
+          for cami in glob.glob('**/*.html', recursive=True):
+              if cami.startswith(('node_modules/', 'html/')):
+                  continue
+              html = open(cami, encoding='utf-8').read()
+              if noindex.search(html):
+                  print('  (noindex, fora)  %s' % cami)
+                  continue
+              trobat = canonical.search(html)
+              if not trobat:
+                  print('  AVIS: %s no té canonical i es queda fora del sitemap' % cami)
+                  continue
+              urls.append(trobat.group(1))
+
+          urls.sort()
+          with open('sitemap.xml', 'w', encoding='utf-8') as f:
+              f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+              f.write('<!-- Generat a cada desplegament des dels canonical de les pàgines.\n')
+              f.write('     Vegeu "Regenerar el sitemap.xml" a .github/workflows/deploy.yml. -->\n')
+              f.write('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
+              for u in urls:
+                  f.write('  <url>\n    <loc>%s</loc>\n  </url>\n' % u)
+              f.write('</urlset>\n')
+
+          print('sitemap.xml: %d pàgines' % len(urls))
+          for u in urls:
+              print('  ' + u)
+
+          if not urls:
+              raise SystemExit('ERROR: el sitemap ha quedat buit.')
+          PY
+
       # Va DESPRÉS de tots els git push d'aquest job, a posta: aquí esborrem
       # fitxers que sí que són al repositori, i si quedés cap "git add" per
       # sota, comitejaríem les esborrades.
@@ -194,7 +247,9 @@ jobs:
                      diccionaris/separat/col_0.txt \
                      diccionaris/separat/internat \
                      dist/css/styles.min.css \
-                     dist/js/script.min.js; do
+                     dist/js/script.min.js \
+                     sitemap.xml \
+                     robots.txt; do
             if [ ! -e "$cal" ]; then
               echo "ERROR: falta $cal al paquet, que el navegador sí que demana."
               exit 1
