@@ -16,9 +16,11 @@ Transcripció fonètica multidialectal (API del Projecte Aina) amb:
     python3 api_aina.py --entrada ../../col_1.txt
     python3 api_aina.py --estat              # només mostra quant queda i surt
     python3 api_aina.py --marge 500          # descarta més cua de caché en començar
+    python3 api_aina.py --mostra 500         # comprova 500 mots per dialecte al final
+    python3 api_aina.py --sense-comprova     # no passa comprova.py en acabar
 
-Quan hagi acabat, comprova el resultat amb:
-    python3 comprova.py --mostra 200
+En acabar es passa comprova.py tot sol: revisió interna dels fitxers i, si
+--mostra no és 0, verificació contra l'API d'uns quants mots per dialecte.
 """
 
 import argparse
@@ -26,6 +28,7 @@ import json
 import os
 import random
 import re
+import subprocess
 import sys
 import threading
 import time
@@ -560,6 +563,36 @@ def executar(tasques, caches, total, args, regulador, fils=None):
         raise
 
 
+def comprovar(args):
+    """Passa comprova.py sobre el que s'acaba de generar. Torna el seu codi.
+
+    Es fa en un procés a part, i no important-lo, perquè comprova.py importa
+    d'aquest fitxer: cridar-lo des d'aquí faria una importació circular. A més,
+    així el que s'executa és exactament la mateixa ordre que faries a mà, amb
+    els mateixos arguments que has donat aquí.
+    """
+    cami = os.path.join(os.path.dirname(os.path.abspath(__file__)), "comprova.py")
+    if not os.path.exists(cami):
+        print(f"\n  ! no trobo {cami}; no es fa la comprovació", flush=True)
+        return 0
+    ordre = [sys.executable, cami,
+             "--entrada", args.entrada,
+             "--dialectes", args.dialectes,
+             "--cache", args.cache,
+             "--perfil", args.perfil,        # que un perfil discret ho sigui fins al final
+             "--mostra", str(args.mostra)]
+    print("\n" + "-" * 70)
+    print("Comprovació automàtica (comprova.py"
+          + (f" --mostra {args.mostra}" if args.mostra else "") + "):\n", flush=True)
+    try:
+        return subprocess.call(ordre)
+    except KeyboardInterrupt:
+        print("\nComprovació aturada per l'usuari. Els fitxers ja són fets; "
+              "pots comprovar-los quan vulguis amb:\n"
+              f"    python3 comprova.py --entrada {args.entrada} --mostra {args.mostra}")
+        return 130
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -579,6 +612,13 @@ def main():
                         "l'altre (mateix temps total, però cap fitxer no s'acaba "
                         "fins al final)")
     p.add_argument("--estat", action="store_true", help="només mostra el progrés")
+    p.add_argument("--mostra", type=int, default=200,
+                   help="mots per dialecte que comprova.py torna a demanar a "
+                        "l'API en acabar, per detectar transcripcions que són "
+                        "bones però d'un altre mot (0 = només revisió interna; "
+                        "per defecte, %(default)s)")
+    p.add_argument("--sense-comprova", dest="comprova", action="store_false",
+                   help="no passa comprova.py en acabar")
     args = p.parse_args()
 
     perfil = PERFILS[args.perfil]
@@ -626,6 +666,11 @@ def main():
               f"Torna a executar l'script per continuar on eres.")
         sys.exit(130)
     print(f"\nFet. Temps total: {temps_llegible(time.time() - inici)}")
+
+    if args.comprova:
+        codi = comprovar(args)
+        if codi:
+            sys.exit(codi)
 
 
 if __name__ == "__main__":
