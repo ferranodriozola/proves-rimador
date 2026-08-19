@@ -2,7 +2,7 @@ import concurrent.futures
 from gradio_client import Client
 from tqdm import tqdm
 
-nom_fitxer_entrada = "prova.txt" 
+nom_fitxer_entrada = "../../col_0.txt" 
 dialectes = ["Central", "Valencia", "Occidental", "Balear", "Alguerès", "Rosellonès"]
 
 # 1. Llegir l'arxiu i extreure línies úniques
@@ -26,7 +26,7 @@ def processar_dialecte(dialecte):
         memoria_transcripcions[text_unic] = resultat
         
     # Guardem l'arxiu final respectant l'ordre
-    nom_fitxer_sortida = f"transcripcions_{dialecte.lower()}.txt"
+    nom_fitxer_sortida = f"col_0_{dialecte.lower()}.txt"
     with open(nom_fitxer_sortida, "w", encoding="utf-8") as f_sortida:
         for linia in linies_originals:
             f_sortida.write(memoria_transcripcions[linia] + "\n")
