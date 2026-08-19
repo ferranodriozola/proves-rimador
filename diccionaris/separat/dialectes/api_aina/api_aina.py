@@ -24,6 +24,7 @@ import sys
 import threading
 import time
 from collections import deque
+from itertools import zip_longest
 
 import requests
 
@@ -34,11 +35,14 @@ URL = ("https://projecte-aina-transcripcio-fonetica-catala.hf.space"
 
 DIALECTES = ["Central", "Alguerès", "Rosellonès", "Balear", "Valencia", "Occidental"]
 
-# El servidor talla el text a ~325 caràcters: deixem marge.
+# Límits reals del servidor (vistos al codi font del space, app.py):
+#   MAX_INPUT_TEXT_LEN = 325  -> text més llarg = avís i resposta buida
+#   concurrency_limit  = 2    -> més de 2-3 peticions alhora només genera errors
 MAX_CARACTERS_LOT = 300
 
 PERFILS = {
     # nom          fils  pausa entre peticions  peticions/minut  descans llarg
+    # 3 fils és l'òptim mesurat: 96 mots/s. Amb 4 baixa a 93 i falla més sovint.
     "rapid":    dict(fils=3, pausa=(0.05, 0.20), per_minut=0,   descans_cada=0,   descans=(0, 0)),
     "normal":   dict(fils=2, pausa=(0.15, 0.50), per_minut=150, descans_cada=600, descans=(20, 45)),
     "discret":  dict(fils=1, pausa=(0.40, 1.20), per_minut=90,  descans_cada=300, descans=(45, 120)),
@@ -102,6 +106,10 @@ class Regulador:
         with self.pany:
             self.factor = max(1.0, self.factor * 0.97)   # afluixa a poc a poc
 
+    def frenar(self, factor=4.0):
+        with self.pany:
+            self.factor = max(self.factor, factor)
+
     def ha_fallat(self, greu=False):
         with self.pany:
             self.factor = min(20.0, self.factor * (2.0 if greu else 1.4))
@@ -138,7 +146,14 @@ def demanar(sessio, text, dialecte, regulador):
     r.raise_for_status()
     event_id = r.json()["event_id"]
 
+    # Cal buidar l'stream SENCER abans de sortir del "with". Si en sortim a
+    # mitges (fent return dins del bucle), la connexió keep-alive torna al pool
+    # amb dades pendents i la petició següent d'aquesta mateixa sessió es
+    # menja les restes: apareixen transcripcions com "bərɣˈos  dəzðunˈaβən",
+    # amb el final de la resposta anterior enganxat al davant.
     esdeveniment = None
+    resultat = None
+    error = False
     with sessio.get(f"{URL}/{event_id}", stream=True, timeout=300) as r2:
         if r2.status_code in (429, 503):
             raise ErrorAPI(f"HTTP {r2.status_code} (ens estan frenant)", greu=True)
@@ -148,13 +163,16 @@ def demanar(sessio, text, dialecte, regulador):
                 continue
             if linia.startswith("event:"):
                 esdeveniment = linia[6:].strip()
+                if esdeveniment == "error":
+                    error = True
             elif linia.startswith("data:"):
                 dades = json.loads(linia[5:])
                 valor = dades[0] if isinstance(dades, list) and dades else None
-                if esdeveniment == "error" or valor is None:
-                    raise ErrorAPI("resposta buida/error del servidor")
-                return valor
-    raise ErrorAPI("resposta incompleta")
+                if valor is not None and not error:
+                    resultat = valor
+    if resultat is None:
+        raise ErrorAPI("resposta buida/error del servidor")
+    return resultat
 
 
 def demanar_amb_reintents(sessio, text, dialecte, regulador, intents=6):
@@ -203,9 +221,10 @@ def transcriure_lot(sessio, lot, dialecte, regulador):
     resposta = demanar_amb_reintents(sessio, text, dialecte, regulador)
     if resposta is not None:
         linies = [neteja(x) for x in resposta.split("\n")]
-        if len(linies) == len(lot) and all(linies):
+        if len(linies) == len(lot) and not any(sospitosa(x) for x in linies):
             return dict(zip(lot, linies))
-        print(f"\n  ! {dialecte}: lot desalineat ({len(lot)} mots → {len(linies)} "
+        motiu = ("desalineat" if len(linies) != len(lot) else "contaminat")
+        print(f"\n  ! {dialecte}: lot {motiu} ({len(lot)} mots → {len(linies)} "
               f"línies); es fa mot a mot", flush=True)
     # pla B: un per un (lent però segur)
     resultats = {}
@@ -213,13 +232,19 @@ def transcriure_lot(sessio, lot, dialecte, regulador):
         r = demanar_amb_reintents(sessio, mot + ".", dialecte, regulador)
         if r is not None:
             r = neteja(r)
-            if r:
+            if not sospitosa(r):
                 resultats[mot] = r
     return resultats
 
 
 def neteja(transcripcio):
     return re.sub(r"\s*\.\s*$", "", transcripcio.strip()).strip()
+
+
+def sospitosa(transcripcio):
+    """Una transcripció d'un sol mot pot dur un espai (McDonald's → 'məɡ
+    dˈonəlts'), però mai dos seguits: això delata restes d'una altra resposta."""
+    return "  " in transcripcio or not transcripcio
 
 # ---------------------------------------------------------------------- caché
 
@@ -277,75 +302,121 @@ def temps_llegible(segons):
 
 
 def processar_dialecte(dialecte, mots_unics, linies_originals, args, regulador):
-    cami_cache = os.path.join(args.cache, f"{args.prefix}__{dialecte}.tsv")
-    cache = Cache(cami_cache)
+    """Un dialecte de cap a peus, i després el següent: així tens el primer
+    fitxer acabat i utilitzable molt abans que no pas si van tots a mitges."""
+    cache = Cache(os.path.join(args.cache, f"{args.prefix}__{dialecte}.tsv"))
     pendents = [m for m in mots_unics if m not in cache.dades]
-    fets_abans = len(mots_unics) - len(pendents)
+    print(f"\n=== {dialecte}: {mil(len(mots_unics) - len(pendents))} ja fets, "
+          f"{mil(len(pendents))} pendents", flush=True)
+    try:
+        completar([dialecte], {dialecte: cache}, mots_unics, args, regulador)
+    except KeyboardInterrupt:
+        cache.tanca()
+        raise
+    escriure_final(dialecte, cache, mots_unics, linies_originals, args)
+    cache.tanca()
 
-    print(f"\n=== {dialecte}: {mil(fets_abans)} ja fets, {mil(len(pendents))} "
-          f"pendents (caché: {cami_cache})", flush=True)
 
-    if pendents:
-        lots = fer_lots(pendents)
-        inici = time.time()
-        fets = 0
-        pany_progres = threading.Lock()
-        tall = threading.Event()
+def completar(dialectes, caches, mots_unics, args, regulador, voltes=4):
+    """Passa i repassa fins que no quedi cap mot pendent.
 
-        def treballar(indexs):
-            sessio = sessio_nova()
-            nonlocal fets
-            for i in indexs:
-                if tall.is_set():
-                    return
-                resultats = transcriure_lot(sessio, lots[i], dialecte, regulador)
-                cache.desa(resultats)
-                with pany_progres:
-                    fets += len(lots[i])
-                    if fets % 500 < len(lots[i]):
-                        transcorregut = time.time() - inici
-                        ritme = fets / transcorregut
-                        queda = (len(pendents) - fets) / ritme if ritme else 0
-                        print(f"  {dialecte}: {mil(fets)}/{mil(len(pendents))} mots "
-                              f"({ritme:.0f} mots/s) — queda ~{temps_llegible(queda)}",
-                              flush=True)
-
-        fils = []
-        for k in range(args.fils):
-            f = threading.Thread(target=treballar,
-                                 args=(range(k, len(lots), args.fils),), daemon=True)
-            f.start()
-            fils.append(f)
-        try:
-            for f in fils:
-                while f.is_alive():
-                    f.join(0.5)
-        except KeyboardInterrupt:
-            tall.set()
-            print("\nAturant… (el que ja s'ha transcrit queda desat a la caché)",
+    Si un lot esgota els reintents es prova mot a mot; si un mot també els
+    esgota, queda pendent i aquí el repesquem en una volta nova, més lenta i
+    amb un sol fil. Res s'escriu mai malament: el que falla, torna a la cua.
+    """
+    for volta in range(voltes):
+        feina = []
+        for dialecte in dialectes:
+            pendents = [m for m in mots_unics if m not in caches[dialecte].dades]
+            feina.append([(dialecte, lot) for lot in fer_lots(pendents)])
+        tasques = [t for grup in zip_longest(*feina) for t in grup if t]
+        if not tasques:
+            return
+        total = sum(len(lot) for _, lot in tasques)
+        if volta:
+            espera = 30 * volta
+            print(f"\n  Repesca {volta}: queden {mil(total)} mots. Descans de "
+                  f"{espera}s i ho tornem a provar a ritme lent, amb 1 fil.",
                   flush=True)
-            for f in fils:
-                f.join(10)
-            cache.tanca()
-            raise
+            time.sleep(espera)
+            regulador.frenar(3.0 * volta)
+        executar(tasques, caches, total, args, regulador, fils=1 if volta else None)
 
-    # --- fitxer final, en l'ordre original
+
+def escriure_final(dialecte, cache, mots_unics, linies_originals, args):
+    """Escriu el fitxer final si el dialecte està sencer."""
     perduts = [m for m in mots_unics if m not in cache.dades]
     if perduts:
-        print(f"  ! {dialecte}: {len(perduts)} mots sense transcriure; no es "
-              f"genera el fitxer final encara. Torna a executar l'script.", flush=True)
-        with open(os.path.join(args.cache, f"{args.prefix}__{dialecte}__pendents.txt"),
-                  "w", encoding="utf-8") as f:
+        cami = os.path.join(args.cache, f"{args.prefix}__{dialecte}__pendents.txt")
+        with open(cami, "w", encoding="utf-8") as f:
             f.write("\n".join(perduts) + "\n")
-    else:
-        sortida = f"{args.prefix}_{dialecte.lower()}.txt"
-        temporal = sortida + ".tmp"
-        with open(temporal, "w", encoding="utf-8") as f:
-            for linia in linies_originals:
-                f.write(cache.dades[linia] + "\n")
-        os.replace(temporal, sortida)
-        print(f"  ✓ {dialecte} completat → {sortida}", flush=True)
-    cache.tanca()
+        print(f"  ! {dialecte}: {mil(len(perduts))} mots sense transcriure "
+              f"(llista a {cami}). Torna a executar l'script.", flush=True)
+        return False
+    sortida = f"{args.prefix}_{dialecte.lower()}.txt"
+    temporal = sortida + ".tmp"
+    with open(temporal, "w", encoding="utf-8") as f:
+        for linia in linies_originals:
+            f.write(cache.dades[linia] + "\n")
+    os.replace(temporal, sortida)      # mai un fitxer final a mitges
+    print(f"  ✓ {dialecte} completat → {sortida}", flush=True)
+    return True
+
+
+def processar_alhora(dialectes, mots_unics, linies_originals, args, regulador):
+    """Tots els dialectes avancen a la vegada, entrellaçant-ne les peticions."""
+    caches = {}
+    for dialecte in dialectes:
+        cache = Cache(os.path.join(args.cache, f"{args.prefix}__{dialecte}.tsv"))
+        caches[dialecte] = cache
+        pendents = [m for m in mots_unics if m not in cache.dades]
+        print(f"  {dialecte:12} {mil(len(mots_unics) - len(pendents)):>9} fets, "
+              f"{mil(len(pendents))} pendents", flush=True)
+
+    completar(dialectes, caches, mots_unics, args, regulador)
+    for dialecte in dialectes:
+        escriure_final(dialecte, caches[dialecte], mots_unics, linies_originals, args)
+        caches[dialecte].tanca()
+
+
+def executar(tasques, caches, total, args, regulador, fils=None):
+    """Reparteix les tasques (dialecte, lot) entre els fils."""
+    fils = fils or args.fils
+    inici, fets = time.time(), 0
+    pany = threading.Lock()
+    tall = threading.Event()
+
+    def treballar(indexs):
+        nonlocal fets
+        sessio = sessio_nova()
+        for i in indexs:
+            if tall.is_set():
+                return
+            dialecte, lot = tasques[i]
+            caches[dialecte].desa(transcriure_lot(sessio, lot, dialecte, regulador))
+            with pany:
+                fets += len(lot)
+                if fets % 2000 < len(lot):
+                    ritme = fets / (time.time() - inici)
+                    queda = (total - fets) / ritme if ritme else 0
+                    print(f"  {mil(fets)}/{mil(total)} mots ({ritme:.0f} mots/s) "
+                          f"— queda ~{temps_llegible(queda)}", flush=True)
+
+    fils = [threading.Thread(target=treballar,
+                             args=(range(k, len(tasques), fils),), daemon=True)
+            for k in range(fils)]
+    for f in fils:
+        f.start()
+    try:
+        for f in fils:
+            while f.is_alive():
+                f.join(0.5)
+    except KeyboardInterrupt:
+        tall.set()
+        print("\nAturant… (tot el transcrit fins ara queda desat a la caché)", flush=True)
+        for f in fils:
+            f.join(15)
+        raise
 
 
 def main():
@@ -357,6 +428,10 @@ def main():
     p.add_argument("--fils", type=int, default=None,
                    help="peticions simultànies (per defecte, la del perfil)")
     p.add_argument("--cache", default="cache")
+    p.add_argument("--alhora", action="store_true",
+                   help="avança els 6 dialectes a la vegada en comptes d'un rere "
+                        "l'altre (mateix temps total, però cap fitxer no s'acaba "
+                        "fins al final)")
     p.add_argument("--estat", action="store_true", help="només mostra el progrés")
     args = p.parse_args()
 
@@ -368,7 +443,10 @@ def main():
 
     with open(args.entrada, "r", encoding="utf-8") as f:
         linies_originals = [l.strip() for l in f if l.strip()]
-    mots_unics = sorted(set(linies_originals))
+    # dict.fromkeys manté l'ordre d'aparició. Amb sorted() sortirien primer els
+    # 14.668 mots en majúscula (els codis de caràcter manen), i la caché
+    # s'ompliria de noms propis durant la primera hora.
+    mots_unics = list(dict.fromkeys(linies_originals))
     dialectes = [d.strip() for d in args.dialectes.split(",") if d.strip()]
 
     print(f"Entrada: {args.entrada} — {mil(len(linies_originals))} línies, "
@@ -387,8 +465,11 @@ def main():
     regulador = Regulador(perfil)
     inici = time.time()
     try:
-        for dialecte in dialectes:
-            processar_dialecte(dialecte, mots_unics, linies_originals, args, regulador)
+        if args.alhora:
+            processar_alhora(dialectes, mots_unics, linies_originals, args, regulador)
+        else:
+            for dialecte in dialectes:
+                processar_dialecte(dialecte, mots_unics, linies_originals, args, regulador)
     except KeyboardInterrupt:
         print(f"\nAturat per l'usuari. Temps: {temps_llegible(time.time() - inici)}. "
               f"Torna a executar l'script per continuar on eres.")
