@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Mapa del lloc del Rimador — totes les pàgines que es poden indexar.
+
+  Hi són totes les que hi ha, i només aquestes: el 404.html en queda fora a
+  posta, perquè va marcat amb noindex i no és una pàgina del lloc sinó la
+  resposta a una adreça que no existeix. Les de html/ tampoc no hi són: aquella
+  carpeta és al .gitignore i no arriba mai a publicar-se.
+
+  Quan s'hi afegeixi una pàgina nova, s'ha d'afegir aquí i al menú (js/menu.js).
+
+  No hi ha <lastmod> enlloc, i és volgut. El pas de cache busting del deploy
+  reescriu el ?v= de TOTS els HTML cada vegada que es toca el css o el js, o
+  sigui que la data del fitxer diria que totes les pàgines han canviat quan en
+  realitat no n'ha canviat ni una lletra del contingut. Google només fa cas del
+  lastmod si se'l pot creure sempre; val més no posar-n'hi cap que no pas
+  posar-n'hi un que menteix cada desplegament.
+
+  Tampoc no hi ha <changefreq> ni <priority>: Google els ignora del tot.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- El cercador de rimes -->
+  <url>
+    <loc>https://rimador.cat/</loc>
+  </url>
+
+  <!-- El joc -->
+  <url>
+    <loc>https://rimador.cat/joc/</loc>
+  </url>
+
+  <!-- Les llistes -->
+  <url>
+    <loc>https://rimador.cat/llistes/llista_heptasilabs.html</loc>
+  </url>
+  <url>
+    <loc>https://rimador.cat/llistes/llista_mots_de7.html</loc>
+  </url>
+  <url>
+    <loc>https://rimador.cat/llistes/llista_naufragues.html</loc>
+  </url>
+
+  <!-- La resta -->
+  <url>
+    <loc>https://rimador.cat/dades.html</loc>
+  </url>
+  <url>
+    <loc>https://rimador.cat/nosaltres.html</loc>
+  </url>
+  <url>
+    <loc>https://rimador.cat/historial_canvis.html</loc>
+  </url>
+  <url>
+    <loc>https://rimador.cat/error.html</loc>
+  </url>
+
+</urlset>
