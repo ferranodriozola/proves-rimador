@@ -10,8 +10,8 @@ no el toca mai — escriu els seus propis fitxers a part.
 ## Estat
 
 La generació **amb un pronom** i la **amb dos pronoms** estan totes dues
-acabades. 1 pronom: 13 fitxers, 626.779 línies, 47,5 MB, a `txt_fets/1_pronom/`.
-2 pronoms: 69 fitxers, 2.779.304 línies, 234 MB, a `txt_fets/2_pronoms/`. La
+acabades. 1 pronom: 13 fitxers, 626.837 línies, 47,5 MB, a `txt_fets/1_pronom/`.
+2 pronoms: 69 fitxers, 2.779.550 línies, 234 MB, a `txt_fets/2_pronoms/`. La
 **integració al web no està començada** (no hi ha cap `W` a `js/script.js`, el
 dataset no existeix en format columnes ni surt a `diccionaris/versions.json`,
 i no hi ha caselles a la UI) — és la Fase 3 de `pla.md`, encara pendent per a
@@ -218,7 +218,7 @@ python3 pronoms/python/generar_tot_2_pronoms.py li:el es:hi  # només aquestes
 
 L'última passa: ajunta `diccionaris/diccionari.5.2.3.txt` amb els 82 fitxers
 de les subcarpetes de `txt_fets/` i escriu `diccionaris/diccionari.6.txt`,
-**ordenat alfabèticament** (4.025.866 línies, ~324 MB, uns 50 segons).
+**ordenat alfabèticament** (4.026.170 línies, ~324 MB, uns 50 segons).
 
 Dues coses hi són a posta:
 
@@ -312,26 +312,27 @@ per al nombre de pronoms.
 
 | Fitxer | Línies | Mida |
 |---|---:|---:|
-| `verb_pronom_ens.txt` | 58.830 | 4,5 MB |
-| `verb_pronom_els.txt` | 57.648 | 4,4 MB |
-| `verb_pronom_en.txt` | 57.648 | 4,4 MB |
-| `verb_pronom_li.txt` | 57.648 | 4,3 MB |
-| `verb_pronom_hi.txt` | 57.648 | 4,2 MB |
-| `verb_pronom_em.txt` | 50.213 | 3,8 MB |
-| `verb_pronom_el.txt` | 47.514 | 3,5 MB |
-| `verb_pronom_ho.txt` | 47.514 | 3,5 MB |
-| `verb_pronom_la.txt` | 47.514 | 3,7 MB |
-| `verb_pronom_les.txt` | 47.514 | 3,8 MB |
-| `verb_pronom_et.txt` | 34.163 | 2,6 MB |
-| `verb_pronom_us.txt` | 34.090 | 2,6 MB |
-| `verb_pronom_es.txt` | 28.835 | 2,2 MB |
-| **TOTAL** | **626.779** | **47,5 MB** |
+| `verb_pronom_ens.txt` | 58.836 | 4,5 MB |
+| `verb_pronom_els.txt` | 57.654 | 4,4 MB |
+| `verb_pronom_en.txt` | 57.654 | 4,4 MB |
+| `verb_pronom_li.txt` | 57.654 | 4,3 MB |
+| `verb_pronom_hi.txt` | 57.654 | 4,2 MB |
+| `verb_pronom_em.txt` | 50.219 | 3,8 MB |
+| `verb_pronom_el.txt` | 47.516 | 3,5 MB |
+| `verb_pronom_ho.txt` | 47.516 | 3,5 MB |
+| `verb_pronom_la.txt` | 47.516 | 3,7 MB |
+| `verb_pronom_les.txt` | 47.516 | 3,8 MB |
+| `verb_pronom_et.txt` | 34.169 | 2,6 MB |
+| `verb_pronom_us.txt` | 34.096 | 2,6 MB |
+| `verb_pronom_es.txt` | 28.837 | 2,2 MB |
+| **TOTAL** | **626.837** | **47,5 MB** |
 
 Són 81 codis diferents dels 91 possibles: els 10 que falten són exactament els
 que bloqueja la matriu de concordança. La generació original va donar 626.786
-línies i n'hi ha 7 menys: eren les files duplicades de `ves` que arrossegava el
-diccionari base (`pla_un_pronom.md` §9), ja corregides a l'origen — regenerar
-amb `generar_tot_1_pronom.py` ja no les torna a produir.
+línies: n'hi ha 7 menys perquè eren les files duplicades de `ves` que
+arrossegava el diccionari base (`pla_un_pronom.md` §9), ja corregides a
+l'origen, i 58 més que són les formes de `ser`, `ésser`, `sent`, `essent`,
+`haver` i `havent` (vegeu «Correccions», al final).
 
 ---
 
@@ -354,14 +355,14 @@ s'escriu "l'hi", mai "hi"+"el") — el mateix criteri que ja apuntava
 | | Total |
 |---|---:|
 | Fitxers | 69 |
-| Línies | 2.779.304 |
+| Línies | 2.779.550 |
 | Mida | 234 MB |
 
 Comprovacions de sanitat (`pla_dos_pronoms.md` §3): 10 camps i codi de 10
 caràcters a totes les línies, un sol accent primari per forma, 0
 col·lisions amb el diccionari base, 0 duplicats exactes, i el límit
 verb|pronom idèntic al que dona el camí d'1 pronom a **totes** les
-2.779.304 combinacions.
+2.779.550 combinacions.
 
 L'**ortografia** surt del Quadre 8.9, cel·la per cel·la. La **fonètica**
 és pròpia (el quadre no en dona), però no s'inventa res de nou: són els
@@ -433,3 +434,32 @@ El pas 2 depèn de `requests`, `beautifulsoup4` i `tqdm`; la resta no necessita
 res que no sigui la biblioteca estàndard. En condicions normals només calen
 els passos 4 i 5: les categories del DIEC no canvien, i el Quadre 8.9 ja és
 al codi (`llicencies.PARELLES`), no cal tornar-lo a llegir de cap font.
+
+---
+
+## Correccions (agost del 2026)
+
+Una revisió de tota la generació va trobar cinc errors. Els quatre primers
+estan **arreglats** i la sortida s'ha refet; el cinquè queda pendent.
+
+| | Què passava | On | Formes |
+|---|---|---|---:|
+| 1 | `li`+`la` no aplicava la semivocal: `porta-la-hi` sortia /pˈɔrtələi/ per aquesta via i /pˈɔrtələj/ per la via `la`+`hi` — la mateixa paraula amb dues rimes i dos recomptes de síl·labes | `enclisi._generar_forma_2` passava el **p2 original** al `_semivocal()` en lloc del de `parella_efectiva()` | 47.514 |
+| 2 | Els 396 imperatius de vostè acabats en `-ï` prenien la forma plena: `actuï-lo` en lloc de `actuï'l` | `enclisi.VOCALS_GRAFIQUES` no duia la `ï` | 7.809 |
+| 3 | `ser`, `ésser`, `sent`, `essent`, `haver` i `havent` no generaven res — hi faltaven `haver-hi`, `haver-n'hi`, `ser-hi`, `ser-ne` | `FORMES` només tenia l'infinitiu i el gerundi del verb **principal** (`VMN`/`VMG`), no els de `ser` (`VSN`/`VSG`) ni els de `haver` (`VAN`/`VAG`) | +304 |
+| 4 | `cantar-vos` feia /kəntˈarbus/; el diccionari escriu `corba` /kˈorβə/ i `pèl-blanc` /pˈɛlβlˈaŋ/ | la regla (4) de `_sandhi()` només espirantitzava darrere vocal, quan l'únic context que manté la [b] oclusiva és una **nasal** (`bum-bum` /bˈumbˈum/) | 85.465 |
+
+**Pendent (error 5): l'assimilació de sonoritat del so final del verb.** El
+diccionari la fa sistemàticament al límit de morfema (`baix-alemany`
+/bˈaʒələmˈaɲ/, `zig-zag` /zˈidʒzˈak/, `migdia` /mˌidʒdˈiə/, `cap-rodo`
+/kˈabrˈɔðu/, `but-but` /bˈudbˈut/) i `_sandhi()` només la té per a la `-s`.
+Hi falten `abasteix-hi` → /əʒi/, `fuig-me` → /dʒm/, `abat-me` → /dm/ i
+`ajup-li` → /bl/: unes 34.600 formes, 32.500 de les quals són imperatius
+en `-eix`. Les sibilants sonoritzen també davant vocal; les oclusives,
+només davant consonant sonora (`abat-hi` /əβˈati/ ja és correcte).
+
+**Pendent: 200.202 entrades bessones.** `li`+CD i CD+`hi` donen línies
+idèntiques camp per camp tret del codi (`porta-l'hi` és alhora `WM02S2LIEL`
+i `WM02S2ELHI`, i igual amb `la`, `les` i `els`). És homografia real de la
+llengua, però al diccionari hi surt dues vegades. Cal decidir, abans de la
+Fase 3, si es col·lapsen en un sol codi o si la UI les distingeix.
