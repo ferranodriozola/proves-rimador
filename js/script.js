@@ -469,6 +469,69 @@ if (cercaButton) {
   cercaButton.addEventListener('click', realitzarCerca);
 }
 
+// El botó de compartir la cerca a X (Twitter).
+//
+// Només surt quan la cerca ha trobat la paraula al diccionari: si no s'ha
+// trobat no hi ha res per anar a consultar i el piulet convidaria a obrir una
+// pàgina buida. Es refà a cada cerca, que és quan pot canviar res del que hi
+// diu: el número que dona no depèn de les caselles (vegeu-ho més avall).
+//
+// L'adreça és la d'intenció de X. El twitter.com/intent/tweet de sempre encara
+// hi redirigeix, però fem servir la d'ara per no dependre del salt; si mai
+// canvia, es canvia aquí i a l'href de l'index.html i prou.
+function actualitzarBotoCompartir() {
+  const boto = document.getElementById('compartirButton');
+  if (!boto) return;
+
+  const paraula = paraulacerca[0];
+  if (paraula === 0) {
+    boto.hidden = true;
+    return;
+  }
+
+  let piulet;
+
+  // Les nàufragues només ho són en rima consonant: en assonant rimen com
+  // qualsevol altra paraula, i aleshores el piulet ha de ser el de sempre. És
+  // la mateixa condició que decideix què s'ensenya a la pantalla (vegeu
+  // l'actualitzarRimes), i per força ha de dir el mateix que ella.
+  const tipusRima = document.getElementById('rimaSelector').value;
+
+  if (paraulaEsNaufraga && tipusRima === 'r.consonant') {
+    piulet = "He trobat una paraula nàufraga! '" + paraula + "' no rima " +
+             "consonantment amb cap altra paraula del diccionari. Descobreix " +
+             "totes les altres: rimador.cat/llistes/llista_naufragues.html";
+
+  } else {
+    // matches i no pas matches_provisionals, que és el que es veu a la
+    // pantalla: el piulet ha de dir quantes rimes té la paraula amb totes les
+    // caselles marcades. Si comptés les que es veuen, qui obrís l'enllaç en
+    // trobaria unes altres, perquè hi arriba amb els filtres per estrenar.
+    const quantes = matches.length;
+    const compte = quantes === 1 ? "1 rima" : quantes + " rimes";
+
+    const esAssonant = tipusRima === 'r.assonant';
+
+    // La paraula hi va dues vegades i de dues maneres: dins el text, tal com
+    // s'escriu, i dins l'enllaç, codificada. L'encodeURIComponent no toca res
+    // si la paraula és tota ASCII, o sigui que l'adreça només s'embruta quan
+    // no hi ha manera de fer-ho altrament ('cançó' -> 'can%C3%A7%C3%B3').
+    //
+    // El &rima= només hi surt quan és assonant: la consonant ja és la que surt
+    // si no s'hi posa res (vegeu cercarDesDeLaURL), i posar-l'hi només faria
+    // l'enllaç més llarg per no dir res de nou.
+    const adreca = "rimador.cat/?q=" + encodeURIComponent(paraula) +
+                   (esAssonant ? "&rima=assonant" : "");
+
+    piulet = "He cercat " + (esAssonant ? "assonantment" : "consonantment") +
+             " '" + paraula + "' al rimador.cat i té " + compte + "! " +
+             "Consulta-les totes a " + adreca;
+  }
+
+  boto.href = 'https://x.com/intent/post?text=' + encodeURIComponent(piulet);
+  boto.hidden = false;
+}
+
 // Cerca demanada des de l'adreça: rimador.cat/?q=paraula
 //
 // Serveix per a dues coses. La primera, poder enllaçar una cerca concreta
@@ -482,11 +545,23 @@ if (cercaButton) {
 // barra d'adreces quan es cerca des del formulari; el ?q= és una porta
 // d'entrada, no un estat que la pàgina vagi mantenint.
 function cercarDesDeLaURL() {
-  const paraula = new URLSearchParams(window.location.search).get('q');
+  const parametres = new URLSearchParams(window.location.search);
+
+  const paraula = parametres.get('q');
   if (!paraula || !paraula.trim()) return;
 
   const camp = document.getElementById('paraulaCercada');
   if (!camp) return;
+
+  // El tipus de rima és opcional i l'única cosa que s'hi entén és 'assonant':
+  // qualsevol altra cosa (o no posar-hi res) deixa el desplegable tal com ve,
+  // que és amb la consonant triada (vegeu opcionsRima a js/components.js).
+  // Així una adreça mal escrita no es queda sense cercar, només cerca com de
+  // costum.
+  const selector = document.getElementById('rimaSelector');
+  if (selector && (parametres.get('rima') || '').trim().toLowerCase() === 'assonant') {
+    selector.value = 'r.assonant';
+  }
 
   camp.value = paraula.trim();
   realitzarCerca();
@@ -1150,10 +1225,25 @@ function aplicarNombreDeColumnes(contenidor, nombreResultats) {
 }
 
 function textDelNombre() {
-  let text = '';
+  // A la pàgina principal el rètol diu amb quina paraula es rima, que és la
+  // pregunta que s'ha fet l'usuari. Surt la forma del diccionari
+  // (paraulacerca[0]) i no pas la que s'ha escrit al camp: si algú cerca
+  // "AMOR" o tria una homògrafa al diàleg, el rètol ensenya la paraula tal
+  // com és al diccionari.
+  //
+  // Va amb innerHTML per la negreta, i no cal escapar res: paraulacerca[0]
+  // surt del diccionari, no del que escriu l'usuari. Quan no s'ha trobat la
+  // paraula val 0, i aleshores es queda el rètol de sempre, que acompanya el
+  // missatge de "no s'ha trobat".
   if (idPagina === 'principal') {
-    text = 'de rimes';
-  } else if (idPagina === 'llista') {
+    if (paraulacerca[0] === 0) {
+      return "Nombre de rimes: " + matches_provisionals.length;
+    }
+    return "Paraules que rimen amb <strong>" + paraulacerca[0] + "</strong>: " + matches_provisionals.length;
+  }
+
+  let text = '';
+  if (idPagina === 'llista') {
     if (dataLlista === 'naufragues') {
       text = 'de paraules nàufragues';
     } else if (dataLlista === 'mots_de7_real') {
@@ -1170,6 +1260,8 @@ function actualitzarRimes() {
 
   var numerorimes = textDelNombre();
   document.getElementById("nombre").innerHTML = numerorimes;
+
+  actualitzarBotoCompartir();
 
   var rimesPerSilabes = {};
   var rima_enllac = "";
