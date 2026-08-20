@@ -45,17 +45,21 @@ def generar_llista():
     
     fitxer_sortida = os.path.join(base_dir, 'paraules_naufragues.json')
 
-    noms_fitxers = [
-        'col_0.txt', 'col_1.txt', 'col_2.txt', 'col_3.txt', 'col_5.txt', 'col_6.txt', 'col_7.txt', 'col_8.txt'
-    ]
+    # La rima ja no és a separat/: depèn del dialecte i viu a dialectes_col/<codi>/.
+    # Aquesta llista és la del CENTRAL; el dia que se'n vulguin per dialecte,
+    # aquest camí és l'únic que canvia.
+    ruta_rima = os.path.join(base_dir, '..', 'dialectes_col', 'ca', 'col_3_rimacons_ca.txt')
+
+    noms_fitxers = ['col_0.txt', 'col_1.txt', 'col_2.txt', 'col_5.txt', 'col_6.txt', 'col_7.txt', 'col_8.txt']
     rutes_txt = [os.path.join(dir_separat, nom) for nom in noms_fitxers]
+    rutes_txt.insert(3, ruta_rima)   # va on anava la col_3, que és l'ordre en què es desempaqueten
 
     paraules_orfes = []
 
     try:
         rimes_naufragues = rimes_amb_una_sola_paraula(
             os.path.join(dir_separat, 'col_0.txt'),
-            os.path.join(dir_separat, 'col_3.txt'),
+            ruta_rima,
         )
 
         with ExitStack() as stack:
