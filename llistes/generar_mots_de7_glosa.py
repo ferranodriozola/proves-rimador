@@ -31,12 +31,14 @@ def generar_llista():
         'paraula': os.path.join(base_dir, '..', 'diccionaris', 'separat', 'col_0.txt'),
         'infinitiu': os.path.join(base_dir, '..', 'diccionaris', 'separat', 'col_1.txt'),
         'codi': os.path.join(base_dir, '..', 'diccionaris', 'separat', 'col_2.txt'),
-        'rimacons': os.path.join(base_dir, '..', 'diccionaris', 'separat', 'col_3.txt'),
+        # La rima i la transcripció ja no són a separat/: depenen del dialecte
+        # i viuen a dialectes_col/<codi>/. Aquesta llista és la del CENTRAL.
+        'rimacons': os.path.join(base_dir, '..', 'dialectes_col', 'ca', 'col_3_rimacons_ca.txt'),
         'sil': os.path.join(base_dir, '..', 'diccionaris', 'separat', 'col_5.txt'),
         'vicc': os.path.join(base_dir, '..', 'diccionaris', 'separat', 'col_6.txt'),
         'viq': os.path.join(base_dir, '..', 'diccionaris', 'separat', 'col_7.txt'),
         'diec': os.path.join(base_dir, '..', 'diccionaris', 'separat', 'col_8.txt'),
-        'transcripcio': os.path.join(base_dir, '..', 'diccionaris', 'separat', 'col_9.txt')
+        'transcripcio': os.path.join(base_dir, '..', 'dialectes_col', 'ca', 'col_9_transcripcio_ca.txt')
     }
     
     fitxer_sortida = os.path.join(base_dir, 'mots_de7_glosa.json')
