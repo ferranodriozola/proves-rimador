@@ -17,6 +17,10 @@ on:
   push:
     paths:
       - 'diccionaris/diccionari*.txt'
+      # Editar una transcripció és editar el diccionari per l'altra banda: la
+      # rima que se'n deriva s'ha de refer igual, i si el que s'ha tocat és el
+      # central, també la columna 10, que és d'on la treu.
+      - 'dialectes_col/**'
   workflow_dispatch:
 
 jobs:
