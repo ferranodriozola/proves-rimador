@@ -11,7 +11,9 @@ def generar_llista():
     ruta_col_0 = os.path.join(base_dir, '..', 'diccionaris', 'separat', 'col_0.txt') #paraula
     ruta_col_1 = os.path.join(base_dir, '..', 'diccionaris', 'separat', 'col_1.txt') #infinitiu
     ruta_col_2 = os.path.join(base_dir, '..', 'diccionaris', 'separat', 'col_2.txt') #codi
-    ruta_col_3 = os.path.join(base_dir, '..', 'diccionaris', 'separat', 'col_3.txt') #rimacons
+    # La rima ja no és a separat/: depèn del dialecte i viu a dialectes_col/<codi>/.
+    # Aquesta llista és la del CENTRAL.
+    ruta_col_3 = os.path.join(base_dir, '..', 'dialectes_col', 'ca', 'col_3_rimacons_ca.txt') #rimacons
     #ruta_col_4 = os.path.join(base_dir, '..', 'diccionaris', 'separat', 'col_4.txt') #rimaass
     ruta_col_5 = os.path.join(base_dir, '..', 'diccionaris', 'separat', 'col_5.txt') #sil
     ruta_col_6 = os.path.join(base_dir, '..', 'diccionaris', 'separat', 'col_6.txt') #Vicc
