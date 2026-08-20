@@ -19,18 +19,18 @@ Els números de columna són els de sempre i hi ha forats (3, 4 i 9): el
 navegador, les llistes i el joc les demanen pel nom del fitxer, i renumerar-les
 voldria dir tocar-ho tot per no guanyar res.
 
-    separar_arxiu.py       diccionari BASE     -> col_10 (canvis aquí)
-    creador_rima.py        col_10              -> diccionari BASE + ca/col_9
-    aquest                 diccionari PUBLICAT -> col_0,1,2,5,6,7,8
-    generar_dialectes.py   dialectes_col/*/col_9 -> col_3 i col_4 de cada dialecte
+    sincronitzar_dialectes.py  diccionari (editat a mà) -> els col_9 el segueixen
+    aplicar_col_10.py          col_10.txt               -> dialectes_col/*/col_9
+    aquest                     diccionari PUBLICAT      -> col_0,1,2,5,6,7,8
+    generar_dialectes.py       dialectes_col/*/col_9    -> col_3 i col_4
 
 La columna 10 és la font que s'edita a mà i ha de continuar sortint del
 diccionari BASE. Si la fes el publicat, es convertiria en quatre milions de
 línies repartides en cinc-cents fitxers i deixaria de servir per a res.
 
 Llegeix i escriu línia per línia, sense carregar-se el diccionari a la
-memòria: el v.6 fa 324 MB i el separar_arxiu, que sí que se'l carrega sencer,
-hi necessitaria uns quants gigabytes.
+memòria: el v.6 fa 324 MB, i carregar-se'l sencer voldria dir uns quants
+gigabytes.
 """
 
 import os
@@ -61,7 +61,7 @@ def partir(cami_diccionari, directori_sortida):
     COLUMNES.
 
     Les columnes se separen amb salts de línia però NO acaben amb salt de
-    línia, exactament com les deixa el separar_arxiu. No és cap caprici: el
+    línia. No és cap caprici: el
     navegador fa contingut.split('\\n') sense filtrar res (js/script.js:426),
     i un salt final li afegiria una fila buida al final de la columna, que
     quedaria desquadrada amb les altres nou.
