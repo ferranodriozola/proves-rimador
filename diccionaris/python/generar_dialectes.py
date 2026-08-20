@@ -13,9 +13,9 @@ rima consonant i l'assonant al costat:
     rima consonant = tot el que va darrere de l'ÚLTIM accent primari
     rima assonant  = les vocals de la consonant
 
-LA RIMA NO S'EDITA MAI ENLLOC. El que s'edita és la transcripció; la rima és un
-càlcul de dues línies que se'n deriva. Fins ara aquest càlcul era escrit DUES
-vegades, al "separar_arxiu" i al "creador_rima + dicc", amb un comentari a cada
+LA RIMA NO S'EDITA MAI ENLLOC. El que s'edita és la transcripció (a la col_10);
+la rima és un càlcul de dues línies que se'n deriva. Fins ara aquest càlcul era
+escrit DUES vegades, en dos scripts que ja no hi són, amb un comentari a cada
 banda demanant que no divergissin mai. Ara és aquí i només aquí, i val per a
 tots els dialectes alhora.
 
@@ -38,8 +38,8 @@ ARREL = os.path.dirname(BASE)                # el repositori
 DIALECTES_COL = os.path.join(ARREL, "dialectes_col")
 CAMI_PARAULES = os.path.join(BASE, "separat", "col_0.txt")
 
-# El dialecte del qual surt la columna 10, que és la que s'edita a mà, i que
-# per tant és l'únic que el separar_arxiu i el creador_rima toquen.
+# El dialecte de sempre: el que es publica mentre no es pugui triar, i l'únic
+# amb la transcripció repassada a mà (els altres surten de l'espeak-ng).
 CENTRAL = "ca"
 
 # Com es diuen les columnes dins de cada carpeta de dialecte. El número és el
@@ -49,8 +49,7 @@ CENTRAL = "ca"
 # rutaFitxer.split("/").pop()), i quatre col_3.idx.txt es trepitjarien.
 NOMS = {3: "rimacons", 4: "rimaass", 9: "transcripcio"}
 
-# Les vocals que es queden a la rima assonant. És la llista de sempre, la
-# mateixa que hi havia al separar_arxiu i al creador_rima.
+# Les vocals que es queden a la rima assonant. És la llista de sempre.
 VOCALS = "ɔəaeiou@Eɛˈ"
 
 ACCENT = "ˈ"
