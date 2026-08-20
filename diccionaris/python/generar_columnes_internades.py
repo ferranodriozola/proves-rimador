@@ -1,7 +1,16 @@
+import os
 import sys
 from pathlib import Path
 
-# Interna les columnes 1 a 8: en lloc de repetir el mateix text milers de
+DIR_SCRIPTS = os.path.dirname(os.path.abspath(__file__))
+if DIR_SCRIPTS not in sys.path:
+    sys.path.insert(0, DIR_SCRIPTS)
+
+# D'aquí surt on són les columnes de cada dialecte i com es diuen. És el mateix
+# script que les escriu, o sigui que els noms no es poden desincronitzar.
+from generar_dialectes import dialectes, cami as cami_dialecte, cami_internat
+
+# Interna les columnes del diccionari i les dels dialectes: en lloc de repetir el mateix text milers de
 # vegades, en desa una taula amb els valors diferents i, per a cada fila, el
 # número que hi apunta.
 #
@@ -25,7 +34,11 @@ from pathlib import Path
 #
 # La col_0 (paraula) no s'interna: 529.206 valors diferents de 619.783 files,
 # el 85% són únics i no hi ha res a estalviar. La col_9 (transcripcions) tampoc,
-# pel mateix motiu i perquè ja es baixa a part i només quan cal.
+# pel mateix motiu i perquè el navegador no la demana mai.
+#
+# La col_3 (rima consonant) i la col_4 (assonant) no són al diccionari: depenen
+# del dialecte i viuen a dialectes_col/<codi>/, que és d'on es prenen aquí. Cada
+# dialecte té les seves internades a dialectes_col/<codi>/internat/.
 #
 # Les col_N.txt continuen sent la font de veritat: les llegeixen els altres
 # scripts d'aquesta carpeta i el bot. Aquí només se'n deriva una segona forma.
@@ -36,7 +49,10 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent.parent
 DIRECTORI_COLUMNES = BASE / "separat"
 DIRECTORI_INTERNAT = DIRECTORI_COLUMNES / "internat"
-COLUMNES = list(range(1, 9))
+COLUMNES = [1, 2, 5, 6, 7, 8]
+
+# Les que no són al diccionari sinó a dialectes_col/<codi>/.
+COLUMNES_DIALECTE = [3, 4]
 
 # Columnes que són nombres i que no s'internen "a cegues".
 #
@@ -118,6 +134,45 @@ def tipus_darray(quants_distints):
     return "Uint32Array", 4
 
 
+def internar_i_desar(nom, valors, cami_taula, cami_indexs, maxim=None):
+    """Interna una columna, comprova que es pugui desfer i deixa la parella
+    taula/índexs al seu lloc. Torna la taula, o None si res no ha quadrat."""
+    if maxim is not None:
+        taula, indexs = internar_numerica(valors, maxim, nom)
+        if taula is None:
+            return None
+    else:
+        taula, indexs = internar(valors)
+
+    # Que el que escrivim reconstrueixi exactament el que hem llegit. Si
+    # això falla, val més no deixar cap fitxer que deixar-ne un de dolent.
+    if [taula[n] for n in indexs] != valors:
+        print(f"ERROR: la {nom} internada no reconstrueix l'original")
+        return None
+    if max(indexs) >= len(taula):
+        print(f"ERROR: la {nom} té un índex fora de la seva taula")
+        return None
+
+    # Sense salt de línia al final, com les col_N.txt d'origen. Si n'hi
+    # posàvem un, el navegador, que munta l'array comptant salts de línia,
+    # es trobaria amb una fila de més que no existeix.
+    cami_taula.parent.mkdir(parents=True, exist_ok=True)
+    cami_taula.write_bytes(b"\n".join(taula))
+    cami_indexs.write_bytes(b"\n".join(str(n).encode() for n in indexs))
+    return taula
+
+
+def informe(nom, taula, total_files, mida_original, cami_taula, cami_indexs, marca=""):
+    nom_tipus, bytes_per_fila = tipus_darray(len(taula))
+    despres = cami_taula.stat().st_size + cami_indexs.stat().st_size
+    memoria = len(taula) * 24 + total_files * bytes_per_fila
+    print(
+        f"  {nom:<22} {len(taula):>6} valors -> {nom_tipus:<12}"
+        f" disc {mida_original/1048576:5.1f} MB -> {despres/1048576:4.1f} MB"
+        f" | memòria ~{memoria/1048576:4.1f} MB{marca}"
+    )
+
+
 def main():
     if not DIRECTORI_COLUMNES.is_dir():
         print(f"ERROR: no hi ha el directori {DIRECTORI_COLUMNES}")
@@ -144,44 +199,52 @@ def main():
         return 1
 
     total_files = files[COLUMNES[0]]
-    print(f"Internant {len(COLUMNES)} columnes de {total_files} files:\n")
+    print(f"Internant {len(COLUMNES)} columnes del diccionari, de {total_files} files:\n")
 
     for i in COLUMNES:
-        if i in COLUMNES_NUMERIQUES:
-            taula, indexs = internar_numerica(columnes[i], COLUMNES_NUMERIQUES[i], f"col_{i}.txt")
-            if taula is None:
-                return 1
-        else:
-            taula, indexs = internar(columnes[i])
-
-        # Que el que escrivim reconstrueixi exactament el que hem llegit. Si
-        # això falla, val més no deixar cap fitxer que deixar-ne un de dolent.
-        if [taula[n] for n in indexs] != columnes[i]:
-            print(f"ERROR: la col_{i} internada no reconstrueix l'original")
-            return 1
-        if max(indexs) >= len(taula):
-            print(f"ERROR: la col_{i} té un índex fora de la seva taula")
-            return 1
-
-        # Sense salt de línia al final, com les col_N.txt d'origen. Si n'hi
-        # posàvem un, el navegador, que munta l'array comptant salts de línia,
-        # es trobaria amb una fila de més que no existeix.
         cami_taula = DIRECTORI_INTERNAT / f"col_{i}.taula.txt"
         cami_indexs = DIRECTORI_INTERNAT / f"col_{i}.idx.txt"
-        cami_taula.write_bytes(b"\n".join(taula))
-        cami_indexs.write_bytes(b"\n".join(str(n).encode() for n in indexs))
+        taula = internar_i_desar(f"col_{i}.txt", columnes[i], cami_taula, cami_indexs,
+                                 COLUMNES_NUMERIQUES.get(i))
+        if taula is None:
+            return 1
+        informe(f"col_{i}", taula, total_files,
+                (DIRECTORI_COLUMNES / f"col_{i}.txt").stat().st_size,
+                cami_taula, cami_indexs,
+                " (numèrica)" if i in COLUMNES_NUMERIQUES else "")
 
-        nom_tipus, bytes_per_fila = tipus_darray(len(taula))
-        abans = (DIRECTORI_COLUMNES / f"col_{i}.txt").stat().st_size
-        despres = cami_taula.stat().st_size + cami_indexs.stat().st_size
-        memoria = len(taula) * 24 + total_files * bytes_per_fila
+    # --- les columnes de cada dialecte ---
+    #
+    # Van a la carpeta internat/ del seu dialecte i duen el codi al nom del
+    # fitxer. El nom importa: el navegador indexa la memòria cau i el
+    # versions.json pel nom del fitxer sol, i quatre col_3.idx.txt es
+    # trepitjarien (vegeu generar_dialectes.py).
+    for codi in dialectes():
+        print(f"\nInternant les columnes del dialecte '{codi}':\n")
+        for i in COLUMNES_DIALECTE:
+            origen = Path(cami_dialecte(codi, i))
+            if not origen.exists():
+                print(f"ERROR: falta {origen}")
+                print("       Passa el generar_dialectes.py, que és qui la fa.")
+                return 1
 
-        marca = " (numèrica)" if i in COLUMNES_NUMERIQUES else ""
-        print(
-            f"  col_{i}: {len(taula):>6} valors -> {nom_tipus:<12}"
-            f" disc {abans/1048576:5.1f} MB -> {despres/1048576:4.1f} MB"
-            f" | memòria ~{memoria/1048576:4.1f} MB{marca}"
-        )
+            valors = llegir_columna(origen)
+
+            # Han d'anar fila per fila amb les del diccionari: si no, la fila
+            # 500 d'una columna no és la mateixa paraula que la fila 500 d'una
+            # altra i internar-ho només consagraria el desori.
+            if len(valors) != total_files:
+                print(f"ERROR: {origen.name} té {len(valors)} files i les columnes "
+                      f"del diccionari en tenen {total_files}.")
+                return 1
+
+            cami_taula = Path(cami_internat(codi, i, "taula"))
+            cami_indexs = Path(cami_internat(codi, i, "idx"))
+            taula = internar_i_desar(origen.name, valors, cami_taula, cami_indexs)
+            if taula is None:
+                return 1
+            informe(origen.stem, taula, total_files, origen.stat().st_size,
+                    cami_taula, cami_indexs)
 
     print(
         "\nFet. Recorda passar el generar_versions.py: els fitxers nous han"

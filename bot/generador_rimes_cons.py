@@ -46,7 +46,8 @@ base_dir = os.path.dirname(os.path.abspath(__file__))
 dir_diccionaris = os.path.join(base_dir, '..', 'diccionaris', 'separat')
 
 arxiu_sortida = os.path.join(base_dir, 'resultat_ordenat_cons.json')
-arxiu_rimes = os.path.join(dir_diccionaris, 'col_3.txt')
+# La rima ja no és a separat/: depèn del dialecte. Aquesta és la del CENTRAL.
+arxiu_rimes = os.path.join(base_dir, '..', 'dialectes_col', 'ca', 'col_3_rimacons_ca.txt')
 arxiu_paraules = os.path.join(dir_diccionaris, 'col_0.txt')
 
 agrupar_rimes_amb_paraules(arxiu_rimes, arxiu_paraules, arxiu_sortida)

@@ -23,6 +23,9 @@ on:
       # encara s'estan generant mentre ell corre.
       - 'diccionaris/diccionari*.txt'
       - 'diccionaris/separat/**'
+      # Igual amb les transcripcions dels dialectes: disparen el mateix
+      # workflow, que refà la rima i encadena el desplegament quan ha acabat.
+      - 'dialectes_col/**'
   # Els workflows que comiten amb el GITHUB_TOKEN no disparen cap "push": és
   # la regla de GitHub per evitar bucles infinits. Per tant, tot workflow que
   # generi fitxers que el lloc publica ha de ser en aquesta llista, o els seus
