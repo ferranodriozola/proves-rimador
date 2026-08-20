@@ -204,6 +204,30 @@ let nombresDeFitxers = 17; // la col_0 i, de cada columna internada, la taula i 
 const CAMI_PARAULES = `${ARREL}diccionaris/separat/col_0.txt`;
 const COLUMNES_INTERNADES = [1, 2, 3, 4, 5, 6, 7, 8];
 
+// Quin dialecte se serveix. La rima (col_3 i col_4) ja no és al diccionari:
+// depèn de com es parli i cada dialecte té la seva a dialectes_col/<codi>/.
+// La resta de columnes (la paraula, el lema, el codi, les síl·labes i els
+// enllaços) són les mateixes es parli com es parli, i continuen a separat/.
+//
+// De moment sempre és el central, que és el que hi havia fins ara: el
+// desplegable per triar-lo encara s'ha de fer.
+
+const DIALECTE = 'ca'; //ca-ba-va-nw
+
+// Com es diu la columna de rima de cada dialecte. El codi va DINS del nom del
+// fitxer i no només a la carpeta, a posta: la memòria cau i el versions.json
+// s'indexen pel nom del fitxer sol (vegeu llegirFitxerAmbIndexedDB, que fa
+// rutaFitxer.split("/").pop()), i el col_3.idx.txt del valencià i el del
+// balear serien la mateixa entrada.
+const NOMS_DE_RIMA = { 3: 'rimacons', 4: 'rimaass' };
+
+function arrelDeLaColumna(numero) {
+  if (NOMS_DE_RIMA[numero]) {
+    return `${ARREL}dialectes_col/${DIALECTE}/internat/col_${numero}_${NOMS_DE_RIMA[numero]}_${DIALECTE}`;
+  }
+  return `${ARREL}diccionaris/separat/internat/col_${numero}`;
+}
+
 // El tipus surt de la mida de la taula i no es declara enlloc: així el dia que
 // el diccionari creixi i una columna passi dels 65.536 valors diferents, això
 // puja de tipus tot sol.
@@ -244,7 +268,7 @@ function textAIndexs(contingut, Tipus) {
 // índexs. Totes dues passen pel mateix llegirFitxerAmbIndexedDB que la resta,
 // o sigui que hereten la memòria cau i el control de versions sense res especial.
 async function carregarColumnaInternada(numero) {
-  const arrel = `${ARREL}diccionaris/separat/internat/col_${numero}`;
+  const arrel = arrelDeLaColumna(numero);
   const taula = await llegirFitxerAmbIndexedDB(`${arrel}.taula.txt`);
   const Tipus = menaDArray(taula.length);
   const idx = await llegirFitxerAmbIndexedDB(`${arrel}.idx.txt`, contingut => textAIndexs(contingut, Tipus));
