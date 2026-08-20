@@ -12,12 +12,17 @@ BASE = Path(__file__).resolve().parent.parent
 DIRECTORI_COLUMNES = BASE / "separat"
 FITXER_VERSIONS = BASE / "versions.json"
 DIRECTORI_INTERNAT = DIRECTORI_COLUMNES / "internat"
-COLUMNES = [f"col_{i}.txt" for i in range(10)]
+# La col_3, la col_4 i la col_9 no hi són: depenen del dialecte i viuen a
+# dialectes_col/<codi>/, amb les seves internades al costat. Encara no entren al
+# versions.json perquè el navegador encara no les demana; quan les demani,
+# s'hi hauran d'afegir (els noms ja duen el codi del dialecte a dins, o sigui
+# que no xocaran entre ells).
+COLUMNES = [f"col_{i}.txt" for i in (0, 1, 2, 5, 6, 7, 8)]
 
 # Les columnes que generar_columnes_internades.py desa a separat/internat/, en
 # parelles: un fitxer amb els valors diferents i un altre amb un número per
 # fila que hi apunta.
-COLUMNES_INTERNADES = list(range(1, 9))
+COLUMNES_INTERNADES = [1, 2, 5, 6, 7, 8]
 
 
 def resum(cami):
