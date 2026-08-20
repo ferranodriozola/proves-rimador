@@ -1,5 +1,5 @@
 {
-  "generat": "2026-08-20 10:59:49 UTC",
+  "generat": "2026-08-20 12:44:54 UTC",
   "files": 619783,
   "columnes": {
     "col_0.txt": "d15583094efd",
@@ -20,6 +20,22 @@
     "col_7.taula.txt": "43646e13b652",
     "col_7.idx.txt": "d18d5e23312b",
     "col_8.taula.txt": "701d2f19a981",
-    "col_8.idx.txt": "f5dd2b5f4f4d"
+    "col_8.idx.txt": "f5dd2b5f4f4d",
+    "col_3_rimacons_ba.taula.txt": "3022fb189292",
+    "col_3_rimacons_ba.idx.txt": "641efdbab7ac",
+    "col_4_rimaass_ba.taula.txt": "0109c3670198",
+    "col_4_rimaass_ba.idx.txt": "2ba7b1284bd0",
+    "col_3_rimacons_ca.taula.txt": "ae2a121a7955",
+    "col_3_rimacons_ca.idx.txt": "04736211cc02",
+    "col_4_rimaass_ca.taula.txt": "c9f0fdca5ce6",
+    "col_4_rimaass_ca.idx.txt": "0d63025e2780",
+    "col_3_rimacons_nw.taula.txt": "759c0fde865d",
+    "col_3_rimacons_nw.idx.txt": "78d332060541",
+    "col_4_rimaass_nw.taula.txt": "e47641d1243b",
+    "col_4_rimaass_nw.idx.txt": "64a907d00101",
+    "col_3_rimacons_va.taula.txt": "e5aa821a7413",
+    "col_3_rimacons_va.idx.txt": "fc2748481654",
+    "col_4_rimaass_va.taula.txt": "c96049974bc0",
+    "col_4_rimaass_va.idx.txt": "655137d374c3"
   }
 }
