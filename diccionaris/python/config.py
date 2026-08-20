@@ -15,7 +15,7 @@ columnes ja les hi haurà deixat fetes qui ha separat el diccionari. No cal
 tocar cap altre fitxer ni cap workflow.
 
 EL DICCIONARI BASE NO ES TOCA MAI amb aquest interruptor. És el que s'edita a
-mà, del qual surt el "col_10 (canvis aquí)" i del qual parteixen les formes
+mà, del qual surt la columna 10 i del qual parteixen les formes
 amb pronom. Publicar-ne un altre no el fa desaparèixer: continua sent l'origen
 de tot.
 """
