@@ -1,0 +1,39 @@
+# Transcripcions que donen una rima que no és.
+# El genera diccionaris/python/columnes.py a cada passada.
+# dialecte | fila | transcripció | què hi passa
+ba | 37694 | ˌaˈenəcˌe | símbols estranys: c
+ba | 92949 | bwl | sense accent primari; rima assonant buida
+ba | 92950 | bwl | sense accent primari; rima assonant buida
+ba | 92951 | bwl | sense accent primari; rima assonant buida
+ba | 92952 | bwl | sense accent primari; rima assonant buida
+ba | 92953 | bwl | sense accent primari; rima assonant buida
+ba | 92954 | bwl | sense accent primari; rima assonant buida
+ba | 93723 | bwʃ | sense accent primari; rima assonant buida
+ba | 139165 | kwk | sense accent primari; rima assonant buida
+ba | 395331 | jw | sense accent primari; rima assonant buida
+ba | 395351 | jws | sense accent primari; rima assonant buida
+ba | 613802 | wwt | sense accent primari; rima assonant buida
+nw | 37694 | ˌaˈenacˌe | símbols estranys: c
+nw | 92949 | bwl | sense accent primari; rima assonant buida
+nw | 92950 | bwl | sense accent primari; rima assonant buida
+nw | 92951 | bwl | sense accent primari; rima assonant buida
+nw | 92952 | bwl | sense accent primari; rima assonant buida
+nw | 92953 | bwl | sense accent primari; rima assonant buida
+nw | 92954 | bwl | sense accent primari; rima assonant buida
+nw | 93723 | bwtʃ | sense accent primari; rima assonant buida
+nw | 139165 | kwk | sense accent primari; rima assonant buida
+nw | 395331 | jw | sense accent primari; rima assonant buida
+nw | 395351 | jws | sense accent primari; rima assonant buida
+nw | 613802 | wwt | sense accent primari; rima assonant buida
+va | 37694 | ˌaˈenacˌe | símbols estranys: c
+va | 92949 | bwl | sense accent primari; rima assonant buida
+va | 92950 | bwl | sense accent primari; rima assonant buida
+va | 92951 | bwl | sense accent primari; rima assonant buida
+va | 92952 | bwl | sense accent primari; rima assonant buida
+va | 92953 | bwl | sense accent primari; rima assonant buida
+va | 92954 | bwl | sense accent primari; rima assonant buida
+va | 93723 | bwtʃ | sense accent primari; rima assonant buida
+va | 139165 | kwk | sense accent primari; rima assonant buida
+va | 395331 | jw | sense accent primari; rima assonant buida
+va | 395351 | jws | sense accent primari; rima assonant buida
+va | 613802 | wwt | sense accent primari; rima assonant buida
