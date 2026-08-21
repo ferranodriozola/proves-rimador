@@ -21,6 +21,13 @@ de tot.
 """
 
 import os
+import sys
+
+DIR_SCRIPTS = os.path.dirname(os.path.abspath(__file__))
+if DIR_SCRIPTS not in sys.path:
+    sys.path.insert(0, DIR_SCRIPTS)
+
+import camins
 
 # El diccionari que s'edita a mà. L'origen de tot.
 DICCIONARI_BASE = "diccionari.5.2.3.txt"
@@ -28,8 +35,9 @@ DICCIONARI_BASE = "diccionari.5.2.3.txt"
 # El diccionari que es publica: d'aquest en surten les columnes del web.
 DICCIONARI_PUBLICAT = DICCIONARI_BASE
 
-# Tots dos viuen a diccionaris/, i aquest fitxer a diccionaris/python/.
-BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Tots dos viuen a diccionaris/. El camí surt de camins.py perquè n'hi hagi un
+# de sol per a tothom.
+BASE = camins.BASE
 
 CAMI_BASE = os.path.join(BASE, DICCIONARI_BASE)
 CAMI_PUBLICAT = os.path.join(BASE, DICCIONARI_PUBLICAT)
