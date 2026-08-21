@@ -144,7 +144,7 @@ const DIALECTES = [
 const DIALECTE_TRIAT = 'ca';
 
 const dialectes = /*html*/`
-<span class="dialectes-rotul">Rimes en</span>
+<span class="dialectes-rotul">Dialecte:</span>
 <div class="dialectes-tria" role="radiogroup" aria-label="Dialecte">
 ${DIALECTES.map(d => {
     const triat = d.codi === DIALECTE_TRIAT;
