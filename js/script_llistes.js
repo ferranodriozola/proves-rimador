@@ -74,7 +74,20 @@ async function carregarVersionsLlistes() {
     }
 }
 
+// Si la llista ja s'ha muntat un cop: el botó d'actualitzar i les caselles de
+// categoria només s'han de preparar la primera vegada. En un canvi de dialecte
+// es torna a cridar el carregarDades, i sense això s'hi enganxaria un segon
+// escoltador al botó (dos actualitzarLlista i dos registraUs per clic) i es
+// tornarien a marcar totes les caselles, esborrant els filtres de qui mira la
+// llista.
+let llistaJaMuntada = false;
+
 async function carregarDades(arxiuJson) {
+    // Torna a sortir en un canvi de dialecte: la primera vegada ja hi és (el
+    // CSS el pinta), però a la segona l'havíem amagat aquí sota.
+    const loaderInicial = document.getElementById('loader');
+    if (loaderInicial) loaderInicial.style.display = '';
+
     const loaderText2 = document.getElementById('loader-text2');
     if (loaderText2) loaderText2.textContent = "Carregant fitxer...";
 
@@ -86,19 +99,23 @@ async function carregarDades(arxiuJson) {
 
         actualitzarLlista();
 
-        const btnActualitza = document.getElementById('actualitzaButton');
-        if (btnActualitza) btnActualitza.addEventListener('click', () => {
-            actualitzarLlista();
+        if (!llistaJaMuntada) {
+            llistaJaMuntada = true;
 
-            // Filtrar una llista compta com un dia d'ús per a l'avís
-            // periòdic de donatius (avis/avis.js). Va enganxat al clic
-            // del botó i no pas dins d'actualitzarLlista() perquè
-            // aquesta també es crida en carregar la pàgina (unes línies
-            // més amunt), i llavors una simple visita ja comptaria.
-            if (window.AvisRimador) window.AvisRimador.registraUs();
-        });
+            const btnActualitza = document.getElementById('actualitzaButton');
+            if (btnActualitza) btnActualitza.addEventListener('click', () => {
+                actualitzarLlista();
 
-        document.querySelectorAll('.clickable-checkbox').forEach(cb => cb.checked = true);
+                // Filtrar una llista compta com un dia d'ús per a l'avís
+                // periòdic de donatius (avis/avis.js). Va enganxat al clic
+                // del botó i no pas dins d'actualitzarLlista() perquè
+                // aquesta també es crida en carregar la pàgina (unes línies
+                // més amunt), i llavors una simple visita ja comptaria.
+                if (window.AvisRimador) window.AvisRimador.registraUs();
+            });
+
+            document.querySelectorAll('.clickable-checkbox').forEach(cb => cb.checked = true);
+        }
         
         if (typeof mostrarTotesLesLlistes === 'function') mostrarTotesLesLlistes();
         
@@ -121,11 +138,31 @@ async function carregarDades(arxiuJson) {
     }
 }
 
+// Ser nàufraga depèn de com es parli: qui no rima amb ningú en central pot
+// rimar amb algú en valencià, on la a i la e àtones finals no es confonen. Per
+// això cada dialecte té la seva llista (vegeu llistes/generar_naufragues.py) i
+// el codi va dins del nom del fitxer, com a les columnes de rima: la memòria
+// cau d'IndexedDB s'indexa pel nom del fitxer sol (vegeu
+// llegirFitxerAmbIndexedDB a js/script.js).
+//
+// Les altres dues llistes (els mots de 7) encara surten només del central.
+const fitxerDeNaufragues = codi => `paraules_naufragues_${codi}.json`;
+
+// Es registra aquí dalt i no pas dins del DOMContentLoaded a posta: el
+// js/script.js es llegeix just abans que aquest fitxer i ja hi deixa els clics
+// de la tira enganxats, o sigui que entremig hi hauria una escletxa on un clic
+// mouria la pastilla sense tornar a llegir la llista.
+if (document.body && document.body.dataset.llista === 'naufragues') {
+    quanEsCanviaDeDialecte(codi => {
+        carregarDades(fitxerDeNaufragues(codi));
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const tipusLlista = document.body.dataset.llista;
 
     if (tipusLlista === 'naufragues') {
-        carregarDades('paraules_naufragues.json');
+        carregarDades(fitxerDeNaufragues(dialecteActiu));
 
     } else if (tipusLlista === 'mots_de7_real') {
         carregarDades('mots_de7_real.json');
