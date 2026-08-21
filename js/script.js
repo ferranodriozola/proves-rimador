@@ -367,11 +367,13 @@ function prepararColumnes() {
 // carregant, o el codi no existeix). Qui el crida no ha de tocar res en aquest
 // cas: val més quedar-se com estàvem que marcar una pastilla i ensenyar les
 // rimes de l'altre dialecte.
+//
+// No toca el dialecteActiu: qui mana la tria és la tira (vegeu
+// lligarTriaDeDialecte), i això només és la feina que li toca a l'index.html.
 function aplicarDialecte(codi) {
   const rima = rimaPerDialecte[codi];
   if (!rima || !rima[3] || !rima[4]) return false;
 
-  dialecteActiu = codi;
   col3 = rima[3];
   col4 = rima[4];
   indexConsonant = indexarPerRima(col3);
@@ -425,7 +427,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Si el dialecte desat s'hagués quedat sense carregar, tornaríem al
         // central abans de deixar cercar: sense col3 ni col4 no hi ha cerca
         // possible.
-        if (!aplicarDialecte(dialecteActiu)) aplicarDialecte(DIALECTE_PER_DEFECTE);
+        if (!aplicarDialecte(dialecteActiu)) {
+            dialecteActiu = DIALECTE_PER_DEFECTE;
+            aplicarDialecte(dialecteActiu);
+        }
         marcarDialecteTriat();
 
         console.log('Tots els fitxers carregats correctament');
@@ -608,9 +613,31 @@ function marcarDialecteTriat() {
   });
 }
 
+// Què s'ha de fer, a més de marcar la pastilla i desar la tria, quan se'n tria
+// un altre. Ho posa cada pàgina, perquè no és el mateix a totes:
+//
+//   index.html      canviar de columna de rima i refer la cerca (aquí sota)
+//   les nàufragues  tornar a llegir el JSON del dialecte (js/script_llistes.js)
+//
+// Si torna false, la feina no s'ha pogut fer i la tira es queda com estava: val
+// més no moure la pastilla que ensenyar-ne una que no diu la veritat.
+let feinaDeCanviDeDialecte = null;
+
+function quanEsCanviaDeDialecte(feina) {
+  feinaDeCanviDeDialecte = feina;
+}
+
+function desarDialecte(codi) {
+  try {
+    localStorage.setItem(CLAU_DIALECTE, codi);
+  } catch (err) {
+    // Mode privat: la tria val per a aquesta visita i prou.
+  }
+}
+
 function lligarTriaDeDialecte() {
   const botons = botonsDeDialecte();
-  if (!botons.length) return; // pàgines sense tira: llistes, dades, error...
+  if (!botons.length) return; // pàgines sense tira: dades, error, nosaltres...
 
   marcarDialecteTriat();
 
@@ -618,31 +645,34 @@ function lligarTriaDeDialecte() {
     boto.addEventListener('click', () => {
       const codi = boto.dataset.dialecte;
       if (codi === dialecteActiu) return;
+      if (feinaDeCanviDeDialecte && feinaDeCanviDeDialecte(codi) === false) return;
 
-      // Mentre el diccionari es carrega, el loader tapa la pantalla sencera
-      // (z-index 99999 a css/loader.scss) i aquí no hi arriba cap clic. Tot i
-      // així ho comprovem: si la rima encara no hi fos, val més no fer res
-      // que deixar la pastilla canviada i les rimes de l'altre dialecte.
-      if (!aplicarDialecte(codi)) return;
-
+      dialecteActiu = codi;
       marcarDialecteTriat();
-      try {
-        localStorage.setItem(CLAU_DIALECTE, codi);
-      } catch (err) {
-        // Mode privat: la tria val per a aquesta visita i prou.
-      }
-
-      // Els resultats que hi ha a la pantalla són de l'altre dialecte i ja no
-      // valen. Es torna a cercar el mateix, tal com si es tornés a pitjar el
-      // botó. Si no s'ha cercat mai, o si el camp s'ha buidat mentrestant, no
-      // hi ha res per refer: cercar el buit no tornaria res i esborraria de la
-      // pantalla l'única cosa que hi havia.
-      const resultats = document.getElementById('rima_enllac');
-      const camp = document.getElementById('paraulaCercada');
-      if (resultats && resultats.innerHTML.trim() && camp && camp.value.trim()) {
-        realitzarCerca();
-      }
+      desarDialecte(codi);
     });
+  });
+}
+
+// La feina de l'index.html. Es registra aquí i no pas quan el diccionari ja
+// està llegit, perquè mentre es carrega també ha de saber dir que no: el
+// loader tapa la pantalla sencera (z-index 99999 a css/loader.scss) i no hi
+// hauria d'arribar cap clic, però si n'hi arribés cap, l'aplicarDialecte torna
+// false i la tira no es mou.
+if (idPagina === 'principal') {
+  quanEsCanviaDeDialecte(codi => {
+    if (!aplicarDialecte(codi)) return false;
+
+    // Els resultats que hi ha a la pantalla són de l'altre dialecte i ja no
+    // valen. Es torna a cercar el mateix, tal com si es tornés a pitjar el
+    // botó. Si no s'ha cercat mai, o si el camp s'ha buidat mentrestant, no hi
+    // ha res per refer: cercar el buit no tornaria res i esborraria de la
+    // pantalla l'única cosa que hi havia.
+    const resultats = document.getElementById('rima_enllac');
+    const camp = document.getElementById('paraulaCercada');
+    if (resultats && resultats.innerHTML.trim() && camp && camp.value.trim()) {
+      realitzarCerca();
+    }
   });
 }
 
