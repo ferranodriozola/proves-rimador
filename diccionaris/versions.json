@@ -1,6 +1,12 @@
 {
-  "generat": "2026-08-20 12:44:54 UTC",
+  "generat": "2026-08-21 01:18:24 UTC",
   "files": 619783,
+  "dialectes": [
+    "ba",
+    "ca",
+    "nw",
+    "va"
+  ],
   "columnes": {
     "col_0.txt": "d15583094efd",
     "col_1.txt": "f14d542a3272",
