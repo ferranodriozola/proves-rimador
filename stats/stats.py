@@ -206,7 +206,7 @@ with open(ruta_json, 'w', encoding='utf-8') as arxiu:
 
 
 def resum(cami):
-    """Sha256 truncat, igual que diccionaris/python/generar_versions.py i
+    """Sha256 truncat, igual que diccionaris/python/versions.py i
     llistes/versions.py: la versió és un resum del contingut, no un
     comptador ni una hora que caldria recordar de pujar."""
     calculador = hashlib.sha256()
