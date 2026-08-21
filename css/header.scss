@@ -13,6 +13,22 @@ header {
     text-align: center;
     width: 100%;
     box-sizing: border-box;
+
+    /*  El logo és una imatge de 600x300 amb el dibuix només al mig: la lletra
+        ocupa 462x66 píxels i tota la resta és transparent (117 píxels de buit a
+        dalt i 117 a baix). Com que el .rimador de sota li dona una amplada i
+        deixa l'alçada en auto, la caixa de la imatge acaba fent 240px d'alt
+        dins d'una capçalera de 100: sobresurt uns 70px per sota, damunt de la
+        tira de dialectes, i com que l'enllaç del logo l'embolcalla, els clics
+        que hi queien anaven a parar a la pàgina d'inici.
+
+        Això ho retalla: el buit continua sent-hi, però ja no és clicable. No es
+        perd res de vista, perquè el que es retalla és transparent.
+
+        COMPTE si algun dia s'ha de treure: qualsevol cosa que hagi de sortir de
+        la capçalera (un menú desplegable penjat d'aquí, per exemple) tampoc no
+        podrà, i s'haurà d'arreglar el buit de la imatge en comptes de tapar-lo.  */
+    overflow: hidden;
 }
 
 header.p {
