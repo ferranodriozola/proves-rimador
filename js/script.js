@@ -654,25 +654,26 @@ function lligarTriaDeDialecte() {
   });
 }
 
-// La feina de l'index.html. Es registra aquí i no pas quan el diccionari ja
-// està llegit, perquè mentre es carrega també ha de saber dir que no: el
-// loader tapa la pantalla sencera (z-index 99999 a css/loader.scss) i no hi
-// hauria d'arribar cap clic, però si n'hi arribés cap, l'aplicarDialecte torna
-// false i la tira no es mou.
+// La feina de l'index.html: canviar de columna de rima i res més.
+//
+// Triar un dialecte NO torna a cercar. Els resultats que hi ha a la pantalla es
+// queden com estan, i per veure'ls en el dialecte nou s'ha de pitjar Cercar
+// altre cop. És a posta: una cerca ampla triga a pintar-se i ningú no ha de
+// perdre el que està mirant només per haver tocat la tira.
+//
+// Es registra aquí i no pas quan el diccionari ja està llegit, perquè mentre
+// es carrega també ha de saber dir que no: el loader tapa la pantalla sencera
+// (z-index 99999 a css/loader.scss) i no hi hauria d'arribar cap clic, però si
+// n'hi arribés cap, l'aplicarDialecte torna false i la tira no es mou.
+//
+// El cercaEnCurs, en canvi, sí que passa: el diàleg d'homògrafs s'obre amb el
+// loader apartat (vegeu realitzarCerca) i la tira queda al descobert amb una
+// cerca a mitges. Canviar-li les columnes a sota voldria dir acabar-la amb la
+// rima d'un dialecte i els números de l'altre.
 if (idPagina === 'principal') {
   quanEsCanviaDeDialecte(codi => {
-    if (!aplicarDialecte(codi)) return false;
-
-    // Els resultats que hi ha a la pantalla són de l'altre dialecte i ja no
-    // valen. Es torna a cercar el mateix, tal com si es tornés a pitjar el
-    // botó. Si no s'ha cercat mai, o si el camp s'ha buidat mentrestant, no hi
-    // ha res per refer: cercar el buit no tornaria res i esborraria de la
-    // pantalla l'única cosa que hi havia.
-    const resultats = document.getElementById('rima_enllac');
-    const camp = document.getElementById('paraulaCercada');
-    if (resultats && resultats.innerHTML.trim() && camp && camp.value.trim()) {
-      realitzarCerca();
-    }
+    if (cercaEnCurs) return false;
+    return aplicarDialecte(codi);
   });
 }
 
@@ -895,6 +896,11 @@ function registrarCerca(paraulaBuscada, rimaTrobada, tipusRima, codiParaula, num
   dades.append('inclourePropis', inclourePropis);
   dades.append('inclourePlurals', inclourePlurals);
   dades.append('tipusRima', tipusRima);
+  // En quin dialecte s'ha cercat. Es llegeix la variable i no s'entra com a
+  // paràmetre perquè no pot haver canviat des que la cerca va començar: la
+  // tira es nega a moure's amb una cerca en marxa (vegeu
+  // quanEsCanviaDeDialecte, més amunt).
+  dades.append('dialecte', dialecteActiu);
   dades.append('usuari', getUsuariID());
 
   fetch(URL_GOOGLE_SCRIPT, {
