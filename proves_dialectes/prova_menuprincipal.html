@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<!--
+    PROVA: la pàgina-menú principal (rimador.cat/) amb dialectes.
+
+    La idea que es prova aquí: l'arrel deixa de ser el cercador i passa a ser
+    un menú. El cercador viu a /central, /nord-occidental, /valencia i /balear.
+
+    Com que és una prova dins de html/ (carpeta al .gitignore), els enllaços
+    dels dialectes apunten a ../index.html?d=xx, que és el cercador d'ara.
+    A la versió de debò han de ser /central/, /nord-occidental/, /valencia/
+    i /balear/ (§6.2 de diccionaris/separat/dialectes/pla.md).
+
+    Els estils nous van tots al <style> d'aquí sota, amb el prefix .mp-, per
+    no tocar cap fitxer de css/ fins que la idea no estigui decidida.
+-->
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" id="themeColor" content="#FF91FF">
+    <meta name="robots" content="noindex">
+
+    <title>Rimador.cat</title>
+    <meta name="description" content="El cercador de rimes en català segons la fonètica, en quatre varietats: central, nord-occidental, valencià i balear.">
+    <meta name="author" content="Marc i Ferran">
+
+    <link rel="icon" type="image/webp" href="../assets/R.webp">
+    <link rel="apple-touch-icon" href="../assets/R.webp">
+
+    <link rel="stylesheet" href="../dist/css/styles.min.css">
+    <script src="../dist/js/components.min.js" defer></script>
+    <script src="../dist/js/menu.min.js" defer></script>
+
+<style>
+/* =========================================================
+   PROVA — estils de la pàgina-menú. Tot amb el prefix .mp-.
+   Els colors són els de css/_variables.scss, amb el nom de
+   la variable al costat perquè es puguin passar a SCSS tal
+   com són el dia que això es doni per bo.
+   ========================================================= */
+
+/* La franja rosa enganxada a dalt: la regla de container.scss només
+   la posa a body#principal i body#llista. */
+body#menuprincipal #separador_rosa1 {
+    position: sticky;
+    background-color: #ff91ff;      /* $rosa-principal */
+    top: 0;
+    min-height: 40px;
+}
+
+.mp {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 10px 22px 30px;
+    box-sizing: border-box;
+    font-family: var(--font-sistema);
+}
+
+/* ---------- El bloc de dalt: triar dialecte ---------- */
+
+.mp-tria {
+    background-color: #00ffff;      /* $cian-principal */
+    border-radius: 10px;
+    padding: 22px 20px 20px;
+    margin-bottom: 34px;
+}
+
+.mp-titol {
+    font-family: var(--font-divertida);
+    font-size: 2em;
+    color: #d30505;                 /* $vermell-principal */
+    text-align: center;
+    margin: 0 0 6px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.mp-subtitol {
+    text-align: center;
+    font-size: 15px;
+    color: #333;                    /* $gris-text */
+    margin: 0 auto 20px;
+    max-width: 640px;
+    line-height: 1.45;
+}
+
+/* El camp de cerca és opcional: si s'omple, el dialecte que tries ja
+   se n'hi va amb la paraula posada (?q=), i el menú no costa cap clic
+   de més que la pàgina d'ara. */
+.mp-cerca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 560px;
+    margin: 0 auto 20px;
+}
+
+.mp-cerca label {
+    flex-shrink: 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.mp-cerca input {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 38px;
+    box-sizing: border-box;
+    padding-left: 12px;
+    border: 2px solid #3498db;      /* $blau-input */
+    border-radius: 5px;
+    background-color: #f2f2f2;      /* $gris-molt-clar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: var(--font-arial);
+    color: #333;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.mp-cerca input:focus {
+    border-color: #d975d9;          /* $rosa-mitja */
+    outline: none;
+}
+
+.mp-dialectes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+    gap: 14px;
+}
+
+.mp-dialecte {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 16px 14px;
+    background-color: #ffffff;
+    border: 2px solid #3498db;      /* $blau-input */
+    border-radius: 10px;
+    text-decoration: none;
+    color: #333;
+    transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mp-dialecte:hover,
+.mp-dialecte:focus-visible {
+    border-color: #d975d9;          /* $rosa-mitja */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+    outline: none;
+}
+
+/* El que es va triar l'última vegada. No redirigeix ningú enlloc
+   (§6.1 del pla): només es marca, i tu decideixes. */
+.mp-dialecte--desat {
+    border-color: #d30505;          /* $vermell-principal */
+    box-shadow: 0 0 0 3px rgba(211, 5, 5, 0.15);
+}
+
+.mp-dialecte__nom {
+    font-family: var(--font-divertida);
+    font-size: 24px;
+    line-height: 1.1;
+    color: #d30505;                 /* $vermell-principal */
+    padding-right: 76px;            /* deixa lloc a l'etiqueta */
+}
+
+.mp-dialecte__zona {
+    font-size: 12.5px;
+    color: #606060;                 /* $gris-606 */
+    line-height: 1.35;
+}
+
+.mp-dialecte__mostra {
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid #f2f2f2;  /* $gris-molt-clar */
+    font-size: 15px;
+    color: #333;
+}
+
+.mp-dialecte__mostra .transcripcio {
+    color: #b500b5;                 /* $rosa-fosc */
+}
+
+.mp-etiqueta {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 10.5px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #ffffff;
+    background-color: #ff00ff;      /* $magenta */
+    white-space: nowrap;
+}
+
+.mp-etiqueta--repassat {
+    background-color: rgb(0, 145, 0);   /* $verd-hover */
+}
+
+.mp-avis {
+    margin: 18px 0 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #333;
+    text-align: center;
+}
+
+.mp-avis a {
+    color: #d30505;                 /* $vermell-principal */
+}
+
+.mp-recordat {
+    margin: 14px 0 0;
+    font-size: 13.5px;
+    text-align: center;
+    color: #333;
+}
+
+/* ---------- La resta del web ---------- */
+
+.mp-seccio__titol {
+    font-family: var(--font-divertida);
+    font-size: 1.35em;
+    color: #d30505;                 /* $vermell-principal */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 0 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mp-seccio__titol::after {
+    content: '';
+    flex: 1 1 auto;
+    height: 2px;
+    background-color: rgba(211, 5, 5, 0.35);
+}
+
+.mp-graella {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+    gap: 14px;
+    margin-bottom: 30px;
+}
+
+.mp-carta {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 14px 16px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border-left: 7px solid #00ffff; /* $cian-principal */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+    text-decoration: none;
+    color: #333;
+    transition: border-left-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mp-carta:hover,
+.mp-carta:focus-visible {
+    border-left-color: #d30505;     /* $vermell-principal */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+    outline: none;
+}
+
+.mp-carta__nom {
+    font-family: var(--font-divertida);
+    font-size: 18px;
+    color: #d30505;                 /* $vermell-principal */
+}
+
+.mp-carta__text {
+    font-size: 13px;
+    line-height: 1.45;
+    color: #606060;                 /* $gris-606 */
+}
+
+.mp-nota {
+    font-size: 12.5px;
+    color: #333;
+    margin: -20px 0 30px;
+}
+
+/* ---------- Telèfons ---------- */
+
+@media screen and (max-width: 550px) {
+    .mp { padding: 6px 14px 20px; }
+    .mp-tria { padding: 18px 14px 16px; }
+    .mp-titol { font-size: 1.4em; }
+    .mp-subtitol { font-size: 13.5px; }
+    .mp-cerca { flex-wrap: wrap; gap: 7px; }
+    .mp-cerca input { height: 33px; }
+    .mp-dialectes { grid-template-columns: 1fr; }
+    .mp-graella { grid-template-columns: 1fr; }
+    .mp-dialecte__nom { font-size: 21px; }
+}
+
+/* ---------- Mode sobri ---------- */
+
+/* La franja de dalt: la regla de sobre porta dos id i guanya a la de
+   sober.scss, que en porta un. Cal repetir-la amb el mateix pes. */
+[data-theme="sober"] body#menuprincipal #separador_rosa1 {
+    background-color: var(--sober-bg);
+}
+
+[data-theme="sober"] .mp-tria {
+    background-color: var(--sober-panel-bg);
+    border: 1px solid var(--sober-border);
+}
+
+[data-theme="sober"] .mp-titol,
+[data-theme="sober"] .mp-seccio__titol,
+[data-theme="sober"] .mp-dialecte__nom,
+[data-theme="sober"] .mp-carta__nom {
+    font-family: var(--sober-font);
+    color: var(--sober-accent);
+    text-shadow: none;
+}
+
+[data-theme="sober"] .mp-dialecte,
+[data-theme="sober"] .mp-carta {
+    background-color: var(--sober-panel-bg);
+    border-color: var(--sober-border);
+    box-shadow: none;
+}
+
+[data-theme="sober"] .mp-carta {
+    border-left: 7px solid var(--sober-border);
+}
+
+[data-theme="sober"] .mp-dialecte:hover,
+[data-theme="sober"] .mp-carta:hover {
+    border-color: var(--sober-accent);
+    border-left-color: var(--sober-accent);
+    transform: none;
+    box-shadow: none;
+}
+
+[data-theme="sober"] .mp-dialecte--desat {
+    border-color: var(--sober-accent);
+    box-shadow: none;
+}
+
+[data-theme="sober"] .mp-etiqueta {
+    background-color: var(--sober-accent);
+}
+
+[data-theme="sober"] .mp-etiqueta--repassat {
+    background-color: var(--sober-muted);
+}
+
+[data-theme="sober"] .mp-seccio__titol::after {
+    background-color: var(--sober-border);
+}
+
+[data-theme="sober"] .mp-dialecte__mostra .transcripcio {
+    color: var(--sober-text);
+}
+
+[data-theme="sober"] .mp-avis a {
+    color: var(--sober-accent);
+}
+</style>
+</head>
+
+<body id="menuprincipal">
+
+    <header id="header">
+        <!-- components.js -->
+    </header>
+
+    <div id="separador_rosa1">
+        <!-- components.js -->
+    </div>
+
+    <main class="mp">
+
+        <!-- ============ TRIAR DIALECTE ============ -->
+        <section class="mp-tria" aria-labelledby="mp-titol">
+
+            <h1 class="mp-titol" id="mp-titol">A quin català vols rimar?</h1>
+            <p class="mp-subtitol">
+                Una rima ho és si sona igual, i no tothom pronuncia igual: en
+                central <em>pera</em> no rima amb <em>vera</em>, i en valencià sí.
+                Tria la varietat i el cercador comptarà les rimes d'aquella manera.
+            </p>
+
+            <div class="mp-cerca">
+                <label for="paraulaCercada">Ja saps la paraula?</label>
+                <input type="text" id="paraulaCercada" autocomplete="off"
+                       placeholder="Escriu-la aquí i tria varietat (opcional)">
+            </div>
+
+            <div class="mp-dialectes">
+
+                <!-- A la versió de debò: href="/central/" -->
+                <a class="mp-dialecte" href="../index.html" data-dialecte="ca">
+                    <span class="mp-etiqueta mp-etiqueta--repassat">Repassat</span>
+                    <span class="mp-dialecte__nom">Central</span>
+                    <span class="mp-dialecte__zona">Barcelona, Girona i el Camp de Tarragona</span>
+                    <span class="mp-dialecte__mostra">pera <span class="transcripcio">/p&#712;&#603;&#638;&#601;/</span></span>
+                </a>
+
+                <!-- A la versió de debò: href="/nord-occidental/" -->
+                <a class="mp-dialecte" href="../index.html?d=nw" data-dialecte="nw">
+                    <span class="mp-etiqueta">En proves</span>
+                    <span class="mp-dialecte__nom">Nord-occidental</span>
+                    <span class="mp-dialecte__zona">Lleida, Andorra, la Franja i les Terres de l'Ebre</span>
+                    <span class="mp-dialecte__mostra">pera <span class="transcripcio">/p&#712;e&#638;&#603;/</span></span>
+                </a>
+
+                <!-- A la versió de debò: href="/valencia/" -->
+                <a class="mp-dialecte" href="../index.html?d=va" data-dialecte="va">
+                    <span class="mp-etiqueta">En proves</span>
+                    <span class="mp-dialecte__nom">Valenci&agrave;</span>
+                    <span class="mp-dialecte__zona">El Pa&iacute;s Valenci&agrave;</span>
+                    <span class="mp-dialecte__mostra">pera <span class="transcripcio">/p&#712;e&#638;a/</span></span>
+                </a>
+
+                <!-- A la versió de debò: href="/balear/" -->
+                <a class="mp-dialecte" href="../index.html?d=ba" data-dialecte="ba">
+                    <span class="mp-etiqueta">En proves</span>
+                    <span class="mp-dialecte__nom">Balear</span>
+                    <span class="mp-dialecte__zona">Mallorca, Menorca i les Piti&uuml;ses</span>
+                    <span class="mp-dialecte__mostra">pera <span class="transcripcio">/p&#712;&#601;&#638;&#601;/</span></span>
+                </a>
+
+            </div>
+
+            <p class="mp-recordat" id="mp-recordat" hidden></p>
+
+            <p class="mp-avis">
+                El central porta anys de correccions a m&agrave;; les altres tres
+                varietats s&oacute;n noves i encara no s'han repassat. Si hi trobes
+                una rima que no fa, <a href="../error.html">digues-nos-ho</a>.
+            </p>
+
+        </section>
+
+        <!-- ============ EL JOC ============ -->
+        <h2 class="mp-seccio__titol">Per jugar</h2>
+        <div class="mp-graella">
+            <a class="mp-carta" href="../joc/">
+                <span class="mp-carta__nom">El Joc</span>
+                <span class="mp-carta__text">Quantes rimes ets capa&ccedil; de trobar abans que s'acabi el temps? Paraula del dia, partides il&middot;limitades i classificaci&oacute;.</span>
+            </a>
+        </div>
+
+        <!-- ============ LLISTES ============ -->
+        <h2 class="mp-seccio__titol">Llistes</h2>
+        <div class="mp-graella">
+            <a class="mp-carta" href="../llistes/llista_naufragues.html">
+                <span class="mp-carta__nom">Paraules n&agrave;ufragues</span>
+                <span class="mp-carta__text">Els mots que no rimen consonantment amb cap altra paraula del diccionari.</span>
+            </a>
+            <a class="mp-carta" href="../llistes/llista_heptasilabs.html">
+                <span class="mp-carta__nom">Mots heptasil&middot;l&agrave;bics</span>
+                <span class="mp-carta__text">Paraules que, elles soles, omplen un vers de set s&iacute;l&middot;labes.</span>
+            </a>
+            <a class="mp-carta" href="../llistes/llista_mots_de7.html">
+                <span class="mp-carta__nom">Mots de set s&iacute;l&middot;labes</span>
+                <span class="mp-carta__text">Totes les paraules de set s&iacute;l&middot;labes reals, de les m&eacute;s llargues del diccionari.</span>
+            </a>
+        </div>
+        <p class="mp-nota">
+            De moment, les tres llistes s&oacute;n nom&eacute;s del central: cada varietat
+            t&eacute; les seves n&agrave;ufragues i encara no estan fetes.
+        </p>
+
+        <!-- ============ LA RESTA ============ -->
+        <h2 class="mp-seccio__titol">El projecte</h2>
+        <div class="mp-graella">
+            <a class="mp-carta" href="../dades.html">
+                <span class="mp-carta__nom">Estad&iacute;stiques</span>
+                <span class="mp-carta__text">Les paraules i les rimes m&eacute;s cercades dels &uacute;ltims set dies i de tot l'hist&ograve;ric.</span>
+            </a>
+            <a class="mp-carta" href="../nosaltres.html">
+                <span class="mp-carta__nom">Qui som?</span>
+                <span class="mp-carta__text">Qui hi ha al darrere i per qu&egrave; hem fet un rimador que t&eacute; en compte la fon&egrave;tica.</span>
+            </a>
+            <a class="mp-carta" href="../historial_canvis.html">
+                <span class="mp-carta__nom">Historial de canvis</span>
+                <span class="mp-carta__text">Totes les versions del Rimador i qu&egrave; hi hem canviat, de la m&eacute;s recent a la m&eacute;s antiga.</span>
+            </a>
+            <a class="mp-carta" href="../error.html">
+                <span class="mp-carta__nom">Has trobat un error?</span>
+                <span class="mp-carta__text">Una paraula mal transcrita o una rima que no hi hauria de ser: explica'ns-ho i ho corregirem.</span>
+            </a>
+            <a class="mp-carta" href="https://ko-fi.com/rimadorcat" target="_blank" rel="noopener">
+                <span class="mp-carta__nom">Regala'ns un caf&egrave;</span>
+                <span class="mp-carta__text">El Rimador &eacute;s gratu&iuml;t i sense anuncis. Si el fas servir sovint, ens ajudes a mantenir-lo.</span>
+            </a>
+        </div>
+
+    </main>
+
+<footer id="footer">
+<!-- components.js -->
+</footer>
+
+<script>
+/* =========================================================
+   PROVA — el poc JavaScript que demana la pàgina-menú.
+   No es carrega el script.js: aquí no hi ha cap cerca, o sigui
+   que no cal baixar cap diccionari.
+   ========================================================= */
+document.addEventListener('DOMContentLoaded', function () {
+
+    // ---- Tema (el mateix de script.js, retallat) ----
+    var CLAU_TEMA = 'rimadorTheme';
+
+    function aplicarTema(tema) {
+        var peixet = document.getElementById('peixetImg');
+        var logo = document.getElementById('rimadorImg');
+        var meta = document.getElementById('themeColor');
+        var ruta = typeof ruta1 === 'string' ? ruta1 : '../assets/';
+
+        if (tema === 'sober') {
+            document.documentElement.setAttribute('data-theme', 'sober');
+            if (peixet) { peixet.src = ruta + 'boringlogo.webp?v=2'; peixet.alt = 'Logo (mode sobri)'; }
+            if (logo) { logo.src = ruta + 'Rimador-1-sober.webp?v=1'; logo.alt = 'El Rimador.cat (mode sobri)'; }
+            if (meta) { meta.setAttribute('content', '#e6e4e5'); }
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            if (peixet) { peixet.src = ruta + 'peixet.webp?v=1'; peixet.alt = 'Peixet decoratiu'; }
+            if (logo) { logo.src = ruta + 'Rimador-1.webp?v=1'; logo.alt = 'Logo del Rimador.cat'; }
+            if (meta) { meta.setAttribute('content', '#FF91FF'); }
+        }
+    }
+
+    window.toggleTheme = function () {
+        var actual = localStorage.getItem(CLAU_TEMA) === 'sober' ? 'sober' : 'festiu';
+        var nou = actual === 'sober' ? 'festiu' : 'sober';
+        try { localStorage.setItem(CLAU_TEMA, nou); } catch (e) {}
+        aplicarTema(nou);
+    };
+
+    var desat = null;
+    try { desat = localStorage.getItem(CLAU_TEMA); } catch (e) {}
+    aplicarTema(desat === 'sober' ? 'sober' : 'festiu');
+
+
+    // ---- Dialectes ----
+    var CLAU_DIALECTE = 'rimadorDialecte';
+    var NOMS = { ca: 'el central', nw: 'el nord-occidental', va: 'el valencià', ba: 'el balear' };
+
+    var targetes = document.querySelectorAll('.mp-dialecte');
+    var camp = document.getElementById('paraulaCercada');
+
+    // El que vas triar l'última vegada es marca, però no et mou de lloc:
+    // redirigir des de l'arrel trencaria els enllaços compartits (§6.1).
+    var triat = null;
+    try { triat = localStorage.getItem(CLAU_DIALECTE); } catch (e) {}
+
+    if (triat && NOMS[triat]) {
+        for (var i = 0; i < targetes.length; i++) {
+            if (targetes[i].dataset.dialecte === triat) {
+                targetes[i].classList.add('mp-dialecte--desat');
+            }
+        }
+        var avis = document.getElementById('mp-recordat');
+        if (avis) {
+            avis.textContent = 'L’última vegada vas rimar en ' + NOMS[triat] + '.';
+            avis.hidden = false;
+        }
+    }
+
+    for (var j = 0; j < targetes.length; j++) {
+        // L'adreça de partida es guarda a part: si es reescriu l'href
+        // directament, tornar enrere i clicar un altre cop hi encadenaria
+        // un segon ?q=.
+        targetes[j].dataset.base = targetes[j].getAttribute('href');
+
+        targetes[j].addEventListener('click', function () {
+            try { localStorage.setItem(CLAU_DIALECTE, this.dataset.dialecte); } catch (err) {}
+
+            // Si hi ha paraula escrita, se'n va amb tu: el ?q= ja funciona
+            // avui (cercarDesDeLaURL, a js/script.js).
+            var base = this.dataset.base;
+            var paraula = camp && camp.value.trim();
+            var separador = base.indexOf('?') === -1 ? '?' : '&';
+            this.setAttribute('href', paraula ? base + separador + 'q=' + encodeURIComponent(paraula) : base);
+        });
+    }
+
+
+    // ---- Menú: hi afegim el grup de dialectes ----
+    // A la versió de debò això va a js/menu.js; aquí s'hi encasta perquè
+    // la prova ensenyi el menú tal com quedaria.
+    var nav = document.querySelector('#paper-back nav');
+    if (nav) {
+        var primer = nav.querySelector('a');
+        var grup = document.createElement('div');
+        grup.className = 'menu-grup';
+        grup.setAttribute('role', 'group');
+        grup.innerHTML =
+            '<p class="menu-grup__titol"><span class="menu-grup__ratlla"></span>El rimador</p>' +
+            '<a href="../index.html">Central</a>' +
+            '<a href="../index.html?d=nw">Nord-occidental</a>' +
+            '<a href="../index.html?d=va">Valencià</a>' +
+            '<a href="../index.html?d=ba">Balear</a>' +
+            '<span class="menu-grup__ratlla menu-grup__ratlla--tanca"></span>';
+        if (primer && primer.nextSibling) {
+            nav.insertBefore(grup, primer.nextSibling);
+        }
+    }
+});
+</script>
+
+</body>
+</html>
