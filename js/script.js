@@ -228,7 +228,32 @@ const DIALECTE_PER_DEFECTE = 'ca';
 // La tria es recorda entre visites, igual que el tema (vegeu THEME_STORAGE_KEY).
 const CLAU_DIALECTE = 'rimadorDialecte';
 
-function dialecteDesat() {
+// El dialecte demanat per l'adreça: rimador.cat/?d=ba
+//
+// Hi mana per damunt del que hi hagi desat, i és el que fa que una cerca
+// enviada a algú li ensenyi el mateix que veia qui l'hi va enviar. Sense això,
+// el ?q= de l'actualitzarBotoCompartir donaria a cadascú els resultats del
+// dialecte que ell tingués triat: una cerca compartida que no es pot reproduir
+// és pitjor que no poder-la compartir.
+//
+// Un codi que no existeix s'ignora i s'agafa el de sempre, igual que el &rima=
+// mal escrit del cercarDesDeLaURL: val més servir el de costum que plantar-se.
+function dialecteDeLAdreca() {
+  const demanat = new URLSearchParams(window.location.search).get('d');
+  return CODIS_DE_DIALECTE.includes(demanat) ? demanat : null;
+}
+
+// D'on surt el dialecte de la visita, per ordre: l'adreça, el que hi havia
+// desat, i el central.
+//
+// El de l'adreça NO es desa (vegeu desarDialecte): la memòria només l'escriu
+// la tira. Obrir l'enllaç que t'ha passat algú val per a aquella visita i no
+// t'ha de canviar el dialecte de sempre; qui no n'hagi triat mai cap, el
+// pròxim cop tornarà a tenir el central, que és el que no havia triat.
+function dialecteInicial() {
+  const deLAdreca = dialecteDeLAdreca();
+  if (deLAdreca) return deLAdreca;
+
   try {
     const desat = localStorage.getItem(CLAU_DIALECTE);
     if (CODIS_DE_DIALECTE.includes(desat)) return desat;
@@ -240,7 +265,7 @@ function dialecteDesat() {
 
 // Quin se serveix ara mateix. Canvia amb la tira de dialectes (vegeu
 // lligarTriaDeDialecte, més avall).
-let dialecteActiu = dialecteDesat();
+let dialecteActiu = dialecteInicial();
 
 // La rima de tots els dialectes, ja llegida i interpretada:
 // { ca: { 3: {taula, idx}, 4: {taula, idx} }, nw: {...}, ... }
@@ -627,11 +652,35 @@ function quanEsCanviaDeDialecte(feina) {
   feinaDeCanviDeDialecte = feina;
 }
 
+// Només es crida des de la tira, mai amb el que ve del ?d= (vegeu
+// dialecteInicial): la memòria ha de guardar el que algú ha triat, no el que
+// li ha arribat per un enllaç.
 function desarDialecte(codi) {
   try {
     localStorage.setItem(CLAU_DIALECTE, codi);
   } catch (err) {
     // Mode privat: la tria val per a aquesta visita i prou.
+  }
+}
+
+// Deixar el dialecte a la barra d'adreces, perquè el que es veu i el que
+// s'enllaça diguin sempre el mateix: copiar l'adreça d'aquí i enviar-la ha
+// d'ensenyar a l'altre les mateixes rimes.
+//
+// replaceState i no pas pushState: triar un dialecte no és anar a cap altra
+// pàgina. Amb pushState, la fletxa d'enrere aniria desfent les triades una per
+// una en comptes de tornar d'on s'havia vingut.
+//
+// L'adreça només es toca quan algú tria: qui entra a rimador.cat i es queda
+// amb el que tenia, es queda també amb l'adreça neta.
+function escriureDialecteALAdreca(codi) {
+  try {
+    const adreca = new URL(window.location.href);
+    adreca.searchParams.set('d', codi);
+    history.replaceState(null, '', adreca);
+  } catch (err) {
+    // Obert com a fitxer local, o massa canvis seguits (el Safari els limita).
+    // L'adreça no és la que tocaria, però la pàgina funciona igual.
   }
 }
 
@@ -650,6 +699,7 @@ function lligarTriaDeDialecte() {
       dialecteActiu = codi;
       marcarDialecteTriat();
       desarDialecte(codi);
+      escriureDialecteALAdreca(codi);
     });
   });
 }
@@ -707,10 +757,20 @@ function actualitzarBotoCompartir() {
   // l'actualitzarRimes), i per força ha de dir el mateix que ella.
   const tipusRima = document.getElementById('rimaSelector').value;
 
+  // El dialecte va a TOTES dues adreces, i sempre, també quan és el central.
+  // No és com el &rima=assonant, que es pot ometre perquè qui obri l'enllaç
+  // sense res trobarà la consonant igualment: aquí, qui l'obri sense ?d=
+  // trobarà el dialecte que ell tingui desat, que pot ser qualsevol. Deixar-lo
+  // fora no vol dir "el de sempre", vol dir "el que li toqui al qui ho llegeixi".
+  const dialecte = "d=" + dialecteActiu;
+
   if (paraulaEsNaufraga && tipusRima === 'r.consonant') {
+    // Ser nàufraga depèn del dialecte i la llista també (vegeu
+    // fitxerDeNaufragues, a js/script_llistes.js): sense el ?d=, l'enllaç pot
+    // dur a una llista on aquesta paraula no hi és.
     piulet = "He trobat una paraula nàufraga! '" + paraula + "' no rima " +
              "consonantment amb cap altra paraula del diccionari. Descobreix " +
-             "totes les altres: rimador.cat/llistes/llista_naufragues.html";
+             "totes les altres: rimador.cat/llistes/llista_naufragues.html?" + dialecte;
 
   } else {
     // matches i no pas matches_provisionals, que és el que es veu a la
@@ -731,6 +791,7 @@ function actualitzarBotoCompartir() {
     // si no s'hi posa res (vegeu cercarDesDeLaURL), i posar-l'hi només faria
     // l'enllaç més llarg per no dir res de nou.
     const adreca = "rimador.cat/?q=" + encodeURIComponent(paraula) +
+                   "&" + dialecte +
                    (esAssonant ? "&rima=assonant" : "");
 
     piulet = "He cercat " + (esAssonant ? "assonantment" : "consonantment") +
@@ -754,6 +815,10 @@ function actualitzarBotoCompartir() {
 // de sempre, amb els filtres tal com els deixa el components.js. No toca la
 // barra d'adreces quan es cerca des del formulari; el ?q= és una porta
 // d'entrada, no un estat que la pàgina vagi mantenint.
+//
+// El ?d= del dialecte sí que s'hi manté (vegeu escriureDialecteALAdreca), i
+// no és cap incoherència: la paraula cercada ja es veu escrita al camp, però
+// el dialecte de qui rebi l'enllaç no es veu enlloc si no consta a l'adreça.
 function cercarDesDeLaURL() {
   const parametres = new URLSearchParams(window.location.search);
 
