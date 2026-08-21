@@ -20,6 +20,7 @@
       </div>
       <a href="${arrel}dades.html">Estadístiques</a>
       <a href="${arrel}nosaltres.html">Qui som?</a>
+      <a href="${arrel}dialectes.html">Els dialectes</a>
       <a href="${arrel}historial_canvis.html">Historial de canvis</a>
       <a href="${arrel}error.html">Has trobat un error?</a>
       <a href="https://ko-fi.com/rimadorcat" target="_blank" rel="noopener">Regala'ns un cafè</a>

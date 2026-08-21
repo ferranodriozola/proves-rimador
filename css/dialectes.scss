@@ -28,6 +28,11 @@
     font-family: var(--font-sistema);
 }
 
+/*  El rètol és un enllaç a dialectes.html (vegeu la tira a js/components.js),
+    i per això du subratllat de punts: sense res, un <a> que hereta el color
+    gris del rètol no es veu que es pugui clicar; amb el subratllat de sempre,
+    en canvi, cridaria més que les pastilles, que són el que s'ha de fer servir
+    aquí. El color de marca només surt al :hover.  */
 .dialectes-rotul {
     flex-shrink: 0;
     font-size: 12px;
@@ -35,6 +40,24 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: rgba($negre, 0.45);
+    text-decoration: underline dotted;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    transition: color 120ms ease;
+}
+
+.dialectes-rotul:visited {
+    color: rgba($negre, 0.45);
+}
+
+.dialectes-rotul:hover {
+    color: $blau-fosquissim;
+    text-decoration: underline;
+}
+
+.dialectes-rotul:focus-visible {
+    outline: 2px solid $vermell-principal;
+    outline-offset: 2px;
 }
 
 /*  Amb wrap i no pas amb overflow-x: una tira que llisca de costat amaga les
