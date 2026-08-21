@@ -195,24 +195,68 @@ const t7 = i => (banderes ? col7.taula[(banderes[i] >> 1) & 1] : col7.taula[col7
 const t8 = i => (banderes ? col8.taula[(banderes[i] >> 2) & 1] : col8.taula[col8.idx[i]]);
 
 let fitxersLlegits = 0;
-let nombresDeFitxers = 17; // la col_0 i, de cada columna internada, la taula i els índexs
 
 // col_9 (les transcripcions senceres) no hi és, i no s'hi baixa mai: fa 73 MB
 // i quatre milions de línies. L'única cosa que en necessitava el web era el
 // diàleg d'homògrafs, i per a saber-ho ja n'hi ha prou amb els números de rima
 // de col_3 i col_4, que es carreguen igualment per cercar (vegeu buscarParaula).
 const CAMI_PARAULES = `${ARREL}diccionaris/separat/col_0.txt`;
-const COLUMNES_INTERNADES = [1, 2, 3, 4, 5, 6, 7, 8];
 
-// Quin dialecte se serveix. La rima (col_3 i col_4) ja no és al diccionari:
-// depèn de com es parli i cada dialecte té la seva a dialectes_col/<codi>/.
-// La resta de columnes (la paraula, el lema, el codi, les síl·labes i els
-// enllaços) són les mateixes es parli com es parli, i continuen a separat/.
+// La paraula, el lema, el codi, les síl·labes i els tres enllaços són les
+// mateixes es parli com es parli, i continuen a separat/.
+const COLUMNES_DEL_DICCIONARI = [1, 2, 5, 6, 7, 8];
+
+// La rima, en canvi, ja no és al diccionari: depèn de com es parli i cada
+// dialecte té la seva a dialectes_col/<codi>/.
+const COLUMNES_DE_RIMA = [3, 4];
+
+// Quins dialectes hi ha. Surten de la llista DIALECTES de js/components.js,
+// que és la mateixa que pinta les pastilles de la tira: així el que es baixa i
+// el que es pot triar no poden dir coses diferents mai. Afegir-hi el
+// rossellonès és tocar aquella llista i res més.
 //
-// De moment sempre és el central, que és el que hi havia fins ara: el
-// desplegable per triar-lo encara s'ha de fer.
+// El fallback és per a les pàgines que carreguen aquest fitxer sense passar
+// pel components.js: allà no hi ha cap tira per triar res i el central és
+// l'únic que fa falta.
+const CODIS_DE_DIALECTE = (typeof DIALECTES !== 'undefined') ? DIALECTES.map(d => d.codi) : ['ca'];
 
-const DIALECTE = 'ca'; //ca-ba-va-nw
+// El de sempre: l'únic amb la transcripció repassada a mà (els altres surten
+// de l'espeak-ng) i el que es dona a qui no ha triat mai res. És el CENTRAL de
+// diccionaris/python/camins.py.
+const DIALECTE_PER_DEFECTE = 'ca';
+
+// La tria es recorda entre visites, igual que el tema (vegeu THEME_STORAGE_KEY).
+const CLAU_DIALECTE = 'rimadorDialecte';
+
+function dialecteDesat() {
+  try {
+    const desat = localStorage.getItem(CLAU_DIALECTE);
+    if (CODIS_DE_DIALECTE.includes(desat)) return desat;
+  } catch (err) {
+    // Mode privat o cookies barrades: no és cap problema, s'agafa el de sempre.
+  }
+  return DIALECTE_PER_DEFECTE;
+}
+
+// Quin se serveix ara mateix. Canvia amb la tira de dialectes (vegeu
+// lligarTriaDeDialecte, més avall).
+let dialecteActiu = dialecteDesat();
+
+// La rima de tots els dialectes, ja llegida i interpretada:
+// { ca: { 3: {taula, idx}, 4: {taula, idx} }, nw: {...}, ... }
+//
+// S'hi baixen TOTS a l'inici, no pas només el triat. Són uns 3,5 MB per
+// dialecte (i molt menys per la xarxa, que són fitxers de xifres i el
+// servidor els comprimeix), i a canvi canviar de dialecte no espera cap
+// descàrrega: ja són a la memòria i només s'han de tornar a indexar.
+let rimaPerDialecte = {};
+
+// La col_0 i, de cada columna internada, la taula i els índexs. Es compta i no
+// s'escriu a mà: el dia que hi hagi sis dialectes, el comptador del loader
+// continuarà dient la veritat sense que ningú se n'hagi de recordar.
+let nombresDeFitxers = 1 +
+    COLUMNES_DEL_DICCIONARI.length * 2 +
+    CODIS_DE_DIALECTE.length * COLUMNES_DE_RIMA.length * 2;
 
 // Com es diu la columna de rima de cada dialecte. El codi va DINS del nom del
 // fitxer i no només a la carpeta, a posta: la memòria cau i el versions.json
@@ -221,9 +265,9 @@ const DIALECTE = 'ca'; //ca-ba-va-nw
 // balear serien la mateixa entrada.
 const NOMS_DE_RIMA = { 3: 'rimacons', 4: 'rimaass' };
 
-function arrelDeLaColumna(numero) {
+function arrelDeLaColumna(numero, codi) {
   if (NOMS_DE_RIMA[numero]) {
-    return `${ARREL}dialectes_col/${DIALECTE}/internat/col_${numero}_${NOMS_DE_RIMA[numero]}_${DIALECTE}`;
+    return `${ARREL}dialectes_col/${codi}/internat/col_${numero}_${NOMS_DE_RIMA[numero]}_${codi}`;
   }
   return `${ARREL}diccionaris/separat/internat/col_${numero}`;
 }
@@ -267,8 +311,8 @@ function textAIndexs(contingut, Tipus) {
 // La taula va primer perquè és qui diu de quina mena ha de ser l'array dels
 // índexs. Totes dues passen pel mateix llegirFitxerAmbIndexedDB que la resta,
 // o sigui que hereten la memòria cau i el control de versions sense res especial.
-async function carregarColumnaInternada(numero) {
-  const arrel = arrelDeLaColumna(numero);
+async function carregarColumnaInternada(numero, codi) {
+  const arrel = arrelDeLaColumna(numero, codi);
   const taula = await llegirFitxerAmbIndexedDB(`${arrel}.taula.txt`);
   const Tipus = menaDArray(taula.length);
   const idx = await llegirFitxerAmbIndexedDB(`${arrel}.idx.txt`, contingut => textAIndexs(contingut, Tipus));
@@ -312,9 +356,27 @@ function prepararColumnes() {
     banderes = empaquetades;
     col6.idx = col7.idx = col8.idx = null; // ja no calen
   }
+}
 
+// Passar a un altre dialecte. La rima ja és tota a la memòria (vegeu
+// rimaPerDialecte), o sigui que això no baixa res: només torna a apuntar el
+// col3 i el col4 cap a l'altra columna i en refà els índexs, que són un parell
+// de passades pel diccionari i prou.
+//
+// Torna false si la rima demanada encara no hi és (el diccionari s'està
+// carregant, o el codi no existeix). Qui el crida no ha de tocar res en aquest
+// cas: val més quedar-se com estàvem que marcar una pastilla i ensenyar les
+// rimes de l'altre dialecte.
+function aplicarDialecte(codi) {
+  const rima = rimaPerDialecte[codi];
+  if (!rima || !rima[3] || !rima[4]) return false;
+
+  dialecteActiu = codi;
+  col3 = rima[3];
+  col4 = rima[4];
   indexConsonant = indexarPerRima(col3);
   indexAssonant = indexarPerRima(col4);
+  return true;
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -327,13 +389,45 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         await carregarVersions();
-        const [paraules, ...internades] = await Promise.all([
+
+        // Tot d'una tirada i en paral·lel: les paraules, les columnes del
+        // diccionari i la rima de TOTS els dialectes. Un sol Promise.all i no
+        // pas un per grup, perquè així el navegador fa la cua ell sol i no hi
+        // ha cap fase que s'esperi l'anterior sense necessitat.
+        //
+        // Baixar-los tots d'entrada és el que fa que triar un altre dialecte
+        // sigui immediat: si es baixessin quan es demanen, cada clic a la tira
+        // voldria dir esperar-se uns quants MB.
+        const feinesDeRima = CODIS_DE_DIALECTE.flatMap(codi =>
+            COLUMNES_DE_RIMA.map(numero =>
+                carregarColumnaInternada(numero, codi).then(columna => ({ codi, numero, columna }))));
+
+        const carregat = await Promise.all([
             llegirFitxerAmbIndexedDB(CAMI_PARAULES),
-            ...COLUMNES_INTERNADES.map(carregarColumnaInternada)
+            ...COLUMNES_DEL_DICCIONARI.map(numero => carregarColumnaInternada(numero)),
+            ...feinesDeRima
         ]);
-        array0 = paraules;
-        [col1, col2, col3, col4, col5, col6, col7, col8] = internades;
+
+        // El Promise.all torna les coses en el mateix ordre que se li han
+        // demanat: primer les paraules, després tantes columnes com en té el
+        // COLUMNES_DEL_DICCIONARI, i la resta són les de rima.
+        const finalDelDiccionari = 1 + COLUMNES_DEL_DICCIONARI.length;
+        array0 = carregat[0];
+        [col1, col2, col5, col6, col7, col8] = carregat.slice(1, finalDelDiccionari);
+
+        for (const { codi, numero, columna } of carregat.slice(finalDelDiccionari)) {
+            if (!rimaPerDialecte[codi]) rimaPerDialecte[codi] = {};
+            rimaPerDialecte[codi][numero] = columna;
+        }
+
         prepararColumnes();
+
+        // Si el dialecte desat s'hagués quedat sense carregar, tornaríem al
+        // central abans de deixar cercar: sense col3 ni col4 no hi ha cerca
+        // possible.
+        if (!aplicarDialecte(dialecteActiu)) aplicarDialecte(DIALECTE_PER_DEFECTE);
+        marcarDialecteTriat();
+
         console.log('Tots els fitxers carregats correctament');
 
         document.getElementById("loader").style.display = "none";
@@ -492,6 +586,67 @@ const cercaButton = document.getElementById('cercaButton');
 if (cercaButton) {
   cercaButton.addEventListener('click', realitzarCerca);
 }
+
+
+// --- LA TIRA PER TRIAR EL DIALECTE ---
+// La pinta el js/components.js a partir de la seva llista DIALECTES; el que
+// fa és cosa d'aquí, que és qui té les columnes.
+
+function botonsDeDialecte() {
+  return document.querySelectorAll('#dialectes .dialecte');
+}
+
+// Quina pastilla surt marcada. El components.js sempre pinta el central, o
+// sigui que si de l'altre cop en va quedar un altre de desat, es corregeix
+// aquí. Passa abans del primer pintat (tots dos fitxers són defer i aquest va
+// just darrere), i per tant no es veu cap salt.
+function marcarDialecteTriat() {
+  botonsDeDialecte().forEach(boto => {
+    const es = boto.dataset.dialecte === dialecteActiu;
+    boto.classList.toggle('triat', es);
+    boto.setAttribute('aria-checked', es ? 'true' : 'false');
+  });
+}
+
+function lligarTriaDeDialecte() {
+  const botons = botonsDeDialecte();
+  if (!botons.length) return; // pàgines sense tira: llistes, dades, error...
+
+  marcarDialecteTriat();
+
+  botons.forEach(boto => {
+    boto.addEventListener('click', () => {
+      const codi = boto.dataset.dialecte;
+      if (codi === dialecteActiu) return;
+
+      // Mentre el diccionari es carrega, el loader tapa la pantalla sencera
+      // (z-index 99999 a css/loader.scss) i aquí no hi arriba cap clic. Tot i
+      // així ho comprovem: si la rima encara no hi fos, val més no fer res
+      // que deixar la pastilla canviada i les rimes de l'altre dialecte.
+      if (!aplicarDialecte(codi)) return;
+
+      marcarDialecteTriat();
+      try {
+        localStorage.setItem(CLAU_DIALECTE, codi);
+      } catch (err) {
+        // Mode privat: la tria val per a aquesta visita i prou.
+      }
+
+      // Els resultats que hi ha a la pantalla són de l'altre dialecte i ja no
+      // valen. Es torna a cercar el mateix, tal com si es tornés a pitjar el
+      // botó. Si no s'ha cercat mai, o si el camp s'ha buidat mentrestant, no
+      // hi ha res per refer: cercar el buit no tornaria res i esborraria de la
+      // pantalla l'única cosa que hi havia.
+      const resultats = document.getElementById('rima_enllac');
+      const camp = document.getElementById('paraulaCercada');
+      if (resultats && resultats.innerHTML.trim() && camp && camp.value.trim()) {
+        realitzarCerca();
+      }
+    });
+  });
+}
+
+lligarTriaDeDialecte();
 
 // El botó de compartir la cerca a X (Twitter).
 //
