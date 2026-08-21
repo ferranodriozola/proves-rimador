@@ -126,6 +126,23 @@ python3 diccionaris/python/afegir_paraula.py --paraula tiktokera --lema tiktoker
 Si només és a un dels dos fitxers, el `sincronitzar.py` s'atura i diu quina
 paraula és i on.
 
+### Si el diccionari es perd
+
+Les columnes de `separat/` el contenen sencer, camp per camp:
+
+```bash
+python3 "diccionaris/python/refer_diccionari (no s'usa).py" --sortida /tmp/mira-te-la.txt
+python3 "diccionaris/python/refer_diccionari (no s'usa).py"   # sobre el de debò, preguntant
+```
+
+(Les cometes són perquè el nom du espais i un apòstrof. El "(no s'usa)" vol dir
+que no és cap pas dels workflows, com el `provar.py` i l'`afegir_paraula.py`.)
+
+És el camí contrari del `columnes.py` i no corre mai als workflows. Si el que hi
+ha no diu el mateix, ensenya en què es diferencien i pregunta abans de
+sobreescriure'l. La col_10 no la refà (no surt de `separat/` sinó de les
+transcripcions): si també l'has perduda, passa després el `sincronitzar.py`.
+
 ## El diàleg d'homògrafs
 
 Quan cerques una paraula que surt més d'un cop al diccionari, el web ha de
