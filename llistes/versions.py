@@ -28,7 +28,7 @@ def resum(cami):
 
 def actualitzar_versio(nom_fitxer, cami_fitxer):
     """nom_fitxer és el nom pel qual el navegador el demana (p. ex.
-    'paraules_naufragues.json'), no pas el camí sencer: és la clau que fa
+    'paraules_naufragues_ca.json'), no pas el camí sencer: és la clau que fa
     servir VERSIONS_FITXERS a js/script.js (vegeu llegirFitxerAmbIndexedDB)."""
     try:
         with open(RUTA_VERSIONS, "r", encoding="utf-8") as fitxer:
