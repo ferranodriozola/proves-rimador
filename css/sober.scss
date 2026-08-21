@@ -73,8 +73,13 @@
   font-family: var(--sober-font);
 }
 
-[data-theme="sober"] .dialectes-rotul {
+[data-theme="sober"] .dialectes-rotul,
+[data-theme="sober"] .dialectes-rotul:visited {
   color: var(--sober-muted);
+}
+
+[data-theme="sober"] .dialectes-rotul:hover {
+  color: var(--sober-accent);
 }
 
 [data-theme="sober"] .dialecte {
