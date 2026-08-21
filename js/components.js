@@ -127,9 +127,12 @@ if (headerHTML) { headerHTML.innerHTML = header; }
     la tira els cap sense tocar cap CSS (a partir de quatre, i en pantalles
     estretes, les pastilles passen a dues ratlles totes soles).
 
-    COMPTE: de moment això és NOMÉS la maqueta. Els botons no duen cap
-    escoltador i el triat és sempre el central, que és l'únic que se serveix
-    (js/script.js té el DIALECTE clavat a 'ca'). La lògica ve després.
+    Aquí només hi ha la marca. Qui hi enganxa els clics és el js/script.js
+    (lligarTriaDeDialecte), i què passa en triar-ne un depèn de la pàgina:
+    a l'index.html es canvia de columna de rima i es refà la cerca; a les
+    nàufragues es torna a llegir el JSON d'aquell dialecte. El "triat" que es
+    pinta aquí és sempre el central i el script.js el corregeix si n'hi havia
+    un altre de desat, abans del primer pintat.
 */
 const DIALECTES = [
     { codi: 'ca', nom: 'Central' },
