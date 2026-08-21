@@ -47,68 +47,84 @@ llistes: aquests passos no miren quin diccionari hi ha al darrere.
 
 ## L'ordre, i per què és aquest
 
-Hi ha **dues portes** i cadascuna edita una cosa diferent:
+**Només es fan canvis en dos fitxers**, i tota la resta són sortides que es
+refan senceres a cada passada:
 
-| edites | per a | i llavors |
-|---|---|---|
-| `diccionari.5.2.3.txt` | afegir i treure paraules, i canviar-ne el lema, el codi, les síl·labes o els enllaços | els dialectes el segueixen: el que hi esborres desapareix de tots els `col_9` |
-| `col_10.txt` | corregir com sona una paraula, als quatre dialectes alhora | les transcripcions se'n van a `dialectes_col/*/col_9` |
+| edites | per a |
+|---|---|
+| `diccionari.5.2.3.txt` | **quines** paraules hi ha: afegir-ne, treure'n, i el lema, el codi, les síl·labes i els enllaços |
+| `col_10.txt` | **com** sona cadascuna, als quatre dialectes alhora. També hi pots corregir la paraula, el lema i el codi |
 
 ```
-canvi a diccionari.5.2.3.txt          canvi a diccionaris/col_10.txt
-(quines paraules hi ha)               (com sonen)
-         └────────────────┬─────────────────────┘
-                          ▼
-                   sincronitzar.py
-       (alinea la col_10 amb el diccionari i escriu els col_9;
-        el que s'ha esborrat del diccionari desapareix de tots
-        els dialectes, i s'atura si hi ha paraules noves que la
-        col_10 no sap com sonen)
-                          ▼
-                          │   ── si config.py publica el v.6: ──
-                          ▼
-              generar_tot_1_pronom + generar_tot_2_pronoms
-              ajuntar_diccionari_6  →  diccionari.6.txt
+             els dos fitxers que s'editen
                           │
-                          │   ── sempre: ──
+   1. sincronitzar.py     ▼   els posa d'acord i escriu els col_9
+   2. columnes.py             diccionari -> col_0,1,2,5,6,7,8
+                              col_9 -> col_3 i col_4 de cada dialecte
+   3. internar.py             cada columna -> taula + índexs
+   4. versions.py             ho comprova tot i escriu el versions.json
                           ▼
-              generar_columnes_publicades  →  separat/col_0,1,2,5,6,7,8
-                          ▼
-              generar_dialectes  →  dialectes_col/*/col_3 i col_4
-                          ▼
-              internades + versions.json + col_10  →  UN SOL COMMIT
+                   UN SOL COMMIT
                           ▼
               nàufragues i mots de 7      (job a part)
                           ▼
                        deploy
 ```
 
-Les dues portes van al mateix lloc, o sigui que **hi ha un sol workflow**
-(`.github/workflows/diccionaris.yml`): el pas que escriu els col_9 no
-necessita saber quina de les dues s'ha tocat.
+Un sol workflow (`.github/workflows/diccionaris.yml`) i un sol camí: els scripts
+miren les dades, no què s'ha pujat. Tres workflows (un per fitxer) no
+aguantarien el cas normal d'afegir una paraula, que **toca els dos fitxers al
+mateix commit** i en dispararia dos alhora, tots dos fent `git push`.
 
-Cinc coses que semblen rares i no ho són:
+### Com se sap qui té raó
 
-* **Ningú no fa les columnes del diccionari base.** No existeixen. El
-  `generar_columnes_publicades.py` és l'únic que escriu `col_0,1,2,5,6,7,8`, i
-  les fa del diccionari que digui `config.py`.
-* **La rima no s'edita mai.** Se'n deriva de la transcripció, i el càlcul és en
-  un sol lloc (`generar_dialectes.py`). Abans era escrit dues vegades, en dos
-  scripts diferents, amb un comentari a cada banda demanant que no divergissin.
-* **La col_10 no afegeix ni treu paraules tota sola.** Els tres camps del
-  davant hi són per a saber de quina paraula parla cada línia, i qui mana és el
-  diccionari: si una paraula hi és i a la col_10 no, això s'atura, perquè no hi
-  ha manera d'endevinar com sona.
-* **La col_10 és també el registre de què hi ha a cada col_9.** És l'única
-  manera de saber quines files s'han esborrat del diccionari: les
-  transcripcions van per número de fila i no porten cap paraula a dins.
-  Mirar-ho amb `git show HEAD` semblava més directe i no ho és: als workflows,
-  el commit que dispara l'execució JA és HEAD, i la comparació sempre hauria
-  sortit igual.
-* **Tot va en un sol job.** Un workflow reutilitzable a part tindria el seu
-  propi workspace i no veuria ni el diccionari base acabat de refer ni el
-  `diccionari.6.txt`, que no es comiteja. Per això el tram compartit és una
-  acció composta (`.github/actions/publicar-diccionari/`).
+Paraula, lema i codi són als **dos** fitxers, i per tant és l'únic lloc on hi pot
+haver desacord. Per resoldre'l fan falta tres referències:
+
+| | què és |
+|---|---|
+| **base** | `separat/col_0`, `col_1` i `col_2`: la identitat de l'última publicació. Les escriu el workflow i no les edita ningú |
+| **diccionari** | com és ara |
+| **col_10** | com és ara |
+
+Si només ha canviat un costat, guanya aquell i l'altre s'actualitza; si han
+canviat tots dos igual, no hi ha res a fer; si han canviat tots dos diferent,
+és un conflicte i s'atura dient quines files són. El `versions.py` comprova que
+la base sigui de debò la identitat del diccionari: si una execució peta a
+mitges i algú comiteja a mà, deixaria de ser-ho i el repartiment de culpes
+atribuiria els canvis al costat que no toca, en silenci.
+
+Amb `git show` no es podria fer: als workflows, el commit que dispara
+l'execució **ja és HEAD**, i la comparació sempre sortiria igual.
+
+### Els avisos
+
+Un `print` va al registre, i el registre d'una execució verda no el llegeix
+ningú. `diccionaris/python/avisos.py` fa servir els tres canals de GitHub:
+`::error::` (requadre vermell i, com que el procés surt amb codi 1, correu),
+`::warning::` (triangle groc encara que l'execució acabi verda) i el *Summary*
+de l'execució per al detall. Quan l'anotació duu fitxer i línia, surt dins del
+diff del commit.
+
+**Els avisos no envien correu, mai.** Si una cosa t'ha d'arribar, ha de fer
+petar el workflow. El que és per mirar i no per aturar (transcripcions sense
+accent primari, paraules que han canviat com s'escriuen) va al *Summary* i a
+`dialectes_col/a_revisar.txt`, que és un fitxer comitejat: així la llista surt
+al diff quan canvia i no fa soroll quan no.
+
+### Donar d'alta una paraula
+
+Ha d'entrar als dos fitxers, a la mateixa fila i al mateix commit. A mà vol dir
+encertar la mateixa posició en dos fitxers de sis-centes mil línies, o sigui que
+val més l'eina:
+
+```bash
+python3 diccionaris/python/afegir_paraula.py --paraula tiktokera --lema tiktoker \
+    --codi NCFS000 --silabes 4 --ca tiktukˈeɾə --nw tiktokˈeɾɛ --va tiktokˈeɾa --ba tiktukˈəɾə
+```
+
+Si només és a un dels dos fitxers, el `sincronitzar.py` s'atura i diu quina
+paraula és i on.
 
 ## El diàleg d'homògrafs
 
