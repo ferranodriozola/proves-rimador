@@ -113,46 +113,6 @@ const headerHTML = document.getElementById('header');
 if (headerHTML) { headerHTML.innerHTML = header; }
 
 
-/*
-    La tira de dialectes d'index.html.
-
-    Els codis són els de les carpetes de dialectes_col/ (vegeu dialectes() a
-    diccionaris/python/camins.py), perquè són els que el dia de demà haurà de
-    fer servir el DIALECTE de js/script.js per saber quina col_3 i quina col_4
-    es baixa. El nom que es veu, en canvi, és cosa d'aquí: a la carpeta no hi
-    ha cap lloc on posar-lo.
-
-    El rossellonès i l'alguerès encara no hi són perquè encara no en tenim la
-    transcripció. El dia que n'hi hagi, s'afegeixen en aquesta llista i prou:
-    la tira els cap sense tocar cap CSS (a partir de quatre, i en pantalles
-    estretes, les pastilles passen a dues ratlles totes soles).
-
-    COMPTE: de moment això és NOMÉS la maqueta. Els botons no duen cap
-    escoltador i el triat és sempre el central, que és l'únic que se serveix
-    (js/script.js té el DIALECTE clavat a 'ca'). La lògica ve després.
-*/
-const DIALECTES = [
-    { codi: 'ca', nom: 'Central' },
-    { codi: 'nw', nom: 'Nord-occidental' },
-    { codi: 'va', nom: 'Valencià' },
-    { codi: 'ba', nom: 'Balear' }
-];
-
-const DIALECTE_TRIAT = 'ca';
-
-const dialectes = /*html*/`
-<span class="dialectes-rotul">Rimes en</span>
-<div class="dialectes-tria" role="radiogroup" aria-label="Dialecte">
-${DIALECTES.map(d => {
-    const triat = d.codi === DIALECTE_TRIAT;
-    return `    <button type="button" class="dialecte${triat ? ' triat' : ''}" data-dialecte="${d.codi}" role="radio" aria-checked="${triat}">${d.nom}</button>`;
-}).join('\n')}
-</div>
-`
-const dialectesHTML = document.getElementById('dialectes');
-if (dialectesHTML) { dialectesHTML.innerHTML = dialectes; }
-
-
 const separador_rosa1 = /*html*/`
 <p>NOVETATS (11 de setembre): Llançament oficial!! Revisa tots els canvis de l'actualització <a id="enllaç" href="${ruta2}" target="_blank">aquí</a>.
 <br>&nbsp;</p>
