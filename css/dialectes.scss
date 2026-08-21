@@ -1,0 +1,108 @@
+@use "variables" as *;
+
+/*
+    La tira per triar el dialecte, entre la capçalera i la franja rosa.
+
+    Ni vermell, ni rosa, ni cian: la tira va en gris a posta. Entre una
+    capçalera vermella i una franja rosa, un quart color de marca faria que el
+    lloc semblés un semàfor; el gris es llegeix com el que és, un rètol d'estat
+    i no una decoració més. El color de marca es guarda per a la pastilla
+    triada i per al cian del :hover, que és on de debò fa falta.
+
+    No és sticky, a diferència de la franja rosa: el dialecte es tria un cop i
+    no s'ha de mirar cada estona. Com que no ho és, tampoc no toca els
+    position: sticky de .container ni de #separador_rosa2 (vegeu
+    container.scss), que van a top: 40px i top: 160px comptats des de la
+    finestra i no des d'aquí.
+*/
+
+#dialectes {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px 22px;
+    background-color: $gris-molt-clar;
+    border-bottom: 1px solid rgba($negre, 0.12);
+    font-family: var(--font-sistema);
+}
+
+.dialectes-rotul {
+    flex-shrink: 0;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba($negre, 0.45);
+}
+
+/*  Amb wrap i no pas amb overflow-x: una tira que llisca de costat amaga les
+    últimes opcions i la gent no hi arriba mai. Amb quatre pastilles (i amb sis)
+    val més que passin a la ratlla de sota i es vegin totes.  */
+.dialectes-tria {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-width: 0;
+}
+
+.dialecte {
+    flex-shrink: 0;
+    padding: 6px 13px;
+    background-color: $blanc;
+    border: 2px solid rgba($negre, 0.12);
+    border-radius: 999px;
+    color: $gris-text;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.dialecte:hover {
+    background-color: $cian-principal;
+    border-color: $blau-fosquissim;
+}
+
+.dialecte:focus-visible {
+    outline: 2px solid $vermell-principal;
+    outline-offset: 2px;
+}
+
+.dialecte.triat {
+    background-color: $blau-fosquissim;
+    border-color: $blau-fosquissim;
+    color: $blanc;
+}
+
+
+/* Adaptat telèfons */
+
+@media screen and (max-width: 750px) {
+    #dialectes {
+        gap: 10px;
+        padding: 8px 15px;
+    }
+    .dialecte {
+        padding: 5px 11px;
+        font-size: 12px;
+    }
+}
+
+/*  Aquí les quatre pastilles ja no caben al costat del rètol: el rètol se'n va
+    a dalt i elles es reparteixen l'amplada sencera, en dues ratlles si cal.  */
+@media screen and (max-width: 550px) {
+    #dialectes {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        padding: 8px 12px;
+    }
+    .dialectes-tria {
+        align-self: stretch;
+    }
+}

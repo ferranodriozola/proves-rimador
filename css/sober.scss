@@ -65,6 +65,38 @@
   background-color: var(--sober-bg);
 }
 
+/* La tira de dialectes: al tema sobri no hi ha ni cian ni blau fosquíssim, i
+   la pastilla triada agafa el vermell apagat que fa de color d'accent arreu. */
+[data-theme="sober"] #dialectes {
+  background-color: var(--sober-panel-bg);
+  border-bottom-color: var(--sober-border);
+  font-family: var(--sober-font);
+}
+
+[data-theme="sober"] .dialectes-rotul {
+  color: var(--sober-muted);
+}
+
+[data-theme="sober"] .dialecte {
+  border-color: var(--sober-border);
+  color: var(--sober-text);
+}
+
+[data-theme="sober"] .dialecte:hover {
+  background-color: var(--sober-bg);
+  border-color: var(--sober-muted);
+}
+
+/* El color hi ha de tornar a sortir: el [data-theme="sober"] .dialecte de
+   dalt té la mateixa especificitat que el .dialecte.triat de dialectes.scss i
+   guanya per ordre (el sober.scss es concatena l'últim), o sigui que sense
+   això la pastilla triada quedaria amb el text fosc sobre el vermell. */
+[data-theme="sober"] .dialecte.triat {
+  background-color: var(--sober-accent);
+  border-color: var(--sober-accent);
+  color: $blanc;
+}
+
 [data-theme="sober"] #enllaçbrillant,
 [data-theme="sober"] #enllaç {
   background: none;
