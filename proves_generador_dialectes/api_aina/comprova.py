@@ -26,7 +26,7 @@ import random
 import re
 import sys
 
-from api_aina import (DIALECTES, PERFILS, Regulador, demanar_amb_reintents, mil,
+from proves_dialectes.api_aina.api_aina import (DIALECTES, PERFILS, Regulador, demanar_amb_reintents, mil,
                       neteja, sessio_nova)
 
 
