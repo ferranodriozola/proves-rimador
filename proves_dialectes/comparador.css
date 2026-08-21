@@ -1,0 +1,141 @@
+/*  El comparador de proves. No té res a veure amb el css/ del lloc: aquesta
+    pàgina no és el rimador, és el full on es miren les maquetes.  */
+
+:root {
+    --c-vermell: #d30505;
+    --c-rosa: #ff91ff;
+    --c-cian: #00ffff;
+    --c-fosc: #05062d;
+    --c-gris: #6b6b6b;
+    --c-vora: #e2e2e8;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 0 20px 60px;
+    background-color: #f6f6f8;
+    color: var(--c-fosc);
+    font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    line-height: 1.55;
+}
+
+header, main, footer { max-width: 1080px; margin: 0 auto; }
+
+header { padding: 44px 0 28px; }
+
+.etiqueta {
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-vermell);
+}
+
+h1 { margin: 0 0 14px; font-size: 34px; line-height: 1.15; }
+
+.entrada { margin: 0 0 14px; max-width: 62ch; font-size: 17px; color: #333; }
+
+.avis {
+    max-width: 62ch;
+    margin: 0;
+    padding: 11px 14px;
+    background-color: #fff8e0;
+    border-left: 4px solid #e8b400;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+}
+
+code {
+    padding: 1px 5px;
+    background-color: #ececf2;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.88em;
+}
+
+.graella {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+    margin-bottom: 44px;
+}
+
+.carta {
+    position: relative;
+    display: block;
+    padding: 20px 20px 16px;
+    background-color: #ffffff;
+    border: 2px solid var(--c-vora);
+    border-radius: 14px;
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 140ms ease, transform 140ms ease, box-shadow 140ms ease;
+}
+
+.carta:hover {
+    border-color: var(--c-fosc);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.09);
+}
+
+.lletra {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background-color: var(--c-fosc);
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.carta h2 { margin: 0 44px 4px 0; font-size: 19px; line-height: 1.25; }
+
+.on { margin: 0 0 10px; font-size: 12.5px; color: var(--c-gris); }
+
+.carta p { margin: 0 0 12px; font-size: 14.5px; }
+
+.carta ul {
+    margin: 0 0 6px;
+    padding-left: 20px;
+    font-size: 13.5px;
+    color: #444;
+}
+
+.carta li { margin-bottom: 2px; }
+
+.be  { list-style: '✓  '; }
+.mal { list-style: '·  '; color: #7a7a85; }
+
+.nota {
+    padding: 26px 28px;
+    background-color: #ffffff;
+    border: 2px solid var(--c-vora);
+    border-radius: 14px;
+}
+
+.nota h2 { margin: 0 0 6px; font-size: 21px; }
+.nota h3 { margin: 22px 0 6px; font-size: 15px; color: var(--c-vermell); }
+.nota p  { margin: 0 0 10px; max-width: 74ch; font-size: 14.5px; }
+
+footer {
+    margin-top: 30px;
+    font-size: 13px;
+    color: var(--c-gris);
+}
+
+footer p { max-width: 74ch; }
+
+@media screen and (max-width: 560px) {
+    h1 { font-size: 26px; }
+    .graella { grid-template-columns: 1fr; }
+    .nota { padding: 20px 18px; }
+}

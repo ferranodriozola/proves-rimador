@@ -1,0 +1,72 @@
+/*  PROVA C · A la franja rosa, a la dreta  */
+
+/*  La franja no era flex: hi havia el <p> del rètol de novetats i prou. Ara
+    s'ha de repartir amb el selector, i per això es fa flex aquí. El
+    min-width: 0 del paràgraf és el que li permet encongir-se quan el rètol és
+    llarg, en comptes d'empènyer el selector fora de la pantalla.  */
+body[data-prova="c"] #separador_rosa1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-right: 22px;
+    z-index: 11; /* per damunt del #separador_rosa2, que en té 10 */
+}
+
+body[data-prova="c"] #separador_rosa1 p {
+    min-width: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.pd-c {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 8px;
+    font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--pd-fosc);
+}
+
+.pd-c select {
+    padding: 3px 24px 3px 9px;
+    background-color: rgba(255, 255, 255, 0.95);
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath fill='%2305062d' d='M0 0h10L5 6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 9px 6px;
+    border: 2px solid var(--pd-fosc);
+    border-radius: 999px;
+    color: var(--pd-fosc);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.pd-c select:focus-visible { outline: 2px solid var(--pd-vermell); outline-offset: 2px; }
+
+/*  Aquí es veu el pero d'aquest disseny: a mòbil la franja ja no és sticky
+    (vegeu el media query de css/container.scss) i el rètol de novetats i el
+    selector no hi caben de costat. Es posen un sota l'altre i la franja creix,
+    que vol dir empènyer el cercador cap avall.  */
+@media screen and (max-width: 750px) {
+    body[data-prova="c"] #separador_rosa1 {
+        flex-wrap: wrap;
+        gap: 4px 12px;
+        padding-bottom: 6px;
+    }
+    .pd-c { margin-left: 22px; font-size: 12px; }
+    .pd-c select { font-size: 12px; }
+}
+
+[data-theme="sober"] .pd-c select {
+    background-color: #ffffff;
+    border-color: var(--sober-border);
+    color: var(--sober-text);
+}

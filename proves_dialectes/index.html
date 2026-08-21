@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- noindex: és el que fa que el "Regenerar el sitemap.xml" de
+         .github/workflows/deploy.yml deixi fora tota aquesta carpeta. -->
+    <meta name="robots" content="noindex, nofollow">
+    <title>Proves de selector de dialecte</title>
+    <link rel="icon" type="image/webp" href="../assets/R.webp">
+    <link rel="stylesheet" href="comparador.css">
+</head>
+<body>
+
+<header>
+    <p class="etiqueta">Rimador.cat · proves de disseny</p>
+    <h1>On va el selector de dialecte?</h1>
+    <p class="entrada">
+        Sis maquetes del mateix: triar entre <strong>quatre dialectes ara i sis
+        quan hi siguin</strong>, sense que la tria caigui dins del cercador ni
+        es confongui amb un criteri de cerca. Totes són l'index.html de debò,
+        amb el rimador funcionant a sota.
+    </p>
+    <p class="avis">
+        Cap no canvia la rima encara. El dialecte que se serveix continua sent
+        el central, que és el que diu <code>const DIALECTE = 'ca'</code> a
+        <code>js/script.js</code>. Aquí només es tria el disseny.
+    </p>
+</header>
+
+<main>
+
+<section class="graella">
+
+    <a class="carta" href="prova-a.html">
+        <span class="lletra">A</span>
+        <h2>Desplegable natiu a la capçalera</h2>
+        <p class="on">Dins de <code>.header-icons</code>, davant del peixet.</p>
+        <p>Un <code>&lt;select&gt;</code> de tota la vida. Zero JS, accessibilitat
+           de sèrie i, al mòbil, el selector del sistema.</p>
+        <ul class="be"><li>El més barat i el més robust</li><li>Creix a sis o a vint sense tocar res</li></ul>
+        <ul class="mal"><li>Un <code>&lt;option&gt;</code> és text pelat: ni comarques ni "aviat"</li><li>A 400px queda tan estret que talla "Nord-occidental"</li></ul>
+    </a>
+
+    <a class="carta" href="prova-b.html">
+        <span class="lletra">B</span>
+        <h2>Bombolla amb menú a la capçalera</h2>
+        <p class="on">Mateix lloc que l'A, amb desplegable propi.</p>
+        <p>El botó ensenya el codi i el nom; la llista, on es parla cada
+           dialecte i quins encara no hi són.</p>
+        <ul class="be"><li>Hi cap tot el que a l'A no hi cabia</li><li>A mòbil es queda amb el codi i no fa nosa</li></ul>
+        <ul class="mal"><li>Unes 50 línies de JS que el <code>&lt;select&gt;</code> regala</li><li>La capçalera passa a tenir tres controls</li></ul>
+    </a>
+
+    <a class="carta" href="prova-c.html">
+        <span class="lletra">C</span>
+        <h2>A la franja rosa, a la dreta</h2>
+        <p class="on">Dins de <code>#separador_rosa1</code>.</p>
+        <p>L'únic tros del lloc que es queda enganxat a dalt: el dialecte no
+           marxa de la pantalla ni a la rima número tres-cents.</p>
+        <ul class="be"><li>Sempre visible mentre es llegeixen resultats</li><li>No toca ni la capçalera ni el cercador</li></ul>
+        <ul class="mal"><li>Es baralla amb el rètol de novetats</li><li>A mòbil la franja deixa de ser sticky i perd la gràcia</li></ul>
+    </a>
+
+    <a class="carta" href="prova-d.html">
+        <span class="lletra">D</span>
+        <h2>Barra pròpia sota la capçalera</h2>
+        <p class="on">Una franja nova entre la capçalera i la rosa.</p>
+        <p>"Ara cerques rimes en català central", i el botó al costat. L'única
+           que explica què és allò abans que ho preguntin.</p>
+        <ul class="be"><li>Ningú no s'ha d'assabentar de res: ja ho diu</li><li>La millor per al dia del llançament</li></ul>
+        <ul class="mal"><li>Una franja sencera per dir cada dia el mateix</li><li>A mòbil creix a dues ratlles (uns 70px)</li></ul>
+    </a>
+
+    <a class="carta" href="prova-e.html">
+        <span class="lletra">E</span>
+        <h2>Pastilles, sense desplegable</h2>
+        <p class="on">Franja pròpia, com la D.</p>
+        <p>No és el que demanaves: hi és per contrast. Els sis dialectes tots
+           alhora i un sol clic per triar.</p>
+        <ul class="be"><li>La funció no s'ha de descobrir</li><li>Un clic en comptes de dos</li></ul>
+        <ul class="mal"><li>Amb sis ja va justa; amb set s'ha de refer</li><li>A mòbil llisca de costat, i a l'última opció no hi arriba ningú</li></ul>
+    </a>
+
+    <a class="carta" href="prova-f.html">
+        <span class="lletra">F</span>
+        <h2>Bombolla flotant amb panell</h2>
+        <p class="on">Fixa a la pantalla, panell centrat en dues columnes.</p>
+        <p>L'única que no ocupa ni un píxel de maqueta. I la que fa més joc:
+           la capçalera ja és un fons de bombolles.</p>
+        <ul class="be"><li>No s'estreny ni es toca res del que ja hi ha</li><li>El panell en graella ensenya sis d'un cop</li></ul>
+        <ul class="mal"><li>El que sura no es descobreix</li><li>Es reparteix el racó amb el botó de Ko-fi</li></ul>
+    </a>
+
+</section>
+
+<section class="nota">
+    <h2>Tres coses a decidir abans que el disseny</h2>
+
+    <h3>Si cada dialecte és una URL, el selector no és un selector</h3>
+    <p>
+        Deies <code>rimador.cat/central</code>. Si és així, canviar de dialecte
+        és <em>navegar</em>, no pas canviar un estat: cada opció ha de ser un
+        <code>&lt;a href&gt;</code> i no pas un <code>&lt;option&gt;</code>. Això
+        elimina la prova A i la C tal com estan (un <code>&lt;select&gt;</code>
+        que navega sol al <em>change</em> trenca el botó de tornar enrere i no
+        deixa obrir res en una pestanya nova), i deixa les que ja són llistes de
+        botons: la B, la D i la F, que passarien a ser llistes d'enllaços amb
+        quatre línies menys de JS.
+    </p>
+    <p>
+        A canvi es guanya el que de debò importa: sis pàgines indexables, cada
+        una amb el seu <code>canonical</code> i el seu <code>hreflang</code>, i
+        una cerca compartible que ja diu en quin dialecte és. El
+        <code>sitemap.xml</code> ja se les trobaria totes soles (es fa dels
+        <code>canonical</code>, vegeu <code>deploy.yml</code>).
+    </p>
+
+    <h3>Descobrir-ho un cop no és el mateix que triar-ho cada dia</h3>
+    <p>
+        La D i l'E són bones el primer dia i pesades el mes següent; la B i la F
+        són al revés. Es poden tenir totes dues coses: el selector definitiu
+        petit (B o F) i, només fins que algú hi toqui per primera vegada, la
+        franja de la D. El mòdul d'avisos que ja hi ha a <code>avis/</code> fa
+        exactament aquesta feina.
+    </p>
+
+    <h3>Què passa amb el que ja hi ha a la pantalla en canviar</h3>
+    <p>
+        Canviar de dialecte vol dir tornar a baixar la <code>col_3</code> i la
+        <code>col_4</code> de l'altra carpeta i reindexar: no és instantani i
+        la primera vegada són uns quants MB. Si hi ha una cerca feta, s'ha de
+        refer sola (i llavors cal alguna cosa que ho digui, com el missatge
+        que surt en aquestes proves), o s'ha de deixar quieta i avisar. Tots
+        els dissenys d'aquí serveixen per a les dues coses, però és el que
+        decidirà si el selector ha de ser visible mentre es llegeixen els
+        resultats — i això sí que separa la C de totes les altres.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>
+        Les pàgines es fan amb <code>python3 proves_dialectes/generar.py</code>
+        a partir de l'<code>index.html</code> de debò: si aquell canvia, es
+        torna a passar i les proves tornen a ser el lloc de veritat amb el
+        selector a sobre. Cap prova no té marca al seu HTML — cada
+        <code>prova-X.js</code> injecta el selector al DOM que hi deixa el
+        <code>js/components.js</code>, que és exactament on aniria el codi bo.
+    </p>
+</footer>
+
+</body>
+</html>
