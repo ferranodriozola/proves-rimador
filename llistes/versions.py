@@ -1,6 +1,6 @@
 """
 Actualitza versions_llistes.json amb un resum sha256 del fitxer que acaba de
-generar cada script de llistes/, igual que diccionaris/python/generar_versions.py
+generar cada script de llistes/, igual que diccionaris/python/versions.py
 fa amb les columnes del diccionari: la versió és un resum del contingut, no un
 comptador manual que cal recordar de pujar i que puja igual encara que el
 fitxer surti bit a bit idèntic.
