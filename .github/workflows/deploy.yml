@@ -22,6 +22,7 @@ on:
       # El deploy directe només publicaria les columnes velles, perquè les noves
       # encara s'estan generant mentre ell corre.
       - 'diccionaris/diccionari*.txt'
+      - 'diccionaris/col_10.txt'
       - 'diccionaris/separat/**'
       # Igual amb les transcripcions dels dialectes: disparen el mateix
       # workflow, que refà la rima i encadena el desplegament quan ha acabat.
@@ -33,8 +34,7 @@ on:
   workflow_run:
     workflows:
       - "Actualització automàtica de les estadístiques"
-      - "Separació del diccionari (i generació de nàufragues i heptasíl·labs)"
-      - "Generador de diccionaris (i de nàufragues i heptasíl·labs)"
+      - "Canvis al diccionari (i generació de nàufragues i heptasíl·labs)"
     types:
       - completed
   workflow_dispatch:
@@ -222,14 +222,13 @@ jobs:
           #
           #   node_modules                      les dependències del gulp
           #   diccionari*.txt                   font d'on surten les columnes
-          #   separat/col_10 (canvis aquí)/     font que edites a mà
+          #   diccionaris/col_10.txt            font que edites a mà: 76 MB
+          #   dialectes_col/<codi>/*.txt        la transcripció i la rima planes,
+          #                                     que són la font. Les internades
+          #                                     SÍ que s'han de publicar: són el
+          #                                     que es baixa el navegador
           #   pronoms/                          no hi ha res del lloc que hi apunti
           #   bot/resultat_ordenat_cons.json    el llegeix el bot, mai el navegador
-          #   separat/col_9.txt                 les transcripcions senceres: 73 MB
-          #                                     que el navegador ja no demana mai
-          #                                     (li basten els números de rima de
-          #                                     col_3 i col_4). Al repositori s'hi
-          #                                     queda: d'ella surten els mots de 7.
           #
           # El que SÍ que s'ha de publicar de diccionaris/ són les col_0..col_8,
           # la carpeta internat/ i el versions.json: això és el que es baixa el
@@ -237,10 +236,12 @@ jobs:
           abans=$(du -sm . | cut -f1)
           rm -rf node_modules
           rm -f  diccionaris/diccionari*.txt
-          rm -rf "diccionaris/separat/col_10 (canvis aquí)"
+          rm -f  diccionaris/col_10.txt
           rm -rf pronoms
+          # De dialectes_col/ el navegador només demana les internades: la
+          # transcripció i la rima planes són la font i no les mira ningú.
+          find dialectes_col -maxdepth 2 -name '*.txt' -delete
           rm -f  bot/resultat_ordenat_cons.json
-          rm -f  diccionaris/separat/col_9.txt
           echo "Paquet: ${abans} MB -> $(du -sm . | cut -f1) MB"
 
           # Xarxa de seguretat: si un dia el lloc passa a demanar alguna
@@ -249,6 +250,8 @@ jobs:
           for cal in diccionaris/versions.json \
                      diccionaris/separat/col_0.txt \
                      diccionaris/separat/internat \
+                     dialectes_col/ca/internat/col_3_rimacons_ca.idx.txt \
+                     dialectes_col/ca/internat/col_4_rimaass_ca.idx.txt \
                      dist/css/styles.min.css \
                      dist/js/script.min.js \
                      sitemap.xml \

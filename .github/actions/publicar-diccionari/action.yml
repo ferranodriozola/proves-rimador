@@ -45,37 +45,29 @@ runs:
       working-directory: pronoms/python
       run: python ajuntar_diccionari_6.py
 
-# ------ Les columnes que es baixa el navegador
-#        Sense "if": corre sempre, publiqui's el que es publiqui. És el pas que
-#        garanteix que separat/col_0..col_9 són SEMPRE les del diccionari que
-#        diu config.py. Si el publicat és el base, torna a escriure exactament
-#        les columnes que ja hi havia.
+# ------ Les columnes
+#        El diccionari publicat -> col_0,1,2,5,6,7,8, i la transcripció de cada
+#        dialecte -> la seva col_3 i col_4. La regla de la rima és aquí dins i
+#        només aquí.
 #
-#        La columna 10 no s'hi toca: continua sortint del diccionari base, que
-#        és el que s'edita a mà.
-    - name: Partir el diccionari publicat en columnes
+#        Sense "if": corre sempre, publiqui's el que es publiqui. És el pas que
+#        garanteix que les columnes són SEMPRE les del diccionari que diu
+#        config.py.
+    - name: Partir-ho tot en columnes
       shell: bash
-      run: python diccionaris/python/generar_columnes_publicades.py
+      run: python diccionaris/python/columnes.py
 
-# ------ La rima de cada dialecte
-#        Va aquí i no en un altre lloc: necessita la col_0 del diccionari
-#        PUBLICAT, que el pas d'abans acaba d'escriure, i ha de ser abans de
-#        les internades, que ara també internen la col_3 i la col_4 de cada
-#        dialecte.
-    - name: Generar la rima de cada dialecte
+# ------ Taula + índexs de cada columna, les del diccionari i les dels dialectes
+    - name: Internar les columnes
       shell: bash
-      run: python diccionaris/python/generar_dialectes.py
+      run: python diccionaris/python/internar.py
 
-    - name: Generar columnes internades
+# ------ L'última paraula: comprova que tot quadri i escriu el versions.json.
+#        Ha d'anar ABANS del comit. Si aquí res no quadra, peta, el commit no
+#        arriba a fer-se i les columnes velles es queden servint-se.
+    - name: Comprovar-ho tot i actualitzar el versions.json
       shell: bash
-      run: python diccionaris/python/generar_columnes_internades.py
-
-    # Ha d'anar ABANS del comit: comprova que les deu columnes tenen el mateix
-    # nombre de files. Si no quadren, peta i el workflow s'atura aquí, sense
-    # publicar un diccionari trencat.
-    - name: Actualitzar versions.json
-      shell: bash
-      run: python diccionaris/python/generar_versions.py
+      run: python diccionaris/python/versions.py
 
     - name: Comitejar el diccionari publicat
       uses: ./.github/actions/comitejar

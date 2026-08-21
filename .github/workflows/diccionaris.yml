@@ -1,23 +1,52 @@
-name: Generador de diccionaris (i de nàufragues i heptasíl·labs)
+name: Canvis al diccionari (i generació de nàufragues i heptasíl·labs)
 
-# S'engega quan s'edita la columna 10 a mà. Fa, per aquest ordre:
+# S'engega quan s'edita a mà qualsevol de les dues fonts:
 #
-#   1. munta el diccionari base    -> NOMÉS diccionari.5.2.3.txt
-#   2. reparteix la columna 10     -> "col_10 (canvis aquí)"
-#   3. formes amb pronom           -> llegides del diccionari base
-#   4. diccionari.6.txt            -> base + formes amb pronom
-#   5. columnes del web            -> del diccionari que digui config.py
-#   6. llistes derivades           -> ja sobre les columnes noves
+#   diccionaris/diccionari.5.2.3.txt   QUINES paraules hi ha
+#   diccionaris/col_10.txt             COM sona cadascuna, a tots els dialectes
 #
-# Els passos 3 i 4 se salten si config.py publica el diccionari base.
+# Abans eren dos workflows, un per font, perquè cadascuna tenia el seu script.
+# Ara totes dues acaben al mateix lloc (els col_9 de dialectes_col/) i el pas
+# que els escriu no necessita saber d'on ve el canvi: n'hi ha prou amb un.
 #
-# Els passos 3 a 5 són el tram compartit amb el bessó de la separació i viuen
-# a .github/actions/publicar-diccionari/.
+# Fa, per aquest ordre:
+#
+#   1. sincronitzar  diccionari + col_10 -> tots dos corregits i els col_9
+#   2. columnes      diccionari -> col_0,1,2,5,6,7,8; col_9 -> col_3 i col_4
+#   3. internar      cada columna -> taula + índexs
+#   4. versions      ho comprova tot i escriu el versions.json
+#   5. UN SOL COMMIT
+#   6. llistes derivades -> ja sobre les columnes noves
+#
+# (Entremig del 1 i el 2 hi ha els tres passos de les formes amb pronom, que se
+# salten mentre config.py publiqui el diccionari base.)
+#
+# Els passos 2 a 5 viuen a .github/actions/publicar-diccionari/, perquè són el
+# tram que no depèn de què s'hagi tocat.
+#
+# SI ALGUN PAS PETA, no es comiteja res: el commit va l'últim i les columnes
+# velles es queden servint-se. I com que el workflow es posa vermell, arriba el
+# correu (Settings > Notifications > Actions).
+
+# Una execució a la vegada. Sense això, dos pushos seguits engeguen dues
+# execucions que fan "git push" totes dues, i el "git pull --rebase" del mig pot
+# barrejar dues generacions a mitges del diccionari.
+#
+# cancel-in-progress: false, i no true: aquest job fa commits, i cancel·lar-lo a
+# mig push deixaria el repositori a mitges. Encuant-los, a més, hi ha l'ordre
+# garantit.
+concurrency:
+  group: diccionari
+  cancel-in-progress: false
 
 on:
   push:
     paths:
-      - 'diccionaris/separat/**'
+      - 'diccionaris/diccionari*.txt'
+      - 'diccionaris/col_10.txt'
+      # Una carpeta de dialecte nova, amb la seva transcripció a dins: el pas 1
+      # la deixa estar i el 5 ja l'afegeix a la col_10.
+      - 'dialectes_col/**'
   workflow_dispatch:
 
 jobs:
@@ -32,34 +61,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Fixa la versió en comptes de dependre de la que porti la imatge
+      # d'Ubuntu, que canvia sota teu sense avisar.
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-# ------ PREPROCÉS (ajuntar les parts de la col_10 en el provisional)
-      - name: Preprocés (generar col_10provisional a partir de les parts de col_10)
-        run: python "diccionaris/python/pre_proces.py"
+# ------ Que les transcripcions diguin el que diuen el diccionari i la col_10.
+#        Van fila per fila amb el diccionari i no porten cap paraula a dins: si
+#        s'hi ha esborrat una fila, s'ha d'esborrar de tots els col_9 o totes
+#        les paraules de sota heretarien la pronúncia d'una altra. Qui diu
+#        quina fila era quina paraula és la col_10.
+#
+#        Si al diccionari hi ha paraules NOVES que no són a la col_10, s'atura:
+#        no hi ha manera d'endevinar com sonen.
+      - name: Sincronitzar el diccionari i la columna 10
+        run: python diccionaris/python/sincronitzar.py
 
-# ------ Muntar el diccionari base. Els camps que la columna 10 no porta
-#        (síl·labes i enllaços) els pren del diccionari que ja hi ha, fila per
-#        fila; per això no en pot sortir cap columna del diccionari publicat.
-      - name: Crear diccionari
-        run: python "diccionaris/python/creador_rima + dicc (a partir de col_10).py"
-
-# ------ POSTPROCÉS (tornar a repartir la col_10 i esborrar el provisional)
-#        Puja aquí, abans de publicar: així tot el que ha canviat entra en un
-#        sol commit, en comptes dels dos que hi havia.
-      - name: Postprocés (regenerar les parts de col_10 i eliminar col_10provisional)
-        run: python "diccionaris/python/post_proces.py"
-
-# ------ Pronoms, diccionari.6.txt, columnes del web, versions i comit
+# ------ Pronoms, diccionari.6.txt, columnes del web, rima, versions i comit
       - name: Publicar el diccionari
         uses: ./.github/actions/publicar-diccionari
         with:
           missatge: Generació automàtica del diccionari i les columnes
 
-# ------ Llistes derivades (json de rimes, nàufragues i mots de 7)
+# ------ Llistes derivades (nàufragues i mots de 7)
 #        Job a part, amb "needs", perquè ha de començar quan les columnes noves
 #        ja són comitejades a main: és d'allà que se les baixa.
   llistes:
