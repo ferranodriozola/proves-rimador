@@ -127,6 +127,12 @@ if (headerHTML) { headerHTML.innerHTML = header; }
     la tira els cap sense tocar cap CSS (a partir de quatre, i en pantalles
     estretes, les pastilles passen a dues ratlles totes soles).
 
+    El rètol "Dialecte:" és un enllaç a dialectes.html, que explica d'on surten
+    les transcripcions de cada dialecte (el transcriptor del Projecte AINA) i per
+    què la rima canvia segons com es parli. Va a l'ARREL i no pas a una ruta
+    relativa perquè la tira també surt a llistes/llista_naufragues.html, que és
+    una carpeta més avall.
+
     Aquí només hi ha la marca. Qui hi enganxa els clics és el js/script.js
     (lligarTriaDeDialecte), i què passa en triar-ne un depèn de la pàgina:
     a l'index.html es canvia de columna de rima i es refà la cerca; a les
@@ -144,7 +150,7 @@ const DIALECTES = [
 const DIALECTE_TRIAT = 'ca';
 
 const dialectes = /*html*/`
-<span class="dialectes-rotul">Dialecte:</span>
+<a class="dialectes-rotul" href="${ARREL}dialectes.html" title="D'on surten les transcripcions de cada dialecte">Dialecte:</a>
 <div class="dialectes-tria" role="radiogroup" aria-label="Dialecte">
 ${DIALECTES.map(d => {
     const triat = d.codi === DIALECTE_TRIAT;
