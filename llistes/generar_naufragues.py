@@ -4,6 +4,18 @@ from contextlib import ExitStack
 
 from versions import actualitzar_versio
 
+# Els codis de dialecte són les subcarpetes de dialectes_col/, la mateixa regla
+# que fa servir dialectes() a diccionaris/python/camins.py: un dialecte nou és
+# una carpeta amb la seva rima a dins i no es declara enlloc. Aquí no s'importa
+# aquell mòdul a posta —els scripts de llistes/ van sols i no depenen del
+# paquet del diccionari—, però la regla ha de ser la mateixa.
+def dialectes(dir_dialectes):
+    return sorted(
+        nom for nom in os.listdir(dir_dialectes)
+        if os.path.isdir(os.path.join(dir_dialectes, nom)) and not nom.startswith('.')
+    )
+
+
 def rimes_amb_una_sola_paraula(ruta_paraules, ruta_rimes):
     """
     Les rimes que només tenen UNA paraula diferent: les nàufragues.
@@ -38,17 +50,24 @@ def rimes_amb_una_sola_paraula(ruta_paraules, ruta_rimes):
     return set(primera) - amb_mes_duna
 
 
-def generar_llista():
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    dir_diccionaris = os.path.join(base_dir, '..', 'diccionaris')
-    dir_separat = os.path.join(dir_diccionaris, 'separat')
-    
-    fitxer_sortida = os.path.join(base_dir, 'paraules_naufragues.json')
+def generar_dialecte(base_dir, dir_separat, dir_dialectes, codi):
+    """Les nàufragues d'UN dialecte.
 
-    # La rima ja no és a separat/: depèn del dialecte i viu a dialectes_col/<codi>/.
-    # Aquesta llista és la del CENTRAL; el dia que se'n vulguin per dialecte,
-    # aquest camí és l'únic que canvia.
-    ruta_rima = os.path.join(base_dir, '..', 'dialectes_col', 'ca', 'col_3_rimacons_ca.txt')
+    Ser nàufraga depèn de com es parli: qui no rima amb ningú en central pot
+    rimar amb algú en valencià, on la a i la e àtones finals no es
+    confonen. L'única cosa que canvia d'un dialecte a l'altre és la columna de
+    rima; la paraula, el lema, el codi, les síl·labes i els enllaços són els
+    mateixos i continuen sortint de separat/.
+
+    El codi va DINS del nom del fitxer de sortida i no només en una carpeta, per
+    la mateixa raó que a les columnes de rima (vegeu camins.py): la memòria cau
+    del navegador s'indexa pel nom del fitxer sol —llegirFitxerAmbIndexedDB de
+    js/script.js fa rutaFitxer.split("/").pop()— i quatre
+    paraules_naufragues.json serien la mateixa entrada.
+    """
+    nom_sortida = f'paraules_naufragues_{codi}.json'
+    fitxer_sortida = os.path.join(base_dir, nom_sortida)
+    ruta_rima = os.path.join(dir_dialectes, codi, f'col_3_rimacons_{codi}.txt')
 
     noms_fitxers = ['col_0.txt', 'col_1.txt', 'col_2.txt', 'col_5.txt', 'col_6.txt', 'col_7.txt', 'col_8.txt']
     rutes_txt = [os.path.join(dir_separat, nom) for nom in noms_fitxers]
@@ -56,43 +75,69 @@ def generar_llista():
 
     paraules_orfes = []
 
-    try:
-        rimes_naufragues = rimes_amb_una_sola_paraula(
-            os.path.join(dir_separat, 'col_0.txt'),
-            ruta_rima,
-        )
+    rimes_naufragues = rimes_amb_una_sola_paraula(
+        os.path.join(dir_separat, 'col_0.txt'),
+        ruta_rima,
+    )
 
-        with ExitStack() as stack:
-            fitxers_oberts = [stack.enter_context(open(ruta, 'r', encoding='utf-8')) for ruta in rutes_txt]
-            
-            for linies in zip(*fitxers_oberts):
-                paraula, infinitiu, codi, rima, sil, vicc, viq, diec = [linia.strip() for linia in linies]
+    with ExitStack() as stack:
+        fitxers_oberts = [stack.enter_context(open(ruta, 'r', encoding='utf-8')) for ruta in rutes_txt]
 
-                if rima in rimes_naufragues:
-                    paraules_orfes.append({
-                        'paraula': paraula,
-                        'infinitiu': infinitiu,
-                        'codi': codi,
-                        'rimacons': rima,
-                        'sil': sil,
-                        'vicc': vicc,
-                        'viq': viq,
-                        'diec': diec,
-                    })
+        for linies in zip(*fitxers_oberts):
+            paraula, infinitiu, codi_gramatical, rima, sil, vicc, viq, diec = [linia.strip() for linia in linies]
 
-    except FileNotFoundError as e:
-        print(f"Error: No s'han trobat els arxius necessaris. {e}")
-        return
-    except Exception as e:
-        print(f"Error inesperat processant els arxius: {e}")
-        return
+            if rima in rimes_naufragues:
+                paraules_orfes.append({
+                    'paraula': paraula,
+                    'infinitiu': infinitiu,
+                    'codi': codi_gramatical,
+                    'rimacons': rima,
+                    'sil': sil,
+                    'vicc': vicc,
+                    'viq': viq,
+                    'diec': diec,
+                })
 
     with open(fitxer_sortida, 'w', encoding='utf-8') as f:
         json.dump(paraules_orfes, f, ensure_ascii=False, indent=2)
 
-    print(f"Generació completada: {len(paraules_orfes)} paraules nàufragues guardades a {fitxer_sortida}")
+    actualitzar_versio(nom_sortida, fitxer_sortida)
 
-    actualitzar_versio('paraules_naufragues.json', fitxer_sortida)
+    return nom_sortida, len(paraules_orfes)
+
+
+def generar_llista():
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    dir_diccionaris = os.path.join(base_dir, '..', 'diccionaris')
+    dir_separat = os.path.join(dir_diccionaris, 'separat')
+    dir_dialectes = os.path.join(base_dir, '..', 'dialectes_col')
+
+    try:
+        codis = dialectes(dir_dialectes)
+    except FileNotFoundError as e:
+        print(f"Error: no s'ha trobat la carpeta dels dialectes. {e}")
+        return
+
+    if not codis:
+        print("Error: no hi ha cap dialecte a dialectes_col/.")
+        return
+
+    for codi in codis:
+        try:
+            nom, quantes = generar_dialecte(base_dir, dir_separat, dir_dialectes, codi)
+        except FileNotFoundError as e:
+            # Un dialecte a mitges (carpeta feta, rima encara no generada) no ha
+            # de tombar els altres: es diu i es continua.
+            print(f"  {codi}: falta algun arxiu, es deixa per a la propera. {e}")
+            continue
+        except Exception as e:
+            print(f"  {codi}: error inesperat processant els arxius: {e}")
+            continue
+
+        print(f"  {codi}: {quantes} paraules nàufragues guardades a {nom}")
+
+    print("Generació completada.")
+
 
 if __name__ == "__main__":
     generar_llista()

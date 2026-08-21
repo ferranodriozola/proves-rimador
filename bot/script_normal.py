@@ -8,7 +8,10 @@ from datetime import datetime
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
 FITXER_RIMES = os.path.join(base_dir, 'resultat_ordenat_cons.json')
-FITXER_NAUFRAGUES = os.path.join(base_dir, '..', 'llistes', 'paraules_naufragues.json')
+# El del CENTRAL: ara cada dialecte té la seva llista de nàufragues
+# (llistes/generar_naufragues.py) i el bot publica en central, com tota
+# la resta del que genera (vegeu bot/generador_rimes_cons.py).
+FITXER_NAUFRAGUES = os.path.join(base_dir, '..', 'llistes', 'paraules_naufragues_ca.json')
 FITXER_UTILITZATS = os.path.join(base_dir, 'publicades_normal.json')
 
 def carregar_json(nom_fitxer):
