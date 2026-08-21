@@ -50,7 +50,11 @@ rimes_usuaris_diferents = rimes_usuaris_diferents[rimes_usuaris_diferents['Rima'
 
 
 #df paraules nàufragues
-ruta_json_naufragues = 'llistes/paraules_naufragues.json'
+# El del CENTRAL: ara cada dialecte té la seva llista
+# (llistes/generar_naufragues.py). Aquí es queda el central perquè el
+# registre de cerques no diu en quin dialecte s'ha cercat; el dia que ho
+# digui, aquest top s'haurà de partir per dialecte com la llista.
+ruta_json_naufragues = 'llistes/paraules_naufragues_ca.json'
 
 with open(ruta_json_naufragues, 'r', encoding='utf-8') as arxiu:
     dades_naufragues = json.load(arxiu)
