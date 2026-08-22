@@ -50,54 +50,17 @@
     <div id="text_presentació">
         <div class="titol-pagina">Els dialectes</div>
 
-        <p>A dalt del cercador hi ha una tira per triar el dialecte. No és un filtre com els altres:
-            com que aquí les rimes surten de la <strong>fonètica</strong> i no pas de com s'escriu el
-            final de la paraula, canviar de dialecte canvia de debò quines paraules rimen amb quines.</p>
+        <p>A dalt del cercador hi ha un selector per escollir el dialecte que vols utilitzar per a les rimes. Com que les rimes surten de la fonètica i no pas de com s'escriu el final de la paraula, en un dialecte rimaran uns mots, i en un altre no ho faran: la pronúncia dialectal canvia de debò quines paraules rimen.</p>
 
-        <p>Mireu <em>pare</em> i <em>cara</em>. En central i en balear totes dues acaben igual
-            (<span class="transcripcio">pˈaɾə</span> i <span class="transcripcio">kˈaɾə</span>) i
-            rimen; en valencià (<span class="transcripcio">pˈaɾe</span> i
-            <span class="transcripcio">kˈaɾa</span>) i en nord-occidental
-            (<span class="transcripcio">pˈaɾe</span> i <span class="transcripcio">kˈaɾɛ</span>) no
-            s'hi acosten. Passa a l'inrevés també: hi ha paraules que només rimen si es parla
-            d'una certa manera.</p>
+        <p>No hem transcrit les paraules una a una per a cada dialecte, és clar, les hem extretes del transcriptor fonètic del <a href="https://github.com/projecte-aina">Projecte AINA</a>. En concret, de la seva branca catalana de l'<a href="https://github.com/projecte-aina/espeak-ng/tree/dev-ca">espeak-ng</a> i de l'eina de <a href="https://huggingface.co/spaces/projecte-aina/transcripcio-fonetica-catala">transcripció fonètica</a> que en surt, que és la que sap dir com sona cada paraula.</p>
 
-        <p>Les transcripcions no les hem escrites nosaltres: les hem tretes del transcriptor fonètic
-            del <a href="https://github.com/projecte-aina">Projecte AINA</a>, un projecte de codi obert
-            per fer que el català tingui les mateixes eines de llengua i de veu que qualsevol altre
-            idioma. En concret, de la seva branca catalana de l'<a href="https://github.com/projecte-aina/espeak-ng/tree/dev-ca">espeak-ng</a>
-            i de l'eina de <a href="https://huggingface.co/spaces/projecte-aina/transcripcio-fonetica-catala">transcripció fonètica</a>
-            que en surt, que és la que sap dir com sona cada paraula a cada banda del domini
-            lingüístic. Moltes gràcies a tothom qui hi col·labora.</p>
+        <p>Les paraules, en canvi, venen d'una altra banda: les més de sis-centes mil formes del diccionari són del <a href="https://github.com/Softcatala/catalan-dict-tools">catalan-dict-tools</a> de <a href="https://github.com/Softcatala/">Softcatalà</a>. Ara bé, allò és el punt de partida i no pas el resultat final: des de l'inici hem anat fent correccions: hi hem anat afegint formes que hi faltaven i n'hem tret les que no havien de ser-hi.</p>
 
-        <p>Quines paraules hi ha és una altra pregunta, i la resposta és una altra: les més de
-            sis-centes mil formes del diccionari venen del <a href="https://github.com/Softcatala/catalan-dict-tools">catalan-dict-tools</a>
-            de <a href="https://github.com/Softcatala/">Softcatalà</a>, tal com expliquem a
-            <a href="nosaltres.html">Qui som</a>. Del Projecte AINA n'hem tret el <em>com sonen</em>;
-            de Softcatalà, el <em>quines són</em>.</p>
+        <p>De moment hem incorporat quatre dialectes: <strong>central</strong>, <strong>nord-occidental</strong>, <strong>valencià</strong> i <strong>balear</strong>. El central el portem repassant a mà paraula per paraula més d'un any, i per això és el que està més corregit; a més, és el que parlem nosaltres. Els altres tres són una incorporació nova, no tenen aquest bagatge al darrere i són tal com surten del transcriptor, per això hi ha errades, sobretot en noms propis i en paraules vingudes d'altres llengües. Procurarem aviat poder oferir el Rimador.cat al rossellonès i l'alguerès.</p>
 
-        <p>De moment n'hi ha quatre: <strong>central</strong>, <strong>nord-occidental</strong>,
-            <strong>valencià</strong> i <strong>balear</strong>. El central és l'únic que hem repassat
-            a mà, paraula per paraula, durant anys; els altres tres són tal com surten del transcriptor,
-            i per tant hi pot haver errades, sobretot en noms propis i en paraules vingudes d'altres
-            llengües. El rossellonès i l'alguerès arribaran el dia que en tinguem una transcripció
-            prou fiable.</p>
+        <p>Tot plegat és obert i es pot mirar: les transcripcions de cada dialecte i la rima que se'n deriva són al nostre <a href="https://github.com/rimador/rimador.github.io">repositori de GitHub</a>, un fitxer per dialecte. Si trobeu una paraula que no sona com hauria de sonar, <a href="error.html">aviseu-nos</a> o escriviu-nos a <a href="mailto:hola@rimador.cat">hola@rimador.cat</a>. Ho procurarem corregir.</p>
 
-        <p>De la transcripció a la rima hi ha un sol pas, i el fem nosaltres: d'una banda, tot el que
-            va de la vocal tònica fins al final (<span class="transcripcio">aɾə</span>, de
-            <span class="transcripcio">pˈaɾə</span>) és la rima <em>consonant</em>; de l'altra, només
-            les vocals d'aquest tros (<span class="transcripcio">aə</span>) és la rima
-            <em>assonant</em>. Dues paraules rimen quan els surt el mateix tros, i prou. Això vol dir
-            que una transcripció equivocada no és una lletra lletja en un fitxer: és una rima que no
-            hi hauria de ser.</p>
-
-        <p>Tot plegat és obert i es pot mirar: les transcripcions de cada dialecte i la rima que
-            se'n deriva són al nostre
-            <a href="https://github.com/rimador/rimador.github.io">repositori de GitHub</a>, un fitxer
-            per dialecte. Si trobeu una paraula que no sona com hauria de sonar,
-            <a href="error.html">aviseu-nos</a> o escriviu-nos a
-            <a href="mailto:hola@rimador.cat">hola@rimador.cat</a>: es corregeix i, a la pròxima
-            actualització, la rima ja és una altra.</p>
+        <p>Però també tenim una petició de debò: <strong>ens aniria molt bé que ens ajudéssiu a corregir les transcripcions del valencià, del balear i del nord-occidental</strong>. Sols no hi arribem: sense ajuda no podem completar el diccionari amb les formes pròpies de cada dialecte ni anar corregint totes les transcripcions dialectals. Si parleu qualsevol d'aquests tres dialectes i ens voleu fer un cop de mà —molt o poc, tant se val—, escriviu-nos a <a href="mailto:hola@rimador.cat">hola@rimador.cat</a>. Us ho agrairem moltíssim.</p>
 
         <p id="arimar">
             <a href="index.html">
