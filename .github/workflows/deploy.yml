@@ -229,6 +229,9 @@ jobs:
           #                                     que es baixa el navegador
           #   pronoms/                          no hi ha res del lloc que hi apunti
           #   bot/resultat_ordenat_cons.json    el llegeix el bot, mai el navegador
+          #   bot/programador/                  eina local per programar els tuits
+          #                                     a mà: només funciona amb el seu
+          #                                     servidor de Python al davant
           #
           # El que SÍ que s'ha de publicar de diccionaris/ són les col_0..col_8,
           # la carpeta internat/ i el versions.json: això és el que es baixa el
@@ -242,6 +245,7 @@ jobs:
           # transcripció i la rima planes són la font i no les mira ningú.
           find dialectes_col -maxdepth 2 -name '*.txt' -delete
           rm -f  bot/resultat_ordenat_cons.json
+          rm -rf bot/programador
           echo "Paquet: ${abans} MB -> $(du -sm . | cut -f1) MB"
 
           # Xarxa de seguretat: si un dia el lloc passa a demanar alguna
