@@ -65,31 +65,57 @@
   background-color: var(--sober-bg);
 }
 
-/* La tira de dialectes: al tema sobri no hi ha ni cian ni blau fosquíssim, i
-   la pastilla triada agafa el vermell apagat que fa de color d'accent arreu. */
+/* La tira de dialectes. Al festiu és una barra d'eines d'aquelles, amb bisell,
+   botons quadrats i lletra còmica (vegeu dialectes.scss); aquí no hi ha res de
+   tot això. Tornen les pastilles planes i arrodonides, la tipografia estreta i
+   el vermell apagat que fa de color d'accent arreu, o sigui que cal desfer un a
+   un el relleu, les cantonades vives i el solc. */
 [data-theme="sober"] #dialectes {
   background-color: var(--sober-panel-bg);
-  border-bottom-color: var(--sober-border);
+  border-top: none;
+  border-bottom: 1px solid var(--sober-border);
   font-family: var(--sober-font);
 }
 
+/* El rètol continua sent un enllaç i s'ha de continuar veient que ho és, però
+   aquí el blau de fa vint anys no hi pinta res: agafa el vermell apagat de
+   l'accent, que és el color dels enllaços de tot el tema sobri. */
 [data-theme="sober"] .dialectes-rotul,
 [data-theme="sober"] .dialectes-rotul:visited {
-  color: var(--sober-muted);
+  color: var(--sober-accent);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 [data-theme="sober"] .dialectes-rotul:hover {
-  color: var(--sober-accent);
+  color: var(--sober-accent-dark);
 }
 
+[data-theme="sober"] .dialectes-tria {
+  padding-left: 0;
+  border-left: none;
+  box-shadow: none;
+}
+
+/* La vora sencera i no pas el border-color sol: el que hi ha a sota és un
+   "3px outset", i canviant-ne només el color el botó continuaria tenint
+   relleu. */
 [data-theme="sober"] .dialecte {
-  border-color: var(--sober-border);
+  background-color: var(--sober-panel-bg);
+  border: 2px solid var(--sober-border);
+  border-radius: 999px;
   color: var(--sober-text);
+  font-size: 13px;
 }
 
 [data-theme="sober"] .dialecte:hover {
   background-color: var(--sober-bg);
   border-color: var(--sober-muted);
+}
+
+[data-theme="sober"] .dialecte:active {
+  border-style: solid;
 }
 
 /* El color hi ha de tornar a sortir: el [data-theme="sober"] .dialecte de
@@ -98,7 +124,7 @@
    això la pastilla triada quedaria amb el text fosc sobre el vermell. */
 [data-theme="sober"] .dialecte.triat {
   background-color: var(--sober-accent);
-  border-color: var(--sober-accent);
+  border: 2px solid var(--sober-accent);
   color: $blanc;
 }
 

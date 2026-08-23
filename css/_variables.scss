@@ -29,6 +29,20 @@ $gris-606: #606060;          // enllaç en :active (i .classeParaulaMare)
 //     tema sober), i text del bloc de codi de error.html ---
 $gris-molt-clar: #f2f2f2;
 
+// --- Exclusius de la tira de dialectes (dialectes.scss) ---
+//     Els tres grisos són els dels quadres de diàleg d'aleshores: el
+//     gris de fons, la llum (cantó de dalt i esquerre) i l'ombra
+//     (cantó de baix i dret). El podi de dades.html (podi.scss) ja
+//     feia servir aquest mateix #c0c0c0 escrit a mà.
+$gris-giny: #c0c0c0;
+$gris-giny-clar: #dfdfdf;
+$gris-giny-fosc: #808080;
+//     I el blau d'enllaç dels navegadors d'aleshores, per al rètol
+//     "Dialecte:". No és cap dels blaus de la casa perquè cap no s'hi
+//     llegeix: damunt del gris de la barra, el $blau-principal es
+//     queda en un contrast de 2:1 i aquest arriba a 4,8:1.
+$blau-enllaç: #0000ee;
+
 // --- Camps de formulari: cercador (index.html) i formulari
 //     d'error.html comparteixen aquest mateix estil ---
 $blau-input: #3498db;   // vora dels camps

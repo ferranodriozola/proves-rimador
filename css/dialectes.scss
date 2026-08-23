@@ -3,11 +3,22 @@
 /*
     La tira per triar el dialecte, entre la capçalera i la franja rosa.
 
-    Ni vermell, ni rosa, ni cian: la tira va en gris a posta. Entre una
+    Va vestida com els ginys de tota la vida: barra grisa amb bisell, botons
+    quadrats amb relleu i la tipografia de la casa. Abans eren pastilles
+    arrodonides, amb grisos fluixos, vores primes, lletra del sistema i fosos de
+    color de 120 ms; és l'aire de qualsevol plafó d'avui, i aquí desentonava. La
+    resta del lloc va de capçalera vermella amb bombolles, franja rosa, plafó
+    cian i botó de l'arc de Sant Martí, i la tira semblava retallada d'un altre
+    web i enganxada al mig. El bisell tampoc no és cap invent d'aquest fitxer:
+    el podi de dades.html (podi.scss) ja el fa servir.
+
+    Ni vermell, ni rosa, ni cian de fons: la tira va en gris a posta. Entre una
     capçalera vermella i una franja rosa, un quart color de marca faria que el
     lloc semblés un semàfor; el gris es llegeix com el que és, un rètol d'estat
-    i no una decoració més. El color de marca es guarda per a la pastilla
-    triada i per al cian del :hover, que és on de debò fa falta.
+    i no una decoració més. El color es guarda per als botons, que és on de debò
+    fa falta, i és el color de la casa: el rosa de la franja de sota quan hi
+    passes per sobre —el canvi sec de color dels enllaços d'aleshores— i el cian
+    del plafó del cercador al que està triat.
 
     No és sticky, a diferència de la franja rosa: el dialecte es tria un cop i
     no s'ha de mirar cada estona. Com que no ho és, tampoc no toca els
@@ -22,37 +33,44 @@
     gap: 12px;
     box-sizing: border-box;
     width: 100%;
-    padding: 8px 22px;
-    background-color: $gris-molt-clar;
-    border-bottom: 1px solid rgba($negre, 0.12);
-    font-family: var(--font-sistema);
+    padding: 7px 22px;
+    background-color: $gris-giny;
+
+    /*  El bisell de les barres d'eines: una ratlla clara a dalt i una de fosca
+        a baix, i la tira ja sembla aixecada damunt de la pàgina. La de dalt fa,
+        a més, de tall net entre el gris i el vermell de la capçalera, que si no
+        s'hi enganxen.  */
+    border-top: 2px solid $gris-giny-clar;
+    border-bottom: 2px solid $gris-giny-fosc;
+
+    font-family: var(--font-divertida);
 }
 
-/*  El rètol és un enllaç a dialectes.html (vegeu la tira a js/components.js),
-    i per això du subratllat de punts: sense res, un <a> que hereta el color
-    gris del rètol no es veu que es pugui clicar; amb el subratllat de sempre,
-    en canvi, cridaria més que les pastilles, que són el que s'ha de fer servir
-    aquí. El color de marca només surt al :hover.  */
+/*  El rètol és un enllaç a dialectes.html (vegeu la tira a js/components.js) i
+    ha de semblar-ho a la primera: blau i subratllat, com els enllaços de tota
+    la vida. Anava negre amb un subratllat de punts, que és una manera molt fina
+    de dir "això es pot clicar" i que no la veu ningú.
+
+    El :visited es queda blau a posta, i no pas morat: això no és un enllaç
+    dins d'un text sinó un rètol fix de la barra, i que es tornés morat per
+    sempre més el primer cop que algú obre dialectes.html semblaria una
+    avaria.  */
 .dialectes-rotul {
     flex-shrink: 0;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: bold;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: rgba($negre, 0.45);
-    text-decoration: underline dotted;
-    text-underline-offset: 3px;
+    color: $blau-enllaç;
+    text-decoration: underline;
+    text-underline-offset: 2px;
     cursor: pointer;
-    transition: color 120ms ease;
 }
 
 .dialectes-rotul:visited {
-    color: rgba($negre, 0.45);
+    color: $blau-enllaç;
 }
 
 .dialectes-rotul:hover {
-    color: $blau-fosquissim;
-    text-decoration: underline;
+    color: $vermell-principal;
 }
 
 .dialectes-rotul:focus-visible {
@@ -61,34 +79,54 @@
 }
 
 /*  Amb wrap i no pas amb overflow-x: una tira que llisca de costat amaga les
-    últimes opcions i la gent no hi arriba mai. Amb quatre pastilles (i amb sis)
-    val més que passin a la ratlla de sota i es vegin totes.  */
+    últimes opcions i la gent no hi arriba mai. Amb quatre botons (i amb sis)
+    val més que passin a la ratlla de sota i es vegin tots.  */
 .dialectes-tria {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
     min-width: 0;
+
+    /*  El solc que separava els grups de botons a les barres d'eines: una
+        ratlla fosca i una de clara arran l'una de l'altra. La fosca és la vora;
+        la clara, una ombra interior de 1px, que així no cal cap element buit
+        només per fer-hi una ratlla.  */
+    padding-left: 12px;
+    border-left: 1px solid $gris-giny-fosc;
+    box-shadow: inset 1px 0 0 $blanc;
 }
 
+/*  El botó de tota la vida. La vora "outset" la dibuixa el navegador tot sol a
+    partir del color que li dones: clara a dalt i a l'esquerra, fosca a baix i a
+    la dreta. La gràcia és que el triat només ha de canviar-la per "inset" i
+    ja queda enfonsat, sense repetir cap color.
+
+    Sense transition a posta: aleshores els botons canviaven de cop, i el fos
+    suau era justament una de les coses que feien que la tira no s'assemblés a
+    la resta del lloc.  */
 .dialecte {
     flex-shrink: 0;
-    padding: 6px 13px;
-    background-color: $blanc;
-    border: 2px solid rgba($negre, 0.12);
-    border-radius: 999px;
-    color: $gris-text;
+    padding: 5px 12px;
+    background-color: $gris-giny;
+    border: 3px outset $gris-giny-clar;
+    border-radius: 0; /* cantonades vives: aleshores no n'hi havia, d'arrodonides */
+    color: $negre;
     font-family: inherit;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: bold;
-    line-height: 1;
+    line-height: 1.15;
     white-space: nowrap;
     cursor: pointer;
-    transition: background-color 120ms ease, border-color 120ms ease;
 }
 
 .dialecte:hover {
-    background-color: $cian-principal;
-    border-color: $blau-fosquissim;
+    background-color: $rosa-principal;
+}
+
+/*  Prement-lo s'enfonsa, com qualsevol botó d'aleshores. Dura el que dura el
+    clic: just després el botó ja és el triat i es queda enfonsat igualment.  */
+.dialecte:active {
+    border-style: inset;
 }
 
 .dialecte:focus-visible {
@@ -96,10 +134,19 @@
     outline-offset: 2px;
 }
 
+/*  El triat es queda clicat: enfonsat i amb el cian del plafó del cercador. El
+    relleu sol no bastaria (de cua d'ull, un botó enfonsat i un de sortit
+    s'assemblen massa), i el color sol tampoc, que hi ha gent que no el
+    distingeix; junts no hi ha manera de confondre'ls.
+
+    Va DESPRÉS del :hover a posta: totes dues regles pesen igual i mana la
+    darrera, o sigui que passar per sobre del botó ja triat no el torna rosa, es
+    queda cian. És el que ha de ser: allà no hi ha res per triar. Si algun dia
+    aquesta regla puja més amunt, caldrà escriure-hi el :not(.triat) que ara no
+    fa cap falta.  */
 .dialecte.triat {
-    background-color: $blau-fosquissim;
-    border-color: $blau-fosquissim;
-    color: $blanc;
+    background-color: $cian-principal;
+    border-style: inset;
 }
 
 
@@ -108,24 +155,38 @@
 @media screen and (max-width: 750px) {
     #dialectes {
         gap: 10px;
-        padding: 8px 15px;
+        padding: 6px 15px;
+    }
+    .dialectes-rotul {
+        font-size: 14px;
     }
     .dialecte {
-        padding: 5px 11px;
-        font-size: 12px;
+        padding: 4px 10px;
+        font-size: 13px;
     }
 }
 
-/*  Aquí les quatre pastilles ja no caben al costat del rètol: el rètol se'n va
-    a dalt i elles es reparteixen l'amplada sencera, en dues ratlles si cal.  */
+/*  Aquí els quatre botons ja no caben al costat del rètol: el rètol se'n va a
+    dalt i ells es reparteixen l'amplada sencera, en dues ratlles si cal. El
+    solc, que separava dues coses que eren de costat, ja no separa res i se'n
+    va.  */
 @media screen and (max-width: 550px) {
     #dialectes {
         flex-direction: column;
         align-items: flex-start;
         gap: 6px;
-        padding: 8px 12px;
+        padding: 6px 12px;
     }
     .dialectes-tria {
         align-self: stretch;
+        padding-left: 0;
+        border-left: none;
+        box-shadow: none;
+    }
+    .dialectes-rotul {
+        font-size: 13px;
+    }
+    .dialecte {
+        font-size: 12px;
     }
 }
