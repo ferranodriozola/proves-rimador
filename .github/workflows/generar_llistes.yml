@@ -34,30 +34,6 @@ jobs:
         with:
           python-version: '3.x'
 
-# ------ ATURAT: bot/resultat_ordenat_cons.json
-#
-#        El json de rimes sencer només el llegeix el bot de Twitter, que ara
-#        mateix tampoc no corre (els seus "schedule" són comentats). Sobre el
-#        diccionari publicat fa 76 MB i tarda una bona estona, i de moment no
-#        el necessita ningú.
-#
-#        Les nàufragues ja NO en depenen: es compten soles a partir de la col_0
-#        i la col_3 (vegeu rimes_amb_una_sola_paraula() a
-#        llistes/generar_naufragues.py). Abans sí que en depenien, i deixar-lo
-#        aturat sense allò hauria volgut dir buscar les nàufragues d'un
-#        diccionari en un altre.
-#
-#        Per tornar-lo a engegar, descomenta els dos passos.
-#
-#      - name: Generar json de rimes sencer
-#        working-directory: bot
-#        run: python "generador_rimes_cons.py"
-#
-#      - name: Comit json de rimes sencer
-#        uses: ./.github/actions/comitejar
-#        with:
-#          missatge: Generació automàtica del json de rimes sencer
-
 # ------ Crear llista nàufragues
       - name: Crear llista de naufragues
         working-directory: llistes

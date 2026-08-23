@@ -20,11 +20,11 @@ def rimes_amb_una_sola_paraula(ruta_paraules, ruta_rimes):
     """
     Les rimes que només tenen UNA paraula diferent: les nàufragues.
 
-    Abans això sortia de bot/resultat_ordenat_cons.json, que és el mateix
-    recompte fet pel generador_rimes_cons.py. Es compta aquí perquè aquell
-    fitxer ja no es genera a cada passada, i fer servir el que hi hagués
-    quedat voldria dir buscar les nàufragues d'un diccionari en un altre:
-    sortirien paraules que sí que rimen amb alguna cosa.
+    Abans això sortia d'un fitxer que es generava a part i que ja no existeix,
+    el bot/resultat_ordenat_cons.json. Era el mateix recompte, però el del dia
+    que s'hagués generat aquell fitxer: buscar les nàufragues d'un diccionari
+    en un altre, i sortien paraules que sí que rimen amb alguna cosa.
+    Comptant-ho aquí, es compta sobre les columnes d'aquesta passada.
 
     "Una sola paraula DIFERENT" i no pas "una sola fila", igual que abans: una
     rima amb tres files de la mateixa paraula (homògrafes de codi diferent)

@@ -165,15 +165,22 @@ Com que ja no la demana ningú, la transcripció no s'acosta al paquet que es
 publica a Pages. Al repositori s'hi queda, a `dialectes_col/<codi>/`: és la
 font de la rima i d'ella surten les llistes de mots de 7.
 
-## Aturat de moment
+## El json de rimes sencer, esborrat
 
-`bot/resultat_ordenat_cons.json` (el json de rimes sencer) **ja no es genera**:
-els seus dos passos són comentats a `.github/workflows/generar_llistes.yml`.
-Només el llegeix el bot de Twitter, que tampoc no corre. Les nàufragues ja no
-en depenen: es compten soles des de la `col_0` i la `col_3`.
+`bot/resultat_ordenat_cons.json` (la taula rima → paraules, 16,9 MB) **ja no
+existeix**, ni el `bot/generador_rimes_cons.py` que el feia, ni els dos passos
+del `generar_llistes.yml` que el generaven i el comitejaven.
 
-> ⚠️ Si tornes a engegar el bot, recorda que el json que hi ha al repositori és
-> del diccionari base i no del publicat.
+Qui el llegia era el bot de Twitter, i el bot tampoc no hi és: ara els tuits es
+programen a mà amb `bot/programador/`, que s'aplega la mateixa taula a la
+memòria des de la `col_0` i la `col_3` cada cop que s'engega (vegeu
+`carregar_rimes()` a `bot/generador_tuits.py`). Costa 1 s i 59 MB, contra 0,5 s
+per llegir el fitxer, i dona exactament el mateix.
+
+Es va treure perquè un fitxer derivat de les columnes s'ha de tornar a pujar
+sencer a cada canvi del diccionari —30 versions a la història del repositori—
+i, amb la generació aturada, deia el que digués el diccionari del dia que
+s'hagués generat. Les nàufragues ja feia temps que no en depenien.
 
 ## El que costa publicar el v.6
 
@@ -184,7 +191,7 @@ en depenen: es compten soles des de la `col_0` i la `col_3`.
 | `dialectes_col/` (quatre dialectes) | 68 MB | per fer: cada forma amb pronom hauria de portar la seva transcripció a cada dialecte |
 | `col_10.txt` | **76,3 MB** | no hi cabria |
 | baixada real (Pages comprimeix) | 2,9 MB | ~20 MB |
-| `bot/resultat_ordenat_cons.json` | 16,9 MB | 76,2 MB |
+| taula de rimes del programador (memòria, ja no és cap fitxer) | 59 MB | ~380 MB, estimat de les files: s'hauria de repensar |
 
 ⚠️ **La `col_10.txt` a 76,3 MB va just.** GitHub avisa als 50 MB i **bloqueja
 als 100**: quan el diccionari creixi un 30 % més (o quan s'hi afegeixi un
