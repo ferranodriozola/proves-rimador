@@ -1,11 +1,11 @@
 """El programador manual de tuits: serveix la pàgina i toca els publicades_*.json.
 
-Per què existeix: l'API de Twitter que fan servir els dos bots
-(bot/script_normal.py i bot/script_naufragues.py) val diners, i la web de X
-deixa programar tuits de franc. Això genera els tuits que hi dirien els bots,
-te'ls dona d'un en un perquè els enganxis i els programis allà, i només apunta
-la rima a publicades_*.json quan tu confirmes que ja està programada. Així la
-rima no es crema si al final no la publiques.
+Per què existeix: abans dos bots penjaven un tuit al dia tots sols amb l'API
+de Twitter, que val diners; la web de X deixa programar tuits de franc. Això
+genera els mateixos tuits que dirien ells, te'ls dona d'un en un perquè els
+enganxis i els programis allà, i només apunta la rima a publicades_*.json quan
+tu confirmes que ja està programada. Així la rima no es crema si al final no la
+publiques.
 
 Com s'engega:
 
@@ -16,9 +16,8 @@ sol. Per aturar-ho: Ctrl+C.
 
 Per què un servidor i no pas un HTML i prou: un fitxer obert amb file:// no pot
 ni llegir els JSON del costat (el navegador ho barra) ni desar res al disc. Amb
-això, els fitxers els llegeix i els escriu el Python, igual que els bots, i el
-navegador només fa d'interfície. És tot de la biblioteca estàndard: no cal
-instal·lar res, ni tan sols tweepy.
+això, els fitxers els llegeix i els escriu el Python, i el navegador només fa
+d'interfície. És tot de la biblioteca estàndard: no cal instal·lar res.
 
 La pàgina NO s'ha de publicar mai a Pages: només té sentit amb aquest servidor
 al darrere. Per això el deploy.yml esborra bot/programador/ del paquet abans de
@@ -60,28 +59,29 @@ FITXERS_PUBLICADES = {
 class Dades:
     """Les dades grosses, carregades un sol cop.
 
-    El resultat_ordenat_cons.json fa 17 MB i triga uns segons a llegir-se:
-    fer-ho a cada petició deixaria la pàgina inservible. Com que no canvia
-    mentre el servidor corre, es queda a la memòria. Els publicades_*.json,
-    en canvi, es rellegeixen sempre del disc: són petits i poden haver canviat
-    per fora (un git pull, o el bot mateix).
+    Aplegar les rimes de les columnes del diccionari costa un segon: fer-ho a
+    cada petició deixaria la pàgina inservible. Com que no canvien mentre el
+    servidor corre, es queden a la memòria. Els publicades_*.json, en canvi, es
+    rellegeixen sempre del disc: són petits i poden haver canviat per fora (un
+    git pull, posem).
     """
 
     def __init__(self):
-        print('Llegint el fitxer de rimes (17 MB, va per feina)...')
-        self.rimes = generador.carregar_json(generador.FITXER_RIMES, {})
+        print('Aplegant les rimes de les columnes del diccionari...')
+        self.rimes = generador.carregar_rimes()
         self.naufragues = generador.carregar_json(generador.FITXER_NAUFRAGUES, [])
         print(f'  {len(self.rimes)} rimes i {len(self.naufragues)} paraules nàufragues.')
 
         if not self.rimes:
-            print(f'AVÍS: no s\'ha trobat {generador.FITXER_RIMES}.')
-            print('      El genera bot/generador_rimes_cons.py.')
+            print(f'AVÍS: no s\'han trobat les columnes del diccionari:')
+            print(f'      {generador.FITXER_PARAULES}')
+            print(f'      {generador.FITXER_RIMACONS}')
         if not self.naufragues:
             print(f'AVÍS: no s\'ha trobat {generador.FITXER_NAUFRAGUES}.')
             print('      El genera llistes/generar_naufragues.py.')
 
 
-# El servidor l'omple a principal(): la càrrega dels 17 MB no s'ha de fer
+# El servidor l'omple a principal(): llegir mig diccionari no s'ha de fer
 # només per importar el mòdul.
 DADES = None
 
@@ -130,14 +130,14 @@ def generar(tipus, quantitat, data_inici, un_dia_per_tuit, exclou):
         random.shuffle(candidates)
 
         for rima in candidates[:quantitat]:
-            info = DADES.rimes[rima]
+            paraules = DADES.rimes[rima]
             data = generador.data_curta(dia + timedelta(days=len(tuits) if un_dia_per_tuit else 0))
             tuits.append({
                 'clau': rima,
                 'etiqueta': f'/{rima}/',
-                'detall': f'{info.get("frequencia", 0)} paraules hi rimen',
+                'detall': f'{len(paraules)} paraules hi rimen',
                 'data': data,
-                'text': generador.tuit_normal(rima, info, data),
+                'text': generador.tuit_normal(rima, paraules, data),
             })
     else:
         candidates = generador.naufragues_disponibles(DADES.naufragues, fora)
