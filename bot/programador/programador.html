@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Aquesta pàgina només funciona amb bot/programador/servidor.py al darrere i
+     no s'ha de publicar mai. El noindex hi és per si un dia s'escapa: el
+     deploy.yml ja l'esborra del paquet de Pages, i el generador del sitemap
+     (que mira tots els *.html del repositori) el deixa fora perquè el veu. -->
+<meta name="robots" content="noindex, nofollow">
+<title>Programador de tuits · Rimador.cat</title>
+<style>
+    :root {
+        --vermell: #d30505;
+        --rosa: #ff91ff;
+        --verd: #0a7d32;
+        --verd-fons: #eaf7ee;
+        --gris-text: #333;
+        --gris-fluix: #6b6b6b;
+        --vora: #dcdce0;
+        --fons: #f4f4f6;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        padding: 0 1.2rem 4rem;
+        background: var(--fons);
+        color: var(--gris-text);
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        line-height: 1.5;
+    }
+
+    .centrat { max-width: 46rem; margin: 0 auto; }
+
+    header { padding: 2rem 0 1rem; }
+    h1 { margin: 0; font-size: 1.6rem; color: var(--vermell); }
+    header p { margin: .4rem 0 0; color: var(--gris-fluix); font-size: .92rem; }
+
+    .caixa {
+        background: #fff;
+        border: 1px solid var(--vora);
+        border-radius: 12px;
+        padding: 1rem 1.1rem;
+    }
+
+    /* --- Controls --- */
+    .controls { display: flex; flex-wrap: wrap; gap: 1rem 1.4rem; align-items: flex-end; }
+    .camp { display: flex; flex-direction: column; gap: .3rem; }
+    .camp > span { font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; color: var(--gris-fluix); }
+
+    input[type="number"], input[type="date"] {
+        font: inherit;
+        padding: .45rem .6rem;
+        border: 2px solid var(--vora);
+        border-radius: 8px;
+        background: #fff;
+    }
+    input[type="number"] { width: 5.5rem; }
+    input:focus-visible, button:focus-visible { outline: 3px solid var(--rosa); outline-offset: 1px; }
+
+    .tipus { display: flex; gap: .4rem; }
+    .tipus label {
+        padding: .45rem .8rem;
+        border: 2px solid var(--vora);
+        border-radius: 999px;
+        cursor: pointer;
+        font-size: .95rem;
+        background: #fff;
+    }
+    .tipus input { position: absolute; opacity: 0; pointer-events: none; }
+    .tipus label:has(input:checked) { border-color: var(--vermell); background: #fff0f0; font-weight: 600; }
+
+    .interruptor { display: flex; align-items: center; gap: .4rem; font-size: .92rem; padding-bottom: .5rem; }
+
+    button {
+        font: inherit;
+        cursor: pointer;
+        border-radius: 8px;
+        border: 2px solid var(--vora);
+        background: #fff;
+        padding: .45rem .8rem;
+    }
+    button:hover:not(:disabled) { border-color: #b9b9c0; }
+    button:disabled { opacity: .5; cursor: default; }
+
+    .principal {
+        background: var(--vermell);
+        border-color: var(--vermell);
+        color: #fff;
+        font-weight: 600;
+        padding: .5rem 1.3rem;
+    }
+    .principal:hover:not(:disabled) { background: #b30404; border-color: #b30404; }
+
+    /* --- Barra d'estat --- */
+    .estat {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .3rem 1.2rem;
+        margin: 1rem 0;
+        font-size: .88rem;
+        color: var(--gris-fluix);
+    }
+    .estat b { color: var(--gris-text); }
+    .estat a { color: var(--vermell); }
+
+    /* --- Targetes --- */
+    .tuit { margin-bottom: .9rem; transition: border-color .15s; }
+    .tuit.actiu { border-color: var(--vermell); box-shadow: 0 2px 10px rgba(211, 5, 5, .1); }
+    .tuit.fet { background: var(--verd-fons); border-color: #bfe3c9; }
+
+    .cap { display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; margin-bottom: .6rem; }
+    .num {
+        font-variant-numeric: tabular-nums;
+        font-size: .8rem;
+        color: #fff;
+        background: var(--gris-fluix);
+        border-radius: 999px;
+        padding: .05rem .5rem;
+    }
+    .tuit.actiu .num { background: var(--vermell); }
+    .tuit.fet .num { background: var(--verd); }
+    .etiqueta { font-weight: 700; }
+    .detall, .data { color: var(--gris-fluix); font-size: .85rem; }
+    .compta { margin-left: auto; font-size: .8rem; color: var(--gris-fluix); font-variant-numeric: tabular-nums; }
+    .compta.passat { color: var(--vermell); font-weight: 700; }
+
+    textarea {
+        width: 100%;
+        font: .95rem/1.45 ui-monospace, "SF Mono", Menlo, monospace;
+        color: inherit;
+        padding: .7rem .8rem;
+        border: 1px solid var(--vora);
+        border-radius: 8px;
+        background: #fdfdfd;
+        resize: vertical;
+    }
+    .tuit.fet textarea { background: #fff; opacity: .75; }
+
+    .peu { display: flex; gap: .5rem; margin-top: .6rem; flex-wrap: wrap; }
+    .copiar { font-weight: 600; min-width: 7.5rem; }
+    .marcar { border-color: var(--verd); color: var(--verd); font-weight: 600; }
+    .tuit.fet .marcar { border-color: var(--vora); color: var(--gris-fluix); font-weight: 400; }
+    .peu .dreta { margin-left: auto; }
+
+    .buit { text-align: center; color: var(--gris-fluix); padding: 2.5rem 1rem; }
+
+    footer { margin-top: 2rem; font-size: .82rem; color: var(--gris-fluix); }
+    footer code { background: #e9e9ee; padding: .05rem .3rem; border-radius: 4px; }
+
+    .avis {
+        background: #fff4f4;
+        border: 1px solid #f3caca;
+        color: #8c0000;
+        border-radius: 8px;
+        padding: .6rem .8rem;
+        margin: 1rem 0;
+        font-size: .9rem;
+    }
+</style>
+</head>
+<body>
+<div class="centrat">
+
+    <header>
+        <h1>Programador de tuits</h1>
+        <p>
+            Els mateixos tuits que publicarien els bots, però per programar-los a mà a
+            <a href="https://x.com/compose/post" target="_blank" rel="noopener">la web de X</a>.
+            La rima només s'apunta a <code>publicades</code> quan tu confirmes que ja està programada.
+        </p>
+    </header>
+
+    <div id="avis" class="avis" hidden></div>
+
+    <section class="caixa controls">
+        <div class="camp">
+            <span>Tipus de tuit</span>
+            <div class="tipus">
+                <label><input type="radio" name="tipus" value="normal" checked> Rima del dia</label>
+                <label><input type="radio" name="tipus" value="naufragues"> Paraula nàufraga</label>
+            </div>
+        </div>
+
+        <label class="camp">
+            <span>Quants</span>
+            <input type="number" id="quantitat" value="7" min="1" max="60">
+        </label>
+
+        <label class="camp">
+            <span>Data del primer</span>
+            <input type="date" id="data">
+        </label>
+
+        <label class="interruptor">
+            <input type="checkbox" id="perDies" checked> un tuit per dia
+        </label>
+
+        <button class="principal" id="generar">Genera</button>
+    </section>
+
+    <div class="estat" id="estat"></div>
+
+    <main id="llista"></main>
+
+    <footer>
+        <p id="peuFitxer"></p>
+        <p>
+            Quan hagis acabat, puja els canvis:
+            <code>git add bot/publicades_*.json &amp;&amp; git commit -m "Tuits programats" &amp;&amp; git push</code>
+        </p>
+    </footer>
+
+</div>
+
+<script>
+const CLAU_MAGATZEM = 'rimador-programador-lot';
+
+let estat = null;                       // el que diu el servidor: què s'ha dit ja
+let lot = { tipus: 'normal', tuits: [] }; // el que hi ha ara a la pantalla
+
+const $ = (sel) => document.querySelector(sel);
+const llista = $('#llista');
+
+// ---------- Parlar amb el servidor ----------
+
+async function api(cami, cos) {
+    const resposta = await fetch(cami, cos ? {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(cos)
+    } : undefined);
+
+    const dades = await resposta.json();
+    if (!resposta.ok) throw new Error(dades.error || resposta.statusText);
+    return dades;
+}
+
+function avisar(text) {
+    const avis = $('#avis');
+    avis.textContent = text;
+    avis.hidden = !text;
+}
+
+// ---------- Estat ----------
+
+const tipusTriat = () => document.querySelector('input[name="tipus"]:checked').value;
+
+// La veritat de què s'ha dit i què no és sempre el fitxer del disc, no pas la
+// pantalla: així el lot sobreviu a un F5 i no es desapunta res sense voler.
+const jaProgramat = (clau) => !!estat && estat[lot.tipus].publicades.includes(clau);
+
+function pintarEstat() {
+    if (!estat) return;
+
+    const meu = estat[tipusTriat()];
+    const fets = lot.tuits.filter(t => jaProgramat(t.clau)).length;
+    // El recompte del lot només si el lot és del tipus que hi ha triat ara:
+    // si has canviat de tipus, a la pantalla hi ha els tuits de l'altre.
+    const mateixTipus = lot.tipus === tipusTriat() && lot.tuits.length;
+
+    $('#estat').innerHTML = `
+        <span><b>${meu.disponibles.toLocaleString('ca')}</b> per dir</span>
+        <span><b>${meu.publicades.length.toLocaleString('ca')}</b> ja programades o publicades</span>
+        ${mateixTipus ? `<span><b>${fets}</b> de <b>${lot.tuits.length}</b> d'aquest lot programats</span>` : ''}
+    `;
+    $('#peuFitxer').innerHTML = `Cada confirmació escriu de seguida a <code>${meu.fitxer}</code>.`;
+}
+
+async function carregarEstat() {
+    estat = await api('/api/estat');
+    pintarEstat();
+}
+
+// ---------- El lot ----------
+
+function desarLot() {
+    localStorage.setItem(CLAU_MAGATZEM, JSON.stringify(lot));
+}
+
+function restaurarLot() {
+    try {
+        const desat = JSON.parse(localStorage.getItem(CLAU_MAGATZEM) || 'null');
+        if (desat && Array.isArray(desat.tuits)) {
+            lot = desat;
+            document.querySelector(`input[name="tipus"][value="${lot.tipus}"]`).checked = true;
+        }
+    } catch (e) { /* si el que hi havia desat no s'entén, es comença de nou */ }
+}
+
+async function generar() {
+    const pendents = lot.tuits.filter(t => !jaProgramat(t.clau)).length;
+    if (pendents && !confirm(`Encara hi ha ${pendents} tuit(s) sense programar. Els vols descartar i fer un lot nou?`)) return;
+
+    $('#generar').disabled = true;
+    avisar('');
+
+    try {
+        const resposta = await api('/api/generar', {
+            tipus: tipusTriat(),
+            quantitat: +$('#quantitat').value,
+            data: $('#data').value,
+            un_dia_per_tuit: $('#perDies').checked
+        });
+
+        estat = resposta.estat;
+        lot = { tipus: tipusTriat(), tuits: resposta.tuits };
+        desarLot();
+        pintar();
+
+        if (!resposta.tuits.length) avisar('No queda res per dir d\'aquest tipus.');
+        else if (resposta.tuits.length < +$('#quantitat').value) {
+            avisar(`Només en queden ${resposta.tuits.length} per dir.`);
+        }
+    } catch (e) {
+        avisar('No s\'han pogut generar: ' + e.message);
+    } finally {
+        $('#generar').disabled = false;
+    }
+}
+
+async function generarUnAltre(i) {
+    try {
+        const resposta = await api('/api/generar', {
+            tipus: lot.tipus,
+            quantitat: 1,
+            data: $('#data').value,
+            un_dia_per_tuit: false,
+            exclou: lot.tuits.map(t => t.clau)   // cap dels que ja són a la pantalla
+        });
+
+        if (!resposta.tuits.length) return avisar('No queda cap altra rima per posar-hi.');
+
+        // La data és del lloc que ocupa dins del lot, no pas del tuit: si era el
+        // tercer, el que el substitueix continua sent per al mateix dia.
+        const nou = resposta.tuits[0];
+        nou.text = nou.text.replace(nou.data, lot.tuits[i].data);
+        nou.data = lot.tuits[i].data;
+
+        lot.tuits[i] = nou;
+        estat = resposta.estat;
+        desarLot();
+        pintar();
+    } catch (e) {
+        avisar('No s\'ha pogut canviar: ' + e.message);
+    }
+}
+
+async function marcar(i, programat) {
+    try {
+        estat = await api(programat ? '/api/programat' : '/api/desfes', {
+            tipus: lot.tipus,
+            clau: lot.tuits[i].clau
+        });
+        pintar();
+        if (programat) anarAlSeguent();
+    } catch (e) {
+        avisar('No s\'ha pogut desar: ' + e.message);
+    }
+}
+
+function anarAlSeguent() {
+    const seguent = llista.querySelector('.tuit.actiu');
+    if (seguent) seguent.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// ---------- Copiar ----------
+
+async function copiar(i, boto) {
+    const text = lot.tuits[i].text;
+    const area = llista.querySelector(`textarea[data-i="${i}"]`);
+    let copiat = false;
+
+    try {
+        await navigator.clipboard.writeText(text);
+        copiat = true;
+    } catch (e) {
+        // El porta-retalls modern falla en algun navegador o si la finestra no
+        // té el focus. El de tota la vida, amb el text seleccionat, sí que va;
+        // i si tampoc no va, almenys queda seleccionat per fer-hi Cmd+C.
+        area.focus();
+        area.select();
+        try { copiat = document.execCommand('copy'); } catch (e2) { copiat = false; }
+    }
+
+    if (!copiat) {
+        avisar('No he pogut copiar-ho jo: ja tens el text seleccionat, fes Cmd+C.');
+        return;
+    }
+
+    avisar('');
+    const abans = boto.textContent;
+    boto.textContent = 'Copiat!';
+    setTimeout(() => { boto.textContent = abans; }, 1400);
+}
+
+// ---------- Pintar ----------
+
+// X compta cada enllaç com si fossin 23 caràcters, tant li fa com de llarg
+// sigui. Sense això, el tuit de les nàufragues (que en duu un de ben llarg)
+// semblaria passat de mida quan no ho és.
+const compta = (text) => text.replace(/https?:\/\/\S+/g, 'x'.repeat(23)).length;
+
+// Que es vegi el tuit sencer sense barra de desplaçament: comptar les
+// ratlles del text no val, perquè les llargues (l'enllaç de les nàufragues)
+// n'ocupen dues a la pantalla.
+function encabir(area) {
+    // Primer a zero i no pas a "auto": amb "auto", l'alçada torna a la del
+    // rows="" i el scrollHeight ens diria aquella, no la del text.
+    area.style.height = '0px';
+    area.style.height = (area.scrollHeight + 2) + 'px';
+}
+
+const encabirTots = () => llista.querySelectorAll('textarea').forEach(encabir);
+
+const escapar = (text) => text.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+function pintar() {
+    pintarEstat();
+
+    if (!lot.tuits.length) {
+        llista.innerHTML = '<p class="buit">Encara no hi ha cap tuit. Digues quants en vols i prem <b>Genera</b>.</p>';
+        return;
+    }
+
+    const primerPendent = lot.tuits.findIndex(t => !jaProgramat(t.clau));
+
+    llista.innerHTML = lot.tuits.map((tuit, i) => {
+        const fet = jaProgramat(tuit.clau);
+        const nombre = compta(tuit.text);
+
+        return `
+        <article class="caixa tuit ${fet ? 'fet' : ''} ${i === primerPendent ? 'actiu' : ''}">
+            <div class="cap">
+                <span class="num">${fet ? '✓' : i + 1}</span>
+                <span class="etiqueta">${escapar(tuit.etiqueta)}</span>
+                <span class="detall">${escapar(tuit.detall)}</span>
+                <span class="data">· ${escapar(tuit.data)}</span>
+                <span class="compta ${nombre > 280 ? 'passat' : ''}">${nombre}/280</span>
+            </div>
+
+            <textarea data-i="${i}" rows="${tuit.text.split('\n').length}"></textarea>
+
+            <div class="peu">
+                <button class="copiar" data-copiar="${i}">Copia</button>
+                ${fet
+                    ? `<button class="marcar" data-desfer="${i}">Desfés</button>`
+                    : `<button class="marcar" data-fet="${i}">Ja està programat ✓</button>
+                       <button class="dreta" data-altre="${i}">Un altre</button>`}
+            </div>
+        </article>`;
+    }).join('');
+
+    // El text va a part de l'innerHTML: així no cal escapar res i el que
+    // s'hagi editat a mà es manté tal qual.
+    llista.querySelectorAll('textarea').forEach((area) => {
+        area.value = lot.tuits[area.dataset.i].text;
+    });
+
+    encabirTots();
+    // I un altre cop quan el navegador ja ha fet els comptes: just després de
+    // pintar, l'amplada encara pot no ser la definitiva, i com que el text es
+    // reparteix segons l'amplada, l'alçada sortiria d'una altra pàgina.
+    requestAnimationFrame(encabirTots);
+}
+
+// ---------- Enganxar-ho tot ----------
+
+llista.addEventListener('click', (e) => {
+    const boto = e.target.closest('button');
+    if (!boto) return;
+
+    if (boto.dataset.copiar !== undefined) copiar(+boto.dataset.copiar, boto);
+    else if (boto.dataset.fet !== undefined) marcar(+boto.dataset.fet, true);
+    else if (boto.dataset.desfer !== undefined) marcar(+boto.dataset.desfer, false);
+    else if (boto.dataset.altre !== undefined) generarUnAltre(+boto.dataset.altre);
+});
+
+llista.addEventListener('input', (e) => {
+    if (e.target.tagName !== 'TEXTAREA') return;
+    const i = +e.target.dataset.i;
+    lot.tuits[i].text = e.target.value;
+    desarLot();
+
+    encabir(e.target);
+
+    const compte = e.target.closest('.tuit').querySelector('.compta');
+    const nombre = compta(e.target.value);
+    compte.textContent = `${nombre}/280`;
+    compte.classList.toggle('passat', nombre > 280);
+});
+
+// Canviar l'amplada de la finestra reparteix el text d'una altra manera.
+window.addEventListener('resize', encabirTots);
+
+document.querySelectorAll('input[name="tipus"]').forEach((radi) => {
+    radi.addEventListener('change', pintarEstat);
+});
+
+$('#generar').addEventListener('click', generar);
+$('#quantitat').addEventListener('keydown', (e) => { if (e.key === 'Enter') generar(); });
+
+$('#data').value = new Date().toLocaleDateString('sv');   // sv dona l'AAAA-MM-DD que vol l'input
+restaurarLot();
+carregarEstat().then(pintar).catch((e) => {
+    avisar('No es pot parlar amb el servidor (' + e.message + '). És engegat el servidor.py?');
+    pintar();
+});
+</script>
+</body>
+</html>

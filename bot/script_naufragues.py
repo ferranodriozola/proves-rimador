@@ -1,85 +1,34 @@
-import json
-import random
 import os
+import random
+
 import tweepy
-import urllib.parse
-from datetime import datetime
 
-base_dir = os.path.dirname(os.path.abspath(__file__))
+# El text del tuit, els camins dels fitxers i el filtre del que encara no s'ha
+# dit són a generador_tuits.py, compartits amb el programador manual
+# (programador/servidor.py). Aquí només hi queda el que és propi de publicar
+# tot sol: triar a l'atzar, parlar amb Twitter i apuntar-ho.
+import generador_tuits as generador
 
-# El del CENTRAL: ara cada dialecte té la seva llista de nàufragues
-# (llistes/generar_naufragues.py) i el bot publica en central, com tota
-# la resta del que genera (vegeu bot/generador_rimes_cons.py).
-FITXER_NAUFRAGUES = os.path.join(base_dir, '..', 'llistes', 'paraules_naufragues_ca.json')
-FITXER_UTILITZATS = os.path.join(base_dir, 'publicades_naufragues.json')
-
-def carregar_json(nom_fitxer):
-    if not os.path.exists(nom_fitxer):
-        return [] 
-    
-    with open(nom_fitxer, 'r', encoding='utf-8') as f:
-        try:
-            return json.load(f)
-        except json.decoder.JSONDecodeError:
-            return []
-
-def guardar_json(dades, nom_fitxer):
-    with open(nom_fitxer, 'w', encoding='utf-8') as f:
-        json.dump(dades, f, indent=4, ensure_ascii=False)
 
 def principal():
     print("Iniciant el bot")
-    
-    utilitzats = carregar_json(FITXER_UTILITZATS)
-    dades_naufragues = carregar_json(FITXER_NAUFRAGUES)
+
+    utilitzats = generador.carregar_json(generador.FITXER_PUBLICADES_NAUFRAGUES, [])
+    dades_naufragues = generador.carregar_json(generador.FITXER_NAUFRAGUES, [])
 
     if not dades_naufragues:
         print("El fitxer de paraules nàufragues està buit o no s'ha trobat.")
         return
 
-    paraules_disponibles = [item for item in dades_naufragues if item.get("rimacons") not in utilitzats]
+    paraules_disponibles = generador.naufragues_disponibles(dades_naufragues, utilitzats)
 
     if not paraules_disponibles:
         print("Ja s'han utilitzat totes les rimes nàufragues del fitxer!")
         return
 
     item_escollit = random.choice(paraules_disponibles)
-
-    paraula_escollida = item_escollit.get("paraula")
     rima_escollida = item_escollit.get("rimacons")
-    lema = item_escollit.get("infinitiu")
-    codi = item_escollit.get("codi")
-    es_diec = item_escollit.get("diec") == "Diec"
-    es_VIQ = item_escollit.get("viq") == "Viq"
-    es_VICC = item_escollit.get("vicc") == "Vicc"
-    
-    avui = datetime.now()
-    data_formatada = f"{avui.day}/{avui.month}/{avui.strftime('%y')}"
-
-    tuit = f"Paraula nàufraga del dia ({data_formatada}): {paraula_escollida} (/{rima_escollida}/)\n\n"
-    if codi.startswith("NP"):
-        tuit += "Aquest nom propi no rima amb cap paraula del diccionari, per això és una Paraula nàufraga.\n\n"
-    else:
-        tuit += "Aquesta paraula no rima amb cap paraula del diccionari, per això és una Paraula nàufraga.\n\n"
-
-    paraula_url = urllib.parse.quote(lema)
-    
-    if es_diec:
-        tuit += f"📖 DIEC: https://dlc.iec.cat/Results?DecEntradaText={paraula_url}\n"
-
-    else:
-        if codi.startswith("NP"):
-            if es_VIQ:
-                tuit += f"📖 Viquipèdia: https://ca.wikipedia.org/wiki/{paraula_url}\n"
-            else:
-                tuit += f"📖 Viccionari: https://ca.wiktionary.org/wiki/{paraula_url}\n"
-        else:
-            if es_VICC:
-                tuit += f"📖 Viccionari: https://ca.wiktionary.org/wiki/{paraula_url}\n"
-            else:
-                tuit += f"📖 Viquipèdia: https://ca.wikipedia.org/wiki/{paraula_url}\n"
-
-    tuit += "\nConsulta totes les paraules nàufragues a https://rimador.cat/llistes/llista_naufragues.html"
+    tuit = generador.tuit_naufraga(item_escollit)
 
     print("-" * 50)
     print(tuit)
@@ -108,8 +57,9 @@ def principal():
         print("Mode simulació: No s'han trobat les credencials de Twitter (API keys).")
 
     utilitzats.append(rima_escollida)
-    guardar_json(utilitzats, FITXER_UTILITZATS)
-    print(f"Rima '{rima_escollida}' afegida a '{FITXER_UTILITZATS}'.")
+    generador.guardar_json(utilitzats, generador.FITXER_PUBLICADES_NAUFRAGUES)
+    print(f"Rima '{rima_escollida}' afegida a '{generador.FITXER_PUBLICADES_NAUFRAGUES}'.")
+
 
 if __name__ == '__main__':
     principal()
