@@ -244,16 +244,24 @@
     font-size: 13px;
 }
 
+/* Text corrent, no pas flex: com que el pare és flex, si aquí hi posem
+   inline-flex cada tros de text i cada <b> es converteixen en caixes soltes
+   separades pel gap, i la frase queda escampada en columnes en comptes de
+   saltar de línia com una frase normal. */
 .mitjana-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
+    text-align: center;
+    /* si no hi cap en una línia (pantalles estretes), que reparteixi les
+       paraules entre les dues en comptes de deixar-ne dues de soltes a baix */
+    text-wrap: balance;
 }
 
+/* La ratlleta fa de mostra de color: com que no té contingut, l'alcem amb
+   vertical-align perquè quedi a mitja lletra i no arran de la base. */
 .mitjana-item i {
     display: inline-block;
-    flex: 0 0 auto;
     width: 26px;
+    margin-right: 5px;
+    vertical-align: middle;
     border-top: 2px dashed currentColor;
 }
 
