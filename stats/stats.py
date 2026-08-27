@@ -113,13 +113,16 @@ def obtenir_top_dies(df_dades):
     df_dades = df_dades[df_dades['Dia'] < avui]  
     cerques_per_dia = df_dades['Dia'].value_counts().reset_index()
     cerques_per_dia.columns = ['Dia', 'cerques']
-    cerques_top = cerques_per_dia.sort_values(by='cerques', ascending=False).head(3)
-    cerques_anti = cerques_per_dia.sort_values(by='cerques', ascending=True).head(3)
+    #en cas d'empat, primer el dia més recent (mateix criteri que als tops de
+    #paraules). Sense la clau del dia l'ordre entre empatats era el que sortia
+    #de l'ordenació, que no és estable ni previsible.
+    cerques_top = cerques_per_dia.sort_values(by=['cerques', 'Dia'], ascending=[False, False], kind='stable').head(3)
+    cerques_anti = cerques_per_dia.sort_values(by=['cerques', 'Dia'], ascending=[True, False], kind='stable').head(3)
     
     usuaris_per_dia = df_dades.groupby('Dia')['Usuari'].nunique().reset_index()
     usuaris_per_dia.columns = ['Dia', 'usuaris']
-    usuaris_top = usuaris_per_dia.sort_values(by='usuaris', ascending=False).head(3)
-    usuaris_anti = usuaris_per_dia.sort_values(by='usuaris', ascending=True).head(3)
+    usuaris_top = usuaris_per_dia.sort_values(by=['usuaris', 'Dia'], ascending=[False, False], kind='stable').head(3)
+    usuaris_anti = usuaris_per_dia.sort_values(by=['usuaris', 'Dia'], ascending=[True, False], kind='stable').head(3)
 
     return {
         "top_cerques": [{"data": d.strftime("%d/%m/%Y"), "total": int(c)} for d, c in zip(cerques_top['Dia'], cerques_top['cerques'])],
