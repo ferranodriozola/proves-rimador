@@ -7,7 +7,7 @@
     <meta name="robots" content="index, follow">
 
     <title>Estadístiques del diccionari de rimes | Rimador.cat</title>
-    <meta name="description" content="Estadístiques d'ús del Rimador.cat: les paraules i les rimes més cercades dels últims set dies i de tot l'històric, amb cerques i dispositius únics.">
+    <meta name="description" content="Estadístiques d'ús del Rimador.cat: les paraules i les rimes més cercades dels últims set dies i de tot l'històric, amb cerques i usuaris únics.">
     <meta name="author" content="Marc i Ferran">
     <link rel="canonical" href="https://rimador.cat/dades.html">
 
@@ -59,11 +59,11 @@
             <div class="caixa-dades">
                 <h3>Els últims set dies <span id="rang-setmana"></span></h3>
                 <p class="comptador"><span id="paraules_uniques_setmana">0</span> / <span id="cerques-setmana">0</span><small>paraules úniques / cerques totals&nbsp;&nbsp;</small></p>
-                <p class="comptador petit"><span id="usuaris-setmana">0</span><small>dispositius únics</small></p>
+                <p class="comptador petit"><span id="usuaris-setmana">0</span><small>usuaris únics</small></p>
 
                 <hr class="separador-dades">
 
-                <h4>Top 10 paraules (dispositius únics)</h4>
+                <h4>Top 10 paraules (usuaris únics)</h4>
                 <ol id="llista-paraules-setmana"></ol>
 
                 <h4>Top 10 rimes</h4>
@@ -74,11 +74,11 @@
                 <h3>Històric de cerques (des del 31/07/26)</h3>
 
                 <p class="comptador"><span id="paraules_uniques_sempre">0</span> / <span id="cerques-totals">0</span><small>paraules úniques / cerques totals</small></p>
-                <p class="comptador petit"><span id="usuaris-sempre">0</span><small>dispositius únics</small></p>
+                <p class="comptador petit"><span id="usuaris-sempre">0</span><small>usuaris únics</small></p>
 
                 <hr class="separador-dades">
 
-                <h4>Top 10 paraules (dispositius únics)</h4>
+                <h4>Top 10 paraules (usuaris únics)</h4>
                 <ol id="llista-paraules-sempre"></ol>
 
                 <h4>Top 10 rimes</h4>
@@ -93,10 +93,10 @@
 
                 <hr class="separador-dades">
 
-                <h4>Top 10 paraules nàufragues (dispositius únics)</h4>
+                <h4>Top 10 paraules nàufragues (usuaris únics)</h4>
                 <ol id="llista-naufragues"></ol>
 
-                <h4>Top 10 errors de cerca (dispositius únics)</h4>
+                <h4>Top 10 errors de cerca (usuaris únics)</h4>
                 <ol id="llista-typos"></ol>
             </div>
 
@@ -112,7 +112,7 @@
                         <ul id="podi-cerques"></ul>
                     </div>
                     <div class="podium-box">
-                        <h4>Més dispositius</h4>
+                        <h4>Més usuaris</h4>
                         <ul id="podi-usuaris"></ul>
                     </div>
                     <div class="podium-box">
@@ -120,7 +120,7 @@
                         <ul id="anti-podi-cerques"></ul>
                     </div>
                     <div class="podium-box">
-                        <h4>Menys dispositius</h4>
+                        <h4>Menys usuaris</h4>
                         <ul id="anti-podi-usuaris"></ul>
                     </div>
 
@@ -140,7 +140,7 @@
             <h3>Evolució de cerques (darrers 30 dies)</h3>
             <p class="mitjanes-grafic">
                 <span class="mitjana-item mitjana-cerques"><i></i>Mitjana de <b>cerques</b> dels darrers 30 dies: <b id="mitjana-cerques">0</b></span>
-                <span class="mitjana-item mitjana-usuaris"><i></i>Mitjana de <b>dispositius únics</b> dels darrers 30 dies: <b id="mitjana-usuaris">0</b></span>
+                <span class="mitjana-item mitjana-usuaris"><i></i>Mitjana d'<b>usuaris únics</b> dels darrers 30 dies: <b id="mitjana-usuaris">0</b></span>
             </p>
             <div class="grafic-cos">
                 <canvas id="graficLinia"></canvas>
@@ -180,7 +180,7 @@
                     la paraula cercada i els cinc filtres (tipus de rima, nombre de síl·labes, comença per, incloure noms propis i incloure plurals). 
                     Si es torna a fer exactament la mateixa cerca, es repeteix la mateixa consulta dins un mateix dia o es torna a prémer el botó, 
                     no ho considerem una cerca diferent. En canvi, sí que compten com a cerques diferents la mateixa paraula cercada per dos 
-                    dispositius diferents, la mateixa paraula cercada pel mateix dispositiu un altre dia, o la mateixa paraula cercada canviant qualsevol 
+                    usuaris diferents, la mateixa paraula cercada pel mateix usuari un altre dia, o la mateixa paraula cercada canviant qualsevol 
                     filtre o intercanviant consonant-assonant. La rima trobada no forma part d'aquesta comparació.</p>
 
                 <h4>Què és una paraula única?</h4>
@@ -194,16 +194,16 @@
                     en dies diferents o amb filtres diferents. En canvi, a les cerques totals, també estan incloses les cerques no trobades al diccionari. Les paraules 
                     úniques compten <i>paraules</i>, una sola vegada cadascuna i deixant fora les que no van donar resultat. Les cerques totals sempre són més altes.</p>
 
-                <h4>Què és un dispositiu únic?</h4>
+                <h4>Què és un usuari únic?</h4>
                 <p>La primera vegada que algú fa una cerca, el navegador genera un identificador aleatori que queda desat només al seu dispositiu. 
-                    No hi ha ni comptes, ni noms, ni cap dada personal: només serveix per distingir si dues cerques venen del mateix dispositiu o no. 
-                    No ho podem considerar "usuari únic" perquè té els límits que té: una mateixa persona al mòbil i a l'ordinador compten com a dos 
-                    dispositius diferents, no tenim manera de saber si és el mateix usuari o no. A més a més, si algú esborra les dades del seu 
-                    navegador, el considerarà un dispositiu nou.</p>
+                    No hi ha ni comptes, ni noms, ni cap dada personal: només serveix per distingir si dues cerques venen del mateix lloc o no. 
+                    És, doncs, una aproximació, amb els límits que té: una mateixa persona al mòbil i a l'ordinador compta com a dos 
+                    usuaris diferents, perquè no tenim manera de saber si és la mateixa persona o no. A més a més, si algú esborra les dades del seu 
+                    navegador, el comptarem com un usuari nou.</p>
 
-                <h4>Què vol dir "(dispositius únics)" al Top 10 paraules?</h4>
+                <h4>Què vol dir "(usuaris únics)" al Top 10 paraules?</h4>
                 <p>Que el número del costat de la paraula no és el nombre de vegades que s'ha cercat una cosa, 
-                    sinó <b>quants dispositius únics</b> l'han cercada. Una sola persona, per molt que insisteixi amb la mateixa paraula o canviï els filtres, 
+                    sinó <b>quants usuaris únics</b> l'han cercada. Una sola persona, per molt que insisteixi amb la mateixa paraula o canviï els filtres, 
                     suma només 1. Així, una tarda d'obsessió amb un mot no es menja el rànquing. És un criteri diferent del de les cerques totals, que sí 
                     que compta totes les vegades que s'ha fet una cerca, encara que sigui la mateixa persona amb la mateixa paraula.</p>
                 <p>En tots els tops, en cas que hi hagi algun empat, apareix més amunt la paraula o rima que s'ha cercat més recentment.</p>
@@ -211,7 +211,7 @@
                 <h4>I el top de rimes?</h4>
                 <p>Una rima, aquí, no és una paraula: és la <b>terminació fonètica</b> que comparteixen totes les paraules que rimen entre elles, 
                     escrita amb l'alfabet fonètic internacional (per exemple <i class="transcripcio">/aðə/</i>, que és la de <i>cascada</i> o <i>vegada</i>). 
-                    El número que apareix és la suma dels dispositius únics que han buscat paraules que tenen aquella rima, diferenciant segons si la cerca ha estat 
+                    El número que apareix és la suma dels usuaris únics que han buscat paraules que tenen aquella rima, diferenciant segons si la cerca ha estat 
                     consonant o assonant. 
                     Així, si una persona ha cercat "camí" i "dormir" i una altra persona ha cercat "finir", la rima <i class="transcripcio">/-i/</i> suma 3. Una mateixa persona, 
                     doncs, només pot sumar 1 cop a la mateixa paraula, però més d'un cop a la mateixa rima.
@@ -236,10 +236,10 @@
 
                 <h4>Què són el nombre de cerques dels podis? I el del gràfic de línies?</h4>
                 <p>Són el nombre de "cerques úniques" d'aquell dia. El dia present queda fora.
-                Els dies amb més/menys dispositius es refereix al dia amb més/menys dispositius diferents, sense tenir en compte si havien fet cerques anteriorment o no.</p>
+                Els dies amb més/menys usuaris es refereix al dia amb més/menys usuaris diferents, sense tenir en compte si havien fet cerques anteriorment o no.</p>
 
                 <h4>Què són les dues ratlles horitzontals del gràfic de línies?</h4>
-                <p>Són les mitjanes diàries de cerques i de dispositius únics, cadascuna del color de la seva línia. Es calculen sobre els 30 dies
+                <p>Són les mitjanes diàries de cerques i d'usuaris únics, cadascuna del color de la seva línia. Es calculen sobre els 30 dies
                     del gràfic, exactament els mateixos que hi ha dibuixats: els dies a zero també hi compten. El dia present queda fora, com a la resta
                     del gràfic.</p>
 
