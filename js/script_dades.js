@@ -184,11 +184,24 @@ function omplirPodiHTML(idElement, arrayDades, etiqueta) {
 
     contenidor.classList.add('podi-graella');
 
+    // Dos dies amb la mateixa xifra es reparteixen la mateixa medalla: qui
+    // empata amb el de sobre es queda amb el seu número i el seu bloc (or, or,
+    // bronze), però sense moure's del lloc que li toca a la graella. Dins d'un
+    // empat, l'ordre ja ve donat de les dades: primer el dia més recent.
+    let medalla = 0;
+    let totalAnterior = null;
+
     arrayDades.forEach((item, index) => {
         const lloc = index + 1;
 
+        if (item.total !== totalAnterior) {
+            medalla = lloc;
+            totalAnterior = item.total;
+        }
+
         const li = document.createElement('li');
-        li.className = `podi-lloc podi-lloc-${lloc}`;
+        // podi-lloc-N diu on va la columna; podi-medalla-N, quin bloc li toca
+        li.className = `podi-lloc podi-lloc-${lloc} podi-medalla-${medalla}`;
         li.title = `${item.data}: ${item.total} ${etiqueta}`;
 
         li.innerHTML = `
@@ -196,7 +209,7 @@ function omplirPodiHTML(idElement, arrayDades, etiqueta) {
                 <span class="podi-xifra">${item.total}</span>
                 <span class="podi-data">${item.data}</span>
             </div>
-            <div class="podi-bloc"><span class="podi-numero">${lloc}</span></div>
+            <div class="podi-bloc"><span class="podi-numero">${medalla}</span></div>
         `;
         contenidor.appendChild(li);
     });
