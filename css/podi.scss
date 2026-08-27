@@ -44,14 +44,14 @@
 }
 
 /* el primer lloc de les caixes de "menys" destaca en blau, no en vermell */
-.podium-box:nth-child(3) .podi-lloc-1 .podi-placa,
-.podium-box:nth-child(4) .podi-lloc-1 .podi-placa {
+.podium-box:nth-child(3) .podi-medalla-1 .podi-placa,
+.podium-box:nth-child(4) .podi-medalla-1 .podi-placa {
     border-color: #a8cfe0;
     background-image: linear-gradient(180deg, #ffffff 0%, #f0faff 45%, #cfe9f5 100%);
 }
 
-.podium-box:nth-child(3) .podi-lloc-1 .podi-xifra,
-.podium-box:nth-child(4) .podi-lloc-1 .podi-xifra {
+.podium-box:nth-child(3) .podi-medalla-1 .podi-xifra,
+.podium-box:nth-child(4) .podi-medalla-1 .podi-xifra {
     color: $blau-podi-fosc;
 }
 
@@ -95,8 +95,13 @@
     box-shadow: 0 3px 0 rgba(0, 0, 0, 0.25);
 }
 
-/* Ordre real de podi (2n | 1r | 3r) sense tocar l'ordre del DOM,
-   que es queda per classificació */
+/* Dues classes per columna, que aquí no volen dir el mateix:
+     .podi-lloc-N    -> quin lloc ocupa a la graella (1r, 2n, 3r de la llista)
+     .podi-medalla-N -> quin bloc li toca (or, plata, bronze)
+   Normalment coincideixen, però quan dos dies empaten comparteixen medalla
+   sense moure's de lloc, i llavors es veuen dos ors o dos argents seguits.
+   L'ordre real del podi (2n | 1r | 3r) va pel lloc, no per la medalla: així
+   el més ben classificat es queda al mig encara que hi hagi empat. */
 .podi-lloc-1 { order: 2; }
 .podi-lloc-2 { order: 1; }
 .podi-lloc-3 { order: 3; }
@@ -171,19 +176,19 @@
 }
 
 /* les alçades són el que dibuixa el podi; el color va al fons de sota el reflex */
-.podi-lloc-1 .podi-bloc {
+.podi-medalla-1 .podi-bloc {
     height: 66px;
     background-color: $or-podi;
     border-color: #e8b800;
 }
 
-.podi-lloc-2 .podi-bloc {
+.podi-medalla-2 .podi-bloc {
     height: 46px;
     background-color: $plata-podi;
     border-color: #bdbdbd;
 }
 
-.podi-lloc-3 .podi-bloc {
+.podi-medalla-3 .podi-bloc {
     height: 31px;
     background-color: $bronze-podi;
     border-color: #b06f2c;
@@ -200,12 +205,12 @@
         0 1px 0 rgba(255, 255, 255, 0.75);
 }
 
-.podi-lloc-2 .podi-numero { font-size: 20px; }
-.podi-lloc-3 .podi-numero { font-size: 16px; }
+.podi-medalla-2 .podi-numero { font-size: 20px; }
+.podi-medalla-3 .podi-numero { font-size: 16px; }
 
 /* Un peixet al costat de l'1. Als podis de "més" hi neda el de sempre;
    als de "menys", el que ja fa de logo del mode sobri, que és mort. */
-.podi-lloc-1 .podi-numero::after {
+.podi-medalla-1 .podi-numero::after {
     content: '';
     display: inline-block;
     width: 22px;
@@ -218,18 +223,18 @@
     background-position: center;
 }
 
-.podium-box:nth-child(3) .podi-lloc-1 .podi-numero::after,
-.podium-box:nth-child(4) .podi-lloc-1 .podi-numero::after {
+.podium-box:nth-child(3) .podi-medalla-1 .podi-numero::after,
+.podium-box:nth-child(4) .podi-medalla-1 .podi-numero::after {
     background-image: url('../../assets/boringlogo.webp');
 }
 
 /* el primer lloc destaca amb la vora vermella de la marca */
-.podi-lloc-1 .podi-placa {
+.podi-medalla-1 .podi-placa {
     border-color: #f0a3a3;
     background-image: linear-gradient(180deg, #ffffff 0%, #fff2f2 45%, #f6d5d5 100%);
 }
 
-.podi-lloc-1 .podi-xifra {
+.podi-medalla-1 .podi-xifra {
     font-size: 18px;
     color: $vermell-principal;
 }
