@@ -137,6 +137,10 @@ function calcularSiEsNaufraga(fila) {
 //gestió de versions
 let VERSIONS_FITXERS = {};
 
+// Els resums de l'última vegada que el versions.json es va llegir bé. Fa un
+// parell de quilobytes: hi cap de sobres al localStorage.
+const CLAU_VERSIONS = 'rimadorVersions';
+
 async function carregarVersions() {
   try {
     const resposta = await fetch(`${ARREL}diccionaris/versions.json?t=${Date.now()}`);
@@ -151,10 +155,45 @@ async function carregarVersions() {
 
     VERSIONS_FITXERS = dades.columnes;
     console.log("Versions carregades correctament:", VERSIONS_FITXERS);
+
+    // Desats per a la pròxima visita que no tingui xarxa (vegeu el catch).
+    try {
+      localStorage.setItem(CLAU_VERSIONS, JSON.stringify(dades.columnes));
+    } catch (err) {
+      // Mode privat o disc ple: no és cap problema, només vol dir que la
+      // pròxima visita sense xarxa no tindrà de què estirar.
+    }
   } catch (err) {
-    // Sense versions de confiança no podem saber si el que tenim guardat
-    // encara val. Es deixa la llista buida: llavors cada columna es baixa
-    // del servidor i no se'n desa cap còpia (vegeu llegirFitxerAmbIndexedDB).
+    // Aquí hi arribem sense xarxa, però també si el servidor respon malament
+    // o el fitxer ve romput. En tots tres casos, els resums de l'última
+    // vegada valen més que no res:
+    //
+    // El que hi ha desat a IndexedDB s'hi va guardar amb AQUESTS resums. Si
+    // els donem per bons, cada columna es llegeix de la còpia local i el que
+    // se serveix és una generació sencera i coherent del diccionari —
+    // l'última que es va baixar bé—, encara que entretant se n'hagi publicat
+    // una de més nova. Quan torni la xarxa, el fetch de dalt se'n surt, els
+    // resums canvien i llavors només es rebaixa el que hagi canviat de debò.
+    //
+    // Abans això es deixava buit, i llavors llegirFitxerAmbIndexedDB no es
+    // fiava de cap còpia i les demanava totes al servidor: sense xarxa no en
+    // podia baixar ni una i la pàgina es quedava en blanc amb el diccionari
+    // sencer al disc sense fer-se servir.
+    try {
+      const desades = localStorage.getItem(CLAU_VERSIONS);
+      if (desades) {
+        VERSIONS_FITXERS = JSON.parse(desades);
+        console.warn("No s'ha pogut llegir el versions.json: es faran servir els resums de l'última vegada", err);
+        return;
+      }
+    } catch (err2) {
+      // El localStorage no s'hi pot llegir o el que hi havia no és JSON:
+      // es continua avall, com si no hi hagués hagut mai cap visita bona.
+    }
+
+    // Primera visita sense xarxa, o localStorage barrat: no hi ha res desat
+    // de què fiar-se. Es deixa la llista buida i cada columna es demana al
+    // servidor sense desar-ne còpia (vegeu llegirFitxerAmbIndexedDB).
     console.error("Error carregant versions.json: es baixarà tot el diccionari sense memòria cau", err);
     VERSIONS_FITXERS = {};
   }
