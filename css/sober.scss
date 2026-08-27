@@ -526,18 +526,18 @@
     color: var(--sober-text);
 }
 
-[data-theme="sober"] .podi-lloc-1 .podi-placa,
-[data-theme="sober"] .podium-box:nth-child(3) .podi-lloc-1 .podi-placa,
-[data-theme="sober"] .podium-box:nth-child(4) .podi-lloc-1 .podi-placa {
+[data-theme="sober"] .podi-medalla-1 .podi-placa,
+[data-theme="sober"] .podium-box:nth-child(3) .podi-medalla-1 .podi-placa,
+[data-theme="sober"] .podium-box:nth-child(4) .podi-medalla-1 .podi-placa {
     background-image: none;
     background-color: $blanc;
     border-color: var(--sober-text);
     border-width: 2px;
 }
 
-[data-theme="sober"] .podi-lloc-1 .podi-xifra,
-[data-theme="sober"] .podium-box:nth-child(3) .podi-lloc-1 .podi-xifra,
-[data-theme="sober"] .podium-box:nth-child(4) .podi-lloc-1 .podi-xifra {
+[data-theme="sober"] .podi-medalla-1 .podi-xifra,
+[data-theme="sober"] .podium-box:nth-child(3) .podi-medalla-1 .podi-xifra,
+[data-theme="sober"] .podium-box:nth-child(4) .podi-medalla-1 .podi-xifra {
     color: var(--sober-text);
 }
 
@@ -554,10 +554,10 @@
 }
 
 /* al mode sobri el peixet taronja no hi pinta res: hi va el mort a tots dos */
-[data-theme="sober"] .podi-lloc-1 .podi-numero::after {
+[data-theme="sober"] .podi-medalla-1 .podi-numero::after {
     background-image: url("../../assets/boringlogo.webp");
 }
 
-[data-theme="sober"] .podi-lloc-1 .podi-bloc { background-color: #9a9a9a; }
-[data-theme="sober"] .podi-lloc-2 .podi-bloc { background-color: #c4c4c4; }
-[data-theme="sober"] .podi-lloc-3 .podi-bloc { background-color: #e2e2e2; }
+[data-theme="sober"] .podi-medalla-1 .podi-bloc { background-color: #9a9a9a; }
+[data-theme="sober"] .podi-medalla-2 .podi-bloc { background-color: #c4c4c4; }
+[data-theme="sober"] .podi-medalla-3 .podi-bloc { background-color: #e2e2e2; }
