@@ -9,21 +9,21 @@
 
 import {
     carregarVersions, carregarIndex, carregarFitxerDeRimes, respostesValides,
-} from './dades.js?v=dev';
-import { clauAleatoria, clauDelDia, triarParaula } from './objectius.js?v=dev';
-import { Partida, RESULTAT, formatarTemps } from './motor.js?v=dev';
-import * as ui from './ui.js?v=dev';
-import * as dialecte from './dialecte.js?v=dev';
+} from './dades.js?v=prova1788115329';
+import { clauAleatoria, clauDelDia, triarParaula } from './objectius.js?v=prova1788115329';
+import { Partida, RESULTAT, formatarTemps } from './motor.js?v=prova1788115329';
+import * as ui from './ui.js?v=prova1788115329';
+import * as dialecte from './dialecte.js?v=prova1788115329';
 import {
     avui, identificadorRecord, llegirRecord, desarRecord,
     resultatDiari, dificultatsJugades, desarResultatDiari,
     llegirTotsElsRecords, llegirSobrenom, desarSobrenom,
-} from './magatzem.js?v=dev';
-import { textPerCompartir, compartirResultat } from './compartir.js?v=dev';
+} from './magatzem.js?v=prova1788115329';
+import { textPerCompartir, compartirResultat } from './compartir.js?v=prova1788115329';
 import {
     validarSobrenom, enviarPuntuacio, estaConfigurat,
     carregarClassificacio,
-} from './classificacio.js?v=dev';
+} from './classificacio.js?v=prova1788115329';
 
 const SEGONS_DIARIA = 60;
 const NOM_DIFICULTAT = { facil: 'fàcil', dificil: 'difícil' };
