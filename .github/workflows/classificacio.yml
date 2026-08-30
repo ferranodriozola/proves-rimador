@@ -1,0 +1,43 @@
+name: Actualització automàtica de la classificació del joc
+
+# El rànquing del joc es fa en dues fases: el navegador envia cada puntuació a un
+# Google Apps Script que l'apunta al full de càlcul (això va sol), i després
+# joc/eines/compilar_classificacio.py llegeix el full publicat en CSV i n'escriu
+# joc/dades/classificacio.json, que és el que veu la gent. Aquesta segona fase
+# s'havia de fer a mà, i mentre no es feia, qui jugava no sortia enlloc. Això és
+# el que ho fa sol.
+
+on:
+  schedule:
+    - cron: '01 22 * * *'
+  workflow_dispatch:
+
+jobs:
+  actualitzar_classificacio:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout del repositori
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instal·lar dependències
+        run: pip install pandas
+
+      - name: Compilar la classificació
+        run: python joc/eines/compilar_classificacio.py
+
+      - name: Guardar els canvis al JSON (Commit & Push)
+        uses: ./.github/actions/comitejar
+        with:
+          missatge: 'Actualització automàtica: Classificació del joc actualitzada'
+          # El fitxer, dit pel seu nom i no pas "." : aquest workflow corre cada
+          # tres hores per l'horari, i es pot trobar el repositori amb canvis
+          # d'un altre workflow a mig fer. Només ha de sortir el rànquing.
+          fitxers: joc/dades/classificacio.json
