@@ -1,16 +1,28 @@
 /* El joc del Rimador.cat.
    L'aire es el mateix web dels anys 90 de la resta del Rimador.cat: fons rosa,
    plafons cians, vores gruixudes, tipografies de tota la vida i algun toc
-   cridaner. El cian continua sent el color propi del joc. Tot es mobil primer. */
+   cridaner. El cian continua sent el color propi del joc. Tot es mobil primer.
+
+   Es compila a part del full del lloc: en surt dist/css/joc.min.css i no entra
+   al dist/css/styles.min.css que es baixen les altres pagines (vegeu la tasca
+   styles-joc del gulpfile.js). Van separats perque el joc te regles damunt de
+   html, body, a i *, i el lloc tambe: en un sol full es trepitjarien. El que si
+   que comparteixen es d'on surten els colors de marca. */
+
+@use "../../css/variables" as *;
 
 :root {
-    --rosa: #FF91FF;
-    --rosa-fosc: #d975d9;
-    --cian: #00ffff;
+    /* Els quatre colors de la casa venen del css/_variables.scss, que es el
+       mateix que compila el full del lloc: aixi el rosa del joc no pot quedar-se
+       enrere el dia que canvii el del web. La resta d'aquest bloc si que son
+       del joc i nomes del joc. */
+    --rosa: #{$rosa-principal};
+    --cian: #{$cian-principal};
+    --vermell: #{$vermell-principal};
+    --groc: #{$groc-principal};
+
     --cian-plafo: #b8ffff;
     --cian-fosc: #007a85;
-    --vermell: #d30505;
-    --groc: #f6ff00;
 
     --negre: #101014;
     --text: #101014;
