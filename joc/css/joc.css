@@ -793,15 +793,6 @@ main {
     box-shadow: 1px 1px 0 rgba(0, 0, 0, .3);
 }
 
-/* La paraula que tocava aquell dia, a dalt del rànquing diari. */
-.diaria-paraula {
-    margin: 0 0 12px;
-    text-align: center;
-    font-family: var(--tipus-accent);
-    font-weight: bold;
-    font-size: 1.05rem;
-}
-
 .mini-titol--taula {
     margin: 14px 0 8px;
     font-size: 0.95rem;
