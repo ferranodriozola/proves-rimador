@@ -5,7 +5,8 @@ export const el = {};
 const NOMS = [
     'pantalla-inici', 'pantalla-config', 'pantalla-joc', 'pantalla-final',
     'pantalla-records', 'pantalla-classificacio',
-    'etiqueta-diaria', 'config-titol', 'config-avis', 'config-record',
+    'etiqueta-diaria', 'config-titol', 'config-avis', 'config-record', 'config-dialecte',
+    'tira-dialectes',
     'opcions-dificultat', 'opcions-temps', 'grup-temps', 'boto-comencar',
     'rellotge', 'punts', 'barra-temps', 'objectiu', 'objectiu-etiqueta',
     'formulari', 'camp', 'toast', 'trobades',
@@ -14,6 +15,7 @@ const NOMS = [
     'bloc-classificacio', 'camp-sobrenom', 'boto-enviar-record', 'estat-enviament',
     'records-buit', 'llista-records',
     'classificacio-selector', 'classificacio-estat', 'classificacio-llista', 'classificacio-data',
+    'classificacio-subtitol',
     'carregant', 'carregant-text',
 ];
 
@@ -83,6 +85,36 @@ export function grupOpcions(contenidor, atribut, alCanviar) {
             if (boto) boto.disabled = !actiu;
         },
     };
+}
+
+// ------------------------------------------------------ Tira de dialectes
+
+/**
+ * La tira per triar el dialecte, com la del cercador (vegeu el DIALECTES de
+ * js/components.js). La llista ve de dades/versions.json i ja arriba ordenada:
+ * aqui nomes es pinta tal com ve, sense saber quins dialectes hi ha ni com es
+ * diuen.
+ */
+export function pintarTiraDialectes(dialectes, actiu, alTriar) {
+    el.tiraDialectes.replaceChildren(
+        ...dialectes.map(({ codi, nom }) => {
+            const boto = document.createElement('button');
+            boto.type = 'button';
+            boto.className = 'dialecte';
+            boto.dataset.dialecte = codi;
+            boto.setAttribute('role', 'radio');
+            boto.setAttribute('aria-checked', String(codi === actiu));
+            boto.textContent = nom;
+            boto.addEventListener('click', () => alTriar(codi));
+            return boto;
+        })
+    );
+}
+
+export function marcarDialecte(codi) {
+    for (const boto of el.tiraDialectes.querySelectorAll('.dialecte')) {
+        boto.setAttribute('aria-checked', String(boto.dataset.dialecte === codi));
+    }
 }
 
 // ----------------------------------------------------------------- Partida
@@ -183,9 +215,23 @@ const NOM_MODE = { illimitat: 'Il·limitat', diaria: 'Paraula del dia' };
 const NOM_DIFICULTAT = { facil: 'Fàcil', dificil: 'Difícil' };
 const NOM_TEMPS = { 45: 'Llampec', 60: '1 minut', 90: 'Estàndard', 180: 'Lent' };
 
-export function titolModalitat({ mode, dificultat, segons }) {
+// Els noms dels dialectes els diu el versions.json (els escriu el generador a
+// partir del NOMS_DE_DIALECTE de generar_dades.py). Aqui nomes se'n guarda una
+// copia per poder titular els records sense haver d'anar a buscar-la cada cop.
+let nomsDeDialecte = {};
+
+export function recordarNomsDeDialecte(dialectes) {
+    nomsDeDialecte = Object.fromEntries(dialectes.map((d) => [d.codi, d.nom]));
+}
+
+export function nomDialecte(codi) {
+    return nomsDeDialecte[codi] || codi;
+}
+
+export function titolModalitat({ mode, dificultat, segons, dialecte }) {
     const parts = [NOM_MODE[mode] || mode, NOM_DIFICULTAT[dificultat] || dificultat];
     if (mode !== 'diaria') parts.push(NOM_TEMPS[segons] || `${segons}s`);
+    if (dialecte) parts.push(nomDialecte(dialecte));
     return parts.join(' · ');
 }
 
@@ -267,6 +313,79 @@ export function estatClassificacio(text) {
     el.classificacioEstat.textContent = text || '';
     el.classificacioEstat.hidden = !text;
     if (text) el.classificacioLlista.replaceChildren();
+}
+
+export function subtitolClassificacio(text) {
+    el.classificacioSubtitol.textContent = text;
+}
+
+/** Quina pestanya de la classificació es veu: 'modalitats' o 'diaria'. */
+export function marcarPestanya(quina) {
+    for (const boto of document.querySelectorAll('.pestanya')) {
+        boto.setAttribute('aria-selected', String(boto.dataset.taula === quina));
+    }
+}
+
+// -------------------------------------------------- Classificació del dia
+
+const MESOS = ['gen.', 'febr.', 'març', 'abr.', 'maig', 'juny',
+               'jul.', 'ag.', 'set.', 'oct.', 'nov.', 'des.'];
+
+/** "2026-08-26" -> "26 d'ag." — prou curt per cabre en una pastilla. */
+export function diaCurt(dia) {
+    const [, mes, numero] = dia.split('-');
+    const nom = MESOS[Number(mes) - 1] || mes;
+    const de = 'aeiou'.includes(nom[0]) ? "d'" : 'de ';
+    return `${Number(numero)} ${de}${nom}`;
+}
+
+export function pintarSelectorDies(dies, actiu, alTriar) {
+    el.classificacioSelector.replaceChildren(
+        ...dies.map((dia) => {
+            const boto = document.createElement('button');
+            boto.type = 'button';
+            boto.className = 'pastilla';
+            boto.textContent = diaCurt(dia);
+            boto.setAttribute('aria-pressed', String(dia === actiu));
+            boto.addEventListener('click', () => alTriar(dia));
+            return boto;
+        })
+    );
+}
+
+/**
+ * El rànquing d'un dia: la paraula que tocava i una taula per dificultat.
+ * Ve del bloc "diaria" de dades/classificacio.json, que munta
+ * joc/eines/compilar_classificacio.py.
+ */
+export function pintarDiaria(bloc, elMeuSobrenom) {
+    const trossos = [];
+
+    if (bloc.paraula) {
+        const capcalera = document.createElement('p');
+        capcalera.className = 'diaria-paraula';
+        capcalera.textContent = `La paraula era «${bloc.paraula}»`;
+        trossos.push(capcalera);
+    }
+
+    for (const dificultat of ['facil', 'dificil']) {
+        const entrades = bloc[dificultat];
+        if (!entrades || entrades.length === 0) continue;
+
+        const titol = document.createElement('h3');
+        titol.className = 'mini-titol mini-titol--taula';
+        titol.textContent = NOM_DIFICULTAT[dificultat];
+        trossos.push(titol);
+
+        trossos.push(...entrades.map((e, i) => filaRecord({
+            posicio: i + 1,
+            etiqueta: e.sobrenom,
+            punts: e.punts,
+            destacada: elMeuSobrenom && e.sobrenom.toLowerCase() === elMeuSobrenom.toLowerCase(),
+        })));
+    }
+
+    el.classificacioLlista.replaceChildren(...trossos);
 }
 
 // ------------------------------------------------ Enviament a la classificació
