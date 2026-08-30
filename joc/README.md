@@ -306,7 +306,7 @@ joc/
     normalitza.js       accents fora; ha de coincidir amb el generador
     ui.js               tot el que toca el DOM
     magatzem.js         localStorage: rècords, paraula del dia i sobrenom
-    compartir.js        graella d'emojis i porta-retalls
+    compartir.js        graella de quadrets i porta-retalls
     classificacio.js    enviar/llegir el rànquing global
   dades/                generat pels scripts d'eines/
     versions.json         quins dialectes hi ha i el resum de cada fitxer
