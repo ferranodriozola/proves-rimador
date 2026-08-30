@@ -706,11 +706,36 @@ compilador, perquè el JSON continua sent una llista completa del que hi ha.
 
 Com que la pestanya ja diu "Il·limitat", el joc treu aquest tros del títol de
 cada pastilla (`Il·limitat · Difícil · Llampec` → `Difícil · Llampec`): repetir-ho
-només faria més estret el que de debò les distingeix.
+només faria més estret el que de debò les distingeix. Els segons sí que hi són,
+en una pastilleta de color al final (`45s` groc, `90s` verd, `180s` rosa): el nom
+del rellotge no diu quant dura, i el color permet trobar-la sense llegir-la. El
+color mai no és l'única pista —hi ha el nom i el número escrits—, o sigui que qui
+no el vegi no s'hi perd res.
+
+Les sis pastilles van **partides en dues files, una per dificultat i amb una
+ratlla al mig**, i dins de cada fila del rellotge més ràpid al més lent. Per
+ordre de clau sortien barrejades i amb els rellotges desordenats (`180`, `45`,
+`90`, que és l'ordre de la cadena i no vol dir res), i totes sis seguides no es
+veia on s'acabava una dificultat i on començava l'altra. Ara la graella queda com
+la de la pantalla de configuració.
 
 A la pestanya de la paraula del dia hi ha **una sola tria de dificultat** que
 mana sobre les dues taules. Són la mateixa pregunta feta dues vegades i poder-les
 descordar no serviria de res. Per defecte agafa la dificultat que jugues.
+
+Aquesta tria també **decideix quins dies es poden triar**: només hi surten els
+dies que tenen algú en aquella dificultat. La paraula del dia es juga molt més en
+difícil que en fàcil, i amb tots els dies a totes dues dificultats la meitat de
+les pastilles obrien una taula buida. Si una dificultat no té cap dia, no hi ha
+pastilles de dia i es diu amb un avís, amb la tria de dificultat encara a lloc
+per poder tornar enrere.
+
+Els dos rànquings del dia van **cadascun a la seva bombolla**, amb el rosa del
+fons entremig i una capçalera que diu què s'hi mira (`Rànquing del 26 d'ag. ·
+Difícil`, `Els millors de sempre · Difícil`). Dins d'una sola caixa i separats
+només per un titolet semblaven una llista de vint noms. La taula d'il·limitat és
+la mateixa bombolla, amb la modalitat triada a la capçalera: quan has baixat a
+mirar la llista, el selector ja no es veu.
 
 El `diaria_millors` es calcula **abans** de retallar als últims `DIES_DIARIA`
 dies: és justament la taula que no ha de dependre de quin dia estiguis mirant.
