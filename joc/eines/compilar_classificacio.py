@@ -10,10 +10,13 @@
 # puntuacio.
 #
 # QUE EN SURT:
-#   modalitats  ranquing de cada mode|dificultat|segons
-#   diaria      ranquing de cada dia i dificultat, amb la paraula que tocava. El
-#               joc el fa servir a la pestanya "Paraula del dia" de la pantalla
-#               de classificacio (vegeu pintarDiaria a joc/js/ui.js).
+#   modalitats      ranquing de cada mode|dificultat|segons
+#   diaria          ranquing de cada dia i dificultat, amb la paraula que tocava
+#   diaria_millors  els TOP_DIARIA millors de sempre a la paraula del dia, per
+#                   dificultat: la taula que no depen de quin dia miris
+#
+# Els tres es veuen al joc, a les dues pestanyes de la pantalla de classificacio
+# (vegeu pintarDiaria i pintarModalitats a joc/js/).
 #
 # EL DIALECTE NO PARTEIX EL RANQUING. Es guarda al full i viatja amb cada
 # entrada, i el joc el posa entre parentesis a cada fila, pero no fa taules a
@@ -53,6 +56,10 @@ URL_FULL_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRwuOIIAtFLHbvQp
 
 # Quantes posicions guardem per modalitat.
 TOP_N = 20
+
+# I quantes al ranquing de sempre de la paraula del dia, que va a sota del dia
+# que estiguis mirant.
+TOP_DIARIA = 10
 
 # Quants dies enrere de paraula del dia es publiquen. Amb 30 la pantalla te un
 # mes per mirar i el JSON no creix sense aturador.
@@ -118,12 +125,12 @@ def titol_modalitat(mode, dificultat, segons):
     return " · ".join(parts)
 
 
-def top_entrades(df):
-    """De cada sobrenom, la millor puntuacio; despres, les TOP_N millors."""
+def top_entrades(df, quantes=TOP_N):
+    """De cada sobrenom, la millor puntuacio; despres, les millors de totes."""
     millor = (
         df.sort_values("Punts", ascending=False)
         .drop_duplicates(subset=["clau_persona"], keep="first")
-        .head(TOP_N)
+        .head(quantes)
     )
     return [
         {
@@ -147,6 +154,7 @@ def classificacio_buida():
         "actualitzacio": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
         "modalitats": {},
         "diaria": {},
+        "diaria_millors": {},
     }
 
 
@@ -225,6 +233,11 @@ def main():
     # entrada, al costat del dialecte, i no pas a la capcalera del dia.
     diaria = df[(df["Mode"] == "diaria") & df["dia"].notna()].copy()
     if not diaria.empty:
+        # Els millors de SEMPRE es calculen abans de retallar els dies: es
+        # justament la taula que no ha de dependre de quin dia estiguis mirant.
+        for dificultat, grup in diaria.groupby("Dificultat"):
+            resultat["diaria_millors"][dificultat] = top_entrades(grup, TOP_DIARIA)
+
         dies = sorted(diaria["dia"].unique(), reverse=True)[:DIES_DIARIA]
         diaria = diaria[diaria["dia"].isin(dies)]
         for dia, grup_dia in diaria.groupby("dia"):
@@ -234,9 +247,10 @@ def main():
 
     desar(resultat)
     n = sum(len(m["top"]) for m in resultat["modalitats"].values())
+    millors = sum(len(v) for v in resultat["diaria_millors"].values())
     print(f"Fet: {len(resultat['modalitats'])} modalitats, {n} puntuacions publicades, "
-          f"{len(resultat['diaria'])} dies de paraula del dia "
-          f"(hora: {datetime.now().strftime('%H:%M:%S')}).")
+          f"{len(resultat['diaria'])} dies de paraula del dia, {millors} als millors "
+          f"de sempre (hora: {datetime.now().strftime('%H:%M:%S')}).")
 
 
 def desar(dades):
