@@ -7,6 +7,9 @@ l'arrel, o sigui que res d'aquesta carpeta no entra al paquet general). L'estèt
 això sí, és la mateixa de sempre: fons rosa, plafons cians, vores gruixudes i
 tipografies de tota la vida.
 
+Si el que vols és entendre com funciona per dins, mira
+[FUNCIONAMENT.md](FUNCIONAMENT.md).
+
 ## Com es juga
 
 Et donem una paraula i has d'escriure-hi totes les rimes que puguis abans que
@@ -14,8 +17,8 @@ s'acabi el temps.
 
 - **Fàcil** valida contra rimes **assonants** (només les vocals a partir de la
   tònica). **Difícil**, contra rimes **consonants**.
-- **Paraula del dia**: la mateixa paraula per a tothom, 1 minut, un intent per
-  dificultat i dia.
+- **Paraula del dia**: la mateixa paraula per a tothom qui juga en aquell
+  dialecte, 1 minut, un intent per dificultat i dia.
 - **Il·limitat**: paraula nova cada partida i tres rellotges (45 s, 1 min 30 s,
   3 min).
 
@@ -27,27 +30,62 @@ formes verbals conjugades), però els verbs sí que valen com a resposta. Això 
 decideix quan es generen les dades, no en temps d'execució.
 
 Des del menú pots veure **Els meus rècords** (les teves millors puntuacions,
-desades en aquest navegador) i la **Classificació** (les de tothom).
+desades en aquest navegador) i la **Classificació** (les de tothom), que té una
+pestanya per modalitats i una altra per a la paraula de cada dia.
+
+## Els dialectes
+
+S'hi juga en els **quatre dialectes** que serveix el cercador, i es tria amb la
+tira de la pantalla d'inici. Comparteix la memòria amb el cercador
+(`localStorage['rimadorDialecte']`) i entén el mateix paràmetre a l'adreça
+(`rimador.cat/joc/?d=va`), o sigui que qui hagi triat el valencià al cercador es
+troba el joc en valencià sense haver-ho de tornar a dir.
+
+El dialecte no és cap capa per sobre: **canvia les rimes de debò**, perquè cada
+dialecte reparteix les paraules en grups de rima diferents. Per això:
+
+- **Cada dialecte té la seva paraula del dia.** No pot ser la mateixa: la
+  paraula surt de l'índex de claus de rima, i cada dialecte té el seu. La llavor
+  du el dialecte a dins perquè això quedi dit i no passi de retruc.
+- **Els rècords van per dialecte**, com van per rellotge i dificultat.
+- **La classificació també.** La pantalla ensenya el rànquing del dialecte que
+  tens triat, i el títol de cada modalitat el diu.
+
+Els codis no es declaren enlloc del joc: surten de `dades/versions.json`, que els
+escriu el generador a partir de les carpetes de `dialectes_col/`. Els noms que es
+veuen a la tira són el `NOMS_DE_DIALECTE` de `eines/generar_dades.py` i han de
+coincidir amb el `DIALECTES` de `js/components.js`, que és el que pinta la tira
+del cercador.
 
 ## Per què les dades són com són
 
-El diccionari sencer (`diccionaris/separat/col_*.txt`) fa 46 MB i 619.785
-entrades. La web principal se'l carrega tot a IndexedDB, però un joc no es pot
-permetre esperar això. La sortida d'aquí es basa en dues observacions:
+El diccionari sencer fa 46 MB i 619.783 entrades. La web principal se'l carrega
+tot a IndexedDB, però un joc no es pot permetre esperar això. La sortida d'aquí
+es basa en dues observacions:
 
 1. **La clau de rima consonant sempre implica la mateixa clau assonant**
-   (comprovat: 0 conflictes en tot el diccionari). O sigui que un sol fitxer per
-   grup assonant serveix les dues dificultats: en fàcil valen totes les paraules
-   del fitxer i en difícil només les de la secció de la paraula objectiu.
-   **Una sola descàrrega per partida.**
+   (el generador ho comprova a cada passada i s'atura si algun dia deixa de ser
+   cert). O sigui que un sol fitxer per grup assonant serveix les dues
+   dificultats: en fàcil valen totes les paraules del fitxer i en difícil només
+   les de la secció de la paraula objectiu. **Una sola descàrrega per partida.**
 2. **No cal cap llista de paraules objectiu.** Poden ser objectiu totes les
    paraules d'una clau consonant amb més de 50 rimes, i això ja se sap només
    amb l'índex. La tria és proporcional a la mida de cada grup, de manera que
    totes les paraules objectiu són igual de probables.
 
-Resultat: `dades/index.json` fa uns 20 KB i el fitxer de rimes d'una partida en
-fa 70 KB de mediana (el més gros, 1,5 MB, que GitHub Pages serveix comprimit a
-uns 300 KB). Amb 599 claus jugables surten 463.929 paraules objectiu possibles.
+Resultat, per partida: el `versions.json` (7 KB), l'`index.json` del dialecte
+(7 KB) i un fitxer de rimes (34 KB de mediana; el més gros, 1,5 MB, que GitHub
+Pages serveix comprimit).
+
+| dialecte | claus jugables | paraules objectiu | fitxers | mediana | el més gros |
+|---|---|---|---|---|---|
+| Central (`ca`) | 500 | 123.429 | 38 | 63 KB | 1,5 MB |
+| Nord-occidental (`nw`) | 484 | 122.673 | 52 | 28 KB | 1,3 MB |
+| Valencià (`va`) | 488 | 122.461 | 51 | 28 KB | 1,3 MB |
+| Balear (`ba`) | 496 | 124.563 | 42 | 60 KB | 1,5 MB |
+
+Al repositori, `joc/dades/` fa **30 MB** en total (els quatre dialectes). Es
+publica sencer a Pages, però cada partida només en baixa un fitxer.
 
 ### Format dels fitxers de rimes
 
@@ -67,24 +105,54 @@ probables).
 
 ## Regenerar les dades
 
-Cal fer-ho a mà quan canviï el diccionari:
+Cal fer-ho a mà quan canviï el diccionari o la transcripció d'algun dialecte:
 
 ```bash
-python joc/eines/generar_dades.py
+python joc/eines/generar_dades.py            # tots els dialectes
+python joc/eines/generar_dades.py ca va      # només aquests
 ```
 
-Llegeix `diccionaris/separat/col_*.txt` i reescriu `joc/dades/`. Els paràmetres
-(rimes mínimes, si els noms propis compten, si els verbs conjugats poden ser
-objectiu) són constants a dalt de tot de l'script.
+Els camins no els sap l'script: surten de `diccionaris/python/camins.py`, que és
+el vocabulari compartit de tots els scripts del repositori. Llegeix la `col_0` i
+la `col_2` de `diccionaris/separat/` i la rima de `dialectes_col/<codi>/`, i
+reescriu `joc/dades/`. Triga uns 40 segons per als quatre dialectes.
 
-Els objectius són tots els mots amb prou rimes que **no siguin verbs** (els verbs
-continuen valent com a resposta). Surten 500 claus jugables i ~123.000 paraules
-objectiu possibles. Les constants de dalt de l'script permeten afinar-ho
-(`EXCLOURE_VERBS_OBJECTIU`, `EXCLOURE_PLURALS_OBJECTIU`, `MIN_RIMES`).
+Els paràmetres (rimes mínimes, si els verbs conjugats poden ser objectiu, com es
+diu cada dialecte) són constants a dalt de tot de l'script. Els fitxers que no
+canvien no es reescriuen, o sigui que una passada sense canvis al diccionari no
+deixa cap diff.
 
 **Important:** si es regeneren les dades, la paraula del dia d'aquell dia pot
-canviar per a qui encara no l'hagi jugada, perquè la tria depèn de l'ordre de
-l'índex. Val més fer-ho de nit.
+canviar per a qui encara no l'hagi jugada, perquè la tria depèn de l'ordre i dels
+pesos de l'índex. Val més fer-ho de nit.
+
+## La gestió de versions
+
+És **la mateixa que la del diccionari**, i val tant per a les dades com per al
+codi.
+
+**Les dades** van amb resum de contingut. `generar_dades.py` escriu
+`dades/versions.json` amb un sha256 escurçat de cada fitxer, igual que fa
+`diccionaris/python/versions.py` amb les columnes. El joc es baixa el
+`versions.json` sense memòria cau (`?t=`) i tota la resta amb `?v=<resum>`, o
+sigui que cada fitxer es torna a baixar exactament quan ha canviat i mai més.
+Si el `versions.json` no es pot llegir, es fan servir els resums de l'última
+vegada (desats al `localStorage`), que és el mateix rescat que fa el
+`carregarVersions` de `js/script.js`.
+
+A diferència del `versions.json` del diccionari, aquí les claus són **camins** i
+no noms de fitxer sols: allà el navegador indexa la memòria cau pel nom
+(`rutaFitxer.split("/").pop()`) i cada fitxer és únic, però aquí el
+`ca/rimes/0.txt` i el `va/rimes/0.txt` es dirien igual.
+
+**El codi** va amb el `?v=` de sempre, el que escriu el `deploy.yml` amb els set
+primers caràcters del commit. Ara `joc/` hi entra com l'arrel: tocar
+`joc/js/*.js` o `joc/css/*.css` dispara el refresc, i el `sed` no escriu només
+als HTML sinó també **a les importacions entre mòduls** (`from './ui.js?v=...'`).
+Sense això, refrescar `principal.js` deixava els altres vuit mòduls a la memòria
+cau del navegador, perquè una importació no hereta el `?v=` de l'etiqueta
+`<script>` que va carregar el primer. El `?v=dev` que hi ha al repositori és el
+valor de treball: el desplegament el substitueix.
 
 ## Classificació (leaderboard)
 
@@ -95,25 +163,42 @@ Python llegeix el full publicat en CSV i en fa el rànquing que es veu al joc.
 Fitxers:
 
 ```
-joc/js/classificacio.js              enviar la puntuació + llegir el rànquing
+joc/js/classificacio.js                  enviar la puntuació + llegir el rànquing
 joc/eines/apps_script_classificacio.gs   codi per enganxar a Google Apps Script
-joc/eines/compilar_classificacio.py  full CSV -> joc/dades/classificacio.json
-joc/dades/classificacio.json         el rànquing que mostra el joc
+joc/eines/compilar_classificacio.py      full CSV -> joc/dades/classificacio.json
+joc/dades/classificacio.json             el rànquing que mostra el joc
 ```
 
 ### Posar-la en marxa (un sol cop)
 
 1. Crea un full de càlcul a Google Sheets amb aquestes capçaleres a la fila 1:
-   `Data | Sobrenom | Mode | Dificultat | Segons | Punts | Paraula | Usuari`.
+
+   `Data | DataPartida | Sobrenom | Mode | Dificultat | Segons | Dialecte | Punts | Paraula | Usuari`
+
+   Hi ha **dues dates** a posta: la `Data` és quan va arribar l'enviament (la
+   posa Google) i la `DataPartida` de quin dia era la partida (la diu el
+   navegador). Qui juga la paraula del dia a les 23.55 i l'envia a les 00.05 ha
+   jugat la d'ahir, i el rànquing per dia ha d'agrupar per la segona.
 2. Extensions → Apps Script → enganxa-hi `eines/apps_script_classificacio.gs`.
    Desplega'l com a aplicació web (accés: qualsevol) i copia l'URL `/exec`.
 3. Posa aquell URL a `URL_ENVIAMENT` de `joc/js/classificacio.js`.
 4. Publica el full en CSV (Fitxer → Comparteix → Publica a la web → CSV) i posa
    aquell URL a `URL_FULL_CSV` de `joc/eines/compilar_classificacio.py`.
 
-Mentre `URL_ENVIAMENT` estigui buit, el joc ensenya la pantalla de classificació
-però diu que encara no està activada, i el botó d'enviar contesta amb un
-"Desat!" local sense trencar res.
+> Si el full ve d'abans que el joc tingués dialectes, afegeix-hi les columnes
+> `DataPartida` i `Dialecte` a les posicions de dalt. El compilador no perd les
+> files velles: les que no les duguin es donen per centrals i pel dia que van
+> arribar.
+
+Les puntuacions **s'envien des d'on sigui**: de `rimador.cat`, del repositori de
+proves i de `localhost`. El registre de cerques de la web no ho fa (vegeu
+`ES_WEB_OFICIAL` a `js/script.js`, que només deixa passar els dos dominis de
+debò), però aquí és a posta: una classificació que no deixa enviar res mentre la
+proves no es pot provar.
+
+El preu és que les partides de prova van al full de debò. Qui filtra de veritat és
+el compilador: si un dia hi ha soroll, s'esborra la fila del full o s'afina allà,
+que és on es pot fer sense deixar el joc coix mentre s'hi treballa.
 
 ### Refrescar el rànquing
 
@@ -126,6 +211,11 @@ persona i modalitat, i reescriu `joc/dades/classificacio.json`. Necessita
 `pandas` (`pip install pandas`), igual que `stats/stats.py`. Es pot programar al
 mateix estil que els altres workflows de `.github/workflows/`.
 
+En surten dues coses: el rànquing de cada **modalitat**
+(`mode|dificultat|segons|dialecte`) i el de cada **dia** de la paraula del dia,
+per dialecte i dificultat. Els dos es veuen al joc, cadascun a la seva pestanya
+de la pantalla de classificació.
+
 ## Estructura
 
 ```
@@ -134,7 +224,8 @@ joc/
   css/joc.css           estètica rosa/cian dels 90, disseny mòbil primer
   js/
     principal.js        lliga pantalles, motor i dades
-    dades.js            descàrrega i lectura dels fitxers de rimes
+    dades.js            versions, descàrrega i lectura dels fitxers de rimes
+    dialecte.js         quin dialecte es juga (comparteix memòria amb el cercador)
     objectius.js        tria de la paraula (a l'atzar o la del dia)
     motor.js            rellotge, validació i puntuació (no toca el DOM)
     normalitza.js       accents fora; ha de coincidir amb el generador
@@ -143,8 +234,12 @@ joc/
     compartir.js        graella d'emojis i porta-retalls
     classificacio.js    enviar/llegir el rànquing global
   dades/                generat pels scripts d'eines/
+    versions.json         quins dialectes hi ha i el resum de cada fitxer
+    <codi>/index.json     les claus jugables d'aquell dialecte
+    <codi>/rimes/N.txt    els grups de rimes
+    classificacio.json    el rànquing publicat
   eines/
-    generar_dades.py            diccionari -> index.json + rimes/*.txt
+    generar_dades.py            diccionari + rima -> dades/
     compilar_classificacio.py   full CSV -> classificacio.json
     apps_script_classificacio.gs  backend per a Google Apps Script
 ```
@@ -154,18 +249,20 @@ carrega tal com són.
 
 ## Coses que convé saber
 
-- **La paraula del dia** surt d'un generador pseudoaleatori sembrat amb la data
-  (mulberry32 + hash tipus cyrb53). No hi ha servidor: tothom calcula la mateixa
-  paraula a partir del mateix índex. La dificultat no entra a la llavor, o sigui
-  que la paraula és la mateixa tant si la jugues en fàcil com en difícil.
+- **La paraula del dia** surt d'un generador pseudoaleatori sembrat amb la data i
+  el dialecte (mulberry32 + hash tipus cyrb53). No hi ha servidor: tothom calcula
+  la mateixa paraula a partir del mateix índex. La dificultat no entra a la
+  llavor, o sigui que la paraula és la mateixa tant si la jugues en fàcil com en
+  difícil.
 - **El bloqueig diari** es guarda a `localStorage`, amb un sol dia desat cada
-  vegada: quan canvia la data, l'entrada vella se substitueix.
-- **Els rècords** van per mode, dificultat i rellotge (`illimitat|dificil|45`) i
-  es veuen a la pantalla "Els meus rècords".
+  vegada: quan canvia la data, l'entrada vella se substitueix. Va per dialecte,
+  perquè cada dialecte té la seva paraula.
+- **Els rècords** van per mode, dificultat, rellotge i dialecte
+  (`illimitat|dificil|45|va`) i es veuen a la pantalla "Els meus rècords". Els
+  que hi hagués d'abans dels dialectes es migren al central el primer cop que
+  s'obre el joc.
 - **La classificació** es pot enviar en qualsevol partida amb un sobrenom; la
-  validació de veritat (i la desduplicació) la fa el compilador de Python.
+  validació de veritat (les paraules vetades, la desduplicació) la fa el
+  compilador de Python.
 - Si el `localStorage` no hi és (navegació privada), el joc funciona igual;
   simplement no recorda res.
-- El *cache busting* del `deploy.yml` només vigila `css/*.css` i `js/*.js` de
-  l'arrel, o sigui que els `?v=` de `joc/index.html` s'han de pujar a mà quan es
-  toqui alguna cosa d'aquí (o afegir `joc/**` al `git diff` d'aquell workflow).
