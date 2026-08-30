@@ -39,9 +39,11 @@ function generador(sembra) {
     };
 }
 
-// Cada entrada de l'index es [clauConsonant, numeroDeFitxer, nombreObjectius].
+// Cada entrada de l'index es [clauConsonant, numeroDeGrup, nombreObjectius].
+// El grup es un grup assonant dins el fitxer del dialecte; on comenca i quant
+// ocupa ho diu index.dialectes[codi].grups (vegeu grupDeRimes a dades.js).
 const CLAU = 0;
-const FITXER = 1;
+const GRUP = 1;
 const OBJECTIUS = 2;
 
 // Suma acumulada dels objectius de cada grup, per fer la tria ponderada: com mes
@@ -75,7 +77,7 @@ function triarClau(index, aleatori) {
         else alt = mig;
     }
     const entrada = index.claus[baix];
-    return { clau: entrada[CLAU], fitxer: entrada[FITXER], objectius: entrada[OBJECTIUS] };
+    return { clau: entrada[CLAU], grup: entrada[GRUP], objectius: entrada[OBJECTIUS] };
 }
 
 /** Una clau a l'atzar, per al mode il·limitat. */
@@ -104,10 +106,10 @@ export function clauDelDia(index, dataISO, dialecte) {
  * La paraula objectiu concreta dins d'una seccio. Torna { normalitzada, mostrar }.
  * Nomes tria d'entre les paraules marcades com a objectiu (no verbs). La llista
  * ve ordenada des del generador, o sigui que amb la mateixa llavor i el mateix
- * fitxer surt sempre la mateixa paraula.
+ * grup surt sempre la mateixa paraula.
  */
-export function triarParaula(fitxer, clau, aleatori = Math.random) {
-    const seccio = fitxer.seccions.get(clau);
+export function triarParaula(grup, clau, aleatori = Math.random) {
+    const seccio = grup.seccions.get(clau);
     if (!seccio || seccio.objectius.length === 0) {
         throw new Error(`Seccio sense objectius: "${clau}"`);
     }

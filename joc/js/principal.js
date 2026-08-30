@@ -8,7 +8,8 @@
 // es barrejaven versions.
 
 import {
-    carregarVersions, carregarIndex, carregarFitxerDeRimes, respostesValides,
+    carregarVersions, carregarIndex, indexDe, carregarDialecte,
+    grupDeRimes, respostesValides, escoltarProgres,
 } from './dades.js?v=dev';
 import { clauAleatoria, clauDelDia, triarParaula } from './objectius.js?v=dev';
 import { Partida, RESULTAT, formatarTemps } from './motor.js?v=dev';
@@ -105,7 +106,20 @@ async function arrencar() {
     ui.pintarTiraDialectes(dialectes, estat.dialecte, triarDialecte);
 
     refrescarInici();
-    carregarIndex(estat.dialecte).catch(() => {});
+    precarregar(estat.dialecte);
+}
+
+/**
+ * L'índex i el fitxer del dialecte, demanats sense esperar-los.
+ *
+ * El fitxer fa 1,9 MB comprimits i és el que abans es baixava per trossos. Es
+ * comença ara, mentre l'usuari llegeix el menú i tria mode i rellotge, perquè
+ * quan premi "Comença" ja hi sigui. Si encara no hi és, la partida l'esperarà
+ * igualment: carregarDialecte guarda la promesa i no en fa dues descàrregues.
+ */
+function precarregar(codi) {
+    carregarIndex().catch(() => {});
+    carregarDialecte(codi).catch(() => {});
 }
 
 // ------------------------------------------------------------------ Dialecte
@@ -123,8 +137,8 @@ function triarDialecte(codi) {
     // Cada dialecte té la seva paraula del dia i els seus rècords, o sigui que
     // tot el que la pantalla diu d'això s'ha de tornar a mirar.
     refrescarInici();
-    // I l'índex del dialecte nou, a punt per quan comenci la partida.
-    carregarIndex(codi).catch(() => {});
+    // I el fitxer del dialecte nou, a punt per quan comenci la partida.
+    precarregar(codi);
 }
 
 // ------------------------------------------------------------------ Pantalles
@@ -363,11 +377,34 @@ function refrescarConfig() {
 
 // -------------------------------------------------------------------- Partida
 
+// Quant esperem abans d'ensenyar el loader. Amb el fitxer del dialecte ja
+// baixat, preparar una partida són 90 ms: ensenyar-lo de seguida seria una
+// fuetada de pantalla que no informa de res. Si passa d'això, és que hi ha
+// alguna cosa baixant i llavors sí que s'ha de veure.
+const ESPERA_ABANS_DEL_LOADER = 150;
+
 async function comencarPartida() {
     if (estat.mode === 'diaria'
         && resultatDiari(estat.data, estat.dialecte, estat.dificultat)) return;
 
-    ui.mostrarCarregant(true, 'Preparant la partida…');
+    // Enganxar-se a la descàrrega que ja hi hagi en marxa. La precàrrega de
+    // l'arrencada l'ha començada fa estona, o sigui que aquí normalment només
+    // en recollim el final.
+    let progres = { rebut: 0, total: 0 };
+    let visible = false;
+    const deixarEscoltar = escoltarProgres(estat.dialecte, (estatDescarrega) => {
+        progres = estatDescarrega;
+        if (visible) ui.progresCarregant(progres);
+    });
+
+    // El loader no s'ensenya de cop: es demana, i si la partida es prepara
+    // abans no arriba a sortir.
+    const temporitzador = setTimeout(() => {
+        visible = true;
+        ui.mostrarCarregant(true, 'Preparant la partida…');
+        ui.progresCarregant(progres);
+    }, ESPERA_ABANS_DEL_LOADER);
+
     try {
         const { objectiu, respostes } = await prepararParaula();
 
@@ -375,6 +412,7 @@ async function comencarPartida() {
         ui.pintarObjectiu(objectiu.mostrar, estat.dificultat);
         ui.actualitzarPunts(0);
         ui.mostrarPantalla('joc');
+        clearTimeout(temporitzador);
         ui.mostrarCarregant(false);
 
         estat.partida = new Partida({
@@ -388,23 +426,26 @@ async function comencarPartida() {
         ui.el.camp.focus();
     } catch (error) {
         console.error(error);
+        clearTimeout(temporitzador);
         ui.mostrarCarregant(false);
         ui.el.configAvis.textContent = 'No s\'han pogut carregar les rimes. Comprova la connexió i torna-ho a provar.';
         ui.el.configAvis.hidden = false;
         ui.mostrarPantalla('config');
+    } finally {
+        deixarEscoltar();
     }
 }
 
 async function prepararParaula() {
-    const index = await carregarIndex(estat.dialecte);
+    const index = indexDe(await carregarIndex(), estat.dialecte);
     const esDiaria = estat.mode === 'diaria';
     const seleccio = esDiaria
         ? clauDelDia(index, estat.data, estat.dialecte)
         : clauAleatoria(index);
 
-    const fitxer = await carregarFitxerDeRimes(estat.dialecte, seleccio.fitxer);
-    const objectiu = triarParaula(fitxer, seleccio.clau, seleccio.aleatori);
-    const respostes = respostesValides(fitxer, seleccio.clau, estat.dificultat);
+    const grup = await grupDeRimes(estat.dialecte, seleccio.grup);
+    const objectiu = triarParaula(grup, seleccio.clau, seleccio.aleatori);
+    const respostes = respostesValides(grup, seleccio.clau, estat.dificultat);
 
     return { objectiu, respostes };
 }

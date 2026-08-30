@@ -16,7 +16,7 @@ const NOMS = [
     'records-buit', 'llista-records',
     'classificacio-selector', 'classificacio-estat', 'classificacio-llista', 'classificacio-data',
     'classificacio-subtitol', 'classificacio-dificultat',
-    'carregant', 'carregant-text',
+    'carregant', 'carregant-text', 'carregant-barra', 'carregant-progres', 'carregant-nota',
 ];
 
 export function preparar() {
@@ -43,6 +43,33 @@ export function mostrarPantalla(nom) {
 export function mostrarCarregant(visible, text) {
     if (text) el.carregantText.textContent = text;
     el.carregant.hidden = !visible;
+    if (!visible) {
+        el.carregantBarra.hidden = true;
+        el.carregantNota.hidden = true;
+        el.carregantProgres.style.width = '0%';
+    }
+}
+
+/**
+ * Com va la descàrrega de les rimes.
+ *
+ * Només surt quan hi ha alguna cosa a baixar: si el fitxer del dialecte ja és a
+ * la memòria (perquè la precàrrega de l'arrencada ha tingut temps), la partida
+ * s'obre en 90 ms i això no s'arriba a veure.
+ */
+export function progresCarregant({ rebut, total }) {
+    if (!total || rebut >= total) {
+        el.carregantText.textContent = 'Preparant la partida…';
+        el.carregantBarra.hidden = true;
+        el.carregantNota.hidden = true;
+        return;
+    }
+
+    const percentatge = Math.max(0, Math.min(100, Math.round((rebut / total) * 100)));
+    el.carregantText.textContent = `Baixant les rimes… ${percentatge} %`;
+    el.carregantBarra.hidden = false;
+    el.carregantNota.hidden = false;
+    el.carregantProgres.style.width = `${percentatge}%`;
 }
 
 // Alguns botons (els de l'arc de Sant Martí) porten el text dins d'un <span>.

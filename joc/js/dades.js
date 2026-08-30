@@ -1,18 +1,23 @@
 // Carrega de les dades de rimes, i la gestio de versions que la governa.
 //
 // Les dades les genera joc/eines/generar_dades.py a partir del diccionari i de
-// la rima de cada dialecte. El diccionari sencer fa 46 MB i la web principal
-// se'l carrega tot; el joc no s'ho pot permetre, o sigui que descarrega nomes el
-// que fa falta, i nomes del dialecte que es juga:
+// la rima de cada dialecte. Son SIS fitxers:
 //
-//   dades/versions.json          -> quins dialectes hi ha i el resum de cada
-//                                   fitxer (uns 8 KB)
-//   dades/<codi>/index.json      -> les claus de rima jugables d'aquell dialecte
-//   dades/<codi>/rimes/N.txt     -> el grup de rimes de la partida (63 KB de mediana)
+//   dades/versions.json   quins dialectes hi ha i el resum de cada fitxer (500 B)
+//   dades/index.json      les claus jugables dels quatre dialectes i, de cada
+//                         grup assonant, on comenca i quant ocupa (33 KB)
+//   dades/<codi>.txt      totes les rimes d'un dialecte (7,6 MB; 1,9 comprimit)
 //
-// Com que la clau consonant sempre implica la mateixa clau assonant, un sol
-// fitxer serveix les dues dificultats: en facil valen totes les paraules del
-// fitxer i en dificil nomes les de la seccio de la paraula objectiu.
+// EL DIALECTE SENCER, UN SOL COP. Abans hi havia un fitxer per grup assonant
+// (183 en total) i cada partida es baixava el seu: 145 KB de mitjana, pero
+// cada partida en pagava un altre. Ara la primera partida paga 1,9 MB i les
+// segents no paguen res; a partir de tretze ja hi surt guanyant. I el
+// repositori passa de 189 fitxers a 6.
+//
+// PER NO INTERPRETAR 7,6 MB PER JUGAR AMB UN GRUP, el fitxer es guarda com a
+// ArrayBuffer i l'index diu de cada grup on comenca i quant ocupa, en BYTES.
+// Per partida nomes es descodifica i es parteix aquell tros, que es exactament
+// el que abans era un fitxer sencer.
 //
 // LA GESTIO DE VERSIONS es la mateixa que la del diccionari (vegeu
 // carregarVersions a js/script.js i diccionaris/python/versions.py): la versio
@@ -22,16 +27,46 @@
 
 const BASE = 'dades/';
 
-// Els resums de l'ultima vegada que el versions.json es va llegir be. Fa un
-// parell de quilobytes: hi cap de sobres al localStorage.
+// Els resums de l'ultima vegada que el versions.json es va llegir be. Fa mig
+// quilobyte: hi cap de sobres al localStorage.
 const CLAU_VERSIONS = 'rimador.joc.versions.v1';
 
-// cami relatiu a dades/ -> resum del contingut
+// nom del fitxer -> resum del contingut
 let VERSIONS = {};
 
 let versionsPromesa = null;
-const indexosEnMemoria = new Map();
-const fitxersEnMemoria = new Map();
+let indexPromesa = null;
+const dialectesEnMemoria = new Map();   // codi -> Promise<ArrayBuffer>
+const grupsEnMemoria = new Map();       // "codi/grup" -> { seccions }
+
+// Com va la descarrega de cada dialecte, per poder-ho ensenyar. La precarrega
+// comenca a l'arrencada i qui premi "Comenca" enmig s'hi ha de poder enganxar,
+// o sigui que l'estat es guarda i no nomes s'emet.
+const progressos = new Map();   // codi -> { rebut, total }
+const oients = new Map();       // codi -> Set<funcio>
+
+function avisarProgres(codi, estat) {
+    progressos.set(codi, estat);
+    const escoltants = oients.get(codi);
+    if (escoltants) for (const fn of escoltants) fn(estat);
+}
+
+/**
+ * Seguir la descarrega d'un dialecte. Avisa de seguida amb el que se sap ara
+ * (que pot ser res, si encara no ha comencat, o tot, si ja ha acabat) i despres
+ * a cada tros. Torna una funcio per deixar d'escoltar.
+ */
+export function escoltarProgres(codi, fn) {
+    if (!oients.has(codi)) oients.set(codi, new Set());
+    oients.get(codi).add(fn);
+    if (progressos.has(codi)) fn(progressos.get(codi));
+    return () => {
+        const escoltants = oients.get(codi);
+        if (escoltants) escoltants.delete(fn);
+    };
+}
+
+const descodificador = new TextDecoder('utf-8');
 
 /**
  * L'adreca d'un fitxer de dades, amb la seva versio.
@@ -41,19 +76,13 @@ const fitxersEnMemoria = new Map();
  * que servir una copia del navegador que podria ser d'una generacio anterior i
  * no quadrar amb la resta.
  */
-function adreca(cami) {
-    const versio = VERSIONS[cami];
-    return `${BASE}${cami}?v=${versio || 't' + Date.now()}`;
-}
-
-async function baixarJSON(cami) {
-    const resposta = await fetch(adreca(cami));
-    if (!resposta.ok) throw new Error(`${cami}: ${resposta.status}`);
-    return resposta.json();
+function adreca(nom) {
+    const versio = VERSIONS[nom];
+    return `${BASE}${nom}?v=${versio || 't' + Date.now()}`;
 }
 
 /**
- * El versions.json: { generat, dialectes: [{codi, nom}], fitxers: {cami: resum} }.
+ * El versions.json: { generat, dialectes: [{codi, nom}], fitxers: {nom: resum} }.
  *
  * Es el fitxer que diu que hi ha, o sigui que es l'unic que no es pot cachejar
  * mai: va amb ?t= i prou.
@@ -84,8 +113,8 @@ export function carregarVersions() {
             // romput. Els resums de l'ultima vegada valen mes que no res: el
             // que el navegador tingui a la seva memoria cau es va demanar amb
             // AQUESTS resums, o sigui que donant-los per bons se serveix una
-            // generacio sencera i coherent de les dades. Es el mateix
-            // rescat que fa el carregarVersions de js/script.js.
+            // generacio sencera i coherent de les dades. Es el mateix rescat
+            // que fa el carregarVersions de js/script.js.
             try {
                 const desat = localStorage.getItem(CLAU_VERSIONS);
                 if (desat) {
@@ -106,45 +135,121 @@ export function carregarVersions() {
 }
 
 /**
- * L'index de claus jugables d'un dialecte.
- * Cada clau: [clauConsonant, numeroDeFitxer, nombreObjectius]
+ * L'index dels quatre dialectes:
+ *   { min_rimes, dialectes: { ca: { grups: [[inici, llarg], ...],
+ *                                   claus: [[clau, numeroDeGrup, objectius], ...] } } }
  */
-export function carregarIndex(dialecte) {
-    if (indexosEnMemoria.has(dialecte)) return indexosEnMemoria.get(dialecte);
-
-    const promesa = carregarVersions()
-        .then(() => baixarJSON(`${dialecte}/index.json`))
-        .catch((error) => {
-            indexosEnMemoria.delete(dialecte);
-            throw error;
-        });
-
-    indexosEnMemoria.set(dialecte, promesa);
-    return promesa;
+export function carregarIndex() {
+    if (!indexPromesa) {
+        indexPromesa = carregarVersions()
+            .then(() => fetch(adreca('index.json')))
+            .then((resposta) => {
+                if (!resposta.ok) throw new Error(`index.json: ${resposta.status}`);
+                return resposta.json();
+            })
+            .catch((error) => {
+                indexPromesa = null;
+                throw error;
+            });
+    }
+    return indexPromesa;
 }
 
 /**
- * Un fitxer de rimes, ja repartit per seccions.
- * Torna { seccions: Map<clauConsonant, {paraules, objectius}> }.
+ * El tros d'index d'un dialecte, que es el que fan servir objectius.js i
+ * grupDeRimes. Torna { grups, claus }.
  */
-export function carregarFitxerDeRimes(dialecte, numero) {
-    const clau = `${dialecte}/${numero}`;
-    if (fitxersEnMemoria.has(clau)) return fitxersEnMemoria.get(clau);
+export function indexDe(index, dialecte) {
+    const tros = (index.dialectes || {})[dialecte];
+    if (!tros) throw new Error(`L'index no te el dialecte "${dialecte}"`);
+    return tros;
+}
 
-    const cami = `${dialecte}/rimes/${numero}.txt`;
-    const promesa = fetch(adreca(cami))
-        .then((resposta) => {
-            if (!resposta.ok) throw new Error(`${cami}: ${resposta.status}`);
-            return resposta.text();
-        })
-        .then(analitzar)
-        .catch((error) => {
-            fitxersEnMemoria.delete(clau);
-            throw error;
-        });
+/**
+ * El fitxer d'un dialecte, cru. Es guarda la PROMESA i no el resultat, de
+ * manera que dues crides simultanies comparteixen la mateixa descarrega: la
+ * precarrega de l'arrencada i la partida que es comenci mentre baixa no en fan
+ * dues.
+ */
+export function carregarDialecte(dialecte) {
+    if (dialectesEnMemoria.has(dialecte)) return dialectesEnMemoria.get(dialecte);
 
-    fitxersEnMemoria.set(clau, promesa);
+    const promesa = baixarDialecte(dialecte).catch((error) => {
+        dialectesEnMemoria.delete(dialecte);
+        progressos.delete(dialecte);
+        throw error;
+    });
+
+    dialectesEnMemoria.set(dialecte, promesa);
     return promesa;
+}
+
+async function baixarDialecte(dialecte) {
+    const nom = `${dialecte}.txt`;
+    // L'index diu quant ha de fer el fitxer, i per aixo el demanem abans: es el
+    // que permet dir un percentatge de debo (mira el comentari del "bytes" a
+    // generar_dades.py). Tots dos son promeses guardades: no costa cap peticio.
+    const index = await carregarIndex();
+    const total = indexDe(index, dialecte).bytes || 0;
+
+    avisarProgres(dialecte, { rebut: 0, total });
+    const resposta = await fetch(adreca(nom));
+    if (!resposta.ok) throw new Error(`${nom}: ${resposta.status}`);
+
+    // Sense cos llegible (navegador antic, o alguna extensio pel mig) no es pot
+    // seguir el progres, pero el fitxer s'ha de baixar igual.
+    if (!resposta.body || !resposta.body.getReader) {
+        const dades = await resposta.arrayBuffer();
+        avisarProgres(dialecte, { rebut: dades.byteLength, total: dades.byteLength });
+        return dades;
+    }
+
+    const lector = resposta.body.getReader();
+    const trossos = [];
+    let rebut = 0;
+    for (;;) {
+        const { done, value } = await lector.read();
+        if (done) break;
+        trossos.push(value);
+        rebut += value.length;
+        avisarProgres(dialecte, { rebut, total });
+    }
+
+    // Ajuntar-ho tot en un sol buffer, que es el que despres es talla per grups.
+    const dades = new Uint8Array(rebut);
+    let posicio = 0;
+    for (const tros of trossos) {
+        dades.set(tros, posicio);
+        posicio += tros.length;
+    }
+    avisarProgres(dialecte, { rebut, total: rebut });
+    return dades.buffer;
+}
+
+/**
+ * Un grup assonant, ja repartit per seccions.
+ * Torna { seccions: Map<clauConsonant, {paraules, objectius}> }.
+ *
+ * Es aqui on es paga el tall: es descodifica nomes el tros que diu l'index i es
+ * parteix nomes aquell. El grup interpretat es guarda, que tornar a jugar amb
+ * el mateix no ha de costar res.
+ */
+export async function grupDeRimes(dialecte, numeroDeGrup) {
+    const clau = `${dialecte}/${numeroDeGrup}`;
+    if (grupsEnMemoria.has(clau)) return grupsEnMemoria.get(clau);
+
+    const [dades, index] = await Promise.all([
+        carregarDialecte(dialecte),
+        carregarIndex(),
+    ]);
+    const grups = indexDe(index, dialecte).grups;
+    const desplacament = grups[numeroDeGrup];
+    if (!desplacament) throw new Error(`El dialecte "${dialecte}" no te el grup ${numeroDeGrup}`);
+
+    const [inici, llarg] = desplacament;
+    const grup = analitzar(descodificador.decode(new Uint8Array(dades, inici, llarg)));
+    grupsEnMemoria.set(clau, grup);
+    return grup;
 }
 
 // El format es una linia per paraula, amb capcaleres "#clau" que obren seccio.
@@ -185,19 +290,19 @@ function analitzar(text) {
 
 /**
  * Les respostes valides d'una partida: Map<normalitzada, formaPerMostrar>.
- * En facil, tot el grup assonant (o sigui, totes les seccions del fitxer).
+ * En facil, tot el grup assonant (o sigui, totes les seccions del grup).
  * En dificil, nomes la seccio de la clau consonant de la paraula objectiu.
  * Els verbs hi son inclosos: valen sempre com a rima.
  */
-export function respostesValides(fitxer, clauConsonant, dificultat) {
+export function respostesValides(grup, clauConsonant, dificultat) {
     if (dificultat === 'dificil') {
-        const seccio = fitxer.seccions.get(clauConsonant);
+        const seccio = grup.seccions.get(clauConsonant);
         if (!seccio) throw new Error(`No hi ha la seccio "${clauConsonant}"`);
         return new Map(seccio.paraules);
     }
 
     const totes = new Map();
-    for (const seccio of fitxer.seccions.values()) {
+    for (const seccio of grup.seccions.values()) {
         for (const [normalitzada, mostrar] of seccio.paraules) {
             totes.set(normalitzada, mostrar);
         }
