@@ -30,8 +30,10 @@ formes verbals conjugades), però els verbs sí que valen com a resposta. Això 
 decideix quan es generen les dades, no en temps d'execució.
 
 Des del menú pots veure **Els meus rècords** (les teves millors puntuacions,
-desades en aquest navegador) i la **Classificació** (les de tothom), que té una
-pestanya per modalitats i una altra per a la paraula de cada dia.
+desades en aquest navegador) i la **Classificació** (les de tothom), amb dues
+pestanyes: **Il·limitat**, amb una taula per cada rellotge i dificultat, i
+**Paraula del dia**, on tries dia i dificultat i veus el rànquing d'aquell dia i,
+a sota, els deu millors de sempre.
 
 ## Els dialectes
 
@@ -47,9 +49,13 @@ dialecte reparteix les paraules en grups de rima diferents. Per això:
 - **Cada dialecte té la seva paraula del dia.** No pot ser la mateixa: la
   paraula surt de l'índex de claus de rima, i cada dialecte té el seu. La llavor
   du el dialecte a dins perquè això quedi dit i no passi de retruc.
-- **Els rècords van per dialecte**, com van per rellotge i dificultat.
-- **La classificació també.** La pantalla ensenya el rànquing del dialecte que
-  tens triat, i el títol de cada modalitat el diu.
+- **Els rècords van per dialecte**, com van per rellotge i dificultat. Són
+  personals i locals: comparar-te amb tu mateix en dialectes diferents no vol dir
+  res.
+- **La classificació, en canvi, NO es parteix.** Hi ha una taula per modalitat i
+  prou, amb tothom qui hi ha jugat. El dialecte de cada intent surt entre
+  parèntesis a la seva fila (`amb «bytownites» (Central)`). Quatre
+  classificacions de quatre persones cadascuna no serien cap classificació.
 
 Els codis no es declaren enlloc del joc: surten de `dades/versions.json`, que els
 escriu el generador a partir de les carpetes de `dialectes_col/`. Els noms que es
@@ -211,10 +217,17 @@ persona i modalitat, i reescriu `joc/dades/classificacio.json`. Necessita
 `pandas` (`pip install pandas`), igual que `stats/stats.py`. Es pot programar al
 mateix estil que els altres workflows de `.github/workflows/`.
 
-En surten dues coses: el rànquing de cada **modalitat**
-(`mode|dificultat|segons|dialecte`) i el de cada **dia** de la paraula del dia,
-per dialecte i dificultat. Els dos es veuen al joc, cadascun a la seva pestanya
-de la pantalla de classificació.
+En surten tres coses: el rànquing de cada **modalitat**
+(`mode|dificultat|segons`), el de cada **dia** de la paraula del dia i el dels
+**millors de sempre** a la paraula del dia (`TOP_DIARIA`, ara 10), els dos
+últims per dificultat. Es veuen a les dues pestanyes de la pantalla de
+classificació: la d'**Il·limitat** només ensenya les modalitats `illimitat|…`, i
+la de **Paraula del dia**, les altres dues taules.
+
+El dialecte **es guarda al full i viatja amb cada entrada**, però no parteix cap
+taula: el joc el posa entre parèntesis a cada fila. Els noms (*Central*,
+*Valencià*…) no són al JSON, que hi porta el codi: els tradueix el joc amb el que
+digui el `versions.json`, per dir-los en un sol lloc.
 
 ## Estructura
 
