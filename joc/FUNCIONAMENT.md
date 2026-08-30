@@ -370,7 +370,7 @@ index.html
             │       └── normalitza.js
             ├── ui.js             tot el DOM
             ├── magatzem.js       localStorage
-            ├── compartir.js      graella d'emojis + porta-retalls
+            ├── compartir.js      graella de quadrets + porta-retalls
             └── classificacio.js  enviar/llegir el rànquing
 ```
 
@@ -527,9 +527,9 @@ d'un rècord vell no se la pot inventar ningú.
 
 `avui()` fa servir l'**hora local** del navegador, no UTC.
 
-### `compartir.js` — la graella d'emojis
+### `compartir.js` — la graella de quadrets
 
-Quadrets blaus, cinc per fila, màxim sis files. **No diu ni la paraula que tocava
+Quadrets plens i buits, cinc per fila, màxim sis files. **No diu ni la paraula que tocava
 ni cap de les rimes.** Sí que diu el dialecte, perquè sense això dos resultats del
 mateix dia no es podrien comparar i ningú no sabria per què.
 
@@ -888,7 +888,7 @@ el `display` i, sense això, guanyarien i les pantalles amagades es veurien.
 | `js/normalitza.js` | fora accents — ha de coincidir amb el Python | tu |
 | `js/ui.js` | l'únic mòdul que toca el DOM | tu |
 | `js/magatzem.js` | `localStorage`: rècords, dia jugat, sobrenom, versions | tu |
-| `js/compartir.js` | graella d'emojis + `navigator.share` / porta-retalls | tu |
+| `js/compartir.js` | graella de quadrets + `navigator.share` / porta-retalls | tu |
 | `js/classificacio.js` | enviar la puntuació i llegir el rànquing | tu |
 | `dades/versions.json` | quins dialectes hi ha i el resum de cada fitxer | `generar_dades.py` |
 | `dades/index.json` | les claus dels 4 dialectes, on és cada grup i què fa el fitxer | `generar_dades.py` |
