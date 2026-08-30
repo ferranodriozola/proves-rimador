@@ -103,13 +103,15 @@ jobs:
           # les versions. El missatges.json no hi és a posta: el llegeix el
           # navegador en temps real i canviar-ne un text no ha de tocar cap HTML.
           #
-          # joc/ tampoc no passa pel gulp i tampoc no comparteix res amb l'arrel
-          # (vegeu joc/README.md), però juga amb les mateixes regles: el seu HTML
+          # Del joc/, el CSS SÍ que passa pel gulp (joc/css/joc.scss -> la tasca
+          # styles-joc -> dist/css/joc.min.css, compartint el _variables.scss amb
+          # el full del lloc) i el JS no: són mòduls ES que se serveixen tal com
+          # són. Tots dos juguen amb les mateixes regles que l'arrel: el seu HTML
           # i els seus mòduls porten ?v= i s'han de refrescar quan canvien. Les
           # DADES del joc no hi són perquè no en necessiten: van amb el resum del
           # seu contingut, que escriu joc/eines/generar_dades.py al
           # joc/dades/versions.json.
-          if git diff --name-only "$ABANS" "${{ github.sha }}" -- 'css/*.scss' 'js/*.js' 'avis/*.js' 'avis/*.css' 'joc/js/*.js' 'joc/css/*.css' | grep -q .; then
+          if git diff --name-only "$ABANS" "${{ github.sha }}" -- 'css/*.scss' 'js/*.js' 'avis/*.js' 'avis/*.css' 'joc/js/*.js' 'joc/css/*.scss' | grep -q .; then
             echo "any_changed=true" >> "$GITHUB_OUTPUT"
           else
             echo "any_changed=false" >> "$GITHUB_OUTPUT"
@@ -274,6 +276,7 @@ jobs:
                      dialectes_col/ca/internat/col_3_rimacons_ca.idx.txt \
                      dialectes_col/ca/internat/col_4_rimaass_ca.idx.txt \
                      dist/css/styles.min.css \
+                     dist/css/joc.min.css \
                      dist/js/script.min.js \
                      sitemap.xml \
                      robots.txt; do
