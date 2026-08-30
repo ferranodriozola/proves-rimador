@@ -1,4 +1,4 @@
-# El joc del Rimador — funcionament intern
+# El joc del Rimador.cat — funcionament intern
 
 Nota per a tu d'aquí a un any. El [`README.md`](README.md) explica **què és** el
 joc i **com posar-lo en marxa**; això d'aquí explica **com funciona per dins**:
