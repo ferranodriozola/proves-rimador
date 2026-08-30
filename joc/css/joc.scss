@@ -77,7 +77,10 @@ a:visited { color: #9a009a; }
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    /* A les pantalles estretes no hi caben el nom i la sortida en una fila: en
+       comptes d'escapçar la pastilla, la deixem baixar a la de sota. */
+    flex-wrap: wrap;
+    gap: 8px 12px;
     padding: 10px 16px;
     background: var(--vermell) url("../../assets/bubbles.png") repeat;
     background-size: 90px 90px;
@@ -116,7 +119,12 @@ a:visited { color: #9a009a; }
     padding: 2px 12px;
     white-space: nowrap;
     box-shadow: var(--ombra-menuda);
+    text-decoration: none;
+    flex: 0 0 auto;
 }
+
+.capcalera__estrella:hover { background: #fff; }
+.capcalera__estrella:active { transform: translate(3px, 3px); box-shadow: none; }
 
 /* ----------------------------------------------------------- Marquesina */
 
@@ -517,6 +525,27 @@ main {
 }
 
 .barra-temps__interior--alerta { background: var(--error); }
+
+/* Quina de les dues modalitats s'esta jugant. Es diu aqui perque, un cop dins
+   la partida, la tria de la pantalla de configuracio ja no es veu enlloc. */
+.modalitat {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 12px;
+    padding: 2px 14px;
+    text-align: center;
+    font-family: var(--tipus-accent);
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #000;
+    background: var(--cian-plafo);
+    border: 2px solid #000;
+    border-radius: 999px;
+    box-shadow: var(--ombra-menuda);
+}
+
+.modalitat--dificil { background: var(--cian); }
 
 .objectiu__etiqueta {
     text-align: center;
