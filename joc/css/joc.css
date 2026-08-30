@@ -188,6 +188,61 @@ main {
     font-weight: bold;
 }
 
+/* ------------------------------------------------------ Tira de dialectes */
+
+/* La germana de la tira del cercador (vegeu .dialectes-tria a css/menu.scss),
+   però escrita aquí: el joc no comparteix CSS amb la resta del lloc. */
+
+.tira {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 0 18px;
+}
+
+.tira__rotul {
+    font-family: var(--tipus-accent);
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+.tira__tria {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+}
+
+.dialecte {
+    background: #fff;
+    border: 2px solid var(--negre);
+    border-radius: 999px;
+    padding: 5px 12px;
+    font: inherit;
+    font-weight: bold;
+    font-size: 0.85rem;
+    cursor: pointer;
+    box-shadow: var(--ombra-menuda);
+}
+
+.dialecte[aria-checked="true"] {
+    background: var(--cian);
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, .3);
+}
+
+/* En quin dialecte es jugarà, a la pantalla de configuració. */
+.config-dialecte {
+    margin: -6px 0 18px;
+    text-align: center;
+    font-family: var(--tipus-accent);
+    font-weight: bold;
+    color: var(--cian-fosc);
+}
+
 /* ---------------------------------------------------------------- Menú */
 
 .menu { display: grid; gap: 14px; }
@@ -710,6 +765,48 @@ main {
 }
 
 .pastilla[aria-pressed="true"] { background: var(--cian); transform: translate(2px, 2px); box-shadow: 1px 1px 0 rgba(0,0,0,.3); }
+
+/* ------------------------------------------------------------- Pestanyes */
+
+.pestanyes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 0 0 14px;
+}
+
+.pestanya {
+    background: #fff;
+    border: var(--vora);
+    border-radius: var(--radi);
+    padding: 9px 10px;
+    font: inherit;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: var(--ombra-menuda);
+}
+
+.pestanya[aria-selected="true"] {
+    background: var(--cian);
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, .3);
+}
+
+/* La paraula que tocava aquell dia, a dalt del rànquing diari. */
+.diaria-paraula {
+    margin: 0 0 12px;
+    text-align: center;
+    font-family: var(--tipus-accent);
+    font-weight: bold;
+    font-size: 1.05rem;
+}
+
+.mini-titol--taula {
+    margin: 14px 0 8px;
+    font-size: 0.95rem;
+    color: var(--cian-fosc);
+}
 
 /* ------------------------------------------------------------- Carregant */
 
