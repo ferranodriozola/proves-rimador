@@ -837,6 +837,33 @@ main {
 
 @keyframes girar { to { transform: rotate(360deg); } }
 
+/* La barra de la descàrrega. Només surt quan hi ha res a baixar de debò: si el
+   fitxer ja hi és, la partida s'obre de seguida i no s'arriba a veure. */
+.carregant__barra {
+    width: min(260px, 70vw);
+    height: 16px;
+    background: #fff;
+    border: var(--vora);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.carregant__barra-interior {
+    height: 100%;
+    width: 0%;
+    background: var(--cian);
+    border-right: 2px solid var(--negre);
+    transition: width 0.2s linear;
+}
+
+.carregant__nota {
+    margin: 0;
+    max-width: min(300px, 80vw);
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--negre);
+}
+
 /* ------------------------------------------------------------------ Ajuda */
 
 .ajuda {
