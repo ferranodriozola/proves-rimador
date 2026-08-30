@@ -1,18 +1,24 @@
 # Generador de les dades del joc de rimes.
 #
-# Llegeix el diccionari i les columnes de rima de CADA dialecte i n'escriu, per
-# dialecte, el que el joc necessita per jugar-hi:
+# Llegeix el diccionari i les columnes de rima de CADA dialecte i n'escriu SIS
+# fitxers, ni un mes:
 #
-#   joc/dades/<codi>/index.json    -> les claus de rima consonant que tenen prou
-#                                     rimes per fer-hi una partida, amb quin
-#                                     fitxer les conte i quantes paraules
-#                                     objectiu (no verbs) hi ha.
-#   joc/dades/<codi>/rimes/N.txt   -> un fitxer per grup assonant, dividit per
-#                                     dins en seccions de rima consonant.
-#   joc/dades/versions.json        -> el resum de cada fitxer generat, que es
-#                                     com el joc sap si la copia que te el
-#                                     navegador encara val (igual que
-#                                     diccionaris/versions.json).
+#   joc/dades/<codi>.txt      -> totes les rimes d'un dialecte, els grups
+#                                assonants un darrere l'altre
+#   joc/dades/index.json      -> les claus jugables dels quatre dialectes i, de
+#                                cada grup assonant, on comenca i quant ocupa
+#                                dins el seu fitxer
+#   joc/dades/versions.json   -> el resum de cada fitxer, que es com el joc sap
+#                                si la copia que te el navegador encara val
+#                                (igual que diccionaris/versions.json)
+#
+# ABANS N'HI HAVIA 183, un per grup assonant i dialecte, perque una partida
+# nomes necessita un grup i aixi no es baixava la resta. Sortia a 145 KB per
+# partida, pero omplia el repositori de fitxers que no mira mai ningu. Ara el
+# joc es baixa el dialecte sencer un sol cop (1,9 MB comprimits) i despres les
+# partides no costen res: a partir de tretze ja hi surt guanyant. Els
+# desplacaments son el que fa que no hagi d'interpretar els 7,6 MB per jugar amb
+# un grup: talla el tros que li toca i prou.
 #
 # La gracia: la clau consonant determina sempre la clau assonant (comprovat, i
 # es torna a comprovar aqui a cada passada), o sigui que un sol fitxer per grup
@@ -29,6 +35,11 @@
 #
 # Aixi el joc no ha de normalitzar res en temps d'execucio, i sap de seguida
 # quines paraules pot proposar com a objectiu i quines nomes accepta com a rima.
+#
+# ELS DESPLACAMENTS SON EN BYTES, no en caracters: el joc es baixa el fitxer com
+# a ArrayBuffer i nomes descodifica el tros que li toca (vegeu grupDeRimes a
+# joc/js/dades.js). Comptar caracters seria demanar-se problemes, perque un
+# index de Python son punts de codi i un de JavaScript son unitats UTF-16.
 #
 # ON SON LES DADES: no se sap aqui. Els camins surten de
 # diccionaris/python/camins.py, que es el vocabulari compartit de tots els
@@ -99,6 +110,7 @@ def ordre_de_tira(codis):
 
 DIR_DADES = os.path.join(ARREL, "joc", "dades")
 VERSIONS = os.path.join(DIR_DADES, "versions.json")
+INDEX = os.path.join(DIR_DADES, "index.json")
 
 
 # --- Utilitats --------------------------------------------------------------
@@ -138,17 +150,18 @@ def pot_ser_objectiu(codi):
     return True
 
 
-def escriure_si_cal(cami, text):
+def escriure_si_cal(cami, contingut):
     """Refer-ho tot a cada passada vol dir reescriure desenes de MB que el git
     ni tan sols mirara, i deixa la data de tots els fitxers canviada per no
-    res. Torna si ha calgut escriure'l."""
+    res. Accepta text o bytes. Torna si ha calgut escriure'l."""
+    dades = contingut if isinstance(contingut, bytes) else contingut.encode("utf-8")
     if os.path.exists(cami):
-        with open(cami, encoding="utf-8") as fitxer:
-            if fitxer.read() == text:
+        with open(cami, "rb") as fitxer:
+            if fitxer.read() == dades:
                 return False
     os.makedirs(os.path.dirname(cami), exist_ok=True)
-    with open(cami, "w", encoding="utf-8", newline="\n") as fitxer:
-        fitxer.write(text)
+    with open(cami, "wb") as fitxer:
+        fitxer.write(dades)
     return True
 
 
@@ -167,7 +180,7 @@ def resum(cami):
 
 
 def generar_dialecte(codi, paraules, codis):
-    """Escriu joc/dades/<codi>/ i torna un resum del que ha sortit."""
+    """Escriu joc/dades/<codi>.txt i torna el seu tros d'index."""
     rima_cons = camins.llegir_columna(camins.cami_dialecte(codi, 3))
     rima_asson = camins.llegir_columna(camins.cami_dialecte(codi, 4))
 
@@ -228,19 +241,13 @@ def generar_dialecte(codi, paraules, codis):
     for clau in grups:
         claus_per_asson[cons_a_asson[clau]].append(clau)
 
-    dir_dialecte = os.path.join(DIR_DADES, codi)
-    dir_rimes = os.path.join(dir_dialecte, "rimes")
-    os.makedirs(dir_rimes, exist_ok=True)
-    # Els fitxers es numeren per posicio dins la llista de grups assonants, o
-    # sigui que si el diccionari canvia poden sobrar-ne: fora els vells, que si
-    # no quedarien servint-se sense que cap index hi apunti.
-    esperats = {f"{i}.txt" for i in range(len(asson_necessaris))}
-    for antic in os.listdir(dir_rimes):
-        if antic.endswith(".txt") and antic not in esperats:
-            os.remove(os.path.join(dir_rimes, antic))
-
-    escrits = 0
-    bytes_totals = 0
+    # Un sol fitxer per dialecte: els grups assonants un darrere l'altre,
+    # separats per un salt de linia. De cada grup n'apuntem on comenca i quant
+    # ocupa, EN BYTES, que es el que despres permet al joc tallar-ne un sense
+    # haver d'interpretar la resta.
+    trossos = []
+    desplacaments = []
+    posicio = 0
     for clau_asson in asson_necessaris:
         linies = []
         for clau_cons in sorted(claus_per_asson[clau_asson]):
@@ -251,35 +258,37 @@ def generar_dialecte(codi, paraules, codis):
                 mostrar = grup[normalitzada]
                 cos = normalitzada if mostrar == normalitzada else f"{normalitzada}>{mostrar}"
                 linies.append(("*" + cos) if normalitzada in es_objectiu else cos)
-        cami = os.path.join(dir_rimes, f"{id_de_asson[clau_asson]}.txt")
-        contingut = "\n".join(linies)
-        if escriure_si_cal(cami, contingut):
-            escrits += 1
-        bytes_totals += len(contingut.encode("utf-8"))
+        dades = "\n".join(linies).encode("utf-8")
+        desplacaments.append([posicio, len(dades)])
+        trossos.append(dades)
+        posicio += len(dades) + 1   # +1 pel salt que els separa
 
-    # index.json: per cada clau qualificada, a quin fitxer es i quantes paraules
-    # objectiu hi ha. El joc tria la clau amb probabilitat proporcional al nombre
-    # d'objectius, o sigui que totes les paraules objectiu son igual de probables.
-    index = {
-        "dialecte": codi,
-        "min_rimes": MIN_RIMES,
-        "fitxers": len(asson_necessaris),
+    contingut = b"\n".join(trossos)
+    escrit = escriure_si_cal(os.path.join(DIR_DADES, f"{codi}.txt"), contingut)
+
+    total_objectius = sum(len(objectius[clau]) for clau in qualificades)
+    print(f"  {codi}: {len(qualificades)} claus jugables, {camins.mil(total_objectius)} "
+          f"paraules objectiu, {len(asson_necessaris)} grups, "
+          f"{len(contingut) / 1048576:.1f} MB"
+          f"{'' if escrit else ' (sense canvis)'}")
+
+    # El tros d'index d'aquest dialecte. Les "claus" son igual que sempre
+    # ([clau, numeroDeGrup, objectius]); el que abans era un numero de fitxer
+    # ara es un numero dins de "grups".
+    tros_index = {
+        # La mida del fitxer sense comprimir. El joc la fa servir per dir quant
+        # li queda mentre el baixa: el Content-Length que dona el servidor es el
+        # del cos COMPRIMIT, i el lector del fetch va donant bytes ja
+        # descomprimits, o sigui que comparar-los faria percentatges falsos.
+        "bytes": len(contingut),
+        "grups": desplacaments,
         "claus": [
             [clau, id_de_asson[cons_a_asson[clau]], len(objectius[clau])]
             for clau in qualificades
         ],
     }
-    if escriure_si_cal(os.path.join(dir_dialecte, "index.json"),
-                       json.dumps(index, ensure_ascii=False, separators=(",", ":"))):
-        escrits += 1
 
-    total_objectius = sum(len(objectius[clau]) for clau in qualificades)
-    print(f"  {codi}: {len(qualificades)} claus jugables, {camins.mil(total_objectius)} "
-          f"paraules objectiu, {len(asson_necessaris)} fitxers, "
-          f"{bytes_totals / 1048576:.1f} MB ({escrits} fitxers reescrits)")
-
-    return {"claus": len(qualificades), "objectius": total_objectius,
-            "fitxers": len(asson_necessaris)}
+    return tros_index
 
 
 # --- Proces -----------------------------------------------------------------
@@ -304,29 +313,48 @@ def main():
     print(f"  {camins.mil(len(paraules))} entrades")
 
     print(f"Generant {len(codis)} dialecte{'s' if len(codis) > 1 else ''}...")
-    resums = {}
+    trossos = {}
     for codi in codis:
-        resums[codi] = generar_dialecte(codi, paraules, codis_gramaticals)
+        trossos[codi] = generar_dialecte(codi, paraules, codis_gramaticals)
 
-    # Si nomes se n'ha regenerat un, els altres que ja hi hagi es queden i han
-    # de continuar sortint al versions.json.
-    presents = sorted(
-        nom for nom in os.listdir(DIR_DADES)
-        if os.path.isdir(os.path.join(DIR_DADES, nom))
-        and os.path.exists(os.path.join(DIR_DADES, nom, "index.json"))
-    )
-    # I si un dialecte ha desaparegut de dialectes_col/, fora la seva carpeta:
-    # si no, el versions.json continuaria oferint-lo a la tira del joc.
-    for nom in list(presents):
-        if nom not in tots:
-            print(f"  (fora {nom}/: ja no es a dialectes_col/)")
-            shutil.rmtree(os.path.join(DIR_DADES, nom))
-            presents.remove(nom)
+    # L'index es un de sol per als quatre dialectes. Si nomes se n'ha regenerat
+    # un, els altres s'han de quedar tal com estan: es llegeix el que hi ha i
+    # nomes se'n substitueix el tros que toca.
+    index = {}
+    if os.path.exists(INDEX):
+        try:
+            with open(INDEX, encoding="utf-8") as fitxer:
+                index = json.load(fitxer).get("dialectes", {})
+        except (ValueError, OSError):
+            index = {}   # si ve romput, es refa sencer
+    index.update(trossos)
+
+    # I si un dialecte ha desaparegut de dialectes_col/, fora de l'index i fora
+    # el seu fitxer: si no, el versions.json continuaria oferint-lo a la tira.
+    for codi in sorted(set(index) - set(tots)):
+        print(f"  (fora {codi}: ja no es a dialectes_col/)")
+        del index[codi]
+        cami = os.path.join(DIR_DADES, f"{codi}.txt")
+        if os.path.exists(cami):
+            os.remove(cami)
+
+    # Les restes del format vell, quan hi havia un fitxer per grup assonant.
+    for codi in tots:
+        vella = os.path.join(DIR_DADES, codi)
+        if os.path.isdir(vella):
+            print(f"  (fora {codi}/: era el format d'un fitxer per grup)")
+            shutil.rmtree(vella)
+
+    presents = ordre_de_tira(sorted(index))
+    escriure_si_cal(INDEX, json.dumps(
+        {"min_rimes": MIN_RIMES,
+         "dialectes": {codi: index[codi] for codi in presents}},
+        ensure_ascii=False, separators=(",", ":")))
 
     escriure_versions(presents)
 
-    print(f"Fet: {len(presents)} dialectes a joc/dades/ "
-          f"({', '.join(presents)}).")
+    fitxers = 2 + len(presents)
+    print(f"Fet: {len(presents)} dialectes ({', '.join(presents)}) en {fitxers} fitxers.")
 
 
 def escriure_versions(codis):
@@ -334,22 +362,14 @@ def escriure_versions(codis):
 
     Mateixa idea: la versio de cada fitxer es un resum del seu contingut, i el
     navegador la fa servir per saber si la copia que te encara val (vegeu
-    carregarVersions a joc/js/dades.js). El fitxer que diu que hi ha versions
-    no es pot cachejar mai; tota la resta, per sempre.
+    carregarVersions a joc/js/dades.js). El fitxer que diu que hi ha versions no
+    es pot cachejar mai; tota la resta, per sempre.
 
-    A DIFERENCIA del versions.json del diccionari, aqui les claus son CAMINS i
-    no noms de fitxer sols: alla el navegador indexa la memoria cau pel nom
-    (rutaFitxer.split("/").pop()) i cada fitxer es unic, pero aqui el
-    ca/rimes/0.txt i el va/rimes/0.txt es dirien igual.
+    Ara son cinc entrades: l'index i un fitxer per dialecte.
     """
-    fitxers = {}
+    fitxers = {"index.json": resum(INDEX)}
     for codi in codis:
-        dir_dialecte = os.path.join(DIR_DADES, codi)
-        fitxers[f"{codi}/index.json"] = resum(os.path.join(dir_dialecte, "index.json"))
-        dir_rimes = os.path.join(dir_dialecte, "rimes")
-        for nom in sorted(os.listdir(dir_rimes), key=lambda n: int(n.split(".")[0])):
-            if nom.endswith(".txt"):
-                fitxers[f"{codi}/rimes/{nom}"] = resum(os.path.join(dir_rimes, nom))
+        fitxers[f"{codi}.txt"] = resum(os.path.join(DIR_DADES, f"{codi}.txt"))
 
     contingut = {
         "generat": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
@@ -357,8 +377,7 @@ def escriure_versions(codis):
         # que el joc pinta tal com li arriba (vegeu pintarTiraDialectes a
         # joc/js/ui.js).
         "dialectes": [
-            {"codi": codi, "nom": NOMS_DE_DIALECTE.get(codi, codi)}
-            for codi in ordre_de_tira(codis)
+            {"codi": codi, "nom": NOMS_DE_DIALECTE.get(codi, codi)} for codi in codis
         ],
         "fitxers": fitxers,
     }
