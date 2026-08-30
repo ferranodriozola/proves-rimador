@@ -11,7 +11,7 @@ const NOM_DIFICULTAT = { facil: 'Fàcil', dificil: 'Difícil' };
 
 export function textPerCompartir({ data, dificultat, dialecte, punts }) {
     const [any, mes, dia] = data.split('-');
-    const capcalera = `El Rimador · Paraula del dia ${dia}/${mes}/${any}`;
+    const capcalera = `Rimador.cat · Paraula del dia ${dia}/${mes}/${any}`;
     // El dialecte hi va perque cadascun te la seva paraula del dia (vegeu
     // clauDelDia a objectius.js): sense dir-lo, dos resultats del mateix dia no
     // es podrien comparar i ningu no sabria per que.

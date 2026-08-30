@@ -1,4 +1,4 @@
-# El joc del Rimador
+# El joc del Rimador.cat
 
 Joc de rimes fet damunt del mateix diccionari fonètic que fa servir el cercador.
 Viu a `rimador.cat/joc/` i és independent de la resta de la web: no comparteix ni
