@@ -794,9 +794,21 @@ main {
 }
 
 .mini-titol--taula {
-    margin: 14px 0 8px;
+    margin: 18px 0 8px;
     font-size: 0.95rem;
     color: var(--cian-fosc);
+}
+
+/* La primera taula no ha de separar-se del selector com se separen entre elles. */
+.taula-classificacio > .mini-titol--taula:first-child { margin-top: 4px; }
+
+.taula-buida {
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--text-fluix);
 }
 
 /* ------------------------------------------------------------- Carregant */
