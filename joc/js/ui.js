@@ -297,12 +297,27 @@ export function pintarSelectorModalitats(modalitats, actiu, alTriar) {
     );
 }
 
+/**
+ * El subtítol d'una entrada de la classificació: amb quina paraula ho va fer i,
+ * entre parèntesis, en quin dialecte.
+ *
+ * El dialecte va aquí i no pas al títol de la taula a posta: la classificació és
+ * una de sola per modalitat, i partir-la en quatre voldria dir quatre taules de
+ * quatre persones. Dit a cada fila, tothom surt junt i es veu en què jugava.
+ */
+function subtitolEntrada(e) {
+    const trossos = [];
+    if (e.paraula) trossos.push(`amb «${e.paraula}»`);
+    if (e.dialecte) trossos.push(`(${nomDialecte(e.dialecte)})`);
+    return trossos.join(' ');
+}
+
 export function pintarClassificacio(entrades, elMeuSobrenom) {
     el.classificacioLlista.replaceChildren(
         ...entrades.map((e, i) => filaRecord({
             posicio: i + 1,
             etiqueta: e.sobrenom,
-            subtitol: e.paraula ? `amb «${e.paraula}»` : '',
+            subtitol: subtitolEntrada(e),
             punts: e.punts,
             destacada: elMeuSobrenom && e.sobrenom.toLowerCase() === elMeuSobrenom.toLowerCase(),
         }))
@@ -354,19 +369,16 @@ export function pintarSelectorDies(dies, actiu, alTriar) {
 }
 
 /**
- * El rànquing d'un dia: la paraula que tocava i una taula per dificultat.
+ * El rànquing d'un dia: una taula per dificultat.
  * Ve del bloc "diaria" de dades/classificacio.json, que munta
  * joc/eines/compilar_classificacio.py.
+ *
+ * No hi ha cap capçalera que digui quina era la paraula del dia, perquè no n'hi
+ * ha una de sola: cada dialecte té la seva (vegeu clauDelDia a objectius.js).
+ * Va a cada fila, al costat del dialecte.
  */
 export function pintarDiaria(bloc, elMeuSobrenom) {
     const trossos = [];
-
-    if (bloc.paraula) {
-        const capcalera = document.createElement('p');
-        capcalera.className = 'diaria-paraula';
-        capcalera.textContent = `La paraula era «${bloc.paraula}»`;
-        trossos.push(capcalera);
-    }
 
     for (const dificultat of ['facil', 'dificil']) {
         const entrades = bloc[dificultat];
@@ -380,6 +392,7 @@ export function pintarDiaria(bloc, elMeuSobrenom) {
         trossos.push(...entrades.map((e, i) => filaRecord({
             posicio: i + 1,
             etiqueta: e.sobrenom,
+            subtitol: subtitolEntrada(e),
             punts: e.punts,
             destacada: elMeuSobrenom && e.sobrenom.toLowerCase() === elMeuSobrenom.toLowerCase(),
         })));
