@@ -164,6 +164,15 @@ function obrirRecords() {
 
 // ------------------------------------------------------------- Classificació
 
+/**
+ * La modalitat de la classificació NO du el dialecte, a diferència de
+ * l'identificadorRecord dels rècords personals: la classificació és una de sola
+ * per modalitat i el dialecte es diu a cada fila (vegeu subtitolEntrada a ui.js).
+ */
+function modalitatDe({ mode, dificultat, segons }) {
+    return `${mode}|${dificultat}|${segons}`;
+}
+
 let modalitatActiva = null;
 let diaActiu = null;
 let pestanyaActiva = 'modalitats';
@@ -196,37 +205,30 @@ function canviarPestanya(quina) {
 function pintarPestanyaActiva() {
     ui.marcarPestanya(pestanyaActiva);
     ui.subtitolClassificacio(
-        `Les millors puntuacions en ${ui.nomDialecte(estat.dialecte).toLowerCase()}. `
-        + 'Canvia de dialecte a la pantalla d\'inici.');
+        'Les millors puntuacions de tota la gent que hi juga, jugui en el '
+        + 'dialecte que jugui.');
 
     if (pestanyaActiva === 'diaria') pintarDiaria();
     else pintarModalitats();
 }
 
-/** Les modalitats del dialecte que es juga. Cada dialecte té el seu rànquing. */
+/** Totes les modalitats, juguin en el dialecte que juguin. */
 function pintarModalitats() {
     const modalitats = Object.entries(classificacio.modalitats || {})
-        .map(([clau, valor]) => ({
-            clau,
-            titol: valor.titol,
-            // El dialecte és a l'entrada des que el joc en té; a les velles se
-            // sap perquè és l'últim tros de la clau.
-            dialecte: valor.dialecte || clau.split('|')[3] || dialecte.DIALECTE_PER_DEFECTE,
-            top: valor.top || [],
-        }))
-        .filter((m) => m.top.length > 0 && m.dialecte === estat.dialecte);
+        .map(([clau, valor]) => ({ clau, titol: valor.titol, top: valor.top || [] }))
+        .filter((m) => m.top.length > 0);
 
     if (modalitats.length === 0) {
         ui.el.classificacioSelector.replaceChildren();
         ui.estatClassificacio(estaConfigurat()
-            ? `Encara no hi ha cap puntuació en ${ui.nomDialecte(estat.dialecte).toLowerCase()}. Sigues el primer!`
+            ? 'Encara no hi ha cap puntuació. Sigues el primer!'
             : 'La classificació encara no està activada en aquest lloc.');
         return;
     }
 
     // Si venim de jugar, ensenyem la modalitat que acabem de jugar si hi surt.
     if (!modalitats.some((m) => m.clau === modalitatActiva)) {
-        const jugada = identificadorRecord(estat);
+        const jugada = modalitatDe(estat);
         modalitatActiva = modalitats.some((m) => m.clau === jugada) ? jugada : modalitats[0].clau;
     }
 
@@ -243,20 +245,15 @@ function pintarModalitats() {
     mostrar(modalitatActiva);
 }
 
-/** El rànquing de cada dia de la paraula del dia, en aquest dialecte. */
+/** El rànquing de cada dia de la paraula del dia, del més nou al més vell. */
 function pintarDiaria() {
     const perDia = classificacio.diaria || {};
-    // Només els dies que tenen alguna cosa en aquest dialecte, del més nou al
-    // més vell.
-    const dies = Object.keys(perDia)
-        .filter((dia) => perDia[dia] && perDia[dia][estat.dialecte])
-        .sort()
-        .reverse();
+    const dies = Object.keys(perDia).sort().reverse();
 
     if (dies.length === 0) {
         ui.el.classificacioSelector.replaceChildren();
         ui.estatClassificacio(estaConfigurat()
-            ? `Encara no hi ha cap paraula del dia jugada en ${ui.nomDialecte(estat.dialecte).toLowerCase()}.`
+            ? 'Encara no hi ha cap paraula del dia jugada.'
             : 'La classificació encara no està activada en aquest lloc.');
         return;
     }
@@ -268,7 +265,7 @@ function pintarDiaria() {
         diaActiu = dia;
         ui.estatClassificacio('');
         ui.pintarSelectorDies(dies, dia, mostrar);
-        ui.pintarDiaria(perDia[dia][estat.dialecte], elMeuSobrenom);
+        ui.pintarDiaria(perDia[dia], elMeuSobrenom);
     }
 
     mostrar(diaActiu);
@@ -444,7 +441,7 @@ function acabarPartida(resum) {
     ui.el.botoRepetir.hidden = esDiaria;
 
     // Preparem el bloc d'enviament a la classificacio (per a totes les partides).
-    modalitatActiva = identificadorRecord(estat);
+    modalitatActiva = modalitatDe(estat);
     diaActiu = esDiaria ? estat.data : diaActiu;
     ui.reiniciarEnviament();
     ui.el.campSobrenom.value = llegirSobrenom();
