@@ -1,11 +1,14 @@
 # El joc del Rimador.cat
 
 Joc de rimes fet damunt del mateix diccionari fonètic que fa servir el cercador.
-Viu a `rimador.cat/joc/` i és independent de la resta de la web: no comparteix ni
-CSS ni JS amb el lloc principal (el `gulpfile.js` només mira `css/` i `js/` de
-l'arrel, o sigui que res d'aquesta carpeta no entra al paquet general). L'estètica,
-això sí, és la mateixa de sempre: fons rosa, plafons cians, vores gruixudes i
-tipografies de tota la vida.
+Viu a `rimador.cat/joc/` i va gairebé sol. El **JS** no comparteix res amb el lloc
+principal: són mòduls ES que se serveixen tal com són. El **CSS** sí que passa pel
+gulp (`joc/css/joc.scss` → tasca `styles-joc` → `dist/css/joc.min.css`) i comparteix
+el `css/_variables.scss` amb el full del lloc, però en **surt un full a part**: els
+dos tenen regles damunt de `html`, `body`, `a` i `*`, i ajuntar-los les faria xocar.
+Compartir el fitxer de variables és, doncs, tot el que comparteixen: els colors de
+la casa són escrits un sol cop. L'estètica és la mateixa de sempre: fons rosa,
+plafons cians, vores gruixudes i tipografies de tota la vida.
 
 Si el que vols és entendre com funciona per dins, mira
 [FUNCIONAMENT.md](FUNCIONAMENT.md).
@@ -204,7 +207,7 @@ no noms de fitxer sols: allà el navegador indexa la memòria cau pel nom
 
 **El codi** va amb el `?v=` de sempre, el que escriu el `deploy.yml` amb els set
 primers caràcters del commit. Ara `joc/` hi entra com l'arrel: tocar
-`joc/js/*.js` o `joc/css/*.css` dispara el refresc, i el `sed` no escriu només
+`joc/js/*.js` o `joc/css/*.scss` dispara el refresc, i el `sed` no escriu només
 als HTML sinó també **a les importacions entre mòduls** (`from './ui.js?v=...'`).
 Sense això, refrescar `principal.js` deixava els altres vuit mòduls a la memòria
 cau del navegador, perquè una importació no hereta el `?v=` de l'etiqueta
@@ -259,14 +262,20 @@ que és on es pot fer sense deixar el joc coix mentre s'hi treballa.
 
 ### Refrescar el rànquing
 
-```bash
-python joc/eines/compilar_classificacio.py
-```
+**L'actualització és automàtica**: cada dia a les 22:01 UTC, el workflow
+`.github/workflows/classificacio.yml` executa `joc/eines/compilar_classificacio.py`,
+que llegeix el full, valida els sobrenoms, es queda la millor puntuació de cada
+persona i modalitat, i reescriu `joc/dades/classificacio.json`.
 
-Llegeix el full, valida els sobrenoms, es queda la millor puntuació de cada
-persona i modalitat, i reescriu `joc/dades/classificacio.json`. Necessita
-`pandas` (`pip install pandas`), igual que `stats/stats.py`. Es pot programar al
-mateix estil que els altres workflows de `.github/workflows/`.
+Per **forçar una actualització manual** (p. ex., si has esborrat una fila del full):
+
+- **Des de GitHub** → Actions → «Actualització automàtica de la classificació del
+  joc» → «Run workflow».
+- **Des de local**:
+  ```bash
+  python joc/eines/compilar_classificacio.py
+  ```
+  (Necessita `pandas`: `pip install pandas`, igual que `stats/stats.py`.)
 
 En surten tres coses: el rànquing de cada **modalitat**
 (`mode|dificultat|segons`), el de cada **dia** de la paraula del dia i el dels
@@ -285,7 +294,8 @@ digui el `versions.json`, per dir-los en un sol lloc.
 ```
 joc/
   index.html            totes les pantalles, amagades amb l'atribut hidden
-  css/joc.css           estètica rosa/cian dels 90, disseny mòbil primer
+  css/joc.scss          estètica rosa/cian dels 90, disseny mòbil primer;
+                        el gulp en fa dist/css/joc.min.css
   js/
     principal.js        lliga pantalles, motor i dades
     dades.js            versions, descàrrega i lectura dels fitxers de rimes
@@ -308,8 +318,10 @@ joc/
     apps_script_classificacio.gs  backend per a Google Apps Script
 ```
 
-Són mòduls ES natius i no passen per cap procés de compilació: el navegador se'ls
-carrega tal com són.
+El JS són mòduls ES natius i no passen per cap procés de compilació: el navegador
+se'ls carrega tal com són. El CSS sí que es compila (vegeu la tasca `styles-joc`
+del `gulpfile.js`), o sigui que l'`index.html` no apunta a `css/joc.scss` sinó a
+`../dist/css/joc.min.css`.
 
 ## Coses que convé saber
 
