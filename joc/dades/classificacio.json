@@ -1,5 +1,5 @@
 {
-  "actualitzacio": "30/08/2026 22:51:42",
+  "actualitzacio": "30/08/2026 21:45:08",
   "modalitats": {
     "diaria|dificil|60": {
       "titol": "Paraula del dia · Difícil",
@@ -31,12 +31,26 @@
           "paraula": "calefactors",
           "dialecte": "ca",
           "data": "14/08/2026"
+        },
+        {
+          "sobrenom": "Provareal",
+          "punts": 1,
+          "paraula": "ambidextrismes",
+          "dialecte": "ca",
+          "data": "30/08/2026"
         }
       ]
     },
     "diaria|facil|60": {
       "titol": "Paraula del dia · Fàcil",
       "top": [
+        {
+          "sobrenom": "Provareal",
+          "punts": 19,
+          "paraula": "ambidextrismes",
+          "dialecte": "ca",
+          "data": "30/08/2026"
+        },
         {
           "sobrenom": "franco",
           "punts": 3,
@@ -86,6 +100,13 @@
           "sobrenom": "Prova",
           "punts": 3,
           "paraula": "prova",
+          "dialecte": "ca",
+          "data": "30/08/2026"
+        },
+        {
+          "sobrenom": "Provareal",
+          "punts": 2,
+          "paraula": "saioners",
           "dialecte": "ca",
           "data": "30/08/2026"
         }
@@ -223,6 +244,26 @@
           "data": "26/08/2026"
         }
       ]
+    },
+    "2026-08-30": {
+      "dificil": [
+        {
+          "sobrenom": "Provareal",
+          "punts": 1,
+          "paraula": "ambidextrismes",
+          "dialecte": "ca",
+          "data": "30/08/2026"
+        }
+      ],
+      "facil": [
+        {
+          "sobrenom": "Provareal",
+          "punts": 19,
+          "paraula": "ambidextrismes",
+          "dialecte": "ca",
+          "data": "30/08/2026"
+        }
+      ]
     }
   },
   "diaria_millors": {
@@ -254,9 +295,23 @@
         "paraula": "calefactors",
         "dialecte": "ca",
         "data": "14/08/2026"
+      },
+      {
+        "sobrenom": "Provareal",
+        "punts": 1,
+        "paraula": "ambidextrismes",
+        "dialecte": "ca",
+        "data": "30/08/2026"
       }
     ],
     "facil": [
+      {
+        "sobrenom": "Provareal",
+        "punts": 19,
+        "paraula": "ambidextrismes",
+        "dialecte": "ca",
+        "data": "30/08/2026"
+      },
       {
         "sobrenom": "franco",
         "punts": 3,
