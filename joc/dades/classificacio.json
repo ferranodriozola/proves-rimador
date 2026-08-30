@@ -1,20 +1,36 @@
 {
-  "actualitzacio": "06/08/2026 02:08:42",
+  "actualitzacio": "30/08/2026 20:40:52",
   "modalitats": {
     "diaria|dificil|60": {
       "titol": "Paraula del dia · Difícil",
       "top": [
         {
           "sobrenom": "Adm1n",
-          "punts": 10,
-          "paraula": "estel",
-          "data": "06/08/2026"
+          "punts": 11,
+          "paraula": "calefactors",
+          "dialecte": "ca",
+          "data": "14/08/2026"
         },
         {
           "sobrenom": "admιn",
           "punts": 9,
           "paraula": "estel",
+          "dialecte": "ca",
           "data": "06/08/2026"
+        },
+        {
+          "sobrenom": "Préssec",
+          "punts": 8,
+          "paraula": "esgotador",
+          "dialecte": "ca",
+          "data": "26/08/2026"
+        },
+        {
+          "sobrenom": "Albert",
+          "punts": 3,
+          "paraula": "calefactors",
+          "dialecte": "ca",
+          "data": "14/08/2026"
         }
       ]
     },
@@ -25,6 +41,7 @@
           "sobrenom": "franco",
           "punts": 3,
           "paraula": "enfoscaments",
+          "dialecte": "ca",
           "data": "29/07/2026"
         }
       ]
@@ -33,22 +50,37 @@
       "titol": "Il·limitat · Difícil · Llampec",
       "top": [
         {
-          "sobrenom": "javascript",
-          "punts": 11,
-          "paraula": "falzies",
-          "data": "29/07/2026"
+          "sobrenom": "admιn",
+          "punts": 17,
+          "paraula": "blanquejat",
+          "dialecte": "ca",
+          "data": "06/08/2026"
         },
         {
-          "sobrenom": "Berna",
-          "punts": 6,
-          "paraula": "encegadores",
-          "data": "30/07/2026"
+          "sobrenom": "Adm1n",
+          "punts": 13,
+          "paraula": "sorral",
+          "dialecte": "ca",
+          "data": "14/08/2026"
         },
         {
           "sobrenom": "franco",
           "punts": 5,
           "paraula": "ferretera",
+          "dialecte": "ca",
           "data": "29/07/2026"
+        }
+      ]
+    },
+    "illimitat|facil|45": {
+      "titol": "Il·limitat · Fàcil · Llampec",
+      "top": [
+        {
+          "sobrenom": "Adm1n",
+          "punts": 13,
+          "paraula": "resolutiu",
+          "dialecte": "ca",
+          "data": "06/08/2026"
         }
       ]
     },
@@ -59,6 +91,7 @@
           "sobrenom": "Préssec",
           "punts": 3,
           "paraula": "bytownites",
+          "dialecte": "ca",
           "data": "29/07/2026"
         }
       ]
@@ -66,30 +99,71 @@
   },
   "diaria": {
     "2026-07-29": {
-      "paraula": "enfoscaments",
       "facil": [
         {
           "sobrenom": "franco",
           "punts": 3,
           "paraula": "enfoscaments",
+          "dialecte": "ca",
           "data": "29/07/2026"
         }
       ]
     },
     "2026-08-06": {
-      "paraula": "estel",
       "dificil": [
         {
           "sobrenom": "Adm1n",
           "punts": 10,
           "paraula": "estel",
+          "dialecte": "ca",
           "data": "06/08/2026"
         },
         {
           "sobrenom": "admιn",
           "punts": 9,
           "paraula": "estel",
+          "dialecte": "ca",
           "data": "06/08/2026"
+        }
+      ]
+    },
+    "2026-08-14": {
+      "dificil": [
+        {
+          "sobrenom": "Adm1n",
+          "punts": 11,
+          "paraula": "calefactors",
+          "dialecte": "ca",
+          "data": "14/08/2026"
+        },
+        {
+          "sobrenom": "Albert",
+          "punts": 3,
+          "paraula": "calefactors",
+          "dialecte": "ca",
+          "data": "14/08/2026"
+        }
+      ]
+    },
+    "2026-08-17": {
+      "dificil": [
+        {
+          "sobrenom": "test",
+          "punts": 1,
+          "paraula": "artística",
+          "dialecte": "ca",
+          "data": "17/08/2026"
+        }
+      ]
+    },
+    "2026-08-26": {
+      "dificil": [
+        {
+          "sobrenom": "Préssec",
+          "punts": 8,
+          "paraula": "esgotador",
+          "dialecte": "ca",
+          "data": "26/08/2026"
         }
       ]
     }
