@@ -55,9 +55,9 @@ dialectes_col/<ca|nw|va|ba>/col_4_rimaass_*.txt    clau de rima ASSONANT
         │
         │  joc/eines/generar_dades.py   ← A MÀ, no hi ha cap workflow
         ▼
-joc/dades/versions.json       quins dialectes hi ha i el resum de cada fitxer
-joc/dades/<codi>/index.json   les claus jugables d'aquell dialecte
-joc/dades/<codi>/rimes/N.txt  els grups de rimes
+joc/dades/versions.json   quins dialectes hi ha i el resum de cada fitxer
+joc/dades/index.json      les claus dels 4 dialectes + on és cada grup
+joc/dades/<codi>.txt      totes les rimes d'un dialecte (4 fitxers)
         │
         │  fetch() des del navegador
         ▼
@@ -127,22 +127,92 @@ probables** sense haver-les de llistar enlloc.
 
 ### Els números d'ara
 
-| dialecte | claus jugables | paraules objectiu | fitxers | mediana | el més gros |
-|---|---|---|---|---|---|
-| Central (`ca`) | 500 | 123.429 | 38 | 63 KB | 1,5 MB |
-| Nord-occidental (`nw`) | 484 | 122.673 | 52 | 28 KB | 1,3 MB |
-| Valencià (`va`) | 488 | 122.461 | 51 | 28 KB | 1,3 MB |
-| Balear (`ba`) | 496 | 124.563 | 42 | 60 KB | 1,5 MB |
+| dialecte | claus jugables | paraules objectiu | grups assonants |
+|---|---|---|---|
+| Central (`ca`) | 500 | 123.429 | 38 |
+| Nord-occidental (`nw`) | 484 | 122.673 | 52 |
+| Valencià (`va`) | 488 | 122.461 | 51 |
+| Balear (`ba`) | 496 | 124.563 | 42 |
 
-En total, `joc/dades/` fa **30 MB** i 183 fitxers de rimes. Es publica sencer a
-Pages, però una partida només en baixa **tres**: el `versions.json` (7 KB),
-l'`index.json` del seu dialecte (7 KB) i un fitxer de rimes (34 KB de mediana).
+En total, `joc/dades/` fa **30 MB en sis fitxers**. Una visita en baixa tres: el
+`versions.json` (500 B), l'`index.json` (33 KB) i el fitxer del seu dialecte
+(7,6 MB, que Pages serveix comprimits a **1,9 MB**). Després, totes les partides
+d'aquell dialecte són gratis.
 
-Els fitxers no són els mateixos a cada dialecte, ni tan sols n'hi ha el mateix
-nombre: el nord-occidental parteix les paraules en 52 grups assonants i el
-central en 38. Per això la numeració (`rimes/14.txt`) **no vol dir res per si
-sola**: és la posició dins la llista de grups d'aquell dialecte, i canvia si es
+El nombre de grups no és el mateix a cada dialecte: el nord-occidental parteix
+les paraules en 52 i el central en 38. Per això el número de grup **no vol dir
+res per si sol**: és la posició dins la llista d'aquell dialecte, i canvia si es
 regeneren les dades.
+
+### Per què no són 183 fitxers
+
+Ho van ser. N'hi havia un per grup assonant i dialecte, i cada partida es baixava
+només el seu. Semblava clarament millor i no ho era:
+
+| | 183 fitxers | 6 fitxers |
+|---|---|---|
+| primera partida | ~145 KB | 1,9 MB |
+| cada partida següent | ~145 KB més | **0** |
+| fitxers al repositori | 189 | 6 |
+
+Els 145 KB són la mitjana **ponderada**, que és la que compta: la tria va per
+nombre de paraules objectiu i els grups grossos en tenen més, o sigui que surten
+més sovint. La mediana crua era d'11 KB i enganyava.
+
+El monolític surt a compte **a partir de tretze partides**, i el repositori
+s'estalvia 183 fitxers que no obre mai ningú (són generats: no s'hi corregeix res,
+beuen del diccionari).
+
+La por raonable era el git: un fitxer derivat que s'ha de tornar a pujar sencer a
+cada canvi és exactament pel que es va esborrar `bot/resultat_ordenat_cons.json`
+(vegeu `diccionaris/README.md`). Està mesurat i aquí no passa: dues versions del
+fitxer de 7,6 MB amb **una paraula de diferència** empaqueten a **1,93 MiB en
+total**. El git fa deltes molt bé amb text ordenat de manera estable; aquell JSON
+es reordenava.
+
+Dues coses fan que no es pagui el preu del fitxer gros:
+
+**Els desplaçaments.** L'índex diu de cada grup on comença i quant ocupa, o sigui
+que el joc en talla un sense interpretar la resta (apartat 3).
+
+**La precàrrega.** El fitxer del dialecte es comença a baixar en obrir la pàgina,
+mentre l'usuari llegeix el menú i tria mode i rellotge. Quan prem «Comença» ja hi
+és gairebé sempre; i si no, l'espera igualment, perquè `carregarDialecte` guarda
+la promesa i no en fa dues descàrregues.
+
+I quan no hi arriba a temps, hi ha el loader (apartat 6).
+
+### Què hi ha i què no hi ha
+
+| | |
+|---|---|
+| entrades del diccionari | 619.783 |
+| fora: noms propis (codi `NP*`) | 14.705 |
+| formes úniques que valen com a rima | **470.479** |
+| al fitxer de cada dialecte | 467.247 – 469.112 (**99,3–99,7 %**) |
+| fora: grups assonants sense cap clau jugable | 1.555 – 3.503 segons el dialecte |
+
+El que falta són paraules de finals raríssims (*abutilon*, *acantolisi*,
+*acefala*, *abraxas*): cauen en un grup assonant on **cap** clau consonant no
+arriba a `MIN_RIMES`, i com que el generador només escriu els grups que fan falta
+per a alguna clau jugable, aquell grup no s'escriu. No s'hi podria jugar igualment
+—no tindrien prou rimes ni en fàcil—, i com a resposta només valdrien per a una
+paraula objectiu que tampoc no pot sortir.
+
+**Per a una partida concreta no falta cap rima.** El grup assonant va al fitxer
+sencer, seccions no jugables incloses, precisament perquè el mode fàcil les
+necessita.
+
+Dels dos papers d'una paraula:
+
+- **Com a resposta** hi valen les 469.112 (en central).
+- **Com a paraula a rimar** només 123.429: la resta són verbs, o són en claus amb
+  50 rimes o menys.
+
+I un detall que sorprèn: de les **599** claus consonants del central amb més de
+50 rimes, només **500** poden donar una paraula objectiu. Les altres 99 (`alin`,
+`anin`, `anən`…) tenen prou rimes però **només contenen verbs**. Hi són al fitxer
+i compten com a resposta; simplement no poden sortir mai com a paraula a rimar.
 
 ---
 
@@ -158,8 +228,8 @@ regeneren les dades.
     { "codi": "nw", "nom": "Nord-occidental" }
   ],
   "fitxers": {
-    "ca/index.json": "13c5c9275d6a",
-    "ca/rimes/0.txt": "5f2a1b9c4e01"
+    "index.json": "826253d24091",
+    "ca.txt": "8a1f0e77bc32"
   }
 }
 ```
@@ -169,18 +239,27 @@ ordre van a la tira) i **quina versió té cada fitxer**. El joc no sap res dels
 dialectes si no és per aquí, o sigui que no pot oferir-ne cap del qual no tingui
 les dades.
 
-### `dades/<codi>/index.json`
+### `dades/index.json`
+
+Un de sol per als quatre dialectes:
 
 ```json
-{"dialecte":"ca","min_rimes":50,"fitxers":38,
- "claus":[["a",0,1616],["abblə",4,961],["adʒə",4,427], …]}
+{"min_rimes":50,
+ "dialectes":{
+   "ca":{
+     "grups":[[0,1185721],[1185722,114619], …],
+     "claus":[["a",0,1616],["abblə",4,961],["adʒə",4,427], …]}}}
 ```
 
-Cada entrada de `claus` és `[clauConsonant, númeroDeFitxer, nombreDObjectius]`.
-Res més: ni les paraules ni cap altra metadada. Les claus van **ordenades
-alfabèticament**, i això importa (apartat 7).
+- **`claus`**: `[clauConsonant, númeroDeGrup, nombreDObjectius]`. Van **ordenades
+  alfabèticament**, i això importa (apartat 7).
+- **`grups`**: `[inici, llarg]` en **bytes** dins `<codi>.txt`. És el que permet
+  tallar-ne un sense interpretar la resta.
 
-### `dades/<codi>/rimes/N.txt`
+Per regenerar-ne un sol dialecte, el generador llegeix l'índex que hi ha i només
+en substitueix el seu tros: els altres tres no es toquen.
+
+### `dades/<codi>.txt`
 
 ```
 #aðə              ← capçalera de secció: clau de rima consonant
@@ -200,6 +279,19 @@ Tres decisions que val la pena recordar:
   conjugades seria massa fàcil. Es decideix **quan es generen les dades**.
 - **El `>` només hi és quan cal.** Si la paraula no porta accents, la línia és una
   sola paraula i el `mostrar` és el mateix que el `normalitzada`.
+
+Els grups assonants van l'un darrere l'altre, separats per un salt de línia. El
+joc no en llegeix mai més d'un: es guarda el fitxer com a `ArrayBuffer` i
+descodifica només el tros que diu l'índex.
+
+**Els desplaçaments són en bytes, no en caràcters**, a posta: un índex de Python
+són punts de codi i un de JavaScript són unitats UTF-16. Amb IPA pel mig, comptar
+caràcters seria demanar-se problemes. Per això el fitxer es baixa com a
+`ArrayBuffer` (`Uint8Array` + `TextDecoder` sobre el tall) i no com a text.
+
+Cost mesurat del tall: entre 8 i 49 ms segons el grup, i **90 ms** el cas
+complet més dolent —el grup més gros del central, tallar-lo, partir-lo i muntar
+el `Map` de 76.872 respostes.
 
 ---
 
@@ -234,20 +326,23 @@ El procés, per a cada dialecte:
    objectiu.
 5. **Comprova l'invariant** consonant → assonant i peta si falla.
 6. **Qualifica les claus**: més de `MIN_RIMES` formes *i* almenys un objectiu.
-7. **Escriu un fitxer per grup assonant** dels que fan falta. Cada fitxer conté
-   el grup assonant **sencer**, seccions no qualificades incloses: fan falta per
-   validar el mode fàcil.
-8. **Escriu l'`index.json`** del dialecte.
+7. **Munta el fitxer del dialecte**: els grups assonants un darrere l'altre,
+   apuntant de cadascun on comença i quant ocupa. Cada grup hi va **sencer**,
+   seccions no qualificades incloses: fan falta per validar el mode fàcil.
+8. **Torna el seu tros d'índex** (`grups` + `claus`).
 
-I al final de tot, **el `versions.json`** amb el resum de tot el que hi ha
-(inclosos els dialectes que no s'hagin regenerat en aquesta passada).
+I al final de tot, **l'`index.json`** (fusionant els dialectes que no s'hagin
+regenerat en aquesta passada) i **el `versions.json`**.
 
-Dues coses que fa i que no es veuen:
+Tres coses que fa i que no es veuen:
 
-- **No reescriu el que no ha canviat** (`escriure_si_cal`). Una passada sense
-  canvis al diccionari no deixa cap diff ni toca cap data de fitxer.
-- **Neteja el que sobra**: els `rimes/N.txt` que ja no apunta ningú, i les
-  carpetes de dialectes que hagin desaparegut de `dialectes_col/`.
+- **No reescriu el que no ha canviat** (`escriure_si_cal`, que compara bytes).
+  Una passada sense canvis al diccionari no deixa cap diff ni toca cap data de
+  fitxer.
+- **Fusiona l'índex** en comptes de refer-lo: `generar_dades.py va` deixa els
+  altres tres dialectes tal com estaven.
+- **Neteja el que sobra**: els dialectes que hagin desaparegut de
+  `dialectes_col/` i les carpetes `<codi>/` del format vell.
 
 > ⚠️ **Regenerar les dades canvia la paraula del dia** d'aquell dia per a qui
 > encara no l'hagi jugada, perquè la tria depèn de l'ordre i dels pesos de
@@ -298,14 +393,18 @@ el `versions.json` no arriba, es juga en central i prou.
 
 - `carregarVersions()` — el `versions.json`, sempre amb `?t=` i mai cachejat. Si
   falla, estira dels resums desats al `localStorage` (apartat 9).
-- `carregarIndex(dialecte)` i `carregarFitxerDeRimes(dialecte, numero)` — guarden
-  **la promesa**, no el resultat, de manera que dues crides simultànies
-  comparteixen la mateixa descàrrega. La memòria cau va per dialecte, o sigui que
-  anar i venir de la tira no rebaixa res.
-- `respostesValides(fitxer, clau, dificultat)` — el `Map` de respostes: en
-  **difícil** una còpia de la secció; en **fàcil** la fusió de totes les seccions.
+- `carregarIndex()` — l'índex dels quatre dialectes; `indexDe(index, codi)` en
+  treu el tros d'un.
+- `carregarDialecte(codi)` — el fitxer, com a `ArrayBuffer`. Guarda **la
+  promesa**, no el resultat, de manera que la precàrrega de l'arrencada i una
+  partida que comenci mentre baixa no en fan dues descàrregues.
+- `grupDeRimes(codi, numeroDeGrup)` — descodifica i parteix **només** el tros que
+  diu l'índex. El grup interpretat també es guarda: repetir-hi no costa res.
+- `respostesValides(grup, clau, dificultat)` — el `Map` de respostes: en
+  **difícil** una còpia de la secció; en **fàcil** la fusió de totes les seccions
+  del grup.
 
-L'anàlisi (`analitzar`) recorre el text una vegada comparant codis de caràcter
+L'anàlisi (`analitzar`) recorre el tall una vegada comparant codis de caràcter
 (`35` = `#`, `42` = `*`) i deixa cada secció com
 `{ paraules: Map<normalitzada, mostrar>, objectius: [normalitzada, …] }`.
 
@@ -425,20 +524,43 @@ Vegeu l'apartat 8.
 
 ## 6. El flux d'una partida
 
+### El loader
+
+Preparar una partida amb el fitxer ja baixat són 90 ms: ensenyar un loader seria
+una fuetada de pantalla que no informa de res. Per això no s'ensenya de cop, sinó
+que **es demana amb 150 ms de retard** (`ESPERA_ABANS_DEL_LOADER`), i si la
+partida s'ha preparat abans, no arriba a sortir. Comprovat: al camí ràpid,
+l'atribut `hidden` del loader no canvia ni una vegada.
+
+Quan sí que surt, no és una rodona i prou. `dades.js` llegeix el cos de la
+resposta per trossos (`body.getReader()`) i va avisant de quants bytes porta;
+`escoltarProgres(codi, fn)` deixa que la pantalla s'hi enganxi **encara que la
+descàrrega l'hagi començada la precàrrega fa estona**, perquè l'últim estat es
+guarda i s'entrega de seguida a qui arribi tard.
+
+El total NO surt del `Content-Length`: amb `Content-Encoding: gzip` aquella
+capçalera diu la mida **comprimida** i el lector va donant bytes ja
+descomprimits, o sigui que el percentatge aniria fins al 400 %. Surt del camp
+`bytes` que el generador escriu a l'índex, que és la mida de debò.
+
+Si el navegador no dona un cos llegible, es cau a `arrayBuffer()` i el fitxer es
+baixa igual, només que sense percentatge.
+
 ```
 arrencar()
    ├─ carregarVersions()          dades/versions.json?t=…
    ├─ dialecte.inicial(codis)     ?d= → localStorage → 'ca'
-   └─ carregarIndex(dialecte)     dades/<codi>/index.json?v=<resum>
+   └─ precarregar(dialecte)       dades/index.json?v=…  +  dades/<codi>.txt?v=…
+                                  (sense esperar-los: baixen mentre tries)
 
 comencarPartida()
    │
    ├─ prepararParaula()
-   │     ├─ carregarIndex(dialecte)
+   │     ├─ indexDe(await carregarIndex(), dialecte)
    │     ├─ clauDelDia(index, data, dialecte) o clauAleatoria(index)
-   │     ├─ carregarFitxerDeRimes(dialecte, fitxer)
-   │     ├─ triarParaula(fitxer, clau, aleatori)   → { normalitzada, mostrar }
-   │     └─ respostesValides(fitxer, clau, dif)    → Map<normalitzada, mostrar>
+   │     ├─ grupDeRimes(dialecte, grup)          talla el tros i el parteix
+   │     ├─ triarParaula(grup, clau, aleatori)   → { normalitzada, mostrar }
+   │     └─ respostesValides(grup, clau, dif)    → Map<normalitzada, mostrar>
    │
    ├─ ui.pintarObjectiu() / ui.mostrarPantalla('joc')
    └─ new Partida({…}).comencar()
@@ -636,9 +758,9 @@ exactament quan el fitxer ha canviat**: ni abans ni de més.
 Al navegador:
 
 ```
-dades/versions.json?t=1788038423657          ← mai cachejat
-dades/ca/index.json?v=13c5c9275d6a           ← cachejable per sempre
-dades/ca/rimes/14.txt?v=6d2aafff65ef         ← cachejable per sempre
+dades/versions.json?t=1788119048827          ← mai cachejat
+dades/index.json?v=826253d24091              ← cachejable per sempre
+dades/ca.txt?v=c257dc6fd178                  ← cachejable per sempre
 ```
 
 Si el `versions.json` no es pot llegir (sense xarxa, servidor caigut, fitxer
@@ -649,10 +771,9 @@ dades. És el mateix rescat que fa `carregarVersions` a `js/script.js`. I si no 
 ha res de què estirar, cada fitxer es demana amb un `?v=t<ara>` sempre diferent,
 que és pitjor però mai incoherent.
 
-Una diferència amb el `versions.json` del diccionari: **aquí les claus són
-camins** (`ca/rimes/0.txt`) i no noms de fitxer sols. Allà el navegador indexa la
-memòria cau d'IndexedDB pel nom (`rutaFitxer.split("/").pop()`) i cada fitxer és
-únic; aquí el `ca/rimes/0.txt` i el `va/rimes/0.txt` es dirien igual.
+Són cinc entrades: l'`index.json` i els quatre `<codi>.txt`. Com que tots viuen
+a `dades/` i tenen nom únic, les claus són noms de fitxer sols, igual que al
+`versions.json` del diccionari.
 
 ### El codi: el `?v=` del commit
 
@@ -724,8 +845,8 @@ el `display` i, sense això, guanyarien i les pantalles amagades es veurien.
 | `js/compartir.js` | graella d'emojis + `navigator.share` / porta-retalls | tu |
 | `js/classificacio.js` | enviar la puntuació i llegir el rànquing | tu |
 | `dades/versions.json` | quins dialectes hi ha i el resum de cada fitxer | `generar_dades.py` |
-| `dades/<codi>/index.json` | les claus jugables d'aquell dialecte | `generar_dades.py` |
-| `dades/<codi>/rimes/N.txt` | els grups de rimes | `generar_dades.py` |
+| `dades/index.json` | les claus dels 4 dialectes, on és cada grup i què fa el fitxer | `generar_dades.py` |
+| `dades/<codi>.txt` | totes les rimes d'un dialecte | `generar_dades.py` |
 | `dades/classificacio.json` | el rànquing publicat | `compilar_classificacio.py` |
 | `eines/generar_dades.py` | diccionari + rima → `dades/` | tu |
 | `eines/compilar_classificacio.py` | full CSV → `classificacio.json` | tu |
@@ -771,11 +892,15 @@ paraula sobre què s'accepta.
 
 ### Les dades ocupen 30 MB al repositori
 
-Quatre dialectes per 7,5 MB. Es publiquen sencers a Pages i cada partida només en
-baixa un fitxer, o sigui que no costa res a qui juga; però sí que és espai al
-repositori, i es torna a escriure sencer cada cop que canvia la rima d'un
-dialecte. Si un dia hi ha un cinquè dialecte, seran uns 38 MB. El `.gitignore` no
-els toca a posta: han d'anar al paquet que es publica.
+Quatre dialectes per 7,6 MB, en quatre fitxers. Es publiquen sencers a Pages, i
+qui juga se'n baixa un (1,9 MB comprimits) un sol cop. Si un dia hi ha un cinquè
+dialecte, seran uns 38 MB. El `.gitignore` no els toca a posta: han d'anar al
+paquet que es publica.
+
+El creixement del repositori a cada regeneració és petit encara que els fitxers
+siguin grossos, perquè el git en fa deltes (mesurat a l'apartat 2). El que sí
+que cal recordar és que **`escriure_si_cal` compara bytes**: si una passada no
+canvia res, no es toca cap fitxer i no hi ha cap commit.
 
 ### El `?v=dev` no és cap error
 
