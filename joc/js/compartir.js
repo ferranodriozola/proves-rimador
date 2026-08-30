@@ -1,6 +1,6 @@
 // El text que es copia per ensenyar com t'ha anat la paraula del dia.
 //
-// A l'estil del Wordle: una graella d'emojis que no diu ni la paraula que tocava
+// A l'estil del Wordle: una graella de quadrets que no diu ni la paraula que tocava
 // ni cap de les rimes, o sigui que es pot penjar sense espatllar-li el dia a
 // ningu.
 
@@ -23,21 +23,21 @@ export function textPerCompartir({ data, dificultat, dialecte, punts }) {
 }
 
 function graella(punts) {
-    if (punts === 0) return '⬜⬜⬜⬜⬜';
+    if (punts === 0) return '□□□□□';
 
     // Si en surten masses, no omplim mitja pantalla de quadrets.
     if (punts > PER_FILA * MAX_FILES) {
-        const files = Array(MAX_FILES).fill('🟦'.repeat(PER_FILA));
+        const files = Array(MAX_FILES).fill('■'.repeat(PER_FILA));
         files.push(`+${punts - PER_FILA * MAX_FILES} més`);
         return files.join('\n');
     }
 
     const filesPlenes = Math.floor(punts / PER_FILA);
     const files = [];
-    for (let i = 0; i < filesPlenes; i++) files.push('🟦'.repeat(PER_FILA));
+    for (let i = 0; i < filesPlenes; i++) files.push('■'.repeat(PER_FILA));
 
     const resta = punts % PER_FILA;
-    if (resta > 0) files.push('🟦'.repeat(resta) + '⬜'.repeat(PER_FILA - resta));
+    if (resta > 0) files.push('■'.repeat(resta) + '□'.repeat(PER_FILA - resta));
 
     return files.join('\n');
 }
