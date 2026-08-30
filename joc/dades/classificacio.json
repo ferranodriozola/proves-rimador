@@ -1,5 +1,5 @@
 {
-  "actualitzacio": "30/08/2026 20:50:11",
+  "actualitzacio": "30/08/2026 22:51:42",
   "modalitats": {
     "diaria|dificil|60": {
       "titol": "Paraula del dia · Difícil",
@@ -46,6 +46,18 @@
         }
       ]
     },
+    "illimitat|dificil|180": {
+      "titol": "Il·limitat · Difícil · Lent",
+      "top": [
+        {
+          "sobrenom": "Prova",
+          "punts": 3,
+          "paraula": "prova",
+          "dialecte": "ca",
+          "data": "30/08/2026"
+        }
+      ]
+    },
     "illimitat|dificil|45": {
       "titol": "Il·limitat · Difícil · Llampec",
       "top": [
@@ -69,6 +81,37 @@
           "paraula": "ferretera",
           "dialecte": "ca",
           "data": "29/07/2026"
+        },
+        {
+          "sobrenom": "Prova",
+          "punts": 3,
+          "paraula": "prova",
+          "dialecte": "ca",
+          "data": "30/08/2026"
+        }
+      ]
+    },
+    "illimitat|dificil|90": {
+      "titol": "Il·limitat · Difícil · Estàndard",
+      "top": [
+        {
+          "sobrenom": "Prova",
+          "punts": 3,
+          "paraula": "prova",
+          "dialecte": "ca",
+          "data": "30/08/2026"
+        }
+      ]
+    },
+    "illimitat|facil|180": {
+      "titol": "Il·limitat · Fàcil · Lent",
+      "top": [
+        {
+          "sobrenom": "Prova",
+          "punts": 3,
+          "paraula": "prova",
+          "dialecte": "ca",
+          "data": "30/08/2026"
         }
       ]
     },
@@ -81,6 +124,13 @@
           "paraula": "resolutiu",
           "dialecte": "ca",
           "data": "06/08/2026"
+        },
+        {
+          "sobrenom": "Prova",
+          "punts": 3,
+          "paraula": "prova",
+          "dialecte": "ca",
+          "data": "30/08/2026"
         }
       ]
     },
@@ -93,6 +143,13 @@
           "paraula": "bytownites",
           "dialecte": "ca",
           "data": "29/07/2026"
+        },
+        {
+          "sobrenom": "Prova",
+          "punts": 3,
+          "paraula": "prova",
+          "dialecte": "ca",
+          "data": "30/08/2026"
         }
       ]
     }
