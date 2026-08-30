@@ -15,7 +15,7 @@ const NOMS = [
     'bloc-classificacio', 'camp-sobrenom', 'boto-enviar-record', 'estat-enviament',
     'records-buit', 'llista-records',
     'classificacio-selector', 'classificacio-estat', 'classificacio-llista', 'classificacio-data',
-    'classificacio-subtitol',
+    'classificacio-subtitol', 'classificacio-dificultat',
     'carregant', 'carregant-text',
 ];
 
@@ -246,7 +246,7 @@ function filaRecord({ posicio, etiqueta, subtitol, punts, destacada }) {
     if (posicio) {
         const pos = document.createElement('span');
         pos.className = 'fila-record__pos';
-        pos.textContent = posicio <= 3 ? ['🥇', '🥈', '🥉'][posicio - 1] : posicio;
+        pos.textContent = posicio;
         nom.appendChild(pos);
     }
     const text = document.createElement('div');
@@ -354,6 +354,33 @@ export function diaCurt(dia) {
     return `${Number(numero)} ${de}${nom}`;
 }
 
+/**
+ * La tria de dificultat de la pestanya de la paraula del dia. Val tant per al
+ * rànquing del dia com per al dels millors de sempre: són la mateixa pregunta
+ * feta dues vegades i no tindria sentit poder-les descordar.
+ */
+export function pintarSelectorDificultat(actiu, alTriar) {
+    el.classificacioDificultat.hidden = false;
+    el.classificacioDificultat.replaceChildren(
+        ...['facil', 'dificil'].map((dificultat) => {
+            const boto = document.createElement('button');
+            boto.type = 'button';
+            boto.className = 'pastilla';
+            boto.textContent = NOM_DIFICULTAT[dificultat];
+            boto.setAttribute('role', 'radio');
+            boto.setAttribute('aria-checked', String(dificultat === actiu));
+            boto.setAttribute('aria-pressed', String(dificultat === actiu));
+            boto.addEventListener('click', () => alTriar(dificultat));
+            return boto;
+        })
+    );
+}
+
+export function amagarSelectorDificultat() {
+    el.classificacioDificultat.hidden = true;
+    el.classificacioDificultat.replaceChildren();
+}
+
 export function pintarSelectorDies(dies, actiu, alTriar) {
     el.classificacioSelector.replaceChildren(
         ...dies.map((dia) => {
@@ -368,37 +395,48 @@ export function pintarSelectorDies(dies, actiu, alTriar) {
     );
 }
 
+function taula(titol, entrades, elMeuSobrenom) {
+    const trossos = [];
+
+    const capcalera = document.createElement('h3');
+    capcalera.className = 'mini-titol mini-titol--taula';
+    capcalera.textContent = titol;
+    trossos.push(capcalera);
+
+    if (!entrades || entrades.length === 0) {
+        const buit = document.createElement('p');
+        buit.className = 'taula-buida';
+        buit.textContent = 'Encara no hi ha ningú.';
+        trossos.push(buit);
+        return trossos;
+    }
+
+    trossos.push(...entrades.map((e, i) => filaRecord({
+        posicio: i + 1,
+        etiqueta: e.sobrenom,
+        subtitol: subtitolEntrada(e),
+        punts: e.punts,
+        destacada: elMeuSobrenom && e.sobrenom.toLowerCase() === elMeuSobrenom.toLowerCase(),
+    })));
+    return trossos;
+}
+
 /**
- * El rànquing d'un dia: una taula per dificultat.
- * Ve del bloc "diaria" de dades/classificacio.json, que munta
- * joc/eines/compilar_classificacio.py.
+ * La pestanya de la paraula del dia: el rànquing del dia que estiguis mirant i,
+ * a sota, el dels millors de sempre. Tots dos en la dificultat triada.
+ *
+ * Vénen dels blocs "diaria" i "diaria_millors" de dades/classificacio.json, que
+ * munta joc/eines/compilar_classificacio.py.
  *
  * No hi ha cap capçalera que digui quina era la paraula del dia, perquè no n'hi
  * ha una de sola: cada dialecte té la seva (vegeu clauDelDia a objectius.js).
  * Va a cada fila, al costat del dialecte.
  */
-export function pintarDiaria(bloc, elMeuSobrenom) {
-    const trossos = [];
-
-    for (const dificultat of ['facil', 'dificil']) {
-        const entrades = bloc[dificultat];
-        if (!entrades || entrades.length === 0) continue;
-
-        const titol = document.createElement('h3');
-        titol.className = 'mini-titol mini-titol--taula';
-        titol.textContent = NOM_DIFICULTAT[dificultat];
-        trossos.push(titol);
-
-        trossos.push(...entrades.map((e, i) => filaRecord({
-            posicio: i + 1,
-            etiqueta: e.sobrenom,
-            subtitol: subtitolEntrada(e),
-            punts: e.punts,
-            destacada: elMeuSobrenom && e.sobrenom.toLowerCase() === elMeuSobrenom.toLowerCase(),
-        })));
-    }
-
-    el.classificacioLlista.replaceChildren(...trossos);
+export function pintarDiaria({ delDia, millors, dia, dificultat }, elMeuSobrenom) {
+    el.classificacioLlista.replaceChildren(
+        ...taula(`${diaCurt(dia)} · ${NOM_DIFICULTAT[dificultat]}`, delDia, elMeuSobrenom),
+        ...taula(`Els millors de sempre · ${NOM_DIFICULTAT[dificultat]}`, millors, elMeuSobrenom),
+    );
 }
 
 // ------------------------------------------------ Enviament a la classificació

@@ -9,21 +9,21 @@
 
 import {
     carregarVersions, carregarIndex, carregarFitxerDeRimes, respostesValides,
-} from './dades.js?v=prova1788115329';
-import { clauAleatoria, clauDelDia, triarParaula } from './objectius.js?v=prova1788115329';
-import { Partida, RESULTAT, formatarTemps } from './motor.js?v=prova1788115329';
-import * as ui from './ui.js?v=prova1788115329';
-import * as dialecte from './dialecte.js?v=prova1788115329';
+} from './dades.js?v=dev';
+import { clauAleatoria, clauDelDia, triarParaula } from './objectius.js?v=dev';
+import { Partida, RESULTAT, formatarTemps } from './motor.js?v=dev';
+import * as ui from './ui.js?v=dev';
+import * as dialecte from './dialecte.js?v=dev';
 import {
     avui, identificadorRecord, llegirRecord, desarRecord,
     resultatDiari, dificultatsJugades, desarResultatDiari,
     llegirTotsElsRecords, llegirSobrenom, desarSobrenom,
-} from './magatzem.js?v=prova1788115329';
-import { textPerCompartir, compartirResultat } from './compartir.js?v=prova1788115329';
+} from './magatzem.js?v=dev';
+import { textPerCompartir, compartirResultat } from './compartir.js?v=dev';
 import {
     validarSobrenom, enviarPuntuacio, estaConfigurat,
     carregarClassificacio,
-} from './classificacio.js?v=prova1788115329';
+} from './classificacio.js?v=dev';
 
 const SEGONS_DIARIA = 60;
 const NOM_DIFICULTAT = { facil: 'fàcil', dificil: 'difícil' };
@@ -175,6 +175,7 @@ function modalitatDe({ mode, dificultat, segons }) {
 
 let modalitatActiva = null;
 let diaActiu = null;
+let dificultatDiaria = null;
 let pestanyaActiva = 'modalitats';
 let classificacio = null;
 
@@ -212,16 +213,29 @@ function pintarPestanyaActiva() {
     else pintarModalitats();
 }
 
-/** Totes les modalitats, juguin en el dialecte que juguin. */
+/**
+ * Les modalitats d'il·limitat, juguin en el dialecte que juguin. La paraula del
+ * dia no hi surt: té la seva pestanya, i barrejar-hi partides d'un minut amb un
+ * sol intent al dia no comparava res.
+ */
 function pintarModalitats() {
+    ui.amagarSelectorDificultat();
+
     const modalitats = Object.entries(classificacio.modalitats || {})
-        .map(([clau, valor]) => ({ clau, titol: valor.titol, top: valor.top || [] }))
+        .filter(([clau]) => clau.startsWith('illimitat|'))
+        // La pestanya ja diu "Il·limitat": repetir-ho a cada pastilla només
+        // faria més estret el que de debò les distingeix.
+        .map(([clau, valor]) => ({
+            clau,
+            titol: (valor.titol || '').replace(/^Il·limitat · /, ''),
+            top: valor.top || [],
+        }))
         .filter((m) => m.top.length > 0);
 
     if (modalitats.length === 0) {
         ui.el.classificacioSelector.replaceChildren();
         ui.estatClassificacio(estaConfigurat()
-            ? 'Encara no hi ha cap puntuació. Sigues el primer!'
+            ? 'Encara no hi ha cap partida il·limitada. Sigues el primer!'
             : 'La classificació encara no està activada en aquest lloc.');
         return;
     }
@@ -245,12 +259,17 @@ function pintarModalitats() {
     mostrar(modalitatActiva);
 }
 
-/** El rànquing de cada dia de la paraula del dia, del més nou al més vell. */
+/**
+ * La pestanya de la paraula del dia: el rànquing del dia que triïs i, a sota, el
+ * dels millors de sempre. Els dos en la dificultat que triïs.
+ */
 function pintarDiaria() {
     const perDia = classificacio.diaria || {};
+    const millors = classificacio.diaria_millors || {};
     const dies = Object.keys(perDia).sort().reverse();
 
     if (dies.length === 0) {
+        ui.amagarSelectorDificultat();
         ui.el.classificacioSelector.replaceChildren();
         ui.estatClassificacio(estaConfigurat()
             ? 'Encara no hi ha cap paraula del dia jugada.'
@@ -259,16 +278,29 @@ function pintarDiaria() {
     }
 
     if (!dies.includes(diaActiu)) diaActiu = dies[0];
+    // Per defecte, la dificultat que jugues: és la que et deus voler mirar.
+    if (dificultatDiaria === null) dificultatDiaria = estat.dificultat;
     const elMeuSobrenom = llegirSobrenom();
 
-    function mostrar(dia) {
-        diaActiu = dia;
+    function mostrar() {
         ui.estatClassificacio('');
-        ui.pintarSelectorDies(dies, dia, mostrar);
-        ui.pintarDiaria(perDia[dia], elMeuSobrenom);
+        ui.pintarSelectorDificultat(dificultatDiaria, (dificultat) => {
+            dificultatDiaria = dificultat;
+            mostrar();
+        });
+        ui.pintarSelectorDies(dies, diaActiu, (dia) => {
+            diaActiu = dia;
+            mostrar();
+        });
+        ui.pintarDiaria({
+            delDia: (perDia[diaActiu] || {})[dificultatDiaria],
+            millors: millors[dificultatDiaria],
+            dia: diaActiu,
+            dificultat: dificultatDiaria,
+        }, elMeuSobrenom);
     }
 
-    mostrar(diaActiu);
+    mostrar();
 }
 
 // ------------------------------------------------------------ Configuració
