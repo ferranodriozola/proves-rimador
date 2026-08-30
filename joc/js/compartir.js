@@ -9,10 +9,15 @@ const MAX_FILES = 6;   // a partir d'aqui, resumim
 
 const NOM_DIFICULTAT = { facil: 'Fàcil', dificil: 'Difícil' };
 
-export function textPerCompartir({ data, dificultat, punts }) {
+export function textPerCompartir({ data, dificultat, dialecte, punts }) {
     const [any, mes, dia] = data.split('-');
     const capcalera = `El Rimador · Paraula del dia ${dia}/${mes}/${any}`;
-    const marcador = `${NOM_DIFICULTAT[dificultat] || dificultat} · ${punts} ${punts === 1 ? 'rima' : 'rimes'}`;
+    // El dialecte hi va perque cadascun te la seva paraula del dia (vegeu
+    // clauDelDia a objectius.js): sense dir-lo, dos resultats del mateix dia no
+    // es podrien comparar i ningu no sabria per que.
+    const marcador = [NOM_DIFICULTAT[dificultat] || dificultat, dialecte,
+                      `${punts} ${punts === 1 ? 'rima' : 'rimes'}`]
+        .filter(Boolean).join(' · ');
 
     return [capcalera, marcador, graella(punts), 'rimador.cat/joc'].join('\n');
 }

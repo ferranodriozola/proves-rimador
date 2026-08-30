@@ -1,5 +1,10 @@
 // Triar la paraula objectiu d'una partida.
 //
+// Tot es fa sobre l'index del dialecte que es juga: cada dialecte reparteix les
+// paraules en claus de rima diferents i per tant te el seu index. La paraula del
+// dia, doncs, es la mateixa per a tothom qui juga EN AQUELL DIALECTE, no per a
+// tothom (vegeu clauDelDia).
+//
 // Nomes poden sortir paraules d'una clau de rima consonant amb mes de 50 rimes
 // (mira MIN_RIMES a joc/eines/generar_dades.py). Com que la clau consonant
 // implica la clau assonant, aixo garanteix que hi ha rimes de sobres tant en
@@ -42,14 +47,21 @@ const OBJECTIUS = 2;
 // Suma acumulada dels objectius de cada grup, per fer la tria ponderada: com mes
 // paraules objectiu te un grup, mes probable es que en surti (aixi cada paraula
 // objectiu es igual de probable).
-let acumulatCache = null;
+//
+// Un WeakMap i no una sola variable: amb quatre dialectes, anar i venir de la
+// tira alternaria dos indexs i el cache d'un de sol no encertaria mai. La clau
+// es l'array de claus mateix, o sigui que quan un index es deixa de fer servir,
+// el seu acumulat se'n va sol.
+const acumulatCache = new WeakMap();
 
 function acumulat(index) {
-    if (acumulatCache && acumulatCache.claus === index.claus) return acumulatCache;
+    const desat = acumulatCache.get(index.claus);
+    if (desat) return desat;
     let suma = 0;
     const talls = index.claus.map((entrada) => (suma += entrada[OBJECTIUS]));
-    acumulatCache = { claus: index.claus, talls, total: suma };
-    return acumulatCache;
+    const calculat = { talls, total: suma };
+    acumulatCache.set(index.claus, calculat);
+    return calculat;
 }
 
 function triarClau(index, aleatori) {
@@ -72,11 +84,18 @@ export function clauAleatoria(index) {
 }
 
 /**
- * La clau del dia. Depen nomes de la data, no de la dificultat: aixi tothom
- * juga la mateixa paraula, tant si la fa en facil com en dificil.
+ * La clau del dia. Depen de la data i del dialecte, i NO de la dificultat: aixi
+ * qui juga en el mateix dialecte te la mateixa paraula, tant si la fa en facil
+ * com en dificil.
+ *
+ * El dialecte hi entra a posta. Cada dialecte reparteix les paraules en claus de
+ * rima diferents, o sigui que la mateixa llavor hi cauria en una paraula
+ * diferent igualment; posant-lo a la llavor, aixo queda dit en comptes de
+ * passar de retruc, i dos dialectes no es poden trobar amb la mateixa paraula
+ * per casualitat.
  */
-export function clauDelDia(index, dataISO) {
-    const aleatori = generador(llavor(`rimador-joc-${dataISO}`));
+export function clauDelDia(index, dataISO, dialecte) {
+    const aleatori = generador(llavor(`rimador-joc-${dataISO}-${dialecte}`));
     const seleccio = triarClau(index, aleatori);
     return { ...seleccio, aleatori };
 }
