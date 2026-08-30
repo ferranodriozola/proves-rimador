@@ -142,9 +142,9 @@ if (headerHTML) { headerHTML.innerHTML = header; }
 */
 const DIALECTES = [
     { codi: 'ca', nom: 'Central' },
-    { codi: 'nw', nom: 'Nord-occidental' },
-    { codi: 'va', nom: 'Valencià' },
-    { codi: 'ba', nom: 'Balear' }
+    { codi: 'nw', nom: 'Nord-occidental *' },
+    { codi: 'va', nom: 'Valencià *' },
+    { codi: 'ba', nom: 'Balear *' }
 ];
 
 const DIALECTE_TRIAT = 'ca';
@@ -299,6 +299,8 @@ const checkboxContainerHTML = document.getElementById('checkboxContainer');
 if (checkboxContainerHTML) { checkboxContainerHTML.innerHTML = checkboxContainer; }
 
 const footer = /*html*/`
+<br>* Disclaimer dialectes
+<br>
 <br>v.6.0 &copy; Marc i Ferran. Uns quants drets reservats.
 <br><br>
 <br>Si has trobat una errada o tens una suggerència, ens pots enviar un correu a:
