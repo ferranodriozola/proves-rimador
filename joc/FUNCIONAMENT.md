@@ -19,18 +19,22 @@ Està **aïllat de la resta del web** a propòsit:
 
 | | web principal | joc |
 |---|---|---|
-| CSS | `css/*.scss` → gulp → `dist/css/styles.min.css` | `joc/css/joc.css`, a pèl |
+| CSS | `css/*.scss` → gulp → `dist/css/styles.min.css` | `joc/css/joc.scss` → gulp → `dist/css/joc.min.css` (full a part, `_variables.scss` compartit) |
 | JS | `js/*.js` → gulp → `dist/js/script.min.js` | `joc/js/*.js`, mòduls ES natius |
 | dades | tot el diccionari (46 MB) a IndexedDB | 1 índex + 1 fitxer de rimes per partida |
 
-El `gulpfile.js` només mira `css/` i `js/` de l'arrel, o sigui que **res d'aquesta
-carpeta no passa per cap compilació**. El navegador es carrega els mòduls tal com
-són.
+Del `gulpfile.js`, el joc n'usa **una tasca pròpia** (`styles-joc`) per al CSS i
+res per al JS: els mòduls els carrega el navegador tal com són. El full del joc
+surt **a part** del del lloc i no pas concatenat amb ell, perquè tots dos posen
+regles damunt de `html`, `body`, `a` i `*` (i el `general.scss` posa
+`height: 100%` i `overflow: hidden` al `body`, que aquí trencaria el
+desplaçament).
 
 El que **sí** que comparteix amb el web principal són tres coses, i totes tres per
 alguna raó:
 
-- **L'estètica** (rosa/cian), escrita a part.
+- **L'estètica** (rosa/cian): full a part, però els colors de la casa surten del
+  `css/_variables.scss` compartit, o sigui que són escrits un sol cop.
 - **El dialecte triat** (`localStorage['rimadorDialecte']`) i **l'identificador
   d'usuari** (`rimador_usuari_id`): les dues meitats del lloc han de coincidir en
   què estàs mirant i qui ets.
@@ -781,7 +785,7 @@ El `deploy.yml` posa els set primers caràcters del `GITHUB_SHA` a tots els `?v=
 quan detecta canvis. Ara `joc/` hi entra com l'arrel:
 
 ```yaml
-git diff … -- 'css/*.scss' 'js/*.js' 'avis/*.js' 'avis/*.css' 'joc/js/*.js' 'joc/css/*.css'
+git diff … -- 'css/*.scss' 'js/*.js' 'avis/*.js' 'avis/*.css' 'joc/js/*.js' 'joc/css/*.scss'
 ```
 
 I el `sed` no escriu només als HTML, sinó també **a les importacions entre
@@ -833,7 +837,7 @@ el `display` i, sense això, guanyarien i les pantalles amagades es veurien.
 | fitxer | què fa | qui l'escriu |
 |---|---|---|
 | `index.html` | totes les pantalles, amagades amb `hidden` | tu |
-| `css/joc.css` | l'estètica, a pèl (no passa pel gulp) | tu |
+| `css/joc.scss` | l'estètica; el gulp en fa `dist/css/joc.min.css` | tu |
 | `js/principal.js` | fil conductor: pantalles, estat, esdeveniments | tu |
 | `js/dades.js` | versions, `fetch` i anàlisi dels fitxers de rimes | tu |
 | `js/dialecte.js` | quin dialecte es juga (`?d=`, `localStorage`, central) | tu |
@@ -847,7 +851,7 @@ el `display` i, sense això, guanyarien i les pantalles amagades es veurien.
 | `dades/versions.json` | quins dialectes hi ha i el resum de cada fitxer | `generar_dades.py` |
 | `dades/index.json` | les claus dels 4 dialectes, on és cada grup i què fa el fitxer | `generar_dades.py` |
 | `dades/<codi>.txt` | totes les rimes d'un dialecte | `generar_dades.py` |
-| `dades/classificacio.json` | el rànquing publicat | `compilar_classificacio.py` |
+| `dades/classificacio.json` | el rànquing publicat | `.github/workflows/classificacio.yml` (automàtic) |
 | `eines/generar_dades.py` | diccionari + rima → `dades/` | tu |
 | `eines/compilar_classificacio.py` | full CSV → `classificacio.json` | tu |
 | `eines/apps_script_classificacio.gs` | codi que viu a Google, no aquí | tu |
@@ -874,13 +878,12 @@ res que no sigui central.
 També cal **tornar a desplegar l'Apps Script** després d'enganxar-hi la versió
 nova: el codi que corre a Google és una còpia, no el fitxer del repositori.
 
-### Cap dels dos scripts és a cap workflow
+### Workflows automàtics
 
-Ni `generar_dades.py` ni `compilar_classificacio.py`. Les dades del joc i el
-rànquing es refresquen quan els passes tu i els comiteges. El `README.md` apunta
-que es podrien programar a l'estil de `stats.yml`; la del rànquing seria la que
-més s'ho val, perquè avui la classificació és tan fresca com l'últim cop que te'n
-vas recordar.
+- **`compilar_classificacio.py`** ja té el seu workflow
+(`.github/workflows/classificacio.yml`): cada dia a les 22:01 UTC i sota demanda.
+- **`generar_dades.py`** continua sent manual: es passa quan canvies el diccionari
+o els dialectes.
 
 ### La classificació és de confiança i prou
 
