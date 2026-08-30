@@ -207,7 +207,7 @@ async function obrirClassificacio() {
     }
 
     ui.el.classificacioData.textContent = classificacio.actualitzacio
-        ? `Última actualització: ${classificacio.actualitzacio}`
+        ? `Última actualització: ${classificacio.actualitzacio} (s'actualitza 1 cop al dia, de matinada)`
         : '';
     pintarPestanyaActiva();
 }
