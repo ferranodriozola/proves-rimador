@@ -4,6 +4,13 @@
 // contra el codi HTML/JS real), no per família de to.
 // El tema "sober" (sober.scss) té el seu propi sistema de
 // custom properties --sober-* i no es toca aquí.
+//
+// Aquest fitxer el comparteixen els DOS fulls que compila el
+// gulp: el del lloc (dist/css/styles.min.css) i el del joc
+// (dist/css/joc.min.css, des de joc/css/joc.scss). Els colors
+// de marca són, doncs, l'únic lloc on són escrits: el joc no
+// en repeteix cap literal, els converteix a custom properties
+// seves (--rosa, --cian...) al seu propi :root.
 // =========================================================
 
 // --- Bàsics (arreu) ---
@@ -11,10 +18,16 @@ $blanc: #ffffff;
 $negre: #000000;
 
 // --- Marca: capçalera, peu de pàgina, menú, botó de Ko-fi, anella
-//     de càrrega... presents a TOTES les pàgines ---
+//     de càrrega... presents a TOTES les pàgines, i també els
+//     quatre que el joc converteix en --rosa, --cian, --vermell
+//     i --groc ---
 $vermell-principal: #d30505;
 $rosa-principal: #ff91ff;
 $cian-principal: #00ffff;
+//     El groc era aquí baix, al bloc de dades.html, mentre va ser
+//     només d'allà. Ara també és el dels botons i les etiquetes del
+//     joc, o sigui que ja no és exclusiu de cap pàgina.
+$groc-principal: #f6ff00;  // capçaleres de .caixa-dades / .grafic-caixa; botons del joc
 $gris-molt-fosc: #222222; // ombra del text de Ko-fi; text del peu en tema sober
 
 // --- Enllaços "de colors" i text destacat: #text_presentació i
@@ -72,7 +85,6 @@ $blau-clar: #66b2ff;        // resplendor de #enllaç en :hover
 $blau-actiu: #3399ff;       // resplendor en :active, compartida per #enllaç i #enllaçbrillant
 
 // --- Exclusius de dades.html: taules, gràfics, comptador i el podi ---
-$groc-principal: #f6ff00;  // capçaleres de .caixa-dades / .grafic-caixa
 $groc-clar: #ffe680;       // files senars / fons de caixa del podi
 $groc-palid: #ffffcc;      // fons de caixes de dades
 $verd-comptador: #00ff00;  // xifres del comptador
