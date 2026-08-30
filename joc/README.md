@@ -79,19 +79,59 @@ es basa en dues observacions:
    amb l'índex. La tria és proporcional a la mida de cada grup, de manera que
    totes les paraules objectiu són igual de probables.
 
-Resultat, per partida: el `versions.json` (7 KB), l'`index.json` del dialecte
-(7 KB) i un fitxer de rimes (34 KB de mediana; el més gros, 1,5 MB, que GitHub
-Pages serveix comprimit).
+Resultat: **sis fitxers**, i el joc es baixa el dialecte sencer un sol cop.
 
-| dialecte | claus jugables | paraules objectiu | fitxers | mediana | el més gros |
-|---|---|---|---|---|---|
-| Central (`ca`) | 500 | 123.429 | 38 | 63 KB | 1,5 MB |
-| Nord-occidental (`nw`) | 484 | 122.673 | 52 | 28 KB | 1,3 MB |
-| Valencià (`va`) | 488 | 122.461 | 51 | 28 KB | 1,3 MB |
-| Balear (`ba`) | 496 | 124.563 | 42 | 60 KB | 1,5 MB |
+```
+joc/dades/versions.json   500 B    els resums
+joc/dades/index.json      33 KB    les claus dels 4 dialectes + on és cada grup
+joc/dades/ca.txt          7,6 MB   (1,9 MB comprimits, que és el que viatja)
+joc/dades/nw.txt  va.txt  ba.txt
+```
 
-Al repositori, `joc/dades/` fa **30 MB** en total (els quatre dialectes). Es
-publica sencer a Pages, però cada partida només en baixa un fitxer.
+| dialecte | claus jugables | paraules objectiu | grups assonants |
+|---|---|---|---|
+| Central (`ca`) | 500 | 123.429 | 38 |
+| Nord-occidental (`nw`) | 484 | 122.673 | 52 |
+| Valencià (`va`) | 488 | 122.461 | 51 |
+| Balear (`ba`) | 496 | 124.563 | 42 |
+
+**Abans n'hi havia 183**, un per grup assonant i dialecte, perquè una partida
+només necessita un grup. Sortia a 145 KB per partida —la mediana era de 11 KB,
+però la tria és ponderada i els grups grossos surten més sovint—, i omplia el
+repositori de fitxers que no mira mai ningú. Ara la primera partida paga 1,9 MB
+i les següents no paguen res: **a partir de tretze ja s'hi guanya**.
+
+El fitxer del dialecte es comença a baixar en obrir la pàgina, mentre tries mode
+i rellotge, o sigui que quan prems «Comença» ja acostuma a ser-hi. Si encara no
+hi és, surt un loader amb el percentatge de debò i una barra; si ja hi és, no
+surt res, perquè preparar la partida són 90 ms.
+
+### Què hi ha i què no
+
+Del diccionari (619.783 entrades) en surten **470.479 formes úniques** un cop
+tretes les repeticions d'accent. Fora en queden **14.705 noms propis**, que no
+valen ni com a paraula a rimar ni com a resposta.
+
+Al fitxer de cada dialecte hi arriba el **99,3–99,7 %** d'aquelles formes. El que
+falta són entre 1.500 i 3.500 paraules per dialecte: les que cauen en un grup
+assonant on **cap** clau consonant arriba a 50 rimes (*abutilon*, *acantolisi*,
+*acefala*…). Són finals raríssims i no es publiquen perquè no s'hi podria jugar
+de cap manera.
+
+Per a una partida concreta, en canvi, **no falta cap rima**: el grup assonant
+sencer va al fitxer, seccions no jugables incloses, o sigui que tot el que rima
+amb la paraula que t'ha tocat hi és.
+
+De les 470.479 formes, poden **sortir com a paraula a rimar** unes 123.000 per
+dialecte: la resta són verbs (exclosos a posta), o són en claus amb menys de 50
+rimes. I hi ha un centenar de claus amb prou rimes que només contenen verbs: hi
+són al fitxer i valen com a resposta, però no poden ser mai la paraula objectiu.
+
+`joc/dades/` continua fent 30 MB al repositori. La por que un fitxer derivat
+s'hagi de tornar a pujar sencer a cada canvi (el motiu pel qual es va esborrar
+`bot/resultat_ordenat_cons.json`) aquí no s'aplica: està mesurat que dues
+versions del fitxer amb una paraula de diferència empaqueten a 1,93 MiB en
+total, perquè el git fa deltes molt bé amb text ordenat de manera estable.
 
 ### Format dels fitxers de rimes
 
@@ -102,12 +142,23 @@ cavalcava         <- sense *, només val com a RIMA (aquí, una forma verbal)
 *cami>camí        <- si la forma real porta accents, va després del ">"
 ```
 
+Els grups assonants van l'un darrere l'altre dins el fitxer del dialecte.
+
 Com que la part esquerra ja és la clau normalitzada, el joc no ha de normalitzar
 res en temps d'execució: només parteix línies. L'`*` li diu de seguida quines
 paraules pot proposar com a objectiu (les que no són verbs) i quines només
-accepta com a rima. L'`index.json` guarda, per cada clau, el nombre d'objectius,
-que és el pes amb què es tria (així totes les paraules objectiu són igual de
-probables).
+accepta com a rima.
+
+L'`index.json` guarda dues coses per dialecte: de cada clau jugable, a quin grup
+és i quantes paraules objectiu té (el pes amb què es tria, així totes són igual
+de probables); i de cada grup, **on comença i quant ocupa, en bytes**. Això
+últim és el que permet al joc no interpretar els 7,6 MB per jugar amb un grup:
+es guarda el fitxer com a `ArrayBuffer` i només descodifica el tros que li toca.
+El pitjor cas mesurat —el grup més gros del central, 77.000 paraules— són 90 ms.
+
+Els desplaçaments són en **bytes** i no en caràcters a posta: un índex de Python
+són punts de codi i un de JavaScript són unitats UTF-16, i amb IPA pel mig no val
+la pena jugar-s'hi.
 
 ## Regenerar les dades
 
@@ -248,8 +299,8 @@ joc/
     classificacio.js    enviar/llegir el rànquing global
   dades/                generat pels scripts d'eines/
     versions.json         quins dialectes hi ha i el resum de cada fitxer
-    <codi>/index.json     les claus jugables d'aquell dialecte
-    <codi>/rimes/N.txt    els grups de rimes
+    index.json            les claus dels 4 dialectes i on és cada grup
+    <codi>.txt            totes les rimes d'un dialecte
     classificacio.json    el rànquing publicat
   eines/
     generar_dades.py            diccionari + rima -> dades/
