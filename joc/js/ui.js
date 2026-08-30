@@ -8,7 +8,7 @@ const NOMS = [
     'etiqueta-diaria', 'config-titol', 'config-avis', 'config-record', 'config-dialecte',
     'tira-dialectes',
     'opcions-dificultat', 'opcions-temps', 'grup-temps', 'boto-comencar',
-    'rellotge', 'punts', 'barra-temps', 'objectiu', 'objectiu-etiqueta',
+    'rellotge', 'punts', 'barra-temps', 'objectiu', 'modalitat',
     'formulari', 'camp', 'toast', 'trobades',
     'resultat-punts', 'resultat-text', 'etiqueta-record', 'resum',
     'boto-compartir', 'boto-repetir', 'trobades-final', 'titol-llista',
@@ -146,11 +146,17 @@ export function marcarDialecte(codi) {
 
 // ----------------------------------------------------------------- Partida
 
+// La modalitat es diu mentre es juga perque, un cop dins la partida, ja no es
+// veu enlloc quina de les dues s'ha triat a la pantalla de configuracio.
+const MODALITAT = {
+    facil: 'Fàcil (rima assonant)',
+    dificil: 'Difícil (rima consonant)',
+};
+
 export function pintarObjectiu(paraula, dificultat) {
     el.objectiu.textContent = paraula;
-    el.objectiuEtiqueta.textContent = dificultat === 'dificil'
-        ? 'Rimes consonants amb'
-        : 'Rimes assonants amb';
+    el.modalitat.textContent = MODALITAT[dificultat] || MODALITAT.facil;
+    el.modalitat.classList.toggle('modalitat--dificil', dificultat === 'dificil');
 }
 
 export function actualitzarPunts(punts) {
@@ -351,9 +357,12 @@ function bombollaRecord(entrades) {
     const titol = [titolModalitat({ mode, dificultat, segons })];
     if (mode !== 'diaria') titol.push(marcaTemps(segons));
 
+    // Els records desats abans que se'n guardes la paraula no la poden tenir, i
+    // deixar-los amb el renglo buit sembla que allo no funcioni. Ho diuen, i el
+    // dia que els bats ja queda desada.
     return bombolla(titol, entrades.map((r) => filaRecord({
         etiqueta: nomDialecte(r.dialecte),
-        subtitol: r.paraula ? `amb «${r.paraula}»` : '',
+        subtitol: r.paraula ? `amb «${r.paraula}»` : 'd\'abans que es desés la paraula',
         punts: r.punts,
     })));
 }
