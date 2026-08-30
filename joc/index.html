@@ -41,7 +41,7 @@
         <img src="../assets/peixet.webp" alt="" width="46" height="46">
         <span class="capcalera__nom">El joc del Rimador.cat</span>
     </a>
-    <span class="capcalera__estrella">★ joc ★</span>
+    <a class="capcalera__estrella" href="/">← Al Rimador.cat</a>
 </header>
 
 <div class="marquesina" id="separador">
@@ -79,8 +79,8 @@
         </div>
 
         <div class="menu-secundari">
-            <button class="boto boto--menut" type="button" data-vista="records">🏆 Els meus rècords</button>
-            <button class="boto boto--menut" type="button" data-vista="classificacio">📋 Classificació</button>
+            <button class="boto boto--menut" type="button" data-vista="records">Els meus rècords</button>
+            <button class="boto boto--menut" type="button" data-vista="classificacio">Classificació</button>
         </div>
 
         <details class="ajuda">
@@ -162,7 +162,9 @@
 
         <div class="barra-temps"><div class="barra-temps__interior" id="barra-temps"></div></div>
 
-        <p class="objectiu__etiqueta" id="objectiu-etiqueta">Rimes assonants amb</p>
+        <p class="modalitat" id="modalitat">Fàcil (rima assonant)</p>
+
+        <p class="objectiu__etiqueta">Rimes amb</p>
         <p class="objectiu" id="objectiu">—</p>
 
         <form class="entrada" id="formulari" autocomplete="off">
@@ -214,7 +216,7 @@
     <!-- ------------------------------------------- Pantalla els meus rècords -->
     <section class="pantalla" id="pantalla-records" hidden>
         <button class="enrere" type="button" data-accio="inici">← Tornar</button>
-        <h2 class="titol titol--petit">🏆 Els meus rècords</h2>
+        <h2 class="titol titol--petit">Els meus rècords</h2>
         <p class="subtitol">Les teves millors puntuacions, desades en aquest navegador.</p>
 
         <p class="avis" id="records-buit" hidden>Encara no has jugat cap partida. Vinga, anima't!</p>
@@ -224,7 +226,7 @@
     <!-- ------------------------------------------- Pantalla classificació -->
     <section class="pantalla" id="pantalla-classificacio" hidden>
         <button class="enrere" type="button" data-accio="inici">← Tornar</button>
-        <h2 class="titol titol--petit">📋 Classificació</h2>
+        <h2 class="titol titol--petit">Classificació</h2>
         <p class="subtitol" id="classificacio-subtitol">Les millors puntuacions de tota la gent que hi juga.</p>
 
         <div class="pestanyes" role="tablist" aria-label="Què es mostra">
