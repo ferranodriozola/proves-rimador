@@ -49,6 +49,20 @@ export function identificadorRecord({ mode, dificultat, segons, dialecte }) {
     return `${mode}|${dificultat}|${segons}|${dialecte}`;
 }
 
+/**
+ * Un record desat pot ser un numero (com es guardava abans de recordar amb
+ * quina paraula el vas fer) o un objecte {punts, paraula}. Es llegeixen les
+ * dues formes i prou: afegir la paraula no havia de fer fora els records de
+ * ningu, i un de vell val exactament igual encara que no sapiguem amb quina
+ * paraula es va fer. El dia que en facis un de nou ja quedara desat sencer.
+ */
+function normalitzar(valor) {
+    if (valor && typeof valor === 'object') {
+        return { punts: Number(valor.punts) || 0, paraula: valor.paraula || '' };
+    }
+    return { punts: Number(valor) || 0, paraula: '' };
+}
+
 // Els records de quan el joc nomes es jugava en central no duien el dialecte a
 // l'identificador. Se'ls hi posa el central, que es el que eren, en lloc de
 // deixar-los com a modalitats fantasma que no es podrien igualar mai. Nomes es
@@ -61,8 +75,8 @@ function migrarRecords() {
     for (const [id, punts] of Object.entries(antics)) {
         // Les que ja duen dialecte no s'han de tocar; les de tres trossos, si.
         const identificador = id.split('|').length === 3 ? `${id}|${DIALECTE_ANTIC}` : id;
-        if (!(Number(records[identificador]) >= Number(punts))) {
-            records[identificador] = Number(punts);
+        if (normalitzar(records[identificador]).punts < Number(punts)) {
+            records[identificador] = { punts: Number(punts), paraula: '' };
         }
     }
     if (desar(CLAU_RECORDS, records)) {
@@ -79,33 +93,41 @@ migrarRecords();
 
 export function llegirRecord(identificador) {
     const records = llegir(CLAU_RECORDS) || {};
-    return Number(records[identificador]) || 0;
+    return normalitzar(records[identificador]).punts;
 }
 
-/** Desa la puntuacio si supera l'anterior. Torna true si es record nou. */
-export function desarRecord(identificador, punts) {
+/**
+ * Desa la puntuacio si supera l'anterior. Torna true si es record nou.
+ *
+ * Es desa tambe amb quina paraula el vas fer, perque la pantalla dels records
+ * ho pugui dir: un 12 no diu res tot sol, i "12 amb «estel»" ja es una partida
+ * que recordes. Si nomes iguales el record, no es toca res: el que hi ha desat
+ * continua sent el de la primera vegada que hi vas arribar.
+ */
+export function desarRecord(identificador, punts, paraula) {
     const records = llegir(CLAU_RECORDS) || {};
-    const anterior = Number(records[identificador]) || 0;
-    if (punts <= anterior) return false;
-    records[identificador] = punts;
+    if (punts <= normalitzar(records[identificador]).punts) return false;
+    records[identificador] = { punts, paraula: paraula || '' };
     desar(CLAU_RECORDS, records);
     return true;
 }
 
 /**
  * Tots els records desats, ja desxifrats de l'identificador
- * "mode|dificultat|segons|dialecte". Ordenats de mes punts a menys.
+ * "mode|dificultat|segons|dialecte". Ordenats de mes punts a menys, que es
+ * l'ordre que val DINS d'una modalitat: qui els agrupa es la pantalla (vegeu
+ * pintarRecords a ui.js).
  */
 export function llegirTotsElsRecords() {
     const records = llegir(CLAU_RECORDS) || {};
     return Object.entries(records)
-        .map(([id, punts]) => {
+        .map(([id, valor]) => {
             const [mode, dificultat, segons, dialecte] = id.split('|');
             return {
                 mode, dificultat,
                 segons: Number(segons),
                 dialecte: dialecte || DIALECTE_ANTIC,
-                punts: Number(punts),
+                ...normalitzar(valor),
             };
         })
         .filter((r) => r.punts > 0)

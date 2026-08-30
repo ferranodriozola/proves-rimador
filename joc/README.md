@@ -33,7 +33,8 @@ formes verbals conjugades), però els verbs sí que valen com a resposta. Això 
 decideix quan es generen les dades, no en temps d'execució.
 
 Des del menú pots veure **Els meus rècords** (les teves millors puntuacions,
-desades en aquest navegador) i la **Classificació** (les de tothom), amb dues
+desades en aquest navegador: una bombolla per modalitat, amb quina paraula i en
+quin dialecte les vas fer) i la **Classificació** (les de tothom), amb dues
 pestanyes: **Il·limitat**, amb una taula per cada rellotge i dificultat, i
 **Paraula del dia**, on tries dia i dificultat i veus el rànquing d'aquell dia i,
 a sota, els deu millors de sempre.
@@ -334,9 +335,12 @@ del `gulpfile.js`), o sigui que l'`index.html` no apunta a `css/joc.scss` sinó 
   vegada: quan canvia la data, l'entrada vella se substitueix. Va per dialecte,
   perquè cada dialecte té la seva paraula.
 - **Els rècords** van per mode, dificultat, rellotge i dialecte
-  (`illimitat|dificil|45|va`) i es veuen a la pantalla "Els meus rècords". Els
-  que hi hagués d'abans dels dialectes es migren al central el primer cop que
-  s'obre el joc.
+  (`illimitat|dificil|45|va`) i es veuen a la pantalla "Els meus rècords", una
+  bombolla per modalitat i una fila per dialecte. De cada un se'n desa la
+  puntuació i **amb quina paraula el vas fer**; els que ja hi hagués desats de
+  quan només se'n desava el número continuen valent, però sense paraula. Els que
+  hi hagués d'abans dels dialectes es migren al central el primer cop que s'obre
+  el joc.
 - **La classificació** es pot enviar en qualsevol partida amb un sobrenom; la
   validació de veritat (les paraules vetades, la desduplicació) la fa el
   compilador de Python.

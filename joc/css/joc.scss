@@ -708,16 +708,15 @@ main {
 
 /* --------------------------------------------------- Rècords i classificació */
 
-/* Les llistes de la classificació no van totes dins d'una caixa: cada rànquing
-   té la seva, i el rosa del fons que es veu pel mig és el que diu que són dues
+/* Les llistes no van totes dins d'una caixa: cada rànquing i cada rècord té la
+   seva bombolla, i el rosa del fons que es veu pel mig és el que diu que són
    coses diferents i no pas una llista llarga. */
-.llistes-classificacio {
+.bombolles {
     display: grid;
     gap: 22px;
 }
 
-.taula-records,
-.bombolla-classificacio {
+.bombolla {
     border: var(--vora);
     border-radius: var(--radi);
     overflow: hidden;
@@ -725,7 +724,7 @@ main {
     background: #fff;
 }
 
-.bombolla-classificacio__titol {
+.bombolla__titol {
     margin: 0;
     padding: 8px 14px;
     background: var(--cian);
@@ -837,7 +836,7 @@ main {
 .marca-temps--90 { background: var(--encert-fons); }
 .marca-temps--180 { background: var(--rosa); }
 
-.bombolla-classificacio__titol .marca-temps { font-size: 0.68rem; }
+.bombolla__titol .marca-temps { font-size: 0.68rem; }
 
 /* ------------------------------------------------------------- Pestanyes */
 

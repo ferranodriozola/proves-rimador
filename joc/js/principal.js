@@ -533,7 +533,7 @@ function acabarPartida(resum) {
 
     const identificador = identificadorRecord(estat);
     const recordAnterior = llegirRecord(identificador);
-    const recordNou = desarRecord(identificador, resum.punts);
+    const recordNou = desarRecord(identificador, resum.punts, resum.objectiu);
 
     const esDiaria = estat.mode === 'diaria';
     if (esDiaria) {

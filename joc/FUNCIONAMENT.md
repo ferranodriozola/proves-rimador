@@ -483,7 +483,16 @@ hi haurà cap error visible**: simplement dirà "No rima" a coses que hi rimen.
 - `animarEntrada()` força un *reflow* perquè l'animació es torni a disparar quan
   es repeteix el mateix resultat.
 - `filaRecord()` és compartida per "Els meus rècords", la classificació per
-  modalitats i la de cada dia.
+  modalitats i la de cada dia, i `bombolla()` és la caixa que les recull: una
+  capçalera que diu què s'hi mira i les files a sota. Les dues pantalles en
+  pinten unes quantes, amb el rosa del fons entremig.
+- `pintarRecords()` **agrupa els rècords per modalitat**, una bombolla cada una.
+  Abans eren una sola llista ordenada de més punts a menys, i això no comparava
+  res: en tres minuts en fas més que en quaranta-cinc segons sempre, o sigui que
+  el "Lent" es quedava dalt de tot i el "Llampec" al fons diguessin el que
+  diguessin. El teu millor llampec no és pitjor que el teu millor lent; són
+  partides diferents. Dins de cada bombolla hi ha **una fila per dialecte** —que
+  és com es guarden— amb **quina paraula** et va tocar.
 
 ### `magatzem.js` — el que es recorda
 
@@ -492,12 +501,20 @@ joc ha de continuar funcionant igual.
 
 | clau | què hi ha |
 |---|---|
-| `rimador.joc.records.v2` | `{ "illimitat\|dificil\|45\|va": 12, … }` |
+| `rimador.joc.records.v2` | `{ "illimitat\|dificil\|45\|va": { punts: 12, paraula: "ferretera" }, … }` |
 | `rimador.joc.diaria.v2` | `{ data: "2026-08-29", partides: { "ca\|facil": {…} } }` |
 | `rimador.joc.sobrenom.v1` | el sobrenom de la classificació |
 | `rimador.joc.versions.v1` | còpia dels resums, per si el `versions.json` falla |
 | `rimadorDialecte` | **compartida amb el cercador** |
 | `rimador_usuari_id` | **compartida amb el cercador** |
+
+Un rècord desat pot ser un **número** (com es guardava abans de recordar amb
+quina paraula el vas fer) o un **objecte** `{ punts, paraula }`. El `magatzem.js`
+llegeix les dues formes i prou: afegir la paraula no havia de fer fora els
+rècords de ningú, i un de vell val exactament igual encara que no sapiguem amb
+quina paraula es va fer. El dia que en facis un de nou ja quedarà desat sencer.
+No hi ha `v3` ni cap migració, doncs, perquè no hi ha res a migrar: la paraula
+d'un rècord vell no se la pot inventar ningú.
 
 - **Els rècords van per modalitat**, amb l'identificador
   `mode|dificultat|segons|dialecte`.
@@ -572,7 +589,7 @@ comencarPartida()
             │  cada Enter  → provar() → ui.avisar() / ui.afegirTrobada()
             ▼
         alFinal(resum)  →  acabarPartida()
-            ├─ desarRecord(identificador, punts)
+            ├─ desarRecord(identificador, punts, paraula)
             ├─ desarResultatDiari()   (només en mode diària)
             ├─ ui.pintarFinal()
             └─ prepara el bloc d'enviament a la classificació

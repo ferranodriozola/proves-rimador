@@ -297,15 +297,65 @@ function filaRecord({ posicio, etiqueta, subtitol, punts, destacada }) {
 
 // ------------------------------------------------------- Els meus rècords
 
+// L'ordre de les bombolles dels records: el mateix que trobes jugant, primer la
+// paraula del dia i despres l'il·limitat, i dins de cada mode el fàcil abans que
+// el difícil i el rellotge de mes rapid a mes lent.
+const ORDRE_MODE = ['diaria', 'illimitat'];
+const ORDRE_DIFICULTAT = ['facil', 'dificil'];
+
+function posicio(llista, valor) {
+    const on = llista.indexOf(valor);
+    return on < 0 ? llista.length : on;
+}
+
+/**
+ * Els teus rècords: una bombolla per modalitat.
+ *
+ * Abans eren una sola llista ordenada de mes punts a menys, i aixo no comparava
+ * res: en tres minuts en fas mes que en quaranta-cinc segons sempre, o sigui que
+ * el "Lent" es quedava dalt de tot i el "Llampec" al fons, diguessin el que
+ * diguessin. El teu millor llampec no es pitjor que el teu millor lent; son
+ * partides diferents. Partides per modalitat, cada numero nomes es compara amb
+ * els que li toca.
+ *
+ * Dins de cada bombolla hi ha una fila per dialecte, perque els records es
+ * guarden per dialecte (paraules diferents i grups de rima diferents), amb quina
+ * paraula el vas fer. Si sempre jugues igual, es una fila i prou.
+ */
 export function pintarRecords(records) {
     el.recordsBuit.hidden = records.length > 0;
     el.llistaRecords.hidden = records.length === 0;
-    el.llistaRecords.replaceChildren(
-        ...records.map((r) => filaRecord({
-            etiqueta: titolModalitat(r),
-            punts: r.punts,
-        }))
-    );
+
+    const grups = new Map();
+    for (const r of records) {
+        const clau = `${r.mode}|${r.dificultat}|${r.segons}`;
+        if (!grups.has(clau)) grups.set(clau, []);
+        grups.get(clau).push(r);
+    }
+
+    const ordenats = [...grups.values()].sort((a, b) => {
+        const [x, y] = [a[0], b[0]];
+        return posicio(ORDRE_MODE, x.mode) - posicio(ORDRE_MODE, y.mode)
+            || posicio(ORDRE_DIFICULTAT, x.dificultat) - posicio(ORDRE_DIFICULTAT, y.dificultat)
+            || x.segons - y.segons;
+    });
+
+    el.llistaRecords.replaceChildren(...ordenats.map(bombollaRecord));
+}
+
+function bombollaRecord(entrades) {
+    const { mode, dificultat, segons } = entrades[0];
+
+    // El dialecte no va al titol: la bombolla es de la modalitat i el dialecte
+    // es el que distingeix les files de dins.
+    const titol = [titolModalitat({ mode, dificultat, segons })];
+    if (mode !== 'diaria') titol.push(marcaTemps(segons));
+
+    return bombolla(titol, entrades.map((r) => filaRecord({
+        etiqueta: nomDialecte(r.dialecte),
+        subtitol: r.paraula ? `amb «${r.paraula}»` : '',
+        punts: r.punts,
+    })));
 }
 
 // ------------------------------------------------------------ Classificació
@@ -327,38 +377,44 @@ function marcaTemps(segons) {
 }
 
 /**
- * Una bombolla de la classificació: la capçalera que diu què s'hi mira i les
- * files de sota. Cada rànquing va a la seva, amb rosa entremig, perquè es vegi
- * de seguida que són dues llistes i no pas una de partida.
+ * Una bombolla: la capçalera que diu què s'hi mira i les files de sota. La fan
+ * servir les dues pantalles de llistes —la classificació i els rècords—, i cada
+ * llista va a la seva amb rosa entremig, perquè es vegi de seguida que són
+ * coses diferents i no pas una llista llarga.
  *
  * El títol pot ser un text o una llista de trossos, que és com s'hi encasta la
  * marca de temps de la modalitat.
  */
-function bombolla(titol, entrades, elMeuSobrenom) {
+function bombolla(titol, files, buit) {
     const caixa = document.createElement('section');
-    caixa.className = 'bombolla-classificacio';
+    caixa.className = 'bombolla';
 
     const capcalera = document.createElement('h3');
-    capcalera.className = 'bombolla-classificacio__titol';
+    capcalera.className = 'bombolla__titol';
     capcalera.append(...(Array.isArray(titol) ? titol : [titol]));
     caixa.appendChild(capcalera);
 
-    if (!entrades || entrades.length === 0) {
-        const buit = document.createElement('p');
-        buit.className = 'taula-buida';
-        buit.textContent = 'Encara no hi ha ningú.';
-        caixa.appendChild(buit);
+    if (files.length === 0) {
+        const avis = document.createElement('p');
+        avis.className = 'taula-buida';
+        avis.textContent = buit || 'Encara no hi ha ningú.';
+        caixa.appendChild(avis);
         return caixa;
     }
 
-    caixa.append(...entrades.map((e, i) => filaRecord({
+    caixa.append(...files);
+    return caixa;
+}
+
+/** Les files d'un rànquing: la posició, el sobrenom i amb què ho va fer. */
+function filesRanquing(entrades, elMeuSobrenom) {
+    return (entrades || []).map((e, i) => filaRecord({
         posicio: i + 1,
         etiqueta: e.sobrenom,
         subtitol: subtitolEntrada(e),
         punts: e.punts,
         destacada: elMeuSobrenom && e.sobrenom.toLowerCase() === elMeuSobrenom.toLowerCase(),
-    })));
-    return caixa;
+    }));
 }
 
 /**
@@ -411,7 +467,7 @@ function subtitolEntrada(e) {
  */
 export function pintarClassificacio({ titol, segons, top }, elMeuSobrenom) {
     el.classificacioLlista.replaceChildren(
-        bombolla([titol, marcaTemps(segons)], top, elMeuSobrenom)
+        bombolla([titol, marcaTemps(segons)], filesRanquing(top, elMeuSobrenom))
     );
 }
 
@@ -504,9 +560,9 @@ export function pintarSelectorDies(dies, actiu, alTriar) {
 export function pintarDiaria({ delDia, millors, dia, dificultat }, elMeuSobrenom) {
     el.classificacioLlista.replaceChildren(
         bombolla(`Rànquing del ${diaCurt(dia)} · ${NOM_DIFICULTAT[dificultat]}`,
-                 delDia, elMeuSobrenom),
+                 filesRanquing(delDia, elMeuSobrenom)),
         bombolla(`Els millors de sempre · ${NOM_DIFICULTAT[dificultat]}`,
-                 millors, elMeuSobrenom),
+                 filesRanquing(millors, elMeuSobrenom)),
     );
 }
 
