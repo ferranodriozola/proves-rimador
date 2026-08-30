@@ -27,8 +27,8 @@
     <meta name="twitter:description" content="Quantes rimes ets capaç de trobar abans que s'acabi el temps?">
     <meta name="twitter:image" content="https://rimador.cat/assets/R.webp">
 
-    <link rel="stylesheet" href="css/joc.css?v=prova1788115329">
-    <script type="module" src="js/principal.js?v=prova1788115329"></script>
+    <link rel="stylesheet" href="css/joc.css?v=dev">
+    <script type="module" src="js/principal.js?v=dev"></script>
 </head>
 
 <body id="joc">
@@ -227,10 +227,11 @@
         <p class="subtitol" id="classificacio-subtitol">Les millors puntuacions de tota la gent que hi juga.</p>
 
         <div class="pestanyes" role="tablist" aria-label="Què es mostra">
-            <button class="pestanya" type="button" role="tab" data-taula="modalitats" aria-selected="true">Modalitats</button>
+            <button class="pestanya" type="button" role="tab" data-taula="modalitats" aria-selected="true">Il·limitat</button>
             <button class="pestanya" type="button" role="tab" data-taula="diaria" aria-selected="false">Paraula del dia</button>
         </div>
 
+        <div class="selector-modalitat" id="classificacio-dificultat" role="radiogroup" aria-label="Dificultat" hidden></div>
         <div class="selector-modalitat" id="classificacio-selector"></div>
 
         <p class="avis" id="classificacio-estat" hidden></p>
