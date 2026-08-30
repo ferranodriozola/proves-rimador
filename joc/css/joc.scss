@@ -708,13 +708,31 @@ main {
 
 /* --------------------------------------------------- Rècords i classificació */
 
+/* Les llistes de la classificació no van totes dins d'una caixa: cada rànquing
+   té la seva, i el rosa del fons que es veu pel mig és el que diu que són dues
+   coses diferents i no pas una llista llarga. */
+.llistes-classificacio {
+    display: grid;
+    gap: 22px;
+}
+
 .taula-records,
-.taula-classificacio {
+.bombolla-classificacio {
     border: var(--vora);
     border-radius: var(--radi);
     overflow: hidden;
     box-shadow: var(--ombra-dura);
     background: #fff;
+}
+
+.bombolla-classificacio__titol {
+    margin: 0;
+    padding: 8px 14px;
+    background: var(--cian);
+    border-bottom: var(--vora);
+    font-family: var(--tipus-titol);
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
 }
 
 .fila-record {
@@ -728,8 +746,10 @@ main {
 }
 
 .fila-record:last-child { border-bottom: none; }
-.fila-record:nth-child(even) { background: var(--cian-plafo); }
-.fila-record:nth-child(odd) { background: #fff; }
+/* Per tipus i no pas per fill: dins de la bombolla, la capçalera és el primer
+   fill i comptar-la faria començar la zebra al revés. */
+.fila-record:nth-of-type(even) { background: var(--cian-plafo); }
+.fila-record:nth-of-type(odd) { background: #fff; }
 
 .fila-record__nom { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .fila-record__pos {
@@ -778,6 +798,47 @@ main {
 
 .pastilla[aria-pressed="true"] { background: var(--cian); transform: translate(2px, 2px); box-shadow: 1px 1px 0 rgba(0,0,0,.3); }
 
+/* Una fila de pastilles per dificultat, amb la ratlla que les parteix. */
+.selector-modalitat--grups {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+}
+
+.selector-fila {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.selector-fila + .selector-fila {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 3px solid var(--negre);
+}
+
+/* Els segons de cada rellotge. El color no diu res que no digui també el text
+   (hi ha el nom del rellotge a la pastilla i el número aquí dins): és per
+   trobar-les de cua d'ull, no per haver-lo d'interpretar. */
+.marca-temps {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 0 6px;
+    border: 2px solid var(--negre);
+    border-radius: 999px;
+    background: #fff;
+    font-family: var(--tipus-accent);
+    font-size: 0.72rem;
+    line-height: 1.45;
+    vertical-align: 1px;
+}
+
+.marca-temps--45 { background: var(--groc); }
+.marca-temps--90 { background: var(--encert-fons); }
+.marca-temps--180 { background: var(--rosa); }
+
+.bombolla-classificacio__titol .marca-temps { font-size: 0.68rem; }
+
 /* ------------------------------------------------------------- Pestanyes */
 
 .pestanyes {
@@ -805,18 +866,9 @@ main {
     box-shadow: 1px 1px 0 rgba(0, 0, 0, .3);
 }
 
-.mini-titol--taula {
-    margin: 18px 0 8px;
-    font-size: 0.95rem;
-    color: var(--cian-fosc);
-}
-
-/* La primera taula no ha de separar-se del selector com se separen entre elles. */
-.taula-classificacio > .mini-titol--taula:first-child { margin-top: 4px; }
-
 .taula-buida {
     margin: 0;
-    padding: 10px 0;
+    padding: 14px;
     text-align: center;
     font-weight: bold;
     font-size: 0.9rem;

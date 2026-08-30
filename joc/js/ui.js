@@ -310,16 +310,82 @@ export function pintarRecords(records) {
 
 // ------------------------------------------------------------ Classificació
 
-export function pintarSelectorModalitats(modalitats, actiu, alTriar) {
+/**
+ * Els segons de la modalitat, en una pastilleta de color.
+ *
+ * El nom del rellotge («Llampec», «Estàndard», «Lent») no diu quant dura, i tres
+ * taules que només es distingeixen per aquesta paraula s'acaben confonent: el
+ * número ho diu, i el color deixa veure d'un cop d'ull en quina de les tres ets.
+ * El color és de més a més i mai l'única pista: qui no el vegi té igualment el
+ * nom i els segons escrits.
+ */
+function marcaTemps(segons) {
+    const marca = document.createElement('span');
+    marca.className = `marca-temps marca-temps--${segons}`;
+    marca.textContent = `${segons}s`;
+    return marca;
+}
+
+/**
+ * Una bombolla de la classificació: la capçalera que diu què s'hi mira i les
+ * files de sota. Cada rànquing va a la seva, amb rosa entremig, perquè es vegi
+ * de seguida que són dues llistes i no pas una de partida.
+ *
+ * El títol pot ser un text o una llista de trossos, que és com s'hi encasta la
+ * marca de temps de la modalitat.
+ */
+function bombolla(titol, entrades, elMeuSobrenom) {
+    const caixa = document.createElement('section');
+    caixa.className = 'bombolla-classificacio';
+
+    const capcalera = document.createElement('h3');
+    capcalera.className = 'bombolla-classificacio__titol';
+    capcalera.append(...(Array.isArray(titol) ? titol : [titol]));
+    caixa.appendChild(capcalera);
+
+    if (!entrades || entrades.length === 0) {
+        const buit = document.createElement('p');
+        buit.className = 'taula-buida';
+        buit.textContent = 'Encara no hi ha ningú.';
+        caixa.appendChild(buit);
+        return caixa;
+    }
+
+    caixa.append(...entrades.map((e, i) => filaRecord({
+        posicio: i + 1,
+        etiqueta: e.sobrenom,
+        subtitol: subtitolEntrada(e),
+        punts: e.punts,
+        destacada: elMeuSobrenom && e.sobrenom.toLowerCase() === elMeuSobrenom.toLowerCase(),
+    })));
+    return caixa;
+}
+
+/**
+ * Les pastilles d'il·limitat: una fila per dificultat, separades per una ratlla.
+ *
+ * Totes sis seguides no es llegien: «Difícil · Llampec» i «Fàcil · Llampec»
+ * s'assemblen massa per distingir-les de cua d'ull, i per ordre de clau sortien
+ * barrejades i amb els rellotges desordenats (180, 45, 90). Partides per
+ * dificultat i de la més ràpida a la més lenta, la graella queda com la de la
+ * pantalla de configuració.
+ */
+export function pintarSelectorModalitats(grups, actiu, alTriar) {
+    el.classificacioSelector.className = 'selector-modalitat selector-modalitat--grups';
     el.classificacioSelector.replaceChildren(
-        ...modalitats.map(({ clau, titol }) => {
-            const boto = document.createElement('button');
-            boto.type = 'button';
-            boto.className = 'pastilla';
-            boto.textContent = titol;
-            boto.setAttribute('aria-pressed', String(clau === actiu));
-            boto.addEventListener('click', () => alTriar(clau));
-            return boto;
+        ...grups.map((grup) => {
+            const fila = document.createElement('div');
+            fila.className = 'selector-fila';
+            fila.append(...grup.modalitats.map(({ clau, titol, segons }) => {
+                const boto = document.createElement('button');
+                boto.type = 'button';
+                boto.className = 'pastilla';
+                boto.append(titol, marcaTemps(segons));
+                boto.setAttribute('aria-pressed', String(clau === actiu));
+                boto.addEventListener('click', () => alTriar(clau));
+                return boto;
+            }));
+            return fila;
         })
     );
 }
@@ -339,15 +405,13 @@ function subtitolEntrada(e) {
     return trossos.join(' ');
 }
 
-export function pintarClassificacio(entrades, elMeuSobrenom) {
+/**
+ * La taula d'una modalitat d'il·limitat. La capçalera repeteix la pastilla que
+ * has triat: quan has baixat a mirar la llista, el selector ja no es veu.
+ */
+export function pintarClassificacio({ titol, segons, top }, elMeuSobrenom) {
     el.classificacioLlista.replaceChildren(
-        ...entrades.map((e, i) => filaRecord({
-            posicio: i + 1,
-            etiqueta: e.sobrenom,
-            subtitol: subtitolEntrada(e),
-            punts: e.punts,
-            destacada: elMeuSobrenom && e.sobrenom.toLowerCase() === elMeuSobrenom.toLowerCase(),
-        }))
+        bombolla([titol, marcaTemps(segons)], top, elMeuSobrenom)
     );
 }
 
@@ -409,6 +473,9 @@ export function amagarSelectorDificultat() {
 }
 
 export function pintarSelectorDies(dies, actiu, alTriar) {
+    // El mateix calaix que les pastilles d'il·limitat, que hi van per files:
+    // aqui van totes seguides i cal treure-li la classe.
+    el.classificacioSelector.className = 'selector-modalitat';
     el.classificacioSelector.replaceChildren(
         ...dies.map((dia) => {
             const boto = document.createElement('button');
@@ -422,35 +489,10 @@ export function pintarSelectorDies(dies, actiu, alTriar) {
     );
 }
 
-function taula(titol, entrades, elMeuSobrenom) {
-    const trossos = [];
-
-    const capcalera = document.createElement('h3');
-    capcalera.className = 'mini-titol mini-titol--taula';
-    capcalera.textContent = titol;
-    trossos.push(capcalera);
-
-    if (!entrades || entrades.length === 0) {
-        const buit = document.createElement('p');
-        buit.className = 'taula-buida';
-        buit.textContent = 'Encara no hi ha ningú.';
-        trossos.push(buit);
-        return trossos;
-    }
-
-    trossos.push(...entrades.map((e, i) => filaRecord({
-        posicio: i + 1,
-        etiqueta: e.sobrenom,
-        subtitol: subtitolEntrada(e),
-        punts: e.punts,
-        destacada: elMeuSobrenom && e.sobrenom.toLowerCase() === elMeuSobrenom.toLowerCase(),
-    })));
-    return trossos;
-}
-
 /**
  * La pestanya de la paraula del dia: el rànquing del dia que estiguis mirant i,
- * a sota, el dels millors de sempre. Tots dos en la dificultat triada.
+ * a sota, el dels millors de sempre. Tots dos en la dificultat triada, i cadascun
+ * a la seva bombolla: enganxats semblaven una sola llista de vint noms.
  *
  * Vénen dels blocs "diaria" i "diaria_millors" de dades/classificacio.json, que
  * munta joc/eines/compilar_classificacio.py.
@@ -461,8 +503,10 @@ function taula(titol, entrades, elMeuSobrenom) {
  */
 export function pintarDiaria({ delDia, millors, dia, dificultat }, elMeuSobrenom) {
     el.classificacioLlista.replaceChildren(
-        ...taula(`${diaCurt(dia)} · ${NOM_DIFICULTAT[dificultat]}`, delDia, elMeuSobrenom),
-        ...taula(`Els millors de sempre · ${NOM_DIFICULTAT[dificultat]}`, millors, elMeuSobrenom),
+        bombolla(`Rànquing del ${diaCurt(dia)} · ${NOM_DIFICULTAT[dificultat]}`,
+                 delDia, elMeuSobrenom),
+        bombolla(`Els millors de sempre · ${NOM_DIFICULTAT[dificultat]}`,
+                 millors, elMeuSobrenom),
     );
 }
 

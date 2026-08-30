@@ -187,6 +187,9 @@ function modalitatDe({ mode, dificultat, segons }) {
     return `${mode}|${dificultat}|${segons}`;
 }
 
+/** El mateix ordre que les opcions de la pantalla de configuració. */
+const ORDRE_DIFICULTAT = ['facil', 'dificil'];
+
 let modalitatActiva = null;
 let diaActiu = null;
 let dificultatDiaria = null;
@@ -241,6 +244,8 @@ function pintarModalitats() {
         // faria més estret el que de debò les distingeix.
         .map(([clau, valor]) => ({
             clau,
+            dificultat: clau.split('|')[1],
+            segons: Number(clau.split('|')[2]),
             titol: (valor.titol || '').replace(/^Il·limitat · /, ''),
             top: valor.top || [],
         }))
@@ -254,20 +259,35 @@ function pintarModalitats() {
         return;
     }
 
+    // Una fila de pastilles per dificultat i, dins de cada fila, del rellotge
+    // més ràpid al més lent. L'ordre de les claus del JSON és el de la cadena
+    // ("180" abans que "45"), que no vol dir res, i les sis pastilles seguides
+    // no deixaven veure on s'acabava una dificultat i on començava l'altra.
+    const grups = ORDRE_DIFICULTAT
+        .map((dificultat) => ({
+            dificultat,
+            modalitats: modalitats
+                .filter((m) => m.dificultat === dificultat)
+                .sort((a, b) => a.segons - b.segons),
+        }))
+        .filter((grup) => grup.modalitats.length > 0);
+
     // Si venim de jugar, ensenyem la modalitat que acabem de jugar si hi surt.
     if (!modalitats.some((m) => m.clau === modalitatActiva)) {
         const jugada = modalitatDe(estat);
-        modalitatActiva = modalitats.some((m) => m.clau === jugada) ? jugada : modalitats[0].clau;
+        modalitatActiva = modalitats.some((m) => m.clau === jugada)
+            ? jugada
+            : grups[0].modalitats[0].clau;
     }
 
-    const perClau = new Map(modalitats.map((m) => [m.clau, m.top]));
+    const perClau = new Map(modalitats.map((m) => [m.clau, m]));
     const elMeuSobrenom = llegirSobrenom();
 
     function mostrar(clau) {
         modalitatActiva = clau;
         ui.estatClassificacio('');
-        ui.pintarSelectorModalitats(modalitats, clau, mostrar);
-        ui.pintarClassificacio(perClau.get(clau) || [], elMeuSobrenom);
+        ui.pintarSelectorModalitats(grups, clau, mostrar);
+        ui.pintarClassificacio(perClau.get(clau), elMeuSobrenom);
     }
 
     mostrar(modalitatActiva);
@@ -282,6 +302,15 @@ function pintarDiaria() {
     const millors = classificacio.diaria_millors || {};
     const dies = Object.keys(perDia).sort().reverse();
 
+    /**
+     * Els dies que tenen algú EN AQUESTA dificultat i prou. Abans hi sortien
+     * tots els dies jugats, i la meitat de les pastilles obrien una taula
+     * buida: la paraula del dia es juga molt més en difícil que en fàcil.
+     */
+    function diesAmbDades(dificultat) {
+        return dies.filter((dia) => ((perDia[dia] || {})[dificultat] || []).length > 0);
+    }
+
     if (dies.length === 0) {
         ui.amagarSelectorDificultat();
         ui.el.classificacioSelector.replaceChildren();
@@ -291,18 +320,30 @@ function pintarDiaria() {
         return;
     }
 
-    if (!dies.includes(diaActiu)) diaActiu = dies[0];
     // Per defecte, la dificultat que jugues: és la que et deus voler mirar.
     if (dificultatDiaria === null) dificultatDiaria = estat.dificultat;
     const elMeuSobrenom = llegirSobrenom();
 
     function mostrar() {
-        ui.estatClassificacio('');
         ui.pintarSelectorDificultat(dificultatDiaria, (dificultat) => {
             dificultatDiaria = dificultat;
             mostrar();
         });
-        ui.pintarSelectorDies(dies, diaActiu, (dia) => {
+
+        const diesTriables = diesAmbDades(dificultatDiaria);
+        if (diesTriables.length === 0) {
+            ui.el.classificacioSelector.replaceChildren();
+            ui.estatClassificacio('Encara no hi ha cap paraula del dia jugada en '
+                + 'aquesta dificultat.');
+            return;
+        }
+
+        // Canviar de dificultat pot deixar el dia que miraves fora de la
+        // llista: aleshores cap al més nou dels que queden.
+        if (!diesTriables.includes(diaActiu)) diaActiu = diesTriables[0];
+
+        ui.estatClassificacio('');
+        ui.pintarSelectorDies(diesTriables, diaActiu, (dia) => {
             diaActiu = dia;
             mostrar();
         });
