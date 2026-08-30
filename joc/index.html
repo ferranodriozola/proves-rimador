@@ -7,7 +7,7 @@
     <meta name="robots" content="index, follow">
 
     <title>El joc del Rimador</title>
-    <meta name="description" content="Quantes rimes ets capaç de trobar abans que s'acabi el temps? El joc de rimes del Rimador català, amb paraula del dia, partides il·limitades i classificació.">
+    <meta name="description" content="Quantes rimes ets capaç de trobar abans que s'acabi el temps? El joc de rimes del Rimador català, en quatre dialectes, amb paraula del dia, partides il·limitades i classificació.">
     <meta name="author" content="Marc i Ferran">
     <link rel="canonical" href="https://rimador.cat/joc/">
 
@@ -27,8 +27,8 @@
     <meta name="twitter:description" content="Quantes rimes ets capaç de trobar abans que s'acabi el temps?">
     <meta name="twitter:image" content="https://rimador.cat/assets/R.webp">
 
-    <link rel="stylesheet" href="css/joc.css?v=5ddbb31">
-    <script type="module" src="js/principal.js?v=5ddbb31"></script>
+    <link rel="stylesheet" href="css/joc.css?v=dev">
+    <script type="module" src="js/principal.js?v=dev"></script>
 </head>
 
 <body id="joc">
@@ -57,11 +57,16 @@
             abans que s'acabi el temps.
         </p>
 
+        <div class="tira" id="tira-dialectes-inici">
+            <span class="tira__rotul">Dialecte:</span>
+            <div class="tira__tria" id="tira-dialectes" role="radiogroup" aria-label="Dialecte"></div>
+        </div>
+
         <div class="menu">
             <button class="targeta targeta--mode" type="button" data-mode="diaria">
                 <span class="targeta__estrella">☀</span>
                 <span class="targeta__titol">Paraula del dia</span>
-                <span class="targeta__text">La mateixa paraula per a tothom. 1 minut, un intent per dificultat.</span>
+                <span class="targeta__text">La mateixa paraula per a tothom qui juga en aquest dialecte. 1 minut, un intent per dificultat.</span>
                 <span class="etiqueta" id="etiqueta-diaria" hidden></span>
             </button>
 
@@ -85,6 +90,7 @@
                 <li>Els accents no compten: pots escriure <em>cami</em> i et valdrà <em>camí</em>.</li>
                 <li>La paraula que t'hem donat mai és un verb, però els verbs sí que valen com a rima.</li>
                 <li>Cada paraula només puntua una vegada.</li>
+                <li>Les rimes depenen de com es parla: pots triar el <strong>dialecte</strong> a dalt, i és el mateix que triïs al cercador.</li>
             </ul>
         </details>
 
@@ -99,6 +105,7 @@
         <button class="enrere" type="button" data-accio="inici">← Tornar</button>
 
         <h2 class="titol titol--petit" id="config-titol">Il·limitat</h2>
+        <p class="config-dialecte" id="config-dialecte"></p>
 
         <fieldset class="grup">
             <legend>Dificultat</legend>
@@ -217,7 +224,12 @@
     <section class="pantalla" id="pantalla-classificacio" hidden>
         <button class="enrere" type="button" data-accio="inici">← Tornar</button>
         <h2 class="titol titol--petit">📋 Classificació</h2>
-        <p class="subtitol">Les millors puntuacions de tota la gent que hi juga.</p>
+        <p class="subtitol" id="classificacio-subtitol">Les millors puntuacions de tota la gent que hi juga.</p>
+
+        <div class="pestanyes" role="tablist" aria-label="Què es mostra">
+            <button class="pestanya" type="button" role="tab" data-taula="modalitats" aria-selected="true">Modalitats</button>
+            <button class="pestanya" type="button" role="tab" data-taula="diaria" aria-selected="false">Paraula del dia</button>
+        </div>
 
         <div class="selector-modalitat" id="classificacio-selector"></div>
 
