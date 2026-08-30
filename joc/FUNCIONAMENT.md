@@ -553,25 +553,65 @@ python joc/eines/compilar_classificacio.py
 
 ```json
 {
-  "actualitzacio": "29/08/2026 23:16:27",
+  "actualitzacio": "30/08/2026 20:40:52",
   "modalitats": {
-    "illimitat|dificil|45|ca": { "titol": "Il·limitat · Difícil · Llampec · Central",
-                                 "dialecte": "ca", "top": [ … ] }
+    "illimitat|dificil|45": {
+      "titol": "Il·limitat · Difícil · Llampec",
+      "top": [ { "sobrenom": "Adm1n", "punts": 13,
+                 "paraula": "resolutiu", "dialecte": "ca", "data": "…" } ]
+    }
   },
-  "diaria": {
-    "2026-08-26": { "ca": { "paraula": "esgotador", "dificil": [ … ] } }
-  }
+  "diaria": { "2026-08-26": { "dificil": [ … ] } },
+  "diaria_millors": { "dificil": [ … 10 entrades … ] }
 }
 ```
 
-**Els dos es veuen al joc**, cadascun a la seva pestanya de la pantalla de
-classificació. El bloc `diaria` es calculava des del principi però no el llegia
-ningú; ara té la seva pantalla, amb una pastilla per dia (els últims 30) i una
-taula per dificultat.
+**Els tres es veuen al joc**, repartits en dues pestanyes:
 
-Les dues pestanyes **estan filtrades pel dialecte que tens triat**: el rànquing
-del central i el del valencià són de paraules diferents i barrejar-los no voldria
-dir res.
+| pestanya | què ensenya | d'on surt |
+|---|---|---|
+| **Il·limitat** | una taula per rellotge i dificultat | `modalitats`, filtrat a les claus `illimitat\|…` |
+| **Paraula del dia** | el rànquing del dia que triïs i, a sota, els 10 millors de sempre | `diaria` i `diaria_millors` |
+
+Les modalitats de la paraula del dia **no surten a la pestanya d'il·limitat**
+encara que el compilador les hi posi: barrejar partides d'un minut amb un sol
+intent al dia amb les d'il·limitat no comparava res. El filtre és al joc i no al
+compilador, perquè el JSON continua sent una llista completa del que hi ha.
+
+Com que la pestanya ja diu "Il·limitat", el joc treu aquest tros del títol de
+cada pastilla (`Il·limitat · Difícil · Llampec` → `Difícil · Llampec`): repetir-ho
+només faria més estret el que de debò les distingeix.
+
+A la pestanya de la paraula del dia hi ha **una sola tria de dificultat** que
+mana sobre les dues taules. Són la mateixa pregunta feta dues vegades i poder-les
+descordar no serviria de res. Per defecte agafa la dificultat que jugues.
+
+El `diaria_millors` es calcula **abans** de retallar als últims `DIES_DIARIA`
+dies: és justament la taula que no ha de dependre de quin dia estiguis mirant.
+
+El bloc `diaria` es calculava des del principi però no el llegia ningú; ara té la
+seva pantalla.
+
+### El dialecte no parteix el rànquing
+
+Es guarda al full i **viatja amb cada entrada**, però no fa taules a part: hi ha
+una classificació per modalitat i prou, i el dialecte surt **entre parèntesis a
+cada fila** (`amb «bytownites» (Central)`, vegeu `subtitolEntrada` a `ui.js`).
+
+Va provar-se de l'altra manera —una taula per dialecte, i la pantalla ensenyant
+la del que tenies triat— i no s'aguanta: parteix un rànquing petit en quatre de
+més petits, i qui jugués en balear es trobava una pantalla buida. Dit a cada
+fila, tothom surt junt i es veu igualment en què jugava.
+
+Per això la clau de modalitat de la classificació (`mode|dificultat|segons`) i
+l'identificador dels rècords personals (`mode|dificultat|segons|dialecte`) **no
+són el mateix**: els rècords sí que es parteixen, perquè són teus i comparar-te
+amb tu mateix en dialectes diferents no vol dir res. `principal.js` en té dues
+funcions, `modalitatDe()` i `identificadorRecord()`.
+
+I al `diaria` no hi ha cap capçalera que digui quina era la paraula del dia,
+perquè no n'hi ha una de sola: cada dialecte té la seva. Va a cada fila, al
+costat del dialecte.
 
 ### La lectura
 
