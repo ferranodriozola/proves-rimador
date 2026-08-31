@@ -1,6 +1,7 @@
 # Dependències de Node.js
 node_modules/
 npx.txt
+
 # gulp-dev.command
 
 # Fitxers del sistema
@@ -8,26 +9,20 @@ npx.txt
 Thumbs.db
 .claude
 
-# HTML's
-html/
-
 #cache py
 __pycache__/
 
 # Minimitzats
 dist/
 
-# Dades falses per mirar-se dades.html amb dialectes (stats/prova_dialectes.py)
-stats/proves/
-
 # Intermedi del diccionari (preproces.py / postproces.py)
 diccionaris/separat/col_10 (canvis aquí)/col_10provisional.txt
-
-#pronoms txt
-txt_fets/
 
 #diccionari de pronoms
 diccionaris/diccionari.6*.txt
 
 # Caché de transcripcions dialectals (regenerable)
 diccionaris/separat/dialectes/api_aina/cache/
+
+#carpeta pronoms
+pronoms
