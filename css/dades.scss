@@ -199,6 +199,20 @@
     background-color: $groc-clar;
 }
 
+/* D'on venien les cerques de cada entrada dels tops de rimes i de nàufragues
+   (vegeu omplirLlistesHTML a js/script_dades.js). Va al final de la línia i en
+   gris, per llegir-se després del recompte i no pas abans, i amb els codis i no
+   els noms sencers perquè hi càpiguen tots quatre: amb "Nord-occidental" la
+   línia saltaria i el top de deu en faria vint. */
+.codis-de-dialecte {
+    margin-left: 6px;
+    color: $gris-606;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
 .separador-dades {
     border: 0;
     border-top: 3px double $vermell-principal;
