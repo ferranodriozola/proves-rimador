@@ -17,6 +17,9 @@ __pycache__/
 # Minimitzats
 dist/
 
+# Dades falses per mirar-se dades.html amb dialectes (stats/prova_dialectes.py)
+stats/proves/
+
 # Intermedi del diccionari (preproces.py / postproces.py)
 diccionaris/separat/col_10 (canvis aquí)/col_10provisional.txt
 
