@@ -36,16 +36,25 @@
 
 <a class="salta" href="#principal">Vés al contingut</a>
 
+<!-- Els enllaços al Rimador.cat van amb ../ i no pas amb /: el joc penja de
+     joc/, i per tant ../ és l'arrel del lloc, sigui on sigui el lloc. Amb /
+     només funcionarien a rimador.cat i es trencarien al repositori de proves,
+     que GitHub Pages publica dins /NOM-DEL-REPOSITORI/. És la regla de tot el
+     lloc: rutes relatives als HTML, i el JS que es calcula l'arrel tot sol
+     (vegeu ARREL a js/components.js). L'única excepció és el 404.html, que se
+     serveix sota qualsevol URL i que el desplegament ja reescriu (vegeu
+     .github/workflows/deploy.yml). -->
+
 <header class="capcalera">
-    <a class="capcalera__marca" href="/">
+    <a class="capcalera__marca" href="../">
         <img src="../assets/peixet.webp" alt="" width="46" height="46">
         <span class="capcalera__nom">El joc del Rimador.cat</span>
     </a>
-    <a class="capcalera__estrella" href="/">← Al Rimador.cat</a>
+    <a class="capcalera__estrella" href="../">← Al Rimador.cat</a>
 </header>
 
 <div class="marquesina" id="separador">
-    <p>Benvingut/uda al joc de rimes del <a href="/">Rimador.cat</a>! · Cerca rimes, bat el teu rècord i puja a la classificació ·</p>
+    <p>Benvingut/uda al joc de rimes del <a href="../">Rimador.cat</a>! · Cerca rimes, bat el teu rècord i puja a la classificació ·</p>
 </div>
 
 <main id="principal">
@@ -97,7 +106,7 @@
 
         <p class="peu-nota">
             Les rimes surten del mateix diccionari fonètic que fa servir el nostre
-            <a href="/">Rimador.cat</a>.
+            <a href="../">Rimador.cat</a>.
         </p>
     </section>
 
@@ -258,7 +267,7 @@
 </main>
 
 <footer class="peu">
-    <a href="/">Rimador.cat</a> · Marc i Ferran · Uns quants drets reservats
+    <a href="../">Rimador.cat</a> · Marc i Ferran · Uns quants drets reservats
 </footer>
 
 </body>
