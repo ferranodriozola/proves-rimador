@@ -1,9 +1,34 @@
+// Quins dialectes hi ha i com es diuen. Surt de la llista DIALECTES de
+// js/components.js, la mateixa que pinta la tira de pastilles i de la qual
+// també beu el js/script.js: així el nom de cada dialecte és escrit en un sol
+// lloc. El fallback és per si algun dia aquesta pàgina es carregués sense el
+// components.js: val més ensenyar el codi pelat que no pas petar.
+//
+// L'ordre és el de la tira, i és el que fan servir la barra de dialectes i els
+// codis del top de rimes.
+const ORDRE_DIALECTES = (typeof DIALECTES !== 'undefined') ? DIALECTES.map(d => d.codi) : ['ca'];
+
+// Com es diu un dialecte, sense l'asterisc, que a la pastilla vol dir
+// "transcripció encara per repassar" (vegeu dialectes.html) i aquí no diria
+// res. És el germà del nomDelDialecte() de js/script.js, que el vol en
+// minúscula perquè el fica dins d'una frase; aquí va a llegendes i a títols
+// emergents i s'hi vol tal com s'escriu.
+function nomDeDialecte(codi) {
+    const trobat = (typeof DIALECTES !== 'undefined') ? DIALECTES.find(d => d.codi === codi) : null;
+    return trobat ? trobat.nom.replace('*', '').trim() : codi;
+}
+
 function pintarFiltresHTML(dadesSempre) {
     const contenidor = document.getElementById('contenidor-filtres');
     if (!contenidor) return;
     contenidor.innerHTML = '';
 
     const filtres = [
+        // El dialecte encapçala la llista perquè al web també és el primer que
+        // es tria: la tira va damunt del cercador. Mentre les cerques
+        // registrades no en duguin cap (vegeu recompte_dialecte a
+        // stats/stats.py), aquesta barra no es pinta.
+        { id: 'recompte_dialecte', titol: 'Dialecte' },
         { id: 'recompte_num_sil', titol: 'Filtre de síl·labes' },
         { id: 'recompte_comenca_per', titol: 'Comença per...' },
         { id: 'recompte_incloure_np', titol: 'Incloure noms propis?' },
@@ -15,6 +40,16 @@ function pintarFiltresHTML(dadesSempre) {
         '4': '4s', '5': '5s', '6': '6+',
         'indiferent': 'qualsevol lletra', 'consonant': 'consonant', 'vocal+h': 'vocal / h',
         'si': 'Sí', 'no': 'No'
+    };
+
+    // Els filtres que van en un ordre seu i no pas de més usat a menys usat:
+    // les síl·labes perquè 1, 2, 3... és com es llegeix, i els dialectes perquè
+    // és l'ordre de la tira de pastilles. Els que no hi són s'ordenen per pes.
+    // Una opció que no surti a la llista se'n va al davant (indexOf torna -1),
+    // que és justament on volem l'"Indiferent" de les síl·labes.
+    const ordres = {
+        recompte_num_sil: ['1', '2', '3', '4', '5', '6'],
+        recompte_dialecte: ORDRE_DIALECTES
     };
 
     const temaSober = document.documentElement.getAttribute('data-theme') === 'sober' || document.body.getAttribute('data-theme') === 'sober';
@@ -39,9 +74,9 @@ function pintarFiltresHTML(dadesSempre) {
 
         if (totalFiltre === 0) return;
 
-        if (filtre.id === 'recompte_num_sil') {
-            const opcionsOrdenades = ['1', '2', '3', '4', '5', '6'];
-            entrades.sort((a, b) => opcionsOrdenades.indexOf(a.opcio) - opcionsOrdenades.indexOf(b.opcio));
+        const ordreFixat = ordres[filtre.id];
+        if (ordreFixat) {
+            entrades.sort((a, b) => ordreFixat.indexOf(a.opcio) - ordreFixat.indexOf(b.opcio));
         } else {
             entrades.sort((a, b) => b.vegades - a.vegades);
         }
@@ -61,7 +96,9 @@ function pintarFiltresHTML(dadesSempre) {
 
         entrades.forEach((item, index) => {
             const percentatge = ((item.vegades / totalFiltre) * 100).toFixed(1);
-            const nomMostrar = nomsTraduïts[item.opcio] || item.opcio;
+            const nomMostrar = filtre.id === 'recompte_dialecte'
+                ? nomDeDialecte(item.opcio)
+                : (nomsTraduïts[item.opcio] || item.opcio);
             const colorTros = paletaColors[index % paletaColors.length];
 
             const segment = document.createElement('div');
@@ -171,6 +208,40 @@ function omplirLlistesHTML(idElement, arrayDades, esRima = false) {
         }
 
         li.appendChild(document.createTextNode(`: ${item.cerques}`));
+
+        // D'on venien les cerques que s'han comptat. Ho duen el top de rimes i
+        // el de nàufragues; els altres dos no porten el camp i aquí no hi surt
+        // res (vegeu amb_dialectes a stats/stats.py). No es mira l'esRima, sinó
+        // si les dades ho porten: qui mana què duu codis és el guió que fa el
+        // JSON, no pas aquesta funció.
+        //
+        // A les rimes, una mateixa terminació pot venir de més d'un dialecte
+        // (la de "camí" rima igual es parli com es parli); a les nàufragues,
+        // una mateixa paraula pot no rimar en més d'un. En tots dos casos el
+        // número del costat les compta totes plegades, o sigui que cal dir-ho.
+        //
+        // Hi van els codis i no els noms sencers a posta: "Nord-occidental,
+        // Valencià" fa més ratlla que la rima i el recompte junts i faria
+        // saltar de línia la meitat del top. El nom sencer és al títol
+        // emergent, per a qui no sàpiga què vol dir "nw".
+        //
+        // I separats per comes i no pas per punts volats: amb els quatre
+        // dialectes, els punts s'enduien la línia a la de sota en una pantalla
+        // estreta (mesurat a 360 px, amb una rima llarga i un recompte de tres
+        // xifres), i amb comes hi cap.
+        //
+        // Sense dialectes (que és el cas mentre les cerques registrades no en
+        // duguin cap) no s'hi posa res: val més la línia neta que un parèntesi
+        // buit.
+        const codis = Array.isArray(item.dialectes) ? item.dialectes : [];
+        if (codis.length > 0) {
+            const marca = document.createElement('span');
+            marca.className = 'codis-de-dialecte';
+            marca.textContent = codis.join(', ');
+            marca.title = codis.map(nomDeDialecte).join(', ');
+            li.appendChild(marca);
+        }
+
         contenidor.appendChild(li);
     });
 }
