@@ -50,29 +50,18 @@
     .camp { display: flex; flex-direction: column; gap: .3rem; }
     .camp > span { font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; color: var(--gris-fluix); }
 
-    input[type="number"], input[type="date"] {
+    input[type="date"] {
         font: inherit;
         padding: .45rem .6rem;
         border: 2px solid var(--vora);
         border-radius: 8px;
         background: #fff;
     }
-    input[type="number"] { width: 5.5rem; }
     input:focus-visible, button:focus-visible { outline: 3px solid var(--rosa); outline-offset: 1px; }
 
-    .tipus { display: flex; gap: .4rem; }
-    .tipus label {
-        padding: .45rem .8rem;
-        border: 2px solid var(--vora);
-        border-radius: 999px;
-        cursor: pointer;
-        font-size: .95rem;
-        background: #fff;
-    }
-    .tipus input { position: absolute; opacity: 0; pointer-events: none; }
-    .tipus label:has(input:checked) { border-color: var(--vermell); background: #fff0f0; font-weight: 600; }
-
-    .interruptor { display: flex; align-items: center; gap: .4rem; font-size: .92rem; padding-bottom: .5rem; }
+    /* Què duu el lot: no es tria, o sigui que només s'explica. */
+    .recepta { margin-left: auto; font-size: .85rem; color: var(--gris-fluix); padding-bottom: .4rem; }
+    .recepta b { color: var(--gris-text); }
 
     button {
         font: inherit;
@@ -99,12 +88,21 @@
         display: flex;
         flex-wrap: wrap;
         gap: .3rem 1.2rem;
-        margin: 1rem 0;
+        margin: 1rem 0 .4rem;
         font-size: .88rem;
         color: var(--gris-fluix);
     }
     .estat b { color: var(--gris-text); }
-    .estat a { color: var(--vermell); }
+
+    .queQueda {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .2rem 1.1rem;
+        margin: 0 0 1rem;
+        font-size: .82rem;
+        color: var(--gris-fluix);
+    }
+    .queQueda b { color: var(--gris-text); }
 
     /* --- Targetes --- */
     .tuit { margin-bottom: .9rem; transition: border-color .15s; }
@@ -122,6 +120,22 @@
     }
     .tuit.actiu .num { background: var(--vermell); }
     .tuit.fet .num { background: var(--verd); }
+
+    /* De quina mena i de quin dialecte és el tuit: és l'única cosa que
+       distingeix els vuit tuits del lot d'un cop d'ull. */
+    .marca {
+        font-size: .75rem;
+        text-transform: uppercase;
+        letter-spacing: .03em;
+        border: 1px solid var(--vora);
+        border-radius: 999px;
+        padding: .05rem .55rem;
+        background: #fafafc;
+        color: var(--gris-fluix);
+        white-space: nowrap;
+    }
+    .marca.naufragues { border-color: #f0c4f0; background: #fff4ff; color: #8c3d8c; }
+
     .etiqueta { font-weight: 700; }
     .detall, .data { color: var(--gris-fluix); font-size: .85rem; }
     .compta { margin-left: auto; font-size: .8rem; color: var(--gris-fluix); font-variant-numeric: tabular-nums; }
@@ -143,7 +157,38 @@
     .copiar { font-weight: 600; min-width: 7.5rem; }
     .marcar { border-color: var(--verd); color: var(--verd); font-weight: 600; }
     .tuit.fet .marcar { border-color: var(--vora); color: var(--gris-fluix); font-weight: 400; }
-    .peu .dreta { margin-left: auto; }
+    /* Els de canviar el tuit, tots junts i a la dreta. En un grup a posta:
+       si fossin botons solts del .peu, quan no hi cabessin en baixaria un i
+       prou i quedaria despenjat; així, o hi caben tots o baixen tots tres. */
+    .peu .canvia { display: flex; gap: .5rem; flex-wrap: wrap; margin-left: auto; }
+
+    /* --- Cercador de dins de cada targeta --- */
+    .cercador { margin-top: .7rem; border-top: 1px dashed var(--vora); padding-top: .7rem; }
+    .cercador input {
+        width: 100%;
+        font: inherit;
+        padding: .45rem .6rem;
+        border: 2px solid var(--vora);
+        border-radius: 8px;
+        background: #fff;
+    }
+
+    .resultats { list-style: none; margin: .5rem 0 0; padding: 0; max-height: 16rem; overflow-y: auto; }
+    .resultats button {
+        display: flex;
+        gap: .5rem;
+        align-items: baseline;
+        flex-wrap: wrap;
+        width: 100%;
+        text-align: left;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        padding: .3rem .5rem;
+        background: none;
+        font-weight: 400;
+    }
+    .resultats button:hover { background: #f7f7fa; border-color: var(--vora); }
+    .cercaBuit { font-size: .85rem; color: var(--gris-fluix); padding: .4rem .5rem; }
 
     .buit { text-align: center; color: var(--gris-fluix); padding: 2.5rem 1rem; }
 
@@ -169,6 +214,7 @@
         <p>
             Els mateixos tuits que publicarien els bots, però per programar-los a mà a
             <a href="https://x.com/compose/post" target="_blank" rel="noopener">la web de X</a>.
+            Cada lot passa per tots els dialectes: una rima i, l'endemà, una paraula nàufraga de cadascun.
             La rima només s'apunta a <code>publicades</code> quan tu confirmes que ja està programada.
         </p>
     </header>
@@ -176,32 +222,18 @@
     <div id="avis" class="avis" hidden></div>
 
     <section class="caixa controls">
-        <div class="camp">
-            <span>Tipus de tuit</span>
-            <div class="tipus">
-                <label><input type="radio" name="tipus" value="normal" checked> Rima del dia</label>
-                <label><input type="radio" name="tipus" value="naufragues"> Paraula nàufraga</label>
-            </div>
-        </div>
-
-        <label class="camp">
-            <span>Quants</span>
-            <input type="number" id="quantitat" value="7" min="1" max="60">
-        </label>
-
         <label class="camp">
             <span>Data del primer</span>
             <input type="date" id="data">
         </label>
 
-        <label class="interruptor">
-            <input type="checkbox" id="perDies" checked> un tuit per dia
-        </label>
+        <button class="principal" id="generar">Genera el lot</button>
 
-        <button class="principal" id="generar">Genera</button>
+        <p class="recepta" id="recepta"></p>
     </section>
 
     <div class="estat" id="estat"></div>
+    <div class="queQueda" id="queQueda"></div>
 
     <main id="llista"></main>
 
@@ -216,13 +248,24 @@
 </div>
 
 <script>
-const CLAU_MAGATZEM = 'rimador-programador-lot';
+// El "-2" del nom: el lot va canviar de forma (abans era d'una sola mena de
+// tuit i d'un sol dialecte, ara en duu vuit barrejats). Amb la clau d'abans, un
+// lot desat del programador vell hauria arribat aquí sense tipus ni dialecte.
+const CLAU_MAGATZEM = 'rimador-programador-lot-2';
 
-let estat = null;                       // el que diu el servidor: què s'ha dit ja
-let lot = { tipus: 'normal', tuits: [] }; // el que hi ha ara a la pantalla
+let estat = null;               // el que diu el servidor: què s'ha dit ja
+let lot = { tuits: [] };        // el que hi ha ara a la pantalla
+
+// El cercador: quina targeta el té obert (una de sola) i què s'hi ha escrit.
+// Va aquí i no pas al DOM perquè pintar() refà la llista sencera i s'ha de
+// poder tornar a dibuixar obert i amb el que hi havia escrit.
+let cerca = { i: null, text: '' };
+let resultats = [];
+let esperaDeCerca = null;
 
 const $ = (sel) => document.querySelector(sel);
 const llista = $('#llista');
+const nombre = (n) => (n || 0).toLocaleString('ca');
 
 // ---------- Parlar amb el servidor ----------
 
@@ -246,27 +289,32 @@ function avisar(text) {
 
 // ---------- Estat ----------
 
-const tipusTriat = () => document.querySelector('input[name="tipus"]:checked').value;
-
 // La veritat de què s'ha dit i què no és sempre el fitxer del disc, no pas la
 // pantalla: així el lot sobreviu a un F5 i no es desapunta res sense voler.
-const jaProgramat = (clau) => !!estat && estat[lot.tipus].publicades.includes(clau);
+// Cada tuit sap de quina mena és, que al lot n'hi ha de les dues.
+const jaProgramat = (tuit) => !!estat && !!estat[tuit.tipus] && estat[tuit.tipus].publicades.includes(tuit.clau);
 
 function pintarEstat() {
     if (!estat) return;
 
-    const meu = estat[tipusTriat()];
-    const fets = lot.tuits.filter(t => jaProgramat(t.clau)).length;
-    // El recompte del lot només si el lot és del tipus que hi ha triat ara:
-    // si has canviat de tipus, a la pantalla hi ha els tuits de l'altre.
-    const mateixTipus = lot.tipus === tipusTriat() && lot.tuits.length;
+    const fets = lot.tuits.filter(jaProgramat).length;
+
+    $('#recepta').innerHTML = `Cada lot: <b>${estat.tuits_per_lot}</b> tuits, un per dia,`
+                            + ' una rima i una nàufraga de cada dialecte.';
 
     $('#estat').innerHTML = `
-        <span><b>${meu.disponibles.toLocaleString('ca')}</b> per dir</span>
-        <span><b>${meu.publicades.length.toLocaleString('ca')}</b> ja programades o publicades</span>
-        ${mateixTipus ? `<span><b>${fets}</b> de <b>${lot.tuits.length}</b> d'aquest lot programats</span>` : ''}
+        ${lot.tuits.length ? `<span><b>${fets}</b> de <b>${lot.tuits.length}</b> d'aquest lot programats</span>` : ''}
+        <span><b>${nombre(estat.normal.publicades.length)}</b> rimes i
+              <b>${nombre(estat.naufragues.publicades.length)}</b> nàufragues ja programades o publicades</span>
     `;
-    $('#peuFitxer').innerHTML = `Cada confirmació escriu de seguida a <code>${meu.fitxer}</code>.`;
+
+    $('#queQueda').innerHTML = 'Per dir: ' + estat.dialectes.map((d) => `
+        <span><b>${d.nom}</b> ${nombre(estat.normal.disponibles[d.codi])} rimes i
+              ${nombre(estat.naufragues.disponibles[d.codi])} nàufragues</span>
+    `).join('');
+
+    $('#peuFitxer').innerHTML = `Cada confirmació escriu de seguida a <code>${estat.normal.fitxer}</code>`
+                              + ` o a <code>${estat.naufragues.fitxer}</code>.`;
 }
 
 async function carregarEstat() {
@@ -283,36 +331,30 @@ function desarLot() {
 function restaurarLot() {
     try {
         const desat = JSON.parse(localStorage.getItem(CLAU_MAGATZEM) || 'null');
-        if (desat && Array.isArray(desat.tuits)) {
+        if (desat && Array.isArray(desat.tuits) && desat.tuits.every((t) => t && t.tipus && t.clau)) {
             lot = desat;
-            document.querySelector(`input[name="tipus"][value="${lot.tipus}"]`).checked = true;
         }
     } catch (e) { /* si el que hi havia desat no s'entén, es comença de nou */ }
 }
 
 async function generar() {
-    const pendents = lot.tuits.filter(t => !jaProgramat(t.clau)).length;
+    const pendents = lot.tuits.filter((t) => !jaProgramat(t)).length;
     if (pendents && !confirm(`Encara hi ha ${pendents} tuit(s) sense programar. Els vols descartar i fer un lot nou?`)) return;
 
     $('#generar').disabled = true;
     avisar('');
 
     try {
-        const resposta = await api('/api/generar', {
-            tipus: tipusTriat(),
-            quantitat: +$('#quantitat').value,
-            data: $('#data').value,
-            un_dia_per_tuit: $('#perDies').checked
-        });
+        const resposta = await api('/api/generar', { data: $('#data').value });
 
         estat = resposta.estat;
-        lot = { tipus: tipusTriat(), tuits: resposta.tuits };
+        lot = { tuits: resposta.tuits };
         desarLot();
         pintar();
 
-        if (!resposta.tuits.length) avisar('No queda res per dir d\'aquest tipus.');
-        else if (resposta.tuits.length < +$('#quantitat').value) {
-            avisar(`Només en queden ${resposta.tuits.length} per dir.`);
+        if (!resposta.tuits.length) avisar('No queda res per dir.');
+        else if (resposta.tuits.length < estat.tuits_per_lot) {
+            avisar(`Només n'han sortit ${resposta.tuits.length} de ${estat.tuits_per_lot}: hi ha algun dialecte que ja no té res per dir.`);
         }
     } catch (e) {
         avisar('No s\'han pogut generar: ' + e.message);
@@ -322,24 +364,23 @@ async function generar() {
 }
 
 async function generarUnAltre(i) {
+    const vell = lot.tuits[i];
+
     try {
-        const resposta = await api('/api/generar', {
-            tipus: lot.tipus,
-            quantitat: 1,
-            data: $('#data').value,
-            un_dia_per_tuit: false,
-            exclou: lot.tuits.map(t => t.clau)   // cap dels que ja són a la pantalla
+        const resposta = await api('/api/un_altre', {
+            tipus: vell.tipus,
+            dialecte: vell.dialecte,
+            // El dia és del lloc que ocupa dins del lot, no pas del tuit: si
+            // era el tercer, el que el substitueix continua sent per al mateix
+            // dia (i pel mateix dialecte, que el lot els vol tots).
+            data: vell.data,
+            // Cap dels que ja són a la pantalla, ni el que se substitueix.
+            exclou: lot.tuits.filter((t) => t.tipus === vell.tipus).map((t) => t.clau)
         });
 
-        if (!resposta.tuits.length) return avisar('No queda cap altra rima per posar-hi.');
+        if (!resposta.tuit) return avisar(`No queda cap altre tuit d'aquesta mena en ${vell.nom_dialecte}.`);
 
-        // La data és del lloc que ocupa dins del lot, no pas del tuit: si era el
-        // tercer, el que el substitueix continua sent per al mateix dia.
-        const nou = resposta.tuits[0];
-        nou.text = nou.text.replace(nou.data, lot.tuits[i].data);
-        nou.data = lot.tuits[i].data;
-
-        lot.tuits[i] = nou;
+        lot.tuits[i] = resposta.tuit;
         estat = resposta.estat;
         desarLot();
         pintar();
@@ -349,9 +390,12 @@ async function generarUnAltre(i) {
 }
 
 async function marcar(i, programat) {
+    cerca = { i: null, text: '' };
+    resultats = [];
+
     try {
         estat = await api(programat ? '/api/programat' : '/api/desfes', {
-            tipus: lot.tipus,
+            tipus: lot.tuits[i].tipus,
             clau: lot.tuits[i].clau
         });
         pintar();
@@ -364,6 +408,122 @@ async function marcar(i, programat) {
 function anarAlSeguent() {
     const seguent = llista.querySelector('.tuit.actiu');
     if (seguent) seguent.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// ---------- Cercar de quin dia vols quina rima o quina paraula ----------
+
+function obrirCerca(i) {
+    cerca = (cerca.i === i) ? { i: null, text: '' } : { i, text: '' };
+    resultats = [];
+    pintar();
+}
+
+const llocDelsResultats = () => llista.querySelector('.resultats');
+
+function pintarResultats() {
+    const lloc = llocDelsResultats();
+    if (!lloc) return;
+
+    if (!resultats.length) {
+        lloc.innerHTML = '<li class="cercaBuit">No hi ha res que hi casi, o ja s\'ha dit.</li>';
+        return;
+    }
+
+    lloc.innerHTML = resultats.map((resultat, n) => `
+        <li><button type="button" data-triar="${n}">
+            <span class="etiqueta">${escapar(resultat.etiqueta)}</span>
+            <span class="detall">${escapar(resultat.detall)}</span>
+        </button></li>`).join('');
+}
+
+async function buscar() {
+    const i = cerca.i;
+    const lloc = llocDelsResultats();
+    if (i === null || !lloc) return;
+
+    const tuit = lot.tuits[i];
+    const demanat = cerca.text;
+
+    if (demanat.trim().length < 2) {
+        resultats = [];
+        lloc.innerHTML = '<li class="cercaBuit">Escriu-hi almenys dues lletres.</li>';
+        return;
+    }
+
+    lloc.innerHTML = '<li class="cercaBuit">Cercant...</li>';
+
+    try {
+        const resposta = await api('/api/cercar', {
+            tipus: tuit.tipus,
+            dialecte: tuit.dialecte,
+            text: demanat,
+            // Ni el que ja és a la pantalla ni el que ja s'ha dit: triar-ho
+            // deixaria el lot amb dos tuits que diuen el mateix.
+            exclou: lot.tuits.filter((t) => t.tipus === tuit.tipus).map((t) => t.clau)
+        });
+
+        // Si mentrestant s'ha escrit una altra cosa (o s'ha tancat), això ja
+        // no és la resposta que toca: les peticions no tornen per ordre.
+        if (cerca.i !== i || cerca.text !== demanat) return;
+
+        resultats = resposta.resultats;
+        pintarResultats();
+    } catch (e) {
+        avisar('No s\'ha pogut cercar: ' + e.message);
+    }
+}
+
+// Quedar-se la rima i refer-ne els exemples: és el mateix camí que triar-la
+// del cercador, però amb la clau que ja té. Qui tria les paraules és
+// paraules_del_tuit(), que en pren cinc a l'atzar de les que hi rimen.
+async function altresExemples(i) {
+    const tuit = lot.tuits[i];
+
+    try {
+        const resposta = await api('/api/tria', {
+            tipus: tuit.tipus,
+            dialecte: tuit.dialecte,
+            clau: tuit.clau,
+            data: tuit.data
+        });
+
+        if (!resposta.tuit) return avisar('Aquesta rima ja no es pot fer.');
+
+        lot.tuits[i] = resposta.tuit;
+        estat = resposta.estat;
+        desarLot();
+        pintar();
+    } catch (e) {
+        avisar('No s\'han pogut refer els exemples: ' + e.message);
+    }
+}
+
+async function triar(n) {
+    const i = cerca.i;
+    const resultat = resultats[n];
+    if (i === null || !resultat) return;
+
+    const tuit = lot.tuits[i];
+
+    try {
+        const resposta = await api('/api/tria', {
+            tipus: tuit.tipus,
+            dialecte: tuit.dialecte,
+            clau: resultat.clau,
+            data: tuit.data          // el dia del lloc que ocupa, no pas el d'avui
+        });
+
+        if (!resposta.tuit) return avisar('Aquest tuit ja no es pot fer.');
+
+        lot.tuits[i] = resposta.tuit;
+        estat = resposta.estat;
+        cerca = { i: null, text: '' };
+        resultats = [];
+        desarLot();
+        pintar();
+    } catch (e) {
+        avisar('No s\'ha pogut triar: ' + e.message);
+    }
 }
 
 // ---------- Copiar ----------
@@ -399,8 +559,8 @@ async function copiar(i, boto) {
 // ---------- Pintar ----------
 
 // X compta cada enllaç com si fossin 23 caràcters, tant li fa com de llarg
-// sigui. Sense això, el tuit de les nàufragues (que en duu un de ben llarg)
-// semblaria passat de mida quan no ho és.
+// sigui. Sense això, el tuit de les nàufragues (que en duu dos) semblaria
+// passat de mida quan no ho és.
 const compta = (text) => text.replace(/https?:\/\/\S+/g, 'x'.repeat(23)).length;
 
 // Que es vegi el tuit sencer sense barra de desplaçament: comptar les
@@ -415,30 +575,40 @@ function encabir(area) {
 
 const encabirTots = () => llista.querySelectorAll('textarea').forEach(encabir);
 
-const escapar = (text) => text.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+const escapar = (text) => String(text).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+const NOM_TIPUS = { normal: 'rima', naufragues: 'nàufraga' };
+
+// Què s'hi busca, a cada mena de tuit: sempre una paraula. Els accents no
+// compten, o sigui que "porfir" ja troba "pòrfir".
+const QUE_CERCAR = {
+    normal: 'una paraula que hi rimi',
+    naufragues: 'una paraula nàufraga'
+};
 
 function pintar() {
     pintarEstat();
 
     if (!lot.tuits.length) {
-        llista.innerHTML = '<p class="buit">Encara no hi ha cap tuit. Digues quants en vols i prem <b>Genera</b>.</p>';
+        llista.innerHTML = '<p class="buit">Encara no hi ha cap tuit. Tria el dia i prem <b>Genera el lot</b>.</p>';
         return;
     }
 
-    const primerPendent = lot.tuits.findIndex(t => !jaProgramat(t.clau));
+    const primerPendent = lot.tuits.findIndex((t) => !jaProgramat(t));
 
     llista.innerHTML = lot.tuits.map((tuit, i) => {
-        const fet = jaProgramat(tuit.clau);
-        const nombre = compta(tuit.text);
+        const fet = jaProgramat(tuit);
+        const llarg = compta(tuit.text);
 
         return `
         <article class="caixa tuit ${fet ? 'fet' : ''} ${i === primerPendent ? 'actiu' : ''}">
             <div class="cap">
                 <span class="num">${fet ? '✓' : i + 1}</span>
+                <span class="marca ${escapar(tuit.tipus)}">${NOM_TIPUS[tuit.tipus] || escapar(tuit.tipus)} · ${escapar(tuit.nom_dialecte)}</span>
                 <span class="etiqueta">${escapar(tuit.etiqueta)}</span>
                 <span class="detall">${escapar(tuit.detall)}</span>
                 <span class="data">· ${escapar(tuit.data)}</span>
-                <span class="compta ${nombre > 280 ? 'passat' : ''}">${nombre}/280</span>
+                <span class="compta ${llarg > 280 ? 'passat' : ''}">${llarg}/280</span>
             </div>
 
             <textarea data-i="${i}" rows="${tuit.text.split('\n').length}"></textarea>
@@ -448,8 +618,19 @@ function pintar() {
                 ${fet
                     ? `<button class="marcar" data-desfer="${i}">Desfés</button>`
                     : `<button class="marcar" data-fet="${i}">Ja està programat ✓</button>
-                       <button class="dreta" data-altre="${i}">Un altre</button>`}
+                       <div class="canvia">
+                           ${tuit.altres_exemples ? `<button data-exemples="${i}">Altres exemples</button>` : ''}
+                           <button data-cerca="${i}">${cerca.i === i ? 'Deixa-ho estar' : 'Tria\'l tu'}</button>
+                           <button data-altre="${i}">Un altre</button>
+                       </div>`}
             </div>
+
+            ${cerca.i === i ? `
+            <div class="cercador">
+                <input type="search" class="cercaCamp" placeholder="${QUE_CERCAR[tuit.tipus] || ''}"
+                       value="${escapar(cerca.text)}" autocomplete="off" spellcheck="false">
+                <ul class="resultats"></ul>
+            </div>` : ''}
         </article>`;
     }).join('');
 
@@ -464,6 +645,15 @@ function pintar() {
     // pintar, l'amplada encara pot no ser la definitiva, i com que el text es
     // reparteix segons l'amplada, l'alçada sortiria d'una altra pàgina.
     requestAnimationFrame(encabirTots);
+
+    // El cercador s'ha tornat a dibuixar de zero: hi torna el cursor, al
+    // final del que hi havia escrit, i es refà la llista de resultats.
+    const camp = llista.querySelector('.cercaCamp');
+    if (camp) {
+        camp.focus();
+        camp.setSelectionRange(camp.value.length, camp.value.length);
+        if (resultats.length) pintarResultats(); else buscar();
+    }
 }
 
 // ---------- Enganxar-ho tot ----------
@@ -476,9 +666,21 @@ llista.addEventListener('click', (e) => {
     else if (boto.dataset.fet !== undefined) marcar(+boto.dataset.fet, true);
     else if (boto.dataset.desfer !== undefined) marcar(+boto.dataset.desfer, false);
     else if (boto.dataset.altre !== undefined) generarUnAltre(+boto.dataset.altre);
+    else if (boto.dataset.exemples !== undefined) altresExemples(+boto.dataset.exemples);
+    else if (boto.dataset.cerca !== undefined) obrirCerca(+boto.dataset.cerca);
+    else if (boto.dataset.triar !== undefined) triar(+boto.dataset.triar);
 });
 
 llista.addEventListener('input', (e) => {
+    if (e.target.classList.contains('cercaCamp')) {
+        cerca.text = e.target.value;
+        // Amb pausa: si no, cada lletra faria una passada per les 10.000 rimes
+        // del dialecte i les 620.000 paraules que hi pengen.
+        clearTimeout(esperaDeCerca);
+        esperaDeCerca = setTimeout(buscar, 200);
+        return;
+    }
+
     if (e.target.tagName !== 'TEXTAREA') return;
     const i = +e.target.dataset.i;
     lot.tuits[i].text = e.target.value;
@@ -487,20 +689,27 @@ llista.addEventListener('input', (e) => {
     encabir(e.target);
 
     const compte = e.target.closest('.tuit').querySelector('.compta');
-    const nombre = compta(e.target.value);
-    compte.textContent = `${nombre}/280`;
-    compte.classList.toggle('passat', nombre > 280);
+    const llarg = compta(e.target.value);
+    compte.textContent = `${llarg}/280`;
+    compte.classList.toggle('passat', llarg > 280);
+});
+
+llista.addEventListener('keydown', (e) => {
+    if (!e.target.classList.contains('cercaCamp')) return;
+
+    if (e.key === 'Enter') {
+        e.preventDefault();            // que no enviï cap formulari
+        clearTimeout(esperaDeCerca);
+        buscar();
+    } else if (e.key === 'Escape') {
+        obrirCerca(cerca.i);           // el mateix botó: tanca'l
+    }
 });
 
 // Canviar l'amplada de la finestra reparteix el text d'una altra manera.
 window.addEventListener('resize', encabirTots);
 
-document.querySelectorAll('input[name="tipus"]').forEach((radi) => {
-    radi.addEventListener('change', pintarEstat);
-});
-
 $('#generar').addEventListener('click', generar);
-$('#quantitat').addEventListener('keydown', (e) => { if (e.key === 'Enter') generar(); });
 
 $('#data').value = new Date().toLocaleDateString('sv');   // sv dona l'AAAA-MM-DD que vol l'input
 restaurarLot();
