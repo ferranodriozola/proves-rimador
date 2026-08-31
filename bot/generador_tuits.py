@@ -489,9 +489,9 @@ def tuit_naufraga(item, dialecte, dialectes_naufraga, tots, data=None):
     tuit = (f"Paraula nàufraga del dia ({data or data_curta()}): {paraula_escollida} "
             f"(/{rima_escollida}/ en {nom_dialecte(dialecte)})\n\n")
     if codi.startswith("NP"):
-        tuit += "Aquest nom propi no rima amb cap altra paraula del diccionari."
+        tuit += "Aquest nom propi no rima amb cap altra paraula del diccionari. "
     else:
-        tuit += "Aquesta paraula no rima amb cap altra paraula del diccionari."
+        tuit += "Aquesta paraula no rima amb cap altra paraula del diccionari. "
 
     tuit += frase_de_dialectes(dialecte, dialectes_naufraga, tots) + "\n\n"
 
