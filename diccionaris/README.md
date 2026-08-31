@@ -174,8 +174,17 @@ del `generar_llistes.yml` que el generaven i el comitejaven.
 Qui el llegia era el bot de Twitter, i el bot tampoc no hi és: ara els tuits es
 programen a mà amb `bot/programador/`, que s'aplega la mateixa taula a la
 memòria des de la `col_0` i la `col_3` cada cop que s'engega (vegeu
-`carregar_rimes()` a `bot/generador_tuits.py`). Costa 1 s i 59 MB, contra 0,5 s
-per llegir el fitxer, i dona exactament el mateix.
+`carregar_rimes()` a `bot/generador_tuits.py`). En fa una per dialecte, que el
+lot de tuits els diu tots quatre: 6 s i 155 MB en total, contra 0,5 s per
+llegir el fitxer d'un sol dialecte, i dona exactament el mateix.
+
+Els 155 MB són de tots quatre junts perquè la `col_0` es llegeix una sola
+vegada i les quatre taules s'ho reparteixen (vegeu `carregar_paraules()`): una
+còpia de les 619.783 paraules per dialecte serien 240 MB. Dels segons, un és
+de la `col_2`, que diu quines formes són nom propi (`carregar_noms_propis()`,
+que als tuits no hi surten), i un altre d'aplanar les paraules per al cercador
+(`aplanar_paraules()`): fent-ho en engegar, cercar-hi costa una dècima de
+segon en comptes d'un segon sencer.
 
 Es va treure perquè un fitxer derivat de les columnes s'ha de tornar a pujar
 sencer a cada canvi del diccionari —30 versions a la història del repositori—
@@ -191,7 +200,7 @@ s'hagués generat. Les nàufragues ja feia temps que no en depenien.
 | `dialectes_col/` (quatre dialectes) | 68 MB | per fer: cada forma amb pronom hauria de portar la seva transcripció a cada dialecte |
 | `col_10.txt` | **76,3 MB** | no hi cabria |
 | baixada real (Pages comprimeix) | 2,9 MB | ~20 MB |
-| taula de rimes del programador (memòria, ja no és cap fitxer) | 59 MB | ~380 MB, estimat de les files: s'hauria de repensar |
+| taules de rimes del programador, quatre dialectes (memòria, ja no és cap fitxer) | 155 MB | ~980 MB, estimat de les files: s'hauria de repensar |
 
 ⚠️ **La `col_10.txt` a 76,3 MB va just.** GitHub avisa als 50 MB i **bloqueja
 als 100**: quan el diccionari creixi un 30 % més (o quan s'hi afegeixi un
