@@ -176,12 +176,12 @@
 
                 <h4>Què compta com a "cerca"?</h4>
                 <p>Per evitar els dobles clics involuntaris, filtrem totes les cerques i ens quedem amb les <b>consultes diferents</b>. 
-                    Considerem que dues cerques són la mateixa (i n'eliminem una) quan coincideixen en vuit elements: el dia, l'usuari, 
-                    la paraula cercada i els cinc filtres (tipus de rima, nombre de síl·labes, comença per, incloure noms propis i incloure plurals). 
+                    Considerem que dues cerques són la mateixa (i n'eliminem una) quan coincideixen en nou elements: el dia, l'usuari, 
+                    la paraula cercada, el dialecte i els cinc filtres (tipus de rima, nombre de síl·labes, comença per, incloure noms propis i incloure plurals). 
                     Si es torna a fer exactament la mateixa cerca, es repeteix la mateixa consulta dins un mateix dia o es torna a prémer el botó, 
                     no ho considerem una cerca diferent. En canvi, sí que compten com a cerques diferents la mateixa paraula cercada per dos 
                     usuaris diferents, la mateixa paraula cercada pel mateix usuari un altre dia, o la mateixa paraula cercada canviant qualsevol 
-                    filtre o intercanviant consonant-assonant. La rima trobada no forma part d'aquesta comparació.</p>
+                    filtre, intercanviant consonant-assonant o canviant de dialecte. La rima trobada no forma part d'aquesta comparació.</p>
 
                 <h4>Què és una paraula única?</h4>
                 <p>Són les <b>paraules diferents</b> que s'han cercat: cada paraula compta una sola vegada per molta gent que l'hagi buscada, 
@@ -207,6 +207,16 @@
                     suma només 1. Així, una tarda d'obsessió amb un mot no es menja el rànquing. És un criteri diferent del de les cerques totals, que sí 
                     que compta totes les vegades que s'ha fet una cerca, encara que sigui la mateixa persona amb la mateixa paraula.</p>
                 <p>En tots els tops, en cas que hi hagi algun empat, apareix més amunt la paraula o rima que s'ha cercat més recentment.</p>
+
+                <h4>Què són els codis grisos dels tops?</h4>
+                <p>Són els dialectes d'on venien les cerques que s'han comptat en aquella línia: <b>ca</b> (central), <b>nw</b> (nord-occidental), 
+                    <b>va</b> (valencià) i <b>ba</b> (balear). En duen el Top 10 rimes i el Top 10 paraules nàufragues, que són els dos que poden 
+                    ajuntar en una sola línia cerques fetes en dialectes diferents. El número del costat sempre compta totes les cerques plegades, i els codis diuen d'on venen.</p>
+                <p>A les rimes: com que la terminació fonètica depèn de com es parli, la mateixa paraula pot donar rimes diferents segons el dialecte 
+                    triat, però també passa el contrari: hi ha terminacions que són iguals arreu (la de <i>camí</i>, per exemple) i que, per tant, 
+                    sumen cerques fetes en més d'un dialecte. A les nàufragues: una paraula pot no rimar en diversos dialectes alhora, i els codis 
+                    diuen en quins se'n va fer una cerca que no va trobar rima. Compte, doncs, que <b>no</b> volen dir "aquesta paraula no rima en 
+                    aquests dialectes i prou": si ningú no l'ha cercada mai en valencià, el <b>va</b> no hi sortirà encara que tampoc no hi rimi.</p>
                     
                 <h4>I el top de rimes?</h4>
                 <p>Una rima, aquí, no és una paraula: és la <b>terminació fonètica</b> que comparteixen totes les paraules que rimen entre elles, 
@@ -218,21 +228,16 @@
                 </p>
 
                 <h4>Què són les paraules nàufragues?</h4>
-                <p>Són aquelles paraules que no tenen cap rima consonant amb cap altre mot del diccionari. En fer una cerca consonant, es compara
-                    la paraula amb la llista de paraules nàufragues, i en cas de coincidir, s'afegeix al Top. Les cerques en assonant no compten aquí,
-                    ja que la llista de nàufragues només fa referència a la rima consonant. Aquest rànquing és una manera de visualitzar quines són
+                <p>Són aquelles paraules que no tenen cap rima consonant amb cap altre mot del diccionari. En fer una cerca consonant, es compara la paraula amb la llista de paraules nàufragues, i en cas de coincidir, s'afegeix al Top. Les cerques en assonant no compten aquí, ja que la llista de nàufragues només fa referència a la rima consonant. Aquest rànquing és una manera de visualitzar quines són
                     les paraules sense rima més freqüents de cercar.</p>
+                <p>Quines paraules són nàufragues depèn del dialecte, perquè depèn de com sonin: <i>llenya</i> no rima amb res al central, però sí als altres tres, i <i>catorze</i> no rima enlloc excepte al central. Cada dialecte té, doncs, la seva llista, i cada cerca es compara amb la que li toca. Els codis grisos del costat diuen en quins dialectes es va cercar i la paraula no té rima. El número continua sent d'usuaris únics, i, per tant, qui cerqui la mateixa paraula en dos dialectes hi suma un sol cop, però hi deixa un codi per cada dialecte on no li va rimar, però si algú cerca <i>llenya</i> al central i al balear, només deixa el <b>ca</b>, perquè al balear sí que li rimava.</p>
 
                 <h4>Què és el Top errors de cerca?</h4>
-                <p>Són les cerques fetes al Rimador.cat en què el "mot" cercat no coincideix amb cap paraula del diccionari. Són paraules mal escrites, 
-                    amb errors de picatge, o trossos de paraula. Recorda que se cerquen paraules, no terminacions fonètiques! Aquestes cerques no sumen 
+                <p>Són les cerques fetes al Rimador.cat en què el "mot" cercat no coincideix amb cap paraula del diccionari. Són paraules mal escrites, amb errors de picatge, o trossos de paraula. Recorda que se cerquen paraules, no terminacions fonètiques! Aquestes cerques no sumen 
                     a les paraules úniques, però sí a les cerques totals.</p>
 
                 <h4>Com es compten els noms propis?</h4>
-                <p>El diccionari té categoritzada cada paraula amb un codi gramatical. En fer la cerca, filtrem les que consten com a nom propi, i
-                    les cataloguem seguint el mateix criteri que les "paraules úniques". El número no és de cerques, sinó de <b>noms propis diferents</b>
-                    que algú ha buscat alguna vegada. En cas de coincidir un nom propi i un nom comú o alguna altra categoria ('Esperança', per exemple), 
-                    es compta sempre com a l'altra categoria, i es restringeix el nom propi a aquells mots que només són noms propis.</p>
+                <p>El diccionari té categoritzada cada paraula amb un codi gramatical. En fer la cerca, filtrem les que consten com a nom propi, i les cataloguem seguint el mateix criteri que les "paraules úniques". El número no és de cerques, sinó de <b>noms propis diferents</b> que algú ha buscat alguna vegada. En cas de coincidir un nom propi i un nom comú o alguna altra categoria ('Esperança', per exemple), es compta sempre com a l'altra categoria, i es restringeix el nom propi a aquells mots que només són noms propis.</p>
 
                 <h4>Què són el nombre de cerques dels podis? I el del gràfic de línies?</h4>
                 <p>Són el nombre de "cerques úniques" d'aquell dia. El dia present queda fora.
@@ -246,7 +251,8 @@
                 <h4>Què és el percentatge d'ús dels filtres?</h4>
                 <p>Ens referim a com els usuaris tenen configurats els filtres en el moment de cercar, sobre el total de cerques de l'històric. 
                     Cada cerca hi aporta la seva combinació una sola vegada. Es pot veure clarament quins són els paràmetres predeterminats, però també
-                    quins són els filtres més usats després del principal.<p>
+                    quins són els filtres més usats després del principal. La primera barra, la del dialecte, compta només les cerques fetes des que es pot triar: les d'abans no hi surten, perquè no diuen res sobre què tria la gent quan pot triar. Els dialectes hi van en 
+                    l'ordre de la tira de pastilles del cercador i no de més usat a menys.<p>
 
                 <h4>Què hi ha als gràfics de formatge?</h4>
                 <p>Hi ha <b>totes</b> les rimes, no només les deu primeres: cada tros és un grup de rima. La mida de cada tros segueix el mateix criteri
