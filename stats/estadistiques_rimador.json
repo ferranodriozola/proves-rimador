@@ -1,5 +1,5 @@
 {
-    "actualitzacio": "31/08/2026 02:16:45",
+    "actualitzacio": "31/08/2026 23:45:53",
     "setmana": {
         "text_dies": "24/8 > 30/8",
         "top_10_paraules": [
@@ -48,52 +48,62 @@
             {
                 "paraula": "o",
                 "tipus": "r.consonant",
-                "cerques": 10
+                "cerques": 10,
+                "dialectes": []
             },
             {
                 "paraula": "at",
                 "tipus": "r.consonant",
-                "cerques": 9
+                "cerques": 9,
+                "dialectes": []
             },
             {
                 "paraula": "iə",
                 "tipus": "r.assonant",
-                "cerques": 8
+                "cerques": 8,
+                "dialectes": []
             },
             {
                 "paraula": "e",
                 "tipus": "r.consonant",
-                "cerques": 8
+                "cerques": 8,
+                "dialectes": []
             },
             {
                 "paraula": "iə",
                 "tipus": "r.consonant",
-                "cerques": 6
+                "cerques": 6,
+                "dialectes": []
             },
             {
                 "paraula": "aə",
                 "tipus": "r.assonant",
-                "cerques": 6
+                "cerques": 6,
+                "dialectes": []
             },
             {
                 "paraula": "i",
                 "tipus": "r.consonant",
-                "cerques": 6
+                "cerques": 6,
+                "dialectes": []
             },
             {
                 "paraula": "a",
                 "tipus": "r.consonant",
-                "cerques": 6
+                "cerques": 6,
+                "dialectes": []
             },
             {
                 "paraula": "ɛtə",
                 "tipus": "r.consonant",
-                "cerques": 6
+                "cerques": 6,
+                "dialectes": []
             },
             {
                 "paraula": "ɛt",
                 "tipus": "r.consonant",
-                "cerques": 6
+                "cerques": 6,
+                "dialectes": []
             }
         ],
         "total_cerques": 625,
@@ -147,52 +157,62 @@
             {
                 "paraula": "o",
                 "tipus": "r.consonant",
-                "cerques": 46
+                "cerques": 46,
+                "dialectes": []
             },
             {
                 "paraula": "at",
                 "tipus": "r.consonant",
-                "cerques": 35
+                "cerques": 35,
+                "dialectes": []
             },
             {
                 "paraula": "e",
                 "tipus": "r.consonant",
-                "cerques": 32
+                "cerques": 32,
+                "dialectes": []
             },
             {
                 "paraula": "i",
                 "tipus": "r.consonant",
-                "cerques": 30
+                "cerques": 30,
+                "dialectes": []
             },
             {
                 "paraula": "a",
                 "tipus": "r.consonant",
-                "cerques": 29
+                "cerques": 29,
+                "dialectes": []
             },
             {
                 "paraula": "iə",
                 "tipus": "r.consonant",
-                "cerques": 27
+                "cerques": 27,
+                "dialectes": []
             },
             {
                 "paraula": "en",
                 "tipus": "r.consonant",
-                "cerques": 27
+                "cerques": 27,
+                "dialectes": []
             },
             {
                 "paraula": "an",
                 "tipus": "r.consonant",
-                "cerques": 21
+                "cerques": 21,
+                "dialectes": []
             },
             {
                 "paraula": "al",
                 "tipus": "r.consonant",
-                "cerques": 21
+                "cerques": 21,
+                "dialectes": []
             },
             {
                 "paraula": "iə",
                 "tipus": "r.assonant",
-                "cerques": 20
+                "cerques": 20,
+                "dialectes": []
             }
         ],
         "total_cerques": 2443,
@@ -205,43 +225,53 @@
         "top_10_naufragues": [
             {
                 "paraula": "pèsol",
-                "cerques": 4
+                "cerques": 4,
+                "dialectes": []
             },
             {
                 "paraula": "préssec",
-                "cerques": 4
+                "cerques": 4,
+                "dialectes": []
             },
             {
                 "paraula": "quinze",
-                "cerques": 1
+                "cerques": 1,
+                "dialectes": []
             },
             {
                 "paraula": "òrbita",
-                "cerques": 1
+                "cerques": 1,
+                "dialectes": []
             },
             {
                 "paraula": "totxos",
-                "cerques": 1
+                "cerques": 1,
+                "dialectes": []
             },
             {
                 "paraula": "pàrquing",
-                "cerques": 1
+                "cerques": 1,
+                "dialectes": []
             },
             {
                 "paraula": "càmping",
-                "cerques": 1
+                "cerques": 1,
+                "dialectes": []
             },
             {
                 "paraula": "eurídice",
-                "cerques": 1
+                "cerques": 1,
+                "dialectes": []
             },
             {
                 "paraula": "dotze",
-                "cerques": 1
+                "cerques": 1,
+                "dialectes": []
             },
             {
                 "paraula": "bombo",
-                "cerques": 1
+                "cerques": 1,
+                "dialectes": []
             }
         ],
         "top_10_typos": [
@@ -309,6 +339,7 @@
             "si": 2318,
             "no": 125
         },
+        "recompte_dialecte": {},
         "top_dies": {
             "top_cerques": [
                 {
