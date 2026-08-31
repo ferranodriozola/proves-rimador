@@ -59,12 +59,12 @@ jobs:
       # compartida: les accions de .github/actions/ són fitxers d'aquest
       # repositori, i fins que no hi ha checkout no existeixen al disc.
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Fixa la versió en comptes de dependre de la que porti la imatge
       # d'Ubuntu, que canvia sota teu sense avisar.
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.x'
 
