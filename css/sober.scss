@@ -453,6 +453,12 @@
   background-color: $gris-molt-clar;
 }
 
+[data-theme="sober"] .codis-de-dialecte {
+  color: var(--sober-muted);
+  font-family: var(--sober-font);
+  letter-spacing: normal;
+}
+
 [data-theme="sober"] .separador-dades {
   border-top: 1px solid var(--sober-border);
 }
