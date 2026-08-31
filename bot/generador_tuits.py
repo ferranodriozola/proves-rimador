@@ -142,9 +142,9 @@ def tuit_naufraga(item, data=None):
 
     tuit = f"Paraula nàufraga del dia ({data or data_curta()}): {paraula_escollida} (/{rima_escollida}/)\n\n"
     if codi.startswith("NP"):
-        tuit += "Aquest nom propi no rima amb cap paraula del diccionari, per això és una Paraula nàufraga.\n\n"
+        tuit += "Aquest nom propi no rima amb cap altra paraula del diccionari.\n\n"
     else:
-        tuit += "Aquesta paraula no rima amb cap paraula del diccionari, per això és una Paraula nàufraga.\n\n"
+        tuit += "Aquesta paraula no rima amb cap paraula del diccionari, per això és una paraula nàufraga.\n\n"
 
     paraula_url = urllib.parse.quote(lema)
 
