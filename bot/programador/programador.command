@@ -15,7 +15,7 @@ if ! command -v python3 >/dev/null 2>&1; then
     exit 1
 fi
 
-python3 servidor.py
+python3 servidor.py "$@"
 codi=$?
 
 echo

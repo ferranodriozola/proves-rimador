@@ -337,6 +337,20 @@ function restaurarLot() {
     } catch (e) { /* si el que hi havia desat no s'entén, es comença de nou */ }
 }
 
+// El lot desat sobreviu a tot: tancar la pestanya, reengegar el servidor i
+// canviar el codi. Aquest darrer cas despista de mala manera: toques el
+// generador_tuits.py, atures el servidor amb Ctrl+C, el tornes a engegar, fas
+// F5 i surten els tuits d'abans... perquè els que veus no els acaba de donar
+// el servidor, els torna a pintar el localStorage. No s'esborra sol (hi pot
+// haver mitja tarda de feina a la pantalla, i desapuntar-la seria pitjor que
+// el desconcert), però almenys es diu.
+function avisarSiElLotEsVell() {
+    if (!estat || !lot.tuits.length || lot.empremta === estat.empremta) return;
+
+    avisar('Aquest lot el va fer un codi d\'abans: el servidor que corre ara no'
+         + ' el tornaria a donar igual. Prem «Genera el lot» per refer-lo.');
+}
+
 async function generar() {
     const pendents = lot.tuits.filter((t) => !jaProgramat(t)).length;
     if (pendents && !confirm(`Encara hi ha ${pendents} tuit(s) sense programar. Els vols descartar i fer un lot nou?`)) return;
@@ -348,7 +362,8 @@ async function generar() {
         const resposta = await api('/api/generar', { data: $('#data').value });
 
         estat = resposta.estat;
-        lot = { tuits: resposta.tuits };
+        // Amb quin codi s'ha fet: vegeu avisarSiElLotEsVell().
+        lot = { tuits: resposta.tuits, empremta: resposta.estat.empremta };
         desarLot();
         pintar();
 
@@ -713,7 +728,7 @@ $('#generar').addEventListener('click', generar);
 
 $('#data').value = new Date().toLocaleDateString('sv');   // sv dona l'AAAA-MM-DD que vol l'input
 restaurarLot();
-carregarEstat().then(pintar).catch((e) => {
+carregarEstat().then(() => { avisarSiElLotEsVell(); pintar(); }).catch((e) => {
     avisar('No es pot parlar amb el servidor (' + e.message + '). És engegat el servidor.py?');
     pintar();
 });

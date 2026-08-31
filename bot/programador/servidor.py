@@ -21,6 +21,12 @@ Com s'engega:
 (o doble clic a bot/programador/programador.command). S'obre el navegador tot
 sol. Per aturar-ho: Ctrl+C.
 
+Si n'hi ha un que ja corre amb el MATEIX codi, aquest no s'engega (no hi
+guanyaries res). Quan el que ha canviat són les dades i no pas el codi, no ho
+pot saber i cal dir-li que el faci fora:
+
+    python3 bot/programador/servidor.py reengega
+
 Per què un servidor i no pas un HTML i prou: un fitxer obert amb file:// no pot
 ni llegir els JSON del costat (el navegador ho barra) ni desar res al disc. Amb
 això, els fitxers els llegeix i els escriu el Python, i el navegador només fa
@@ -200,6 +206,10 @@ def estat():
     dites = set(pub_naufragues)
 
     return {
+        # Amb quin codi s'ha fet. La pàgina hi marca el lot que desa al
+        # navegador i així pot avisar que el que veus a la pantalla el va donar
+        # un servidor d'abans (vegeu avisarSiElLotEsVell() al programador.html).
+        'empremta': EMPREMTA,
         'dialectes': [{'codi': dialecte, 'nom': generador.nom_dialecte(dialecte)}
                       for dialecte in DADES.dialectes],
         'tuits_per_lot': len(DADES.dialectes) * len(TIPUS_PER_DIALECTE),
@@ -762,6 +772,11 @@ def avisar_dels_engegats(ports, aturar_se):
     print('  que el lot que veus a la pantalla no es refà fins que no premis')
     print('  "Genera el lot".)')
     print()
+    print('  Si el que has refet són les DADES (el diccionari, les columnes de')
+    print('  rima, les nàufragues), el codi és el mateix i aquest no se n\'adona:')
+    print('  el que corre les va carregar en engegar i les té d\'abans. Fes-lo fora:')
+    print('    python3 bot/programador/servidor.py reengega')
+    print()
     print('  Per aturar-los a mà: Ctrl+C a la seva finestra, o des d\'aquí:')
     print('    pkill -f servidor.py')
     print()
@@ -770,21 +785,29 @@ def avisar_dels_engegats(ports, aturar_se):
     print()
 
 
-def apartar_els_vells(engegats):
+def apartar_els_vells(engegats, tots=False):
     """Tanca els programadors que duen codi d'abans. Diu si tot ha anat bé.
 
     És el que demana el sentit comú de treballar-hi: si has tocat el
     generador_tuits.py, el que corre des d'abans dona els tuits d'abans, i
     tenir-lo obert en un altre port només serveix per mirar la pantalla que no
-    toca. Els que duen el MATEIX codi no es toquen, que no hi ha res a guanyar.
+    toca. Els que duen el MATEIX codi no es toquen, que no hi ha res a guanyar;
+    amb `tots` (el «reengega») hi van també, que és l'única manera de fer que
+    es rellegeixin unes dades refetes.
     """
     tot_be = True
 
     for port, empremta in engegats:
-        if empremta == EMPREMTA:
+        si_mateix = empremta == EMPREMTA
+        if si_mateix and not tots:
             continue
 
-        quin = f'el codi {empremta}' if empremta else 'codi d\'abans que es pogués saber quin'
+        if si_mateix:
+            quin = 'aquest mateix codi'
+        elif empremta:
+            quin = f'el codi {empremta}'
+        else:
+            quin = 'codi d\'abans que es pogués saber quin'
         print(f'  Al port {port} hi ha un programador amb {quin}: l\'aturo.')
 
         if aturar_programador(port):
@@ -797,28 +820,59 @@ def apartar_els_vells(engegats):
     return tot_be
 
 
+PARAULES_DE_REENGEGAR = ('reengega', '-r', '--reengega')
+
+
+def llegir_arguments():
+    """El port que es demana (o None) i si s'ha dit de reengegar.
+
+    Reengegar és per quan el codi és el MATEIX i tot i així el que corre ja no
+    serveix: les dades grosses (el diccionari, les columnes de rima, les
+    nàufragues) es carreguen un sol cop en engegar i l'empremta no les mira,
+    que llegir-les totes a cada arrencada per fer-ne el resum costaria més que
+    no pas engegar. Si n'has refet cap, el que corre les té d'abans.
+    """
+    port = None
+    reengegar = False
+
+    for argument in sys.argv[1:]:
+        if argument in PARAULES_DE_REENGEGAR:
+            reengegar = True
+        elif argument.isdigit():
+            port = int(argument)
+        else:
+            print(f'No entenc l\'argument «{argument}».')
+            print('  python3 bot/programador/servidor.py [port] [reengega]')
+            sys.exit(2)
+
+    return port, reengegar
+
+
 def principal():
     global DADES
 
     # Mirar-ho ABANS de carregar les dades: adonar-se'n després seria fer
     # esperar sis segons per no engegar res.
-    a_ma = len(sys.argv) > 1
-    port_demanat = int(sys.argv[1]) if a_ma else PORT_PER_DEFECTE
-    ja_engegats = programadors_engegats(port_demanat if a_ma else None)
+    port_a_ma, reengegar = llegir_arguments()
+    port_demanat = PORT_PER_DEFECTE if port_a_ma is None else port_a_ma
+    ja_engegats = programadors_engegats(port_a_ma)
 
     # Primer, fora els que duen codi d'abans: aquests sí que sobren, i el port
-    # que deixen lliure sol ser justament el que volem.
-    if not apartar_els_vells(ja_engegats):
+    # que deixen lliure sol ser justament el que volem. Amb el reengega, fora
+    # també els que duen aquest mateix codi.
+    if not apartar_els_vells(ja_engegats, tots=reengegar):
         return
 
-    # Els que queden duen el mateix codi que hi ha al disc.
-    mateix_codi = [port for port, empremta in ja_engegats if empremta == EMPREMTA]
+    # Els que queden duen el mateix codi que hi ha al disc (amb el reengega no
+    # en queda cap: acaben de marxar tots).
+    mateix_codi = [] if reengegar else \
+        [port for port, empremta in ja_engegats if empremta == EMPREMTA]
 
     if mateix_codi:
         # Amb un port dit a mà, s'entén que ja se sap el que es fa i només
         # s'avisa; sense, val més aturar-se que no pas acumular-ne un altre. I
         # damunt d'un que ja corre no s'hi engega mai.
-        aturar_se = not a_ma or port_demanat in mateix_codi
+        aturar_se = port_a_ma is None or port_demanat in mateix_codi
         avisar_dels_engegats(mateix_codi, aturar_se)
         if aturar_se:
             return
