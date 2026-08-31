@@ -1,12 +1,8 @@
 {
-    "actualitzacio": "01/09/2026 00:03:04",
+    "actualitzacio": "01/09/2026 00:15:30",
     "setmana": {
         "text_dies": "25/8 > 31/8",
         "top_10_paraules": [
-            {
-                "paraula": "casa",
-                "cerques": 3
-            },
             {
                 "paraula": "mai",
                 "cerques": 3
@@ -28,19 +24,23 @@
                 "cerques": 3
             },
             {
-                "paraula": "pèsol",
-                "cerques": 2
-            },
-            {
-                "paraula": "pàrquing",
-                "cerques": 2
-            },
-            {
                 "paraula": "sang",
                 "cerques": 2
             },
             {
                 "paraula": "ulleres",
+                "cerques": 2
+            },
+            {
+                "paraula": "pot",
+                "cerques": 2
+            },
+            {
+                "paraula": "cames",
+                "cerques": 2
+            },
+            {
+                "paraula": "tarda",
                 "cerques": 2
             }
         ],
@@ -76,15 +76,6 @@
                 "dialectes": []
             },
             {
-                "paraula": "a",
-                "tipus": "r.consonant",
-                "cerques": 6,
-                "dialectes": [
-                    "ca",
-                    "nw"
-                ]
-            },
-            {
                 "paraula": "en",
                 "tipus": "r.consonant",
                 "cerques": 6,
@@ -107,11 +98,17 @@
                 "tipus": "r.consonant",
                 "cerques": 5,
                 "dialectes": []
+            },
+            {
+                "paraula": "aə",
+                "tipus": "r.assonant",
+                "cerques": 5,
+                "dialectes": []
             }
         ],
-        "total_cerques": 573,
-        "paraules_cercades_uniques": 372,
-        "numero_usuaris": 117
+        "total_cerques": 563,
+        "paraules_cercades_uniques": 371,
+        "numero_usuaris": 116
     },
     "sempre": {
         "top_10_paraules": [
@@ -124,12 +121,12 @@
                 "cerques": 10
             },
             {
-                "paraula": "casa",
+                "paraula": "eclipsi",
                 "cerques": 9
             },
             {
-                "paraula": "eclipsi",
-                "cerques": 9
+                "paraula": "casa",
+                "cerques": 8
             },
             {
                 "paraula": "cor",
@@ -148,11 +145,11 @@
                 "cerques": 6
             },
             {
-                "paraula": "pèsol",
+                "paraula": "mai",
                 "cerques": 5
             },
             {
-                "paraula": "mai",
+                "paraula": "era",
                 "cerques": 5
             }
         ],
@@ -176,15 +173,6 @@
                 "dialectes": []
             },
             {
-                "paraula": "a",
-                "tipus": "r.consonant",
-                "cerques": 31,
-                "dialectes": [
-                    "ca",
-                    "nw"
-                ]
-            },
-            {
                 "paraula": "i",
                 "tipus": "r.consonant",
                 "cerques": 31,
@@ -192,6 +180,12 @@
             },
             {
                 "paraula": "en",
+                "tipus": "r.consonant",
+                "cerques": 29,
+                "dialectes": []
+            },
+            {
+                "paraula": "a",
                 "tipus": "r.consonant",
                 "cerques": 29,
                 "dialectes": []
@@ -221,35 +215,23 @@
                 "dialectes": []
             }
         ],
-        "total_cerques": 2557,
-        "paraules_cercades_uniques": 1500,
-        "numero_usuaris": 374,
+        "total_cerques": 2547,
+        "paraules_cercades_uniques": 1499,
+        "numero_usuaris": 373,
         "recompte_tipus_rima": {
-            "r.consonant": 2307,
+            "r.consonant": 2297,
             "r.assonant": 250
         },
         "top_10_naufragues": [
             {
                 "paraula": "pèsol",
-                "cerques": 5,
-                "dialectes": [
-                    "ca",
-                    "nw",
-                    "va",
-                    "ba"
-                ]
+                "cerques": 4,
+                "dialectes": []
             },
             {
                 "paraula": "préssec",
                 "cerques": 4,
                 "dialectes": []
-            },
-            {
-                "paraula": "pàrquing",
-                "cerques": 2,
-                "dialectes": [
-                    "va"
-                ]
             },
             {
                 "paraula": "tomàtiga",
@@ -278,6 +260,11 @@
             },
             {
                 "paraula": "totxos",
+                "cerques": 1,
+                "dialectes": []
+            },
+            {
+                "paraula": "pàrquing",
                 "cerques": 1,
                 "dialectes": []
             },
@@ -331,7 +318,7 @@
         ],
         "total_noms_propis": 51,
         "recompte_num_sil": {
-            "0": 2348,
+            "0": 2338,
             "2": 90,
             "3": 52,
             "1": 44,
@@ -340,24 +327,19 @@
             "6": 4
         },
         "recompte_comenca_per": {
-            "indiferent": 2526,
+            "indiferent": 2516,
             "consonant": 26,
             "vocal+h": 5
         },
         "recompte_incloure_np": {
-            "no": 2498,
+            "no": 2488,
             "si": 59
         },
         "recompte_incloure_pl": {
-            "si": 2428,
+            "si": 2418,
             "no": 129
         },
-        "recompte_dialecte": {
-            "nw": 3,
-            "va": 3,
-            "ca": 2,
-            "ba": 2
-        },
+        "recompte_dialecte": {},
         "top_dies": {
             "top_cerques": [
                 {
@@ -566,8 +548,8 @@
             },
             {
                 "data": "31/08",
-                "cerques": 114,
-                "usuaris": 27
+                "cerques": 104,
+                "usuaris": 26
             }
         ],
         "grafic_formatge_exit_assonant": [
@@ -694,15 +676,15 @@
                 "vegades": 35
             },
             {
-                "rima": "a",
-                "vegades": 31
-            },
-            {
                 "rima": "i",
                 "vegades": 31
             },
             {
                 "rima": "en",
+                "vegades": 29
+            },
+            {
+                "rima": "a",
                 "vegades": 29
             },
             {
@@ -746,15 +728,15 @@
                 "vegades": 14
             },
             {
-                "rima": "azə",
-                "vegades": 13
-            },
-            {
                 "rima": "ut",
                 "vegades": 12
             },
             {
                 "rima": "iðə",
+                "vegades": 12
+            },
+            {
+                "rima": "azə",
                 "vegades": 12
             },
             {
@@ -1010,10 +992,6 @@
                 "vegades": 5
             },
             {
-                "rima": "ɛzul",
-                "vegades": 5
-            },
-            {
                 "rima": "awlə",
                 "vegades": 5
             },
@@ -1103,6 +1081,10 @@
             },
             {
                 "rima": "uɲ",
+                "vegades": 4
+            },
+            {
+                "rima": "ɛzul",
                 "vegades": 4
             },
             {
@@ -1387,10 +1369,6 @@
             },
             {
                 "rima": "etə",
-                "vegades": 3
-            },
-            {
-                "rima": "ɛzol",
                 "vegades": 3
             },
             {
@@ -3327,18 +3305,6 @@
             },
             {
                 "rima": "eðɾə",
-                "vegades": 1
-            },
-            {
-                "rima": "aza",
-                "vegades": 1
-            },
-            {
-                "rima": "azɛ",
-                "vegades": 1
-            },
-            {
-                "rima": "aɾkiŋk",
                 "vegades": 1
             }
         ]
