@@ -259,6 +259,24 @@ const COLUMNES_DE_RIMA = [3, 4];
 // l'únic que fa falta.
 const CODIS_DE_DIALECTE = (typeof DIALECTES !== 'undefined') ? DIALECTES.map(d => d.codi) : ['ca'];
 
+// Com es diu el dialecte quan s'ha d'escriure DINS d'una frase, que ara mateix
+// només passa al piulet (vegeu actualitzarBotoCompartir). Surt de la mateixa
+// llista DIALECTES que les pastilles, per no tenir dos llocs on canviar-ho,
+// amb dos retocs:
+//
+// - sense l'asterisc, que a la pastilla vol dir "transcripció encara per
+//   repassar" (vegeu dialectes.html) i enmig d'una frase no diria res;
+// - i en minúscula, que és com hi va: "té 34 rimes en dialecte central!".
+//
+// Un codi que no sigui a la llista torna el codi pelat, com el nomDialecte del
+// joc (joc/js/ui.js): val més un piulet que digui "ba" que no pas cap piulet.
+function nomDelDialecte(codi) {
+  const trobat = (typeof DIALECTES !== 'undefined')
+    ? DIALECTES.find(d => d.codi === codi)
+    : null;
+  return trobat ? trobat.nom.replace('*', '').trim().toLowerCase() : codi;
+}
+
 // El de sempre: l'únic amb la transcripció repassada a mà (els altres surten
 // de l'espeak-ng) i el que es dona a qui no ha triat mai res. És el CENTRAL de
 // diccionaris/python/camins.py.
@@ -808,7 +826,8 @@ function actualitzarBotoCompartir() {
     // fitxerDeNaufragues, a js/script_llistes.js): sense el ?d=, l'enllaç pot
     // dur a una llista on aquesta paraula no hi és.
     piulet = "He trobat una paraula nàufraga! '" + paraula + "' no rima " +
-             "consonantment amb cap altra paraula del diccionari. Descobreix " +
+             "consonantment en dialecte " + nomDelDialecte(dialecteActiu) +
+             " amb cap altra paraula del diccionari. Descobreix " +
              "totes les altres: rimador.cat/llistes/llista_naufragues.html?" + dialecte;
 
   } else {
@@ -834,7 +853,8 @@ function actualitzarBotoCompartir() {
                    (esAssonant ? "&rima=assonant" : "");
 
     piulet = "He cercat " + (esAssonant ? "assonantment" : "consonantment") +
-             " '" + paraula + "' al rimador.cat i té " + compte + "! " +
+             " '" + paraula + "' al rimador.cat i té " + compte +
+             " en dialecte " + nomDelDialecte(dialecteActiu) + "! " +
              "Consulta-les totes a " + adreca;
   }
 
