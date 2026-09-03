@@ -1,5 +1,5 @@
 {
-  "actualitzacio": "03/09/2026 17:34:07",
+  "actualitzacio": "03/09/2026 23:44:34",
   "modalitats": {
     "diaria|dificil|60": {
       "titol": "Paraula del dia · Difícil",
@@ -115,6 +115,13 @@
     "illimitat|dificil|90": {
       "titol": "Il·limitat · Difícil · Estàndard",
       "top": [
+        {
+          "sobrenom": "eljefe69",
+          "punts": 17,
+          "paraula": "mordicació",
+          "dialecte": "ca",
+          "data": "03/09/2026"
+        },
         {
           "sobrenom": "Prova",
           "punts": 3,
