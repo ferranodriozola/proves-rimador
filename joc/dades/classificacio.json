@@ -1,5 +1,5 @@
 {
-  "actualitzacio": "03/09/2026 23:44:34",
+  "actualitzacio": "04/09/2026 23:37:34",
   "modalitats": {
     "diaria|dificil|60": {
       "titol": "Paraula del dia · Difícil",
@@ -140,6 +140,18 @@
           "paraula": "prova",
           "dialecte": "ca",
           "data": "30/08/2026"
+        }
+      ]
+    },
+    "illimitat|facil|30": {
+      "titol": "Il·limitat · Fàcil · 30s",
+      "top": [
+        {
+          "sobrenom": "Drac murri",
+          "punts": 3,
+          "paraula": "llaüt",
+          "dialecte": "ca",
+          "data": "05/09/2026"
         }
       ]
     },
