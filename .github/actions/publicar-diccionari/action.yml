@@ -46,9 +46,12 @@ runs:
       run: python ajuntar_diccionari_6.py
 
 # ------ Les columnes
-#        El diccionari publicat -> col_0,1,2,5,6,7,8, i la transcripció de cada
-#        dialecte -> la seva col_3 i col_4. La regla de la rima és aquí dins i
-#        només aquí.
+#        El diccionari publicat -> col_0,1,2,5,6,7,8, i cada transcripció -> la
+#        seva col_3 i col_4. Cada transcripció vol dir les DUES de cada
+#        dialecte: la del trans_dicc (el diccionari dit en aquell dialecte) i la
+#        de l'apendix (les paraules que només es diuen allà). La regla de la
+#        rima és aquí dins i només aquí, i és la mateixa per a totes dues: una
+#        paraula del diccionari i una de l'apendix han de poder rimar entre elles.
 #
 #        Sense "if": corre sempre, publiqui's el que es publiqui. És el pas que
 #        garanteix que les columnes són SEMPRE les del diccionari que diu
@@ -57,7 +60,9 @@ runs:
       shell: bash
       run: python diccionaris/python/columnes.py
 
-# ------ Taula + índexs de cada columna, les del diccionari i les dels dialectes
+# ------ Taula + índexs de cada columna: les del diccionari, les del trans_dicc
+#        de cada dialecte i les del seu apendix. Cada grup es compara amb la
+#        seva pròpia llargada, que no és la mateixa.
     - name: Internar les columnes
       shell: bash
       run: python diccionaris/python/internar.py
@@ -74,8 +79,9 @@ runs:
       with:
         missatge: ${{ inputs.missatge }}
         # Només diccionaris/ i dialectes_col/, que és on és TOT el que fa
-        # aquesta acció: les columnes, les internades, el versions.json, la
-        # columna 10, el diccionari base i la rima de cada dialecte. Amb "." s'hi afegiria també pronoms/txt_fets/, que
+        # aquesta acció: les columnes, les internades, el versions.json, les
+        # columnes 10, el diccionari base i la rima de cada dialecte (la del
+        # trans_dicc i la de l'apendix). Amb "." s'hi afegiria també pronoms/txt_fets/, que
         # són 280 MB refets a cada passada.
         #
         # I no s'exclou amb un pathspec negatiu (". :!pronoms/txt_fets"), que
