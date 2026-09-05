@@ -22,9 +22,19 @@ voldria dir tocar-ho tot per no guanyar res.
 
 El navegador no llegeix mai cap `diccionari*.txt`: llegeix `separat/col_0..col_8`,
 `separat/internat/`, les internades del dialecte que serveixi
-(`dialectes_col/<codi>/trans_dicc/internat/`) i `versions.json` (vegeu
-`llegirFitxerAmbIndexedDB` a `js/script.js`). **Aquestes columnes són les del
-diccionari publicat.**
+(`dialectes_col/<codi>/trans_dicc/internat/`), l'apendix d'aquell dialecte
+(`dialectes_col/<codi>/apendix/col_0_<codi>.txt` i `apendix/internat/`) i
+`versions.json` (vegeu `llegirFitxerAmbIndexedDB` a `js/script.js`).
+**Aquestes columnes són les del diccionari publicat.**
+
+**Només les del dialecte que se serveix.** En obrir la pàgina es baixa el
+diccionari general i les dues meitats d'UN dialecte, i les d'un altre no es
+demanen fins que algú el tria a la tira; llavors sí, i es queden a IndexedDB
+com la resta. El navegador cus les dues meitats en un sol diccionari abans de
+cercar-hi (vegeu `compondreDiccionari` a `js/script.js`): les paraules de
+l'apendix van darrere les del diccionari i les taules de les columnes
+internades es fonen, que és el que fa que una paraula de l'apendix i una del
+diccionari amb la mateixa rima rimin de debò.
 
 ## Un dialecte són dues meitats
 
