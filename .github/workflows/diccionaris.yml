@@ -1,19 +1,23 @@
 name: Canvis al diccionari (i generació de nàufragues i heptasíl·labs)
 
-# S'engega quan s'edita a mà qualsevol de les dues fonts:
+# S'engega quan s'edita a mà qualsevol de les fonts:
 #
-#   diccionaris/diccionari.5.2.3.txt   QUINES paraules hi ha
-#   diccionaris/col_10.txt             COM sona cadascuna, a tots els dialectes
+#   diccionaris/diccionari.5.2.3.txt              QUINES paraules hi ha
+#   diccionaris/col_10.txt                        COM sona cadascuna, als 4 dialectes
+#   <codi>/apendix/col_10_<codi>.txt              les paraules pròpies d'un dialecte
+#   <codi>/apendix/col_5,6,7,8_<codi>.txt         les seves síl·labes i enllaços
 #
 # Abans eren dos workflows, un per font, perquè cadascuna tenia el seu script.
-# Ara totes dues acaben al mateix lloc (els col_9 de dialectes_col/) i el pas
-# que els escriu no necessita saber d'on ve el canvi: n'hi ha prou amb un.
+# Ara totes acaben al mateix lloc (les columnes de dialectes_col/) i el pas
+# que les escriu no necessita saber d'on ve el canvi: n'hi ha prou amb un.
 #
 # Fa, per aquest ordre:
 #
-#   1. sincronitzar  diccionari + col_10 -> tots dos corregits i els col_9
-#   2. columnes      diccionari -> col_0,1,2,5,6,7,8; col_9 -> col_3 i col_4
-#   3. internar      cada columna -> taula + índexs
+#   1. sincronitzar  diccionari + col_10 -> tots dos corregits i els col_9 del
+#                    trans_dicc; i la col_10 de cada apendix -> les seves columnes
+#   2. columnes      diccionari -> col_0,1,2,5,6,7,8; i cada col_9 (la del
+#                    trans_dicc i la de l'apendix) -> la seva col_3 i col_4
+#   3. internar      cada columna -> taula + índexs (diccionari, trans_dicc i apendix)
 #   4. versions      ho comprova tot i escriu el versions.json
 #   5. UN SOL COMMIT
 #   6. llistes derivades -> ja sobre les columnes noves
@@ -44,8 +48,10 @@ on:
     paths:
       - 'diccionaris/diccionari*.txt'
       - 'diccionaris/col_10.txt'
-      # Una carpeta de dialecte nova, amb la seva transcripció a dins: el pas 1
-      # la deixa estar i el 5 ja l'afegeix a la col_10.
+      # Tot el que hi ha sota un dialecte: la seva transcripció, la col_10 del
+      # seu apendix i les síl·labes i els enllaços d'aquell apendix. També hi
+      # entra una carpeta de dialecte NOVA, amb la seva transcripció a dins: el
+      # pas 1 la deixa estar i el 5 ja l'afegeix a la col_10.
       - 'dialectes_col/**'
   workflow_dispatch:
 
@@ -76,7 +82,11 @@ jobs:
 #
 #        Si al diccionari hi ha paraules NOVES que no són a la col_10, s'atura:
 #        no hi ha manera d'endevinar com sonen.
-      - name: Sincronitzar el diccionari i la columna 10
+#        I, al final, la col_10 de cada apendix -> les columnes d'aquell
+#        apendix. Allà no hi ha cap conflicte possible (la identitat només és a
+#        la col_10), però les síl·labes i els enllaços van fila per fila amb
+#        ella i s'atura si no hi van.
+      - name: Sincronitzar el diccionari, la columna 10 i els apendixs
         run: python diccionaris/python/sincronitzar.py
 
 # ------ Pronoms, diccionari.6.txt, columnes del web, rima, versions i comit
