@@ -243,10 +243,12 @@ jobs:
           #   node_modules                      les dependències del gulp
           #   diccionari*.txt                   font d'on surten les columnes
           #   diccionaris/col_10.txt            font que edites a mà: 76 MB
-          #   dialectes_col/<codi>/*.txt        la transcripció i la rima planes,
-          #                                     que són la font. Les internades
-          #                                     SÍ que s'han de publicar: són el
-          #                                     que es baixa el navegador
+          #   dialectes_col/**/*.txt            les columnes planes, que són la
+          #                                     font (la transcripció, la rima i
+          #                                     les col_10 dels apendixs). Les
+          #                                     internades SÍ que s'han de
+          #                                     publicar: són el que es baixa el
+          #                                     navegador
           #   pronoms/                          no hi ha res del lloc que hi apunti
           #   bot/programador/                  eina local per programar els tuits
           #                                     a mà: només funciona amb el seu
@@ -260,9 +262,24 @@ jobs:
           rm -f  diccionaris/diccionari*.txt
           rm -f  diccionaris/col_10.txt
           rm -rf pronoms
-          # De dialectes_col/ el navegador només demana les internades: la
-          # transcripció i la rima planes són la font i no les mira ningú.
-          find dialectes_col -maxdepth 2 -name '*.txt' -delete
+          # De dialectes_col/ el navegador demana les internades i les col_0 dels
+          # apendixs; la resta és font i no la mira ningú.
+          #
+          # LES COL_0 DELS APENDIXS es queden pel mateix motiu que la col_0 del
+          # diccionari: les paraules no s'internen (el 85 % són úniques) i el
+          # navegador se les baixa tal com són. Encara no les demana —el
+          # js/script.js d'ara no sap què és un apendix—, però ja són al
+          # versions.json i pesen deu megues entre totes quatre.
+          #
+          # I compte amb el -not -path: sense ell això s'enduria també les
+          # internades, que és justament el que s'ha de publicar. La versió
+          # d'abans se'n sortia amb un -maxdepth 2, i va deixar de funcionar en
+          # silenci el dia que les columnes van baixar a trans_dicc/ i apendix/:
+          # el paquet se n'anava a Pages amb cent megues de transcripcions.
+          find dialectes_col -name '*.txt' \
+               -not -path '*/internat/*' \
+               -not -name 'col_0_*.txt' \
+               -delete
           rm -rf bot/programador
           echo "Paquet: ${abans} MB -> $(du -sm . | cut -f1) MB"
 
@@ -273,8 +290,10 @@ jobs:
                      joc/dades/versions.json \
                      diccionaris/separat/col_0.txt \
                      diccionaris/separat/internat \
-                     dialectes_col/ca/internat/col_3_rimacons_ca.idx.txt \
-                     dialectes_col/ca/internat/col_4_rimaass_ca.idx.txt \
+                     dialectes_col/ca/trans_dicc/internat/col_3_rimacons_ca.idx.txt \
+                     dialectes_col/ca/trans_dicc/internat/col_4_rimaass_ca.idx.txt \
+                     dialectes_col/ca/apendix/col_0_ca.txt \
+                     dialectes_col/ca/apendix/internat/col_3_ca.apendix.idx.txt \
                      dist/css/styles.min.css \
                      dist/css/joc.min.css \
                      dist/js/script.min.js \
