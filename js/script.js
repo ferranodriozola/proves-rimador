@@ -1457,7 +1457,7 @@ async function buscarParaula(paraulaCercada, numeroSeleccionat, comença, tipusR
     }
   }
 
-  const vocalsValides = 'haeiouàèéíïòóúü';
+  const vocalsValides = 'haeiouàèéíïòóúüHAEIOUÀÈÉÍÏÒÓÚÜ';
 
   for (let k = desDe; k < finsA; k++) {
     const i = candidates ? candidates[k] : k;
