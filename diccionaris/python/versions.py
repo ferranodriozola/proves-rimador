@@ -17,7 +17,15 @@ al nom: si no, els quatre col_3.idx.txt serien la mateixa entrada.
 
 Hi entren els fitxers de TOTS els dialectes, no només els del que el web
 serveix ara: es generen igualment, i tenir-ne la versió és el que permetrà al
-navegador desar-los a la memòria cau el dia que es pugui triar el dialecte.
+navegador desar-los a la memòria cau el dia que es pugui triar el dialecte. I
+també els dels apendixs, que encara no demana ningú (el js/script.js d'ara no
+en sap res): quan els demani, ja hi seran.
+
+DUES LLARGADES I NO UNA. Les columnes del diccionari i les del trans_dicc de
+cada dialecte han de tenir totes les files del diccionari; les d'un apendix, les
+d'aquell apendix. Per això aquí hi ha dues comprovacions germanes,
+comprovar_la_base() i comprovar_lapendix(), i cap de les dues no fa servir el
+nombre de l'altra.
 """
 
 import hashlib
@@ -32,6 +40,7 @@ if DIR_SCRIPTS not in sys.path:
 
 import avisos
 import camins
+import col_10 as modul_col_10
 import config
 
 
@@ -81,6 +90,63 @@ def comprovar_la_base():
                     "sincronitzar.py atribuiria els canvis al costat que no toca. "
                     "Passa el columnes.py.")
     return len(files)
+
+
+def comprovar_lapendix(codi):
+    """
+    Que les columnes d'un apendix quadrin entre elles i amb la seva col_10.
+
+    És la germana de comprovar_la_base(), i hi és pel mateix motiu: les col_0,
+    1 i 2 d'un apendix són la referència amb què el sincronitzar.py decideix
+    quina fila era quina paraula quan la col_10 en dona una d'alta o de baixa.
+    Si deixen de ser-ho —una execució que peta a mitges, un commit a mà—, les
+    síl·labes i els enllaços s'arrosseguen cap a la fila que no toca EN SILENCI.
+
+    Torna quantes files té aquest apendix.
+    """
+    numeros = sorted(set(camins.COLUMNES_APENDIX) | set(camins.COLUMNES_DE_DIALECTE) | {9})
+    valors = {}
+    for numero in numeros:
+        cami = camins.cami_apendix(codi, numero)
+        if not os.path.exists(cami):
+            avisos.plegar(f"falta {camins.relatiu(cami)}. Passa el columnes.py (la "
+                          f"col_3 i la col_4) o el sincronitzar.py (la resta).")
+        valors[numero] = camins.llegir_columna(cami)
+
+    quantes = {numero: len(fila) for numero, fila in valors.items()}
+    if len(set(quantes.values())) > 1:
+        detall = ", ".join(f"col_{n}: {camins.mil(q)}" for n, q in sorted(quantes.items()))
+        avisos.plegar(f"les columnes de l'apendix del '{codi}' no tenen el mateix "
+                      f"nombre de files ({detall}).")
+    total = quantes[0]
+
+    cami_c10 = camins.cami_col_10_apendix(codi)
+    if not os.path.exists(cami_c10):
+        avisos.plegar(f"falta {camins.relatiu(cami_c10)}, que és el que s'edita per "
+                      f"dir quines paraules té l'apendix del '{codi}'. Passa el "
+                      f"sincronitzar.py.")
+
+    identitats, transcripcions = modul_col_10.llegir(cami_c10)
+    if len(identitats) != total:
+        avisos.plegar(f"la col_10 de l'apendix del '{codi}' té "
+                      f"{camins.mil(len(identitats))} línies i les seves columnes en "
+                      f"tenen {camins.mil(total)}. Passa el sincronitzar.py.")
+
+    for i, fila in enumerate(identitats):
+        for camp, numero in enumerate(camins.APENDIX_DE_LA_COL_10):
+            if valors[numero][i] != fila[camp]:
+                avisos.plegar(
+                    f"l'apendix del '{codi}', col_{numero}, fila {i + 1}, diu "
+                    f"{valors[numero][i]!r} i la seva col_10 diu {fila[camp]!r}. Les "
+                    f"col_0, 1 i 2 d'un apendix són sortides de la seva col_10: si no "
+                    f"les diuen igual, el sincronitzar.py arrossegaria les síl·labes "
+                    f"cap a la fila que no toca. Passa el sincronitzar.py.")
+
+    if transcripcions.get(codi) != valors[9]:
+        avisos.plegar(f"la col_9 de l'apendix del '{codi}' no diu el mateix que la seva "
+                      f"col_10. Passa el sincronitzar.py.")
+
+    return total
 
 
 def parella_internada(versions, nom, cami_taula, cami_idx, total_files):
@@ -138,10 +204,35 @@ def main():
                               camins.cami_internat_dialecte(codi, n, "taula"),
                               camins.cami_internat_dialecte(codi, n, "idx"), total_files)
 
+    # Els apendixs. Cadascun té la seva llargada i es comprova contra ella
+    # mateixa: aquí no hi pot entrar el total_files de sobre.
+    files_apendix = {}
+    for codi in codis:
+        if not camins.te_apendix(codi):
+            continue
+        quantes = comprovar_lapendix(codi)
+        files_apendix[codi] = quantes
+
+        # La col_0 plana també: les paraules no s'internen (el 85 % són úniques)
+        # i és el fitxer que el navegador es baixarà tal com és, com la col_0
+        # del diccionari.
+        cami_0 = camins.cami_apendix(codi, 0)
+        versions[os.path.basename(cami_0)] = resum(cami_0)
+
+        for n in camins.INTERNADES_APENDIX:
+            parella_internada(versions, f"col_{n}_{codi} de l'apendix",
+                              camins.cami_internat_apendix(codi, n, "taula"),
+                              camins.cami_internat_apendix(codi, n, "idx"), quantes)
+        avisos.nota(f"  apendix del '{codi}': {camins.mil(quantes)} paraules pròpies")
+
     contingut = {
         "generat": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
         "files": total_files,
         "dialectes": codis,
+        # Quantes paraules pròpies té cada dialecte. Va a part de "files" a
+        # posta: aquell nombre és el del diccionari i val per a tothom, i
+        # aquests són un per dialecte i no s'assemblen entre ells.
+        "files_apendix": files_apendix,
         "columnes": versions,
     }
     with open(camins.VERSIONS, "w", encoding="utf-8") as fitxer:
@@ -149,7 +240,9 @@ def main():
         fitxer.write("\n")
 
     avisos.nota(f"versions.json: {len(versions)} fitxers, {camins.mil(total_files)} files, "
-                f"dialectes {', '.join(codis)}")
+                f"dialectes {', '.join(codis)}"
+                + (f" (amb apendix: {', '.join(sorted(files_apendix))})"
+                   if files_apendix else ""))
     return 0
 
 
