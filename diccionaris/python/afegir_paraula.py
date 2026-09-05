@@ -1,7 +1,13 @@
 """
-EINA LOCAL. Donar d'alta una paraula als dos fitxers alhora.
+EINA LOCAL. Donar d'alta una paraula al diccionari, als dos fitxers alhora.
 
     python3 diccionaris/python/afegir_paraula.py
+
+ÉS PER AL DICCIONARI, o sigui per a una paraula que es diu a TOTS els
+dialectes: entra a diccionari.5.2.3.txt i a col_10.txt, i et demana com sona a
+cadascun. Una paraula que només es digui en un lloc no va aquí sinó a l'apendix
+d'aquell dialecte (dialectes_col/<codi>/apendix/), que és una llista de
+paraules a part i té la seva pròpia col_10.
 
 No porta arguments: l'engegues (des del VS Code amb el botó de Run, o des del
 terminal) i et va demanant la paraula, el lema, el codi, les síl·labes, els
@@ -118,13 +124,6 @@ def main():
     for codi in codis:
         transcripcions_noves[codi] = demanar(f"Transcripció en {codi}")
 
-    files = camins.llegir_diccionari()
-    identitats, transcripcions = modul_col_10.llegir()
-    if len(identitats) != len(files):
-        avisos.plegar(f"la col_10 té {camins.mil(len(identitats))} línies i el diccionari "
-                      f"{camins.mil(len(files))}: primer passa el sincronitzar.py.")
-
-    paraules = [fila[0] for fila in files]
     fila = _preguntar("\nFila on posar-la (1 = la primera; Enter = la que et proposi): ")
     if fila:
         if not fila.isdigit() or int(fila) < 1:
