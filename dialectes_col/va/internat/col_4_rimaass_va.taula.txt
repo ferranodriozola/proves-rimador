@@ -1,4 +1,3 @@
-ea
 o
 a
 ɔ
@@ -15,6 +14,7 @@ i
 ɔi
 oe
 ɛo
+ea
 ee
 ɛa
 ɛe

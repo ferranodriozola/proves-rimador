@@ -1,4 +1,3 @@
-etɛ
 osk
 a
 ɔrk
@@ -161,6 +160,7 @@ izme
 izmes
 istes
 ono
+etɛ
 eten
 etes
 eti
