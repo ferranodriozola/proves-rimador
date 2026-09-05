@@ -4,8 +4,9 @@ una taula amb els valors diferents i, per a cada fila, el número que hi apunta.
 
     python3 diccionaris/python/internar.py
 
-    separat/col_1,2,5,6,7,8          ->  separat/internat/
-    dialectes_col/<codi>/col_3,4     ->  dialectes_col/<codi>/internat/
+    separat/col_1,2,5,6,7,8              ->  separat/internat/
+    <codi>/trans_dicc/col_3,4            ->  <codi>/trans_dicc/internat/
+    <codi>/apendix/col_1,2,3,4,5,6,7,8   ->  <codi>/apendix/internat/
 
 El perquè: la col_8 (si la paraula surt al DIEC) té 619.783 files i exactament
 DOS valors diferents. Al navegador, cada fila era un objecte de text separat, i
@@ -24,7 +25,15 @@ fitxers continuen sortint al git diff.
 
 La col_0 (paraula) no s'interna: 529.206 valors diferents de 619.783 files, el
 85 % són únics i no hi ha res a estalviar. La col_9 (transcripcions) tampoc, pel
-mateix motiu i perquè el navegador no la demana mai.
+mateix motiu i perquè el navegador no la demana mai. Als apendixs es fa igual,
+i per la mateixa raó: són columnes de la mateixa forma, més curtes.
+
+CADA COLUMNA ES COMPARA AMB LES DE LA SEVA BANDA. Les del diccionari i les del
+trans_dicc de cada dialecte han de tenir totes les files del diccionari; les
+d'un apendix, les d'aquell apendix, que és un nombre diferent a cada dialecte.
+Prendre'n una per l'altra és l'error que desquadraria una columna sencera en
+silenci, i per això aquí el nombre de files sempre arriba com a paràmetre i mai
+d'una variable global.
 """
 
 import os
@@ -95,15 +104,16 @@ def tipus_darray(quants):
     return "Uint32Array", 4
 
 
-def desar(nom, cami_origen, cami_taula, cami_idx, files_esperades, maxim=None):
+def desar(nom, cami_origen, cami_taula, cami_idx, files_esperades, maxim=None,
+          companyes="les columnes del diccionari"):
     valors = camins.llegir_columna(cami_origen)
 
-    # Són un sol diccionari partit en columnes: si no van a l'una, la fila 500
-    # d'una columna no és la mateixa paraula que la fila 500 d'una altra, i
-    # internar-ho només consagraria el desori.
+    # Són una sola llista de paraules partida en columnes: si no van a l'una, la
+    # fila 500 d'una columna no és la mateixa paraula que la fila 500 d'una
+    # altra, i internar-ho només consagraria el desori.
     if len(valors) != files_esperades:
-        avisos.plegar(f"{nom} té {camins.mil(len(valors))} files i les columnes del "
-                      f"diccionari en tenen {camins.mil(files_esperades)}.")
+        avisos.plegar(f"{nom} té {camins.mil(len(valors))} files i {companyes} "
+                      f"en tenen {camins.mil(files_esperades)}.")
 
     valors = [valor.encode() for valor in valors]
     if maxim is not None:
@@ -137,7 +147,7 @@ def desar(nom, cami_origen, cami_taula, cami_idx, files_esperades, maxim=None):
 
 
 def main():
-    files = len(camins.llegir_columna(camins.cami_columna(0)))
+    files = camins.files_del_diccionari()
     avisos.nota(f"Internant les columnes del diccionari ({camins.mil(files)} files):\n")
 
     for i in camins.INTERNADES_DEL_DICCIONARI:
@@ -146,12 +156,29 @@ def main():
               files, NUMERIQUES.get(i))
 
     for codi in camins.dialectes():
-        avisos.nota(f"\nDialecte '{codi}':\n")
+        avisos.nota(f"\nDialecte '{codi}', trans_dicc ({camins.mil(files)} files):\n")
         for i in camins.COLUMNES_DE_DIALECTE:
             cami = camins.cami_dialecte(codi, i)
             desar(os.path.basename(cami), cami,
                   camins.cami_internat_dialecte(codi, i, "taula"),
                   camins.cami_internat_dialecte(codi, i, "idx"), files)
+
+        if not camins.te_apendix(codi):
+            continue
+
+        # Les files d'un apendix són les seves i no pas les del diccionari.
+        files_apendix = camins.files_de_lapendix(codi)
+        avisos.nota(f"\nDialecte '{codi}', apendix ({camins.mil(files_apendix)} files):\n")
+        for i in camins.INTERNADES_APENDIX:
+            cami = camins.cami_apendix(codi, i)
+            if not os.path.exists(cami):
+                avisos.plegar(f"falta {camins.relatiu(cami)}. Passa el columnes.py "
+                              f"(la col_3 i la col_4) o el sincronitzar.py (la resta).")
+            desar(os.path.basename(cami), cami,
+                  camins.cami_internat_apendix(codi, i, "taula"),
+                  camins.cami_internat_apendix(codi, i, "idx"),
+                  files_apendix, NUMERIQUES.get(i),
+                  f"les altres columnes de l'apendix del '{codi}'")
 
     avisos.nota("\nFet. Ara toca el versions.py: els fitxers nous han d'entrar al\n"
                 "versions.json perquè el navegador els pugui desar a la memòria cau.")
