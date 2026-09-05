@@ -22,9 +22,41 @@ voldria dir tocar-ho tot per no guanyar res.
 
 El navegador no llegeix mai cap `diccionari*.txt`: llegeix `separat/col_0..col_8`,
 `separat/internat/`, les internades del dialecte que serveixi
-(`dialectes_col/<codi>/internat/`) i `versions.json` (vegeu
+(`dialectes_col/<codi>/trans_dicc/internat/`) i `versions.json` (vegeu
 `llegirFitxerAmbIndexedDB` a `js/script.js`). **Aquestes columnes són les del
 diccionari publicat.**
+
+## Un dialecte són dues meitats
+
+Fins ara un dialecte era només una manera de pronunciar el mateix diccionari.
+Ara també és **una llista de paraules diferent**: hi ha formes que només es
+diuen en un lloc (*cante*, *servisc*, *tenc*). Per això cada carpeta de
+`dialectes_col/<codi>/` en té dues:
+
+```
+dialectes_col/<codi>/
+  trans_dicc/        EL DICCIONARI, DIT EN AQUEST DIALECTE
+    col_9_transcripcio_<codi>.txt   la transcripció   ─┐ sortides: es refan
+    col_3_rimacons_<codi>.txt       rima consonant     │ senceres a cada
+    col_4_rimaass_<codi>.txt        rima assonant      │ passada. NO S'EDITEN
+    internat/                       taula + idx       ─┘
+  apendix/           LES PARAULES QUE NOMÉS ES DIUEN AQUÍ
+    col_10_<codi>.txt       la identitat i com sona   ← S'EDITA
+    col_5,6,7,8_<codi>.txt  síl·labes i enllaços      ← S'EDITEN
+    col_0,1,2_<codi>.txt    paraula, lema i codi      ─┐ sortides de la
+    col_9_<codi>.txt        la transcripció            │ col_10 i de la
+    col_3,4_<codi>.txt      la rima                    │ transcripció
+    internat/               taula + idx               ─┘
+```
+
+**El `trans_dicc` va fila per fila amb el diccionari** (619.783 files, les
+mateixes a tots els dialectes) i **l'apendix té les seves** (125.282 al
+central, 271.866 al valencià). No es poden comparar entre elles, i cap script
+no ho fa: hi ha `files_del_diccionari()` i `files_de_lapendix(codi)` a
+`camins.py`, i mai la mateixa xifra per a les dues bandes.
+
+Un dialecte pot no tenir apendix: un de nou és una carpeta amb la seva
+transcripció, i les paraules pròpies vindran després o no vindran mai.
 
 ## L'interruptor
 
@@ -54,13 +86,18 @@ refan senceres a cada passada:
 |---|---|
 | `diccionari.5.2.3.txt` | **quines** paraules hi ha: afegir-ne, treure'n, i el lema, el codi, les síl·labes i els enllaços |
 | `col_10.txt` | **com** sona cadascuna, als quatre dialectes alhora. També hi pots corregir la paraula, el lema i el codi |
+| `<codi>/apendix/col_10_<codi>.txt` | **quines** paraules pròpies té un dialecte i **com** sonen |
+| `<codi>/apendix/col_5,6,7,8_<codi>.txt` | les seves síl·labes i enllaços |
 
 ```
-             els dos fitxers que s'editen
+             els fitxers que s'editen
                           │
-   1. sincronitzar.py     ▼   els posa d'acord i escriu els col_9
+   1. sincronitzar.py     ▼   posa d'acord el diccionari i la col_10 i escriu
+                              els col_9; i, de la col_10 de cada apendix,
+                              les col_0, 1, 2 i 9 d'aquell apendix
    2. columnes.py             diccionari -> col_0,1,2,5,6,7,8
-                              col_9 -> col_3 i col_4 de cada dialecte
+                              cada col_9 -> la seva col_3 i col_4
+                              (la del trans_dicc i la de l'apendix)
    3. internar.py             cada columna -> taula + índexs
    4. versions.py             ho comprova tot i escriu el versions.json
                           ▼
@@ -97,6 +134,26 @@ atribuiria els canvis al costat que no toca, en silenci.
 Amb `git show` no es podria fer: als workflows, el commit que dispara
 l'execució **ja és HEAD**, i la comparació sempre sortiria igual.
 
+### I a l'apendix, qui mana
+
+**La seva `col_10`.** Allà no hi ha cap conflicte possible perquè la identitat
+només és a un lloc: les `col_0`, `col_1` i `col_2` de l'apendix en són
+sortides i no s'editen. El repartiment és el mateix que al diccionari, amb els
+fitxers canviats de nom:
+
+| el diccionari | un apendix |
+|---|---|
+| `diccionari.5.2.3.txt` — síl·labes i enllaços | `col_5,6,7,8_<codi>.txt` |
+| `col_10.txt` — identitat i transcripció | `col_10_<codi>.txt` |
+| `separat/col_0,1,2` — la identitat d'abans | les seves `col_0,1,2` |
+
+**Les `col_5` a `8` van en pas amb la `col_10`.** Quan hi dones una paraula
+d'alta, posa-la als dos llocs i a la mateixa fila, igual que fas al
+diccionari; si te'n descuides, el `sincronitzar.py` s'atura i et diu quina
+fila és. L'única excepció són les baixes: si l'únic que has fet és treure
+línies de la `col_10`, les `col_5` a `8` es retallen soles, perquè és l'únic
+cas on no hi ha cap ambigüitat sobre quina fila era quina.
+
 ### Els avisos
 
 Un `print` va al registre, i el registre d'una execució verda no el llegeix
@@ -119,12 +176,20 @@ encertar la mateixa posició en dos fitxers de sis-centes mil línies, o sigui q
 val més l'eina:
 
 ```bash
-python3 diccionaris/python/afegir_paraula.py --paraula tiktokera --lema tiktoker \
-    --codi NCFS000 --silabes 4 --ca tiktukˈeɾə --nw tiktokˈeɾɛ --va tiktokˈeɾa --ba tiktukˈəɾə
+python3 diccionaris/python/afegir_paraula.py
 ```
+
+No porta arguments: l'engegues i et va demanant la paraula, el lema, el codi,
+les síl·labes, els enllaços i la transcripció de cada dialecte. La fila te la
+proposa i te l'ensenya amb els veïns perquè la miris.
 
 Si només és a un dels dos fitxers, el `sincronitzar.py` s'atura i diu quina
 paraula és i on.
+
+**Això és per al diccionari**, o sigui per a una paraula que es diu a tots els
+dialectes. Una paraula que només es digui en un lloc va a l'apendix d'aquell
+dialecte: una línia a la seva `col_10` i les síl·labes i els enllaços a les
+`col_5` a `8`, a la mateixa fila.
 
 ### Si el diccionari es perd
 
@@ -162,8 +227,9 @@ tant se val quina s'agafi; si no, es demana (vegeu `buscarParaula` a
 `js/script.js`).
 
 Com que ja no la demana ningú, la transcripció no s'acosta al paquet que es
-publica a Pages. Al repositori s'hi queda, a `dialectes_col/<codi>/`: és la
-font de la rima i d'ella surten les llistes de mots de 7.
+publica a Pages. Al repositori s'hi queda, a
+`dialectes_col/<codi>/trans_dicc/`: és la font de la rima i d'ella surten les
+llistes de mots de 7.
 
 ## El json de rimes sencer, esborrat
 
@@ -178,9 +244,11 @@ memòria des de la `col_0` i la `col_3` cada cop que s'engega (vegeu
 lot de tuits els diu tots quatre: 6 s i 155 MB en total, contra 0,5 s per
 llegir el fitxer d'un sol dialecte, i dona exactament el mateix.
 
-Els 155 MB són de tots quatre junts perquè la `col_0` es llegeix una sola
-vegada i les quatre taules s'ho reparteixen (vegeu `carregar_paraules()`): una
-còpia de les 619.783 paraules per dialecte serien 240 MB. Dels segons, un és
+Els 155 MB són de tots quatre junts perquè el tros del diccionari es llegeix
+una sola vegada i les quatre taules s'ho reparteixen (vegeu
+`carregar_paraules_del_diccionari()`): una còpia de les 619.783 paraules per
+dialecte serien 240 MB. El que sí que és de cadascú són les seves paraules
+pròpies, que s'hi enganxen al final (`carregar_paraules(dialecte)`). Dels segons, un és
 de la `col_2`, que diu quines formes són nom propi (`carregar_noms_propis()`,
 que als tuits no hi surten), i un altre d'aplanar les paraules per al cercador
 (`aplanar_paraules()`): fent-ho en engegar, cercar-hi costa una dècima de
