@@ -1,22 +1,22 @@
 {
-  "actualitzacio": "01/09/2026 23:44:09",
+  "actualitzacio": "04/09/2026 23:37:34",
   "modalitats": {
     "diaria|dificil|60": {
       "titol": "Paraula del dia · Difícil",
       "top": [
+        {
+          "sobrenom": "eljefe69",
+          "punts": 17,
+          "paraula": "humanista",
+          "dialecte": "ca",
+          "data": "03/09/2026"
+        },
         {
           "sobrenom": "Adm1n",
           "punts": 11,
           "paraula": "calefactors",
           "dialecte": "ca",
           "data": "14/08/2026"
-        },
-        {
-          "sobrenom": "admιn",
-          "punts": 9,
-          "paraula": "estel",
-          "dialecte": "ca",
-          "data": "06/08/2026"
         },
         {
           "sobrenom": "Préssec",
@@ -116,6 +116,13 @@
       "titol": "Il·limitat · Difícil · Estàndard",
       "top": [
         {
+          "sobrenom": "eljefe69",
+          "punts": 17,
+          "paraula": "mordicació",
+          "dialecte": "ca",
+          "data": "03/09/2026"
+        },
+        {
           "sobrenom": "Prova",
           "punts": 3,
           "paraula": "prova",
@@ -133,6 +140,18 @@
           "paraula": "prova",
           "dialecte": "ca",
           "data": "30/08/2026"
+        }
+      ]
+    },
+    "illimitat|facil|30": {
+      "titol": "Il·limitat · Fàcil · 30s",
+      "top": [
+        {
+          "sobrenom": "Drac murri",
+          "punts": 3,
+          "paraula": "llaüt",
+          "dialecte": "ca",
+          "data": "05/09/2026"
         }
       ]
     },
@@ -264,23 +283,34 @@
           "data": "30/08/2026"
         }
       ]
+    },
+    "2026-09-03": {
+      "dificil": [
+        {
+          "sobrenom": "eljefe69",
+          "punts": 17,
+          "paraula": "humanista",
+          "dialecte": "ca",
+          "data": "03/09/2026"
+        }
+      ]
     }
   },
   "diaria_millors": {
     "dificil": [
+      {
+        "sobrenom": "eljefe69",
+        "punts": 17,
+        "paraula": "humanista",
+        "dialecte": "ca",
+        "data": "03/09/2026"
+      },
       {
         "sobrenom": "Adm1n",
         "punts": 11,
         "paraula": "calefactors",
         "dialecte": "ca",
         "data": "14/08/2026"
-      },
-      {
-        "sobrenom": "admιn",
-        "punts": 9,
-        "paraula": "estel",
-        "dialecte": "ca",
-        "data": "06/08/2026"
       },
       {
         "sobrenom": "Préssec",
