@@ -15,11 +15,16 @@ navegador (vegeu llegirFitxerAmbIndexedDB a js/script.js, que fa
 rutaFitxer.split("/").pop()). Per això els fitxers dels dialectes duen el codi
 al nom: si no, els quatre col_3.idx.txt serien la mateixa entrada.
 
-Hi entren els fitxers de TOTS els dialectes, no només els del que el web
-serveix ara: es generen igualment, i tenir-ne la versió és el que permetrà al
-navegador desar-los a la memòria cau el dia que es pugui triar el dialecte. I
-també els dels apendixs, que encara no demana ningú (el js/script.js d'ara no
-en sap res): quan els demani, ja hi seran.
+Hi entren els fitxers de TOTS els dialectes, apendixs inclosos, encara que una
+visita només se'n baixi els d'un: el navegador baixa el dialecte que serveix i
+no en demana cap altre fins que algú el tria (vegeu carregarDialecte a
+js/script.js), i llavors ha de poder-ne saber la versió sense tornar a demanar
+res.
+
+La col_0 d'un apendix, a més, hi fa d'interruptor: el navegador dedueix que un
+dialecte té apendix perquè aquella clau hi és (vegeu-hi teApendix). O sigui que
+això no és només una llista de resums, també és qui diu quins dialectes en
+tenen; per això aquí s'hi posa quan la carpeta hi és de debò i no altrament.
 
 DUES LLARGADES I NO UNA. Les columnes del diccionari i les del trans_dicc de
 cada dialecte han de tenir totes les files del diccionari; les d'un apendix, les
