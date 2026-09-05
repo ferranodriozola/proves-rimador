@@ -127,9 +127,13 @@ class Dades:
     publicades_*.json, en canvi, es rellegeixen sempre del disc: són petits i
     poden haver canviat per fora (un git pull, posem).
 
-    La columna de paraules es llegeix UNA vegada i es passa a les quatre
-    crides de carregar_rimes(): així els quatre diccionaris de rimes comparteixen
-    les mateixes cadenes. Són 90 MB entre tots, no pas 240.
+    CADA DIALECTE TÉ LA SEVA LLISTA DE PARAULES: el diccionari, que és igual
+    per a tothom, i les seves paraules pròpies ("cante", "servisc", "tenc").
+    Per això paraules, planes, noms_propis i rimes van indexats pel dialecte.
+
+    El tros del diccionari es llegeix i s'aplana UNA sola vegada i les quatre
+    llistes el comparteixen: així les cadenes són les mateixes en comptes de
+    tenir-ne quatre còpies, que és la diferència entre 90 MB i 240 MB.
     """
 
     def __init__(self):
@@ -137,19 +141,33 @@ class Dades:
         noms = ', '.join(generador.nom_dialecte(dialecte) for dialecte in self.dialectes)
         print(f'Aplegant les rimes de les columnes del diccionari ({noms})...')
 
-        self.paraules = generador.carregar_paraules()
-        # Les mateixes, aplanades, per al cercador: sense això, cada tecla
-        # aplanaria les 620.000 una altra vegada.
-        self.planes = generador.aplanar_paraules(self.paraules)
-        # Les formes que només són nom propi: no surten a la llista de cap
-        # rima si hi ha res més (vegeu paraules_del_tuit()).
-        self.noms_propis = generador.carregar_noms_propis(self.paraules)
+        # El tros compartit, un sol cop: les paraules i les mateixes aplanades
+        # per al cercador (sense això, cada tecla aplanaria les 620.000 una
+        # altra vegada).
+        self.paraules_base = generador.carregar_paraules_del_diccionari()
+        planes_base = generador.aplanar_paraules(self.paraules_base)
+        del_diccionari = len(self.paraules_base)
+
+        self.paraules = {}
+        self.planes = {}
+        self.noms_propis = {}
+        for dialecte in self.dialectes:
+            seves = generador.carregar_paraules(dialecte, self.paraules_base)
+            self.paraules[dialecte] = seves
+            # El tros del diccionari ja està aplanat i es comparteix; només cal
+            # aplanar les paraules pròpies d'aquest dialecte.
+            self.planes[dialecte] = planes_base + generador.aplanar_paraules(
+                seves[del_diccionari:])
+            # Les formes que només són nom propi: no surten a la llista de cap
+            # rima si hi ha res més (vegeu paraules_del_tuit()).
+            self.noms_propis[dialecte] = generador.carregar_noms_propis(dialecte, seves)
 
         # De la fila a la rima (per al cercador) i de la rima a les paraules
         # (per al tuit). Es llegeix la columna un sol cop i surten les dues.
         self.columna_rima = {dialecte: generador.carregar_columna_rima(dialecte)
                              for dialecte in self.dialectes}
-        self.rimes = {dialecte: generador.carregar_rimes(dialecte, self.paraules,
+        self.rimes = {dialecte: generador.carregar_rimes(dialecte,
+                                                         self.paraules[dialecte],
                                                          self.columna_rima[dialecte])
                       for dialecte in self.dialectes}
         self.naufragues = {dialecte: generador.carregar_naufragues(dialecte)
@@ -166,14 +184,15 @@ class Dades:
 
         for dialecte in self.dialectes:
             diuen = generador.naufragues_disponibles(self.naufragues[dialecte], set())
+            propies = len(self.paraules[dialecte]) - del_diccionari
             print(f'  {generador.nom_dialecte(dialecte)}: {len(self.rimes[dialecte])} rimes'
                   f' i {len(diuen)} paraules nàufragues'
-                  f' ({len(self.rimes_naufragues[dialecte]) - len(diuen)} noms propis fora).')
-        print(f'  {len(self.noms_propis)} formes que només són nom propi.')
+                  f' ({len(self.rimes_naufragues[dialecte]) - len(diuen)} noms propis fora)'
+                  f'{f", {propies} paraules pròpies" if propies else ""}.')
 
         if not self.dialectes:
             print(f'AVÍS: no s\'ha trobat cap dialecte a {generador.DIR_DIALECTES}.')
-        if not self.paraules:
+        if not self.paraules_base:
             print(f'AVÍS: no s\'ha trobat {generador.FITXER_PARAULES}.')
         for dialecte in self.dialectes:
             if not self.rimes[dialecte]:
@@ -254,7 +273,8 @@ def tuit_de_rima(dialecte, rima, data):
         # només enganyaria.
         'altres_exemples': generador.quantes_hi_rimen(paraules) > generador.PARAULES_PER_TUIT,
         'data': data,
-        'text': generador.tuit_normal(rima, paraules, dialecte, data, DADES.noms_propis),
+        'text': generador.tuit_normal(rima, paraules, dialecte, data,
+                                      DADES.noms_propis.get(dialecte, set())),
     }
 
 
@@ -427,7 +447,9 @@ def cercar(tipus, dialecte, text, exclou):
         # de cada fila és un "in" i prou, i la cerca costa una dècima de segon.
         millors = {}
 
-        for paraula, plana, rima in zip(DADES.paraules, DADES.planes,
+        propis = DADES.noms_propis.get(dialecte, set())
+        for paraula, plana, rima in zip(DADES.paraules.get(dialecte, []),
+                                        DADES.planes.get(dialecte, []),
                                         DADES.columna_rima.get(dialecte, [])):
             if text not in plana or not rima or rima in fora:
                 continue
@@ -444,7 +466,7 @@ def cercar(tipus, dialecte, text, exclou):
                 pes = 2
             else:
                 pes = 3
-            pes = (pes, paraula in DADES.noms_propis)
+            pes = (pes, paraula in propis)
 
             # D'una rima, la paraula que hi casa millor: és la que es mostra
             # perquè es reconegui de què va una rima escrita en AFI.

@@ -15,6 +15,19 @@ una paraula nàufraga de cada dialecte, i per això aquí dins el dialecte és
 sempre un paràmetre i mai una constant. Compte amb el nom "codi", que al
 diccionari ja vol dir una altra cosa (la categoria gramatical, "NCMS000"): el
 del dialecte se'n diu `dialecte` a tot arreu.
+
+I CADA DIALECTE TÉ LES SEVES PARAULES. No només rimen diferent: n'hi ha que
+només es diuen en un lloc ("cante", "servisc", "tenc"). Cada dialecte és, per
+tant, dues llistes seguides:
+
+    el diccionari   diccionaris/separat/col_*, igual per a tothom, amb la rima
+                    d'aquell dialecte al costat (trans_dicc/col_3_rimacons_*)
+    el seu apendix  dialectes_col/<codi>/apendix/col_*_<codi>, files pròpies i
+                    totes les columnes seves, rima inclosa
+
+Per això carregar_paraules() vol saber de quin dialecte és. El tros del
+diccionari es llegeix UN sol cop i es passa a les quatre crides: així les
+quatre llistes comparteixen les mateixes cadenes i són 90 MB i no pas 240.
 """
 
 import json
@@ -26,11 +39,10 @@ from datetime import datetime
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# La columna de paraules del diccionari, la mateixa per a tots els dialectes.
-# Va fila per fila amb la columna de rima de cada dialecte: la fila que fa 40
+# La columna de paraules del diccionari, el tros que és igual per a tots els
+# dialectes. Va fila per fila amb el trans_dicc de cadascun: la fila que fa 40
 # de la col_0 és una paraula i la que fa 40 de la col_3 d'un dialecte és com
-# rima allà. Les mateixes columnes que llegeix rimes_amb_una_sola_paraula() a
-# llistes/generar_naufragues.py.
+# rima allà. Les mateixes columnes que llegeix llistes/fonts.py.
 FITXER_PARAULES = os.path.join(BASE_DIR, '..', 'diccionaris', 'separat', 'col_0.txt')
 # La categoria gramatical, fila per fila i de la mateixa llargada: d'aquí surt
 # quines formes són nom propi ("NPCSG00", "NPFSO00"...).
@@ -79,7 +91,24 @@ def nom_dialecte(dialecte):
 
 
 def fitxer_rimacons(dialecte):
-    return os.path.join(DIR_DIALECTES, dialecte, f'col_3_rimacons_{dialecte}.txt')
+    """La rima del diccionari sencer, dit en aquest dialecte."""
+    return os.path.join(DIR_DIALECTES, dialecte, 'trans_dicc',
+                        f'col_3_rimacons_{dialecte}.txt')
+
+
+def dir_apendix(dialecte):
+    return os.path.join(DIR_DIALECTES, dialecte, 'apendix')
+
+
+def fitxer_apendix(dialecte, numero):
+    """Una columna de les paraules pròpies d'un dialecte."""
+    return os.path.join(dir_apendix(dialecte), f'col_{numero}_{dialecte}.txt')
+
+
+def te_apendix(dialecte):
+    """No tots en tenen: un dialecte nou és una carpeta amb la seva rima, i les
+    paraules pròpies vindran després o no vindran mai."""
+    return os.path.isdir(dir_apendix(dialecte))
 
 
 def fitxer_naufragues(dialecte):
@@ -107,24 +136,41 @@ def guardar_json(dades, nom_fitxer):
         json.dump(dades, f, indent=4, ensure_ascii=False)
 
 
-def carregar_paraules():
-    """La col_0 sencera, una paraula per fila, tal com es llegeix del disc.
-
-    A part de carregar_rimes() a posta: la columna de paraules és la mateixa
-    per als quatre dialectes i s'ha de llegir UN sol cop. Passant aquesta
-    mateixa llista a les quatre crides, els quatre diccionaris de rimes
-    apunten a les mateixes cadenes en comptes de tenir-ne cadascun una còpia,
-    que és la diferència entre 90 MB i 240 MB de memòria.
-    """
+def _llegir(ruta):
+    """Una columna sencera, una entrada per fila. El fitxer que no hi és compta
+    com a columna buida: un dialecte a mitges no ha de tombar el programador."""
     try:
-        with open(FITXER_PARAULES, 'r', encoding='utf-8') as f:
+        with open(ruta, 'r', encoding='utf-8') as f:
             return [linia.strip() for linia in f]
     except FileNotFoundError:
         return []
 
 
-def carregar_noms_propis(paraules=None):
-    """Les formes que al diccionari NOMÉS surten com a nom propi.
+def carregar_paraules_del_diccionari():
+    """La col_0 sencera: el tros de paraules que és igual a tots els dialectes.
+
+    A part de carregar_paraules() a posta: aquest tros s'ha de llegir UN sol
+    cop i passar-lo a les quatre crides. Així les quatre llistes de paraules
+    comparteixen les mateixes cadenes en comptes de tenir-ne cadascuna una
+    còpia, que és la diferència entre 90 MB i 240 MB de memòria.
+    """
+    return _llegir(FITXER_PARAULES)
+
+
+def carregar_paraules(dialecte, base=None):
+    """Les paraules d'un dialecte: les del diccionari i les seves.
+
+    En aquest ordre i no en cap altre: la columna de rima es munta igual
+    (carregar_columna_rima()) i les dues han d'anar fila per fila.
+    """
+    base = carregar_paraules_del_diccionari() if base is None else base
+    if not te_apendix(dialecte):
+        return list(base)
+    return base + _llegir(fitxer_apendix(dialecte, 0))
+
+
+def carregar_noms_propis(dialecte, paraules=None):
+    """Les formes que en aquest dialecte NOMÉS surten com a nom propi.
 
     Als tuits els noms propis fan nosa: la gràcia és la paraula, i una rima on
     hi surten quatre pobles i un cognom no diu res a ningú. Els de les
@@ -136,19 +182,23 @@ def carregar_noms_propis(paraules=None):
     mira forma per forma perquè és el que es pot comparar amb la llista d'una
     rima; qui hi surt de debò són els 14.682 topònims, cognoms i marques que
     no volen dir res més.
+
+    Va per dialecte perquè hi entren les seves paraules pròpies. Aquelles són
+    totes formes verbals i no n'hi afegiran cap de nova, però sí que en poden
+    TREURE: una forma que al diccionari només sortia com a nom propi i que a
+    l'apendix hi és com a verb ja no ho és "només", i ha de poder sortir.
     """
-    paraules = carregar_paraules() if paraules is None else paraules
+    paraules = carregar_paraules(dialecte) if paraules is None else paraules
+    codis = _llegir(FITXER_CODIS)
+    if te_apendix(dialecte):
+        codis += _llegir(fitxer_apendix(dialecte, 2))
+    if not codis:
+        return set()
+
     amb_np = set()
     sense_np = set()
-
-    try:
-        with open(FITXER_CODIS, 'r', encoding='utf-8') as f:
-            for fila, linia in enumerate(f):
-                if fila >= len(paraules):
-                    break
-                (amb_np if linia.startswith('NP') else sense_np).add(paraules[fila])
-    except FileNotFoundError:
-        return set()
+    for paraula, codi in zip(paraules, codis):
+        (amb_np if codi.startswith('NP') else sense_np).add(paraula)
 
     return amb_np - sense_np
 
@@ -165,17 +215,28 @@ def carregar_columna_rima(dialecte):
     mateixa cadena, la columna són cinc megues de punters i no pas quaranta de
     text repetit. Serveix per anar de la fila d'una paraula a la seva rima, que
     és el que necessita el cercador: la taula de carregar_rimes() va a l'inrevés.
+
+    Primer la del diccionari i després la de l'apendix, en el mateix ordre que
+    carregar_paraules(): van fila per fila i si no anessin igual, cada paraula
+    duria la rima d'una altra. I les cadenes se segueixen compartint entre les
+    dues meitats, que és el que fa que una forma de l'apendix i una del
+    diccionari puguin resultar la MATEIXA clau de rima i per tant rimar entre
+    elles.
     """
     unica = {}
     columna = []
 
-    try:
-        with open(fitxer_rimacons(dialecte), 'r', encoding='utf-8') as f:
-            for linia in f:
-                rima = linia.strip()
-                columna.append(unica.setdefault(rima, rima))
-    except FileNotFoundError:
-        return []
+    for ruta in (fitxer_rimacons(dialecte),
+                 fitxer_apendix(dialecte, 3) if te_apendix(dialecte) else None):
+        if ruta is None:
+            continue
+        try:
+            with open(ruta, 'r', encoding='utf-8') as f:
+                for linia in f:
+                    rima = linia.strip()
+                    columna.append(unica.setdefault(rima, rima))
+        except FileNotFoundError:
+            return []
 
     return columna
 
@@ -198,7 +259,7 @@ def carregar_rimes(dialecte, paraules=None, columna=None):
     rimes_amb_una_sola_paraula() a llistes/generar_naufragues.py, que ja el va
     haver de tenir en compte.
     """
-    paraules = carregar_paraules() if paraules is None else paraules
+    paraules = carregar_paraules(dialecte) if paraules is None else paraules
     columna = carregar_columna_rima(dialecte) if columna is None else columna
     rimes = {}
 
