@@ -1506,7 +1506,11 @@ function completarEnllac(event) {
 
   for (const classe in ADRECES) {
     if (enllac.classList.contains(classe)) {
-      enllac.href = ADRECES[classe] + paraula;
+      // La Viquipèdia és l'única que vol la forma tal com es veu i no pas el
+      // lema: allà els articles porten el títol sencer, no l'entrada de
+      // diccionari. El data-v només hi és quan les dues formes no coincideixen.
+      const mot = (classe === 'logo-viq' && fila.dataset.v) || paraula;
+      enllac.href = ADRECES[classe] + mot;
       enllac.target = '_blank';
       enllac.dataset.fet = '1';
       return;
@@ -1697,7 +1701,14 @@ function actualitzarRimes() {
           // El data-e és la paraula amb què es munten les adreces dels enllaços
           // (vegeu completarEnllac). No sempre és la que es veu: de cada cent
           // rimes, noranta-tres vénen d'una altra forma.
-          let tros = "<li class='k" + numCodi + "' data-e=\"" + parts[1] + "\">" + parts[0];
+          //
+          // El data-v és la forma que es veu, i només per a la Viquipèdia. No
+          // s'imprimeix si no cal: sense enllaç de Viquipèdia, o si la forma i
+          // el lema ja són el mateix, l'atribut seria pes mort a cada <li>.
+          let dadaViq = "";
+          if (parts[5] === "Viq" && parts[0] !== parts[1]) dadaViq = " data-v=\"" + parts[0] + "\"";
+
+          let tros = "<li class='k" + numCodi + "' data-e=\"" + parts[1] + "\"" + dadaViq + ">" + parts[0];
 
           // Abans hi havia un <span class='classeParaula'> al voltant de la
           // paraula. No el gastava ningú: no hi ha cap regla de CSS que el miri.
