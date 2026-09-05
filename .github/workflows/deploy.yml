@@ -33,7 +33,7 @@ on:
   # canvis es quedarien al repositori sense arribar mai a Pages.
   workflow_run:
     workflows:
-      - "Actualització automàtica de les estadístiques"
+      - "Actualització nocturna de dades (estadístiques i classificació)"
       - "Canvis al diccionari (i generació de nàufragues i heptasíl·labs)"
     types:
       - completed

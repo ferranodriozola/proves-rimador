@@ -1,0 +1,114 @@
+name: Actualització nocturna de dades (estadístiques i classificació)
+
+# Les dues coses que cada nit es refan soles llegint un full de càlcul de Google
+# publicat en CSV:
+#
+#   stats/stats.py                      -> stats/estadistiques_rimador.json
+#                                          stats/versions_stats.json
+#   joc/eines/compilar_classificacio.py -> joc/dades/classificacio.json
+#
+# (La classificació es fa en dues fases: el navegador envia cada puntuació a un
+# Google Apps Script que l'apunta al full -això va sol-, i el compilador en treu
+# el rànquing que veu la gent. La segona fase s'havia de fer a mà, i mentre no es
+# feia, qui jugava no sortia enlloc.)
+#
+# ABANS ERA DOS WORKFLOWS, un per feina, tots dos amb el mateix cron. Feien
+# dues coses malament:
+#
+#   - Els dos "git push" queien al mateix minut. Si l'un pujava entre el
+#     "pull --rebase" i el "push" de l'altre, el push petava.
+#   - Cadascun hauria disparat el seu desplegament: dos deploys per nit
+#     publicant exactament el mateix (i, de fet, el de la classificació no hi
+#     era a la llista i no se'n disparava cap: el rànquing es quedava comitejat
+#     al repositori sense arribar mai a Pages).
+#
+# Ara és un sol job, amb un sol commit i un sol desplegament encadenat. El
+# deploy no es fa aquí: el dispara el workflow_run de deploy.yml, que escolta
+# aquest workflow PEL NOM. Si algun dia es canvia el "name:" de dalt, s'ha de
+# canviar allà (i llavors no es desplegaria res, sense que peti res enlloc).
+
+on:
+  schedule:
+    - cron: '01 22 * * *'
+  workflow_dispatch:
+
+# Una execució a la vegada, pel mateix que abans hi havia la cursa entre els dos
+# workflows: aquest job fa un "git push", i engegar-lo a mà mentre corre el de
+# l'horari tornaria a posar dos pushos a sobre l'un de l'altre.
+concurrency:
+  group: dades-nocturnes
+  cancel-in-progress: false
+
+jobs:
+  dades:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout del repositori
+        uses: actions/checkout@v5
+
+      - name: Configurar Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      - name: Instal·lar dependències
+        run: pip install pandas
+
+      # Els dos scripts van amb "continue-on-error" perquè no tenen res a veure
+      # l'un amb l'altre: que el full de les cerques no es deixi llegir no és cap
+      # raó per deixar el rànquing del joc sense actualitzar, ni al revés. El pas
+      # de l'últim de tot torna a posar el job vermell perquè arribi el correu
+      # (Settings > Notifications > Actions).
+      - name: Estadístiques
+        id: estadistiques
+        continue-on-error: true
+        run: python stats/stats.py
+
+      # Si l'script ha petat a mig escriure, al disc hi ha un JSON truncat. Amb
+      # dos workflows això no podia passar (el commit anava després i no s'hi
+      # arribava mai); ara que el commit es fa igualment, s'ha de desfer a mà el
+      # que hagi quedat mig escrit, o publicaríem un fitxer trencat.
+      - name: Descartar les estadístiques si l'script ha petat
+        if: steps.estadistiques.outcome == 'failure'
+        run: git checkout -- stats/estadistiques_rimador.json stats/versions_stats.json
+
+      - name: Classificació del joc
+        id: classificacio
+        continue-on-error: true
+        run: python joc/eines/compilar_classificacio.py
+
+      - name: Descartar la classificació si l'script ha petat
+        if: steps.classificacio.outcome == 'failure'
+        run: git checkout -- joc/dades/classificacio.json
+
+      - name: Guardar els canvis als JSON (Commit & Push)
+        uses: ./.github/actions/comitejar
+        with:
+          missatge: 'Actualització automàtica: estadístiques i classificació del joc'
+          # Els fitxers dits pel seu nom i no pas "." : el repositori es pot
+          # trobar amb canvis d'un altre workflow a mig fer. Només han de sortir
+          # aquestes tres dades. (Del commit només hi entra el que hagi canviat
+          # de debò, o sigui que si una de les dues feines no ha tocat res, o ha
+          # petat i s'ha descartat, el missatge sobra però no hi ha cap mentida
+          # a dins.)
+          fitxers: stats/estadistiques_rimador.json stats/versions_stats.json joc/dades/classificacio.json
+
+      # Va l'últim, després del commit: el que s'hagi pogut fer bé es guarda i es
+      # publica la nit vinent, però el job ha d'acabar vermell perquè el correu
+      # arribi i no es quedi res petant en silenci mes rere mes.
+      #
+      # COMPTE: amb el job vermell, el workflow_run de deploy.yml se salta el
+      # desplegament (demana conclusion == 'success'). O sigui que la meitat que
+      # SÍ que ha anat bé es queda comitejada però sense publicar fins a la nit
+      # següent. Si cal publicar-la abans, s'engega el deploy a mà amb el seu
+      # workflow_dispatch.
+      - name: Posar el job vermell si algun dels dos scripts ha petat
+        if: steps.estadistiques.outcome == 'failure' || steps.classificacio.outcome == 'failure'
+        run: |
+          echo "Estadístiques: ${{ steps.estadistiques.outcome }}"
+          echo "Classificació: ${{ steps.classificacio.outcome }}"
+          echo "Mireu els passos de sobre per veure què ha petat."
+          exit 1
