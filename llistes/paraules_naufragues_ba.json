@@ -1570,6 +1570,16 @@
     "diec": "Diec"
   },
   {
+    "paraula": "Alborx",
+    "infinitiu": "Alborx",
+    "codi": "NPCNSP0",
+    "rimacons": "ɔɾʃ",
+    "sil": "2",
+    "vicc": "Vicc",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
     "paraula": "albugos",
     "infinitiu": "albugo",
     "codi": "NCMP000",
@@ -3600,6 +3610,16 @@
     "diec": "Diec"
   },
   {
+    "paraula": "arenguis",
+    "infinitiu": "arengar",
+    "codi": "VMSP2S0Y",
+    "rimacons": "eŋɡis",
+    "sil": "3",
+    "vicc": "Vicc",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
     "paraula": "areòpags",
     "infinitiu": "areòpag",
     "codi": "NCMP000",
@@ -5160,6 +5180,56 @@
     "diec": "Diec"
   },
   {
+    "paraula": "befi",
+    "infinitiu": "befar",
+    "codi": "VMM03S0Y",
+    "rimacons": "efi",
+    "sil": "2",
+    "vicc": "Vicc",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "befi",
+    "infinitiu": "befar",
+    "codi": "VMSP1S0Y",
+    "rimacons": "efi",
+    "sil": "2",
+    "vicc": "Vicc",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "befin",
+    "infinitiu": "befar",
+    "codi": "VMM03P0Y",
+    "rimacons": "efin",
+    "sil": "2",
+    "vicc": "Vicc",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "befin",
+    "infinitiu": "befar",
+    "codi": "VMSP3P0Y",
+    "rimacons": "efin",
+    "sil": "2",
+    "vicc": "Vicc",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "befis",
+    "infinitiu": "befar",
+    "codi": "VMSP2S0Y",
+    "rimacons": "efis",
+    "sil": "2",
+    "vicc": "Vicc",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
     "paraula": "befo",
     "infinitiu": "befar",
     "codi": "VMIP1S0C",
@@ -5780,6 +5850,16 @@
     "diec": "Diec"
   },
   {
+    "paraula": "bitcoin",
+    "infinitiu": "bitcoin",
+    "codi": "NCMS000",
+    "rimacons": "ɔjn",
+    "sil": "2",
+    "vicc": "NO",
+    "viq": "Viq",
+    "diec": "Diec"
+  },
+  {
     "paraula": "bíters",
     "infinitiu": "bíter",
     "codi": "NCMP000",
@@ -6058,6 +6138,16 @@
     "vicc": "Vicc",
     "viq": "NO",
     "diec": "Diec"
+  },
+  {
+    "paraula": "Bonn",
+    "infinitiu": "Bonn",
+    "codi": "NPCSG00",
+    "rimacons": "ɔnn",
+    "sil": "1",
+    "vicc": "Vicc",
+    "viq": "Viq",
+    "diec": "NO"
   },
   {
     "paraula": "bonobos",
@@ -6710,6 +6800,16 @@
     "diec": "NO"
   },
   {
+    "paraula": "bulb",
+    "infinitiu": "bulb",
+    "codi": "NCMS000",
+    "rimacons": "ulp",
+    "sil": "1",
+    "vicc": "Vicc",
+    "viq": "Viq",
+    "diec": "Diec"
+  },
+  {
     "paraula": "bulbs",
     "infinitiu": "bulb",
     "codi": "NCMP000",
@@ -7305,6 +7405,16 @@
     "codi": "AQ0FP0",
     "rimacons": "ammikəs",
     "sil": "3",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "cadmis",
+    "infinitiu": "cadmi",
+    "codi": "NCMP000",
+    "rimacons": "ammis",
+    "sil": "2",
     "vicc": "NO",
     "viq": "NO",
     "diec": "Diec"
@@ -7917,6 +8027,16 @@
     "sil": "3",
     "vicc": "NO",
     "viq": "Viq",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "carafresc",
+    "infinitiu": "carafresc",
+    "codi": "AQ0MS0",
+    "rimacons": "ɛsk",
+    "sil": "3",
+    "vicc": "Vicc",
+    "viq": "NO",
     "diec": "Diec"
   },
   {
@@ -11240,6 +11360,16 @@
     "diec": "Diec"
   },
   {
+    "paraula": "Crisp",
+    "infinitiu": "Crisp",
+    "codi": "NPMSSP0",
+    "rimacons": "isp",
+    "sil": "1",
+    "vicc": "NO",
+    "viq": "Viq",
+    "diec": "NO"
+  },
+  {
     "paraula": "critèrium",
     "infinitiu": "critèrium",
     "codi": "NCMS000",
@@ -12054,6 +12184,26 @@
     "infinitiu": "deflegmar",
     "codi": "VMIP1S0C",
     "rimacons": "ɛmmo",
+    "sil": "3",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "defraudin",
+    "infinitiu": "defraudar",
+    "codi": "VMM03P0Y",
+    "rimacons": "awðin",
+    "sil": "3",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "defraudin",
+    "infinitiu": "defraudar",
+    "codi": "VMSP3P0Y",
+    "rimacons": "awðin",
     "sil": "3",
     "vicc": "NO",
     "viq": "NO",
@@ -16090,6 +16240,56 @@
     "diec": "Diec"
   },
   {
+    "paraula": "escornifli",
+    "infinitiu": "escorniflar",
+    "codi": "VMM03S0Y",
+    "rimacons": "ifli",
+    "sil": "4",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "escornifli",
+    "infinitiu": "escorniflar",
+    "codi": "VMSP1S0Y",
+    "rimacons": "ifli",
+    "sil": "4",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "escorniflin",
+    "infinitiu": "escorniflar",
+    "codi": "VMM03P0Y",
+    "rimacons": "iflin",
+    "sil": "4",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "escorniflin",
+    "infinitiu": "escorniflar",
+    "codi": "VMSP3P0Y",
+    "rimacons": "iflin",
+    "sil": "4",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "escorniflis",
+    "infinitiu": "escorniflar",
+    "codi": "VMSP2S0Y",
+    "rimacons": "iflis",
+    "sil": "4",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
     "paraula": "escorniflo",
     "infinitiu": "escorniflar",
     "codi": "VMIP1S0C",
@@ -16294,6 +16494,26 @@
     "infinitiu": "esfondrar",
     "codi": "VMIP3P00",
     "rimacons": "ondɾən",
+    "sil": "3",
+    "vicc": "Vicc",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "esfondrin",
+    "infinitiu": "esfondrar",
+    "codi": "VMM03P0Y",
+    "rimacons": "ɔndɾin",
+    "sil": "3",
+    "vicc": "Vicc",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "esfondrin",
+    "infinitiu": "esfondrar",
+    "codi": "VMSP3P0Y",
+    "rimacons": "ɔndɾin",
     "sil": "3",
     "vicc": "Vicc",
     "viq": "NO",
@@ -16980,6 +17200,16 @@
     "diec": "Diec"
   },
   {
+    "paraula": "estirp",
+    "infinitiu": "estirp",
+    "codi": "NCFS000",
+    "rimacons": "iɾp",
+    "sil": "2",
+    "vicc": "Vicc",
+    "viq": "Viq",
+    "diec": "Diec"
+  },
+  {
     "paraula": "estoigs",
     "infinitiu": "estoig",
     "codi": "NCMP000",
@@ -17325,6 +17555,16 @@
     "codi": "NPCSG00",
     "rimacons": "etəmpəs",
     "sil": "3",
+    "vicc": "NO",
+    "viq": "Viq",
+    "diec": "NO"
+  },
+  {
+    "paraula": "etanercept",
+    "infinitiu": "etanercept",
+    "codi": "NCMS000",
+    "rimacons": "ett",
+    "sil": "4",
     "vicc": "NO",
     "viq": "Viq",
     "diec": "NO"
@@ -19650,6 +19890,26 @@
     "diec": "NO"
   },
   {
+    "paraula": "gangli",
+    "infinitiu": "gangli",
+    "codi": "NCMS000",
+    "rimacons": "aŋɡli",
+    "sil": "2",
+    "vicc": "NO",
+    "viq": "Viq",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "ganglis",
+    "infinitiu": "gangli",
+    "codi": "NCMP000",
+    "rimacons": "aŋɡlis",
+    "sil": "2",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
     "paraula": "gàngster",
     "infinitiu": "gàngster",
     "codi": "AQ0CS0",
@@ -20110,6 +20370,16 @@
     "diec": "NO"
   },
   {
+    "paraula": "George",
+    "infinitiu": "George",
+    "codi": "NPMSSP0",
+    "rimacons": "ɔdʒ",
+    "sil": "3",
+    "vicc": "Vicc",
+    "viq": "Viq",
+    "diec": "NO"
+  },
+  {
     "paraula": "Geòrgia",
     "infinitiu": "Geòrgia",
     "codi": "NPFSG00",
@@ -20328,6 +20598,16 @@
     "vicc": "NO",
     "viq": "Viq",
     "diec": "Diec"
+  },
+  {
+    "paraula": "Glenn",
+    "infinitiu": "Glenn",
+    "codi": "NPCNSP0",
+    "rimacons": "ɛnn",
+    "sil": "1",
+    "vicc": "NO",
+    "viq": "Viq",
+    "diec": "NO"
   },
   {
     "paraula": "gloria",
@@ -20870,6 +21150,16 @@
     "diec": "Diec"
   },
   {
+    "paraula": "Grimm",
+    "infinitiu": "Grimm",
+    "codi": "NPCNSP0",
+    "rimacons": "imm",
+    "sil": "1",
+    "vicc": "NO",
+    "viq": "Viq",
+    "diec": "NO"
+  },
+  {
     "paraula": "grimpa",
     "infinitiu": "grimpar",
     "codi": "VMIP3S00",
@@ -20904,6 +21194,26 @@
     "infinitiu": "grimpar",
     "codi": "VMIP2S00",
     "rimacons": "impəs",
+    "sil": "2",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "grimpin",
+    "infinitiu": "grimpar",
+    "codi": "VMM03P0Y",
+    "rimacons": "impin",
+    "sil": "2",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "grimpin",
+    "infinitiu": "grimpar",
+    "codi": "VMSP3P0Y",
+    "rimacons": "impin",
     "sil": "2",
     "vicc": "NO",
     "viq": "NO",
@@ -21105,6 +21415,26 @@
     "codi": "NCMP000",
     "rimacons": "əjzˌes",
     "sil": "2",
+    "vicc": "Vicc",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "guerx",
+    "infinitiu": "guerx",
+    "codi": "AQ0MS0",
+    "rimacons": "ɛɾʃ",
+    "sil": "1",
+    "vicc": "Vicc",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "guerx",
+    "infinitiu": "guerx",
+    "codi": "NCMS000",
+    "rimacons": "ɛɾʃ",
+    "sil": "1",
     "vicc": "Vicc",
     "viq": "NO",
     "diec": "Diec"
@@ -22554,6 +22884,16 @@
     "infinitiu": "Hug",
     "codi": "NPMPSP0",
     "rimacons": "uks",
+    "sil": "1",
+    "vicc": "NO",
+    "viq": "Viq",
+    "diec": "NO"
+  },
+  {
+    "paraula": "Hulk",
+    "infinitiu": "Hulk",
+    "codi": "NPMSSP0",
+    "rimacons": "ulk",
     "sil": "1",
     "vicc": "NO",
     "viq": "Viq",
@@ -27070,6 +27410,16 @@
     "diec": "NO"
   },
   {
+    "paraula": "Lodz",
+    "infinitiu": "Lodz",
+    "codi": "NPCSG00",
+    "rimacons": "ɔdz",
+    "sil": "1",
+    "vicc": "NO",
+    "viq": "Viq",
+    "diec": "NO"
+  },
+  {
     "paraula": "loft",
     "infinitiu": "loft",
     "codi": "NCMS000",
@@ -27478,6 +27828,16 @@
     "vicc": "Vicc",
     "viq": "NO",
     "diec": "Diec"
+  },
+  {
+    "paraula": "Malakoff",
+    "infinitiu": "Malakoff",
+    "codi": "NPCSG00",
+    "rimacons": "of",
+    "sil": "3",
+    "vicc": "NO",
+    "viq": "Viq",
+    "diec": "NO"
   },
   {
     "paraula": "Malatya",
@@ -31470,6 +31830,16 @@
     "diec": "Diec"
   },
   {
+    "paraula": "Olimp",
+    "infinitiu": "Olimp",
+    "codi": "NPCSG00",
+    "rimacons": "imp",
+    "sil": "2",
+    "vicc": "NO",
+    "viq": "Viq",
+    "diec": "NO"
+  },
+  {
     "paraula": "Olímpia",
     "infinitiu": "Olímpia",
     "codi": "NPCSG00",
@@ -34990,6 +35360,16 @@
     "diec": "NO"
   },
   {
+    "paraula": "pope",
+    "infinitiu": "pope",
+    "codi": "NCMS000",
+    "rimacons": "awp",
+    "sil": "2",
+    "vicc": "Vicc",
+    "viq": "Viq",
+    "diec": "Diec"
+  },
+  {
     "paraula": "Popocatépetl",
     "infinitiu": "Popocatépetl",
     "codi": "NPCSG00",
@@ -34998,6 +35378,16 @@
     "vicc": "NO",
     "viq": "Viq",
     "diec": "NO"
+  },
+  {
+    "paraula": "pòrfir",
+    "infinitiu": "pòrfir",
+    "codi": "NCMS000",
+    "rimacons": "ɔɾfi",
+    "sil": "2",
+    "vicc": "NO",
+    "viq": "Viq",
+    "diec": "Diec"
   },
   {
     "paraula": "pòrfira",
@@ -35015,6 +35405,16 @@
     "codi": "NCFP000",
     "rimacons": "ɔɾfiɾəs",
     "sil": "3",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "pòrfirs",
+    "infinitiu": "pòrfir",
+    "codi": "NCMP000",
+    "rimacons": "ɔɾfis",
+    "sil": "2",
     "vicc": "NO",
     "viq": "NO",
     "diec": "Diec"
@@ -36348,6 +36748,16 @@
     "vicc": "NO",
     "viq": "NO",
     "diec": "Diec"
+  },
+  {
+    "paraula": "Pskov",
+    "infinitiu": "Pskov",
+    "codi": "NPCSG00",
+    "rimacons": "ɔv",
+    "sil": "1",
+    "vicc": "NO",
+    "viq": "Viq",
+    "diec": "NO"
   },
   {
     "paraula": "Publi",
@@ -38640,6 +39050,16 @@
     "diec": "NO"
   },
   {
+    "paraula": "salv",
+    "infinitiu": "salv",
+    "codi": "AQ0MS0",
+    "rimacons": "alv",
+    "sil": "1",
+    "vicc": "Vicc",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
     "paraula": "salvs",
     "infinitiu": "salv",
     "codi": "AQ0MP0",
@@ -39055,6 +39475,16 @@
     "codi": "NCMP000",
     "rimacons": "ɛɾzos",
     "sil": "2",
+    "vicc": "NO",
+    "viq": "Viq",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "schorl",
+    "infinitiu": "schorl",
+    "codi": "NCMS000",
+    "rimacons": "ɔɾl",
+    "sil": "1",
     "vicc": "NO",
     "viq": "Viq",
     "diec": "Diec"
@@ -41160,6 +41590,16 @@
     "diec": "Diec"
   },
   {
+    "paraula": "Superbowl",
+    "infinitiu": "Superbowl",
+    "codi": "NPFS000",
+    "rimacons": "oβl",
+    "sil": "3",
+    "vicc": "NO",
+    "viq": "Viq",
+    "diec": "NO"
+  },
+  {
     "paraula": "superbs",
     "infinitiu": "superb",
     "codi": "AQ0MP0",
@@ -42728,6 +43168,16 @@
     "vicc": "NO",
     "viq": "Viq",
     "diec": "NO"
+  },
+  {
+    "paraula": "torrs",
+    "infinitiu": "torr",
+    "codi": "NCMP000",
+    "rimacons": "ɔɾrs",
+    "sil": "1",
+    "vicc": "Vicc",
+    "viq": "NO",
+    "diec": "Diec"
   },
   {
     "paraula": "Tórshavn",
@@ -45920,6 +46370,26 @@
     "diec": "Diec"
   },
   {
+    "paraula": "xampurrin",
+    "infinitiu": "xampurrar",
+    "codi": "VMM03P0Y",
+    "rimacons": "urin",
+    "sil": "3",
+    "vicc": "Vicc",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
+    "paraula": "xampurrin",
+    "infinitiu": "xampurrar",
+    "codi": "VMSP3P0Y",
+    "rimacons": "urin",
+    "sil": "3",
+    "vicc": "Vicc",
+    "viq": "NO",
+    "diec": "Diec"
+  },
+  {
     "paraula": "xancles",
     "infinitiu": "xancla",
     "codi": "NCFP000",
@@ -46570,6 +47040,16 @@
     "diec": "NO"
   },
   {
+    "paraula": "Zengirli",
+    "infinitiu": "Zengirli",
+    "codi": "NPCSG00",
+    "rimacons": "iɾli",
+    "sil": "3",
+    "vicc": "NO",
+    "viq": "Viq",
+    "diec": "NO"
+  },
+  {
     "paraula": "zeugma",
     "infinitiu": "zeugma",
     "codi": "NCMS000",
@@ -46778,5415 +47258,5 @@
     "vicc": "NO",
     "viq": "Viq",
     "diec": "NO"
-  },
-  {
-    "paraula": "abeurin",
-    "infinitiu": "abeurar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɛwɾin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "abeurin",
-    "infinitiu": "abeurar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɛwɾin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "abordi",
-    "infinitiu": "abordar",
-    "codi": "VMM03S0Y",
-    "rimacons": "oɾði",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "abordi",
-    "infinitiu": "abordar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "oɾði",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "abordi",
-    "infinitiu": "abordar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "oɾði",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "abordin",
-    "infinitiu": "abordar",
-    "codi": "VMM03P0Y",
-    "rimacons": "oɾðin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "abordin",
-    "infinitiu": "abordar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "oɾðin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "acuind",
-    "infinitiu": "acuindar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ujnt",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "acuindi",
-    "infinitiu": "acuindar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ujndi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "acuindi",
-    "infinitiu": "acuindar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ujndi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "acuindi",
-    "infinitiu": "acuindar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ujndi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "acuindin",
-    "infinitiu": "acuindar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ujndin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "acuindin",
-    "infinitiu": "acuindar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ujndin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "acuindis",
-    "infinitiu": "acuindar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ujndis",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "adequo",
-    "infinitiu": "adequar",
-    "codi": "VMIP1S0Y",
-    "rimacons": "ekwo",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "adeqüi",
-    "infinitiu": "adequar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ekwi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "adeqüi",
-    "infinitiu": "adequar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ekwi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "adeqüi",
-    "infinitiu": "adequar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ekwi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "adeqüin",
-    "infinitiu": "adequar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ekwin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "adeqüin",
-    "infinitiu": "adequar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ekwin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "adeqüis",
-    "infinitiu": "adequar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ekwis",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aflongin",
-    "infinitiu": "aflonjar",
-    "codi": "VMM03P0Y",
-    "rimacons": "onʒin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aflongin",
-    "infinitiu": "aflonjar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "onʒin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aflongis",
-    "infinitiu": "aflonjar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "onʒis",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aflonj",
-    "infinitiu": "aflonjar",
-    "codi": "VMIP1S0B",
-    "rimacons": "onʒ",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aidi",
-    "infinitiu": "aidar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ajði",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aidi",
-    "infinitiu": "aidar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ajði",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aidi",
-    "infinitiu": "aidar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ajði",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aidin",
-    "infinitiu": "aidar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ajðin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aidin",
-    "infinitiu": "aidar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ajðin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aidis",
-    "infinitiu": "aidar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ajðis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "alegr",
-    "infinitiu": "alegrar",
-    "codi": "VMIP1S0B",
-    "rimacons": "eɡr",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "ampr",
-    "infinitiu": "amprar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ampɾ",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "ampri",
-    "infinitiu": "amprar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ampɾi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "ampri",
-    "infinitiu": "amprar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ampɾi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "ampri",
-    "infinitiu": "amprar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ampɾi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "amprin",
-    "infinitiu": "amprar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ampɾin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "amprin",
-    "infinitiu": "amprar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ampɾin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "ampris",
-    "infinitiu": "amprar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ampɾis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "apropinquo",
-    "infinitiu": "apropinquar",
-    "codi": "VMIP1S0Y",
-    "rimacons": "iŋkwo",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "apropinqüi",
-    "infinitiu": "apropinquar",
-    "codi": "VMM03S0Y",
-    "rimacons": "iŋkwi",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "apropinqüi",
-    "infinitiu": "apropinquar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "iŋkwi",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "apropinqüi",
-    "infinitiu": "apropinquar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "iŋkwi",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "apropinqüin",
-    "infinitiu": "apropinquar",
-    "codi": "VMM03P0Y",
-    "rimacons": "iŋkwin",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "apropinqüin",
-    "infinitiu": "apropinquar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "iŋkwin",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "apropinqüis",
-    "infinitiu": "apropinquar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "iŋkwis",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "arbr",
-    "infinitiu": "arbrar",
-    "codi": "VMIP1S0B",
-    "rimacons": "aɾbr",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "arrumbin",
-    "infinitiu": "arrumbar",
-    "codi": "VMM03P0Y",
-    "rimacons": "umbin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "arrumbin",
-    "infinitiu": "arrumbar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "umbin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "assuaugi",
-    "infinitiu": "assuaujar",
-    "codi": "VMM03S0Y",
-    "rimacons": "awʒi",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "assuaugi",
-    "infinitiu": "assuaujar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "awʒi",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "assuaugi",
-    "infinitiu": "assuaujar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "awʒi",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "assuaugin",
-    "infinitiu": "assuaujar",
-    "codi": "VMM03P0Y",
-    "rimacons": "awʒin",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "assuaugin",
-    "infinitiu": "assuaujar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "awʒin",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "assuaugis",
-    "infinitiu": "assuaujar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "awʒis",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "assuauig",
-    "infinitiu": "assuaujar",
-    "codi": "VMIP1S0B",
-    "rimacons": "awtʃ",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "atipl",
-    "infinitiu": "atiplar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ipl",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "atipli",
-    "infinitiu": "atiplar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ipli",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "atipli",
-    "infinitiu": "atiplar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ipli",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "atipli",
-    "infinitiu": "atiplar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ipli",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "atiplin",
-    "infinitiu": "atiplar",
-    "codi": "VMM03P0Y",
-    "rimacons": "iplin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "atiplin",
-    "infinitiu": "atiplar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "iplin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "atiplis",
-    "infinitiu": "atiplar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "iplis",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "birbi",
-    "infinitiu": "birbar",
-    "codi": "VMM03S0Y",
-    "rimacons": "iɾβi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "birbi",
-    "infinitiu": "birbar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "iɾβi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "birbi",
-    "infinitiu": "birbar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "iɾβi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "birbin",
-    "infinitiu": "birbar",
-    "codi": "VMM03P0Y",
-    "rimacons": "iɾβin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "birbin",
-    "infinitiu": "birbar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "iɾβin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "birbis",
-    "infinitiu": "birbar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "iɾβis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "birl",
-    "infinitiu": "birlar",
-    "codi": "VMIP1S0B",
-    "rimacons": "iɾl",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "birlin",
-    "infinitiu": "birlar",
-    "codi": "VMM03P0Y",
-    "rimacons": "iɾlin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "birlin",
-    "infinitiu": "birlar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "iɾlin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "birlis",
-    "infinitiu": "birlar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "iɾlis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "bronz",
-    "infinitiu": "bronzar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ɔnz",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "bronzi",
-    "infinitiu": "bronzar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ɔnzi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "bronzi",
-    "infinitiu": "bronzar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ɔnzi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "bronzi",
-    "infinitiu": "bronzar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ɔnzi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "bronzin",
-    "infinitiu": "bronzar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɔnzin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "bronzin",
-    "infinitiu": "bronzar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɔnzin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "bronzis",
-    "infinitiu": "bronzar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ɔnzis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "brunz",
-    "infinitiu": "brunzir",
-    "codi": "VMIP1S0Z",
-    "rimacons": "unz",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "brunzi",
-    "infinitiu": "brunzir",
-    "codi": "VMM03S0Y",
-    "rimacons": "unzi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "brunzi",
-    "infinitiu": "brunzir",
-    "codi": "VMSP1S0Y",
-    "rimacons": "unzi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "brunzi",
-    "infinitiu": "brunzir",
-    "codi": "VMSP3S0Y",
-    "rimacons": "unzi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "brunzin",
-    "infinitiu": "brunzir",
-    "codi": "VMM03P0Y",
-    "rimacons": "unzin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "brunzin",
-    "infinitiu": "brunzir",
-    "codi": "VMSP3P0Y",
-    "rimacons": "unzin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "brunzis",
-    "infinitiu": "brunzir",
-    "codi": "VMSP2S0Y",
-    "rimacons": "unzis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burgi",
-    "infinitiu": "burjar",
-    "codi": "VMM03S0Y",
-    "rimacons": "uɾʒi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burgi",
-    "infinitiu": "burjar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "uɾʒi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burgi",
-    "infinitiu": "burjar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "uɾʒi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burgin",
-    "infinitiu": "burjar",
-    "codi": "VMM03P0Y",
-    "rimacons": "uɾʒin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burgin",
-    "infinitiu": "burjar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "uɾʒin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burgis",
-    "infinitiu": "burjar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "uɾʒis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burj",
-    "infinitiu": "burjar",
-    "codi": "VMIP1S0B",
-    "rimacons": "uɾʒ",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burl",
-    "infinitiu": "burlar",
-    "codi": "VMIP1S0B",
-    "rimacons": "uɾl",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burli",
-    "infinitiu": "burlar",
-    "codi": "VMM03S0Y",
-    "rimacons": "uɾli",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burli",
-    "infinitiu": "burlar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "uɾli",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burli",
-    "infinitiu": "burlar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "uɾli",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burlin",
-    "infinitiu": "burlar",
-    "codi": "VMM03P0Y",
-    "rimacons": "uɾlin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burlin",
-    "infinitiu": "burlar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "uɾlin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burlis",
-    "infinitiu": "burlar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "uɾlis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burx",
-    "infinitiu": "burxar",
-    "codi": "VMIP1S0B",
-    "rimacons": "uɾʃ",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burxi",
-    "infinitiu": "burxar",
-    "codi": "VMM03S0Y",
-    "rimacons": "uɾʃi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burxi",
-    "infinitiu": "burxar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "uɾʃi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burxi",
-    "infinitiu": "burxar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "uɾʃi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burxin",
-    "infinitiu": "burxar",
-    "codi": "VMM03P0Y",
-    "rimacons": "uɾʃin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burxin",
-    "infinitiu": "burxar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "uɾʃin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burxis",
-    "infinitiu": "burxar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "uɾʃis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "cilindrin",
-    "infinitiu": "cilindrar",
-    "codi": "VMM03P0Y",
-    "rimacons": "indɾin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "cilindrin",
-    "infinitiu": "cilindrar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "indɾin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "clenx",
-    "infinitiu": "clenxar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ɛnʃ",
-    "sil": "1",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "clenxin",
-    "infinitiu": "clenxar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɛnʃin",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "clenxin",
-    "infinitiu": "clenxar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɛnʃin",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "clenxis",
-    "infinitiu": "clenxar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ɛnʃis",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "coadjuv",
-    "infinitiu": "coadjuvar",
-    "codi": "VMIP1S0B",
-    "rimacons": "uv",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "coadjuvin",
-    "infinitiu": "coadjuvar",
-    "codi": "VMM03P0Y",
-    "rimacons": "uvin",
-    "sil": "4",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "coadjuvin",
-    "infinitiu": "coadjuvar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "uvin",
-    "sil": "4",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "condemn",
-    "infinitiu": "condemnar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ɛmn",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "condemni",
-    "infinitiu": "condemnar",
-    "codi": "VMM03S0Y",
-    "rimacons": "emni",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "condemni",
-    "infinitiu": "condemnar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "emni",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "condemni",
-    "infinitiu": "condemnar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "emni",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "condemnin",
-    "infinitiu": "condemnar",
-    "codi": "VMM03P0Y",
-    "rimacons": "emnin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "condemnin",
-    "infinitiu": "condemnar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "emnin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "condemnis",
-    "infinitiu": "condemnar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "əmnis",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "const",
-    "infinitiu": "constar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ɔnst",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "consti",
-    "infinitiu": "constar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ɔnsti",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "consti",
-    "infinitiu": "constar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ɔnsti",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "consti",
-    "infinitiu": "constar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ɔnsti",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "constin",
-    "infinitiu": "constar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɔnstin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "constin",
-    "infinitiu": "constar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɔnstin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "constis",
-    "infinitiu": "constar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ɔnstis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "contempl",
-    "infinitiu": "contemplar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ɛmpl",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "contempli",
-    "infinitiu": "contemplar",
-    "codi": "VMM03S0Y",
-    "rimacons": "empli",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "contempli",
-    "infinitiu": "contemplar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "empli",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "contempli",
-    "infinitiu": "contemplar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "empli",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "contemplin",
-    "infinitiu": "contemplar",
-    "codi": "VMM03P0Y",
-    "rimacons": "emplin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "contemplin",
-    "infinitiu": "contemplar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "emplin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "contemplis",
-    "infinitiu": "contemplar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "əmplis",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "coresforç",
-    "infinitiu": "coresforçar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ɔrs",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "corfin",
-    "infinitiu": "corfar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɔɾfin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "corfin",
-    "infinitiu": "corfar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɔɾfin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "corrompi",
-    "infinitiu": "corrompre",
-    "codi": "VMM03S0Y",
-    "rimacons": "ompi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "corrompi",
-    "infinitiu": "corrompre",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ompi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "corrompi",
-    "infinitiu": "corrompre",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ompi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "corrompin",
-    "infinitiu": "corrompre",
-    "codi": "VMM03P0Y",
-    "rimacons": "ompin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "corrompin",
-    "infinitiu": "corrompre",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ompin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "corrompis",
-    "infinitiu": "corrompre",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ompis",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "cotni",
-    "infinitiu": "cotnar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ɔnni",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "cotni",
-    "infinitiu": "cotnar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ɔnni",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "cotni",
-    "infinitiu": "cotnar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ɔnni",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "cotnin",
-    "infinitiu": "cotnar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɔnnin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "cotnin",
-    "infinitiu": "cotnar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɔnnin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "cotnis",
-    "infinitiu": "cotnar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ɔnnis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "cuin",
-    "infinitiu": "cuinar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ujn",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "decurvi",
-    "infinitiu": "decurvar",
-    "codi": "VMM03S0Y",
-    "rimacons": "uɾvi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "decurvi",
-    "infinitiu": "decurvar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "uɾvi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "decurvi",
-    "infinitiu": "decurvar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "uɾvi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "decurvin",
-    "infinitiu": "decurvar",
-    "codi": "VMM03P0Y",
-    "rimacons": "uɾvin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "decurvin",
-    "infinitiu": "decurvar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "uɾvin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "decurvis",
-    "infinitiu": "decurvar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "uɾvis",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "deflegm",
-    "infinitiu": "deflegmar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ɛmm",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "deflegmi",
-    "infinitiu": "deflegmar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ɛmmi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "deflegmi",
-    "infinitiu": "deflegmar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ɛmmi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "deflegmi",
-    "infinitiu": "deflegmar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ɛmmi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "deflegmin",
-    "infinitiu": "deflegmar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɛmmin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "deflegmin",
-    "infinitiu": "deflegmar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɛmmin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "deflegmis",
-    "infinitiu": "deflegmar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ɛmmis",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desarregli",
-    "infinitiu": "desarreglar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ɛɡɡli",
-    "sil": "4",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desarregli",
-    "infinitiu": "desarreglar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ɛɡɡli",
-    "sil": "4",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desarregli",
-    "infinitiu": "desarreglar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ɛɡɡli",
-    "sil": "4",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desarreglin",
-    "infinitiu": "desarreglar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɛɡɡlin",
-    "sil": "4",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desarreglin",
-    "infinitiu": "desarreglar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɛɡɡlin",
-    "sil": "4",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "deshonr",
-    "infinitiu": "deshonrar",
-    "codi": "VMIP1S0B",
-    "rimacons": "onr",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "deshonri",
-    "infinitiu": "deshonrar",
-    "codi": "VMM03S0Y",
-    "rimacons": "onri",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "deshonri",
-    "infinitiu": "deshonrar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "onri",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "deshonri",
-    "infinitiu": "deshonrar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "onri",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "deshonrin",
-    "infinitiu": "deshonrar",
-    "codi": "VMM03P0Y",
-    "rimacons": "onrin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "deshonrin",
-    "infinitiu": "deshonrar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "onrin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "deshonris",
-    "infinitiu": "deshonrar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "onris",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "destorb",
-    "infinitiu": "destorbar",
-    "codi": "VMIP1S0B",
-    "rimacons": "oɾp",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "destremp",
-    "infinitiu": "destrempar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ɛmp",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "diafragm",
-    "infinitiu": "diafragmar",
-    "codi": "VMIP1S0B",
-    "rimacons": "amm",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "diafragmin",
-    "infinitiu": "diafragmar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ammin",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "diafragmin",
-    "infinitiu": "diafragmar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ammin",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "disbauxi",
-    "infinitiu": "disbauxar",
-    "codi": "VMM03S0Y",
-    "rimacons": "awtsi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "disbauxi",
-    "infinitiu": "disbauxar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "awtsi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "disbauxi",
-    "infinitiu": "disbauxar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "awtsi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "disbauxin",
-    "infinitiu": "disbauxar",
-    "codi": "VMM03P0Y",
-    "rimacons": "awtsin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "disbauxin",
-    "infinitiu": "disbauxar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "awtsin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "disbauxis",
-    "infinitiu": "disbauxar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "awtsis",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "eixampl",
-    "infinitiu": "eixamplar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ampl",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "eixamplin",
-    "infinitiu": "eixamplar",
-    "codi": "VMM03P0Y",
-    "rimacons": "amplin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "eixamplin",
-    "infinitiu": "eixamplar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "amplin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "eixaugui",
-    "infinitiu": "eixaugar",
-    "codi": "VMM03S0Y",
-    "rimacons": "awɣi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "eixaugui",
-    "infinitiu": "eixaugar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "awɣi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "eixaugui",
-    "infinitiu": "eixaugar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "awɣi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "eixauguis",
-    "infinitiu": "eixaugar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "awɣis",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "elucubr",
-    "infinitiu": "elucubrar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ubr",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "emmangrin",
-    "infinitiu": "emmangrar",
-    "codi": "VMM03P0Y",
-    "rimacons": "aŋɡɾin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "emmangrin",
-    "infinitiu": "emmangrar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "aŋɡɾin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "emmangris",
-    "infinitiu": "emmangrar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "aŋɡɾis",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "empedr",
-    "infinitiu": "empedrar",
-    "codi": "VMIP1S0B",
-    "rimacons": "edr",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "empelti",
-    "infinitiu": "empeltar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ɛlti",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "empelti",
-    "infinitiu": "empeltar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ɛlti",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "empelti",
-    "infinitiu": "empeltar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ɛlti",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "empeltin",
-    "infinitiu": "empeltar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɛltin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "empeltin",
-    "infinitiu": "empeltar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɛltin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "emporpri",
-    "infinitiu": "emporprar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ɔɾpɾi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "emporpri",
-    "infinitiu": "emporprar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ɔɾpɾi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "emporpri",
-    "infinitiu": "emporprar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ɔɾpɾi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "emporprin",
-    "infinitiu": "emporprar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɔɾpɾin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "emporprin",
-    "infinitiu": "emporprar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɔɾpɾin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "emporpris",
-    "infinitiu": "emporprar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ɔɾpɾis",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "empri",
-    "infinitiu": "emprar",
-    "codi": "VMM03S0Y",
-    "rimacons": "empɾi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "empri",
-    "infinitiu": "emprar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "empɾi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "empri",
-    "infinitiu": "emprar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "empɾi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "encofr",
-    "infinitiu": "encofrar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ofr",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "encontri",
-    "infinitiu": "encontrar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ontɾi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "encontri",
-    "infinitiu": "encontrar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ontɾi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "encontri",
-    "infinitiu": "encontrar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ontɾi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "encontrin",
-    "infinitiu": "encontrar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ontɾin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "encontrin",
-    "infinitiu": "encontrar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ontɾin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "encontris",
-    "infinitiu": "encontrar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ontɾis",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "enfeltri",
-    "infinitiu": "enfeltrar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ɛltɾi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "enfeltri",
-    "infinitiu": "enfeltrar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ɛltɾi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "enfeltri",
-    "infinitiu": "enfeltrar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ɛltɾi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "enfeltrin",
-    "infinitiu": "enfeltrar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɛltɾin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "enfeltrin",
-    "infinitiu": "enfeltrar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɛltɾin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "enfeltris",
-    "infinitiu": "enfeltrar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ɛltɾis",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "engosp",
-    "infinitiu": "engospar",
-    "codi": "VMIP1S0B",
-    "rimacons": "osp",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "engospi",
-    "infinitiu": "engospar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ospi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "engospi",
-    "infinitiu": "engospar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ospi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "engospi",
-    "infinitiu": "engospar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ospi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "engospin",
-    "infinitiu": "engospar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ospin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "engospin",
-    "infinitiu": "engospar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ospin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "engospis",
-    "infinitiu": "engospar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ospis",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "engraelli",
-    "infinitiu": "engraellar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ɛji",
-    "sil": "4",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "engraelli",
-    "infinitiu": "engraellar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ɛji",
-    "sil": "4",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "engraelli",
-    "infinitiu": "engraellar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ɛji",
-    "sil": "4",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "engraellin",
-    "infinitiu": "engraellar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɛjin",
-    "sil": "4",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "engraellin",
-    "infinitiu": "engraellar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɛjin",
-    "sil": "4",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "engraellis",
-    "infinitiu": "engraellar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ɛjis",
-    "sil": "4",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "entregui",
-    "infinitiu": "entregar",
-    "codi": "VMM03S0Y",
-    "rimacons": "əɣi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "entregui",
-    "infinitiu": "entregar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "əɣi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "entregui",
-    "infinitiu": "entregar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "əɣi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "entreguin",
-    "infinitiu": "entregar",
-    "codi": "VMM03P0Y",
-    "rimacons": "əɣin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "entreguin",
-    "infinitiu": "entregar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "əɣin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "entreguis",
-    "infinitiu": "entregar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "əɣis",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "envidri",
-    "infinitiu": "envidrar",
-    "codi": "VMM03S0Y",
-    "rimacons": "iðɾi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "envidri",
-    "infinitiu": "envidrar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "iðɾi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "envidri",
-    "infinitiu": "envidrar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "iðɾi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "envidrin",
-    "infinitiu": "envidrar",
-    "codi": "VMM03P0Y",
-    "rimacons": "iðɾin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "envidrin",
-    "infinitiu": "envidrar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "iðɾin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "envidris",
-    "infinitiu": "envidrar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "iðɾis",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "enviud",
-    "infinitiu": "enviudar",
-    "codi": "VMIP1S0B",
-    "rimacons": "iwt",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "enviudi",
-    "infinitiu": "enviudar",
-    "codi": "VMM03S0Y",
-    "rimacons": "iwði",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "enviudi",
-    "infinitiu": "enviudar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "iwði",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "enviudi",
-    "infinitiu": "enviudar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "iwði",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "enviudin",
-    "infinitiu": "enviudar",
-    "codi": "VMM03P0Y",
-    "rimacons": "iwðin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "enviudin",
-    "infinitiu": "enviudar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "iwðin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "enviudis",
-    "infinitiu": "enviudar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "iwðis",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esblaim",
-    "infinitiu": "esblaimar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ajm",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esblaimi",
-    "infinitiu": "esblaimar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ajmi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esblaimi",
-    "infinitiu": "esblaimar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ajmi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esblaimi",
-    "infinitiu": "esblaimar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ajmi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esblaimin",
-    "infinitiu": "esblaimar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ajmin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esblaimin",
-    "infinitiu": "esblaimar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ajmin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esblaimis",
-    "infinitiu": "esblaimar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ajmis",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esbotzi",
-    "infinitiu": "esbotzar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ɔdzi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esbotzi",
-    "infinitiu": "esbotzar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ɔdzi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esbotzi",
-    "infinitiu": "esbotzar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ɔdzi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esbotzin",
-    "infinitiu": "esbotzar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɔdzin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esbotzin",
-    "infinitiu": "esbotzar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɔdzin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esbotzis",
-    "infinitiu": "esbotzar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ɔdzis",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "escalabr",
-    "infinitiu": "escalabrar",
-    "codi": "VMIP1S0B",
-    "rimacons": "abr",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "escolti",
-    "infinitiu": "escoltar",
-    "codi": "VMM03S0Y",
-    "rimacons": "olti",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "escolti",
-    "infinitiu": "escoltar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "olti",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "escolti",
-    "infinitiu": "escoltar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "olti",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "escoltin",
-    "infinitiu": "escoltar",
-    "codi": "VMM03P0Y",
-    "rimacons": "oltin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "escoltin",
-    "infinitiu": "escoltar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "oltin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esfondr",
-    "infinitiu": "esfondrar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ondr",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esmorz",
-    "infinitiu": "esmorzar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ɔɾz",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esmorzi",
-    "infinitiu": "esmorzar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ɔɾzi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esmorzi",
-    "infinitiu": "esmorzar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ɔɾzi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esmorzi",
-    "infinitiu": "esmorzar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ɔɾzi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esmorzin",
-    "infinitiu": "esmorzar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɔɾzin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esmorzin",
-    "infinitiu": "esmorzar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɔɾzin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esmorzis",
-    "infinitiu": "esmorzar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ɔɾzis",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espatl",
-    "infinitiu": "espatlar",
-    "codi": "VMIP1S0B",
-    "rimacons": "adl",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "espatlin",
-    "infinitiu": "espatlar",
-    "codi": "VMM03P0Y",
-    "rimacons": "adlin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "espatlin",
-    "infinitiu": "espatlar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "adlin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "espatlis",
-    "infinitiu": "espatlar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "adlis",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "espoltri",
-    "infinitiu": "espoltrar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ɔltɾi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espoltri",
-    "infinitiu": "espoltrar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ɔltɾi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espoltri",
-    "infinitiu": "espoltrar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ɔltɾi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espoltrin",
-    "infinitiu": "espoltrar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɔltɾin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espoltrin",
-    "infinitiu": "espoltrar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɔltɾin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espoltris",
-    "infinitiu": "espoltrar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ɔltɾis",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espongi",
-    "infinitiu": "esponjar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ɔnʒi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espongi",
-    "infinitiu": "esponjar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ɔnʒi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espongi",
-    "infinitiu": "esponjar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ɔnʒi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espongin",
-    "infinitiu": "esponjar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɔnʒin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espongin",
-    "infinitiu": "esponjar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɔnʒin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esponj",
-    "infinitiu": "esponjar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ɔnʒ",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "estupri",
-    "infinitiu": "estuprar",
-    "codi": "VMM03S0Y",
-    "rimacons": "upɾi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "estupri",
-    "infinitiu": "estuprar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "upɾi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "estupri",
-    "infinitiu": "estuprar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "upɾi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "estuprin",
-    "infinitiu": "estuprar",
-    "codi": "VMM03P0Y",
-    "rimacons": "upɾin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "estuprin",
-    "infinitiu": "estuprar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "upɾin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "estupris",
-    "infinitiu": "estuprar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "upɾis",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esvolv",
-    "infinitiu": "esvolvar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ɔlv",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esvolvi",
-    "infinitiu": "esvolvar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ɔlvi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esvolvi",
-    "infinitiu": "esvolvar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ɔlvi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esvolvi",
-    "infinitiu": "esvolvar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ɔlvi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esvolvin",
-    "infinitiu": "esvolvar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɔlvin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esvolvin",
-    "infinitiu": "esvolvar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɔlvin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esvolvis",
-    "infinitiu": "esvolvar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ɔlvis",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "execr",
-    "infinitiu": "execrar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ɛkr",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "execri",
-    "infinitiu": "execrar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ɛkɾi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "execri",
-    "infinitiu": "execrar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ɛkɾi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "execri",
-    "infinitiu": "execrar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ɛkɾi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "execrin",
-    "infinitiu": "execrar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɛkɾin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "execrin",
-    "infinitiu": "execrar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɛkɾin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "execris",
-    "infinitiu": "execrar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ɛkɾis",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "extirpi",
-    "infinitiu": "extirpar",
-    "codi": "VMM03S0Y",
-    "rimacons": "iɾpi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "extirpi",
-    "infinitiu": "extirpar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "iɾpi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "extirpi",
-    "infinitiu": "extirpar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "iɾpi",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "extirpin",
-    "infinitiu": "extirpar",
-    "codi": "VMM03P0Y",
-    "rimacons": "iɾpin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "extirpin",
-    "infinitiu": "extirpar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "iɾpin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "extirpis",
-    "infinitiu": "extirpar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "iɾpis",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "fermi",
-    "infinitiu": "fermar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ɛɾmi",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "fermi",
-    "infinitiu": "fermar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ɛɾmi",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "fermi",
-    "infinitiu": "fermar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ɛɾmi",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "flirti",
-    "infinitiu": "flirtar",
-    "codi": "VMM03S0Y",
-    "rimacons": "iɾti",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "flirti",
-    "infinitiu": "flirtar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "iɾti",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "flirti",
-    "infinitiu": "flirtar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "iɾti",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "flirtin",
-    "infinitiu": "flirtar",
-    "codi": "VMM03P0Y",
-    "rimacons": "iɾtin",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "flirtin",
-    "infinitiu": "flirtar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "iɾtin",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "flirtis",
-    "infinitiu": "flirtar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "iɾtis",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "folr",
-    "infinitiu": "folrar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ɔlr",
-    "sil": "1",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "fotis",
-    "infinitiu": "fotre",
-    "codi": "VMSP2S0Y",
-    "rimacons": "otis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "freni",
-    "infinitiu": "frenar",
-    "codi": "VMM03S0Y",
-    "rimacons": "eni",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "freni",
-    "infinitiu": "frenar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "eni",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "freni",
-    "infinitiu": "frenar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "eni",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "frenin",
-    "infinitiu": "frenar",
-    "codi": "VMM03P0Y",
-    "rimacons": "enin",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "frenin",
-    "infinitiu": "frenar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "enin",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "frenis",
-    "infinitiu": "frenar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "enis",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "fóssim",
-    "infinitiu": "ser",
-    "codi": "VSSI1P02",
-    "rimacons": "osim",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "fóssiu",
-    "infinitiu": "ser",
-    "codi": "VSSI2P02",
-    "rimacons": "osiw",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "gaubi",
-    "infinitiu": "gaubar",
-    "codi": "VMM03S0Y",
-    "rimacons": "awβi",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "gaubi",
-    "infinitiu": "gaubar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "awβi",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "gaubi",
-    "infinitiu": "gaubar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "awβi",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "gaubin",
-    "infinitiu": "gaubar",
-    "codi": "VMM03P0Y",
-    "rimacons": "awβin",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "gaubin",
-    "infinitiu": "gaubar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "awβin",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "gaubis",
-    "infinitiu": "gaubar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "awβis",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "gronsin",
-    "infinitiu": "gronsar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɔnsin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "gronsin",
-    "infinitiu": "gronsar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɔnsin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "honr",
-    "infinitiu": "honrar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ɔnr",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "idolatrin",
-    "infinitiu": "idolatrar",
-    "codi": "VMM03P0Y",
-    "rimacons": "atɾin",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "idolatrin",
-    "infinitiu": "idolatrar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "atɾin",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "inst",
-    "infinitiu": "instar",
-    "codi": "VMIP1S0B",
-    "rimacons": "inst",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "insti",
-    "infinitiu": "instar",
-    "codi": "VMM03S0Y",
-    "rimacons": "insti",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "insti",
-    "infinitiu": "instar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "insti",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "insti",
-    "infinitiu": "instar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "insti",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "instin",
-    "infinitiu": "instar",
-    "codi": "VMM03P0Y",
-    "rimacons": "instin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "instin",
-    "infinitiu": "instar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "instin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "instis",
-    "infinitiu": "instar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "instis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "jangl",
-    "infinitiu": "janglar",
-    "codi": "VMIP1S0B",
-    "rimacons": "aŋɡl",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "janglin",
-    "infinitiu": "janglar",
-    "codi": "VMM03P0Y",
-    "rimacons": "aŋɡlin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "janglin",
-    "infinitiu": "janglar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "aŋɡlin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "jaupi",
-    "infinitiu": "jaupar",
-    "codi": "VMM03S0Y",
-    "rimacons": "awpi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "jaupi",
-    "infinitiu": "jaupar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "awpi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "jaupi",
-    "infinitiu": "jaupar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "awpi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "jaupin",
-    "infinitiu": "jaupar",
-    "codi": "VMM03P0Y",
-    "rimacons": "awpin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "jaupin",
-    "infinitiu": "jaupar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "awpin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "jaupis",
-    "infinitiu": "jaupar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "awpis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "legisl",
-    "infinitiu": "legislar",
-    "codi": "VMIP1S0B",
-    "rimacons": "izl",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "legislin",
-    "infinitiu": "legislar",
-    "codi": "VMM03P0Y",
-    "rimacons": "izlin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "legislin",
-    "infinitiu": "legislar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "izlin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "legislis",
-    "infinitiu": "legislar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "izlis",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "lifti",
-    "infinitiu": "liftar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ifti",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "lifti",
-    "infinitiu": "liftar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ifti",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "lifti",
-    "infinitiu": "liftar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ifti",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "liftin",
-    "infinitiu": "liftar",
-    "codi": "VMM03P0Y",
-    "rimacons": "iftin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "liftin",
-    "infinitiu": "liftar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "iftin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "liftis",
-    "infinitiu": "liftar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "iftis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "llencis",
-    "infinitiu": "llençar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ensis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "llesqui",
-    "infinitiu": "llescar",
-    "codi": "VMM03S0Y",
-    "rimacons": "eski",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "llesqui",
-    "infinitiu": "llescar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "eski",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "llesqui",
-    "infinitiu": "llescar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "eski",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "llesquin",
-    "infinitiu": "llescar",
-    "codi": "VMM03P0Y",
-    "rimacons": "eskin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "llesquin",
-    "infinitiu": "llescar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "eskin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "llesquis",
-    "infinitiu": "llescar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "eskis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "lleud",
-    "infinitiu": "lleudar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ewt",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "lleudi",
-    "infinitiu": "lleudar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ewði",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "lleudi",
-    "infinitiu": "lleudar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ewði",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "lleudi",
-    "infinitiu": "lleudar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ewði",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "lleudin",
-    "infinitiu": "lleudar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ewðin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "lleudin",
-    "infinitiu": "lleudar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ewðin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "lleudis",
-    "infinitiu": "lleudar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ewðis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "masturbin",
-    "infinitiu": "masturbar",
-    "codi": "VMM03P0Y",
-    "rimacons": "uɾβin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "masturbin",
-    "infinitiu": "masturbar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "uɾβin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "metamorfosin",
-    "infinitiu": "metamorfosar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ozin",
-    "sil": "5",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "metamorfosin",
-    "infinitiu": "metamorfosar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ozin",
-    "sil": "5",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "minv",
-    "infinitiu": "minvar",
-    "codi": "VMIP1S0B",
-    "rimacons": "iɱv",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "minvi",
-    "infinitiu": "minvar",
-    "codi": "VMM03S0Y",
-    "rimacons": "iɱvi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "minvi",
-    "infinitiu": "minvar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "iɱvi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "minvi",
-    "infinitiu": "minvar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "iɱvi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "minvin",
-    "infinitiu": "minvar",
-    "codi": "VMM03P0Y",
-    "rimacons": "iɱvin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "minvin",
-    "infinitiu": "minvar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "iɱvin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "minvis",
-    "infinitiu": "minvar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "iɱvis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "mirrin",
-    "infinitiu": "mirrar",
-    "codi": "VMM03P0Y",
-    "rimacons": "irin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "mirrin",
-    "infinitiu": "mirrar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "irin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "mirris",
-    "infinitiu": "mirrar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "iris",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "nafr",
-    "infinitiu": "nafrar",
-    "codi": "VMIP1S0B",
-    "rimacons": "afr",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "nafri",
-    "infinitiu": "nafrar",
-    "codi": "VMM03S0Y",
-    "rimacons": "afɾi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "nafri",
-    "infinitiu": "nafrar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "afɾi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "nafri",
-    "infinitiu": "nafrar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "afɾi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "nafrin",
-    "infinitiu": "nafrar",
-    "codi": "VMM03P0Y",
-    "rimacons": "afɾin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "nafrin",
-    "infinitiu": "nafrar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "afɾin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "nafris",
-    "infinitiu": "nafrar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "afɾis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "nyauf",
-    "infinitiu": "nyaufar",
-    "codi": "VMIP1S0B",
-    "rimacons": "awf",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "nyaufi",
-    "infinitiu": "nyaufar",
-    "codi": "VMM03S0Y",
-    "rimacons": "awfi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "nyaufi",
-    "infinitiu": "nyaufar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "awfi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "nyaufi",
-    "infinitiu": "nyaufar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "awfi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "nyaufin",
-    "infinitiu": "nyaufar",
-    "codi": "VMM03P0Y",
-    "rimacons": "awfin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "nyaufin",
-    "infinitiu": "nyaufar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "awfin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "nyaufis",
-    "infinitiu": "nyaufar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "awfis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "omple",
-    "infinitiu": "omplir",
-    "codi": "VMM02S0Y",
-    "rimacons": "omplə",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "pes",
-    "infinitiu": "pesar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ədz",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "pesin",
-    "infinitiu": "pesar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ezin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "pesin",
-    "infinitiu": "pesar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ezin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "pesis",
-    "infinitiu": "pesar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ezis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "podi",
-    "infinitiu": "podar",
-    "codi": "VMM03S0Y",
-    "rimacons": "oði",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "podi",
-    "infinitiu": "podar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "oði",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "podi",
-    "infinitiu": "podar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "oði",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "podis",
-    "infinitiu": "podar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "oðis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "polp",
-    "infinitiu": "polpar",
-    "codi": "VMIP1S0B",
-    "rimacons": "olp",
-    "sil": "1",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "polpi",
-    "infinitiu": "polpar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ɔlpi",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "polpi",
-    "infinitiu": "polpar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ɔlpi",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "polpi",
-    "infinitiu": "polpar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ɔlpi",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "polpin",
-    "infinitiu": "polpar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɔlpin",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "polpin",
-    "infinitiu": "polpar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɔlpin",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "polpis",
-    "infinitiu": "polpar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ɔlpis",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "premsi",
-    "infinitiu": "premsar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ənsi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "premsi",
-    "infinitiu": "premsar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ənsi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "premsi",
-    "infinitiu": "premsar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ənsi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "premsin",
-    "infinitiu": "premsar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ənsin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "premsin",
-    "infinitiu": "premsar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ənsin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "premsis",
-    "infinitiu": "premsar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ənsis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "pretexti",
-    "infinitiu": "pretextar",
-    "codi": "VMM03S0Y",
-    "rimacons": "etsti",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "pretexti",
-    "infinitiu": "pretextar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "etsti",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "pretexti",
-    "infinitiu": "pretextar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "etsti",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "pretextin",
-    "infinitiu": "pretextar",
-    "codi": "VMM03P0Y",
-    "rimacons": "etstin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "pretextin",
-    "infinitiu": "pretextar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "etstin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "pretextis",
-    "infinitiu": "pretextar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "etstis",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "preui",
-    "infinitiu": "preuar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ewi",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "preui",
-    "infinitiu": "preuar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ewi",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "preui",
-    "infinitiu": "preuar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ewi",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "preuin",
-    "infinitiu": "preuar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ewin",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "preuin",
-    "infinitiu": "preuar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ewin",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "preuis",
-    "infinitiu": "preuar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ewis",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "project",
-    "infinitiu": "projectar",
-    "codi": "VMIP1S0B",
-    "rimacons": "adʒətt",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "prov",
-    "infinitiu": "provar",
-    "codi": "VMIP1S0B",
-    "rimacons": "insjə",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "rebl",
-    "infinitiu": "reblar",
-    "codi": "VMIP1S0B",
-    "rimacons": "eβl",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "rebli",
-    "infinitiu": "reblar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ebbli",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "rebli",
-    "infinitiu": "reblar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ebbli",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "rebli",
-    "infinitiu": "reblar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ebbli",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "reblin",
-    "infinitiu": "reblar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ebblin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "reblin",
-    "infinitiu": "reblar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ebblin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "reblis",
-    "infinitiu": "reblar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ebblis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "recicl",
-    "infinitiu": "reciclar",
-    "codi": "VMIP1S0B",
-    "rimacons": "ikl",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "reciclin",
-    "infinitiu": "reciclar",
-    "codi": "VMM03P0Y",
-    "rimacons": "iklin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "reciclin",
-    "infinitiu": "reciclar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "iklin",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "refredin",
-    "infinitiu": "refredar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɛðin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "refredin",
-    "infinitiu": "refredar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɛðin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "regl",
-    "infinitiu": "reglar",
-    "codi": "VMIP1S0B",
-    "rimacons": "eɣl",
-    "sil": "1",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "reglis",
-    "infinitiu": "reglar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "eɡɡlis",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "regolf",
-    "infinitiu": "regolfar",
-    "codi": "VMIP1S0B",
-    "rimacons": "olf",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "reumpl",
-    "infinitiu": "reomplir",
-    "codi": "VMIP1S0B",
-    "rimacons": "ɛwmpl",
-    "sil": "1",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "reumpl",
-    "infinitiu": "reomplir",
-    "codi": "VMIP3S0B",
-    "rimacons": "ɛwmpl",
-    "sil": "1",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "reumpl",
-    "infinitiu": "reomplir",
-    "codi": "VMM02S0B",
-    "rimacons": "ɛwmpl",
-    "sil": "1",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "reumplen",
-    "infinitiu": "reomplir",
-    "codi": "VMIP3P0B",
-    "rimacons": "ɛwmplən",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "reumpli",
-    "infinitiu": "reomplir",
-    "codi": "VMM03S0B",
-    "rimacons": "ɛwmpli",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "reumpli",
-    "infinitiu": "reomplir",
-    "codi": "VMSP1S0B",
-    "rimacons": "ɛwmpli",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "reumpli",
-    "infinitiu": "reomplir",
-    "codi": "VMSP3S0B",
-    "rimacons": "ɛwmpli",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "reumplin",
-    "infinitiu": "reomplir",
-    "codi": "VMM03P0B",
-    "rimacons": "ɛwmplin",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "reumplin",
-    "infinitiu": "reomplir",
-    "codi": "VMSP3P0B",
-    "rimacons": "ɛwmplin",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "reumplis",
-    "infinitiu": "reomplir",
-    "codi": "VMSP2S0B",
-    "rimacons": "ɛwmplis",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "reumpls",
-    "infinitiu": "reomplir",
-    "codi": "VMIP2S0B",
-    "rimacons": "ɛwns",
-    "sil": "1",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "ritmi",
-    "infinitiu": "ritmar",
-    "codi": "VMM03S0Y",
-    "rimacons": "immi",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "ritmi",
-    "infinitiu": "ritmar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "immi",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "ritmi",
-    "infinitiu": "ritmar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "immi",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "ritmin",
-    "infinitiu": "ritmar",
-    "codi": "VMM03P0Y",
-    "rimacons": "immin",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "ritmin",
-    "infinitiu": "ritmar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "immin",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "ritmis",
-    "infinitiu": "ritmar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "immis",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "titl",
-    "infinitiu": "titlar",
-    "codi": "VMIP1S0B",
-    "rimacons": "idl",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "titli",
-    "infinitiu": "titlar",
-    "codi": "VMM03S0Y",
-    "rimacons": "idli",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "titli",
-    "infinitiu": "titlar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "idli",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "titli",
-    "infinitiu": "titlar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "idli",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "titlin",
-    "infinitiu": "titlar",
-    "codi": "VMM03P0Y",
-    "rimacons": "idlin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "titlin",
-    "infinitiu": "titlar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "idlin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "titlis",
-    "infinitiu": "titlar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "idlis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "tornis",
-    "infinitiu": "tornar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "oɾnis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "triomf",
-    "infinitiu": "triomfar",
-    "codi": "VMIP1S0B",
-    "rimacons": "oɱf",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "triomfin",
-    "infinitiu": "triomfar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɔɱfin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "triomfin",
-    "infinitiu": "triomfar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɔɱfin",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "ultri",
-    "infinitiu": "ultrar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ultɾi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "ultri",
-    "infinitiu": "ultrar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ultɾi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "ultri",
-    "infinitiu": "ultrar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ultɾi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "ultrin",
-    "infinitiu": "ultrar",
-    "codi": "VMM03P0Y",
-    "rimacons": "ultɾin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "ultrin",
-    "infinitiu": "ultrar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ultɾin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "ultris",
-    "infinitiu": "ultrar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ultɾis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "unfl",
-    "infinitiu": "unflar",
-    "codi": "VMIP1S0B",
-    "rimacons": "uɱfl",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "unfli",
-    "infinitiu": "unflar",
-    "codi": "VMM03S0Y",
-    "rimacons": "uɱfli",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "unfli",
-    "infinitiu": "unflar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "uɱfli",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "unfli",
-    "infinitiu": "unflar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "uɱfli",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "unflin",
-    "infinitiu": "unflar",
-    "codi": "VMM03P0Y",
-    "rimacons": "uɱflin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "unflin",
-    "infinitiu": "unflar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "uɱflin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "unflis",
-    "infinitiu": "unflar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "uɱflis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xiscl",
-    "infinitiu": "xisclar",
-    "codi": "VMIP1S0B",
-    "rimacons": "iskl",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xiscli",
-    "infinitiu": "xisclar",
-    "codi": "VMM03S0Y",
-    "rimacons": "iskli",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xiscli",
-    "infinitiu": "xisclar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "iskli",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xiscli",
-    "infinitiu": "xisclar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "iskli",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xisclin",
-    "infinitiu": "xisclar",
-    "codi": "VMM03P0Y",
-    "rimacons": "isklin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xisclin",
-    "infinitiu": "xisclar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "isklin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xisclis",
-    "infinitiu": "xisclar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "isklis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xiv",
-    "infinitiu": "xivar",
-    "codi": "VMIP1S0B",
-    "rimacons": "orzə",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "xupl",
-    "infinitiu": "xuplar",
-    "codi": "VMIP1S0B",
-    "rimacons": "upl",
-    "sil": "1",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xupli",
-    "infinitiu": "xuplar",
-    "codi": "VMM03S0Y",
-    "rimacons": "upli",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xupli",
-    "infinitiu": "xuplar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "upli",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xupli",
-    "infinitiu": "xuplar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "upli",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xuplin",
-    "infinitiu": "xuplar",
-    "codi": "VMM03P0Y",
-    "rimacons": "uplin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xuplin",
-    "infinitiu": "xuplar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "uplin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xuplis",
-    "infinitiu": "xuplar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "uplis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xurmi",
-    "infinitiu": "xurmar",
-    "codi": "VMM03S0Y",
-    "rimacons": "uɾmi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xurmi",
-    "infinitiu": "xurmar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "uɾmi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xurmi",
-    "infinitiu": "xurmar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "uɾmi",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xurmin",
-    "infinitiu": "xurmar",
-    "codi": "VMM03P0Y",
-    "rimacons": "uɾmin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xurmin",
-    "infinitiu": "xurmar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "uɾmin",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xurmis",
-    "infinitiu": "xurmar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "uɾmis",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
   }
 ]
