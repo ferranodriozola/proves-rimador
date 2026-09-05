@@ -1,19 +1,26 @@
 """
-Partir les dues fonts en les columnes d'una línia per fila.
+Partir les fonts en les columnes d'una línia per fila, i calcular-ne la rima.
 
     python3 diccionaris/python/columnes.py
 
-    el diccionari que digui config.py  ->  separat/col_0,1,2,5,6,7,8
-    dialectes_col/<codi>/col_9         ->  col_3 (rima consonant) i col_4 (assonant)
+    el diccionari que digui config.py    ->  separat/col_0,1,2,5,6,7,8
+    <codi>/trans_dicc/col_9              ->  col_3 (rima consonant) i col_4 (assonant)
+    <codi>/apendix/col_9_<codi>          ->  col_3_<codi> i col_4_<codi>
 
 LA REGLA DE LA RIMA ÉS AQUÍ I NOMÉS AQUÍ:
 
     rima consonant = tot el que va darrere de l'ÚLTIM accent primari
     rima assonant  = les vocals de la consonant
 
-La rima no s'edita mai enlloc: el que s'edita és la transcripció, a la col_10.
-Aquest càlcul havia estat escrit dues vegades, en dos scripts diferents, amb un
-comentari a cada banda demanant que no divergissin mai.
+La rima no s'edita mai enlloc: el que s'edita és la transcripció, a la col_10
+que toqui. Aquest càlcul havia estat escrit dues vegades, en dos scripts
+diferents, amb un comentari a cada banda demanant que no divergissin mai.
+
+ÉS LA MATEIXA REGLA PER A LES DUES MEITATS D'UN DIALECTE, i ha de ser-ho: una
+paraula del trans_dicc i una de l'apendix han de poder rimar entre elles. El
+que canvia és amb què es compara la llargada de la columna —el trans_dicc va
+fila per fila amb el diccionari i l'apendix té les seves pròpies files—, i per
+això les dues funcions no en són una de sola amb un paràmetre.
 
 Els números de columna són els de sempre i hi ha forats (el 3, el 4 i el 9 no
 surten del diccionari): el navegador, les llistes i el joc les demanen pel nom
@@ -93,30 +100,14 @@ def partir_diccionari():
     return files
 
 
-def partir_dialecte(codi, files_esperades):
-    """De la transcripció d'un dialecte, la seva rima consonant i l'assonant."""
-    cami = camins.cami_dialecte(codi, 9)
-    if not os.path.exists(cami):
-        avisos.plegar(f"falta {os.path.relpath(cami, camins.ARREL)}, que és la "
-                      f"transcripció del dialecte '{codi}' i d'on surt tota la seva rima.")
+def _rimes_de(transcripcions, on):
+    """La rima consonant i l'assonant de cada transcripció, i les que fan
+    mala cara. "on" només serveix per als missatges."""
+    consonants, assonants, sospitoses = [], [], []
 
-    transcripcions = camins.llegir_columna(cami)
-
-    # Van fila per fila amb el diccionari i no porten cap paraula a dins: si no
-    # tenen la mateixa mida, cada paraula hereta la pronúncia d'una altra.
-    if len(transcripcions) != files_esperades:
-        avisos.plegar(
-            f"el dialecte '{codi}' té {camins.mil(len(transcripcions))} files i el "
-            f"diccionari publicat en té {camins.mil(files_esperades)}."
-            + ("\nEl v.6 i els dialectes encara no conviuen: les formes amb pronom "
-               "haurien de portar la seva transcripció a cada dialecte."
-               if config.CAL_V6 else ""))
-
-    consonants, assonants = [], []
-    sospitoses = []
     for i, transcripcio in enumerate(transcripcions):
         if not transcripcio.strip():
-            avisos.plegar(f"el dialecte '{codi}', fila {i + 1}: transcripció buida. "
+            avisos.plegar(f"{on}, fila {i + 1}: transcripció buida. "
                           "Una paraula sense transcripció no té rima.")
         consonant, assonant = calcular_rimes(transcripcio)
         consonants.append(consonant)
@@ -135,11 +126,67 @@ def partir_dialecte(codi, files_esperades):
         if motius:
             sospitoses.append((i + 1, transcripcio, "; ".join(motius)))
 
+    return consonants, assonants, sospitoses
+
+
+def partir_dialecte(codi, files_esperades):
+    """La rima del trans_dicc: el diccionari sencer, dit en aquest dialecte."""
+    cami = camins.cami_dialecte(codi, 9)
+    if not os.path.exists(cami):
+        avisos.plegar(f"falta {camins.relatiu(cami)}, que és la transcripció del "
+                      f"dialecte '{codi}' i d'on surt tota la seva rima.")
+
+    transcripcions = camins.llegir_columna(cami)
+
+    # Van fila per fila amb el diccionari i no porten cap paraula a dins: si no
+    # tenen la mateixa mida, cada paraula hereta la pronúncia d'una altra.
+    if len(transcripcions) != files_esperades:
+        avisos.plegar(
+            f"el trans_dicc del dialecte '{codi}' té {camins.mil(len(transcripcions))} "
+            f"files i el diccionari publicat en té {camins.mil(files_esperades)}."
+            + ("\nEl v.6 i els dialectes encara no conviuen: les formes amb pronom "
+               "haurien de portar la seva transcripció a cada dialecte."
+               if config.CAL_V6 else ""))
+
+    consonants, assonants, sospitoses = _rimes_de(transcripcions, f"el dialecte '{codi}'")
+
     camins.escriure_columna(camins.cami_dialecte(codi, 3), consonants)
     camins.escriure_columna(camins.cami_dialecte(codi, 4), assonants)
 
-    avisos.nota(f"  {codi}: {len(set(consonants)):>6} rimes consonants, "
+    avisos.nota(f"  {codi} trans_dicc: {len(set(consonants)):>6} rimes consonants, "
                 f"{len(set(assonants)):>4} assonants")
+    return sospitoses
+
+
+def partir_apendix(codi):
+    """La rima de l'apendix: les paraules que només es diuen en aquest dialecte.
+
+    La llargada es compara amb la col_0 del MATEIX apendix i no pas amb el
+    diccionari: aquestes files no són les del diccionari i no n'han de ser
+    tantes."""
+    cami = camins.cami_apendix(codi, 9)
+    if not os.path.exists(cami):
+        avisos.plegar(f"falta {camins.relatiu(cami)}, que és d'on surt la rima de "
+                      f"les paraules pròpies del '{codi}'. La deixa el sincronitzar.py "
+                      f"a partir de la col_10 de l'apendix.")
+
+    transcripcions = camins.llegir_columna(cami)
+    files_esperades = camins.files_de_lapendix(codi)
+    if len(transcripcions) != files_esperades:
+        avisos.plegar(
+            f"la col_9 de l'apendix del '{codi}' té {camins.mil(len(transcripcions))} "
+            f"files i les seves altres columnes en tenen {camins.mil(files_esperades)}. "
+            f"Passa el sincronitzar.py.")
+
+    consonants, assonants, sospitoses = _rimes_de(
+        transcripcions, f"l'apendix del '{codi}'")
+
+    camins.escriure_columna(camins.cami_apendix(codi, 3), consonants)
+    camins.escriure_columna(camins.cami_apendix(codi, 4), assonants)
+
+    avisos.nota(f"  {codi} apendix:    {len(set(consonants)):>6} rimes consonants, "
+                f"{len(set(assonants)):>4} assonants  "
+                f"({camins.mil(files_esperades)} paraules pròpies)")
     return sospitoses
 
 
@@ -148,26 +195,32 @@ def main():
 
     codis = camins.dialectes()
     if not codis:
-        avisos.plegar(f"no hi ha cap dialecte a {os.path.relpath(camins.DIALECTES_COL, camins.ARREL)}.")
+        avisos.plegar(f"no hi ha cap dialecte a {camins.relatiu(camins.DIALECTES_COL)}.")
 
-    avisos.nota(f"\nLa rima de cada dialecte:")
+    avisos.nota("\nLa rima de cada dialecte:")
     sospitoses = []
     for codi in codis:
-        sospitoses.extend((codi, *fila) for fila in partir_dialecte(codi, files))
+        sospitoses.extend((codi, "trans_dicc", *fila) for fila in partir_dialecte(codi, files))
+        if camins.te_apendix(codi):
+            sospitoses.extend((codi, "apendix", *fila) for fila in partir_apendix(codi))
 
     if sospitoses:
         avisos.avis(f"{len(sospitoses)} transcripcions donen una rima que no és "
                     f"(mira el resum de l'execució i dialectes_col/a_revisar.txt)")
         avisos.taula("Transcripcions per revisar",
-                     ["dialecte", "fila", "transcripció", "què hi passa"], sospitoses)
+                     ["dialecte", "on", "fila", "transcripció", "què hi passa"], sospitoses)
 
     # A un fitxer comitejat, i no només al registre: així la llista surt al diff
     # quan canvia i no fa soroll quan no.
+    #
+    # La columna "on" diu de quina meitat del dialecte és la fila, i cal: el
+    # trans_dicc i l'apendix tenen cadascun la seva numeració, i una "fila 40"
+    # sense dir d'on no es pot anar a buscar.
     cami_revisar = os.path.join(camins.DIALECTES_COL, "a_revisar.txt")
     with open(cami_revisar, "w", encoding="utf-8") as fitxer:
         fitxer.write("# Transcripcions que donen una rima que no és.\n")
         fitxer.write("# El genera diccionaris/python/columnes.py a cada passada.\n")
-        fitxer.write("# dialecte | fila | transcripció | què hi passa\n")
+        fitxer.write("# dialecte | on | fila | transcripció | què hi passa\n")
         for fila in sospitoses:
             fitxer.write(" | ".join(str(tros) for tros in fila) + "\n")
 
