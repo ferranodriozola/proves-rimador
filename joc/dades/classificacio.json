@@ -1,5 +1,5 @@
 {
-  "actualitzacio": "04/09/2026 23:37:34",
+  "actualitzacio": "05/09/2026 22:47:55",
   "modalitats": {
     "diaria|dificil|60": {
       "titol": "Paraula del dia · Difícil",
@@ -38,6 +38,13 @@
           "paraula": "ambidextrismes",
           "dialecte": "ca",
           "data": "30/08/2026"
+        },
+        {
+          "sobrenom": "cincsetembre",
+          "punts": 1,
+          "paraula": "setis",
+          "dialecte": "ca",
+          "data": "05/09/2026"
         }
       ]
     },
@@ -57,6 +64,13 @@
           "paraula": "enfoscaments",
           "dialecte": "ca",
           "data": "29/07/2026"
+        },
+        {
+          "sobrenom": "sissetembre",
+          "punts": 3,
+          "paraula": "erotòmana",
+          "dialecte": "ca",
+          "data": "06/09/2026"
         }
       ]
     },
@@ -152,6 +166,13 @@
           "paraula": "llaüt",
           "dialecte": "ca",
           "data": "05/09/2026"
+        },
+        {
+          "sobrenom": "cincsetembre",
+          "punts": 1,
+          "paraula": "defectives",
+          "dialecte": "ca",
+          "data": "06/09/2026"
         }
       ]
     },
@@ -294,6 +315,28 @@
           "data": "03/09/2026"
         }
       ]
+    },
+    "2026-09-05": {
+      "dificil": [
+        {
+          "sobrenom": "cincsetembre",
+          "punts": 1,
+          "paraula": "setis",
+          "dialecte": "ca",
+          "data": "05/09/2026"
+        }
+      ]
+    },
+    "2026-09-06": {
+      "facil": [
+        {
+          "sobrenom": "sissetembre",
+          "punts": 3,
+          "paraula": "erotòmana",
+          "dialecte": "ca",
+          "data": "06/09/2026"
+        }
+      ]
     }
   },
   "diaria_millors": {
@@ -332,6 +375,13 @@
         "paraula": "ambidextrismes",
         "dialecte": "ca",
         "data": "30/08/2026"
+      },
+      {
+        "sobrenom": "cincsetembre",
+        "punts": 1,
+        "paraula": "setis",
+        "dialecte": "ca",
+        "data": "05/09/2026"
       }
     ],
     "facil": [
@@ -348,6 +398,13 @@
         "paraula": "enfoscaments",
         "dialecte": "ca",
         "data": "29/07/2026"
+      },
+      {
+        "sobrenom": "sissetembre",
+        "punts": 3,
+        "paraula": "erotòmana",
+        "dialecte": "ca",
+        "data": "06/09/2026"
       }
     ]
   }
