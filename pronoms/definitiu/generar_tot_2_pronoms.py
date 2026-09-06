@@ -160,7 +160,7 @@ def _parse_parella(text):
     return p_ordenats
 
 
-def ajuntar_i_ordenar_resultats(fitxers, dir_sortida):
+def ajuntar_i_ordenar_resultats(fitxers, dir_sortida, tipus):
     totes_les_linies = []
     primeres_columnes = []
 
@@ -178,7 +178,17 @@ def ajuntar_i_ordenar_resultats(fitxers, dir_sortida):
     totes_les_linies.sort()
     primeres_columnes.sort()
 
-    ruta_totes = os.path.join(dir_sortida, "tots_ajuntats_2_pr.txt")
+    if tipus == "normal":
+        ruta_totes = os.path.join(dir_sortida, "tots_ajuntats_2_pr.txt")
+        ruta_primera_columna = os.path.join(dir_sortida, "totes_primeres_columnes_2_pr.txt")
+    elif tipus == "va":
+        ruta_totes = os.path.join(dir_sortida, "apendix_tots_ajuntats_2_pr_va.txt")
+        ruta_primera_columna = os.path.join(dir_sortida, "apendix_totes_primeres_columnes_2_pr_va.txt")
+    elif tipus == "ca":
+        ruta_totes = os.path.join(dir_sortida, "apendix_tots_ajuntats_2_pr_ca.txt")
+        ruta_primera_columna = os.path.join(dir_sortida, "totes_primeres_columnes_2_pr_ca.txt")
+    else:
+        raise ValueError(f"Tipus desconegut: {tipus}")
     with open(ruta_totes, "w", encoding="utf-8") as f:
         f.write("\n".join(totes_les_linies) + "\n" if totes_les_linies else "")
 
@@ -204,21 +214,21 @@ def main():
     print("--- GENERANT COMBINACIONS NORMALS ---")
     linies_n, fitxers_n, _ = generar(p_normals_exec, DIR_SORTIDA_NORMALS, us_apendix=False)
     if fitxers_n:
-        ajuntar_i_ordenar_resultats(fitxers_n, DIR_SORTIDA_NORMALS)
+        ajuntar_i_ordenar_resultats(fitxers_n, DIR_SORTIDA_NORMALS, "normal")
 
     # 2. GENEREM APÈNDIX VERSIÓ VA
     dir_va = os.path.join(DIR_SORTIDA_APENDIX, "va")
     print(f"\n--- GENERANT APÈNDIX (VERSIÓ VA) A {dir_va} ---")
     linies_va, fitxers_va, _ = generar(p_apendix_exec, dir_va, us_apendix=True, versio_apendix="va")
     if fitxers_va:
-        ajuntar_i_ordenar_resultats(fitxers_va, dir_va)
+        ajuntar_i_ordenar_resultats(fitxers_va, dir_va, "va")
 
     # 3. GENEREM APÈNDIX VERSIÓ CA
     dir_ca = os.path.join(DIR_SORTIDA_APENDIX, "ca")
     print(f"\n--- GENERANT APÈNDIX (VERSIÓ CA) A {dir_ca} ---")
     linies_ca, fitxers_ca, _ = generar(p_apendix_exec, dir_ca, us_apendix=True, versio_apendix="ca")
     if fitxers_ca:
-        ajuntar_i_ordenar_resultats(fitxers_ca, dir_ca)
+        ajuntar_i_ordenar_resultats(fitxers_ca, dir_ca, "ca")
 
     # Resum final
     totes_linies = sum(len(v) for v in linies_n.values()) + \
