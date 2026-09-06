@@ -1991,6 +1991,8 @@ function actualitzarRimes() {
           } else {
             titol = sil + (sil > 1 ? " síl·labes" : " síl·laba") + ":";
           }
+          if (sil == 0) titol = "verb + pronom(s):";
+
 
           // El <br> el treu el CSS al primer títol que es veu, que no sempre és
           // el mateix: depèn de quins grups hagin quedat buits pel filtre.
