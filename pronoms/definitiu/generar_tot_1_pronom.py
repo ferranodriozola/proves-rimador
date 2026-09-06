@@ -8,7 +8,7 @@ if BASE_DIR not in sys.path:
 
 import enclisi
 
-CAMPS = 10
+CAMPS = 7  # Ajustat a 7 columnes per quadrar exactament amb verbs.txt
 
 ARXIU_VERBS = "verbs.txt"
 DIR_SORTIDA = os.path.join(BASE_DIR, "txt_fets", "1_pronom")
@@ -62,7 +62,6 @@ def generar(pronoms=PRONOMS, dir_sortida=DIR_SORTIDA):
         forma = col[0][i]
 
         for pronom in pronoms:
-            # Agafem les síl·labes de la columna 3 (col[3][i]) segons el nou format
             r = enclisi.generar_forma(
                 forma=forma, 
                 pronoms=[pronom], 
@@ -75,13 +74,10 @@ def generar(pronoms=PRONOMS, dir_sortida=DIR_SORTIDA):
                 r["paraula"],        # 0: la nova forma gràfica (verb + pronom)
                 col[1][i],           # 1: lema original
                 r["codi"],           # 2: codi modificat
-                col[3][i],           # 3: original de verbs.txt
-                col[4][i],           # 4: original de verbs.txt
-                str(r["silabes"]),   # 5: nou càlcul de síl·labes
-                col[6][i],           # 6
-                col[7][i],           # 7
-                col[8][i],           # 8
-                col[9][i]            # 9
+                "0",                 # 3: nou càlcul de síl·labes (substitueix l'antic)
+                "NO",                # 4: Incondicionalment NO
+                "NO",                # 5: Incondicionalment NO
+                "NO"                 # 6: Incondicionalment NO
             ]
             
             linies[pronom].append("$".join(linia_nova))
@@ -110,6 +106,8 @@ def main():
 
     linies, fitxers, per_forma = generar(pronoms)
 
+    ruta_totes, ruta_col1 = ajuntar_i_ordenar_resultats(fitxers, DIR_SORTIDA)
+
     total = sum(len(v) for v in linies.values())
     print(f"Fet! {total:,} línies en {len(fitxers)} fitxers\n")
     print(f"  {'fitxer':28s} {'línies':>9s} {'mida':>8s}")
@@ -117,11 +115,49 @@ def main():
         mida = os.path.getsize(fitxers[p]) / 1e6
         print(f"  {os.path.basename(fitxers[p]):28s} {len(linies[p]):9,} {mida:7.1f} MB")
 
+    print(f"\nArxius totals generats i ordenats:")
+    print(f"  - {os.path.basename(ruta_totes)} ({os.path.getsize(ruta_totes) / 1e6:.1f} MB)")
+    print(f"  - {os.path.basename(ruta_col1)} ({os.path.getsize(ruta_col1) / 1e6:.1f} MB)")
+
     print("\n  per forma verbal:")
     for f in ("N", "G"):
         if per_forma[f]:
             print(f"    {NOM_FORMA[f]:11s} {per_forma[f]:9,}")
 
+def ajuntar_i_ordenar_resultats(fitxers, dir_sortida):
+    """
+    Llegeix tots els fitxers de pronoms generats, ajunta les línies,
+    les ordena alfabèticament i crea dos arxius resultants a la carpeta de sortida.
+    """
+    totes_les_linies = []
+    primeres_columnes = []
 
+    for ruta in fitxers.values():
+        if os.path.exists(ruta):
+            with open(ruta, "r", encoding="utf-8") as f:
+                for linia in f:
+                    linia = linia.strip()
+                    if linia:
+                        totes_les_linies.append(linia)
+                        camps = linia.split("$")
+                        if camps:
+                            primeres_columnes.append(camps[0])
+
+    totes_les_linies.sort()
+    primeres_columnes.sort()
+
+    ruta_totes = os.path.join(dir_sortida, "tots_ajuntats.txt")
+    with open(ruta_totes, "w", encoding="utf-8") as f:
+        f.write("\n".join(totes_les_linies) + "\n" if totes_les_linies else "")
+
+    ruta_primera_columna = os.path.join(dir_sortida, "totes_primeres_columnes.txt")
+    with open(ruta_primera_columna, "w", encoding="utf-8") as f:
+        f.write("\n".join(primeres_columnes) + "\n" if primeres_columnes else "")
+
+    return ruta_totes, ruta_primera_columna
+
+
+
+    
 if __name__ == "__main__":
     main()
