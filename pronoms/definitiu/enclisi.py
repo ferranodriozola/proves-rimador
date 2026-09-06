@@ -151,31 +151,25 @@ def aplicar_1_pronom(forma, pronom):
 def aplicar_2_pronoms(forma, p1, p2):
     """
     Aplica les regles gramaticals de 2 pronoms consultant el diccionari.
-    Té en compte si hi ha una sola variant comuna o dues de diferenciades.
+    Només permet les combinacions explícitament definides.
     """
     parella = (p1, p2)
     vocal = acaba_en_vocal(forma)
 
-    # 1. Comprovem si la parella ja està definida al nostre diccionari
-    if parella in COMBINACIONS_2_PRONOMS:
-        opcions = COMBINACIONS_2_PRONOMS[parella]
+    # 1. Comprovem si la parella està definida al diccionari
+    if parella not in COMBINACIONS_2_PRONOMS:
+        raise ValueError(f"Combinació no permesa: la parella {parella} no està programada al diccionari.")
+
+    opcions = COMBINACIONS_2_PRONOMS[parella]
+    
+    # 2. Apliquem la forma corresponent
+    if len(opcions) == 1:
+        enclitic = opcions[0]
+    else:
+        forma_consonant, forma_vocal = opcions
+        enclitic = forma_vocal if vocal else forma_consonant
         
-        if len(opcions) == 1:
-            # Només hi ha una opció (serveix tant per vocal com consonant)
-            enclitic = opcions[0]
-        else:
-            # Hi ha dues opcions: (forma_consonant, forma_vocal)
-            forma_consonant, forma_vocal = opcions
-            enclitic = forma_vocal if vocal else forma_consonant
-            
-        return forma + enclitic
-
-    # 2. FALLBACK TEMPORAL (Pla B)
-    # Si encara no hem bolcat aquesta parella al diccionari, 
-    # ho processem d'un en un perquè el programa no es trenqui.
-    forma_parcial = aplicar_1_pronom(forma, p1)
-    return aplicar_1_pronom(forma_parcial, p2)
-
+    return forma + enclitic
 
 # ------------------------------------------------------------------- el codi
 
