@@ -31,7 +31,9 @@
 
     // Dies naturals DIFERENTS en què cal haver fet servir el Rimador.cat
     // perquè surti l'avís. Un dia amb quaranta cerques compta 1.
-    const DIES_US = 4;
+
+
+    const DIES_US = 365; //abans 4, posem 365 per evitar que surti
 
     // Dies naturals mínims des de l'últim avís. És el sostre de
     // freqüència: ningú no el veurà dos cops en menys d'aquest temps.
