@@ -121,18 +121,22 @@ def generar(parelles, dir_sortida, us_apendix=False, versio_apendix="va"):
         for par in parelles:
             p1, p2 = par
 
-            if us_apendix:
-                r = aplicar_regles_apendix(
-                    forma=forma, p1=p1, p2=p2, 
-                    forma_verbal=forma_verbal, persona=persona, 
-                    silabes_base=col[3][i], versio=versio_apendix
-                )
-            else:
-                r = enclisi.generar_forma(
-                    forma=forma, pronoms=[p1, p2], 
-                    forma_verbal=forma_verbal, persona=persona, 
-                    silabes_base=col[3][i]
-                )
+            try:
+                if us_apendix:
+                    r = aplicar_regles_apendix(
+                        forma=forma, p1=p1, p2=p2, 
+                        forma_verbal=forma_verbal, persona=persona, 
+                        silabes_base=col[3][i], versio=versio_apendix
+                    )
+                else:
+                    r = enclisi.generar_forma(
+                        forma=forma, pronoms=[p1, p2], 
+                        forma_verbal=forma_verbal, persona=persona, 
+                        silabes_base=col[3][i]
+                    )
+            except ValueError:
+                # Si la parella no està programada, passem a la següent sense trencar el codi
+                continue
             
             linia_nova = [r["paraula"], col[1][i], r["codi"], "0", "NO", "NO", "NO"]
             linies[par].append("$".join(linia_nova))
