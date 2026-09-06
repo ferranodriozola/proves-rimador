@@ -34,21 +34,21 @@ NOM_FORMA = {"N": "infinitiu", "G": "gerundi"}
 # ====================================================================
 # REGLES EXCEPCIONALS DE L'APÈNDIX
 # ====================================================================
-APENDIX_V1 = {
+APENDIX_VA = {
     ("li", "les"): ("-li-les",),
     ("li", "la"):  ("-li-la",),
     ("li", "els"): ("-li'ls",),
     ("li", "el"):  ("-li'l",),
 }
 
-APENDIX_V2 = {
+APENDIX_CA = {
     ("li", "les"): ("-les-hi",),
     ("li", "la"):  ("-la-hi",),
     ("li", "els"): ("-los-hi", "'ls-hi"),
     ("li", "el"):  ("-l'hi",),
 }
 
-def aplicar_regles_apendix(forma, p1, p2, forma_verbal, persona, silabes_base, versio=1):
+def aplicar_regles_apendix(forma, p1, p2, forma_verbal, persona, silabes_base, versio="va"):
     """
     Aplica les regles excepcionals de l'apèndix usant la lògica de dades intel·ligent.
     """
@@ -56,7 +56,7 @@ def aplicar_regles_apendix(forma, p1, p2, forma_verbal, persona, silabes_base, v
     vocal = enclisi.acaba_en_vocal(forma)
     
     # Triem quin diccionari fer servir
-    diccionari = APENDIX_V1 if versio == 1 else APENDIX_V2
+    diccionari = APENDIX_VA if versio == "va" else APENDIX_CA
     
     if parella in diccionari:
         opcions = diccionari[parella]
@@ -101,7 +101,7 @@ def llegir_columnes():
     return col
 
 
-def generar(parelles, dir_sortida, us_apendix=False, versio_apendix=1):
+def generar(parelles, dir_sortida, us_apendix=False, versio_apendix="va"):
     if not parelles:
         return {}, {}, Counter()
         
@@ -206,25 +206,25 @@ def main():
     if fitxers_n:
         ajuntar_i_ordenar_resultats(fitxers_n, DIR_SORTIDA_NORMALS)
 
-    # 2. GENEREM APÈNDIX VERSIÓ 1
-    dir_v1 = os.path.join(DIR_SORTIDA_APENDIX, "v1")
-    print(f"\n--- GENERANT APÈNDIX (VERSIÓ 1) A {dir_v1} ---")
-    linies_a1, fitxers_a1, _ = generar(p_apendix_exec, dir_v1, us_apendix=True, versio_apendix=1)
-    if fitxers_a1:
-        ajuntar_i_ordenar_resultats(fitxers_a1, dir_v1)
+    # 2. GENEREM APÈNDIX VERSIÓ VA
+    dir_va = os.path.join(DIR_SORTIDA_APENDIX, "va")
+    print(f"\n--- GENERANT APÈNDIX (VERSIÓ VA) A {dir_va} ---")
+    linies_va, fitxers_va, _ = generar(p_apendix_exec, dir_va, us_apendix=True, versio_apendix="va")
+    if fitxers_va:
+        ajuntar_i_ordenar_resultats(fitxers_va, dir_va)
 
-    # 3. GENEREM APÈNDIX VERSIÓ 2
-    dir_v2 = os.path.join(DIR_SORTIDA_APENDIX, "v2")
-    print(f"\n--- GENERANT APÈNDIX (VERSIÓ 2) A {dir_v2} ---")
-    linies_a2, fitxers_a2, _ = generar(p_apendix_exec, dir_v2, us_apendix=True, versio_apendix=2)
-    if fitxers_a2:
-        ajuntar_i_ordenar_resultats(fitxers_a2, dir_v2)
+    # 3. GENEREM APÈNDIX VERSIÓ CA
+    dir_ca = os.path.join(DIR_SORTIDA_APENDIX, "ca")
+    print(f"\n--- GENERANT APÈNDIX (VERSIÓ CA) A {dir_ca} ---")
+    linies_ca, fitxers_ca, _ = generar(p_apendix_exec, dir_ca, us_apendix=True, versio_apendix="ca")
+    if fitxers_ca:
+        ajuntar_i_ordenar_resultats(fitxers_ca, dir_ca)
 
     # Resum final
     totes_linies = sum(len(v) for v in linies_n.values()) + \
-                   sum(len(v) for v in linies_a1.values()) + \
-                   sum(len(v) for v in linies_a2.values())
-    tots_fitxers = {**fitxers_n, **fitxers_a1, **fitxers_a2}
+                   sum(len(v) for v in linies_va.values()) + \
+                   sum(len(v) for v in linies_ca.values())
+    tots_fitxers = {**fitxers_n, **fitxers_va, **fitxers_ca}
     
     print(f"\nFet! {totes_linies:,} línies totals generades en {len(tots_fitxers)} fitxers.\n")
 
