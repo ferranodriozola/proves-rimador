@@ -98,7 +98,62 @@ def demanar_si(text):
     return _preguntar(f"{text} [s/N]: ").lower() in ("s", "si", "sí")
 
 
-def main():
+def afegir_en_bulk():
+    print("\nAFEGIR PARAULES EN BULK (Ctrl+C per deixar-ho córrer)\n")
+    fitxer_diccionari = demanar("Ruta de l'arxiu principal amb les paraules")
+    
+    if not os.path.exists(fitxer_diccionari):
+        avisos.plegar(f"No s'ha trobat l'arxiu {fitxer_diccionari}")
+        
+    with open(fitxer_diccionari, 'r', encoding='utf-8') as f:
+        noves_files = [linia.strip().split('$') for linia in f if linia.strip()]
+        
+    codis = camins.dialectes()
+    noves_transcripcions = {}
+    
+    # Demanem les rutes dels arxius per a cada dialecte
+    for codi in codis:
+        ruta = demanar(f"Ruta de l'arxiu de transcripcions per a '{codi}'")
+        if not os.path.exists(ruta):
+            avisos.plegar(f"No s'ha trobat l'arxiu {ruta}")
+        with open(ruta, 'r', encoding='utf-8') as f:
+            noves_transcripcions[codi] = [linia.strip() for linia in f if linia.strip()]
+
+    # Validem que tots els arxius tinguin el mateix nombre de línies
+    n_paraules = len(noves_files)
+    for codi in codis:
+        if len(noves_transcripcions[codi]) != n_paraules:
+            avisos.plegar(f"L'arxiu de {codi} té {len(noves_transcripcions[codi])} línies, però l'arxiu principal en té {n_paraules}.")
+
+    print("Carregant el diccionari i la col_10 (van uns segons)...")
+    files = camins.llegir_diccionari()
+    identitats, transcripcions = modul_col_10.llegir()
+    paraules = [fila[0] for fila in files]
+
+    print(f"\nInserint {n_paraules} paraules en bulk...")
+    
+    for i, nova_fila in enumerate(noves_files):
+        paraula = nova_fila[0]
+        posicio = on_va(paraules, paraula)
+        
+        files.insert(posicio, nova_fila)
+        identitats.insert(posicio, nova_fila[:camins.CAMPS_IDENTITAT])
+        
+        for codi in codis:
+            transcripcions[codi].insert(posicio, noves_transcripcions[codi][i])
+            
+        # Actualitzem la referència de l'ordre perquè la següent paraula sàpiga on cau
+        paraules.insert(posicio, paraula)
+
+    camins.escriure_diccionari(files)
+    modul_col_10.escriure(identitats, transcripcions)
+    
+    print(f"\nFeta. S'han afegit {n_paraules} paraules. El diccionari i la col_10 tenen {camins.mil(len(files))} files.")
+    print("Comiteja'ls tots dos junts: el workflow s'espera trobar-los d'acord.")
+    return 0
+
+
+def afegir_una_paraula():
     codis = camins.dialectes()
 
     print("\nDONAR D'ALTA UNA PARAULA (Ctrl+C per deixar-ho córrer)\n")
@@ -171,5 +226,18 @@ def main():
     return 0
 
 
+def main():
+    print("\nEINA D'AFEGIR PARAULES (Ctrl+C per deixar-ho córrer)")
+    
+    opcio = demanar("\nVols afegir una sola paraula (1) o diverses en bulk des d'arxius (2)? [1/2]")
+    while opcio not in ("1", "2"):
+        opcio = demanar("   Si us plau, tria 1 o 2")
+        
+    if opcio == "1":
+        return afegir_una_paraula()
+    else:
+        return afegir_en_bulk()
+
+    
 if __name__ == "__main__":
     sys.exit(main())
