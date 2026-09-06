@@ -9,7 +9,7 @@ if BASE_DIR not in sys.path:
 
 import enclisi
 
-CAMPS = 7  # Ajustat a 7 columnes per quadrar exactament amb verbs.txt
+CAMPS = 7
 ARXIU_VERBS = "verbs.txt"
 
 # Carpetes de sortida separades
@@ -31,42 +31,47 @@ FORMES = {
 
 NOM_FORMA = {"N": "infinitiu", "G": "gerundi"}
 
-def llegir_columnes():
-    col = {n: [] for n in range(CAMPS)}
-    try:
-        with open(ARXIU_VERBS, "r", encoding="utf-8") as f:
-            for numero, linia in enumerate(f, 1):
-                linia = linia.rstrip("\n")
-                if not linia:
-                    continue
-                camps = linia.split("$")
-                
-                while len(camps) < CAMPS:
-                    camps.append("")
-                
-                for n in range(CAMPS):
-                    col[n].append(camps[n])
-    except FileNotFoundError:
-        raise SystemExit(f"No s'ha trobat l'arxiu '{ARXIU_VERBS}'.")
-        
-    if not col[0]:
-        raise SystemExit(f"L'arxiu '{ARXIU_VERBS}' és buit.")
-    return col
-
-
 # ====================================================================
-# ESPAI PER A LES TEVES REGLES EXCEPCIONALS
+# REGLES EXCEPCIONALS DE L'APÈNDIX
 # ====================================================================
-def aplicar_regles_apendix(forma, p1, p2, forma_verbal, persona, silabes_base):
+APENDIX_V1 = {
+    ("li", "les"): ("-li-les",),
+    ("li", "la"):  ("-li-la",),
+    ("li", "els"): ("-li'ls",),
+    ("li", "el"):  ("-li'l",),
+}
+
+APENDIX_V2 = {
+    ("li", "les"): ("-les-hi",),
+    ("li", "la"):  ("-la-hi",),
+    ("li", "els"): ("-los-hi", "'ls-hi"),
+    ("li", "el"):  ("-l'hi",),
+}
+
+def aplicar_regles_apendix(forma, p1, p2, forma_verbal, persona, silabes_base, versio=1):
     """
-    Aquesta funció genera LES + LI = LES-HI / LA + LI = LA-HI / 
-    ELS + LI = LOS-HI (o 'ls-hi) / EL + LI = L'HI.
+    Aplica les regles excepcionals de l'apèndix usant la lògica de dades intel·ligent.
     """
-    # DE MOMENT HO DEIXO COM A PLACEHOLDER: 
-    # Aquí esciuràs l'algorisme gràfic. Ara afegeix '-APENDIX' per provar-ho.
-    paraula_actual = f"{forma}-APENDIX"
+    parella = (p1, p2)
+    vocal = enclisi.acaba_en_vocal(forma)
     
-    # Mantenim el codi morfològic com l'estàndard
+    # Triem quin diccionari fer servir
+    diccionari = APENDIX_V1 if versio == 1 else APENDIX_V2
+    
+    if parella in diccionari:
+        opcions = diccionari[parella]
+        
+        if len(opcions) == 1:
+            enclitic = opcions[0]
+        else:
+            forma_consonant, forma_vocal = opcions
+            enclitic = forma_vocal if vocal else forma_consonant
+            
+        paraula_actual = forma + enclitic
+    else:
+        # Per seguretat (encara que només arriben les 4 triades)
+        paraula_actual = forma + "-ERROR"
+
     codi = enclisi.construir_codi(forma_verbal, persona, [p1, p2])
     
     return {
@@ -76,7 +81,27 @@ def aplicar_regles_apendix(forma, p1, p2, forma_verbal, persona, silabes_base):
     }
 
 
-def generar(parelles, dir_sortida, us_apendix=False):
+def llegir_columnes():
+    col = {n: [] for n in range(CAMPS)}
+    try:
+        with open(ARXIU_VERBS, "r", encoding="utf-8") as f:
+            for numero, linia in enumerate(f, 1):
+                linia = linia.rstrip("\n")
+                if not linia:
+                    continue
+                camps = linia.split("$")
+                while len(camps) < CAMPS:
+                    camps.append("")
+                for n in range(CAMPS):
+                    col[n].append(camps[n])
+    except FileNotFoundError:
+        raise SystemExit(f"No s'ha trobat l'arxiu '{ARXIU_VERBS}'.")
+    if not col[0]:
+        raise SystemExit(f"L'arxiu '{ARXIU_VERBS}' és buit.")
+    return col
+
+
+def generar(parelles, dir_sortida, us_apendix=False, versio_apendix=1):
     if not parelles:
         return {}, {}, Counter()
         
@@ -96,25 +121,20 @@ def generar(parelles, dir_sortida, us_apendix=False):
         for par in parelles:
             p1, p2 = par
 
-            # Derivem l'execució cap a les regles noves si és l'apèndix
             if us_apendix:
                 r = aplicar_regles_apendix(
                     forma=forma, p1=p1, p2=p2, 
-                    forma_verbal=forma_verbal, 
-                    persona=persona, 
-                    silabes_base=col[3][i]
+                    forma_verbal=forma_verbal, persona=persona, 
+                    silabes_base=col[3][i], versio=versio_apendix
                 )
             else:
                 r = enclisi.generar_forma(
                     forma=forma, pronoms=[p1, p2], 
-                    forma_verbal=forma_verbal, 
-                    persona=persona, silabes_base=col[3][i]
+                    forma_verbal=forma_verbal, persona=persona, 
+                    silabes_base=col[3][i]
                 )
             
-            linia_nova = [
-                r["paraula"], col[1][i], r["codi"], "0", "NO", "NO", "NO"
-            ]
-            
+            linia_nova = [r["paraula"], col[1][i], r["codi"], "0", "NO", "NO", "NO"]
             linies[par].append("$".join(linia_nova))
             per_forma[forma_verbal] += 1
 
@@ -131,16 +151,12 @@ def generar(parelles, dir_sortida, us_apendix=False):
 def _parse_parella(text):
     if ":" not in text:
         raise SystemExit(f"Parella mal escrita: {text!r} (format p1:p2, p. ex. li:el)")
-    
     p1, p2 = text.split(":", 1)
-    
     if p1 not in enclisi.ENCLISI or p2 not in enclisi.ENCLISI:
         raise SystemExit(f"Pronoms desconeguts a la parella: {text}\n")
-    
     p_ordenats = tuple(enclisi.ordenar_pronoms([p1, p2]))
     if p_ordenats not in TOTES_LES_PARELLES:
         raise SystemExit(f"Parella no vàlida o repetida: {text}\n")
-        
     return p_ordenats
 
 
@@ -184,21 +200,33 @@ def main():
         p_normals_exec = PARELLES_NORMALS
         p_apendix_exec = PARELLES_APENDIX
 
+    # 1. GENEREM LES NORMALS (es continuen demanant a enclisi.py)
     print("--- GENERANT COMBINACIONS NORMALS ---")
-    linies_n, fitxers_n, per_forma_n = generar(p_normals_exec, DIR_SORTIDA_NORMALS, us_apendix=False)
+    linies_n, fitxers_n, _ = generar(p_normals_exec, DIR_SORTIDA_NORMALS, us_apendix=False)
     if fitxers_n:
         ajuntar_i_ordenar_resultats(fitxers_n, DIR_SORTIDA_NORMALS)
 
-    print("\n--- GENERANT COMBINACIONS APÈNDIX ---")
-    linies_a, fitxers_a, per_forma_a = generar(p_apendix_exec, DIR_SORTIDA_APENDIX, us_apendix=True)
-    if fitxers_a:
-        ajuntar_i_ordenar_resultats(fitxers_a, DIR_SORTIDA_APENDIX)
+    # 2. GENEREM APÈNDIX VERSIÓ 1
+    dir_v1 = os.path.join(DIR_SORTIDA_APENDIX, "v1")
+    print(f"\n--- GENERANT APÈNDIX (VERSIÓ 1) A {dir_v1} ---")
+    linies_a1, fitxers_a1, _ = generar(p_apendix_exec, dir_v1, us_apendix=True, versio_apendix=1)
+    if fitxers_a1:
+        ajuntar_i_ordenar_resultats(fitxers_a1, dir_v1)
+
+    # 3. GENEREM APÈNDIX VERSIÓ 2
+    dir_v2 = os.path.join(DIR_SORTIDA_APENDIX, "v2")
+    print(f"\n--- GENERANT APÈNDIX (VERSIÓ 2) A {dir_v2} ---")
+    linies_a2, fitxers_a2, _ = generar(p_apendix_exec, dir_v2, us_apendix=True, versio_apendix=2)
+    if fitxers_a2:
+        ajuntar_i_ordenar_resultats(fitxers_a2, dir_v2)
 
     # Resum final
-    totes_linies = sum(len(v) for v in linies_n.values()) + sum(len(v) for v in linies_a.values())
-    tots_fitxers = {**fitxers_n, **fitxers_a}
+    totes_linies = sum(len(v) for v in linies_n.values()) + \
+                   sum(len(v) for v in linies_a1.values()) + \
+                   sum(len(v) for v in linies_a2.values())
+    tots_fitxers = {**fitxers_n, **fitxers_a1, **fitxers_a2}
     
-    print(f"\nFet! {totes_linies:,} línies totals generades en {len(tots_fitxers)} fitxers\n")
+    print(f"\nFet! {totes_linies:,} línies totals generades en {len(tots_fitxers)} fitxers.\n")
 
 if __name__ == "__main__":
     main()
