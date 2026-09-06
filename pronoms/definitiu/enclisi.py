@@ -90,13 +90,20 @@ def ordenar_pronoms(pronoms):
 
 def generar_forma(forma, pronoms, forma_verbal, persona=None, silabes_base=0):
     pronoms = ordenar_pronoms(pronoms)
-    if len(pronoms) != 1:
-        raise ValueError(f"Aquesta versió només accepta 1 pronom. Rebut: {len(pronoms)}")
+    if not 1 <= len(pronoms) <= 2:
+        raise ValueError(f"Aquesta versió només accepta 1 o 2 pronoms. Rebut: {len(pronoms)}")
 
-    enclitic = forma_enclitica(pronoms[0], forma)
+    paraula_actual = forma
+    silabes_actuals = int(silabes_base)
+
+    # Iterem sobre els pronoms per sumar l'enclític al resultat anterior pas a pas
+    for pronom in pronoms:
+        enclitic = forma_enclitica(pronom, paraula_actual)
+        silabes_actuals = calcular_silabes(silabes_actuals, paraula_actual, enclitic)
+        paraula_actual = escriure(paraula_actual, enclitic)
 
     return {
-        "paraula": escriure(forma, enclitic),
+        "paraula": paraula_actual,
         "codi": construir_codi(forma_verbal, persona, pronoms),
-        "silabes": calcular_silabes(silabes_base, forma, enclitic)
+        "silabes": silabes_actuals
     }
