@@ -1,0 +1,4 @@
+recitar$recitar$VMN00000$$$3$NO$NO$NO$
+recitant$recitar$VMG00000$$$3$NO$NO$NO$
+llegir$llegir$VMN00000$$$2$NO$NO$NO$
+llegint$llegir$VMG00000$$$2$NO$NO$NO$
