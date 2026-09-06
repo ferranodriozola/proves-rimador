@@ -162,11 +162,11 @@ def ajuntar_i_ordenar_resultats(fitxers, dir_sortida):
     totes_les_linies.sort()
     primeres_columnes.sort()
 
-    ruta_totes = os.path.join(dir_sortida, "tots_ajuntats.txt")
+    ruta_totes = os.path.join(dir_sortida, "tots_ajuntats_2_pr.txt")
     with open(ruta_totes, "w", encoding="utf-8") as f:
         f.write("\n".join(totes_les_linies) + "\n" if totes_les_linies else "")
 
-    ruta_primera_columna = os.path.join(dir_sortida, "totes_primeres_columnes.txt")
+    ruta_primera_columna = os.path.join(dir_sortida, "totes_primeres_columnes_2_pr.txt")
     with open(ruta_primera_columna, "w", encoding="utf-8") as f:
         f.write("\n".join(primeres_columnes) + "\n" if primeres_columnes else "")
 
