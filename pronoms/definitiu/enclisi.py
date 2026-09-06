@@ -48,21 +48,6 @@ def forma_enclitica(pronom, forma):
 def escriure(forma, enclitic):
     return forma + enclitic
 
-# ----------------------------------------------------------------- síl·labes
-
-def calcular_silabes(silabes_base, forma, enclitic):
-    """
-    L'enclític amb guionet suma una síl·laba; el d'apòstrof no.
-    Excepció: '-hi' i '-ho' darrere vocal es fonen en semivocal i tampoc sumen.
-    """
-    if enclitic.startswith("'"):
-        extra = 0
-    elif enclitic in ("-hi", "-ho") and acaba_en_vocal(forma):
-        extra = 0
-    else:
-        extra = 1
-    return int(silabes_base) + extra
-
 # ------------------------------------------------------------------- el codi
 
 def construir_codi(forma_verbal, persona, pronoms):
@@ -94,12 +79,11 @@ def generar_forma(forma, pronoms, forma_verbal, persona=None, silabes_base=0):
         raise ValueError(f"Aquesta versió només accepta 1 o 2 pronoms. Rebut: {len(pronoms)}")
 
     paraula_actual = forma
-    silabes_actuals = int(silabes_base)
+    silabes_actuals = silabes_base
 
     # Iterem sobre els pronoms per sumar l'enclític al resultat anterior pas a pas
     for pronom in pronoms:
         enclitic = forma_enclitica(pronom, paraula_actual)
-        silabes_actuals = calcular_silabes(silabes_actuals, paraula_actual, enclitic)
         paraula_actual = escriure(paraula_actual, enclitic)
 
     return {
