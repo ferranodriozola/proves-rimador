@@ -29,11 +29,102 @@ ENCLISI = {
 }
 
 COMBINACIONS_2_PRONOMS = {
-    # (p1, p2): (única_opció,)  O BÉ  (darrere_consonant, darrere_vocal)
-    
-    # Exemples inicials (a punt per ser omplert amb tota la gramàtica):
-    ("em", "el"):  ("-me'l",),             # Si és igual per a consonant i vocal
-    ("ens", "hi"): ("-nos-hi", "'ns-hi"),  # Si varia segons consonant o vocal
+    # es
+    ("es", "hi"):             ("-s'hi",),
+    ("es", "en"):             ("-se'n",),
+    ("es", "ho"):             ("-s'ho",),
+    ("es", "les"):            ("-se-les",),
+    ("es", "la"):             ("-se-la",),
+    ("es", "els"):            ("-se'ls",),
+    ("es", "el"):             ("-se'l",),
+    ("es", "li"):             ("-se-li",),
+    ("es", "ens"):            ("-se'ns",),
+    ("es", "em"):             ("-se'm",),
+    ("es", "us"):             ("-se-us",),
+    ("es", "et"):             ("-se't",),
+
+    # et
+    ("et", "hi"):             ("-t'hi",),
+    ("et", "en"):             ("-te'n",),
+    ("et", "ho"):             ("-t'ho",),
+    ("et", "les"):            ("-te-les",),
+    ("et", "la"):             ("-te-la",),
+    ("et", "els"):            ("-te'ls",),
+    ("et", "el"):             ("-te'l",),
+    ("et", "li"):             ("-te-li",),
+    ("et", "ens"):            ("-te'ns",),
+    ("et", "em"):             ("-te'm",),
+
+    # us
+    ("us", "hi"):             ("-vos-hi", "-us-hi"),
+    ("us", "en"):             ("-vos-en", "-us-en"),
+    ("us", "ho"):             ("-vos-ho", "-us-ho"),
+    ("us", "les"):            ("-vos-les", "-us-les"),
+    ("us", "la"):             ("-vos-la", "-us-la"),
+    ("us", "els"):            ("-vos-els", "-us-els"),
+    ("us", "el"):             ("-vos-el", "-us-el"),
+    ("us", "li"):             ("-vos-li", "-us-li"),
+    ("us", "ens"):            ("-vos-ens", "-us-ens"),
+    ("us", "em"):             ("-vos-em", "-us-em"),
+
+    # em
+    ("em", "hi"):             ("-m'hi",),
+    ("em", "en"):             ("-me'n",),
+    ("em", "ho"):             ("-m'ho",),
+    ("em", "les"):            ("-me-les",),
+    ("em", "la"):             ("-me-la",),
+    ("em", "els"):            ("-me'ls",),
+    ("em", "el"):             ("-me'l",),
+    ("em", "li"):             ("-me-li",),
+
+    # ens
+    ("ens", "hi"):            ("-nos-hi", "'ns-hi"),
+    ("ens", "en"):            ("-nos-en", "'ns-en"),
+    ("ens", "ho"):            ("-nos-ho", "'ns-ho"),
+    ("ens", "les"):           ("-nos-les", "'ns-les"),
+    ("ens", "la"):            ("-nos-la", "'ns-la"),
+    ("ens", "els"):           ("-nos-els", "'ns-els"),
+    ("ens", "el"):            ("-nos-el", "'ns-el"),
+    ("ens", "li"):            ("-nos-li", "'ns-li"),
+
+    # li (general)
+    ("li", "hi"):             ("-li-hi",),
+    ("li", "en"):             ("-li'n",),
+    ("li", "ho"):             ("-li-ho",),
+    ("li", "les"):            ("-les-hi",),
+    ("li", "la"):             ("-la-hi",),
+    ("li", "els"):            ("-los-hi", "'ls-hi"),
+    ("li", "el"):             ("-l'hi",),
+
+    # li (valencià)
+    ("li", "les"):           ("-li-les",),
+    ("li", "la"):            ("-li-la",),
+    ("li", "els"):           ("-li'ls",),
+    ("li", "el"):            ("-li'l",),
+
+    # els (ac + dt)
+    ("els", "hi"):            ("-los-hi", "'ls-hi"),
+    ("els", "en"):            ("-los-en", "'ls-en"),
+    ("els", "ho"):            ("-los-ho", "'ls-ho"),
+    ("els", "les"):           ("-los-les", "'ls-les"),
+    ("els", "la"):            ("-los-la", "'ls-la"),
+    ("els", "els"):           ("-los-els", "'ls-els"),
+    ("els", "el"):            ("-los-el", "'ls-el"),
+
+    # el
+    ("el", "hi"):             ("-l'hi",),
+    ("el", "en"):             ("-l'en",),
+
+    # la
+    ("la", "hi"):             ("-la-hi",),
+    ("la", "en"):             ("-la'n",),
+
+    # les
+    ("les", "hi"):            ("-les-hi",),
+    ("les", "en"):            ("-les-en",),
+
+    # en
+    ("en", "hi"):             ("-n'hi",),
 }
 
 PRONOM_CODI = {
