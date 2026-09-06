@@ -1,17 +1,18 @@
 """
 Ortografia de l'enclisi: verb + pronom feble.
 
-Versió simplificada: només determina com s'escriu gràficament (guionet o apòstrof),
-en genera el codi morfològic, i en calcula el nombre de síl·labes gràfiques.
+Versió basada en regles gramaticals per blocs (1 o 2 pronoms).
+Genera el codi morfològic i en calcula el nombre de síl·labes gràfiques.
 """
 
 # ---------------------------------------------------------------- alfabets
 
 VOCALS_GRAFIQUES = set("aeioàèéíòóúïü")
 
-# ------------------------------------------------------- taula de l'enclisi
+# ------------------------------------------------------- diccionaris base
 
 ENCLISI = {
+    # pronom: (darrere_consonant, darrere_vocal)
     "em":  ("-me",  "'m"),
     "et":  ("-te",  "'t"),
     "es":  ("-se",  "'s"),
@@ -27,6 +28,14 @@ ENCLISI = {
     "hi":  ("-hi",  "-hi"),
 }
 
+COMBINACIONS_2_PRONOMS = {
+    # (p1, p2): (única_opció,)  O BÉ  (darrere_consonant, darrere_vocal)
+    
+    # Exemples inicials (a punt per ser omplert amb tota la gramàtica):
+    ("em", "el"):  ("-me'l",),             # Si és igual per a consonant i vocal
+    ("ens", "hi"): ("-nos-hi", "'ns-hi"),  # Si varia segons consonant o vocal
+}
+
 PRONOM_CODI = {
     "em": "EM", "et": "ET", "es": "ES", "ens": "NS", "us": "US",
     "el": "EL", "la": "LA", "els": "LS", "les": "LE", "li": "LI",
@@ -36,17 +45,46 @@ PRONOM_CODI = {
 ORDRE_PRONOMS = ["es", "et", "us", "em", "ens", "li", "els",
                  "el", "la", "les", "en", "hi", "ho"]
 
+
 # ----------------------------------------------------------------- ortografia
 
 def acaba_en_vocal(forma):
     return forma[-1].lower() in VOCALS_GRAFIQUES
 
-def forma_enclitica(pronom, forma):
+def aplicar_1_pronom(forma, pronom):
+    """Aplica la regla estàndard per a un sol pronom."""
     plena, reduida = ENCLISI[pronom]
-    return reduida if acaba_en_vocal(forma) else plena
-
-def escriure(forma, enclitic):
+    enclitic = reduida if acaba_en_vocal(forma) else plena
     return forma + enclitic
+
+def aplicar_2_pronoms(forma, p1, p2):
+    """
+    Aplica les regles gramaticals de 2 pronoms consultant el diccionari.
+    Té en compte si hi ha una sola variant comuna o dues de diferenciades.
+    """
+    parella = (p1, p2)
+    vocal = acaba_en_vocal(forma)
+
+    # 1. Comprovem si la parella ja està definida al nostre diccionari
+    if parella in COMBINACIONS_2_PRONOMS:
+        opcions = COMBINACIONS_2_PRONOMS[parella]
+        
+        if len(opcions) == 1:
+            # Només hi ha una opció (serveix tant per vocal com consonant)
+            enclitic = opcions[0]
+        else:
+            # Hi ha dues opcions: (forma_consonant, forma_vocal)
+            forma_consonant, forma_vocal = opcions
+            enclitic = forma_vocal if vocal else forma_consonant
+            
+        return forma + enclitic
+
+    # 2. FALLBACK TEMPORAL (Pla B)
+    # Si encara no hem bolcat aquesta parella al diccionari, 
+    # ho processem d'un en un perquè el programa no es trenqui.
+    forma_parcial = aplicar_1_pronom(forma, p1)
+    return aplicar_1_pronom(forma_parcial, p2)
+
 
 # ------------------------------------------------------------------- el codi
 
@@ -78,16 +116,15 @@ def generar_forma(forma, pronoms, forma_verbal, persona=None, silabes_base=0):
     if not 1 <= len(pronoms) <= 2:
         raise ValueError(f"Aquesta versió només accepta 1 o 2 pronoms. Rebut: {len(pronoms)}")
 
-    paraula_actual = forma
-    silabes_actuals = silabes_base
-
-    # Iterem sobre els pronoms per sumar l'enclític al resultat anterior pas a pas
-    for pronom in pronoms:
-        enclitic = forma_enclitica(pronom, paraula_actual)
-        paraula_actual = escriure(paraula_actual, enclitic)
+    # Ara tractem les mides de pronoms per separat de forma unificada
+    if len(pronoms) == 1:
+        paraula_actual = aplicar_1_pronom(forma, pronoms[0])
+    else:  # Cas de 2 pronoms
+        p1, p2 = pronoms[0], pronoms[1]
+        paraula_actual = aplicar_2_pronoms(forma, p1, p2)
 
     return {
         "paraula": paraula_actual,
         "codi": construir_codi(forma_verbal, persona, pronoms),
-        "silabes": silabes_actuals
+        "silabes": silabes_base
     }
