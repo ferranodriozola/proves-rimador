@@ -10,15 +10,19 @@ if BASE_DIR not in sys.path:
 import enclisi
 
 CAMPS = 7  # Ajustat a 7 columnes per quadrar exactament amb verbs.txt
-
 ARXIU_VERBS = "verbs.txt"
-# Guardem l'arxiu a la carpeta txt_fets/2_pronoms
-DIR_SORTIDA = os.path.join(BASE_DIR, "txt_fets", "2_pronoms")
+
+# Carpetes de sortida separades
+DIR_SORTIDA_NORMALS = os.path.join(BASE_DIR, "txt_fets", "2_pronoms")
+DIR_SORTIDA_APENDIX = os.path.join(BASE_DIR, "txt_fets", "apendix")
 PATRO_SORTIDA = "verb_pronom_{p1}_{p2}.txt"
 
-# Generem totes les parelles de 2 pronoms automàticament segons l'ordre oficial,
-# prescindint de llicencies.py
-PARELLES = list(itertools.combinations(enclisi.ORDRE_PRONOMS, 2))
+# 1. IDENTIFIQUEM LES COMBINACIONS EXCEPCIONALS
+PARELLES_APENDIX_SET = {("li", "les"), ("li", "la"), ("li", "els"), ("li", "el")}
+
+TOTES_LES_PARELLES = list(itertools.combinations(enclisi.ORDRE_PRONOMS, 2))
+PARELLES_NORMALS = [p for p in TOTES_LES_PARELLES if p not in PARELLES_APENDIX_SET]
+PARELLES_APENDIX = [p for p in TOTES_LES_PARELLES if p in PARELLES_APENDIX_SET]
 
 FORMES = {
     "VMN00000": ("N", None), "VSN00000": ("N", None), "VAN00000": ("N", None),
@@ -26,7 +30,6 @@ FORMES = {
 }
 
 NOM_FORMA = {"N": "infinitiu", "G": "gerundi"}
-
 
 def llegir_columnes():
     col = {n: [] for n in range(CAMPS)}
@@ -51,7 +54,32 @@ def llegir_columnes():
     return col
 
 
-def generar(parelles=PARELLES, dir_sortida=DIR_SORTIDA):
+# ====================================================================
+# ESPAI PER A LES TEVES REGLES EXCEPCIONALS
+# ====================================================================
+def aplicar_regles_apendix(forma, p1, p2, forma_verbal, persona, silabes_base):
+    """
+    Aquesta funció genera LES + LI = LES-HI / LA + LI = LA-HI / 
+    ELS + LI = LOS-HI (o 'ls-hi) / EL + LI = L'HI.
+    """
+    # DE MOMENT HO DEIXO COM A PLACEHOLDER: 
+    # Aquí esciuràs l'algorisme gràfic. Ara afegeix '-APENDIX' per provar-ho.
+    paraula_actual = f"{forma}-APENDIX"
+    
+    # Mantenim el codi morfològic com l'estàndard
+    codi = enclisi.construir_codi(forma_verbal, persona, [p1, p2])
+    
+    return {
+        "paraula": paraula_actual,
+        "codi": codi,
+        "silabes": silabes_base
+    }
+
+
+def generar(parelles, dir_sortida, us_apendix=False):
+    if not parelles:
+        return {}, {}, Counter()
+        
     os.makedirs(dir_sortida, exist_ok=True)
     col = llegir_columnes()
 
@@ -68,35 +96,34 @@ def generar(parelles=PARELLES, dir_sortida=DIR_SORTIDA):
         for par in parelles:
             p1, p2 = par
 
-            # Crida neta i directa, tal com es fa amb 1 pronom
-            r = enclisi.generar_forma(
-                forma=forma, 
-                pronoms=[p1, p2], 
-                forma_verbal=forma_verbal, 
-                persona=persona, 
-                silabes_base=col[3][i]
-            )
+            # Derivem l'execució cap a les regles noves si és l'apèndix
+            if us_apendix:
+                r = aplicar_regles_apendix(
+                    forma=forma, p1=p1, p2=p2, 
+                    forma_verbal=forma_verbal, 
+                    persona=persona, 
+                    silabes_base=col[3][i]
+                )
+            else:
+                r = enclisi.generar_forma(
+                    forma=forma, pronoms=[p1, p2], 
+                    forma_verbal=forma_verbal, 
+                    persona=persona, silabes_base=col[3][i]
+                )
             
             linia_nova = [
-                r["paraula"],        # 0: la nova forma gràfica (verb + 2 pronoms)
-                col[1][i],           # 1: lema original
-                r["codi"],           # 2: codi modificat
-                "0",                 # 3: nou càlcul de síl·labes (substitueix l'antic)
-                "NO",                # 4: Incondicionalment NO
-                "NO",                # 5: Incondicionalment NO
-                "NO"                 # 6: Incondicionalment NO
+                r["paraula"], col[1][i], r["codi"], "0", "NO", "NO", "NO"
             ]
             
             linies[par].append("$".join(linia_nova))
             per_forma[forma_verbal] += 1
 
-    fitxers = {}
-    for par in parelles:
-        p1, p2 = par
-        ruta = os.path.join(dir_sortida, PATRO_SORTIDA.format(p1=p1, p2=p2))
-        with open(ruta, "w", encoding="utf-8") as f:
-            f.write("\n".join(linies[par]) + "\n" if linies[par] else "")
-        fitxers[par] = ruta
+        fitxers = {}
+        for par in parelles:
+            ruta = os.path.join(dir_sortida, PATRO_SORTIDA.format(p1=par[0], p2=par[1]))
+            with open(ruta, "w", encoding="utf-8") as f:
+                f.write("\n".join(linies[par]) + "\n" if linies[par] else "")
+            fitxers[par] = ruta
 
     return linies, fitxers, per_forma
 
@@ -110,20 +137,14 @@ def _parse_parella(text):
     if p1 not in enclisi.ENCLISI or p2 not in enclisi.ENCLISI:
         raise SystemExit(f"Pronoms desconeguts a la parella: {text}\n")
     
-    # Ordenem els pronoms per coincidir amb les claus de l'itertools.combinations
     p_ordenats = tuple(enclisi.ordenar_pronoms([p1, p2]))
-    if p_ordenats not in PARELLES:
+    if p_ordenats not in TOTES_LES_PARELLES:
         raise SystemExit(f"Parella no vàlida o repetida: {text}\n")
         
     return p_ordenats
 
 
-
 def ajuntar_i_ordenar_resultats(fitxers, dir_sortida):
-    """
-    Llegeix tots els fitxers de pronoms generats, ajunta les línies,
-    les ordena alfabèticament i crea dos arxius resultants a la carpeta de sortida.
-    """
     totes_les_linies = []
     primeres_columnes = []
 
@@ -152,31 +173,32 @@ def ajuntar_i_ordenar_resultats(fitxers, dir_sortida):
     return ruta_totes, ruta_primera_columna
 
 
-
 def main():
     args = sys.argv[1:]
-    parelles = tuple(_parse_parella(a) for a in args) if args else tuple(PARELLES)
+    
+    if args:
+        parelles_usuari = tuple(_parse_parella(a) for a in args)
+        p_normals_exec = [p for p in parelles_usuari if p in PARELLES_NORMALS]
+        p_apendix_exec = [p for p in parelles_usuari if p in PARELLES_APENDIX]
+    else:
+        p_normals_exec = PARELLES_NORMALS
+        p_apendix_exec = PARELLES_APENDIX
 
-    linies, fitxers, per_forma = generar(parelles)
+    print("--- GENERANT COMBINACIONS NORMALS ---")
+    linies_n, fitxers_n, per_forma_n = generar(p_normals_exec, DIR_SORTIDA_NORMALS, us_apendix=False)
+    if fitxers_n:
+        ajuntar_i_ordenar_resultats(fitxers_n, DIR_SORTIDA_NORMALS)
 
-    ruta_totes, ruta_col1 = ajuntar_i_ordenar_resultats(fitxers, DIR_SORTIDA)
+    print("\n--- GENERANT COMBINACIONS APÈNDIX ---")
+    linies_a, fitxers_a, per_forma_a = generar(p_apendix_exec, DIR_SORTIDA_APENDIX, us_apendix=True)
+    if fitxers_a:
+        ajuntar_i_ordenar_resultats(fitxers_a, DIR_SORTIDA_APENDIX)
 
-    total = sum(len(v) for v in linies.values())
-    print(f"Fet! {total:,} línies en {len(fitxers)} fitxers\n")
-    print(f"  {'fitxer':32s} {'línies':>9s} {'mida':>8s}")
-    for par in parelles:
-        mida = os.path.getsize(fitxers[par]) / 1e6
-        print(f"  {os.path.basename(fitxers[par]):32s} {len(linies[par]):9,} {mida:7.1f} MB")
-
-    print(f"\nArxius totals generats i ordenats:")
-    print(f"  - {os.path.basename(ruta_totes)} ({os.path.getsize(ruta_totes) / 1e6:.1f} MB)")
-    print(f"  - {os.path.basename(ruta_col1)} ({os.path.getsize(ruta_col1) / 1e6:.1f} MB)")
-
-    print("\n  per forma verbal:")
-    for f in ("N", "G"):
-        if per_forma[f]:
-            print(f"    {NOM_FORMA[f]:11s} {per_forma[f]:9,}")
-
+    # Resum final
+    totes_linies = sum(len(v) for v in linies_n.values()) + sum(len(v) for v in linies_a.values())
+    tots_fitxers = {**fitxers_n, **fitxers_a}
+    
+    print(f"\nFet! {totes_linies:,} línies totals generades en {len(tots_fitxers)} fitxers\n")
 
 if __name__ == "__main__":
     main()
