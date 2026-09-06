@@ -10,16 +10,13 @@ import enclisi
 
 CAMPS = 10
 
-# Nou arxiu d'on agafarà els verbs
 ARXIU_VERBS = "verbs.txt"
-
-# Definim on es guardaran
 DIR_SORTIDA = os.path.join(BASE_DIR, "txt_fets", "1_pronom")
 PATRO_SORTIDA = "verb_pronom_{pronom}.txt"
 
 PRONOMS = enclisi.ORDRE_PRONOMS
 
-# Només infinitius i gerundis (principals, semiauxiliars i auxiliars)
+# Només infinitius i gerundis
 FORMES = {
     "VMN00000": ("N", None), "VSN00000": ("N", None), "VAN00000": ("N", None),
     "VMG00000": ("G", None), "VSG00000": ("G", None), "VAG00000": ("G", None),
@@ -29,9 +26,6 @@ NOM_FORMA = {"N": "infinitiu", "G": "gerundi"}
 
 
 def llegir_columnes():
-    """
-    Llegeix directament de verbs.txt. Agafa les 10 columnes.
-    """
     col = {n: [] for n in range(CAMPS)}
     try:
         with open(ARXIU_VERBS, "r", encoding="utf-8") as f:
@@ -41,7 +35,6 @@ def llegir_columnes():
                     continue
                 camps = linia.split("$")
                 
-                # Omplim amb buits si la línia té menys de 10 elements (per protecció)
                 while len(camps) < CAMPS:
                     camps.append("")
                 
@@ -70,22 +63,27 @@ def generar(pronoms=PRONOMS, dir_sortida=DIR_SORTIDA):
         forma = col[0][i]
 
         for pronom in pronoms:
-            # Calculem la generació (crida adaptada al nou enclisi.py simplificat)
-            r = enclisi.generar_forma(forma, [pronom], forma_verbal, persona)
+            # Enviem les síl·labes base a la funció
+            r = enclisi.generar_forma(
+                forma=forma, 
+                pronoms=[pronom], 
+                forma_verbal=forma_verbal, 
+                persona=persona, 
+                silabes_base=col[5][i]
+            )
             
-            # Només toquem Columna 0 (paraula nova) i Columna 2 (codi nou).
-            # La resta de columnes les copiem exactament igual que a verbs.txt.
+            # Construïm la nova línia
             linia_nova = [
                 r["paraula"],        # 0: la nova forma gràfica (verb + pronom)
-                col[1][i],           # 1: lema original (intacte)
-                r["codi"],           # 2: codi modificat per enclisi
-                col[3][i],           # 3: intacte
-                col[4][i],           # 4: intacte
-                col[5][i],           # 5: intacte
-                col[6][i],           # 6: intacte
-                col[7][i],           # 7: intacte
-                col[8][i],           # 8: intacte
-                col[9][i]            # 9: transcripció intacte (no s'aplica fonètica de pronoms)
+                col[1][i],           # 1: lema original
+                r["codi"],           # 2: codi modificat
+                col[3][i],           # 3: rima cons original
+                col[4][i],           # 4: rima asson original
+                str(r["silabes"]),   # 5: síl·labes (NOU CÀLCUL)
+                col[6][i],           # 6: vicc
+                col[7][i],           # 7: viq
+                col[8][i],           # 8: diec
+                col[9][i]            # 9: transcripció original
             ]
             
             linies[pronom].append("$".join(linia_nova))
@@ -122,7 +120,6 @@ def main():
         print(f"  {os.path.basename(fitxers[p]):28s} {len(linies[p]):9,} {mida:7.1f} MB")
 
     print("\n  per forma verbal:")
-    # Hem eliminat la "M" (imperatiu) del bucle d'impressió final
     for f in ("N", "G"):
         if per_forma[f]:
             print(f"    {NOM_FORMA[f]:11s} {per_forma[f]:9,}")
