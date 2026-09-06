@@ -16,7 +16,6 @@ PATRO_SORTIDA = "verb_pronom_{pronom}.txt"
 
 PRONOMS = enclisi.ORDRE_PRONOMS
 
-# Només infinitius i gerundis
 FORMES = {
     "VMN00000": ("N", None), "VSN00000": ("N", None), "VAN00000": ("N", None),
     "VMG00000": ("G", None), "VSG00000": ("G", None), "VAG00000": ("G", None),
@@ -63,27 +62,26 @@ def generar(pronoms=PRONOMS, dir_sortida=DIR_SORTIDA):
         forma = col[0][i]
 
         for pronom in pronoms:
-            # Enviem les síl·labes base a la funció
+            # Agafem les síl·labes de la columna 3 (col[3][i]) segons el nou format
             r = enclisi.generar_forma(
                 forma=forma, 
                 pronoms=[pronom], 
                 forma_verbal=forma_verbal, 
                 persona=persona, 
-                silabes_base=col[5][i]
+                silabes_base=col[3][i]
             )
             
-            # Construïm la nova línia
             linia_nova = [
                 r["paraula"],        # 0: la nova forma gràfica (verb + pronom)
                 col[1][i],           # 1: lema original
                 r["codi"],           # 2: codi modificat
-                col[3][i],           # 3: rima cons original
-                col[4][i],           # 4: rima asson original
-                str(r["silabes"]),   # 5: síl·labes (NOU CÀLCUL)
-                col[6][i],           # 6: vicc
-                col[7][i],           # 7: viq
-                col[8][i],           # 8: diec
-                col[9][i]            # 9: transcripció original
+                col[3][i],           # 3: original de verbs.txt
+                col[4][i],           # 4: original de verbs.txt
+                str(r["silabes"]),   # 5: nou càlcul de síl·labes
+                col[6][i],           # 6
+                col[7][i],           # 7
+                col[8][i],           # 8
+                col[9][i]            # 9
             ]
             
             linies[pronom].append("$".join(linia_nova))
