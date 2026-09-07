@@ -672,6 +672,10 @@ awlin
 awlis
 awlu
 arku
+ɛʎi
+ɛʎin
+ɛʎis
+ɛʎu
 arki
 arkin
 arkis
@@ -1026,7 +1030,6 @@ utʃu
 apsi
 apsin
 apsis
-ɛʎu
 ɔmbu
 ɛtɾi
 ɛtɾin
@@ -1577,9 +1580,6 @@ ospi
 ospin
 ospis
 ospu
-ɛʎi
-ɛʎin
-ɛʎis
 uŋku
 uŋki
 uŋkin
@@ -1656,10 +1656,10 @@ imbi
 imbin
 imbis
 imbu
-ɔrzi
-ɔrzin
-ɔrzis
-ɔrzu
+orzi
+orzin
+orzis
+orzu
 adli
 adlin
 adlis
@@ -1860,6 +1860,7 @@ alpu
 ɔktis
 ɔktu
 oði
+oðin
 oðis
 ɔlpi
 ɔlpin
