@@ -61180,6 +61180,36 @@
     "diec": "Diec"
   },
   {
+    "paraula": "absoldre-la-hi",
+    "infinitiu": "absoldre",
+    "codi": "WN0002LILA",
+    "rimacons": "ɔldɾələi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "absoldre-les-hi",
+    "infinitiu": "absoldre",
+    "codi": "WN0002LILE",
+    "rimacons": "ɔldɾələzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "absoldre'ls-hi",
+    "infinitiu": "absoldre",
+    "codi": "WN0002LILS",
+    "rimacons": "ɔldɾəlsi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
     "paraula": "acuind",
     "infinitiu": "acuindar",
     "codi": "VMIP1S0B",
@@ -61460,6 +61490,96 @@
     "diec": "Diec"
   },
   {
+    "paraula": "aparèixe-la-hi",
+    "infinitiu": "aparèixer",
+    "codi": "WN0002LILA",
+    "rimacons": "əʃələi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "aparèixe-les-hi",
+    "infinitiu": "aparèixer",
+    "codi": "WN0002LILE",
+    "rimacons": "əʃələzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "aparèixe'ls-hi",
+    "infinitiu": "aparèixer",
+    "codi": "WN0002LILS",
+    "rimacons": "əʃəlsi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "aparèixer-la-hi",
+    "infinitiu": "aparèixer",
+    "codi": "WN0002LILA",
+    "rimacons": "əʃəlləi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "aparèixer-les-hi",
+    "infinitiu": "aparèixer",
+    "codi": "WN0002LILE",
+    "rimacons": "əʃəlləzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "aparèixer-los-hi",
+    "infinitiu": "aparèixer",
+    "codi": "WN0002LILS",
+    "rimacons": "əʃəllozi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "aprendre-la-hi",
+    "infinitiu": "aprendre",
+    "codi": "WN0002LILA",
+    "rimacons": "ɛndɾələi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "aprendre-les-hi",
+    "infinitiu": "aprendre",
+    "codi": "WN0002LILE",
+    "rimacons": "ɛndɾələzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "aprendre'ls-hi",
+    "infinitiu": "aprendre",
+    "codi": "WN0002LILS",
+    "rimacons": "ɛndɾəlsi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
     "paraula": "apropinquo",
     "infinitiu": "apropinquar",
     "codi": "VMIP1S0Y",
@@ -61610,6 +61730,36 @@
     "diec": "Diec"
   },
   {
+    "paraula": "atendre-la-hi",
+    "infinitiu": "atendre",
+    "codi": "WN0002LILA",
+    "rimacons": "endɾələi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "atendre-les-hi",
+    "infinitiu": "atendre",
+    "codi": "WN0002LILE",
+    "rimacons": "endɾələzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "atendre'ls-hi",
+    "infinitiu": "atendre",
+    "codi": "WN0002LILS",
+    "rimacons": "endɾəlsi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
     "paraula": "atipl",
     "infinitiu": "atiplar",
     "codi": "VMIP1S0B",
@@ -61668,6 +61818,36 @@
     "vicc": "Vicc",
     "viq": "NO",
     "diec": "Diec"
+  },
+  {
+    "paraula": "batre-la-hi",
+    "infinitiu": "batre",
+    "codi": "WN0002LILA",
+    "rimacons": "atɾələi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "batre-les-hi",
+    "infinitiu": "batre",
+    "codi": "WN0002LILE",
+    "rimacons": "atɾələzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "batre'ls-hi",
+    "infinitiu": "batre",
+    "codi": "WN0002LILS",
+    "rimacons": "atɾəlsi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
   },
   {
     "paraula": "birbi",
@@ -62120,6 +62300,36 @@
     "diec": "Diec"
   },
   {
+    "paraula": "cloure-la-hi",
+    "infinitiu": "cloure",
+    "codi": "WN0002LILA",
+    "rimacons": "ɔwɾələi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "cloure-les-hi",
+    "infinitiu": "cloure",
+    "codi": "WN0002LILE",
+    "rimacons": "ɔwɾələzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "cloure'ls-hi",
+    "infinitiu": "cloure",
+    "codi": "WN0002LILS",
+    "rimacons": "ɔwɾəlsi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
     "paraula": "coadjuv",
     "infinitiu": "coadjuvar",
     "codi": "VMIP1S0B",
@@ -62208,6 +62418,36 @@
     "vicc": "Vicc",
     "viq": "NO",
     "diec": "Diec"
+  },
+  {
+    "paraula": "confondre-la-hi",
+    "infinitiu": "confondre",
+    "codi": "WN0002LILA",
+    "rimacons": "ondɾələi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "confondre-les-hi",
+    "infinitiu": "confondre",
+    "codi": "WN0002LILE",
+    "rimacons": "ondɾələzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "confondre'ls-hi",
+    "infinitiu": "confondre",
+    "codi": "WN0002LILS",
+    "rimacons": "ondɾəlsi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
   },
   {
     "paraula": "const",
@@ -62360,6 +62600,66 @@
     "diec": "NO"
   },
   {
+    "paraula": "córre-la-hi",
+    "infinitiu": "córrer",
+    "codi": "WN0002LILA",
+    "rimacons": "orələi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "córre-les-hi",
+    "infinitiu": "córrer",
+    "codi": "WN0002LILE",
+    "rimacons": "orələzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "córre'ls-hi",
+    "infinitiu": "córrer",
+    "codi": "WN0002LILS",
+    "rimacons": "orəlsi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "córrer-la-hi",
+    "infinitiu": "córrer",
+    "codi": "WN0002LILA",
+    "rimacons": "orəlləi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "córrer-les-hi",
+    "infinitiu": "córrer",
+    "codi": "WN0002LILE",
+    "rimacons": "orəlləzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "córrer-los-hi",
+    "infinitiu": "córrer",
+    "codi": "WN0002LILS",
+    "rimacons": "orəllozi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
     "paraula": "corrompi",
     "infinitiu": "corrompre",
     "codi": "VMM03S0Y",
@@ -62458,6 +62758,26 @@
     "vicc": "Vicc",
     "viq": "NO",
     "diec": "Diec"
+  },
+  {
+    "paraula": "créixe'ls-hi",
+    "infinitiu": "créixer",
+    "codi": "WN0002LILS",
+    "rimacons": "eʃəlsi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "créixer-los-hi",
+    "infinitiu": "créixer",
+    "codi": "WN0002LILS",
+    "rimacons": "eʃəlozi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
   },
   {
     "paraula": "cuin",
@@ -62908,6 +63228,66 @@
     "vicc": "NO",
     "viq": "NO",
     "diec": "Diec"
+  },
+  {
+    "paraula": "empènye-la-hi",
+    "infinitiu": "empènyer",
+    "codi": "WN0002LILA",
+    "rimacons": "əɲələi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "empènye-les-hi",
+    "infinitiu": "empènyer",
+    "codi": "WN0002LILE",
+    "rimacons": "əɲələzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "empènye'ls-hi",
+    "infinitiu": "empènyer",
+    "codi": "WN0002LILS",
+    "rimacons": "əɲəlsi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "empènyer-la-hi",
+    "infinitiu": "empènyer",
+    "codi": "WN0002LILA",
+    "rimacons": "əɲəlləi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "empènyer-les-hi",
+    "infinitiu": "empènyer",
+    "codi": "WN0002LILE",
+    "rimacons": "əɲəlləzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "empènyer-los-hi",
+    "infinitiu": "empènyer",
+    "codi": "WN0002LILS",
+    "rimacons": "əɲəllozi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
   },
   {
     "paraula": "emporpri",
@@ -63950,6 +64330,36 @@
     "diec": "Diec"
   },
   {
+    "paraula": "fer-la-hi",
+    "infinitiu": "fer",
+    "codi": "WN0002LILA",
+    "rimacons": "elləi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "fer-les-hi",
+    "infinitiu": "fer",
+    "codi": "WN0002LILE",
+    "rimacons": "elləzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "fer-los-hi",
+    "infinitiu": "fer",
+    "codi": "WN0002LILS",
+    "rimacons": "ellozi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
     "paraula": "fermi",
     "infinitiu": "fermar",
     "codi": "VMM03S0Y",
@@ -64156,6 +64566,36 @@
     "rimacons": "ɔnsin",
     "sil": "2",
     "vicc": "Vicc",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "haver-la-hi",
+    "infinitiu": "haver",
+    "codi": "WN0002LILA",
+    "rimacons": "əlləi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "haver-les-hi",
+    "infinitiu": "haver",
+    "codi": "WN0002LILE",
+    "rimacons": "əlləzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "haver-los-hi",
+    "infinitiu": "haver",
+    "codi": "WN0002LILS",
+    "rimacons": "əllozi",
+    "sil": "0",
+    "vicc": "NO",
     "viq": "NO",
     "diec": "NO"
   },
@@ -64416,6 +64856,36 @@
     "rimacons": "iftis",
     "sil": "2",
     "vicc": "Vicc",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "llegir-la-hi",
+    "infinitiu": "llegir",
+    "codi": "WN0002LILA",
+    "rimacons": "illəi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "llegir-les-hi",
+    "infinitiu": "llegir",
+    "codi": "WN0002LILE",
+    "rimacons": "illəzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "llegir-los-hi",
+    "infinitiu": "llegir",
+    "codi": "WN0002LILS",
+    "rimacons": "illozi",
+    "sil": "0",
+    "vicc": "NO",
     "viq": "NO",
     "diec": "NO"
   },
@@ -64800,6 +65270,66 @@
     "diec": "Diec"
   },
   {
+    "paraula": "pertànye-la-hi",
+    "infinitiu": "pertànyer",
+    "codi": "WN0002LILA",
+    "rimacons": "aɲələi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "pertànye-les-hi",
+    "infinitiu": "pertànyer",
+    "codi": "WN0002LILE",
+    "rimacons": "aɲələzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "pertànye'ls-hi",
+    "infinitiu": "pertànyer",
+    "codi": "WN0002LILS",
+    "rimacons": "aɲəlsi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "pertànyer-la-hi",
+    "infinitiu": "pertànyer",
+    "codi": "WN0002LILA",
+    "rimacons": "aɲəlləi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "pertànyer-les-hi",
+    "infinitiu": "pertànyer",
+    "codi": "WN0002LILE",
+    "rimacons": "aɲəlləzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "pertànyer-los-hi",
+    "infinitiu": "pertànyer",
+    "codi": "WN0002LILS",
+    "rimacons": "aɲəllozi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
     "paraula": "pes",
     "infinitiu": "pesar",
     "codi": "VMIP1S0B",
@@ -65090,6 +65620,36 @@
     "diec": "Diec"
   },
   {
+    "paraula": "prometre-la-hi",
+    "infinitiu": "prometre",
+    "codi": "WN0002LILA",
+    "rimacons": "ətɾələi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "prometre-les-hi",
+    "infinitiu": "prometre",
+    "codi": "WN0002LILE",
+    "rimacons": "ətɾələzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "prometre'ls-hi",
+    "infinitiu": "prometre",
+    "codi": "WN0002LILS",
+    "rimacons": "ətɾəlsi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
     "paraula": "prov",
     "infinitiu": "provar",
     "codi": "VMIP1S0B",
@@ -65190,6 +65750,66 @@
     "diec": "Diec"
   },
   {
+    "paraula": "recitant-la-hi",
+    "infinitiu": "recitar",
+    "codi": "WG0002LILA",
+    "rimacons": "anləi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "recitant-les-hi",
+    "infinitiu": "recitar",
+    "codi": "WG0002LILE",
+    "rimacons": "anləzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "recitant-los-hi",
+    "infinitiu": "recitar",
+    "codi": "WG0002LILS",
+    "rimacons": "anlozi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "recitar-la-hi",
+    "infinitiu": "recitar",
+    "codi": "WN0002LILA",
+    "rimacons": "alləi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "recitar-les-hi",
+    "infinitiu": "recitar",
+    "codi": "WN0002LILE",
+    "rimacons": "alləzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "recitar-los-hi",
+    "infinitiu": "recitar",
+    "codi": "WN0002LILS",
+    "rimacons": "allozi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
     "paraula": "refredin",
     "infinitiu": "refredar",
     "codi": "VMM03P0Y",
@@ -65238,6 +65858,36 @@
     "vicc": "NO",
     "viq": "NO",
     "diec": "Diec"
+  },
+  {
+    "paraula": "respondre-la-hi",
+    "infinitiu": "respondre",
+    "codi": "WN0002LILA",
+    "rimacons": "ɔndɾələi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "respondre-les-hi",
+    "infinitiu": "respondre",
+    "codi": "WN0002LILE",
+    "rimacons": "ɔndɾələzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "respondre'ls-hi",
+    "infinitiu": "respondre",
+    "codi": "WN0002LILS",
+    "rimacons": "ɔndɾəlsi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
   },
   {
     "paraula": "reumpl",
@@ -65368,6 +66018,96 @@
     "vicc": "NO",
     "viq": "NO",
     "diec": "Diec"
+  },
+  {
+    "paraula": "romandre-la-hi",
+    "infinitiu": "romandre",
+    "codi": "WN0002LILA",
+    "rimacons": "andɾələi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "romandre-les-hi",
+    "infinitiu": "romandre",
+    "codi": "WN0002LILE",
+    "rimacons": "andɾələzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "romandre'ls-hi",
+    "infinitiu": "romandre",
+    "codi": "WN0002LILS",
+    "rimacons": "andɾəlsi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "téme-la-hi",
+    "infinitiu": "témer",
+    "codi": "WN0002LILA",
+    "rimacons": "emələi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "téme-les-hi",
+    "infinitiu": "témer",
+    "codi": "WN0002LILE",
+    "rimacons": "emələzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "téme'ls-hi",
+    "infinitiu": "témer",
+    "codi": "WN0002LILS",
+    "rimacons": "eməlsi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "témer-la-hi",
+    "infinitiu": "témer",
+    "codi": "WN0002LILA",
+    "rimacons": "emərləi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "témer-les-hi",
+    "infinitiu": "témer",
+    "codi": "WN0002LILE",
+    "rimacons": "emərləzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "témer-los-hi",
+    "infinitiu": "témer",
+    "codi": "WN0002LILS",
+    "rimacons": "emərlozi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
   },
   {
     "paraula": "titl",
@@ -65578,6 +66318,66 @@
     "vicc": "Vicc",
     "viq": "NO",
     "diec": "Diec"
+  },
+  {
+    "paraula": "vènce-la-hi",
+    "infinitiu": "vèncer",
+    "codi": "WN0002LILA",
+    "rimacons": "ənsələi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "vènce-les-hi",
+    "infinitiu": "vèncer",
+    "codi": "WN0002LILE",
+    "rimacons": "ənsələzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "vènce'ls-hi",
+    "infinitiu": "vèncer",
+    "codi": "WN0002LILS",
+    "rimacons": "ənsəlsi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "vèncer-la-hi",
+    "infinitiu": "vèncer",
+    "codi": "WN0002LILA",
+    "rimacons": "ənsəlləi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "vèncer-les-hi",
+    "infinitiu": "vèncer",
+    "codi": "WN0002LILE",
+    "rimacons": "ənsəlləzi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
+  },
+  {
+    "paraula": "vèncer-los-hi",
+    "infinitiu": "vèncer",
+    "codi": "WN0002LILS",
+    "rimacons": "ənsəllozi",
+    "sil": "0",
+    "vicc": "NO",
+    "viq": "NO",
+    "diec": "NO"
   },
   {
     "paraula": "xiscl",
