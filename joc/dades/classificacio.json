@@ -1,5 +1,5 @@
 {
-  "actualitzacio": "06/09/2026 23:35:02",
+  "actualitzacio": "07/09/2026 22:03:55",
   "modalitats": {
     "diaria|dificil|60": {
       "titol": "Paraula del dia · Difícil",
@@ -59,11 +59,11 @@
           "data": "30/08/2026"
         },
         {
-          "sobrenom": "franco",
-          "punts": 3,
-          "paraula": "enfoscaments",
+          "sobrenom": "rimess",
+          "punts": 17,
+          "paraula": "grosserament",
           "dialecte": "ca",
-          "data": "29/07/2026"
+          "data": "07/09/2026"
         },
         {
           "sobrenom": "sissetembre",
@@ -102,13 +102,6 @@
           "paraula": "sorral",
           "dialecte": "ca",
           "data": "14/08/2026"
-        },
-        {
-          "sobrenom": "franco",
-          "punts": 5,
-          "paraula": "ferretera",
-          "dialecte": "ca",
-          "data": "29/07/2026"
         },
         {
           "sobrenom": "Prova",
@@ -195,6 +188,18 @@
         }
       ]
     },
+    "illimitat|facil|60": {
+      "titol": "Il·limitat · Fàcil · 1 minut",
+      "top": [
+        {
+          "sobrenom": "Provador",
+          "punts": 2,
+          "paraula": "estomatòlogues",
+          "dialecte": "ca",
+          "data": "07/09/2026"
+        }
+      ]
+    },
     "illimitat|facil|90": {
       "titol": "Il·limitat · Fàcil · Estàndard",
       "top": [
@@ -216,17 +221,6 @@
     }
   },
   "diaria": {
-    "2026-07-29": {
-      "facil": [
-        {
-          "sobrenom": "franco",
-          "punts": 3,
-          "paraula": "enfoscaments",
-          "dialecte": "ca",
-          "data": "29/07/2026"
-        }
-      ]
-    },
     "2026-08-06": {
       "dificil": [
         {
@@ -337,6 +331,17 @@
           "data": "06/09/2026"
         }
       ]
+    },
+    "2026-09-07": {
+      "facil": [
+        {
+          "sobrenom": "rimess",
+          "punts": 17,
+          "paraula": "grosserament",
+          "dialecte": "ca",
+          "data": "07/09/2026"
+        }
+      ]
     }
   },
   "diaria_millors": {
@@ -393,11 +398,11 @@
         "data": "30/08/2026"
       },
       {
-        "sobrenom": "franco",
-        "punts": 3,
-        "paraula": "enfoscaments",
+        "sobrenom": "rimess",
+        "punts": 17,
+        "paraula": "grosserament",
         "dialecte": "ca",
-        "data": "29/07/2026"
+        "data": "07/09/2026"
       },
       {
         "sobrenom": "sissetembre",
