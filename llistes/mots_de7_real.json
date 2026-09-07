@@ -1900,46 +1900,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "adverbialitzéssim",
-    "infinitiu": "adverbialitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "adverbialitzessin",
-    "infinitiu": "adverbialitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "adverbialitzessis",
-    "infinitiu": "adverbialitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "adverbialitzéssiu",
-    "infinitiu": "adverbialitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "aerificació",
     "infinitiu": "aerificació",
     "codi": "NCFS000",
@@ -3720,46 +3680,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "americanitzéssim",
-    "infinitiu": "americanitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "americanitzessin",
-    "infinitiu": "americanitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "americanitzessis",
-    "infinitiu": "americanitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "americanitzéssiu",
-    "infinitiu": "americanitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "amigdalectomia",
     "infinitiu": "amigdalectomia",
     "codi": "NCFS000",
@@ -4130,46 +4050,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "anagramatitzéssim",
-    "infinitiu": "anagramatitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "anagramatitzessin",
-    "infinitiu": "anagramatitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "anagramatitzessis",
-    "infinitiu": "anagramatitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "anagramatitzéssiu",
-    "infinitiu": "anagramatitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "anarcocomunisme",
     "infinitiu": "anarcocomunisme",
     "codi": "NCMS000",
@@ -4414,46 +4294,6 @@
     "infinitiu": "anatematitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "anatematitzéssim",
-    "infinitiu": "anatematitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "anatematitzessin",
-    "infinitiu": "anatematitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "anatematitzessis",
-    "infinitiu": "anatematitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "anatematitzéssiu",
-    "infinitiu": "anatematitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -6650,46 +6490,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "aparroquianéssim",
-    "infinitiu": "aparroquianar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aparroquianessin",
-    "infinitiu": "aparroquianar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aparroquianessis",
-    "infinitiu": "aparroquianar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aparroquianéssiu",
-    "infinitiu": "aparroquianar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "aparroquiaria",
     "infinitiu": "aparroquiar",
     "codi": "VMCC1S00",
@@ -7240,46 +7040,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "aprovisionéssim",
-    "infinitiu": "aprovisionar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aprovisionessin",
-    "infinitiu": "aprovisionar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aprovisionessis",
-    "infinitiu": "aprovisionar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aprovisionéssiu",
-    "infinitiu": "aprovisionar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "aproximativament",
     "infinitiu": "aproximativament",
     "codi": "ZRG",
@@ -7614,46 +7374,6 @@
     "infinitiu": "aristocratitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aristocratitzéssim",
-    "infinitiu": "aristocratitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aristocratitzessin",
-    "infinitiu": "aristocratitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aristocratitzessis",
-    "infinitiu": "aristocratitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aristocratitzéssiu",
-    "infinitiu": "aristocratitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -8094,46 +7814,6 @@
     "infinitiu": "arterialitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "arterialitzéssim",
-    "infinitiu": "arterialitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "arterialitzessin",
-    "infinitiu": "arterialitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "arterialitzessis",
-    "infinitiu": "arterialitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "arterialitzéssiu",
-    "infinitiu": "arterialitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -9470,46 +9150,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "autogestionéssim",
-    "infinitiu": "autogestionar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "autogestionessin",
-    "infinitiu": "autogestionar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "autogestionessis",
-    "infinitiu": "autogestionar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "autogestionéssiu",
-    "infinitiu": "autogestionar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "autografiaria",
     "infinitiu": "autografiar",
     "codi": "VMCC1S00",
@@ -10314,46 +9954,6 @@
     "infinitiu": "axiomatitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "axiomatitzéssim",
-    "infinitiu": "axiomatitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "axiomatitzessin",
-    "infinitiu": "axiomatitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "axiomatitzessis",
-    "infinitiu": "axiomatitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "axiomatitzéssiu",
-    "infinitiu": "axiomatitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -11264,46 +10864,6 @@
     "infinitiu": "bilabialitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "bilabialitzéssim",
-    "infinitiu": "bilabialitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "bilabialitzessin",
-    "infinitiu": "bilabialitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "bilabialitzessis",
-    "infinitiu": "bilabialitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "bilabialitzéssiu",
-    "infinitiu": "bilabialitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -13154,46 +12714,6 @@
     "infinitiu": "caricaturitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "caricaturitzéssim",
-    "infinitiu": "caricaturitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "caricaturitzessin",
-    "infinitiu": "caricaturitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "caricaturitzessis",
-    "infinitiu": "caricaturitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "caricaturitzéssiu",
-    "infinitiu": "caricaturitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -15490,46 +15010,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "comercialitzéssim",
-    "infinitiu": "comercialitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "comercialitzessin",
-    "infinitiu": "comercialitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "comercialitzessis",
-    "infinitiu": "comercialitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "comercialitzéssiu",
-    "infinitiu": "comercialitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "comerciejaria",
     "infinitiu": "comerciejar",
     "codi": "VMCC1S00",
@@ -15940,46 +15420,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "compatibilitzéssim",
-    "infinitiu": "compatibilitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "compatibilitzessin",
-    "infinitiu": "compatibilitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "compatibilitzessis",
-    "infinitiu": "compatibilitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "compatibilitzéssiu",
-    "infinitiu": "compatibilitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "complementarietat",
     "infinitiu": "complementarietat",
     "codi": "NCFS000",
@@ -16274,46 +15714,6 @@
     "infinitiu": "conceptualitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "conceptualitzéssim",
-    "infinitiu": "conceptualitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "conceptualitzessin",
-    "infinitiu": "conceptualitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "conceptualitzessis",
-    "infinitiu": "conceptualitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "conceptualitzéssiu",
-    "infinitiu": "conceptualitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -17050,46 +16450,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "connaturalitzéssim",
-    "infinitiu": "connaturalitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "connaturalitzessin",
-    "infinitiu": "connaturalitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "connaturalitzessis",
-    "infinitiu": "connaturalitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "connaturalitzéssiu",
-    "infinitiu": "connaturalitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "connectivopatia",
     "infinitiu": "connectivopatia",
     "codi": "NCFS000",
@@ -17194,46 +16554,6 @@
     "infinitiu": "conscienciar",
     "codi": "VMCC2P00",
     "rimacons": "iəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "conscienciegéssim",
-    "infinitiu": "conscienciejar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "conscienciegessin",
-    "infinitiu": "conscienciejar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "conscienciegessis",
-    "infinitiu": "conscienciejar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "conscienciegéssiu",
-    "infinitiu": "conscienciejar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -17844,46 +17164,6 @@
     "infinitiu": "contextualitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "contextualitzéssim",
-    "infinitiu": "contextualitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "contextualitzessin",
-    "infinitiu": "contextualitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "contextualitzessis",
-    "infinitiu": "contextualitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "contextualitzéssiu",
-    "infinitiu": "contextualitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -19090,46 +18370,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "copolimeritzéssim",
-    "infinitiu": "copolimeritzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "copolimeritzessin",
-    "infinitiu": "copolimeritzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "copolimeritzessis",
-    "infinitiu": "copolimeritzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "copolimeritzéssiu",
-    "infinitiu": "copolimeritzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "coprecipitació",
     "infinitiu": "coprecipitació",
     "codi": "NCFS000",
@@ -19334,46 +18574,6 @@
     "infinitiu": "coreografiar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "coreografiéssim",
-    "infinitiu": "coreografiar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "coreografiessin",
-    "infinitiu": "coreografiar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "coreografiessis",
-    "infinitiu": "coreografiar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "coreografiéssiu",
-    "infinitiu": "coreografiar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -19640,46 +18840,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "correlacionéssim",
-    "infinitiu": "correlacionar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "correlacionessin",
-    "infinitiu": "correlacionar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "correlacionessis",
-    "infinitiu": "correlacionar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "correlacionéssiu",
-    "infinitiu": "correlacionar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "correligionari",
     "infinitiu": "correligionari",
     "codi": "AQ0MS0",
@@ -19860,29 +19020,9 @@
     "diec": "NO"
   },
   {
-    "paraula": "corresponsabilitzés",
-    "infinitiu": "corresponsabilitzar",
-    "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
     "paraula": "corresponsabilitzeu",
     "infinitiu": "corresponsabilitzar",
     "codi": "VMIP2P00",
-    "rimacons": "ɛw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "corresponsabilitzeu",
-    "infinitiu": "corresponsabilitzar",
-    "codi": "VMM02P0X",
     "rimacons": "ɛw",
     "sil": "7",
     "vicc": "Vicc",
@@ -19900,70 +19040,10 @@
     "diec": "NO"
   },
   {
-    "paraula": "corresponsabilitzi",
-    "infinitiu": "corresponsabilitzar",
-    "codi": "VMM03S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "corresponsabilitzi",
-    "infinitiu": "corresponsabilitzar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
     "paraula": "corresponsabilitzí",
     "infinitiu": "corresponsabilitzar",
     "codi": "VMIS1S00",
     "rimacons": "i",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "corresponsabilitzin",
-    "infinitiu": "corresponsabilitzar",
-    "codi": "VMM03P0Y",
-    "rimacons": "idzin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "corresponsabilitzin",
-    "infinitiu": "corresponsabilitzar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "idzin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "corresponsabilitzis",
-    "infinitiu": "corresponsabilitzar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "idzis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "corresponsabilitzo",
-    "infinitiu": "corresponsabilitzar",
-    "codi": "VMIP1S0C",
-    "rimacons": "idzu",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -21470,46 +20550,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "desacidifiquéssim",
-    "infinitiu": "desacidificar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desacidifiquessin",
-    "infinitiu": "desacidificar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desacidifiquessis",
-    "infinitiu": "desacidificar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desacidifiquéssiu",
-    "infinitiu": "desacidificar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desaclimatació",
     "infinitiu": "desaclimatació",
     "codi": "NCFS000",
@@ -22144,46 +21184,6 @@
     "infinitiu": "desafeccionar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desafeccionéssim",
-    "infinitiu": "desafeccionar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desafeccionessin",
-    "infinitiu": "desafeccionar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desafeccionessis",
-    "infinitiu": "desafeccionar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desafeccionéssiu",
-    "infinitiu": "desafeccionar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -22890,46 +21890,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "desaparionéssim",
-    "infinitiu": "desaparionar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desaparionessin",
-    "infinitiu": "desaparionar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desaparionessis",
-    "infinitiu": "desaparionar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desaparionéssiu",
-    "infinitiu": "desaparionar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desaparroquiada",
     "infinitiu": "desaparroquiar",
     "codi": "VMP00SF0",
@@ -23070,29 +22030,9 @@
     "diec": "Diec"
   },
   {
-    "paraula": "desaparroquianés",
-    "infinitiu": "desaparroquianar",
-    "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desaparroquianeu",
     "infinitiu": "desaparroquianar",
     "codi": "VMIP2P00",
-    "rimacons": "ɛw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desaparroquianeu",
-    "infinitiu": "desaparroquianar",
-    "codi": "VMM02P0X",
     "rimacons": "ɛw",
     "sil": "7",
     "vicc": "NO",
@@ -23110,70 +22050,10 @@
     "diec": "Diec"
   },
   {
-    "paraula": "desaparroquiani",
-    "infinitiu": "desaparroquianar",
-    "codi": "VMM03S0Y",
-    "rimacons": "ani",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desaparroquiani",
-    "infinitiu": "desaparroquianar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ani",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desaparroquianí",
     "infinitiu": "desaparroquianar",
     "codi": "VMIS1S00",
     "rimacons": "i",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desaparroquianin",
-    "infinitiu": "desaparroquianar",
-    "codi": "VMM03P0Y",
-    "rimacons": "anin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desaparroquianin",
-    "infinitiu": "desaparroquianar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "anin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desaparroquianis",
-    "infinitiu": "desaparroquianar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "anis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desaparroquiano",
-    "infinitiu": "desaparroquianar",
-    "codi": "VMIP1S0C",
-    "rimacons": "anu",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -23324,46 +22204,6 @@
     "infinitiu": "desaparroquiar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desaparroquiéssim",
-    "infinitiu": "desaparroquiar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desaparroquiessin",
-    "infinitiu": "desaparroquiar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desaparroquiessis",
-    "infinitiu": "desaparroquiar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desaparroquiéssiu",
-    "infinitiu": "desaparroquiar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -23534,46 +22374,6 @@
     "infinitiu": "desapassionar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desapassionéssim",
-    "infinitiu": "desapassionar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desapassionessin",
-    "infinitiu": "desapassionar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desapassionessis",
-    "infinitiu": "desapassionar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desapassionéssiu",
-    "infinitiu": "desapassionar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -25000,46 +23800,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "descapitalitzéssim",
-    "infinitiu": "descapitalitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descapitalitzessin",
-    "infinitiu": "descapitalitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descapitalitzessis",
-    "infinitiu": "descapitalitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descapitalitzéssiu",
-    "infinitiu": "descapitalitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "descaragolaria",
     "infinitiu": "descaragolar",
     "codi": "VMCC1S00",
@@ -25470,46 +24230,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "descastellanitzéssim",
-    "infinitiu": "descastellanitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descastellanitzessin",
-    "infinitiu": "descastellanitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descastellanitzessis",
-    "infinitiu": "descastellanitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descastellanitzéssiu",
-    "infinitiu": "descastellanitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "descatalanitzada",
     "infinitiu": "descatalanitzar",
     "codi": "VMP00SF0",
@@ -25674,46 +24394,6 @@
     "infinitiu": "descatalanitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descatalanitzéssim",
-    "infinitiu": "descatalanitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descatalanitzessin",
-    "infinitiu": "descatalanitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descatalanitzessis",
-    "infinitiu": "descatalanitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descatalanitzéssiu",
-    "infinitiu": "descatalanitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -26250,46 +24930,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "descongestionéssim",
-    "infinitiu": "descongestionar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descongestionessin",
-    "infinitiu": "descongestionar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descongestionessis",
-    "infinitiu": "descongestionar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descongestionéssiu",
-    "infinitiu": "descongestionar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desconsideració",
     "infinitiu": "desconsideració",
     "codi": "NCFS000",
@@ -26510,29 +25150,9 @@
     "diec": "Diec"
   },
   {
-    "paraula": "descontextualitzés",
-    "infinitiu": "descontextualitzar",
-    "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "descontextualitzeu",
     "infinitiu": "descontextualitzar",
     "codi": "VMIP2P00",
-    "rimacons": "ɛw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descontextualitzeu",
-    "infinitiu": "descontextualitzar",
-    "codi": "VMM02P0X",
     "rimacons": "ɛw",
     "sil": "7",
     "vicc": "Vicc",
@@ -26550,70 +25170,10 @@
     "diec": "Diec"
   },
   {
-    "paraula": "descontextualitzi",
-    "infinitiu": "descontextualitzar",
-    "codi": "VMM03S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descontextualitzi",
-    "infinitiu": "descontextualitzar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "descontextualitzí",
     "infinitiu": "descontextualitzar",
     "codi": "VMIS1S00",
     "rimacons": "i",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descontextualitzin",
-    "infinitiu": "descontextualitzar",
-    "codi": "VMM03P0Y",
-    "rimacons": "idzin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descontextualitzin",
-    "infinitiu": "descontextualitzar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "idzin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descontextualitzis",
-    "infinitiu": "descontextualitzar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "idzis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descontextualitzo",
-    "infinitiu": "descontextualitzar",
-    "codi": "VMIP1S0C",
-    "rimacons": "idzu",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -28810,46 +27370,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "desempantaneguéssim",
-    "infinitiu": "desempantanegar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desempantaneguessin",
-    "infinitiu": "desempantanegar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desempantaneguessis",
-    "infinitiu": "desempantanegar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desempantaneguéssiu",
-    "infinitiu": "desempantanegar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desempapatxaria",
     "infinitiu": "desempapatxar",
     "codi": "VMCC1S00",
@@ -30270,46 +28790,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "desencaboriéssim",
-    "infinitiu": "desencaboriar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desencaboriessin",
-    "infinitiu": "desencaboriar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desencaboriessis",
-    "infinitiu": "desencaboriar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desencaboriéssiu",
-    "infinitiu": "desencaboriar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desencadellaria",
     "infinitiu": "desencadellar",
     "codi": "VMCC1S00",
@@ -31190,46 +29670,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "desencarranquinéssim",
-    "infinitiu": "desencarranquinar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desencarranquinessin",
-    "infinitiu": "desencarranquinar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desencarranquinessis",
-    "infinitiu": "desencarranquinar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desencarranquinéssiu",
-    "infinitiu": "desencarranquinar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desencarregaria",
     "infinitiu": "desencarregar",
     "codi": "VMCC1S00",
@@ -31644,46 +30084,6 @@
     "infinitiu": "desencaterinar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desencaterinéssim",
-    "infinitiu": "desencaterinar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desencaterinessin",
-    "infinitiu": "desencaterinar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desencaterinessis",
-    "infinitiu": "desencaterinar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desencaterinéssiu",
-    "infinitiu": "desencaterinar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -32810,46 +31210,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "desendimoniéssim",
-    "infinitiu": "desendimoniar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desendimoniessin",
-    "infinitiu": "desendimoniar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desendimoniessis",
-    "infinitiu": "desendimoniar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desendimoniéssiu",
-    "infinitiu": "desendimoniar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desendogalaria",
     "infinitiu": "desendogalar",
     "codi": "VMCC1S00",
@@ -33714,46 +32074,6 @@
     "infinitiu": "desengalavernar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desengalavernéssim",
-    "infinitiu": "desengalavernar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desengalavernessin",
-    "infinitiu": "desengalavernar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desengalavernessis",
-    "infinitiu": "desengalavernar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desengalavernéssiu",
-    "infinitiu": "desengalavernar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -35860,46 +34180,6 @@
     "diec": "NO"
   },
   {
-    "paraula": "desenteranyinéssim",
-    "infinitiu": "desenteranyinar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "desenteranyinessin",
-    "infinitiu": "desenteranyinar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "desenteranyinessis",
-    "infinitiu": "desenteranyinar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "desenteranyinéssiu",
-    "infinitiu": "desenteranyinar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
     "paraula": "desenterboliria",
     "infinitiu": "desenterbolir",
     "codi": "VMCC1S00",
@@ -36114,46 +34394,6 @@
     "infinitiu": "desentortolligar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desentortolliguéssim",
-    "infinitiu": "desentortolligar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desentortolliguessin",
-    "infinitiu": "desentortolligar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desentortolliguessis",
-    "infinitiu": "desentortolligar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desentortolliguéssiu",
-    "infinitiu": "desentortolligar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -36530,46 +34770,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "desentusiasméssim",
-    "infinitiu": "desentusiasmar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desentusiasmessin",
-    "infinitiu": "desentusiasmar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desentusiasmessis",
-    "infinitiu": "desentusiasmar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desentusiasméssiu",
-    "infinitiu": "desentusiasmar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desenvalisaria",
     "infinitiu": "desenvalisar",
     "codi": "VMCC1S00",
@@ -36884,46 +35084,6 @@
     "infinitiu": "desenvitricollar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desenvitricolléssim",
-    "infinitiu": "desenvitricollar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desenvitricollessin",
-    "infinitiu": "desenvitricollar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desenvitricollessis",
-    "infinitiu": "desenvitricollar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desenvitricolléssiu",
-    "infinitiu": "desenvitricollar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -37314,46 +35474,6 @@
     "infinitiu": "desestabilitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desestabilitzéssim",
-    "infinitiu": "desestabilitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desestabilitzessin",
-    "infinitiu": "desestabilitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desestabilitzessis",
-    "infinitiu": "desestabilitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desestabilitzéssiu",
-    "infinitiu": "desestabilitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -38210,46 +36330,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "desil·lusionéssim",
-    "infinitiu": "desil·lusionar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desil·lusionessin",
-    "infinitiu": "desil·lusionar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desil·lusionessis",
-    "infinitiu": "desil·lusionar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desil·lusionéssiu",
-    "infinitiu": "desil·lusionar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desincentivaria",
     "infinitiu": "desincentivar",
     "codi": "VMCC1S00",
@@ -38810,46 +36890,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "desinterlineéssim",
-    "infinitiu": "desinterlinear",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desinterlineessin",
-    "infinitiu": "desinterlinear",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desinterlineessis",
-    "infinitiu": "desinterlinear",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desinterlineéssiu",
-    "infinitiu": "desinterlinear",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desintoxicació",
     "infinitiu": "desintoxicació",
     "codi": "NCFS000",
@@ -39160,46 +37200,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "deslabialitzéssim",
-    "infinitiu": "deslabialitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "deslabialitzessin",
-    "infinitiu": "deslabialitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "deslabialitzessis",
-    "infinitiu": "deslabialitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "deslabialitzéssiu",
-    "infinitiu": "deslabialitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "deslocalització",
     "infinitiu": "deslocalització",
     "codi": "NCFS000",
@@ -39384,46 +37384,6 @@
     "infinitiu": "desmemoriar",
     "codi": "VMCC2P00",
     "rimacons": "iəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desmemoriegéssim",
-    "infinitiu": "desmemoriejar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desmemoriegessin",
-    "infinitiu": "desmemoriejar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desmemoriegessis",
-    "infinitiu": "desmemoriejar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desmemoriegéssiu",
-    "infinitiu": "desmemoriejar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -39770,46 +37730,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "desmilitaritzéssim",
-    "infinitiu": "desmilitaritzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desmilitaritzessin",
-    "infinitiu": "desmilitaritzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desmilitaritzessis",
-    "infinitiu": "desmilitaritzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desmilitaritzéssiu",
-    "infinitiu": "desmilitaritzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desmitificació",
     "infinitiu": "desmitificació",
     "codi": "NCFS000",
@@ -40044,46 +37964,6 @@
     "infinitiu": "desmitologitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desmitologitzéssim",
-    "infinitiu": "desmitologitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desmitologitzessin",
-    "infinitiu": "desmitologitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desmitologitzessis",
-    "infinitiu": "desmitologitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desmitologitzéssiu",
-    "infinitiu": "desmitologitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -40480,29 +38360,9 @@
     "diec": "Diec"
   },
   {
-    "paraula": "desnacionalitzés",
-    "infinitiu": "desnacionalitzar",
-    "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desnacionalitzeu",
     "infinitiu": "desnacionalitzar",
     "codi": "VMIP2P00",
-    "rimacons": "ɛw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desnacionalitzeu",
-    "infinitiu": "desnacionalitzar",
-    "codi": "VMM02P0X",
     "rimacons": "ɛw",
     "sil": "7",
     "vicc": "NO",
@@ -40520,70 +38380,10 @@
     "diec": "Diec"
   },
   {
-    "paraula": "desnacionalitzi",
-    "infinitiu": "desnacionalitzar",
-    "codi": "VMM03S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desnacionalitzi",
-    "infinitiu": "desnacionalitzar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desnacionalitzí",
     "infinitiu": "desnacionalitzar",
     "codi": "VMIS1S00",
     "rimacons": "i",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desnacionalitzin",
-    "infinitiu": "desnacionalitzar",
-    "codi": "VMM03P0Y",
-    "rimacons": "idzin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desnacionalitzin",
-    "infinitiu": "desnacionalitzar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "idzin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desnacionalitzis",
-    "infinitiu": "desnacionalitzar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "idzis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desnacionalitzo",
-    "infinitiu": "desnacionalitzar",
-    "codi": "VMIP1S0C",
-    "rimacons": "idzu",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -40794,46 +38594,6 @@
     "infinitiu": "desnaturalitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desnaturalitzéssim",
-    "infinitiu": "desnaturalitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desnaturalitzessin",
-    "infinitiu": "desnaturalitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desnaturalitzessis",
-    "infinitiu": "desnaturalitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desnaturalitzéssiu",
-    "infinitiu": "desnaturalitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -41080,46 +38840,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "desnicotinitzéssim",
-    "infinitiu": "desnicotinitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desnicotinitzessin",
-    "infinitiu": "desnicotinitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desnicotinitzessis",
-    "infinitiu": "desnicotinitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desnicotinitzéssiu",
-    "infinitiu": "desnicotinitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desnitrificació",
     "infinitiu": "desnitrificació",
     "codi": "NCFS000",
@@ -41304,46 +39024,6 @@
     "infinitiu": "desnuclearitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desnuclearitzéssim",
-    "infinitiu": "desnuclearitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desnuclearitzessin",
-    "infinitiu": "desnuclearitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desnuclearitzessis",
-    "infinitiu": "desnuclearitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desnuclearitzéssiu",
-    "infinitiu": "desnuclearitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -41970,46 +39650,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "despalatalitzéssim",
-    "infinitiu": "despalatalitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "despalatalitzessin",
-    "infinitiu": "despalatalitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "despalatalitzessis",
-    "infinitiu": "despalatalitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "despalatalitzéssiu",
-    "infinitiu": "despalatalitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desparionaria",
     "infinitiu": "desparionar",
     "codi": "VMCC1S00",
@@ -42224,46 +39864,6 @@
     "infinitiu": "despatologitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "despatologitzéssim",
-    "infinitiu": "despatologitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "despatologitzessin",
-    "infinitiu": "despatologitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "despatologitzessis",
-    "infinitiu": "despatologitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "despatologitzéssiu",
-    "infinitiu": "despatologitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -42524,46 +40124,6 @@
     "infinitiu": "despersonalitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "despersonalitzéssim",
-    "infinitiu": "despersonalitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "despersonalitzessin",
-    "infinitiu": "despersonalitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "despersonalitzessis",
-    "infinitiu": "despersonalitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "despersonalitzéssiu",
-    "infinitiu": "despersonalitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -43034,46 +40594,6 @@
     "infinitiu": "desproporcionar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desproporcionéssim",
-    "infinitiu": "desproporcionar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desproporcionessin",
-    "infinitiu": "desproporcionar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desproporcionessis",
-    "infinitiu": "desproporcionar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desproporcionéssiu",
-    "infinitiu": "desproporcionar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -43574,46 +41094,6 @@
     "infinitiu": "desvirtualitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "desvirtualitzéssim",
-    "infinitiu": "desvirtualitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "desvirtualitzessin",
-    "infinitiu": "desvirtualitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "desvirtualitzessis",
-    "infinitiu": "desvirtualitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "desvirtualitzéssiu",
-    "infinitiu": "desvirtualitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -48720,46 +46200,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "entremaliegéssim",
-    "infinitiu": "entremaliejar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "entremaliegessin",
-    "infinitiu": "entremaliejar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "entremaliegessis",
-    "infinitiu": "entremaliejar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "entremaliegéssiu",
-    "infinitiu": "entremaliejar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "entremaliejada",
     "infinitiu": "entremaliejar",
     "codi": "VMP00SF0",
@@ -49564,46 +47004,6 @@
     "infinitiu": "epigramatitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "epigramatitzéssim",
-    "infinitiu": "epigramatitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "epigramatitzessin",
-    "infinitiu": "epigramatitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "epigramatitzessis",
-    "infinitiu": "epigramatitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "epigramatitzéssiu",
-    "infinitiu": "epigramatitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -51890,46 +49290,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "especialitzéssim",
-    "infinitiu": "especialitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "especialitzessin",
-    "infinitiu": "especialitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "especialitzessis",
-    "infinitiu": "especialitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "especialitzéssiu",
-    "infinitiu": "especialitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "especificació",
     "infinitiu": "especificació",
     "codi": "NCFS000",
@@ -52750,29 +50110,9 @@
     "diec": "Diec"
   },
   {
-    "paraula": "espiritualitzés",
-    "infinitiu": "espiritualitzar",
-    "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "espiritualitzeu",
     "infinitiu": "espiritualitzar",
     "codi": "VMIP2P00",
-    "rimacons": "ɛw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espiritualitzeu",
-    "infinitiu": "espiritualitzar",
-    "codi": "VMM02P0X",
     "rimacons": "ɛw",
     "sil": "7",
     "vicc": "NO",
@@ -52790,70 +50130,10 @@
     "diec": "Diec"
   },
   {
-    "paraula": "espiritualitzi",
-    "infinitiu": "espiritualitzar",
-    "codi": "VMM03S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espiritualitzi",
-    "infinitiu": "espiritualitzar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "espiritualitzí",
     "infinitiu": "espiritualitzar",
     "codi": "VMIS1S00",
     "rimacons": "i",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espiritualitzin",
-    "infinitiu": "espiritualitzar",
-    "codi": "VMM03P0Y",
-    "rimacons": "idzin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espiritualitzin",
-    "infinitiu": "espiritualitzar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "idzin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espiritualitzis",
-    "infinitiu": "espiritualitzar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "idzis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espiritualitzo",
-    "infinitiu": "espiritualitzar",
-    "codi": "VMIP1S0C",
-    "rimacons": "idzu",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -53810,46 +51090,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "estenografiéssim",
-    "infinitiu": "estenografiar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "estenografiessin",
-    "infinitiu": "estenografiar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "estenografiessis",
-    "infinitiu": "estenografiar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "estenografiéssiu",
-    "infinitiu": "estenografiar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "estequiometria",
     "infinitiu": "estequiometria",
     "codi": "NCFS000",
@@ -54424,46 +51664,6 @@
     "infinitiu": "estereotipar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "estereotipéssim",
-    "infinitiu": "estereotipar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "estereotipessin",
-    "infinitiu": "estereotipar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "estereotipessis",
-    "infinitiu": "estereotipar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "estereotipéssiu",
-    "infinitiu": "estereotipar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -55980,46 +53180,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "evolucionéssim",
-    "infinitiu": "evolucionar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "evolucionessin",
-    "infinitiu": "evolucionar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "evolucionessis",
-    "infinitiu": "evolucionar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "evolucionéssiu",
-    "infinitiu": "evolucionar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "evolucionisme",
     "infinitiu": "evolucionisme",
     "codi": "NCMS000",
@@ -56920,46 +54080,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "exterioritzéssim",
-    "infinitiu": "exterioritzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "exterioritzessin",
-    "infinitiu": "exterioritzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "exterioritzessis",
-    "infinitiu": "exterioritzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "exterioritzéssiu",
-    "infinitiu": "exterioritzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "exteroreceptores",
     "infinitiu": "exteroreceptor",
     "codi": "AQ0FP0",
@@ -57420,46 +54540,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "familiaritzéssim",
-    "infinitiu": "familiaritzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "familiaritzessin",
-    "infinitiu": "familiaritzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "familiaritzessis",
-    "infinitiu": "familiaritzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "familiaritzéssiu",
-    "infinitiu": "familiaritzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "fanerocristal·lina",
     "infinitiu": "fanerocristal·lí",
     "codi": "AQ0FS0",
@@ -57904,46 +54984,6 @@
     "infinitiu": "fenomenalitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "fenomenalitzéssim",
-    "infinitiu": "fenomenalitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "fenomenalitzessin",
-    "infinitiu": "fenomenalitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "fenomenalitzessis",
-    "infinitiu": "fenomenalitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "fenomenalitzéssiu",
-    "infinitiu": "fenomenalitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -60150,46 +57190,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "gramaticalitzéssim",
-    "infinitiu": "gramaticalitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "gramaticalitzessin",
-    "infinitiu": "gramaticalitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "gramaticalitzessis",
-    "infinitiu": "gramaticalitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "gramaticalitzéssiu",
-    "infinitiu": "gramaticalitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "grossulariàcia",
     "infinitiu": "grossulariàcia",
     "codi": "NCFS000",
@@ -60544,46 +57544,6 @@
     "infinitiu": "hemodialitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "hemodialitzéssim",
-    "infinitiu": "hemodialitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "hemodialitzessin",
-    "infinitiu": "hemodialitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "hemodialitzessis",
-    "infinitiu": "hemodialitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "hemodialitzéssiu",
-    "infinitiu": "hemodialitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -62140,46 +59100,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "homogeneïtzéssim",
-    "infinitiu": "homogeneïtzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "homogeneïtzessin",
-    "infinitiu": "homogeneïtzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "homogeneïtzessis",
-    "infinitiu": "homogeneïtzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "homogeneïtzéssiu",
-    "infinitiu": "homogeneïtzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "homonimització",
     "infinitiu": "homonimització",
     "codi": "NCFS000",
@@ -63230,29 +60150,9 @@
     "diec": "Diec"
   },
   {
-    "paraula": "immaterialitzés",
-    "infinitiu": "immaterialitzar",
-    "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "immaterialitzeu",
     "infinitiu": "immaterialitzar",
     "codi": "VMIP2P00",
-    "rimacons": "ɛw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "immaterialitzeu",
-    "infinitiu": "immaterialitzar",
-    "codi": "VMM02P0X",
     "rimacons": "ɛw",
     "sil": "7",
     "vicc": "Vicc",
@@ -63270,70 +60170,10 @@
     "diec": "Diec"
   },
   {
-    "paraula": "immaterialitzi",
-    "infinitiu": "immaterialitzar",
-    "codi": "VMM03S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "immaterialitzi",
-    "infinitiu": "immaterialitzar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "immaterialitzí",
     "infinitiu": "immaterialitzar",
     "codi": "VMIS1S00",
     "rimacons": "i",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "immaterialitzin",
-    "infinitiu": "immaterialitzar",
-    "codi": "VMM03P0Y",
-    "rimacons": "idzin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "immaterialitzin",
-    "infinitiu": "immaterialitzar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "idzin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "immaterialitzis",
-    "infinitiu": "immaterialitzar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "idzis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "immaterialitzo",
-    "infinitiu": "immaterialitzar",
-    "codi": "VMIP1S0C",
-    "rimacons": "idzu",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -64110,29 +60950,9 @@
     "diec": "Diec"
   },
   {
-    "paraula": "impermeabilitzés",
-    "infinitiu": "impermeabilitzar",
-    "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "impermeabilitzeu",
     "infinitiu": "impermeabilitzar",
     "codi": "VMIP2P00",
-    "rimacons": "ɛw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "impermeabilitzeu",
-    "infinitiu": "impermeabilitzar",
-    "codi": "VMM02P0X",
     "rimacons": "ɛw",
     "sil": "7",
     "vicc": "Vicc",
@@ -64150,70 +60970,10 @@
     "diec": "Diec"
   },
   {
-    "paraula": "impermeabilitzi",
-    "infinitiu": "impermeabilitzar",
-    "codi": "VMM03S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "impermeabilitzi",
-    "infinitiu": "impermeabilitzar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "impermeabilitzí",
     "infinitiu": "impermeabilitzar",
     "codi": "VMIS1S00",
     "rimacons": "i",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "impermeabilitzin",
-    "infinitiu": "impermeabilitzar",
-    "codi": "VMM03P0Y",
-    "rimacons": "idzin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "impermeabilitzin",
-    "infinitiu": "impermeabilitzar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "idzin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "impermeabilitzis",
-    "infinitiu": "impermeabilitzar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "idzis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "impermeabilitzo",
-    "infinitiu": "impermeabilitzar",
-    "codi": "VMIP1S0C",
-    "rimacons": "idzu",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -64404,46 +61164,6 @@
     "infinitiu": "impersonalitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "impersonalitzéssim",
-    "infinitiu": "impersonalitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "impersonalitzessin",
-    "infinitiu": "impersonalitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "impersonalitzessis",
-    "infinitiu": "impersonalitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "impersonalitzéssiu",
-    "infinitiu": "impersonalitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -64674,46 +61394,6 @@
     "infinitiu": "impossibilitar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "impossibilitéssim",
-    "infinitiu": "impossibilitar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "impossibilitessin",
-    "infinitiu": "impossibilitar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "impossibilitessis",
-    "infinitiu": "impossibilitar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "impossibilitéssiu",
-    "infinitiu": "impossibilitar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -66250,29 +62930,9 @@
     "diec": "Diec"
   },
   {
-    "paraula": "individualitzés",
-    "infinitiu": "individualitzar",
-    "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "individualitzeu",
     "infinitiu": "individualitzar",
     "codi": "VMIP2P00",
-    "rimacons": "ɛw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "individualitzeu",
-    "infinitiu": "individualitzar",
-    "codi": "VMM02P0X",
     "rimacons": "ɛw",
     "sil": "7",
     "vicc": "Vicc",
@@ -66290,70 +62950,10 @@
     "diec": "Diec"
   },
   {
-    "paraula": "individualitzi",
-    "infinitiu": "individualitzar",
-    "codi": "VMM03S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "individualitzi",
-    "infinitiu": "individualitzar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "individualitzí",
     "infinitiu": "individualitzar",
     "codi": "VMIS1S00",
     "rimacons": "i",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "individualitzin",
-    "infinitiu": "individualitzar",
-    "codi": "VMM03P0Y",
-    "rimacons": "idzin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "individualitzin",
-    "infinitiu": "individualitzar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "idzin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "individualitzis",
-    "infinitiu": "individualitzar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "idzis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "individualitzo",
-    "infinitiu": "individualitzar",
-    "codi": "VMIP1S0C",
-    "rimacons": "idzu",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -66684,46 +63284,6 @@
     "infinitiu": "industrialitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "industrialitzéssim",
-    "infinitiu": "industrialitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "industrialitzessin",
-    "infinitiu": "industrialitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "industrialitzessis",
-    "infinitiu": "industrialitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "industrialitzéssiu",
-    "infinitiu": "industrialitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -67440,46 +64000,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "infrautilitzéssim",
-    "infinitiu": "infrautilitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "infrautilitzessin",
-    "infinitiu": "infrautilitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "infrautilitzessis",
-    "infinitiu": "infrautilitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "infrautilitzéssiu",
-    "infinitiu": "infrautilitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "infravaloraria",
     "infinitiu": "infravalorar",
     "codi": "VMCC1S00",
@@ -67824,46 +64344,6 @@
     "infinitiu": "inicialitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "inicialitzéssim",
-    "infinitiu": "inicialitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "inicialitzessin",
-    "infinitiu": "inicialitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "inicialitzessis",
-    "infinitiu": "inicialitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "inicialitzéssiu",
-    "infinitiu": "inicialitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -68320,46 +64800,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "insensibilitzéssim",
-    "infinitiu": "insensibilitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "insensibilitzessin",
-    "infinitiu": "insensibilitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "insensibilitzessis",
-    "infinitiu": "insensibilitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "insensibilitzéssiu",
-    "infinitiu": "insensibilitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "inseparabilitat",
     "infinitiu": "inseparabilitat",
     "codi": "NCFS000",
@@ -68710,46 +65150,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "instrumentalitzéssim",
-    "infinitiu": "instrumentalitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "instrumentalitzessin",
-    "infinitiu": "instrumentalitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "instrumentalitzessis",
-    "infinitiu": "instrumentalitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "instrumentalitzéssiu",
-    "infinitiu": "instrumentalitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "insubmergibilitat",
     "infinitiu": "insubmergibilitat",
     "codi": "NCFS000",
@@ -69064,46 +65464,6 @@
     "infinitiu": "insurreccionar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "insurreccionéssim",
-    "infinitiu": "insurreccionar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "insurreccionessin",
-    "infinitiu": "insurreccionar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "insurreccionessis",
-    "infinitiu": "insurreccionar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "insurreccionéssiu",
-    "infinitiu": "insurreccionar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -69594,46 +65954,6 @@
     "infinitiu": "interaccionar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "interaccionéssim",
-    "infinitiu": "interaccionar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "interaccionessin",
-    "infinitiu": "interaccionar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "interaccionessis",
-    "infinitiu": "interaccionar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "interaccionéssiu",
-    "infinitiu": "interaccionar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -70134,46 +66454,6 @@
     "infinitiu": "interioritzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "interioritzéssim",
-    "infinitiu": "interioritzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "interioritzessin",
-    "infinitiu": "interioritzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "interioritzessis",
-    "infinitiu": "interioritzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "interioritzéssiu",
-    "infinitiu": "interioritzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -71890,46 +68170,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "italianitzéssim",
-    "infinitiu": "italianitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "italianitzessin",
-    "infinitiu": "italianitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "italianitzessis",
-    "infinitiu": "italianitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "italianitzéssiu",
-    "infinitiu": "italianitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "italianòfila",
     "infinitiu": "italianòfil",
     "codi": "AQ0FS0",
@@ -72220,46 +68460,6 @@
     "diec": "NO"
   },
   {
-    "paraula": "judicialitzéssim",
-    "infinitiu": "judicialitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "judicialitzessin",
-    "infinitiu": "judicialitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "judicialitzessis",
-    "infinitiu": "judicialitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "judicialitzéssiu",
-    "infinitiu": "judicialitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
     "paraula": "kefalograviera",
     "infinitiu": "kefalograviera",
     "codi": "NCMS000",
@@ -72460,29 +68660,9 @@
     "diec": "Diec"
   },
   {
-    "paraula": "labiovelaritzés",
-    "infinitiu": "labiovelaritzar",
-    "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "labiovelaritzeu",
     "infinitiu": "labiovelaritzar",
     "codi": "VMIP2P00",
-    "rimacons": "ɛw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "labiovelaritzeu",
-    "infinitiu": "labiovelaritzar",
-    "codi": "VMM02P0X",
     "rimacons": "ɛw",
     "sil": "7",
     "vicc": "Vicc",
@@ -72500,70 +68680,10 @@
     "diec": "Diec"
   },
   {
-    "paraula": "labiovelaritzi",
-    "infinitiu": "labiovelaritzar",
-    "codi": "VMM03S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "labiovelaritzi",
-    "infinitiu": "labiovelaritzar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "labiovelaritzí",
     "infinitiu": "labiovelaritzar",
     "codi": "VMIS1S00",
     "rimacons": "i",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "labiovelaritzin",
-    "infinitiu": "labiovelaritzar",
-    "codi": "VMM03P0Y",
-    "rimacons": "idzin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "labiovelaritzin",
-    "infinitiu": "labiovelaritzar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "idzin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "labiovelaritzis",
-    "infinitiu": "labiovelaritzar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "idzis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "labiovelaritzo",
-    "infinitiu": "labiovelaritzar",
-    "codi": "VMIP1S0C",
-    "rimacons": "idzu",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -74320,46 +70440,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "mal·leabilitzéssim",
-    "infinitiu": "mal·leabilitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "mal·leabilitzessin",
-    "infinitiu": "mal·leabilitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "mal·leabilitzessis",
-    "infinitiu": "mal·leabilitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "mal·leabilitzéssiu",
-    "infinitiu": "mal·leabilitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "manifassejaria",
     "infinitiu": "manifassejar",
     "codi": "VMCC1S00",
@@ -74740,46 +70820,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "materialitzéssim",
-    "infinitiu": "materialitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "materialitzessin",
-    "infinitiu": "materialitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "materialitzessis",
-    "infinitiu": "materialitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "materialitzéssiu",
-    "infinitiu": "materialitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "matrilinealitat",
     "infinitiu": "matrilinealitat",
     "codi": "NCFS000",
@@ -74964,46 +71004,6 @@
     "infinitiu": "mecanografiar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "mecanografiéssim",
-    "infinitiu": "mecanografiar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "mecanografiessin",
-    "infinitiu": "mecanografiar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "mecanografiessis",
-    "infinitiu": "mecanografiar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "mecanografiéssiu",
-    "infinitiu": "mecanografiar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -75698,46 +71698,6 @@
     "vicc": "Vicc",
     "viq": "NO",
     "diec": "Diec"
-  },
-  {
-    "paraula": "metamorfosegéssim",
-    "infinitiu": "metamorfosejar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "metamorfosegessin",
-    "infinitiu": "metamorfosejar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "metamorfosegessis",
-    "infinitiu": "metamorfosejar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "metamorfosegéssiu",
-    "infinitiu": "metamorfosejar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
   },
   {
     "paraula": "metamorfosejada",
@@ -77660,46 +73620,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "municipalitzéssim",
-    "infinitiu": "municipalitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "municipalitzessin",
-    "infinitiu": "municipalitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "municipalitzessis",
-    "infinitiu": "municipalitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "municipalitzéssiu",
-    "infinitiu": "municipalitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "musicoterapeuta",
     "infinitiu": "musicoterapeuta",
     "codi": "NCCS000",
@@ -77894,46 +73814,6 @@
     "infinitiu": "nacionalitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "nacionalitzéssim",
-    "infinitiu": "nacionalitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "nacionalitzessin",
-    "infinitiu": "nacionalitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "nacionalitzessis",
-    "infinitiu": "nacionalitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "nacionalitzéssiu",
-    "infinitiu": "nacionalitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -79510,46 +75390,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "occidentalitzéssim",
-    "infinitiu": "occidentalitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "occidentalitzessin",
-    "infinitiu": "occidentalitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "occidentalitzessis",
-    "infinitiu": "occidentalitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "occidentalitzéssiu",
-    "infinitiu": "occidentalitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "occipitotemporal",
     "infinitiu": "occipitotemporal",
     "codi": "AQ0CS0",
@@ -79834,46 +75674,6 @@
     "infinitiu": "oficialitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "oficialitzéssim",
-    "infinitiu": "oficialitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "oficialitzessin",
-    "infinitiu": "oficialitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "oficialitzessis",
-    "infinitiu": "oficialitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "oficialitzéssiu",
-    "infinitiu": "oficialitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -80424,46 +76224,6 @@
     "infinitiu": "orientalitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "orientalitzéssim",
-    "infinitiu": "orientalitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "orientalitzessin",
-    "infinitiu": "orientalitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "orientalitzessis",
-    "infinitiu": "orientalitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "orientalitzéssiu",
-    "infinitiu": "orientalitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -82200,46 +77960,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "particularitzéssim",
-    "infinitiu": "particularitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "particularitzessin",
-    "infinitiu": "particularitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "particularitzessis",
-    "infinitiu": "particularitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "particularitzéssiu",
-    "infinitiu": "particularitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "patrilinealitat",
     "infinitiu": "patrilinealitat",
     "codi": "NCFS000",
@@ -82850,46 +78570,6 @@
     "diec": "NO"
   },
   {
-    "paraula": "permeabilitzéssim",
-    "infinitiu": "permeabilitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "permeabilitzessin",
-    "infinitiu": "permeabilitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "permeabilitzessis",
-    "infinitiu": "permeabilitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "permeabilitzéssiu",
-    "infinitiu": "permeabilitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
     "paraula": "permissionària",
     "infinitiu": "permissionari",
     "codi": "NCFS000",
@@ -83134,46 +78814,6 @@
     "infinitiu": "perquisicionar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "perquisicionéssim",
-    "infinitiu": "perquisicionar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "perquisicionessin",
-    "infinitiu": "perquisicionar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "perquisicionessis",
-    "infinitiu": "perquisicionar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "perquisicionéssiu",
-    "infinitiu": "perquisicionar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -85690,29 +81330,9 @@
     "diec": "Diec"
   },
   {
-    "paraula": "professionalitzés",
-    "infinitiu": "professionalitzar",
-    "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "professionalitzeu",
     "infinitiu": "professionalitzar",
     "codi": "VMIP2P00",
-    "rimacons": "ɛw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "professionalitzeu",
-    "infinitiu": "professionalitzar",
-    "codi": "VMM02P0X",
     "rimacons": "ɛw",
     "sil": "7",
     "vicc": "NO",
@@ -85730,70 +81350,10 @@
     "diec": "Diec"
   },
   {
-    "paraula": "professionalitzi",
-    "infinitiu": "professionalitzar",
-    "codi": "VMM03S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "professionalitzi",
-    "infinitiu": "professionalitzar",
-    "codi": "VMSP1S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "professionalitzí",
     "infinitiu": "professionalitzar",
     "codi": "VMIS1S00",
     "rimacons": "i",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "professionalitzin",
-    "infinitiu": "professionalitzar",
-    "codi": "VMM03P0Y",
-    "rimacons": "idzin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "professionalitzin",
-    "infinitiu": "professionalitzar",
-    "codi": "VMSP3P0Y",
-    "rimacons": "idzin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "professionalitzis",
-    "infinitiu": "professionalitzar",
-    "codi": "VMSP2S0Y",
-    "rimacons": "idzis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "professionalitzo",
-    "infinitiu": "professionalitzar",
-    "codi": "VMIP1S0C",
-    "rimacons": "idzu",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -86144,46 +81704,6 @@
     "infinitiu": "pronominalitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "pronominalitzéssim",
-    "infinitiu": "pronominalitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "pronominalitzessin",
-    "infinitiu": "pronominalitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "pronominalitzessis",
-    "infinitiu": "pronominalitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "pronominalitzéssiu",
-    "infinitiu": "pronominalitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -86794,46 +82314,6 @@
     "infinitiu": "psicoanalitzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "psicoanalitzéssim",
-    "infinitiu": "psicoanalitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "psicoanalitzessin",
-    "infinitiu": "psicoanalitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "psicoanalitzessis",
-    "infinitiu": "psicoanalitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "psicoanalitzéssiu",
-    "infinitiu": "psicoanalitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -87480,46 +82960,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "quintaessenciéssim",
-    "infinitiu": "quintaessenciar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "quintaessenciessin",
-    "infinitiu": "quintaessenciar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "quintaessenciessis",
-    "infinitiu": "quintaessenciar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "quintaessenciéssiu",
-    "infinitiu": "quintaessenciar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "quiropterofília",
     "infinitiu": "quiropterofília",
     "codi": "NCFS000",
@@ -87810,46 +83250,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "racionalitzéssim",
-    "infinitiu": "racionalitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "racionalitzessin",
-    "infinitiu": "racionalitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "racionalitzessis",
-    "infinitiu": "racionalitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "racionalitzéssiu",
-    "infinitiu": "racionalitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "raciovitalisme",
     "infinitiu": "raciovitalisme",
     "codi": "NCMS000",
@@ -88030,66 +83430,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "radiodirigeixi",
-    "infinitiu": "radiodirigir",
-    "codi": "VMM03S0Y",
-    "rimacons": "ɛʃi",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "radiodirigeixi",
-    "infinitiu": "radiodirigir",
-    "codi": "VMSP1S0Y",
-    "rimacons": "ɛʃi",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "radiodirigeixin",
-    "infinitiu": "radiodirigir",
-    "codi": "VMM03P0Y",
-    "rimacons": "ɛʃin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "radiodirigeixin",
-    "infinitiu": "radiodirigir",
-    "codi": "VMSP3P0Y",
-    "rimacons": "ɛʃin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "radiodirigeixis",
-    "infinitiu": "radiodirigir",
-    "codi": "VMSP2S0Y",
-    "rimacons": "ɛʃis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "radiodirigeixo",
-    "infinitiu": "radiodirigir",
-    "codi": "VMIP1S0C",
-    "rimacons": "ɛʃu",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "radiodirigia",
     "infinitiu": "radiodirigir",
     "codi": "VMII1S00",
@@ -88254,46 +83594,6 @@
     "infinitiu": "radiodirigir",
     "codi": "VMIS2P00",
     "rimacons": "iɾəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "radiodirigíssim",
-    "infinitiu": "radiodirigir",
-    "codi": "VMSI1P02",
-    "rimacons": "isim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "radiodirigissin",
-    "infinitiu": "radiodirigir",
-    "codi": "VMSI3P02",
-    "rimacons": "isin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "radiodirigissis",
-    "infinitiu": "radiodirigir",
-    "codi": "VMSI2S02",
-    "rimacons": "isis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "radiodirigíssiu",
-    "infinitiu": "radiodirigir",
-    "codi": "VMSI2P02",
-    "rimacons": "isiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -88564,46 +83864,6 @@
     "infinitiu": "radiografiar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "radiografiéssim",
-    "infinitiu": "radiografiar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "radiografiessin",
-    "infinitiu": "radiografiar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "radiografiessis",
-    "infinitiu": "radiografiar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "radiografiéssiu",
-    "infinitiu": "radiografiar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -90570,46 +85830,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "regionalitzéssim",
-    "infinitiu": "regionalitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "regionalitzessin",
-    "infinitiu": "regionalitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "regionalitzessis",
-    "infinitiu": "regionalitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "regionalitzéssiu",
-    "infinitiu": "regionalitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "reglamentàriament",
     "infinitiu": "reglamentàriament",
     "codi": "ZRG",
@@ -91870,46 +87090,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "responsabilitzéssim",
-    "infinitiu": "responsabilitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "responsabilitzessin",
-    "infinitiu": "responsabilitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "responsabilitzessis",
-    "infinitiu": "responsabilitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "responsabilitzéssiu",
-    "infinitiu": "responsabilitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "ressedimentaria",
     "infinitiu": "ressedimentar",
     "codi": "VMCC1S00",
@@ -92654,46 +87834,6 @@
     "infinitiu": "revolucionar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "revolucionéssim",
-    "infinitiu": "revolucionar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "revolucionessin",
-    "infinitiu": "revolucionar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "revolucionessis",
-    "infinitiu": "revolucionar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "revolucionéssiu",
-    "infinitiu": "revolucionar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
@@ -94430,46 +89570,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "simultaniegéssim",
-    "infinitiu": "simultaniejar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "simultaniegessin",
-    "infinitiu": "simultaniejar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "simultaniegessis",
-    "infinitiu": "simultaniejar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "simultaniegéssiu",
-    "infinitiu": "simultaniejar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "simultaniejada",
     "infinitiu": "simultaniejar",
     "codi": "VMP00SF0",
@@ -95170,46 +90270,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "sobrealimentéssim",
-    "infinitiu": "sobrealimentar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "sobrealimentessin",
-    "infinitiu": "sobrealimentar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "sobrealimentessis",
-    "infinitiu": "sobrealimentar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "sobrealimentéssiu",
-    "infinitiu": "sobrealimentar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "sobreargentaria",
     "infinitiu": "sobreargentar",
     "codi": "VMCC1S00",
@@ -95544,46 +90604,6 @@
     "infinitiu": "sobreedificar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "sobreedifiquéssim",
-    "infinitiu": "sobreedificar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "sobreedifiquessin",
-    "infinitiu": "sobreedificar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "sobreedifiquessis",
-    "infinitiu": "sobreedificar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "sobreedifiquéssiu",
-    "infinitiu": "sobreedificar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -96984,46 +92004,6 @@
     "infinitiu": "subcategoritzar",
     "codi": "VMII2P00",
     "rimacons": "aβəw",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "subcategoritzéssim",
-    "infinitiu": "subcategoritzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "subcategoritzessin",
-    "infinitiu": "subcategoritzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "subcategoritzessis",
-    "infinitiu": "subcategoritzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "subcategoritzéssiu",
-    "infinitiu": "subcategoritzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "NO",
     "viq": "NO",
@@ -98670,46 +93650,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "testimoniegéssim",
-    "infinitiu": "testimoniejar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "testimoniegessin",
-    "infinitiu": "testimoniejar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "testimoniegessis",
-    "infinitiu": "testimoniejar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "testimoniegéssiu",
-    "infinitiu": "testimoniejar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "testimoniejada",
     "infinitiu": "testimoniejar",
     "codi": "VMP00SF0",
@@ -99590,46 +94530,6 @@
     "diec": "NO"
   },
   {
-    "paraula": "triangularitzéssim",
-    "infinitiu": "triangularitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "triangularitzessin",
-    "infinitiu": "triangularitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "triangularitzessis",
-    "infinitiu": "triangularitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "triangularitzéssiu",
-    "infinitiu": "triangularitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
     "paraula": "triaquisoctaedre",
     "infinitiu": "triaquisoctaedre",
     "codi": "NCMS000",
@@ -100480,46 +95380,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "universalitzéssim",
-    "infinitiu": "universalitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "universalitzessin",
-    "infinitiu": "universalitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "universalitzessis",
-    "infinitiu": "universalitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "universalitzéssiu",
-    "infinitiu": "universalitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "universitària",
     "infinitiu": "universitari",
     "codi": "AQ0FS0",
@@ -100930,46 +95790,6 @@
     "diec": "NO"
   },
   {
-    "paraula": "valencianitzéssim",
-    "infinitiu": "valencianitzar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "valencianitzessin",
-    "infinitiu": "valencianitzar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "valencianitzessis",
-    "infinitiu": "valencianitzar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "valencianitzéssiu",
-    "infinitiu": "valencianitzar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
     "paraula": "valentinianisme",
     "infinitiu": "valentinianisme",
     "codi": "NCMS000",
@@ -101064,46 +95884,6 @@
     "infinitiu": "vanagloriar",
     "codi": "VMCC2P00",
     "rimacons": "iəw",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "vanagloriegéssim",
-    "infinitiu": "vanagloriejar",
-    "codi": "VMSI1P02",
-    "rimacons": "esim",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "vanagloriegessin",
-    "infinitiu": "vanagloriejar",
-    "codi": "VMSI3P02",
-    "rimacons": "esin",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "vanagloriegessis",
-    "infinitiu": "vanagloriejar",
-    "codi": "VMSI2S02",
-    "rimacons": "esis",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "vanagloriegéssiu",
-    "infinitiu": "vanagloriejar",
-    "codi": "VMSI2P02",
-    "rimacons": "esiw",
     "sil": "7",
     "vicc": "Vicc",
     "viq": "NO",
