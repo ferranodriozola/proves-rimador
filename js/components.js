@@ -58,8 +58,9 @@ if (idPagina === 'llista') {
   }
 }
 
+/*
 //botó ko-fi
-const kofiWidgetHTML = /*html*/`
+const kofiWidgetHTML = /*html*/ /*`
 <div class="btn-container">
     <a title="Support me on ko-fi.com" class="kofi-button" href="https://ko-fi.com/rimadorcat" target="_blank">
         <span class="kofitext">
@@ -74,6 +75,7 @@ if (document.body) {
     document.body.insertAdjacentHTML('beforeend', kofiWidgetHTML);
 }
 
+*/
 
 const loader = /*html*/`
 <p class = "loader-text1" id="loader-text1"></p>

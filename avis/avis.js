@@ -37,7 +37,8 @@
 
     // Dies naturals mínims des de l'últim avís. És el sostre de
     // freqüència: ningú no el veurà dos cops en menys d'aquest temps.
-    const DIES_ESPERA = 26;
+    
+    const DIES_ESPERA = 365; //abans 26, posem 365 per evitar que surti
 
     // Estona (en mil·lisegons) entre l'acció de l'usuari i l'obertura
     // del quadre. Que no salti damunt d'una cerca que s'acaba de fer.
