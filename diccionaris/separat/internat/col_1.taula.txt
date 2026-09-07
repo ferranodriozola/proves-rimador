@@ -3965,7 +3965,6 @@ aluminat
 alumini
 alumínic
 aluminífer
-aluminiar
 aluminita
 aluminó
 aluminós
@@ -7775,7 +7774,6 @@ Arseni
 arseni
 arsènic
 arsenical
-arsenicar
 arsenífer
 arsenit
 arsenita
@@ -10508,7 +10506,6 @@ bare
 Barea
 Bareilly
 barem
-baremar
 Barentsz
 Barenys
 Barés
@@ -16111,7 +16108,6 @@ cantaire
 Cantal
 cantal
 cantalada
-cantalejar
 Cantallops
 cantalup
 cantant
@@ -16941,7 +16937,6 @@ cardosenc
 cardot
 Cardús
 cardús
-cardussar
 carejar
 Caregue
 carei
@@ -20211,7 +20206,6 @@ coeditar
 coeditor
 coeducació
 coeficient
-coejar
 Coen
 coent
 coentor
@@ -25843,7 +25837,6 @@ desanimar
 desanimació
 desanimadament
 desanimador
-desanar
 desansiat
 desaparèixer
 desaparedar
@@ -27346,7 +27339,6 @@ desormejar
 desormeig
 desornar
 desossar
-desovar
 desoxidar
 desoxidació
 desoxidant
@@ -34473,7 +34465,6 @@ esclavitud
 esclavitzar
 esclavització
 esclavó
-esclavonar
 esclereida
 esclerènquima
 esclerita
@@ -34486,7 +34477,6 @@ esclerofil·le
 escleròmetre
 escleroproteïna
 esclerós
-esclerosar
 esclerosi
 escleroteràpia
 escleròtic
@@ -55148,7 +55138,6 @@ malobedient
 maloclusió
 malonilurea
 malordenat
-malpair
 malpaís
 malparat
 malparir
@@ -65222,7 +65211,6 @@ paramagnetisme
 Paramaribo
 parameci
 parament
-paramentar
 paràmetre
 parametri
 paramètric
@@ -71433,7 +71421,6 @@ prototeri
 prototip
 prototipatge
 prototípic
-prototipar
 prototipus
 protozoologia
 protozoosi
@@ -74380,7 +74367,6 @@ refugiat
 refulgir
 refulgència
 refulgent
-refundar
 refús
 refusar
 refusable
@@ -75370,7 +75356,6 @@ resclumejar
 rescripte
 rescriptori
 resecció
-resecar
 resectoscopi
 reseda
 resedàcia
@@ -75701,7 +75686,6 @@ retorsió
 retorsiu
 retort
 retorta
-retortillar
 retortilló
 retreure
 retracció
