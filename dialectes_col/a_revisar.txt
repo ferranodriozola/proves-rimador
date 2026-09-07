@@ -13,8 +13,8 @@ ba | trans_dicc | 118426 | kwk | sense accent primari; rima assonant buida
 ba | trans_dicc | 327340 | jw | sense accent primari; rima assonant buida
 ba | trans_dicc | 327360 | jws | sense accent primari; rima assonant buida
 ba | trans_dicc | 515317 | wwt | sense accent primari; rima assonant buida
-ba | apendix | 29823 | bwl | sense accent primari; rima assonant buida
-ba | apendix | 29824 | bwl | sense accent primari; rima assonant buida
+ba | apendix | 29875 | bwl | sense accent primari; rima assonant buida
+ba | apendix | 29876 | bwl | sense accent primari; rima assonant buida
 nw | trans_dicc | 31188 | ˌaˈenacˌe | símbols estranys: c
 nw | trans_dicc | 78705 | bwl | sense accent primari; rima assonant buida
 nw | trans_dicc | 78706 | bwl | sense accent primari; rima assonant buida
@@ -39,5 +39,5 @@ va | trans_dicc | 118426 | kwk | sense accent primari; rima assonant buida
 va | trans_dicc | 327340 | jw | sense accent primari; rima assonant buida
 va | trans_dicc | 327360 | jws | sense accent primari; rima assonant buida
 va | trans_dicc | 515317 | wwt | sense accent primari; rima assonant buida
-va | apendix | 34778 | bwl | sense accent primari; rima assonant buida
-va | apendix | 34779 | bwl | sense accent primari; rima assonant buida
+va | apendix | 34830 | bwl | sense accent primari; rima assonant buida
+va | apendix | 34831 | bwl | sense accent primari; rima assonant buida

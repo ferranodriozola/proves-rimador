@@ -930,8 +930,8 @@ ataüllar
 atemorir
 atemptar
 atendar
-atendrir
 atendre
+atendrir
 atenuar
 atènyer
 atermenar
@@ -7975,8 +7975,8 @@ ribotar
 ribotejar
 ricar
 ridiculitzar
-rifar
 riure
+rifar
 rimar
 rinxolar
 riquerar
