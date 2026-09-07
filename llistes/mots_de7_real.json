@@ -102710,16 +102710,6 @@
     "diec": "NO"
   },
   {
-    "paraula": "cinematografiés",
-    "infinitiu": "cinematografiar",
-    "codi": "VMSI3S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
     "paraula": "cinematografiï",
     "infinitiu": "cinematografiar",
     "codi": "VMM03S0Y",
@@ -102733,16 +102723,6 @@
     "paraula": "cinematografiï",
     "infinitiu": "cinematografiar",
     "codi": "VMSP1S0Y",
-    "rimacons": "ii",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "cinematografiï",
-    "infinitiu": "cinematografiar",
-    "codi": "VMSP3S0Y",
     "rimacons": "ii",
     "sil": "7",
     "vicc": "Vicc",
@@ -103170,16 +103150,6 @@
     "diec": "NO"
   },
   {
-    "paraula": "corresponsabilitzi",
-    "infinitiu": "corresponsabilitzar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
     "paraula": "corresponsabilitzin",
     "infinitiu": "corresponsabilitzar",
     "codi": "VMM03P0Y",
@@ -103223,16 +103193,6 @@
     "paraula": "corresponsabilitzés",
     "infinitiu": "corresponsabilitzar",
     "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "corresponsabilitzés",
-    "infinitiu": "corresponsabilitzar",
-    "codi": "VMSI3S01",
     "rimacons": "es",
     "sil": "7",
     "vicc": "Vicc",
@@ -103390,16 +103350,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "desaparroquiani",
-    "infinitiu": "desaparroquianar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "ani",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desaparroquianin",
     "infinitiu": "desaparroquianar",
     "codi": "VMM03P0Y",
@@ -103443,16 +103393,6 @@
     "paraula": "desaparroquianés",
     "infinitiu": "desaparroquianar",
     "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desaparroquianés",
-    "infinitiu": "desaparroquianar",
-    "codi": "VMSI3S01",
     "rimacons": "es",
     "sil": "7",
     "vicc": "NO",
@@ -103730,16 +103670,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "descontextualitzi",
-    "infinitiu": "descontextualitzar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "descontextualitzin",
     "infinitiu": "descontextualitzar",
     "codi": "VMM03P0Y",
@@ -103783,16 +103713,6 @@
     "paraula": "descontextualitzés",
     "infinitiu": "descontextualitzar",
     "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "descontextualitzés",
-    "infinitiu": "descontextualitzar",
-    "codi": "VMSI3S01",
     "rimacons": "es",
     "sil": "7",
     "vicc": "Vicc",
@@ -104510,16 +104430,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "desnacionalitzi",
-    "infinitiu": "desnacionalitzar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "desnacionalitzin",
     "infinitiu": "desnacionalitzar",
     "codi": "VMM03P0Y",
@@ -104563,16 +104473,6 @@
     "paraula": "desnacionalitzés",
     "infinitiu": "desnacionalitzar",
     "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "desnacionalitzés",
-    "infinitiu": "desnacionalitzar",
-    "codi": "VMSI3S01",
     "rimacons": "es",
     "sil": "7",
     "vicc": "NO",
@@ -105090,16 +104990,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "espiritualitzi",
-    "infinitiu": "espiritualitzar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "espiritualitzin",
     "infinitiu": "espiritualitzar",
     "codi": "VMM03P0Y",
@@ -105143,16 +105033,6 @@
     "paraula": "espiritualitzés",
     "infinitiu": "espiritualitzar",
     "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espiritualitzés",
-    "infinitiu": "espiritualitzar",
-    "codi": "VMSI3S01",
     "rimacons": "es",
     "sil": "7",
     "vicc": "NO",
@@ -105430,16 +105310,6 @@
     "diec": "NO"
   },
   {
-    "paraula": "fotolitografiés",
-    "infinitiu": "fotolitografiar",
-    "codi": "VMSI3S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
     "paraula": "fotolitografiï",
     "infinitiu": "fotolitografiar",
     "codi": "VMM03S0Y",
@@ -105453,16 +105323,6 @@
     "paraula": "fotolitografiï",
     "infinitiu": "fotolitografiar",
     "codi": "VMSP1S0Y",
-    "rimacons": "ii",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "fotolitografiï",
-    "infinitiu": "fotolitografiar",
-    "codi": "VMSP3S0Y",
     "rimacons": "ii",
     "sil": "7",
     "vicc": "NO",
@@ -105530,16 +105390,6 @@
     "diec": "NO"
   },
   {
-    "paraula": "fotosensibilitzi",
-    "infinitiu": "fotosensibilitzar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
     "paraula": "fotosensibilitzin",
     "infinitiu": "fotosensibilitzar",
     "codi": "VMM03P0Y",
@@ -105583,16 +105433,6 @@
     "paraula": "fotosensibilitzés",
     "infinitiu": "fotosensibilitzar",
     "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "fotosensibilitzés",
-    "infinitiu": "fotosensibilitzar",
-    "codi": "VMSI3S01",
     "rimacons": "es",
     "sil": "7",
     "vicc": "NO",
@@ -105750,16 +105590,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "immaterialitzi",
-    "infinitiu": "immaterialitzar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "immaterialitzin",
     "infinitiu": "immaterialitzar",
     "codi": "VMM03P0Y",
@@ -105810,16 +105640,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "immaterialitzés",
-    "infinitiu": "immaterialitzar",
-    "codi": "VMSI3S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "impermeabilitzeu",
     "infinitiu": "impermeabilitzar",
     "codi": "VMM02P0X",
@@ -105843,16 +105663,6 @@
     "paraula": "impermeabilitzi",
     "infinitiu": "impermeabilitzar",
     "codi": "VMSP1S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "impermeabilitzi",
-    "infinitiu": "impermeabilitzar",
-    "codi": "VMSP3S0Y",
     "rimacons": "idzi",
     "sil": "7",
     "vicc": "Vicc",
@@ -105903,16 +105713,6 @@
     "paraula": "impermeabilitzés",
     "infinitiu": "impermeabilitzar",
     "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "impermeabilitzés",
-    "infinitiu": "impermeabilitzar",
-    "codi": "VMSI3S01",
     "rimacons": "es",
     "sil": "7",
     "vicc": "Vicc",
@@ -106030,16 +105830,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "individualitzi",
-    "infinitiu": "individualitzar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "individualitzin",
     "infinitiu": "individualitzar",
     "codi": "VMM03P0Y",
@@ -106083,16 +105873,6 @@
     "paraula": "individualitzés",
     "infinitiu": "individualitzar",
     "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "individualitzés",
-    "infinitiu": "individualitzar",
-    "codi": "VMSI3S01",
     "rimacons": "es",
     "sil": "7",
     "vicc": "Vicc",
@@ -106610,16 +106390,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "labiovelaritzi",
-    "infinitiu": "labiovelaritzar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "labiovelaritzin",
     "infinitiu": "labiovelaritzar",
     "codi": "VMM03P0Y",
@@ -106663,16 +106433,6 @@
     "paraula": "labiovelaritzés",
     "infinitiu": "labiovelaritzar",
     "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "labiovelaritzés",
-    "infinitiu": "labiovelaritzar",
-    "codi": "VMSI3S01",
     "rimacons": "es",
     "sil": "7",
     "vicc": "Vicc",
@@ -107190,16 +106950,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "professionalitzi",
-    "infinitiu": "professionalitzar",
-    "codi": "VMSP3S0Y",
-    "rimacons": "idzi",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "professionalitzin",
     "infinitiu": "professionalitzar",
     "codi": "VMM03P0Y",
@@ -107243,16 +106993,6 @@
     "paraula": "professionalitzés",
     "infinitiu": "professionalitzar",
     "codi": "VMSI1S01",
-    "rimacons": "es",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "professionalitzés",
-    "infinitiu": "professionalitzar",
-    "codi": "VMSI3S01",
     "rimacons": "es",
     "sil": "7",
     "vicc": "NO",
@@ -107433,16 +107173,6 @@
     "paraula": "radiodirigeixi",
     "infinitiu": "radiodirigir",
     "codi": "VMSP1S0Y",
-    "rimacons": "ɛʃi",
-    "sil": "7",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "radiodirigeixi",
-    "infinitiu": "radiodirigir",
-    "codi": "VMSP3S0Y",
     "rimacons": "ɛʃi",
     "sil": "7",
     "vicc": "NO",
