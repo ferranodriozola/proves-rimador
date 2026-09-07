@@ -52140,16 +52140,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "adeqüe",
-    "infinitiu": "adequar",
-    "codi": "VMSP3S0V",
-    "rimacons": "ekwe",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "adeqüen",
     "infinitiu": "adequar",
     "codi": "VMM03P0V",
@@ -52210,16 +52200,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "afaene",
-    "infinitiu": "afaenar",
-    "codi": "VMSP3S0V",
-    "rimacons": "ɛne",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "afaenen",
     "infinitiu": "afaenar",
     "codi": "VMM03P0V",
@@ -52263,16 +52243,6 @@
     "paraula": "aflonge",
     "infinitiu": "aflonjar",
     "codi": "VMSP1S0V",
-    "rimacons": "ondʒe",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "aflonge",
-    "infinitiu": "aflonjar",
-    "codi": "VMSP3S0V",
     "rimacons": "ondʒe",
     "sil": "3",
     "vicc": "Vicc",
@@ -52410,16 +52380,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "apropinqüe",
-    "infinitiu": "apropinquar",
-    "codi": "VMSP3S0V",
-    "rimacons": "iŋkwe",
-    "sil": "4",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "apropinqüen",
     "infinitiu": "apropinquar",
     "codi": "VMM03P0V",
@@ -52540,16 +52500,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "birbe",
-    "infinitiu": "birbar",
-    "codi": "VMSP3S0V",
-    "rimacons": "iɾbe",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "birben",
     "infinitiu": "birbar",
     "codi": "VMM03P0V",
@@ -52610,16 +52560,6 @@
     "diec": "NO"
   },
   {
-    "paraula": "birle",
-    "infinitiu": "birlar",
-    "codi": "VMSP3S0V",
-    "rimacons": "iɾle",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
     "paraula": "birlen",
     "infinitiu": "birlar",
     "codi": "VMM03P0V",
@@ -52683,16 +52623,6 @@
     "paraula": "boxe",
     "infinitiu": "boxar",
     "codi": "VMSP1S0V",
-    "rimacons": "ɔkse",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "boxe",
-    "infinitiu": "boxar",
-    "codi": "VMSP3S0V",
     "rimacons": "ɔkse",
     "sil": "2",
     "vicc": "Vicc",
@@ -52770,16 +52700,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "brunza",
-    "infinitiu": "brunzir",
-    "codi": "VMSP3S0V",
-    "rimacons": "unza",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "brunzen",
     "infinitiu": "brunzir",
     "codi": "VMM03P0V",
@@ -52833,16 +52753,6 @@
     "paraula": "burge",
     "infinitiu": "burjar",
     "codi": "VMSP1S0V",
-    "rimacons": "uɾdʒe",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burge",
-    "infinitiu": "burjar",
-    "codi": "VMSP3S0V",
     "rimacons": "uɾdʒe",
     "sil": "2",
     "vicc": "Vicc",
@@ -52910,16 +52820,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "burle",
-    "infinitiu": "burlar",
-    "codi": "VMSP3S0V",
-    "rimacons": "uɾle",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "burlen",
     "infinitiu": "burlar",
     "codi": "VMM03P0V",
@@ -52963,16 +52863,6 @@
     "paraula": "burxe",
     "infinitiu": "burxar",
     "codi": "VMSP1S0V",
-    "rimacons": "uɾtʃe",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "burxe",
-    "infinitiu": "burxar",
-    "codi": "VMSP3S0V",
     "rimacons": "uɾtʃe",
     "sil": "2",
     "vicc": "Vicc",
@@ -53040,16 +52930,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "cie",
-    "infinitiu": "ciar",
-    "codi": "VMSP3S0V",
-    "rimacons": "iˌe",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "cilindren",
     "infinitiu": "cilindrar",
     "codi": "VMM03P0V",
@@ -53093,16 +52973,6 @@
     "paraula": "circumde",
     "infinitiu": "circumdar",
     "codi": "VMSP1S0V",
-    "rimacons": "umde",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "circumde",
-    "infinitiu": "circumdar",
-    "codi": "VMSP3S0V",
     "rimacons": "umde",
     "sil": "3",
     "vicc": "NO",
@@ -53170,16 +53040,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "clenxe",
-    "infinitiu": "clenxar",
-    "codi": "VMSP3S0V",
-    "rimacons": "entʃe",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "clenxen",
     "infinitiu": "clenxar",
     "codi": "VMM03P0V",
@@ -53223,16 +53083,6 @@
     "paraula": "coadjuve",
     "infinitiu": "coadjuvar",
     "codi": "VMSP1S0V",
-    "rimacons": "uve",
-    "sil": "4",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "coadjuve",
-    "infinitiu": "coadjuvar",
-    "codi": "VMSP3S0V",
     "rimacons": "uve",
     "sil": "4",
     "vicc": "NO",
@@ -53323,16 +53173,6 @@
     "paraula": "college",
     "infinitiu": "collejar",
     "codi": "VMSP1S0V",
-    "rimacons": "alidʒ",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "college",
-    "infinitiu": "collejar",
-    "codi": "VMSP3S0V",
     "rimacons": "alidʒ",
     "sil": "3",
     "vicc": "NO",
@@ -53470,16 +53310,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "conste",
-    "infinitiu": "constar",
-    "codi": "VMSP3S0V",
-    "rimacons": "ɔnste",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "consten",
     "infinitiu": "constar",
     "codi": "VMM03P0V",
@@ -53553,16 +53383,6 @@
     "paraula": "copse",
     "infinitiu": "copsar",
     "codi": "VMSP1S0V",
-    "rimacons": "ɔpse",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "copse",
-    "infinitiu": "copsar",
-    "codi": "VMSP3S0V",
     "rimacons": "ɔpse",
     "sil": "2",
     "vicc": "Vicc",
@@ -53660,16 +53480,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "cotne",
-    "infinitiu": "cotnar",
-    "codi": "VMSP3S0V",
-    "rimacons": "ɔnne",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "cotnen",
     "infinitiu": "cotnar",
     "codi": "VMM03P0V",
@@ -53730,16 +53540,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "decurve",
-    "infinitiu": "decurvar",
-    "codi": "VMSP3S0V",
-    "rimacons": "uɾve",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "decurven",
     "infinitiu": "decurvar",
     "codi": "VMM03P0V",
@@ -53793,16 +53593,6 @@
     "paraula": "deflegme",
     "infinitiu": "deflegmar",
     "codi": "VMSP1S0V",
-    "rimacons": "eɡme",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "deflegme",
-    "infinitiu": "deflegmar",
-    "codi": "VMSP3S0V",
     "rimacons": "eɡme",
     "sil": "3",
     "vicc": "NO",
@@ -53890,16 +53680,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "deshonre",
-    "infinitiu": "deshonrar",
-    "codi": "VMSP3S0V",
-    "rimacons": "onre",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "deshonren",
     "infinitiu": "deshonrar",
     "codi": "VMM03P0V",
@@ -53990,16 +53770,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "disbauxe",
-    "infinitiu": "disbauxar",
-    "codi": "VMSP3S0V",
-    "rimacons": "awkse",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "disbauxen",
     "infinitiu": "disbauxar",
     "codi": "VMM03P0V",
@@ -54063,16 +53833,6 @@
     "paraula": "eixaugue",
     "infinitiu": "eixaugar",
     "codi": "VMSP1S0V",
-    "rimacons": "awɣe",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "eixaugue",
-    "infinitiu": "eixaugar",
-    "codi": "VMSP3S0V",
     "rimacons": "awɣe",
     "sil": "3",
     "vicc": "Vicc",
@@ -54140,16 +53900,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "empelte",
-    "infinitiu": "empeltar",
-    "codi": "VMSP3S0V",
-    "rimacons": "ɛlte",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "empelten",
     "infinitiu": "empeltar",
     "codi": "VMM03P0V",
@@ -54193,16 +53943,6 @@
     "paraula": "emporpre",
     "infinitiu": "emporprar",
     "codi": "VMSP1S0V",
-    "rimacons": "ɔɾpɾe",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "emporpre",
-    "infinitiu": "emporprar",
-    "codi": "VMSP3S0V",
     "rimacons": "ɔɾpɾe",
     "sil": "3",
     "vicc": "Vicc",
@@ -54330,16 +54070,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "engospe",
-    "infinitiu": "engospar",
-    "codi": "VMSP3S0V",
-    "rimacons": "ospe",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "engospen",
     "infinitiu": "engospar",
     "codi": "VMM03P0V",
@@ -54400,16 +54130,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "engraelle",
-    "infinitiu": "engraellar",
-    "codi": "VMSP3S0V",
-    "rimacons": "ɛʎe",
-    "sil": "4",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "engraellen",
     "infinitiu": "engraellar",
     "codi": "VMM03P0V",
@@ -54453,16 +54173,6 @@
     "paraula": "enraigue",
     "infinitiu": "enraigar",
     "codi": "VMSP1S0V",
-    "rimacons": "ajɣe",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "enraigue",
-    "infinitiu": "enraigar",
-    "codi": "VMSP3S0V",
     "rimacons": "ajɣe",
     "sil": "3",
     "vicc": "NO",
@@ -54520,16 +54230,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "enviude",
-    "infinitiu": "enviudar",
-    "codi": "VMSP3S0V",
-    "rimacons": "iwðe",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "enviuden",
     "infinitiu": "enviudar",
     "codi": "VMM03P0V",
@@ -54580,16 +54280,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "esblaime",
-    "infinitiu": "esblaimar",
-    "codi": "VMSP3S0V",
-    "rimacons": "ajme",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "esblaimen",
     "infinitiu": "esblaimar",
     "codi": "VMM03P0V",
@@ -54633,16 +54323,6 @@
     "paraula": "esbotze",
     "infinitiu": "esbotzar",
     "codi": "VMSP1S0V",
-    "rimacons": "ɔdze",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esbotze",
-    "infinitiu": "esbotzar",
-    "codi": "VMSP3S0V",
     "rimacons": "ɔdze",
     "sil": "3",
     "vicc": "Vicc",
@@ -54730,16 +54410,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "esme",
-    "infinitiu": "esmar",
-    "codi": "VMSP3S0V",
-    "rimacons": "ɛsmi",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "esmorze",
     "infinitiu": "esmorzar",
     "codi": "VMIP1S0V",
@@ -54763,16 +54433,6 @@
     "paraula": "esmorze",
     "infinitiu": "esmorzar",
     "codi": "VMSP1S0V",
-    "rimacons": "ɔɾze",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "esmorze",
-    "infinitiu": "esmorzar",
-    "codi": "VMSP3S0V",
     "rimacons": "ɔɾze",
     "sil": "3",
     "vicc": "Vicc",
@@ -54853,16 +54513,6 @@
     "paraula": "espoltre",
     "infinitiu": "espoltrar",
     "codi": "VMSP1S0V",
-    "rimacons": "ɔltɾe",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "espoltre",
-    "infinitiu": "espoltrar",
-    "codi": "VMSP3S0V",
     "rimacons": "ɔltɾe",
     "sil": "3",
     "vicc": "NO",
@@ -54970,16 +54620,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "estupre",
-    "infinitiu": "estuprar",
-    "codi": "VMSP3S0V",
-    "rimacons": "upɾe",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "estupren",
     "infinitiu": "estuprar",
     "codi": "VMM03P0V",
@@ -55040,16 +54680,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "esvolve",
-    "infinitiu": "esvolvar",
-    "codi": "VMSP3S0V",
-    "rimacons": "ɔlve",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "esvolven",
     "infinitiu": "esvolvar",
     "codi": "VMM03P0V",
@@ -55100,16 +54730,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "execre",
-    "infinitiu": "execrar",
-    "codi": "VMSP3S0V",
-    "rimacons": "ekɾe",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "execren",
     "infinitiu": "execrar",
     "codi": "VMM03P0V",
@@ -55153,16 +54773,6 @@
     "paraula": "extirpe",
     "infinitiu": "extirpar",
     "codi": "VMSP1S0V",
-    "rimacons": "iɾpe",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "extirpe",
-    "infinitiu": "extirpar",
-    "codi": "VMSP3S0V",
     "rimacons": "iɾpe",
     "sil": "3",
     "vicc": "NO",
@@ -55243,16 +54853,6 @@
     "paraula": "folre",
     "infinitiu": "folrar",
     "codi": "VMSP1S0V",
-    "rimacons": "olre",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "folre",
-    "infinitiu": "folrar",
-    "codi": "VMSP3S0V",
     "rimacons": "olre",
     "sil": "2",
     "vicc": "NO",
@@ -55380,16 +54980,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "gracie",
-    "infinitiu": "graciar",
-    "codi": "VMSP3S0V",
-    "rimacons": "eisi",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "hale",
     "infinitiu": "halar",
     "codi": "VMIP1S0V",
@@ -55413,16 +55003,6 @@
     "paraula": "hale",
     "infinitiu": "halar",
     "codi": "VMSP1S0V",
-    "rimacons": "eil",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "hale",
-    "infinitiu": "halar",
-    "codi": "VMSP3S0V",
     "rimacons": "eil",
     "sil": "2",
     "vicc": "Vicc",
@@ -55473,16 +55053,6 @@
     "paraula": "inste",
     "infinitiu": "instar",
     "codi": "VMSP1S0V",
-    "rimacons": "inste",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "inste",
-    "infinitiu": "instar",
-    "codi": "VMSP3S0V",
     "rimacons": "inste",
     "sil": "2",
     "vicc": "Vicc",
@@ -55570,16 +55140,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "jaupe",
-    "infinitiu": "jaupar",
-    "codi": "VMSP3S0V",
-    "rimacons": "awpe",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "jaupen",
     "infinitiu": "jaupar",
     "codi": "VMM03P0V",
@@ -55660,16 +55220,6 @@
     "diec": "NO"
   },
   {
-    "paraula": "lifte",
-    "infinitiu": "liftar",
-    "codi": "VMSP3S0V",
-    "rimacons": "ifte",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
     "paraula": "liften",
     "infinitiu": "liftar",
     "codi": "VMM03P0V",
@@ -55740,16 +55290,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "luxe",
-    "infinitiu": "luxar",
-    "codi": "VMSP3S0V",
-    "rimacons": "ukse",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "luxen",
     "infinitiu": "luxar",
     "codi": "VMM03P0V",
@@ -55810,16 +55350,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "masturbe",
-    "infinitiu": "masturbar",
-    "codi": "VMSP3S0V",
-    "rimacons": "uɾbe",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "masturben",
     "infinitiu": "masturbar",
     "codi": "VMM03P0V",
@@ -55863,16 +55393,6 @@
     "paraula": "minve",
     "infinitiu": "minvar",
     "codi": "VMSP1S0V",
-    "rimacons": "iɱve",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "minve",
-    "infinitiu": "minvar",
-    "codi": "VMSP3S0V",
     "rimacons": "iɱve",
     "sil": "2",
     "vicc": "Vicc",
@@ -56000,16 +55520,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "nyaufe",
-    "infinitiu": "nyaufar",
-    "codi": "VMSP3S0V",
-    "rimacons": "awfe",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "nyaufes",
     "infinitiu": "nyaufar",
     "codi": "VMSP2S0V",
@@ -56043,16 +55553,6 @@
     "paraula": "olive",
     "infinitiu": "olivar",
     "codi": "VMSP1S0V",
-    "rimacons": "aliv",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "olive",
-    "infinitiu": "olivar",
-    "codi": "VMSP3S0V",
     "rimacons": "aliv",
     "sil": "3",
     "vicc": "Vicc",
@@ -56103,16 +55603,6 @@
     "paraula": "polpe",
     "infinitiu": "polpar",
     "codi": "VMSP1S0V",
-    "rimacons": "ɔlpe",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "polpe",
-    "infinitiu": "polpar",
-    "codi": "VMSP3S0V",
     "rimacons": "ɔlpe",
     "sil": "2",
     "vicc": "NO",
@@ -56180,16 +55670,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "pope",
-    "infinitiu": "popar",
-    "codi": "VMSP3S0V",
-    "rimacons": "awp",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "poues",
     "infinitiu": "pouar",
     "codi": "VMSP2S0V",
@@ -56223,16 +55703,6 @@
     "paraula": "premse",
     "infinitiu": "premsar",
     "codi": "VMSP1S0V",
-    "rimacons": "emse",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "premse",
-    "infinitiu": "premsar",
-    "codi": "VMSP3S0V",
     "rimacons": "emse",
     "sil": "2",
     "vicc": "Vicc",
@@ -56300,16 +55770,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "pretexte",
-    "infinitiu": "pretextar",
-    "codi": "VMSP3S0V",
-    "rimacons": "ɛkste",
-    "sil": "3",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "pretexten",
     "infinitiu": "pretextar",
     "codi": "VMM03P0V",
@@ -56420,16 +55880,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "reguitne",
-    "infinitiu": "reguitnar",
-    "codi": "VMSP3S0V",
-    "rimacons": "inne",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "reguitnen",
     "infinitiu": "reguitnar",
     "codi": "VMM03P0V",
@@ -56500,16 +55950,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "rose",
-    "infinitiu": "rosar",
-    "codi": "VMSP3S0V",
-    "rimacons": "awz",
-    "sil": "2",
-    "vicc": "NO",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "sobten",
     "infinitiu": "sobtar",
     "codi": "VMM03P0V",
@@ -56560,16 +56000,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "tele",
-    "infinitiu": "telar",
-    "codi": "VMSP3S0V",
-    "rimacons": "ele",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "telen",
     "infinitiu": "telar",
     "codi": "VMM03P0V",
@@ -56613,16 +56043,6 @@
     "paraula": "title",
     "infinitiu": "titlar",
     "codi": "VMSP1S0V",
-    "rimacons": "ille",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "NO"
-  },
-  {
-    "paraula": "title",
-    "infinitiu": "titlar",
-    "codi": "VMSP3S0V",
     "rimacons": "ille",
     "sil": "2",
     "vicc": "Vicc",
@@ -56710,16 +56130,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "triomfe",
-    "infinitiu": "triomfar",
-    "codi": "VMSP3S0V",
-    "rimacons": "ɔɱfe",
-    "sil": "3",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "triomfen",
     "infinitiu": "triomfar",
     "codi": "VMM03P0V",
@@ -56780,16 +56190,6 @@
     "diec": "Diec"
   },
   {
-    "paraula": "ultre",
-    "infinitiu": "ultrar",
-    "codi": "VMSP3S0V",
-    "rimacons": "ultɾe",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
     "paraula": "ultren",
     "infinitiu": "ultrar",
     "codi": "VMM03P0V",
@@ -56833,16 +56233,6 @@
     "paraula": "unfle",
     "infinitiu": "unflar",
     "codi": "VMSP1S0V",
-    "rimacons": "uɱfle",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "unfle",
-    "infinitiu": "unflar",
-    "codi": "VMSP3S0V",
     "rimacons": "uɱfle",
     "sil": "2",
     "vicc": "Vicc",
@@ -56963,16 +56353,6 @@
     "paraula": "xurme",
     "infinitiu": "xurmar",
     "codi": "VMSP1S0V",
-    "rimacons": "uɾme",
-    "sil": "2",
-    "vicc": "Vicc",
-    "viq": "NO",
-    "diec": "Diec"
-  },
-  {
-    "paraula": "xurme",
-    "infinitiu": "xurmar",
-    "codi": "VMSP3S0V",
     "rimacons": "uɾme",
     "sil": "2",
     "vicc": "Vicc",
