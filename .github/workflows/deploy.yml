@@ -111,11 +111,7 @@ jobs:
           # DADES del joc no hi són perquè no en necessiten: van amb el resum del
           # seu contingut, que escriu joc/eines/generar_dades.py al
           # joc/dades/versions.json.
-          #
-          # MENTRE ES REFÀ EL JOC n'hi ha dues carpetes, joc/ i joc2/, i totes
-          # dues hi han de sortir (aquí i als dos passos de sota). El dia que
-          # joc/ s'esborri i joc2/ passi a dir-se joc, es queden les de joc/.
-          if git diff --name-only "$ABANS" "${{ github.sha }}" -- 'css/*.scss' 'js/*.js' 'avis/*.js' 'avis/*.css' 'joc/js/*.js' 'joc/css/*.scss' 'joc2/js/*.js' 'joc2/css/*.scss' | grep -q .; then
+          if git diff --name-only "$ABANS" "${{ github.sha }}" -- 'css/*.scss' 'js/*.js' 'avis/*.js' 'avis/*.css' 'joc/js/*.js' 'joc/css/*.scss' | grep -q .; then
             echo "any_changed=true" >> "$GITHUB_OUTPUT"
           else
             echo "any_changed=false" >> "$GITHUB_OUTPUT"
@@ -153,7 +149,7 @@ jobs:
           #
           # Van amb cometes simples perquè són codi JS ("from './ui.js?v=...'"),
           # no atributs d'HTML.
-          find joc/js joc2/js -type f -name "*.js" -exec sed -i -E "s/(\.js\?v=)[^']*/\1$NOVA_VERSIO/g" {} +
+          find joc/js -type f -name "*.js" -exec sed -i -E "s/(\.js\?v=)[^']*/\1$NOVA_VERSIO/g" {} +
 
       - name: Guardar els HTML actualitzats al repositori
         if: github.repository == 'rimador/rimador.github.io' && steps.canvis.outputs.any_changed == 'true'
@@ -164,7 +160,7 @@ jobs:
           # pas de sobre ha escrit el ?v=. En aquest job també s'hi ha compilat
           # el gulp i, més avall, s'hi esborren carpetes senceres per aprimar el
           # paquet: amb un "git add ." tot allò també entraria al commit.
-          fitxers: "*.html joc/js/*.js joc2/js/*.js"
+          fitxers: "*.html joc/js/*.js"
 
       - name: Ajustar el 404.html quan el lloc no penja de l'arrel del domini
         if: github.repository != 'rimador/rimador.github.io'
@@ -292,7 +288,6 @@ jobs:
           # silenciós als visitants.
           for cal in diccionaris/versions.json \
                      joc/dades/versions.json \
-                     joc2/dades/versions.json \
                      diccionaris/separat/col_0.txt \
                      diccionaris/separat/internat \
                      dialectes_col/ca/trans_dicc/internat/col_3_rimacons_ca.idx.txt \
@@ -301,7 +296,6 @@ jobs:
                      dialectes_col/ca/apendix/internat/col_3_ca.apendix.idx.txt \
                      dist/css/styles.min.css \
                      dist/css/joc.min.css \
-                     dist/css/joc2.min.css \
                      dist/js/script.min.js \
                      sitemap.xml \
                      robots.txt; do

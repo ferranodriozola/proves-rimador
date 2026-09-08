@@ -7,12 +7,6 @@ name: Actualització nocturna de dades (estadístiques i classificació)
 #                                          stats/versions_stats.json
 #   joc/eines/compilar_classificacio.py -> joc/dades/classificacio.json
 #
-# El compilador es passa a TOTES DUES carpetes del joc mentre es refa (joc/ i
-# joc2/): cadascuna escriu la classificacio dins de la seva (l'script mira on
-# es ell mateix), i totes dues llegeixen el mateix full. Sense la segona, el
-# joc nou ensenyaria eternament el ranquing del dia que es va copiar. El dia
-# que joc/ s'esborri i joc2/ passi a dir-se joc, es queda la primera i prou.
-#
 # (La classificació es fa en dues fases: el navegador envia cada puntuació a un
 # Google Apps Script que l'apunta al full -això va sol-, i el compilador en treu
 # el rànquing que veu la gent. La segona fase s'havia de fer a mà, i mentre no es
@@ -84,13 +78,11 @@ jobs:
       - name: Classificació del joc
         id: classificacio
         continue-on-error: true
-        run: |
-          python joc/eines/compilar_classificacio.py
-          python joc2/eines/compilar_classificacio.py
+        run: python joc/eines/compilar_classificacio.py
 
       - name: Descartar la classificació si l'script ha petat
         if: steps.classificacio.outcome == 'failure'
-        run: git checkout -- joc/dades/classificacio.json joc2/dades/classificacio.json
+        run: git checkout -- joc/dades/classificacio.json
 
       - name: Guardar els canvis als JSON (Commit & Push)
         uses: ./.github/actions/comitejar
@@ -102,7 +94,7 @@ jobs:
           # de debò, o sigui que si una de les dues feines no ha tocat res, o ha
           # petat i s'ha descartat, el missatge sobra però no hi ha cap mentida
           # a dins.)
-          fitxers: stats/estadistiques_rimador.json stats/versions_stats.json joc/dades/classificacio.json joc2/dades/classificacio.json
+          fitxers: stats/estadistiques_rimador.json stats/versions_stats.json joc/dades/classificacio.json
 
       # Va l'últim, després del commit: el que s'hagi pogut fer bé es guarda i es
       # publica la nit vinent, però el job ha d'acabar vermell perquè el correu
