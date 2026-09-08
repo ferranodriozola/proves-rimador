@@ -1,45 +1,90 @@
-// El text que es copia per ensenyar com t'ha anat la paraula del dia.
+// El text que es comparteix per ensenyar com t'ha anat una partida.
 //
-// A l'estil del Wordle: una graella de quadrets que no diu ni la paraula que tocava
-// ni cap de les rimes, o sigui que es pot penjar sense espatllar-li el dia a
-// ningu.
+// HI DIU LA PARAULA QUE TOCAVA i en quin mode s'ha jugat, a mes de quantes en
+// vas trobar, en quina dificultat i en quin dialecte. Aixo es un canvi de
+// criteri: abans no deia la paraula, per no espatllar-li el dia a qui encara no
+// hi hagues jugat. Dir-la fa que el text s'entengui tot sol -"3 rimes" no vol
+// dir res sense saber amb que- i que dos resultats es puguin comparar de debo,
+// que es de que va compartir-ho; el preu es que qui llegeixi el piulet abans de
+// jugar ja sabra quina paraula li tocara.
+//
+// ABANS ERA UNA GRAELLA DE QUADRETS a l'estil del Wordle (■■■■■ / ■■□□□), i
+// alla no deia res: al Wordle els quadrets son el JOC -cada fila es un intent i
+// cada color una pista-, i aqui nomes eren una barra de progres feta a ma que
+// repetia el numero de dues maneres. A mes, segons el tipus de lletra de cada
+// aparell, els quadrets sortien desalineats o directament com a requadres
+// buits. Una frase i prou: es mes curta, es llegeix a la primera i cap sencera
+// en un piulet.
 
-const PER_FILA = 5;
-const MAX_FILES = 6;   // a partir d'aqui, resumim
+const NOM_DIFICULTAT = { facil: 'fàcil', dificil: 'difícil' };
 
-const NOM_DIFICULTAT = { facil: 'Fàcil', dificil: 'Difícil' };
-
-export function textPerCompartir({ data, dificultat, dialecte, punts }) {
+/** "2026-09-08" -> "8/9/2026", sense els zeros del davant. */
+function dataCurta(data) {
     const [any, mes, dia] = data.split('-');
-    const capcalera = `Rimador.cat · Paraula del dia ${dia}/${mes}/${any}`;
-    // El dialecte hi va perque cadascun te la seva paraula del dia (vegeu
-    // clauDelDia a objectius.js): sense dir-lo, dos resultats del mateix dia no
-    // es podrien comparar i ningu no sabria per que.
-    const marcador = [NOM_DIFICULTAT[dificultat] || dificultat, dialecte,
-                      `${punts} ${punts === 1 ? 'rima' : 'rimes'}`]
-        .filter(Boolean).join(' · ');
-
-    return [capcalera, marcador, graella(punts), 'rimador.cat/joc'].join('\n');
+    return `${Number(dia)}/${Number(mes)}/${any}`;
 }
 
-function graella(punts) {
-    if (punts === 0) return '□□□□□';
-
-    // Si en surten masses, no omplim mitja pantalla de quadrets.
-    if (punts > PER_FILA * MAX_FILES) {
-        const files = Array(MAX_FILES).fill('■'.repeat(PER_FILA));
-        files.push(`+${punts - PER_FILA * MAX_FILES} més`);
-        return files.join('\n');
+/**
+ * De quina partida parlem: el mode, i el que el fa identificable.
+ *
+ * A la DIARIA, el dia: la paraula del dia es una per data i dir-la sense la
+ * data no situa res. A l'IL·LIMITAT, el rellotge: la paraula surt a l'atzar i
+ * no hi ha cap dia a que referir-se, pero trobar-ne vint en 30 segons i
+ * trobar-ne vint en dos minuts no es el mateix.
+ */
+function capcaleraDe({ mode, data, segons }) {
+    if (mode === 'diaria') {
+        return `Paraula del dia del Rimador.cat (${dataCurta(data)})`;
     }
+    return `Il·limitat del Rimador.cat (${segons} s)`;
+}
 
-    const filesPlenes = Math.floor(punts / PER_FILA);
-    const files = [];
-    for (let i = 0; i < filesPlenes; i++) files.push('■'.repeat(PER_FILA));
+/**
+ * Com t'ha anat, en una frase.
+ *
+ * El DIALECTE hi va sempre: la paraula del dia es la mateixa per a tothom
+ * (vegeu paraulaDelDia a objectius.js), pero les RIMES QUE VALEN no -en central
+ * en pot haver-hi la meitat que en valencia amb la mateixa paraula-, i sense
+ * dir-lo dos resultats del mateix dia no es podrien comparar.
+ */
+export function textPerCompartir({ mode, data, segons, dificultat, dialecte, punts, objectiu }) {
+    const compte = `${punts} ${punts === 1 ? 'rima' : 'rimes'}`;
+    const amb = objectiu ? ` amb «${objectiu}»` : '';
+    const nomDificultat = NOM_DIFICULTAT[dificultat] || dificultat;
+    const on = dialecte ? ` i en ${dialecte.toLowerCase()}` : '';
 
-    const resta = punts % PER_FILA;
-    if (resta > 0) files.push('■'.repeat(resta) + '□'.repeat(PER_FILA - resta));
+    return `${capcaleraDe({ mode, data, segons })}: ${compte}${amb}, `
+        + `en ${nomDificultat}${on}. Juga-hi tu: rimador.cat/joc`;
+}
 
-    return files.join('\n');
+/**
+ * L'adreca per piular un text a X (Twitter).
+ *
+ * La mateixa que fa servir el cercador (vegeu actualitzarBotoCompartir a
+ * js/script.js): l'adreca d'intencio d'ara. El twitter.com/intent/tweet de
+ * sempre encara hi redirigeix, pero fem servir la d'ara per no dependre del
+ * salt.
+ */
+export function enllacDeTwitter(text) {
+    return `https://x.com/intent/post?text=${encodeURIComponent(text)}`;
+}
+
+/**
+ * El text del resultat d'una partida personalitzada.
+ *
+ * Aqui SI que hi van els numeros i les paraules: no hi ha res per espatllar,
+ * perque qui el rep ja ha jugat la mateixa partida (o encara l'ha de jugar amb
+ * el mateix enllac). El codi hi es perque els dos jugadors puguin comprovar
+ * d'un cop d'ull que parlen de la mateixa partida.
+ */
+export function textPersonalitzat({ codi, partida, rondes, total }) {
+    const capcalera = `Rimador.cat · Personalitzat ${codi} · partida ${partida}`;
+    const detall = rondes
+        .map((ronda, i) => `R${i + 1} ${ronda.punts}`)
+        .join(' · ');
+    const cua = `${total} ${total === 1 ? 'rima' : 'rimes'} en total`;
+
+    return [capcalera, detall, cua, 'rimador.cat/joc'].filter(Boolean).join('\n');
 }
 
 /**

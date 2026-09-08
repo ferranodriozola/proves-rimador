@@ -32,12 +32,63 @@ function desar(clau, valor) {
     }
 }
 
-/** La data d'avui en horari local, en format AAAA-MM-DD. */
-export function avui() {
-    const ara = new Date();
+// EL DIA DEL JOC ES EL DE CATALUNYA, no el del rellotge de qui juga.
+//
+// Abans es feia amb new Date() i getFullYear/getMonth/getDate, que son l'hora
+// LOCAL del navegador: la paraula del dia canviava a la mitjanit de cadascu i
+// no pas a la mitjanit CET. A Tokyo n'hi havia una de nova set o vuit hores
+// abans que a Barcelona, i qui tenia el rellotge mal posat en veia una altra.
+// Com que la paraula del dia es "la mateixa per a tothom", el dia l'ha de dir
+// un sol rellotge, i el que toca es el d'aqui.
+//
+// Es el mateix fus que fa servir el full de la classificacio per apuntar quan
+// arriba cada puntuacio (vegeu Europe/Madrid a apps_script_classificacio.gs),
+// o sigui que les dues meitats del sistema parlen del mateix dia.
+const FUS = 'Europe/Madrid';
+
+// 'en-CA' no es cap caprici: es la localitzacio que dona AAAA-MM-DD directament,
+// que es el format que fan servir el bloqueig diari, el DataPartida que viatja
+// amb cada puntuacio i les claus del bloc "diaria" del classificacio.json.
+let formatadorDeDia = null;
+try {
+    formatadorDeDia = new Intl.DateTimeFormat('en-CA', { timeZone: FUS });
+} catch (error) {
+    // Navegador sense dades de fusos horaris: s'agafa l'hora local, que es el
+    // que es feia abans. Val mes jugar amb la paraula d'ahir que no pas no
+    // poder jugar.
+}
+
+function dataLocal(ara) {
     const mes = String(ara.getMonth() + 1).padStart(2, '0');
     const dia = String(ara.getDate()).padStart(2, '0');
     return `${ara.getFullYear()}-${mes}-${dia}`;
+}
+
+/** La data d'avui a Catalunya, en format AAAA-MM-DD. */
+export function avui() {
+    if (formatadorDeDia) {
+        const text = formatadorDeDia.format(new Date());
+        // Comprovat i no donat per fet: si algun navegador no dona AAAA-MM-DD,
+        // val mes caure a l'hora local que no pas escriure una data que despres
+        // no quadraria amb res.
+        if (/^\d{4}-\d{2}-\d{2}$/.test(text)) return text;
+    }
+    return dataLocal(new Date());
+}
+
+/**
+ * El dia abans d'una data AAAA-MM-DD. Es fa amb Date.UTC i no amb el
+ * constructor de sempre a posta: aixi restar un dia son 24 hores exactes i no
+ * hi ha canvi d'hora que hi pugui ficar cullerada.
+ */
+export function diaAnterior(dataISO) {
+    const [any, mes, dia] = dataISO.split('-').map(Number);
+    return new Date(Date.UTC(any, mes - 1, dia - 1)).toISOString().slice(0, 10);
+}
+
+/** Ahir a Catalunya. */
+export function ahir() {
+    return diaAnterior(avui());
 }
 
 // --------------------------------------------------------------- Records
@@ -139,33 +190,32 @@ export function llegirTotsElsRecords() {
 // Nomes guardem el dia d'avui: si canvia la data, l'entrada vella se substitueix
 // i el magatzem no creix mai.
 //
-// El bloqueig va per dialecte, no nomes per dificultat. Cada dialecte te la seva
-// paraula del dia (vegeu clauDelDia a objectius.js), o sigui que bloquejar-los
-// tots alhora seria barrar-li a algu una paraula que no ha vist mai.
+// EL BLOQUEIG VA PER DIFICULTAT I PROU. Abans anava tambe per dialecte, perque
+// cada dialecte tenia la seva paraula del dia i bloquejar-los tots alhora era
+// barrar-li a algu una paraula que no havia vist mai; ara la paraula del dia es
+// LA MATEIXA per a tothom (vegeu paraulaDelDia a objectius.js), o sigui que
+// canviar de dialecte per tornar-la a jugar seria jugar dues vegades la mateixa
+// paraula. Son dues partides al dia: una de facil i una de dificil.
 function partidesDelDia(data) {
     const desat = llegir(CLAU_DIARIA);
     return desat && desat.data === data ? desat.partides || {} : {};
 }
 
-function clauDiaria(dialecte, dificultat) {
-    return `${dialecte}|${dificultat}`;
+/** El resultat d'avui en una dificultat, o null si no s'ha jugat. */
+export function resultatDiari(data, dificultat) {
+    return partidesDelDia(data)[dificultat] || null;
 }
 
-/** El resultat d'avui en un dialecte i dificultat, o null si no s'ha jugat. */
-export function resultatDiari(data, dialecte, dificultat) {
-    return partidesDelDia(data)[clauDiaria(dialecte, dificultat)] || null;
+/** Quines dificultats s'han jugat avui. */
+export function dificultatsJugades(data) {
+    // Les entrades de quan el bloqueig duia el dialecte ("ca|facil") es
+    // descarten soles: nomes es guarda el dia d'avui, i l'endema ja no hi son.
+    return Object.keys(partidesDelDia(data)).filter((clau) => !clau.includes('|'));
 }
 
-/** Quines dificultats s'han jugat avui EN AQUEST dialecte. */
-export function dificultatsJugades(data, dialecte) {
-    return Object.keys(partidesDelDia(data))
-        .filter((clau) => clau.startsWith(`${dialecte}|`))
-        .map((clau) => clau.split('|')[1]);
-}
-
-export function desarResultatDiari(data, dialecte, dificultat, resultat) {
+export function desarResultatDiari(data, dificultat, resultat) {
     const partides = partidesDelDia(data);
-    partides[clauDiaria(dialecte, dificultat)] = resultat;
+    partides[dificultat] = resultat;
     desar(CLAU_DIARIA, { data, partides });
 }
 
@@ -178,3 +228,4 @@ export function llegirSobrenom() {
 export function desarSobrenom(sobrenom) {
     desar(CLAU_SOBRENOM, sobrenom);
 }
+

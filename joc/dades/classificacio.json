@@ -1,5 +1,5 @@
 {
-  "actualitzacio": "08/09/2026 16:33:38",
+  "actualitzacio": "08/09/2026 16:33:39",
   "modalitats": {
     "diaria|dificil|60": {
       "titol": "Paraula del dia · Difícil",
@@ -26,13 +26,6 @@
           "data": "26/08/2026"
         },
         {
-          "sobrenom": "Albert",
-          "punts": 3,
-          "paraula": "calefactors",
-          "dialecte": "ca",
-          "data": "14/08/2026"
-        },
-        {
           "sobrenom": "envalencià",
           "punts": 3,
           "paraula": "messiànic",
@@ -40,11 +33,18 @@
           "data": "08/09/2026"
         },
         {
-          "sobrenom": "Provareal",
-          "punts": 1,
-          "paraula": "ambidextrismes",
+          "sobrenom": "Albert",
+          "punts": 3,
+          "paraula": "calefactors",
           "dialecte": "ca",
-          "data": "30/08/2026"
+          "data": "14/08/2026"
+        },
+        {
+          "sobrenom": "Ferran",
+          "punts": 1,
+          "paraula": "quarts",
+          "dialecte": "ca",
+          "data": "08/09/2026"
         },
         {
           "sobrenom": "cincsetembre",
@@ -54,11 +54,11 @@
           "data": "05/09/2026"
         },
         {
-          "sobrenom": "Ferran",
+          "sobrenom": "Provareal",
           "punts": 1,
-          "paraula": "quarts",
+          "paraula": "ambidextrismes",
           "dialecte": "ca",
-          "data": "08/09/2026"
+          "data": "30/08/2026"
         }
       ]
     },
@@ -89,7 +89,7 @@
       ]
     },
     "illimitat|dificil|180": {
-      "titol": "Il·limitat · Difícil · Lent",
+      "titol": "Il·limitat · Difícil · 180s",
       "top": [
         {
           "sobrenom": "admιn",
@@ -127,7 +127,7 @@
       ]
     },
     "illimitat|dificil|30": {
-      "titol": "Il·limitat · Difícil · 30s",
+      "titol": "Il·limitat · Difícil · Llampec",
       "top": [
         {
           "sobrenom": "Adm1n",
@@ -153,7 +153,7 @@
       ]
     },
     "illimitat|dificil|60": {
-      "titol": "Il·limitat · Difícil · 1 minut",
+      "titol": "Il·limitat · Difícil · Estàndard",
       "top": [
         {
           "sobrenom": "Berna",
@@ -172,7 +172,7 @@
       ]
     },
     "illimitat|dificil|90": {
-      "titol": "Il·limitat · Difícil · Estàndard",
+      "titol": "Il·limitat · Difícil · 90s",
       "top": [
         {
           "sobrenom": "eljefe69",
@@ -184,34 +184,27 @@
       ]
     },
     "illimitat|facil|180": {
-      "titol": "Il·limitat · Fàcil · Lent",
+      "titol": "Il·limitat · Fàcil · 180s",
       "top": [
+        {
+          "sobrenom": "Prova",
+          "punts": 3,
+          "paraula": "prova",
+          "dialecte": "ca",
+          "data": "30/08/2026"
+        },
         {
           "sobrenom": "Préssec",
           "punts": 3,
           "paraula": "bytownites",
           "dialecte": "ca",
           "data": "29/07/2026"
-        },
-        {
-          "sobrenom": "Prova",
-          "punts": 3,
-          "paraula": "prova",
-          "dialecte": "ca",
-          "data": "30/08/2026"
         }
       ]
     },
     "illimitat|facil|30": {
-      "titol": "Il·limitat · Fàcil · 30s",
+      "titol": "Il·limitat · Fàcil · Llampec",
       "top": [
-        {
-          "sobrenom": "Prova",
-          "punts": 3,
-          "paraula": "prova",
-          "dialecte": "ca",
-          "data": "30/08/2026"
-        },
         {
           "sobrenom": "Drac murri",
           "punts": 3,
@@ -220,7 +213,14 @@
           "data": "05/09/2026"
         },
         {
-          "sobrenom": "cincsetembre",
+          "sobrenom": "Prova",
+          "punts": 3,
+          "paraula": "prova",
+          "dialecte": "ca",
+          "data": "30/08/2026"
+        },
+        {
+          "sobrenom": "sissetembre",
           "punts": 1,
           "paraula": "defectives",
           "dialecte": "ca",
@@ -229,7 +229,7 @@
       ]
     },
     "illimitat|facil|60": {
-      "titol": "Il·limitat · Fàcil · 1 minut",
+      "titol": "Il·limitat · Fàcil · Estàndard",
       "top": [
         {
           "sobrenom": "Adm1n",
@@ -421,13 +421,6 @@
         "data": "26/08/2026"
       },
       {
-        "sobrenom": "Albert",
-        "punts": 3,
-        "paraula": "calefactors",
-        "dialecte": "ca",
-        "data": "14/08/2026"
-      },
-      {
         "sobrenom": "envalencià",
         "punts": 3,
         "paraula": "messiànic",
@@ -435,11 +428,18 @@
         "data": "08/09/2026"
       },
       {
-        "sobrenom": "Provareal",
-        "punts": 1,
-        "paraula": "ambidextrismes",
+        "sobrenom": "Albert",
+        "punts": 3,
+        "paraula": "calefactors",
         "dialecte": "ca",
-        "data": "30/08/2026"
+        "data": "14/08/2026"
+      },
+      {
+        "sobrenom": "Ferran",
+        "punts": 1,
+        "paraula": "quarts",
+        "dialecte": "ca",
+        "data": "08/09/2026"
       },
       {
         "sobrenom": "cincsetembre",
@@ -449,11 +449,11 @@
         "data": "05/09/2026"
       },
       {
-        "sobrenom": "Ferran",
+        "sobrenom": "Provareal",
         "punts": 1,
-        "paraula": "quarts",
+        "paraula": "ambidextrismes",
         "dialecte": "ca",
-        "data": "08/09/2026"
+        "data": "30/08/2026"
       }
     ],
     "facil": [
@@ -479,5 +479,245 @@
         "data": "06/09/2026"
       }
     ]
+  },
+  "noms_ocupats": [
+    "adm1n",
+    "admιn",
+    "albert",
+    "berna",
+    "cincsetembre",
+    "drac murri",
+    "eljefe69",
+    "envalencia",
+    "ferran",
+    "javascript",
+    "pressec",
+    "prova",
+    "provador",
+    "provareal",
+    "rimess",
+    "sissetembre",
+    "test"
+  ],
+  "estadistiques": {
+    "modalitats": {
+      "diaria|dificil|60": {
+        "partides": 12,
+        "mitjana": 6.7,
+        "histograma": {
+          "1": 4,
+          "3": 2,
+          "8": 1,
+          "9": 1,
+          "10": 1,
+          "11": 1,
+          "15": 1,
+          "17": 1
+        }
+      },
+      "diaria|facil|60": {
+        "partides": 3,
+        "mitjana": 13.0,
+        "histograma": {
+          "3": 1,
+          "17": 1,
+          "19": 1
+        }
+      },
+      "illimitat|dificil|180": {
+        "partides": 4,
+        "mitjana": 8.5,
+        "histograma": {
+          "3": 2,
+          "11": 1,
+          "17": 1
+        }
+      },
+      "illimitat|dificil|188": {
+        "partides": 1,
+        "mitjana": 10.0,
+        "histograma": {
+          "10": 1
+        }
+      },
+      "illimitat|dificil|30": {
+        "partides": 5,
+        "mitjana": 6.2,
+        "histograma": {
+          "1": 1,
+          "2": 1,
+          "4": 1,
+          "11": 1,
+          "13": 1
+        }
+      },
+      "illimitat|dificil|60": {
+        "partides": 2,
+        "mitjana": 4.5,
+        "histograma": {
+          "3": 1,
+          "6": 1
+        }
+      },
+      "illimitat|dificil|90": {
+        "partides": 1,
+        "mitjana": 17.0,
+        "histograma": {
+          "17": 1
+        }
+      },
+      "illimitat|facil|180": {
+        "partides": 2,
+        "mitjana": 3.0,
+        "histograma": {
+          "3": 2
+        }
+      },
+      "illimitat|facil|30": {
+        "partides": 3,
+        "mitjana": 2.3,
+        "histograma": {
+          "1": 1,
+          "3": 2
+        }
+      },
+      "illimitat|facil|60": {
+        "partides": 3,
+        "mitjana": 6.0,
+        "histograma": {
+          "2": 1,
+          "3": 1,
+          "13": 1
+        }
+      }
+    },
+    "diaria": {
+      "2026-08-06": {
+        "dificil": {
+          "partides": 2,
+          "mitjana": 9.5,
+          "histograma": {
+            "9": 1,
+            "10": 1
+          }
+        }
+      },
+      "2026-08-14": {
+        "dificil": {
+          "partides": 2,
+          "mitjana": 7.0,
+          "histograma": {
+            "3": 1,
+            "11": 1
+          }
+        }
+      },
+      "2026-08-17": {
+        "dificil": {
+          "partides": 1,
+          "mitjana": 1.0,
+          "histograma": {
+            "1": 1
+          }
+        }
+      },
+      "2026-08-26": {
+        "dificil": {
+          "partides": 1,
+          "mitjana": 8.0,
+          "histograma": {
+            "8": 1
+          }
+        }
+      },
+      "2026-08-30": {
+        "dificil": {
+          "partides": 1,
+          "mitjana": 1.0,
+          "histograma": {
+            "1": 1
+          }
+        },
+        "facil": {
+          "partides": 1,
+          "mitjana": 19.0,
+          "histograma": {
+            "19": 1
+          }
+        }
+      },
+      "2026-09-03": {
+        "dificil": {
+          "partides": 2,
+          "mitjana": 16.0,
+          "histograma": {
+            "15": 1,
+            "17": 1
+          }
+        }
+      },
+      "2026-09-05": {
+        "dificil": {
+          "partides": 1,
+          "mitjana": 1.0,
+          "histograma": {
+            "1": 1
+          }
+        }
+      },
+      "2026-09-06": {
+        "facil": {
+          "partides": 1,
+          "mitjana": 3.0,
+          "histograma": {
+            "3": 1
+          }
+        }
+      },
+      "2026-09-07": {
+        "facil": {
+          "partides": 1,
+          "mitjana": 17.0,
+          "histograma": {
+            "17": 1
+          }
+        }
+      },
+      "2026-09-08": {
+        "dificil": {
+          "partides": 2,
+          "mitjana": 2.0,
+          "histograma": {
+            "1": 1,
+            "3": 1
+          }
+        }
+      }
+    },
+    "diaria_totals": {
+      "dificil": {
+        "partides": 12,
+        "mitjana": 6.7,
+        "histograma": {
+          "1": 4,
+          "3": 2,
+          "8": 1,
+          "9": 1,
+          "10": 1,
+          "11": 1,
+          "15": 1,
+          "17": 1
+        }
+      },
+      "facil": {
+        "partides": 3,
+        "mitjana": 13.0,
+        "histograma": {
+          "3": 1,
+          "17": 1,
+          "19": 1
+        }
+      }
+    }
   }
 }

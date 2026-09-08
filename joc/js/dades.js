@@ -253,14 +253,22 @@ export async function grupDeRimes(dialecte, numeroDeGrup) {
 }
 
 // El format es una linia per paraula, amb capcaleres "#clau" que obren seccio.
-// Un "*" al davant marca les paraules que poden ser OBJECTIU (no son verbs); la
-// resta nomes valen com a rima. Si la forma real porta accents va despres d'un
-// ">" ("cami>camí"); si no, la linia ja es la forma normalitzada. Aixi no hem de
-// normalitzar res aqui.
+// La primera lletra diu que en pots fer (vegeu generar_dades.py):
+//
+//   *paraula   pot ser OBJECTIU A TOTS ELS DIALECTES: la seva clau de rima te
+//              entre min_rimes i max_rimes rimes als quatre. Es l'unica mena
+//              que poden proposar la paraula del dia i l'il·limitat.
+//   +paraula   objectiu NOMES al mode personalitzat, que es on el jugador es
+//              tria la finestra i el dialecte va tancat dins de l'enllac.
+//   paraula    nomes val com a RIMA: els verbs i tot l'apendix del dialecte.
+//
+// Si la forma real porta accents va despres d'un ">" ("cami>camí"); si no, la
+// linia ja es la forma normalitzada. Aixi no hem de normalitzar res aqui.
 //
 // Cada seccio guarda:
-//   paraules  -> Map<normalitzada, formaPerMostrar>  (totes: valen com a rima)
-//   objectius -> [normalitzada, ...]                  (nomes les que poden sortir)
+//   paraules       -> Map<normalitzada, formaPerMostrar>  (totes: valen com a rima)
+//   objectius      -> [normalitzada, ...]   les que poden sortir al personalitzat
+//   objectiusArreu -> [normalitzada, ...]   les que poden sortir a tot arreu
 function analitzar(text) {
     const seccions = new Map();
     let actual = null;
@@ -268,13 +276,15 @@ function analitzar(text) {
     for (let linia of text.split('\n')) {
         if (!linia) continue;
         if (linia.charCodeAt(0) === 35 /* # */) {
-            actual = { paraules: new Map(), objectius: [] };
+            actual = { paraules: new Map(), objectius: [], objectiusArreu: [] };
             seccions.set(linia.slice(1), actual);
             continue;
         }
         if (!actual) continue;
 
-        const esObjectiu = linia.charCodeAt(0) === 42; /* * */
+        const marca = linia.charCodeAt(0);
+        const esArreu = marca === 42;          /* * */
+        const esObjectiu = esArreu || marca === 43;   /* + */
         if (esObjectiu) linia = linia.slice(1);
 
         const tall = linia.indexOf('>');
@@ -283,6 +293,7 @@ function analitzar(text) {
 
         actual.paraules.set(normalitzada, mostrar);
         if (esObjectiu) actual.objectius.push(normalitzada);
+        if (esArreu) actual.objectiusArreu.push(normalitzada);
     }
 
     return { seccions };

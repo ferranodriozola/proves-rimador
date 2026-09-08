@@ -4,19 +4,36 @@ export const el = {};
 
 const NOMS = [
     'pantalla-inici', 'pantalla-config', 'pantalla-joc', 'pantalla-final',
-    'pantalla-records', 'pantalla-classificacio',
+    'pantalla-records', 'pantalla-classificacio', 'pantalla-ahir',
+    'pantalla-personalitzat', 'pantalla-convit', 'pantalla-ronda', 'pantalla-resum',
     'etiqueta-diaria', 'config-titol', 'config-avis', 'config-record', 'config-dialecte',
     'tira-dialectes',
     'opcions-dificultat', 'opcions-temps', 'grup-temps', 'boto-comencar',
-    'rellotge', 'punts', 'barra-temps', 'objectiu', 'modalitat',
+    'rellotge', 'punts', 'barra-temps', 'objectiu', 'modalitat', 'ronda-actual',
     'formulari', 'camp', 'toast', 'trobades',
     'resultat-punts', 'resultat-text', 'etiqueta-record', 'resum',
-    'boto-compartir', 'boto-repetir', 'trobades-final', 'titol-llista',
-    'bloc-classificacio', 'camp-sobrenom', 'boto-enviar-record', 'estat-enviament',
+    'boto-compartir', 'boto-piular', 'boto-repetir', 'trobades-final', 'titol-llista',
+    'bloc-estadistiques', 'estadistiques-percentil', 'estadistiques-mitjana',
+    'estadistiques-nota',
+    'bloc-classificacio', 'camp-sobrenom', 'fila-sobrenom', 'estat-enviament',
+    'grup-jugador', 'jugador-nota', 'jugador-fet', 'jugador-nom', 'estat-sobrenom',
+    'boto-desar-sobrenom', 'boto-canviar-sobrenom',
+    'ahir-data', 'ahir-dificultat', 'ahir-paraula',
+    'ahir-mitjana', 'ahir-estat', 'ahir-llista',
     'records-buit', 'llista-records',
     'classificacio-selector', 'classificacio-estat', 'classificacio-llista', 'classificacio-data',
     'classificacio-subtitol', 'classificacio-dificultat',
     'carregant', 'carregant-text', 'carregant-barra', 'carregant-progres', 'carregant-nota',
+    'capcalera-marca',
+    'pers-dialecte', 'pers-dificultat', 'pers-accents', 'pers-rimes-nota',
+    'pers-min', 'pers-max', 'pers-sense-sostre', 'pers-segons', 'pers-rondes',
+    'pers-recompte', 'pers-crear',
+    'convit-codi', 'convit-resum', 'convit-enllac', 'convit-copiar', 'convit-estat',
+    'convit-comencar',
+    'ronda-titol', 'ronda-punts', 'ronda-text', 'ronda-resum', 'ronda-seguent',
+    'ronda-titol-llista', 'ronda-trobades',
+    'resum-partida', 'resum-total', 'resum-rondes', 'resum-una-altra',
+    'resum-compartir',
 ];
 
 export function preparar() {
@@ -31,7 +48,8 @@ function aCamell(text) {
 
 // ------------------------------------------------------------- Pantalles
 
-const PANTALLES = ['inici', 'config', 'joc', 'final', 'records', 'classificacio'];
+const PANTALLES = ['inici', 'config', 'joc', 'final', 'records', 'classificacio',
+                   'ahir', 'personalitzat', 'convit', 'ronda', 'resum'];
 
 export function mostrarPantalla(nom) {
     for (const pantalla of PANTALLES) {
@@ -138,6 +156,16 @@ export function pintarTiraDialectes(dialectes, actiu, alTriar) {
     );
 }
 
+/**
+ * L'enllaç de la marca de la capçalera, que torna a la portada del joc. Hi
+ * enganxem el dialecte que s'està jugant: tornar a la portada no ha de
+ * canviar-te'l, i qui ha arribat amb un ?d= d'algú altre no el té desat enlloc
+ * (vegeu inicial i desar a dialecte.js).
+ */
+export function enllacDePortada(codi) {
+    el.capcaleraMarca.setAttribute('href', `./?d=${encodeURIComponent(codi)}`);
+}
+
 export function marcarDialecte(codi) {
     for (const boto of el.tiraDialectes.querySelectorAll('.dialecte')) {
         boto.setAttribute('aria-checked', String(boto.dataset.dialecte === codi));
@@ -157,6 +185,17 @@ export function pintarObjectiu(paraula, dificultat) {
     el.objectiu.textContent = paraula;
     el.modalitat.textContent = MODALITAT[dificultat] || MODALITAT.facil;
     el.modalitat.classList.toggle('modalitat--dificil', dificultat === 'dificil');
+}
+
+/**
+ * Quina ronda s'està jugant. Només surt al mode personalitzat, que és l'únic
+ * que en té més d'una: amb tres o quatre partides seguides és fàcil perdre el
+ * compte de per on vas.
+ */
+export function pintarRonda(ronda, rondes) {
+    const hiEs = Boolean(rondes) && rondes > 1;
+    el.rondaActual.hidden = !hiEs;
+    if (hiEs) el.rondaActual.textContent = `Ronda ${ronda} de ${rondes}`;
 }
 
 export function actualitzarPunts(punts) {
@@ -221,15 +260,57 @@ export function bloquejarEntrada() {
 
 // ------------------------------------------------------------------- Final
 
-export function pintarFinal({ punts, paraules, objectiu, rimesPossibles, recordNou, record, titolLlista }) {
+/**
+ * L'enllaç al cercador amb la paraula ja cercada, en el dialecte i la mena de
+ * rima que s'acabaven de jugar.
+ *
+ * És la sortida natural de la pantalla de final: acabes de veure que la paraula
+ * en tenia dues-centes i el que vols és saber quines eren. El cercador ja entén
+ * els tres paràmetres (vegeu cercarDesDeLaURL i dialecteInicial a js/script.js):
+ *
+ *   ../?q=<paraula>&d=<dialecte>[&rima=assonant]
+ *
+ * Amb "../" i no pas amb una adreça absoluta, com la resta dels enllaços del
+ * joc: així també funciona al repositori de proves, que GitHub Pages publica
+ * dins /NOM-DEL-REPOSITORI/. El `rima=assonant` només hi va en fàcil; qualsevol
+ * altra cosa deixa el cercador amb la consonant, que és el que ja fa per
+ * defecte.
+ */
+export function enllacDeRimes(text, { objectiu, dialecte, dificultat }) {
+    const enllac = document.createElement('a');
+    const params = new URLSearchParams({ q: objectiu, d: dialecte });
+    if (dificultat !== 'dificil') params.set('rima', 'assonant');
+    enllac.className = 'enllac-rimes';
+    enllac.href = `../?${params}`;
+    enllac.textContent = text;
+    enllac.title = `Mira les rimes de «${objectiu}» al Rimador.cat`;
+    return enllac;
+}
+
+/**
+ * Quantes rimes tenia la paraula, com a enllaç al cercador. Torna els nodes
+ * perquè el text de sota (el rècord) hi va enganxat a la mateixa frase.
+ */
+function fraseDeRimes({ objectiu, rimesPossibles, dialecte, dificultat }) {
+    const compte = `${rimesPossibles.toLocaleString('ca-ES')} `
+        + `${rimesPossibles === 1 ? 'rima possible' : 'rimes possibles'}`;
+    return [
+        `«${objectiu}» tenia `,
+        enllacDeRimes(compte, { objectiu, dialecte, dificultat }),
+        '.',
+    ];
+}
+
+export function pintarFinal({ punts, paraules, objectiu, rimesPossibles, recordNou,
+                             record, titolLlista, dialecte, dificultat }) {
     el.resultatPunts.textContent = String(punts);
     el.resultatText.textContent = punts === 1 ? 'rima trobada' : 'rimes trobades';
     el.etiquetaRecord.hidden = !recordNou;
 
-    const trobables = `«${objectiu}» tenia ${rimesPossibles.toLocaleString('ca-ES')} rimes possibles.`;
-    el.resum.textContent = recordNou || !record
+    const trobables = fraseDeRimes({ objectiu, rimesPossibles, dialecte, dificultat });
+    el.resum.replaceChildren(...(recordNou || !record
         ? trobables
-        : `${trobables} El teu rècord en aquesta modalitat és ${record}.`;
+        : [...trobables, ` El teu rècord en aquesta modalitat és ${record}.`]));
 
     el.titolLlista.textContent = titolLlista;
     el.titolLlista.hidden = paraules.length === 0;
@@ -242,11 +323,25 @@ export function pintarFinal({ punts, paraules, objectiu, rimesPossibles, recordN
     );
 }
 
+/**
+ * El botó de piular el resultat a X (Twitter). Amb `adreca` a null es queda
+ * amagat, que és el que toca a tot el que no sigui la paraula del dia: el text
+ * parla d'un dia i d'una paraula que són les mateixes per a tothom, i d'una
+ * partida il·limitada no en diria res que ningú pogués comparar.
+ */
+export function botoDePiular(adreca) {
+    el.botoPiular.hidden = !adreca;
+    if (adreca) el.botoPiular.href = adreca;
+}
+
 // -------------------------------------------------- Noms de les modalitats
 
 const NOM_MODE = { illimitat: 'Il·limitat', diaria: 'Paraula del dia' };
 const NOM_DIFICULTAT = { facil: 'Fàcil', dificil: 'Difícil' };
-const NOM_TEMPS = { 45: 'Llampec', 60: '1 minut', 90: 'Estàndard', 180: 'Lent' };
+// Els tres rellotges de l'il·limitat. Han de dir el mateix que el NOM_TEMPS de
+// joc/eines/compilar_classificacio.py. Un rellotge que no hi sigui es titula
+// amb els segons i prou (vegeu titolModalitat).
+const NOM_TEMPS = { 30: 'Llampec', 60: 'Estàndard', 120: 'Lent' };
 
 // Els noms dels dialectes els diu el versions.json (els escriu el generador a
 // partir del NOMS_DE_DIALECTE de generar_dades.py). Aqui nomes se'n guarda una
@@ -288,7 +383,9 @@ function filaRecord({ posicio, etiqueta, subtitol, punts, destacada }) {
     if (subtitol) {
         const sub = document.createElement('span');
         sub.className = 'fila-record__sub';
-        sub.textContent = subtitol;
+        // Pot ser un text o un node: al resum del mode personalitzat el
+        // subtítol és l'enllaç a les rimes d'aquella ronda.
+        sub.append(subtitol);
         text.appendChild(sub);
     }
     nom.appendChild(text);
@@ -562,9 +659,9 @@ export function pintarSelectorDies(dies, actiu, alTriar) {
  * Vénen dels blocs "diaria" i "diaria_millors" de dades/classificacio.json, que
  * munta joc/eines/compilar_classificacio.py.
  *
- * No hi ha cap capçalera que digui quina era la paraula del dia, perquè no n'hi
- * ha una de sola: cada dialecte té la seva (vegeu clauDelDia a objectius.js).
- * Va a cada fila, al costat del dialecte.
+ * No hi ha cap capçalera que digui quina era la paraula del dia: n'hi ha una de
+ * sola (vegeu paraulaDelDia a objectius.js), però la taula pot barrejar dies, i
+ * la paraula viatja amb cada entrada, al costat del dialecte.
  */
 export function pintarDiaria({ delDia, millors, dia, dificultat }, elMeuSobrenom) {
     el.classificacioLlista.replaceChildren(
@@ -575,12 +672,216 @@ export function pintarDiaria({ delDia, millors, dia, dificultat }, elMeuSobrenom
     );
 }
 
+// -------------------------------------------------- Mode personalitzat
+
+/** Un grup de botons que es poden prémer tots alhora (els tipus de paraula). */
+export function grupMarques(contenidor, atribut, alCanviar) {
+    const botons = [...contenidor.querySelectorAll('.opcio')];
+
+    contenidor.addEventListener('click', (esdeveniment) => {
+        const boto = esdeveniment.target.closest('.opcio');
+        if (!boto) return;
+        const premut = boto.getAttribute('aria-pressed') === 'true';
+        // Sempre n'hi ha d'haver un de premut: desmarcar l'últim deixaria una
+        // partida sense cap paraula possible, que no vol dir res.
+        const quants = botons.filter((b) => b.getAttribute('aria-pressed') === 'true').length;
+        if (premut && quants <= 1) return;
+        boto.setAttribute('aria-pressed', String(!premut));
+        if (alCanviar) alCanviar();
+    });
+
+    return {
+        valor: () => botons
+            .filter((b) => b.getAttribute('aria-pressed') === 'true')
+            .map((b) => Number(b.dataset[atribut])),
+        seleccionar: (valors) => {
+            for (const boto of botons) {
+                boto.setAttribute('aria-pressed',
+                                  String(valors.includes(Number(boto.dataset[atribut]))));
+            }
+        },
+    };
+}
+
+/** Escriu la configuració al formulari. */
+export function omplirPersonalitzat(config, nom) {
+    el.persDialecte.textContent = `En ${nom.toLowerCase()}`;
+    el.persMin.value = String(config.min);
+    el.persSenseSostre.checked = config.max === Infinity;
+    el.persMax.value = config.max === Infinity ? '' : String(config.max);
+    el.persMax.disabled = config.max === Infinity;
+    el.persSegons.value = String(config.segons);
+    el.persRondes.value = String(config.rondes);
+}
+
+/**
+ * El que hi ha escrit al formulari, tal qual: ja ho netejarà personalitzat.js.
+ *
+ * Els camps BUITS no s'hi posen. Mentre s'escriu un número el camp passa per
+ * buit, i si el donéssim per bo el valor saltaria al mínim entremig: deixant-lo
+ * fora, es queda el que ja hi havia fins que s'escriu un número de debò.
+ */
+export function llegirPersonalitzat() {
+    const dades = {};
+    if (el.persMin.value !== '') dades.min = el.persMin.value;
+    if (el.persSenseSostre.checked) dades.max = Infinity;
+    else if (el.persMax.value !== '') dades.max = el.persMax.value;
+    if (el.persSegons.value !== '') dades.segons = el.persSegons.value;
+    if (el.persRondes.value !== '') dades.rondes = el.persRondes.value;
+    return dades;
+}
+
+export function sostreActiu(senseSostre) {
+    el.persMax.disabled = senseSostre;
+}
+
+/**
+ * Quantes paraules hi ha amb els filtres que hi ha ara.
+ *
+ * Surt mentre es toca el formulari perquè hi ha combinacions que no donen res
+ * (esdrúixoles amb més de cinc-centes rimes, per exemple) i val més veure-ho
+ * abans de prémer el botó que no pas després.
+ */
+export function pintarRecompte(marge, dificultat) {
+    const buit = marge.rimes === 0;
+    el.persCrear.disabled = buit;
+    el.persRecompte.classList.toggle('recompte--buit', buit);
+
+    if (buit) {
+        el.persRecompte.textContent =
+            "Amb aquests filtres no hi ha cap paraula. Prova d'eixamplar el marge.";
+        return;
+    }
+    const quines = dificultat === 'dificil' ? 'terminacions' : 'grups de rima';
+    el.persRecompte.textContent =
+        `${marge.rimes.toLocaleString('ca-ES')} ${quines} · `
+        + `${marge.objectius.toLocaleString('ca-ES')} paraules possibles · `
+        + `de ${marge.minRimes.toLocaleString('ca-ES')} a `
+        + `${marge.maxRimes.toLocaleString('ca-ES')} rimes cadascuna`;
+}
+
+/** Què vol dir "quantes rimes" a cada dificultat. */
+export function notaDeRimes(dificultat) {
+    el.persRimesNota.textContent = dificultat === 'dificil'
+        ? 'Quantes rimes consonants tindrà la paraula: són, exactament, les respostes bones.'
+        : 'En assonant valen totes les paraules del grup, o sigui que els números '
+          + 'són molt més grossos que en consonant.';
+}
+
+// ------------------------------------------------------------ El convit
+
+export function pintarConvit({ codi, enllac, resum }) {
+    el.convitCodi.textContent = codi;
+    el.convitEnllac.value = enllac;
+    el.convitResum.textContent = resum;
+    el.convitEstat.textContent = '';
+    el.convitEstat.className = 'estat-enviament';
+}
+
+export function estatConvit(text, tipus) {
+    el.convitEstat.textContent = text;
+    el.convitEstat.className = `estat-enviament${tipus ? ' estat-enviament--' + tipus : ''}`;
+}
+
+export function seleccionarEnllac() {
+    el.convitEnllac.focus();
+    el.convitEnllac.select();
+}
+
+// ------------------------------------------------------- Entre rondes
+
+export function pintarRondaAcabada({ ronda, rondes, punts, paraules, objectiu,
+                                    rimesPossibles, ultima, dialecte, dificultat }) {
+    el.rondaTitol.textContent = `Ronda ${ronda} de ${rondes}`;
+    el.rondaPunts.textContent = String(punts);
+    el.rondaText.textContent = punts === 1 ? 'rima trobada' : 'rimes trobades';
+    el.rondaResum.replaceChildren(
+        ...fraseDeRimes({ objectiu, rimesPossibles, dialecte, dificultat }));
+    texteBoto(el.rondaSeguent, ultima ? 'Veure el resultat' : 'Següent ronda');
+
+    el.rondaTitolLlista.hidden = paraules.length === 0;
+    el.rondaTrobades.replaceChildren(...paraules.map((paraula) => {
+        const item = document.createElement('li');
+        item.textContent = paraula;
+        return item;
+    }));
+}
+
+// --------------------------------------------------------- Resum final
+
+export function pintarResum({ codi, partida, rondes, total, dialecte, dificultat }) {
+    el.resumPartida.textContent = `Codi ${codi} · partida ${partida}`;
+    el.resumTotal.textContent = String(total);
+
+    el.resumRondes.replaceChildren(...rondes.map((ronda, i) => filaRecord({
+        posicio: i + 1,
+        etiqueta: ronda.objectiu,
+        // El "de N rimes possibles" també hi porta l'enllaç al cercador: és la
+        // manera de repassar les que se t'han escapat, ronda per ronda.
+        subtitol: enllacDeRimes(
+            `de ${ronda.rimesPossibles.toLocaleString('ca-ES')} rimes possibles`,
+            { objectiu: ronda.objectiu, dialecte, dificultat }),
+        punts: ronda.punts,
+    })));
+}
+
+// ------------------------------------------------------------- Qui juga
+//
+// EL NOM ES TRIA ABANS DE LA PARTIDA, a la pantalla de configuració. Abans es
+// demanava al final: la puntuació pujava sola i el "Canvia el nom" tornava a
+// enviar la mateixa partida amb el nom nou, o sigui que al full hi arribaven
+// dues files de la mateixa cosa. Preguntant-ho abans, cada partida s'envia una
+// vegada i prou.
+//
+// Només es demana el PRIMER COP. Després només hi surt qui ets, amb un botó per
+// canviar-t'ho si vols.
+
+/**
+ * El bloc de "Qui juga" de la pantalla de configuració.
+ *
+ * Sense nom, el camp surt obert i la nota diu per què cal; amb nom, hi surt qui
+ * ets i el camp queda darrere el "Canvia el nom". Amb `obert` es força el camp
+ * (és el que fa aquell botó).
+ */
+export function pintarJugador(sobrenom, { obert = false, calNom = true } = {}) {
+    const teNom = Boolean(sobrenom);
+    const escriure = obert || !teNom;
+
+    el.grupJugador.hidden = !calNom && !teNom;
+    el.filaSobrenom.hidden = !escriure;
+    el.jugadorFet.hidden = escriure;
+    el.campSobrenom.value = sobrenom || '';
+    el.jugadorNom.textContent = teNom ? `Jugues com a «${sobrenom}»` : '';
+
+    el.jugadorNota.textContent = teNom
+        ? 'Amb aquest nom sortiràs a la classificació.'
+        : "Com et vols dir a la classificació? Només t'ho preguntem un cop: "
+          + 'després la puntuació hi puja sola en acabar cada partida.';
+
+    if (obert && teNom) {
+        el.campSobrenom.focus();
+        // Amb el text seleccionat: qui obre això és per posar-hi un altre nom,
+        // no per afegir-lo al que ja hi havia.
+        el.campSobrenom.select();
+    }
+}
+
+export function estatSobrenom(text, tipus) {
+    el.estatSobrenom.textContent = text || '';
+    el.estatSobrenom.className = `estat-enviament${tipus ? ' estat-enviament--' + tipus : ''}`;
+}
+
+export function nomEscrit() {
+    return el.campSobrenom.value;
+}
+
 // ------------------------------------------------ Enviament a la classificació
+
+// El bloc de sota del resultat només diu com ha anat l'enviament: el nom ja el
+// sabíem abans de començar i la puntuació puja sola.
 
 export function reiniciarEnviament() {
     el.blocClassificacio.hidden = false;
-    el.campSobrenom.disabled = false;
-    el.botoEnviarRecord.disabled = false;
     el.estatEnviament.textContent = '';
     el.estatEnviament.className = 'estat-enviament';
 }
@@ -590,8 +891,132 @@ export function estatEnviament(text, tipus) {
     el.estatEnviament.className = `estat-enviament${tipus ? ' estat-enviament--' + tipus : ''}`;
 }
 
-export function enviamentFet(missatge) {
-    el.campSobrenom.disabled = true;
-    el.botoEnviarRecord.disabled = true;
-    estatEnviament(missatge, 'ok');
+// ---------------------------------------------------------- Com va anar ahir
+
+/**
+ * La pantalla d'ahir: quina paraula tocava en aquest dialecte, quantes rimes en
+ * va treure la gent de mitjana i qui la va fer millor.
+ *
+ * Existeix perquè de la paraula d'AVUI no se'n pot saber res fins l'endemà: el
+ * classificacio.json es recompila un cop al dia. La d'ahir, en canvi, ja hi és
+ * sencera, i mirar-se-la és el que dona la sensació de tancar el dia.
+ *
+ * La paraula no surt del rànquing sinó que la calcula el joc (`paraulaDelDia`),
+ * o sigui que hi és encara que no hi hagués jugat ningú. És la mateixa per a
+ * tothom; el que canvia amb el dialecte són les rimes que valien.
+ */
+export function pintarAhir({ dia, dificultat, paraula, resum, top }, elMeuSobrenom) {
+    el.ahirData.textContent = `El ${diaLlarg(dia)}`;
+    el.ahirParaula.textContent = paraula || '—';
+
+    el.ahirMitjana.textContent = resum
+        ? `De mitjana se'n van trobar ${decimal(resum.mitjana)} rimes, `
+          + `en ${partidesText(resum.partides)}.`
+        : 'Ahir ningú no la va jugar en aquesta dificultat.';
+
+    // Sense ningú, la frase de sobre ja ho diu: repetir-ho amb un avís groc
+    // seria dir dos cops el mateix amb dues cares diferents.
+    const files = filesRanquing(top, elMeuSobrenom);
+    if (files.length === 0) {
+        el.ahirEstat.hidden = Boolean(!resum);
+        el.ahirEstat.textContent = 'Ahir no va pujar cap puntuació a la classificació.';
+        el.ahirLlista.replaceChildren();
+        return;
+    }
+    el.ahirEstat.hidden = true;
+    el.ahirLlista.replaceChildren(
+        bombolla(`Els millors d'ahir · ${NOM_DIFICULTAT[dificultat] || dificultat}`, files));
+}
+
+/** La tria de dificultat de la pantalla d'ahir. */
+export function pintarDificultatAhir(actiu, alTriar) {
+    el.ahirDificultat.replaceChildren(
+        ...['facil', 'dificil'].map((dificultat) => {
+            const boto = document.createElement('button');
+            boto.type = 'button';
+            boto.className = 'pastilla';
+            boto.textContent = NOM_DIFICULTAT[dificultat];
+            boto.setAttribute('role', 'radio');
+            boto.setAttribute('aria-checked', String(dificultat === actiu));
+            boto.setAttribute('aria-pressed', String(dificultat === actiu));
+            boto.addEventListener('click', () => alTriar(dificultat));
+            return boto;
+        })
+    );
+}
+
+// "2026-09-04" -> "4 de setembre" — a la pantalla d'ahir hi cap sencer.
+const MESOS_LLARGS = ['gener', 'febrer', 'març', 'abril', 'maig', 'juny',
+                      'juliol', 'agost', 'setembre', 'octubre', 'novembre', 'desembre'];
+
+export function diaLlarg(dia) {
+    const [, mes, numero] = dia.split('-');
+    const nom = MESOS_LLARGS[Number(mes) - 1] || mes;
+    const de = 'aeiou'.includes(nom[0]) ? "d'" : 'de ';
+    return `${Number(numero)} ${de}${nom}`;
+}
+
+// ------------------------------------------------------------ Estadístiques
+
+const NOM_DIFICULTAT_MINUSCULA = { facil: 'fàcil', dificil: 'difícil' };
+
+function decimal(numero) {
+    return numero.toLocaleString('ca-ES', {
+        minimumFractionDigits: 1, maximumFractionDigits: 1,
+    });
+}
+
+function partidesText(quantes) {
+    return `${quantes.toLocaleString('ca-ES')} ${quantes === 1 ? 'partida' : 'partides'}`;
+}
+
+/**
+ * Com t'ha anat comparat amb tothom. Ho calcula estadistiques.js a partir del
+ * bloc "estadistiques" de dades/classificacio.json; aquí només es redacta.
+ *
+ * Amb resum a null, el bloc no surt: quan encara no s'hi ha jugat prou, no dir
+ * res és més honest que dir un percentil sortit de quatre partides.
+ */
+export function pintarEstadistiques(resum, { mode, dificultat, objectiu }) {
+    if (!resum) {
+        el.blocEstadistiques.hidden = true;
+        return;
+    }
+    el.blocEstadistiques.hidden = false;
+
+    const nomDificultat = NOM_DIFICULTAT_MINUSCULA[dificultat] || dificultat;
+    const esDelDia = resum.font === 'diaria-avui';
+
+    if (resum.percentil === null) {
+        el.estadistiquesPercentil.textContent = "Encara hi ha poques partides per comparar-t'hi.";
+    } else {
+        el.estadistiquesPercentil.textContent = esDelDia
+            ? `Has superat el ${resum.percentil} % de les partides d'avui`
+            : `Has superat el ${resum.percentil} % de les partides`;
+    }
+
+    if (esDelDia) {
+        el.estadistiquesMitjana.textContent =
+            `Avui, amb «${objectiu}» en ${nomDificultat}, la mitjana és de `
+            + `${decimal(resum.mitjana)} rimes (${partidesText(resum.partides)}).`;
+    } else if (mode === 'diaria') {
+        el.estadistiquesMitjana.textContent =
+            `De mitjana, la paraula del dia en ${nomDificultat} en dona `
+            + `${decimal(resum.mitjana)} (${partidesText(resum.partides)}).`;
+    } else {
+        el.estadistiquesMitjana.textContent =
+            `La mitjana d'aquesta modalitat és de ${decimal(resum.mitjana)} rimes `
+            + `(${partidesText(resum.partides)}).`;
+    }
+
+    // Per què el número no és el d'avui: la classificació es refà un cop al dia
+    // i qui juga abans que passi encara no hi surt. Val més dir-ho que no pas
+    // fer passar la mitjana de sempre per la d'avui.
+    const nota = resum.font === 'diaria-sempre'
+        ? "De la paraula d'avui encara no n'hi ha prou dades: la classificació "
+          + 'es refà un cop al dia. Mentrestant et comparem amb totes les paraules '
+          + "del dia d'aquesta dificultat."
+        : '';
+    el.estadistiquesNota.textContent = nota;
+    el.estadistiquesNota.hidden = nota === '';
 }
