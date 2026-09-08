@@ -1,9 +1,16 @@
 {
-  "actualitzacio": "08/09/2026 17:41:27",
+  "actualitzacio": "08/09/2026 23:54:59",
   "modalitats": {
     "diaria|dificil|60": {
       "titol": "Paraula del dia · Difícil",
       "top": [
+        {
+          "sobrenom": "arev",
+          "punts": 6,
+          "paraula": "quarts",
+          "dialecte": "ca",
+          "data": "08/09/2026"
+        },
         {
           "sobrenom": "Ferdinandus",
           "punts": 6,
@@ -27,6 +34,18 @@
         }
       ]
     },
+    "diaria|facil|60": {
+      "titol": "Paraula del dia · Fàcil",
+      "top": [
+        {
+          "sobrenom": "arev",
+          "punts": 3,
+          "paraula": "desbastos",
+          "dialecte": "ca",
+          "data": "08/09/2026"
+        }
+      ]
+    },
     "illimitat|facil|30": {
       "titol": "Il·limitat · Fàcil · Llampec",
       "top": [
@@ -38,11 +57,30 @@
           "data": "08/09/2026"
         }
       ]
+    },
+    "illimitat|facil|60": {
+      "titol": "Il·limitat · Fàcil · Estàndard",
+      "top": [
+        {
+          "sobrenom": "arev",
+          "punts": 7,
+          "paraula": "acridínica",
+          "dialecte": "ca",
+          "data": "08/09/2026"
+        }
+      ]
     }
   },
   "diaria": {
     "2026-09-08": {
       "dificil": [
+        {
+          "sobrenom": "arev",
+          "punts": 6,
+          "paraula": "quarts",
+          "dialecte": "ca",
+          "data": "08/09/2026"
+        },
         {
           "sobrenom": "Ferdinandus",
           "punts": 6,
@@ -64,11 +102,27 @@
           "dialecte": "ca",
           "data": "08/09/2026"
         }
+      ],
+      "facil": [
+        {
+          "sobrenom": "arev",
+          "punts": 3,
+          "paraula": "desbastos",
+          "dialecte": "ca",
+          "data": "08/09/2026"
+        }
       ]
     }
   },
   "diaria_millors": {
     "dificil": [
+      {
+        "sobrenom": "arev",
+        "punts": 6,
+        "paraula": "quarts",
+        "dialecte": "ca",
+        "data": "08/09/2026"
+      },
       {
         "sobrenom": "Ferdinandus",
         "punts": 6,
@@ -90,9 +144,19 @@
         "dialecte": "ca",
         "data": "08/09/2026"
       }
+    ],
+    "facil": [
+      {
+        "sobrenom": "arev",
+        "punts": 3,
+        "paraula": "desbastos",
+        "dialecte": "ca",
+        "data": "08/09/2026"
+      }
     ]
   },
   "noms_ocupats": [
+    "arev",
     "ferdinandus",
     "joan",
     "pressec",
@@ -101,12 +165,19 @@
   "estadistiques": {
     "modalitats": {
       "diaria|dificil|60": {
-        "partides": 3,
-        "mitjana": 5.0,
+        "partides": 4,
+        "mitjana": 5.2,
         "histograma": {
           "4": 1,
           "5": 1,
-          "6": 1
+          "6": 2
+        }
+      },
+      "diaria|facil|60": {
+        "partides": 1,
+        "mitjana": 3.0,
+        "histograma": {
+          "3": 1
         }
       },
       "illimitat|facil|30": {
@@ -115,29 +186,53 @@
         "histograma": {
           "2": 1
         }
+      },
+      "illimitat|facil|60": {
+        "partides": 4,
+        "mitjana": 4.8,
+        "histograma": {
+          "1": 1,
+          "5": 1,
+          "6": 1,
+          "7": 1
+        }
       }
     },
     "diaria": {
       "2026-09-08": {
         "dificil": {
-          "partides": 3,
-          "mitjana": 5.0,
+          "partides": 4,
+          "mitjana": 5.2,
           "histograma": {
             "4": 1,
             "5": 1,
-            "6": 1
+            "6": 2
+          }
+        },
+        "facil": {
+          "partides": 1,
+          "mitjana": 3.0,
+          "histograma": {
+            "3": 1
           }
         }
       }
     },
     "diaria_totals": {
       "dificil": {
-        "partides": 3,
-        "mitjana": 5.0,
+        "partides": 4,
+        "mitjana": 5.2,
         "histograma": {
           "4": 1,
           "5": 1,
-          "6": 1
+          "6": 2
+        }
+      },
+      "facil": {
+        "partides": 1,
+        "mitjana": 3.0,
+        "histograma": {
+          "3": 1
         }
       }
     }
