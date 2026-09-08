@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FF91FF">
+    <!-- NOINDEX MENTRE joc/ SEGUEIXI EXISTINT. Aquesta pàgina i joc/index.html
+         declaren el MATEIX <link rel="canonical"> (rimador.cat/joc/), que és el
+         que ha de ser -joc2/ és la versió que substituirà l'altra-, però amb
+         totes dues indexables Google veuria dues adreces dient que la bona és la
+         mateixa, i el sitemap.xml, que es genera dels canonical a cada
+         desplegament, hi posaria la mateixa <loc> dues vegades (vegeu "Regenerar
+         el sitemap.xml" a .github/workflows/deploy.yml: les noindex en queden
+         fora). El dia que joc/ s'esborri i aquesta carpeta passi a dir-se joc,
+         aquí hi torna a anar "index, follow". -->
+    <meta name="robots" content="noindex, follow">
+
+    <title>El joc del Rimador.cat - troba rimes en català a contrarellotge</title>
+    <meta name="description" content="Quantes rimes ets capaç de trobar abans que s'acabi el temps? El joc de rimes del Rimador.cat, en quatre dialectes, amb paraula del dia, partides il·limitades i classificació.">
+    <meta name="author" content="Marc i Ferran">
+    <link rel="canonical" href="https://rimador.cat/joc/">
+
+    <link rel="icon" type="image/webp" href="../assets/R.webp">
+    <link rel="apple-touch-icon" href="../assets/R.webp">
+    <link rel="manifest" href="../manifest.json">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rimador.cat/joc/">
+    <meta property="og:title" content="El joc del Rimador.cat">
+    <meta property="og:description" content="Quantes rimes ets capaç de trobar abans que s'acabi el temps?">
+    <meta property="og:image" content="https://rimador.cat/assets/R.webp">
+    <meta property="og:locale" content="ca_ES">
+    <meta property="og:site_name" content="El Rimador.cat">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="El joc del Rimador.cat">
+    <meta name="twitter:description" content="Quantes rimes ets capaç de trobar abans que s'acabi el temps?">
+    <meta name="twitter:image" content="https://rimador.cat/assets/R.webp">
+
+    <link rel="stylesheet" href="../dist/css/joc2.min.css?v=dev">
+    <script type="module" src="js/principal.js?v=dev"></script>
+</head>
+
+<body id="joc">
+
+<a class="salta" href="#principal">Vés al contingut</a>
+
+<!-- Els enllaços al Rimador.cat van amb ../ i no pas amb /: el joc penja de
+     joc/, i per tant ../ és l'arrel del lloc, sigui on sigui el lloc. Amb /
+     només funcionarien a rimador.cat i es trencarien al repositori de proves,
+     que GitHub Pages publica dins /NOM-DEL-REPOSITORI/. És la regla de tot el
+     lloc: rutes relatives als HTML, i el JS que es calcula l'arrel tot sol
+     (vegeu ARREL a js/components.js). L'única excepció és el 404.html, que se
+     serveix sota qualsevol URL i que el desplegament ja reescriu (vegeu
+     .github/workflows/deploy.yml). -->
+
+<header class="capcalera">
+    <!-- La marca va a la PORTADA DEL JOC i la pastilla de la dreta al
+         Rimador.cat, igual que al cercador, on el logo va a l'arrel del lloc
+         (vegeu el header de js/components.js). Amb "./" i no pas "/joc/":
+         d'aquesta manera funciona tant a rimador.cat/joc/ com al repositori de
+         proves, que GitHub Pages publica dins /NOM-DEL-REPOSITORI/joc/. El
+         principal.js hi enganxa el ?d= del dialecte que s'esta jugant, perque
+         tornar a la portada no te per que canviar-te'l. -->
+    <a class="capcalera__marca" id="capcalera-marca" href="./">
+        <img src="../assets/peixet.webp" alt="" width="46" height="46">
+        <span class="capcalera__nom">El joc del Rimador.cat</span>
+    </a>
+    <a class="capcalera__estrella" href="../">← Al Rimador.cat</a>
+</header>
+
+<div class="marquesina" id="separador">
+    <p>Benvingut/uda al joc de rimes del <a href="../">Rimador.cat</a>! · Cerca rimes, bat el teu rècord i puja a la classificació ·</p>
+</div>
+
+<main id="principal">
+
+    <!-- ------------------------------------------------ Pantalla d'inici -->
+    <section class="pantalla" id="pantalla-inici">
+        <h1 class="titol">Troba les rimes</h1>
+        <p class="subtitol">
+            Et donem una paraula. Escriu-hi totes les rimes que se t'acudeixin
+            abans que s'acabi el temps.
+        </p>
+
+        <!-- La mateixa tira que el cercador, rètol inclòs: allà el "Dialecte:"
+             és un enllaç a dialectes.html (vegeu la tira de js/components.js) i
+             aquí també, que la pregunta de per què les rimes canvien la té
+             tothom i la resposta és la mateixa pàgina. -->
+        <div class="tira" id="tira-dialectes-inici">
+            <a class="tira__rotul" href="../dialectes.html">Dialecte:</a>
+            <div class="tira__tria" id="tira-dialectes" role="radiogroup" aria-label="Dialecte"></div>
+        </div>
+
+        <div class="menu">
+            <button class="targeta targeta--mode" type="button" data-mode="diaria">
+                <span class="targeta__estrella">☀</span>
+                <span class="targeta__titol">Paraula del dia</span>
+                <span class="targeta__text">La mateixa paraula per a tothom, jugui on jugui. 1 minut, un intent per dificultat.</span>
+                <span class="etiqueta" id="etiqueta-diaria" hidden></span>
+            </button>
+
+            <button class="targeta targeta--mode" type="button" data-mode="illimitat">
+                <span class="targeta__estrella">∞</span>
+                <span class="targeta__titol">Il·limitat</span>
+                <span class="targeta__text">Una paraula nova cada partida i el rellotge que tu vulguis.</span>
+            </button>
+
+            <button class="targeta targeta--mode" type="button" data-vista="personalitzat">
+                <span class="targeta__estrella">⚔</span>
+                <span class="targeta__titol">Personalitzat</span>
+                <span class="targeta__text">Tria-t'ho tot i passa l'enllaç a algú: jugareu exactament la mateixa partida i podreu comparar.</span>
+            </button>
+        </div>
+
+        <div class="menu-secundari">
+            <button class="boto boto--menut" type="button" data-vista="ahir">Com va anar ahir</button>
+            <button class="boto boto--menut" type="button" data-vista="records">Els meus rècords</button>
+            <button class="boto boto--menut" type="button" data-vista="classificacio">Classificació</button>
+        </div>
+
+
+        <p class="peu-nota">
+            Les rimes surten del mateix diccionari fonètic que fa servir el nostre
+            <a href="../">Rimador.cat</a>.
+        </p>
+    </section>
+
+    <!-- ------------------------------------------- Pantalla de dificultat -->
+    <section class="pantalla" id="pantalla-config" hidden>
+        <button class="enrere" type="button" data-accio="inici">← Tornar</button>
+
+        <h2 class="titol titol--petit" id="config-titol">Il·limitat</h2>
+        <p class="config-dialecte" id="config-dialecte"></p>
+
+        <fieldset class="grup">
+            <legend>Dificultat</legend>
+            <div class="opcions" id="opcions-dificultat" role="radiogroup" aria-label="Dificultat">
+                <button class="opcio" type="button" role="radio" data-dificultat="facil" aria-checked="true">
+                    <span class="opcio__titol">Fàcil</span>
+                    <span class="opcio__text">Rimes assonants</span>
+                </button>
+                <button class="opcio" type="button" role="radio" data-dificultat="dificil" aria-checked="false">
+                    <span class="opcio__titol">Difícil</span>
+                    <span class="opcio__text">Rimes consonants</span>
+                </button>
+            </div>
+        </fieldset>
+
+        <fieldset class="grup" id="grup-temps">
+            <legend>Temps</legend>
+            <div class="opcions opcions--tres" id="opcions-temps" role="radiogroup" aria-label="Temps">
+                <button class="opcio" type="button" role="radio" data-segons="30" aria-checked="false">
+                    <span class="opcio__titol">Llampec</span>
+                    <span class="opcio__text">30 segons</span>
+                </button>
+                <button class="opcio" type="button" role="radio" data-segons="60" aria-checked="true">
+                    <span class="opcio__titol">Estàndard</span>
+                    <span class="opcio__text">1 minut</span>
+                </button>
+                <button class="opcio" type="button" role="radio" data-segons="120" aria-checked="false">
+                    <span class="opcio__titol">Lent</span>
+                    <span class="opcio__text">2 minuts</span>
+                </button>
+            </div>
+        </fieldset>
+
+        <!-- EL NOM ES TRIA ABANS DE JUGAR, no després. Abans el camp era a la
+             pantalla de final: la puntuació pujava sola i canviar-s'hi el nom
+             tornava a enviar la mateixa partida, o sigui que al full hi
+             arribaven dues files de la mateixa cosa i el compilador s'havia de
+             quedar la més nova per desempatar. Preguntant-ho aquí, cada partida
+             s'envia una vegada i prou.
+
+             Només es demana el primer cop: després el joc se'n recorda i aquí
+             només hi surt qui ets, amb un botó per canviar-t'ho si vols. -->
+        <fieldset class="grup" id="grup-jugador">
+            <legend>Qui juga</legend>
+            <p class="grup__nota" id="jugador-nota"></p>
+            <div class="envia-fila" id="fila-sobrenom">
+                <input class="entrada__camp" id="camp-sobrenom" type="text" maxlength="16"
+                       autocomplete="nickname" placeholder="El teu nom" aria-label="El teu nom">
+                <button class="boto" type="button" id="boto-desar-sobrenom">Desa</button>
+            </div>
+            <div class="jugador" id="jugador-fet" hidden>
+                <p class="jugador__nom" id="jugador-nom"></p>
+                <button class="boto boto--menut" type="button" id="boto-canviar-sobrenom">Canvia el nom</button>
+            </div>
+            <p class="estat-enviament" id="estat-sobrenom" role="status" aria-live="polite"></p>
+        </fieldset>
+
+        <p class="avis" id="config-avis" hidden></p>
+
+        <button class="boto boto--gran boto--arcoiris" type="button" id="boto-comencar"><span>Comença</span></button>
+
+        <p class="record-actual" id="config-record"></p>
+    </section>
+
+    <!-- --------------------------------------------- Pantalla de partida -->
+    <section class="pantalla pantalla--joc" id="pantalla-joc" hidden>
+        <div class="marcador">
+            <div class="marcador__caixa">
+                <span class="marcador__etiqueta">Temps</span>
+                <span class="marcador__valor" id="rellotge">1:00</span>
+            </div>
+            <div class="marcador__caixa marcador__caixa--dreta">
+                <span class="marcador__etiqueta">Punts</span>
+                <span class="marcador__valor" id="punts">0</span>
+            </div>
+        </div>
+
+        <div class="barra-temps"><div class="barra-temps__interior" id="barra-temps"></div></div>
+
+        <p class="modalitat" id="modalitat">Fàcil (rima assonant)</p>
+
+        <!-- Només al mode personalitzat, que és l'únic que té més d'una ronda. -->
+        <p class="ronda-actual" id="ronda-actual" hidden></p>
+
+        <p class="objectiu__etiqueta">Rimes amb</p>
+        <p class="objectiu" id="objectiu">—</p>
+
+        <form class="entrada" id="formulari" autocomplete="off">
+            <input class="entrada__camp" id="camp" type="text" inputmode="text"
+                   autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                   enterkeyhint="done" placeholder="Escriu una rima…" aria-label="Escriu una rima">
+            <button class="boto" type="submit">Envia</button>
+        </form>
+
+        <p class="toast" id="toast" role="status" aria-live="polite"></p>
+
+        <ul class="trobades" id="trobades" aria-label="Paraules trobades"></ul>
+    </section>
+
+    <!-- ------------------------------------------- Pantalla de final -->
+    <section class="pantalla" id="pantalla-final" hidden>
+        <h2 class="titol titol--petit">S'ha acabat el temps</h2>
+
+        <p class="resultat" id="resultat-punts">0</p>
+        <p class="resultat__text" id="resultat-text">rimes trobades</p>
+
+        <p class="etiqueta etiqueta--record" id="etiqueta-record" hidden>Rècord nou!</p>
+
+        <p class="resum" id="resum"></p>
+
+        <!-- Com t'ha anat comparat amb tothom. Surt de dades/classificacio.json,
+             que porta, a banda dels rànquings, el recompte de partides de cada
+             modalitat i de cada paraula del dia (vegeu el bloc "estadistiques"
+             de joc/eines/compilar_classificacio.py). Si el fitxer encara no en
+             porta -o si no hi ha prou partides per dir-ne res-, aquest bloc no
+             surt: val més no dir res que dir un percentil calculat amb quatre
+             partides. -->
+        <section class="estadistiques" id="bloc-estadistiques" hidden>
+            <h3 class="mini-titol">Com t'ha anat</h3>
+            <p class="estadistiques__gran" id="estadistiques-percentil"></p>
+            <p class="estadistiques__text" id="estadistiques-mitjana"></p>
+            <p class="estadistiques__nota" id="estadistiques-nota" hidden></p>
+        </section>
+
+        <!-- Aquí ja no es demana res: el nom es tria a la pantalla d'abans de
+             començar (vegeu #grup-jugador) i la puntuació puja sola en acabar.
+             Aquest bloc només diu com ha anat l'enviament. -->
+        <div class="classificacio-envia" id="bloc-classificacio">
+            <p class="estat-enviament" id="estat-enviament" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="accions">
+            <button class="boto boto--gran boto--arcoiris" type="button" id="boto-compartir" hidden><span>Comparteix el resultat</span></button>
+            <!-- El mateix botó de piular que el cercador (vegeu #compartirButton
+                 a l'index.html de l'arrel i actualitzarBotoCompartir a
+                 js/script.js): petit, blau i amb l'ocell, que és el que la gent
+                 reconeix. L'href l'omple el principal.js en acabar la partida,
+                 amb el mateix text que es copia. Només surt a la paraula del
+                 dia, com el botó de compartir. -->
+            <a class="boto-piular" id="boto-piular" href="https://x.com/intent/post"
+               target="_blank" rel="noopener"
+               title="Comparteix el resultat a X (Twitter)" hidden>
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"/></svg>
+                <span>Piular el resultat</span>
+            </a>
+            <button class="boto boto--gran" type="button" id="boto-repetir" hidden>Una altra</button>
+            <button class="boto boto--gran" type="button" data-vista="ahir">Com va anar ahir</button>
+            <button class="boto boto--gran" type="button" data-vista="classificacio">Veure la classificació</button>
+            <button class="boto boto--secundari" type="button" data-accio="inici">Tornar a l'inici</button>
+        </div>
+
+        <h3 class="subtitol-llista" id="titol-llista">Les teves paraules</h3>
+        <ul class="trobades trobades--final" id="trobades-final"></ul>
+    </section>
+
+    <!-- ------------------------------------------ Pantalla personalitzat -->
+    <!-- El mode per jugar contra algú. Tot el que es tria aquí acaba dins de
+         l'enllaç, i l'enllaç és el que fa que dos jugadors tinguin les mateixes
+         paraules (vegeu js/personalitzat.js). No compta ni per a la
+         classificació ni per als rècords. -->
+    <section class="pantalla" id="pantalla-personalitzat" hidden>
+        <button class="enrere" type="button" data-accio="inici">← Tornar</button>
+        <h2 class="titol titol--petit">Personalitzat</h2>
+        <p class="subtitol">
+            Tria-t'ho tot i passa l'enllaç a qui vulguis: jugareu les mateixes
+            paraules i podreu comparar els resultats.
+        </p>
+        <p class="config-dialecte" id="pers-dialecte"></p>
+
+        <fieldset class="grup">
+            <legend>Rima</legend>
+            <div class="opcions" id="pers-dificultat" role="radiogroup" aria-label="Rima">
+                <button class="opcio" type="button" role="radio" data-dificultat="facil" aria-checked="true">
+                    <span class="opcio__titol">Assonant</span>
+                    <span class="opcio__text">Només les vocals</span>
+                </button>
+                <button class="opcio" type="button" role="radio" data-dificultat="dificil" aria-checked="false">
+                    <span class="opcio__titol">Consonant</span>
+                    <span class="opcio__text">Tot el final</span>
+                </button>
+            </div>
+        </fieldset>
+
+        <fieldset class="grup">
+            <legend>Quines paraules</legend>
+            <div class="opcions opcions--tres" id="pers-accents" role="group" aria-label="Tipus de paraula">
+                <button class="opcio" type="button" aria-pressed="true" data-accent="1">
+                    <span class="opcio__titol">Agudes</span>
+                    <span class="opcio__text">camió</span>
+                </button>
+                <button class="opcio" type="button" aria-pressed="true" data-accent="2">
+                    <span class="opcio__titol">Planes</span>
+                    <span class="opcio__text">taula</span>
+                </button>
+                <button class="opcio" type="button" aria-pressed="true" data-accent="3">
+                    <span class="opcio__titol">Esdrúixoles</span>
+                    <span class="opcio__text">màquina</span>
+                </button>
+            </div>
+        </fieldset>
+
+        <fieldset class="grup">
+            <legend>Quantes rimes</legend>
+            <p class="grup__nota" id="pers-rimes-nota"></p>
+            <div class="camps">
+                <label class="camp">
+                    <span class="camp__rotul">Mínim</span>
+                    <input class="entrada__camp camp__valor" id="pers-min" type="number" inputmode="numeric" min="1" step="1">
+                </label>
+                <label class="camp">
+                    <span class="camp__rotul">Màxim</span>
+                    <input class="entrada__camp camp__valor" id="pers-max" type="number" inputmode="numeric" min="1" step="1">
+                </label>
+            </div>
+            <label class="camp-marca">
+                <input type="checkbox" id="pers-sense-sostre">
+                <span>Sense màxim</span>
+            </label>
+        </fieldset>
+
+        <fieldset class="grup">
+            <legend>La partida</legend>
+            <div class="camps">
+                <label class="camp">
+                    <span class="camp__rotul">Segons per ronda</span>
+                    <input class="entrada__camp camp__valor" id="pers-segons" type="number" inputmode="numeric" min="10" max="600" step="5">
+                </label>
+                <label class="camp">
+                    <span class="camp__rotul">Rondes</span>
+                    <input class="entrada__camp camp__valor" id="pers-rondes" type="number" inputmode="numeric" min="1" max="20" step="1">
+                </label>
+            </div>
+        </fieldset>
+
+        <p class="recompte" id="pers-recompte" role="status" aria-live="polite"></p>
+
+        <button class="boto boto--gran boto--arcoiris" type="button" id="pers-crear"><span>Crea la partida</span></button>
+    </section>
+
+    <!-- ------------------------------------------- Pantalla del convit -->
+    <section class="pantalla" id="pantalla-convit" hidden>
+        <button class="enrere" type="button" data-accio="personalitzat">← Canviar els ajustos</button>
+        <h2 class="titol titol--petit">A punt</h2>
+
+        <p class="codi-partida__rotul">Codi de la partida</p>
+        <p class="codi-partida" id="convit-codi">—</p>
+        <p class="mini-text" id="convit-resum"></p>
+
+        <div class="classificacio-envia">
+            <h3 class="mini-titol">Passa-li l'enllaç</h3>
+            <p class="mini-text">Qui l'obri jugarà les mateixes paraules. Comproveu que us surt el mateix codi.</p>
+            <div class="envia-fila">
+                <input class="entrada__camp" id="convit-enllac" type="text" readonly aria-label="Enllaç de la partida">
+                <button class="boto" type="button" id="convit-copiar">Copia</button>
+            </div>
+            <p class="estat-enviament" id="convit-estat" role="status" aria-live="polite"></p>
+        </div>
+
+        <button class="boto boto--gran boto--arcoiris" type="button" id="convit-comencar"><span>Comença</span></button>
+    </section>
+
+    <!-- ------------------------------------------- Pantalla entre rondes -->
+    <section class="pantalla" id="pantalla-ronda" hidden>
+        <h2 class="titol titol--petit" id="ronda-titol">Ronda 1</h2>
+        <p class="resultat" id="ronda-punts">0</p>
+        <p class="resultat__text" id="ronda-text">rimes trobades</p>
+        <p class="resum" id="ronda-resum"></p>
+
+        <button class="boto boto--gran boto--arcoiris" type="button" id="ronda-seguent"><span>Següent ronda</span></button>
+
+        <h3 class="subtitol-llista" id="ronda-titol-llista">Les teves paraules</h3>
+        <ul class="trobades trobades--final" id="ronda-trobades"></ul>
+    </section>
+
+    <!-- ------------------------------------------- Pantalla resum final -->
+    <section class="pantalla" id="pantalla-resum" hidden>
+        <h2 class="titol titol--petit">S'ha acabat la partida</h2>
+        <p class="codi-partida__rotul" id="resum-partida"></p>
+
+        <p class="resultat" id="resum-total">0</p>
+        <p class="resultat__text">rimes en total</p>
+
+        <div class="bombolles">
+            <section class="bombolla">
+                <h3 class="bombolla__titol">Ronda a ronda</h3>
+                <div id="resum-rondes"></div>
+            </section>
+        </div>
+
+        <div class="accions">
+            <button class="boto boto--gran boto--arcoiris" type="button" id="resum-una-altra"><span>Una altra partida</span></button>
+            <button class="boto boto--gran" type="button" id="resum-compartir">Comparteix el resultat</button>
+            <button class="boto boto--gran" type="button" data-accio="personalitzat">Canviar els ajustos</button>
+            <button class="boto boto--secundari" type="button" data-accio="inici">Tornar a l'inici</button>
+        </div>
+    </section>
+
+    <!-- ------------------------------------------- Pantalla "com va anar ahir" -->
+    <!-- La classificació es recompila un cop al dia, o sigui que de la paraula
+         d'AVUI no se'n pot saber res fins l'endemà. La d'ahir, en canvi, ja hi
+         és sencera: quina paraula tocava, qui la va fer millor i quantes rimes
+         en va treure la gent de mitjana. Aquesta pantalla és el que tanca el
+         forat. La paraula la calcula el joc mateix (vegeu paraulaDelDia a
+         js/objectius.js), o sigui que hi surt encara que no hi hagués jugat
+         ningú. -->
+    <section class="pantalla" id="pantalla-ahir" hidden>
+        <button class="enrere" type="button" data-accio="inici">← Tornar</button>
+        <h2 class="titol titol--petit">Com va anar ahir</h2>
+        <p class="subtitol" id="ahir-data"></p>
+
+        <div class="selector-modalitat" id="ahir-dificultat" role="radiogroup" aria-label="Dificultat"></div>
+
+        <section class="paraula-dahir">
+            <p class="objectiu__etiqueta">La paraula d'ahir</p>
+            <p class="objectiu objectiu--menut" id="ahir-paraula">…</p>
+            <p class="estadistiques__text" id="ahir-mitjana"></p>
+        </section>
+
+        <p class="avis" id="ahir-estat" hidden></p>
+        <div class="bombolles" id="ahir-llista"></div>
+    </section>
+
+    <!-- ------------------------------------------- Pantalla els meus rècords -->
+    <section class="pantalla" id="pantalla-records" hidden>
+        <button class="enrere" type="button" data-accio="inici">← Tornar</button>
+        <h2 class="titol titol--petit">Els meus rècords</h2>
+        <p class="subtitol">Les teves millors puntuacions, desades en aquest navegador.</p>
+
+        <p class="avis" id="records-buit" hidden>Encara no has jugat cap partida. Vinga, anima't!</p>
+        <div class="bombolles" id="llista-records"></div>
+    </section>
+
+    <!-- ------------------------------------------- Pantalla classificació -->
+    <section class="pantalla" id="pantalla-classificacio" hidden>
+        <button class="enrere" type="button" data-accio="inici">← Tornar</button>
+        <h2 class="titol titol--petit">Classificació</h2>
+        <p class="subtitol" id="classificacio-subtitol">Les millors puntuacions de tota la gent que hi juga.</p>
+
+        <div class="pestanyes" role="tablist" aria-label="Què es mostra">
+            <button class="pestanya" type="button" role="tab" data-taula="modalitats" aria-selected="true">Il·limitat</button>
+            <button class="pestanya" type="button" role="tab" data-taula="diaria" aria-selected="false">Paraula del dia</button>
+        </div>
+
+        <div class="selector-modalitat" id="classificacio-dificultat" role="radiogroup" aria-label="Dificultat" hidden></div>
+        <div class="selector-modalitat" id="classificacio-selector"></div>
+
+        <p class="avis" id="classificacio-estat" hidden></p>
+        <div class="bombolles" id="classificacio-llista"></div>
+
+        <p class="peu-nota" id="classificacio-data"></p>
+    </section>
+
+    <!-- ------------------------------------------------------ Carregant -->
+    <div class="carregant" id="carregant" hidden>
+        <div class="carregant__cercle"></div>
+        <p id="carregant-text">Preparant la partida…</p>
+        <div class="carregant__barra" id="carregant-barra" hidden>
+            <div class="carregant__barra-interior" id="carregant-progres"></div>
+        </div>
+        <p class="carregant__nota" id="carregant-nota" hidden>
+            Les rimes d'aquest dialecte es baixen un sol cop.
+        </p>
+    </div>
+
+</main>
+
+<footer class="peu">
+    <a href="../">Rimador.cat</a> · Marc i Ferran · Uns quants drets reservats
+</footer>
+
+</body>
+</html>
