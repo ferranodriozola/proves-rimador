@@ -250,6 +250,21 @@ def obtenir_top_dies(df_dades):
 
     }
 
+def obtenir_recents_paraules(df_recencia, n):
+    """Torna les últimes n paraules cercades ordenades de més noves a més velles."""
+    # Ordenem per la data de la cerca cronològicament (les més noves primer)
+    recents = df_recencia.sort_values(by='Data', ascending=False).copy()
+    
+    # Ens quedem només amb l'última vegada que s'ha cercat cada paraula (la primera del df ordenat)
+    recents = recents.drop_duplicates(subset=['Paraula'], keep='first')
+    
+    # Donem format a la data per si la vols aprofitar al JSON (opcional)
+    recents['data_cerca'] = recents['Data'].dt.strftime("%d/%m/%Y %H:%M")
+    
+    # Retornem les N primeres i en descartem l'excés de columnes
+    return recents.head(n)[['Paraula', 'data_cerca']]
+
+
 def dades_grafic_linia(df_dades):
     avui = datetime.now(tz_espanya).date()
     data_inici = avui - timedelta(days=30)
@@ -284,6 +299,25 @@ def dades_grafic_formatge_totes(df_dades, tipus_rima):
         for rima, total in recompte.items()
     ]
 
+def dades_grafic_hores(df_dades):
+    hores_minuts = df_dades['Data'].dt.floor('30min').dt.strftime('%H:%M')
+    recompte_hores = hores_minuts.value_counts()    
+    total_cerques = len(hores_minuts.dropna())
+    
+    resultat = []
+    
+    for h in range(24):
+        for m in ['00', '30']:
+            hora_str = f"{h:02d}:{m}"
+            total_hora = recompte_hores.get(hora_str, 0)
+            percentatge = (total_hora / total_cerques * 100) if total_cerques > 0 else 0
+            
+            resultat.append({
+                "hora": hora_str,
+                "percentatge": round(percentatge, 2) 
+            })
+    return resultat
+
 
 def formatar_top_per_json(dades):
     df_temp = dades.rename(columns={'Paraula': 'paraula', 'Rima': 'paraula', 'Tipus de rima': 'tipus'})
@@ -310,7 +344,7 @@ dades_json = {
         "numero_usuaris": cerques_totals['Usuari'].nunique(),
         "recompte_tipus_rima": cerques_totals['Tipus de rima'].value_counts().to_dict(),
         "top_10_naufragues": formatar_top_per_json(obtenir_top_paraules(df_rimes_naufragues, 10, 'paraula', recencia_naufragues, amb_dialectes=True)),
-        "top_10_typos": formatar_top_per_json(obtenir_top_paraules(df_typos, 10, 'paraula', recencia_typos)),
+        "top_10_typos": formatar_top_per_json(obtenir_recents_paraules(recencia_typos, 10)),        
         "total_noms_propis": len(noms_propis),
         "recompte_num_sil": cerques_totals['Num. síl·'].value_counts().to_dict(),
         "recompte_comenca_per": cerques_totals['Comença per'].value_counts().to_dict(),
@@ -323,6 +357,7 @@ dades_json = {
     },
     "grafics": {
         "grafic_linia_diaria": dades_grafic_linia(cerques_totals),
+        "grafic_linia_hores": dades_grafic_hores(cerques_totals), 
         "grafic_formatge_exit_assonant": dades_grafic_formatge_totes(rimes_usuaris_diferents, "r.assonant"),
         "grafic_formatge_exit_consonant": dades_grafic_formatge_totes(rimes_usuaris_diferents, "r.consonant"),
     }

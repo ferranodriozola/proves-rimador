@@ -207,8 +207,9 @@ function omplirLlistesHTML(idElement, arrayDades, esRima = false) {
             li.appendChild(document.createTextNode(` (${tipusNet})`));
         }
 
-        li.appendChild(document.createTextNode(`: ${item.cerques}`));
-
+        if (idElement !== 'llista-typos') {
+            li.appendChild(document.createTextNode(`: ${item.cerques}`));
+        }
         // D'on venien les cerques que s'han comptat. Ho duen el top de rimes i
         // el de nàufragues; els altres dos no porten el camp i aquí no hi surt
         // res (vegeu amb_dialectes a stats/stats.py). No es mira l'esRima, sinó
@@ -450,6 +451,17 @@ async function carregarEstadistiques(arxiuJson) {
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: {
+                    x: {
+                        ticks: {
+                            callback: function(val, index) {
+                                const etiqueta = this.getLabelForValue(val);
+                                if (window.innerWidth < 768) {
+                                    return etiqueta.endsWith(':00') ? etiqueta : '';
+                                }
+                                return etiqueta;
+                            }
+                        }
+                    },
                     y: {
                         beginAtZero: true,
                         ticks: { stepSize: 1 }
@@ -467,6 +479,54 @@ async function carregarEstadistiques(arxiuJson) {
                     // La mitjana val el mateix tots els dies i ja surt escrita
                     // sobre el gràfic: al tooltip només faria nosa.
                     tooltip: { filter: context => !context.dataset.esMitjana }
+                }
+            }
+        });
+
+        // GRÀFIC PER HORES
+        const dadesHores = dades.grafics.grafic_linia_hores;
+        const ctxHores = document.getElementById('graficHores').getContext('2d');
+
+        window.graficHoresObj = new Chart(ctxHores, {
+            type: 'line',
+            data: {
+                labels: dadesHores.map(item => item.hora), // L'eix de sota: "00:00", "01:00"...
+                datasets: [{
+                    label: 'Percentatge de cerques',
+                    data: dadesHores.map(item => item.percentatge), // L'eix vertical (0 a 100)
+                    borderColor: colorsLinia.cerques.linia, // L'identic color vermell de la línia diària
+                    backgroundColor: colorsLinia.cerques.fons, // L'identic fons rosa semi-transparent                    
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        // Afegim el símbol % als números de l'eix vertical
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false // Amaguem la llegenda si només hi ha una línia
+                    },
+                    tooltip: {
+                        callbacks: {
+                            // Que al posar-hi el ratolí a sobre digui "X%" i no només el número
+                            label: function(context) {
+                                return ` ${context.raw}% de les cerques`;
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -627,6 +687,12 @@ function actualitzarColorsGrafics() {
         }
 
         window.graficLiniaObj.update();
+
+        if (window.graficHoresObj) {
+        window.graficHoresObj.data.datasets[0].borderColor = colorsLinia.cerques.linia;
+        window.graficHoresObj.data.datasets[0].backgroundColor = colorsLinia.cerques.fons;
+        window.graficHoresObj.update();
+    }
     }
 
     const PALETA = temaSober 
