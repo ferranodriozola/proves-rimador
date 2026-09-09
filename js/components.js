@@ -253,6 +253,28 @@ const checkboxContainer = /*html*/`
     <li class="no-list-style"><label><input type="checkbox" class="clickable-checkbox">Condicional</label></li>
 </ul>
 
+
+<!-- Secció "infinitiu + pronoms" -->
+<label>
+    <input type="checkbox" class="clickable-checkbox" id="checkbox7" onchange="toggleList('infinitiupronomList', 'checkbox7')" onclick="handleCheckboxClick(event, CriterisInfinitiuPronom)"> Infinitiu + pronom(s)
+</label>
+
+<ul id="infinitiupronomList" style="display: none" onclick="handleCheckboxClick(event, CriterisInfinitiuPronom)">
+    <li class="no-list-style"><label><input type="checkbox" class="clickable-checkbox">+ 1 pronom</label></li>
+    <li class="no-list-style"><label><input type="checkbox" class="clickable-checkbox">+ 2 pronoms</label></li>
+</ul>
+
+<!-- Secció "gerundi + 2 pronoms" -->
+<label>
+    <input type="checkbox" class="clickable-checkbox" id="checkbox8" onchange="toggleList('gerundipronomList', 'checkbox8')" onclick="handleCheckboxClick(event, CriterisGerundiPronom)"> Gerundi + pronom(s)
+</label>
+
+<ul id="gerundipronomList" style="display: none" onclick="handleCheckboxClick(event, CriterisGerundiPronom)">
+    <li class="no-list-style"><label><input type="checkbox" class="clickable-checkbox">+ 1 pronom</label></li>
+    <li class="no-list-style"><label><input type="checkbox" class="clickable-checkbox">+ 2 pronoms</label></li>
+</ul>
+
+
 <!-- Secció "Determinants" -->
 <label>
     <input type="checkbox" class="clickable-checkbox" id="checkbox4" onchange="toggleList('determinantsList', 'checkbox4')" onclick="handleCheckboxClick(event, CriterisDeterminants)"> Determinants

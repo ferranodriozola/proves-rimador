@@ -1172,6 +1172,18 @@ const CriterisVerbs = {
   ...crearCriterisTriples('Condicional', 'VAC', 'VSC', 'VMC' ),
 };
 
+const CriterisInfinitiuPronom = {
+  ...crearCriteris('Infinitiu + pronom(s)', 'WN'),
+  ...crearCriteris('+ 1 pronom', 'WN0001'),
+  ...crearCriteris('+ 2 pronoms', 'WN0002'),
+};
+
+const CriterisGerundiPronom = {
+  ...crearCriteris('Gerundi + pronom(s)', 'WG'),
+  ...crearCriteris('+ 1 pronom', 'WG0001'),
+  ...crearCriteris('+ 2 pronoms', 'WG0002'),
+};
+
 const CriterisAdjectius = {
   ...crearCriteris('Adjectius', 'A'),
   ...crearCriteris('Qualificatius', 'AQ0'),
@@ -1438,10 +1450,11 @@ function obtenirPesJerarquia(codi) {
   if (codi.startsWith('D')) return 3;
   if (codi.startsWith('P')) return 4;
   if (codi.startsWith('V')) return 5;
-  if (codi.startsWith('R')) return 6;
-  if (codi.startsWith('I')) return 7;
-  if (codi.startsWith('CC')) return 8;
-  if (codi.startsWith('NP')) return 9;
+  if (codi.startsWith('W')) return 6;
+  if (codi.startsWith('R')) return 7;
+  if (codi.startsWith('I')) return 8;
+  if (codi.startsWith('CC')) return 9;
+  if (codi.startsWith('NP')) return 10;
   return 10;
 }
 
@@ -2118,6 +2131,8 @@ function mostrarTotesLesLlistes() {
   mostrarLlista('noms', resultats.resultatsN, 'checkbox1');
   mostrarLlista('adjectius', resultats.resultatsA, 'checkbox2');
   mostrarLlista('verbs', resultats.resultatsV, 'checkbox3');
+  mostrarLlista('infinitiupronom', resultats.resultatsWN, 'checkbox7');
+  mostrarLlista('gerundipronom', resultats.resultatsWG, 'checkbox8');
   mostrarLlista('determinants', resultats.resultatsD, 'checkbox4');
   mostrarLlista('pronoms', resultats.resultatsP, 'checkbox5');
   mostrarLlista('altres', resultats.resultatsAlt, 'checkbox6');
@@ -2253,6 +2268,8 @@ function obtenirValorsSegonsPrimerCaracter(matches) {
   var resultatsN = [];
   var resultatsA = [];
   var resultatsV = [];
+  var resultatsWN = [];
+  var resultatsWG = [];
   var resultatsD = [];
   var resultatsP = [];
   var resultatsAlt = [];
@@ -2262,6 +2279,7 @@ function obtenirValorsSegonsPrimerCaracter(matches) {
       var primerCaracter = terceraColumna.charAt(0);
       var segonCaracter = terceraColumna.charAt(1);
       var tercerCaracter = terceraColumna.charAt(2);
+      var siseCaracter = terceraColumna.charAt(5);
       // Les preposicions (ZSPS) i les contraccions (ZSP+) es distingeixen per
       // la QUARTA lletra del codi, no per la tercera: totes dues tenen una P
       // a la tercera. Mirant-hi el tercerCaracter no s'hi acomplia mai cap
@@ -2304,6 +2322,20 @@ function obtenirValorsSegonsPrimerCaracter(matches) {
               }
               break; 
           
+          case "W": // Verbs + pronoms              
+              if (segonCaracter === "N") { // infinitiu
+                  switch (siseCaracter) {
+                      case "1": resultatsWN.push(0); break; // + 1 pronom
+                      case "2": resultatsWN.push(1); break; // + 2 pronoms
+                  }
+              } else if (segonCaracter === "G") { // gerundi
+                  switch (siseCaracter) {
+                      case "1": resultatsWG.push(0); break; // + 1 pronom
+                      case "2": resultatsWG.push(1); break; // + 2 pronoms
+                  }
+              }
+              break;
+              
           case "D": // Determinants
               switch (segonCaracter) {
                   case "N": resultatsD.push(0); break; // Números
@@ -2350,6 +2382,8 @@ function obtenirValorsSegonsPrimerCaracter(matches) {
       resultatsN: resultatsN,
       resultatsA: resultatsA,
       resultatsV: resultatsV,
+      resultatsWN: resultatsWN,
+      resultatsWG: resultatsWG,
       resultatsD: resultatsD,
       resultatsP: resultatsP,
       resultatsAlt: resultatsAlt,
