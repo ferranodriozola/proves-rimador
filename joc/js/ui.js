@@ -279,11 +279,19 @@ export function bloquejarEntrada() {
 export function enllacDeRimes(text, { objectiu, dialecte, dificultat }) {
     const enllac = document.createElement('a');
     const params = new URLSearchParams({ q: objectiu, d: dialecte });
+    
     if (dificultat !== 'dificil') params.set('rima', 'assonant');
+    
     enllac.className = 'enllac-rimes';
     enllac.href = `../?${params}`;
     enllac.textContent = text;
     enllac.title = `Mira les rimes de «${objectiu}» al Rimador.cat`;
+    
+    
+    // Obre l'enllaç en una pestanya nova
+    enllac.target = '_blank';
+    // Mesura de seguretat recomanada en obrir noves pestanyes
+    enllac.rel = 'noopener noreferrer';
     return enllac;
 }
 
@@ -513,14 +521,26 @@ function bombolla(titol, files, buit) {
 }
 
 /** Les files d'un rànquing: la posició, el sobrenom i amb què ho va fer. */
+/** Les files d'un rànquing: la posició (amb empats), el sobrenom i amb què ho va fer. */
 function filesRanquing(entrades, elMeuSobrenom) {
-    return (entrades || []).map((e, i) => filaRecord({
-        posicio: i + 1,
-        etiqueta: e.sobrenom,
-        subtitol: subtitolEntrada(e),
-        punts: e.punts,
-        destacada: elMeuSobrenom && e.sobrenom.toLowerCase() === elMeuSobrenom.toLowerCase(),
-    }));
+    let posicioVisual = 1;
+    let puntuacioAnterior = null;
+
+    return (entrades || []).map((e, i) => {
+        // Si no és el primer i té menys punts que l'anterior, actualitzem la posició a l'índex real
+        if (puntuacioAnterior !== null && e.punts < puntuacioAnterior) {
+            posicioVisual = i + 1;
+        }
+        puntuacioAnterior = e.punts;
+
+        return filaRecord({
+            posicio: posicioVisual,
+            etiqueta: e.sobrenom,
+            subtitol: subtitolEntrada(e),
+            punts: e.punts,
+            destacada: elMeuSobrenom && e.sobrenom.toLowerCase() === elMeuSobrenom.toLowerCase(),
+        });
+    });
 }
 
 /**
