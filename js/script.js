@@ -1243,7 +1243,8 @@ const URL_GOOGLE_SCRIPT = "https://script.google.com/macros/s/AKfycbw5uSetN-OKIE
 // Va aquí fora i no dins de registrarCerca perquè l'amfitrió no canvia mentre
 // la pàgina és oberta: no cal tornar-ho a mirar a cada cerca.
 const ES_WEB_OFICIAL = window.location.hostname === 'rimador.cat'
-                    || window.location.hostname === 'rimador.github.io';
+                    || window.location.hostname === 'rimador.github.io'
+                    || window.location.hostname === 'ferranodriozola.github.io/proves-rimador';
 
 function getUsuariID() {
   let usuariID = localStorage.getItem('rimador_usuari_id');
