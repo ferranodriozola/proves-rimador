@@ -23,10 +23,12 @@
       <a href="${arrel}dialectes.html">Els dialectes</a>
       <a href="${arrel}historial_canvis.html">Historial de canvis</a>
       <a href="${arrel}error.html">Has trobat un error?</a>
-        <!-- <a href="https://ko-fi.com/rimadorcat" target="_blank" rel="noopener">Regala'ns un cafè</a> -->
-
     </nav>
   `;
+
+  // Eliminem la línia del cafè que anava al menú:
+  //   <a href="https://ko-fi.com/rimadorcat" target="_blank" rel="noopener">Regala'ns un cafè</a>
+
 
   var paperWindow = document.createElement('div');
   paperWindow.id = 'paper-window';
