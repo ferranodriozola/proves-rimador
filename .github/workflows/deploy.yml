@@ -132,8 +132,7 @@ jobs:
       - name: Run Gulp
         run: npx gulp
 
-      - name: Rebentar Memòria Cau (Actualitzar versions HTML)
-        if: github.repository == 'rimador/rimador.github.io' && steps.canvis.outputs.any_changed == 'true'
+      - name: Rebentar Memòria Cau (Actualitzar versions HTML) 
         run: |
           NOVA_VERSIO=${GITHUB_SHA::7}
           echo "S'han detectat canvis al codi! Aplicant la versió $NOVA_VERSIO als HTML..."
