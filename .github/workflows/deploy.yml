@@ -151,7 +151,6 @@ jobs:
           find joc/js -type f -name "*.js" -exec sed -i -E "s/(\.js\?v=)[^']*/\1$NOVA_VERSIO/g" {} +
 
       - name: Guardar els HTML actualitzats al repositori
-        if: github.repository == 'rimador/rimador.github.io' && steps.canvis.outputs.any_changed == 'true'
         uses: ./.github/actions/comitejar
         with:
           missatge: 'Cache busting: versions actualitzades als HTML i als mòduls del joc'
