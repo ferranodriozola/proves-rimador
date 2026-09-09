@@ -1243,8 +1243,7 @@ const URL_GOOGLE_SCRIPT = "https://script.google.com/macros/s/AKfycbw5uSetN-OKIE
 // Va aquí fora i no dins de registrarCerca perquè l'amfitrió no canvia mentre
 // la pàgina és oberta: no cal tornar-ho a mirar a cada cerca.
 const ES_WEB_OFICIAL = window.location.hostname === 'rimador.cat'
-                    || window.location.hostname === 'rimador.github.io'
-                    || window.location.hostname === 'ferranodriozola.github.io/proves-rimador';
+                    || window.location.hostname === 'rimador.github.io';
 
 function getUsuariID() {
   let usuariID = localStorage.getItem('rimador_usuari_id');
@@ -1263,7 +1262,7 @@ function registrarCerca(paraulaBuscada, rimaTrobada, tipusRima, codiParaula, num
   // arribaven a passar pel getUsuariID(), que fabrica un identificador
   // d'usuari i el desa al localStorage. Es creaven identificadors de
   // seguiment en llocs on no s'envia res i que no serviran mai per a res.
-  if (!ES_WEB_OFICIAL) return;
+  // if (!ES_WEB_OFICIAL) return;
   if (!paraulaBuscada || paraulaBuscada.trim().length < 2) return;
 
   const dades = new URLSearchParams();
