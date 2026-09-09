@@ -83,6 +83,7 @@ def generar_dialecte(base_dir, codi):
     parts = fonts.parts_del_dialecte(codi, COLUMNES)
     rimes_naufragues = rimes_amb_una_sola_paraula(parts)
 
+
     paraules_orfes = []
     de_lapendix = 0
 
@@ -91,6 +92,10 @@ def generar_dialecte(base_dir, codi):
             paraula, infinitiu, codi_gramatical, rima, sil, vicc, viq, diec = fila
             if rima not in rimes_naufragues:
                 continue
+
+            if codi_gramatical.startswith('W'):
+                continue
+
             paraules_orfes.append({
                 'paraula': paraula,
                 'infinitiu': infinitiu,
