@@ -910,7 +910,7 @@ export function pintarAhir({ dia, dificultat, paraula, resum, top }, elMeuSobren
     el.ahirParaula.textContent = paraula || '—';
 
     el.ahirMitjana.textContent = resum
-        ? `De mitjana se'n van trobar ${decimal(resum.mitjana)} rimes, `
+        ? `De mitjana es van trobar ${decimal(resum.mitjana)} rimes, `
           + `en ${partidesText(resum.partides)}.`
         : 'Ahir ningú no la va jugar en aquesta dificultat.';
 
