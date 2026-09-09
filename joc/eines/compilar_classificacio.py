@@ -82,10 +82,7 @@ PARAULES_VETADES = [
     "nazi", "hitler", "admin", "moderador",
 ]
 
-# El JSON va al dades/ de la carpeta d'aquest script, no pas a un "joc" escrit a
-# ma: mentre es refa el joc n'hi ha dues (joc/ i joc2/), i amb el nom fixat aqui
-# passar joc2/eines/compilar_classificacio.py reescrivia la classificacio de
-# joc/ i deixava la de joc2/ eternament vella.
+
 DIR_JOC = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RUTA_JSON = os.path.join(DIR_JOC, "dades", "classificacio.json")
 

@@ -58,19 +58,14 @@
 
    Els dos fitxers són els subconjunts latin i latin-ext de Google Fonts, tal
    com els serveix. El unicode-range fa que el latin-ext (31 KB) només es baixi
-   si a la pantalla hi ha algun caràcter que el necessiti.
-
-   Les rutes són ../../joc2/fonts/: el full compilat surt a dist/css/, o sigui
-   que ../../ és l'arrel del lloc (vegeu les de css/fonts.scss, que fan igual).
-   Duen el NOM DE LA CARPETA a dins perquè no són relatives a aquest fitxer sinó
-   al full compilat: el dia que joc2/ passi a dir-se joc, aquestes dues línies
-   s'han de canviar (i el <link> de l'index.html, vegeu el gulpfile.js). */
+   si a la pantalla hi ha algun caràcter que el necessiti. */
+   
 @font-face {
     font-family: 'Anton';
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('../../joc2/fonts/anton-latin-400.woff2') format('woff2');
+    src: url('../../joc/fonts/anton-latin-400.woff2') format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
@@ -79,7 +74,7 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('../../joc2/fonts/anton-latin-ext-400.woff2') format('woff2');
+    src: url('../../joc/fonts/anton-latin-ext-400.woff2') format('woff2');
     unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 

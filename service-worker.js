@@ -68,7 +68,6 @@ const NOMES_XARXA = [
     'llistes/versions_llistes.json',
     'stats/versions_stats.json',
     'joc/dades/versions.json',
-    'joc2/dades/versions.json',
     'avis/missatges.json',
 ];
 
@@ -78,11 +77,6 @@ const NOMES_XARXA = [
 // dos mecanismes a decidir el mateix, que és com es fabriquen els errors que
 // després no hi ha manera de depurar.
 //
-// MENTRE ES REFA EL JOC n'hi ha dues carpetes: joc/ (el que hi ha publicat)
-// i joc2/ (el que el substituira). Totes dues juguen amb les mateixes regles,
-// i per aixo surten dues vegades a cada llista. El dia que joc/ s'esborri i
-// joc2/ passi a dir-se joc, es queden les de joc/ i prou.
-//
 // joc/dades/ tampoc no s'hi toca, de moment: el joc es baixa els seus fitxers
 // amb ?v= i se'ls guarda a la memòria cau del navegador. Per fer el joc
 // offline de debò, n'hi hauria prou d'afegir aquí una regla de cache per als
@@ -91,7 +85,6 @@ const NO_TOCAR = [
     'diccionaris/',
     'dialectes_col/',
     'joc/dades/',
-    'joc2/dades/',
 ];
 
 // El shell: això sí que es guarda i se serveix del cache. Les URL ja porten
@@ -101,8 +94,7 @@ function esDelShell(ruta) {
     return ruta.startsWith('dist/')
         || ruta.startsWith('fonts/')
         || ruta.startsWith('assets/')
-        || ruta.startsWith('joc/js/')
-        || ruta.startsWith('joc2/js/');
+        || ruta.startsWith('joc/js/');
 }
 
 function esNomesXarxa(url, ruta) {

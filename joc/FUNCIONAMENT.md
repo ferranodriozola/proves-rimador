@@ -1246,8 +1246,8 @@ partida perduda.
 Compte amb què vol dir «jugar sense connexió»: això arregla que **caigui la
 xarxa amb el joc ja obert**, que és el cas normal. Obrir el joc de zero sense
 connexió és una altra cosa i encara no funciona: el service worker guarda el
-shell (`joc2/js/`, `dist/`, `fonts/`, `assets/`) però **no** els fitxers de
-rimes de `joc2/dades/`, que són 8 MB per dialecte (vegeu `NO_TOCAR` a
+shell (`joc/js/`, `dist/`, `fonts/`, `assets/`) però **no** els fitxers de
+rimes de `joc/dades/`, que són 8 MB per dialecte (vegeu `NO_TOCAR` a
 `service-worker.js`).
 
 ### Dos jugadors no poden dir-se igual

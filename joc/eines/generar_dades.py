@@ -203,10 +203,7 @@ def ordre_de_tira(codis):
     coneguts = [c for c in NOMS_DE_DIALECTE if c in codis]
     return coneguts + sorted(c for c in codis if c not in NOMS_DE_DIALECTE)
 
-# ON S'ESCRIU: al dades/ de la carpeta d'aquest script, no pas a un "joc"
-# escrit a ma. Mentre es refa el joc n'hi ha dues (joc/ i joc2/), i amb el nom
-# fixat aqui, passar joc2/eines/generar_dades.py reescrivia les dades de joc/ i
-# deixava les de joc2/ com estaven.
+
 DIR_JOC = os.path.basename(os.path.dirname(DIR_EINES))
 DIR_DADES = os.path.join(ARREL, DIR_JOC, "dades")
 VERSIONS = os.path.join(DIR_DADES, "versions.json")
