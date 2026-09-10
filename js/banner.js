@@ -1,57 +1,115 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // 1. Data límit global: El banner deixa d'existir per a TOTHOM passat aquest dia
-    const dataLimitGlobal = new Date("2026-09-18T23:59:59").getTime(); 
-    const tempsActual = new Date().getTime();
-    
-    // 2. Clau d'usuari: Comprovem si aquest usuari concret ja l'ha tancat
-    const clauBanner = "bannerTancatDefinitivament";
-    const bannerJaTancat = localStorage.getItem(clauBanner);
+// =========================================================
+// BANNER D'ACTUALITZACIÓ (banner_actualitzacio.js)
+// =========================================================
 
-    // 3. Condició: Si NO l'ha tancat mai I encara estem dins dels 7 dies globals, el mostrem
-    if (!bannerJaTancat && tempsActual <= dataLimitGlobal) {
-        mostrarBanner();
+(function () {
+    'use strict';
+
+    const DATA_LIMIT_GLOBAL = new Date("2026-10-31T23:59:59").getTime(); 
+    const CLAU_BANNER = 'rimador_actualitzacio_v2'; // Clau nova
+    const RETARD = 800;
+
+    const LINKS = {
+        dialectes: "/index.html",
+        joc: "/joc",
+        naufragues: "/naufragues",
+        heptasillabics: "/heptasillabics",
+        setSillabes: "/setSillabes",
+        estadistiques: "/estadistiques",
+        historial: "/historial"
+    };
+
+    function potMostrar() {
+        if (Date.now() > DATA_LIMIT_GLOBAL) return false;
+        try {
+            if (localStorage.getItem(CLAU_BANNER)) return false;
+        } catch (e) {
+            return false;
+        }
+        return true;
     }
 
     function mostrarBanner() {
-        // Creem l'element del banner dinàmicament
-        const banner = document.createElement("div");
-        banner.id = "el-meu-banner";
-        banner.innerHTML = `
-            <div class="banner-contingut">
-                <p>Hola! Aquesta és una notificació important per als propers 7 dies.</p>
-                <!-- El botó comença desactivat i mostrant els segons -->
-                <button id="tancar-banner" disabled>✕ (5s)</button>
+        const dialeg = document.createElement('dialog');
+        dialeg.className = 'avis-dialeg';
+        dialeg.setAttribute('aria-labelledby', 'avis-titol-act');
+        
+        dialeg.innerHTML = `
+            <button class="avis-tanca-act" id="tancar-banner-act" aria-label="Tanca l'avís" disabled>✕ (5s)</button>
+            <h2 id="avis-titol-act">Nova actualització!</h2>
+            <p class="avis-text">Acabem de llançar una nova versió amb grans novetats al Rimador.cat. Descobreix-les totes:</p>
+            
+            <div class="avis-graella">
+                <!-- 1. Rimador amb dialectes -->
+                <a href="${LINKS.dialectes}" class="avis-boto-secundari avis-destacat boto-arc-iris" target="_blank">Rimes amb dialectes</a>
+                
+                <!-- 2. El Joc del Rimar -->
+                <a href="${LINKS.joc}" class="avis-boto-secundari avis-destacat boto-arc-iris" target="_blank"><span class="text-color-joc">El Joc del Rimar</span></a>
+                
+                <!-- 3. Les tres llistes (En una sola línia via Grid) -->
+                <div class="avis-llistes-grup">
+                    <a href="${LINKS.naufragues}" class="avis-boto-secundari" target="_blank">Paraules naufràgues</a>
+                    <a href="${LINKS.heptasillabics}" class="avis-boto-secundari" target="_blank">Mots heptasil·làbics</a>
+                    <a href="${LINKS.setSillabes}" class="avis-boto-secundari" target="_blank">Mots de 7 síl·labes</a>
+                </div>
+                
+                <!-- 4. Estadístiques -->
+                <a href="${LINKS.estadistiques}" class="avis-boto-secundari avis-estadistiques" target="_blank">Estadístiques</a>
             </div>
+            
+            <p class="avis-text" style="margin-bottom: 0; font-size: 0.9em;">
+                Comprova tots els canvis a l'<a href="${LINKS.historial}" target="_blank">historial de canvis</a>.
+            </p>
         `;
         
-        document.body.prepend(banner);
+        document.body.appendChild(dialeg);
+        dialeg.showModal();
 
-        const botoTancar = document.getElementById("tancar-banner");
+        const botoTancar = dialeg.querySelector('#tancar-banner-act');
         
-        // 4. Temporitzador de 5 segons
         let segonsRestants = 5;
         const interval = setInterval(() => {
             segonsRestants--;
             if (segonsRestants > 0) {
-                botoTancar.innerText = `✕ (${segonsRestants}s)`;
+                botoTancar.textContent = `✕ (${segonsRestants}s)`;
             } else {
-                // Han passat els 5 segons: activem el botó
                 clearInterval(interval);
-                botoTancar.innerText = "✕"; // Deixem només la creu
-                botoTancar.disabled = false; // Permetem fer clic
-                botoTancar.classList.add("actiu"); // Hi afegim una classe per canviar l'estil
+                botoTancar.textContent = '✕'; 
+                botoTancar.disabled = false;
             }
-        }, 1000); // S'executa cada 1000 ms (1 segon)
+        }, 1000);
 
-        // 5. Acció en fer clic a la creu
-        botoTancar.addEventListener("click", function() {
-            // Només fa cas si el botó ja no està desactivat
-            if (!botoTancar.disabled) {
-                // Guardem al navegador que AQUEST usuari ja l'ha tancat PER SEMPRE
-                localStorage.setItem(clauBanner, "true");
-                // Eliminem el banner
-                banner.remove();
+        const tancaDeVeres = () => {
+            if (botoTancar.disabled) return;
+            try { localStorage.setItem(CLAU_BANNER, 'true'); } catch (e) {}
+            if (dialeg.open) dialeg.close();
+            dialeg.remove();
+        };
+
+        botoTancar.addEventListener('click', tancaDeVeres);
+        
+        dialeg.addEventListener('click', event => {
+            if (event.target !== dialeg) return;
+            const caixa = dialeg.getBoundingClientRect();
+            const aDins = event.clientX >= caixa.left && event.clientX <= caixa.right &&
+                          event.clientY >= caixa.top && event.clientY <= caixa.bottom;
+            if (!aDins) tancaDeVeres();
+        });
+        
+        dialeg.addEventListener('cancel', event => {
+            if (botoTancar.disabled) {
+                event.preventDefault();
+            } else {
+                tancaDeVeres();
             }
         });
     }
-});
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            if (potMostrar()) setTimeout(mostrarBanner, RETARD);
+        });
+    } else {
+        if (potMostrar()) setTimeout(mostrarBanner, RETARD);
+    }
+})();
