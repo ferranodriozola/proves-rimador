@@ -13,124 +13,6 @@ body#llista #separador_rosa1 {
     font-size: 16px;
 }
 
-/* L'AVÍS DELS VERBS AMB PRONOMS: la ratlla que hi ha entre la franja de les
-   novetats i el cercador (vegeu index.html). Alineada amb el text de la franja
-   de sobre i amb els marges justos, perquè les dues ratlles es llegeixin com
-   una sola cosa i no empenyin el cercador cap avall.
-
-   No pot anar DINS del .container, que és on seria el seu lloc: aquell bloc
-   és sticky i el #separador_rosa2 dels resultats s'hi enganxa a sota amb un
-   top: 160px comptat a mà. Fer-lo més alt descol·locaria l'altre. */
-
-/* --- BLOC VERBS AMB PRONOMS --- */
-
-/* Alineem l'interrogant a la dreta del text a la mateixa línia */
-#avis_pronoms {
-    display: inline-block;
-    position: relative;
-    margin: 0 0 0 8px; /* Marge a l'esquerra per separar-lo del text */
-    font-size: 15px;
-    vertical-align: middle; 
-}
-
-/* La rodona groga de l'interrogant */
-.pistes-pronoms {
-    display: inline-block;
-    width: 17px;
-    height: 17px;
-    line-height: 17px;
-    text-align: center;
-    border: 1px solid $negre;
-    border-radius: 50%;
-    background-color: #FFF000; /* Color groc */
-    color: $negre;
-    font-size: 13px;
-    font-weight: bold;
-    cursor: default; /* El ratolí manté la fletxa estàndard */
-    user-select: none;
-}
-
-/* Afegim l'interrogant directament des del CSS */
-.pistes-pronoms::before {
-    content: "?";
-}
-
-/* La llista general per a pantalles grans */
-.pistes-llista {
-    display: none;
-    position: absolute;
-    top: 100%;
-    
-    /* Centrem el quadre just a sota de l'interrogant */
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 10px;
-    
-    z-index: 20;
-    padding: 12px 16px;
-    border: 1px solid $negre;
-    border-radius: 6px;
-    background-color: $blanc;
-    box-shadow: 2px 2px 6px rgba($negre, 0.3);
-    color: $negre;
-    font-size: 13px;
-    font-weight: normal;
-    line-height: 1.4;
-    text-align: left;
-    white-space: normal;
-    
-    width: 450px;
-    max-width: 90vw;
-    column-count: 3; /* Tres columnes per a ordinador */
-    column-gap: 15px;
-    
-    max-height: calc(100vh - 200px);
-    overflow-y: auto;
-}
-
-/* Un verb per ratlla */
-.pistes-llista span {
-    display: block;
-    break-inside: avoid;
-}
-
-/* El text explicatiu (primera línia) fora de les columnes */
-.pistes-llista > span:first-child {
-    column-span: all;
-    margin-bottom: 12px;
-    font-weight: bold;
-}
-
-/* Mostrem la llista al fer hover o focus */
-.pistes-pronoms:hover .pistes-llista,
-.pistes-pronoms:focus .pistes-llista {
-    display: block;
-}
-
-/* --- ADAPTACIÓ PER A MÒBILS (Evitem que s'escapi la llista) --- */
-@media screen and (max-width: 550px) {
-    .pistes-llista {
-        /* Desenganxem el quadre de la rodona i el fixem al centre de la pantalla */
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        margin-top: 0;
-        
-        width: 90vw;
-        max-height: 80vh; /* Màxim el 80% de la pantalla perquè es pugui fer scroll */
-        
-        column-count: 2; /* Dues columnes al mòbil */
-        box-shadow: 0 4px 20px rgba($negre, 0.4); /* Ombra més marcada */
-        z-index: 100; /* Assegurem que quedi per sobre de tot */
-    }
-}
-
-.pistes-pronoms:hover .pistes-llista,
-.pistes-pronoms:focus .pistes-llista {
-    display: block;
-}
-
 #separador_rosa_nosaltres {
     background-color: $rosa-principal;
     top: 0px;
@@ -280,6 +162,8 @@ body#llista #separador_rosa1 {
     gap: 11px;
     font-family: var(--font-sistema);
     font-size: 14px;
+    
+    position: relative;
 }
 
 .dropdown-container label {
