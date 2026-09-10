@@ -234,6 +234,54 @@ async function baixarDialecte(dialecte) {
  * parteix nomes aquell. El grup interpretat es guarda, que tornar a jugar amb
  * el mateix no ha de costar res.
  */
+// ------------------------------------------- Les paraules del dia manuals
+
+let manualsPromesa = null;
+
+export function carregarDiariesManuals() {
+    if (!manualsPromesa) {
+        manualsPromesa = fetch(`${BASE}diaries_manuals.json?t=${Date.now()}`)
+            .then((resposta) => {
+                if (!resposta.ok) throw new Error(`diaries_manuals.json: ${resposta.status}`);
+                return resposta.json();
+            })
+            .then((dades) => (dades && typeof dades === 'object' ? dades : {}))
+            .catch((error) => {
+                console.warn("No s'ha pogut llegir el diaries_manuals.json: es fa servir la roda", error);
+                manualsPromesa = null;
+                return {};
+            });
+    }
+    return manualsPromesa;
+}
+
+const textosEnMemoria = new Map();
+
+export async function trobarObjectiu(dialecte, normalitzada) {
+    const [dades, index] = await Promise.all([carregarDialecte(dialecte), carregarIndex()]);
+    let text = textosEnMemoria.get(dialecte);
+    if (text === undefined) {
+        text = descodificador.decode(new Uint8Array(dades));
+        textosEnMemoria.set(dialecte, text);
+    }
+
+    const escapada = normalitzada.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const trobada = new RegExp(`^[*+]${escapada}(?:>(.*))?$`, 'm').exec(text);
+    if (!trobada) return null;
+
+    const capcalera = text.lastIndexOf('\n#', trobada.index);
+    if (capcalera === -1) return null;
+    const clau = text.slice(capcalera + 2, text.indexOf('\n', capcalera + 1));
+    const entrada = indexDe(index, dialecte).claus.find((c) => c[0] === clau);
+    if (!entrada) return null;
+
+    return {
+        clau,
+        grup: entrada[1],
+        objectiu: { normalitzada, mostrar: trobada[1] || normalitzada },
+    };
+}
+
 export async function grupDeRimes(dialecte, numeroDeGrup) {
     const clau = `${dialecte}/${numeroDeGrup}`;
     if (grupsEnMemoria.has(clau)) return grupsEnMemoria.get(clau);

@@ -10,9 +10,10 @@
 import {
     carregarVersions, carregarIndex, carregarDialecte,
     grupDeRimes, respostesValides, escoltarProgres,
+    carregarDiariesManuals, trobarObjectiu,
 } from './dades.js?v=f697c38';
 import {
-    clauAleatoria, paraulaDelDia, triarParaula,
+    clauAleatoria, paraulaDelDia, manualDelDia, triarParaula,
     marge, rondesPersonalitzades,
 } from './objectius.js?v=f697c38';
 import * as personalitzat from './personalitzat.js?v=f697c38';
@@ -670,8 +671,19 @@ async function comencarPartida() {
  * La paraula del dia d'una data i dificultat. És la MATEIXA per a tothom; el
  * dialecte només serveix per saber a quina secció del seu fitxer cau. La fa
  * servir la partida diària i també la pantalla d'ahir.
+ *
+ * Primer es mira si aquell dia té paraula triada a mà (dades/diaries_manuals.json,
+ * vegeu manualDelDia a objectius.js); si no en té, o si la que té no és al
+ * fitxer d'aquest dialecte com a paraula a rimar, la roda de sempre.
  */
 async function seleccioDelDia(data, dificultat) {
+    const manual = manualDelDia(await carregarDiariesManuals(), data, dificultat);
+    if (manual) {
+        const trobada = await trobarObjectiu(estat.dialecte, manual);
+        if (trobada) return trobada;
+        console.warn(`La paraula del dia manual «${manual}» (${data}, ${dificultat}) `
+            + `no és al fitxer de "${estat.dialecte}" com a paraula a rimar: es fa servir la de la roda`);
+    }
     return paraulaDelDia(await carregarIndex(), data, dificultat, estat.dialecte);
 }
 

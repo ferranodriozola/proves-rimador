@@ -42,6 +42,8 @@
 // "escriu de pressa" i no pas "pensa". Triant per clau, la mediana baixa a 45 i
 // nomes el 6% de les partides passen de 300.
 
+import { normalitza } from './normalitza.js?v=f697c38';
+
 // Barreja de bits d'una cadena (variant de cyrb53), per sembrar el generador.
 function llavor(text) {
     let h1 = 0xdeadbeef;
@@ -152,6 +154,15 @@ function objectiusArreuDe(entrada) {
 }
 
 // ------------------------------------------------------- La paraula del dia
+
+export function manualDelDia(manuals, dataISO, dificultat) {
+    const entrada = (manuals || {})[dataISO];
+    const paraula = typeof entrada === 'string' ? entrada
+        : entrada && typeof entrada === 'object' ? entrada[dificultat] : null;
+    if (typeof paraula !== 'string') return null;
+    const normalitzada = normalitza(paraula);
+    return normalitzada || null;
+}
 
 // Des de quin dia es compten els cicles. Qualsevol data serveix mentre no
 // canvii mai: canviar-la desplacaria tota la roda i faria sortir una altra
