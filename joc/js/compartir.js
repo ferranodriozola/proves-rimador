@@ -76,15 +76,22 @@ export function enllacDeTwitter(text) {
  * perque qui el rep ja ha jugat la mateixa partida (o encara l'ha de jugar amb
  * el mateix enllac). El codi hi es perque els dos jugadors puguin comprovar
  * d'un cop d'ull que parlen de la mateixa partida.
+ *
+ * L'ULTIMA RATLLA ES L'ENLLAC DE LA PARTIDA, no pas el del joc. Abans hi deia
+ * "rimador.cat/joc" i prou, i qui rebia el resultat anava a parar a la
+ * portada: per jugar la mateixa partida encara havia de demanar l'enllac a
+ * part, que es justament el que aquest text convida a fer. Amb l'enllac dels
+ * ajustos (vegeu enllacDe a personalitzat.js) el resultat ja ho porta tot: les
+ * mateixes paraules, en el mateix ordre i amb els mateixos filtres.
  */
-export function textPersonalitzat({ codi, partida, rondes, total }) {
+export function textPersonalitzat({ codi, partida, rondes, total, enllac }) {
     const capcalera = `Rimador.cat · Personalitzat ${codi} · partida ${partida}`;
     const detall = rondes
         .map((ronda, i) => `R${i + 1} ${ronda.punts}`)
         .join(' · ');
     const cua = `${total} ${total === 1 ? 'rima' : 'rimes'} en total`;
 
-    return [capcalera, detall, cua, 'rimador.cat/joc'].filter(Boolean).join('\n');
+    return [capcalera, detall, cua, enllac].filter(Boolean).join('\n');
 }
 
 /**
