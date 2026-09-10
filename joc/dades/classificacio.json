@@ -1,5 +1,5 @@
 {
-  "actualitzacio": "09/09/2026 23:53:17",
+  "actualitzacio": "10/09/2026 07:27:00",
   "modalitats": {
     "diaria|dificil|60": {
       "titol": "Paraula del dia · Difícil",
@@ -82,6 +82,13 @@
     "illimitat|dificil|60": {
       "titol": "Il·limitat · Difícil · Estàndard",
       "top": [
+        {
+          "sobrenom": "annus",
+          "punts": 7,
+          "paraula": "capes",
+          "dialecte": "ca",
+          "data": "10/09/2026"
+        },
         {
           "sobrenom": "annuus",
           "punts": 6,
@@ -298,11 +305,12 @@
         }
       },
       "illimitat|dificil|60": {
-        "partides": 2,
-        "mitjana": 4.0,
+        "partides": 3,
+        "mitjana": 5.0,
         "histograma": {
           "2": 1,
-          "6": 1
+          "6": 1,
+          "7": 1
         }
       },
       "illimitat|facil|30": {
