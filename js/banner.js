@@ -12,11 +12,11 @@
     const LINKS = {
         dialectes: "/index.html",
         joc: "/joc",
-        naufragues: "/naufragues",
-        heptasillabics: "/heptasillabics",
-        setSillabes: "/setSillabes",
-        estadistiques: "/estadistiques",
-        historial: "/historial"
+        naufragues: "/llistes/llista_naufragues.html",
+        heptasillabics: "/llistes/llista_heptasilabs.html",
+        setSillabes: "/llistes/llista_mots_de7.html",
+        estadistiques: "/dades.html",
+        historial: "/historial_canvis.html"
     };
 
     function potMostrar() {
@@ -41,7 +41,7 @@
             
             <div class="avis-graella">
                 <!-- 1. Rimador amb dialectes -->
-                <a href="${LINKS.dialectes}" class="avis-boto-secundari avis-destacat boto-arc-iris" target="_blank">Rimes amb dialectes</a>
+                <a href="${LINKS.dialectes}" class="avis-boto-secundari avis-destacat boto-arc-iris" id="enllac-dialectes" target="_blank">Rimes amb dialectes</a>
                 
                 <!-- 2. El Joc del Rimar -->
                 <a href="${LINKS.joc}" class="avis-boto-secundari avis-destacat boto-arc-iris" target="_blank"><span class="text-color-joc">El Joc del Rimar</span></a>
@@ -66,6 +66,7 @@
         dialeg.showModal();
 
         const botoTancar = dialeg.querySelector('#tancar-banner-act');
+        const enllacDialectes = dialeg.querySelector('#enllac-dialectes');
         
         let segonsRestants = 5;
         const interval = setInterval(() => {
@@ -87,6 +88,12 @@
         };
 
         botoTancar.addEventListener('click', tancaDeVeres);
+
+        enllacDialectes.addEventListener('click', () => {
+            try { localStorage.setItem(CLAU_BANNER, 'true'); } catch (e) {}
+            if (dialeg.open) dialeg.close();
+            dialeg.remove();
+        });
         
         dialeg.addEventListener('click', event => {
             if (event.target !== dialeg) return;
