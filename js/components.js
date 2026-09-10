@@ -260,6 +260,8 @@ const dropdowncontainer_general = /*html*/`
     <span class="pistes-pronoms" tabindex="0">
         <span class="pistes-llista" role="tooltip">
         <span>Pots buscar verbs amb pronoms utilitzant l'infinitiu i gerundi dels següents verbs:</span>
+            <span>recitar</span>
+            <br>            
             <span>absoldre</span>
             <span>aparèixer</span>
             <span>aprendre</span>
@@ -276,17 +278,17 @@ const dropdowncontainer_general = /*html*/`
             <span>escriure</span>
             <span>fer</span>
             <span>haver</span>
-            <span>llegir</span>
             <span>pertànyer</span>
             <span>preveure</span>
             <span>prometre</span>
-            <span>recitar</span>
             <span>respondre</span>
             <span>riure</span>
             <span>romandre</span>
             <span>témer</span>
             <span>vèncer</span>
             <span>viure</span>
+            <br>
+            <span>llegir</span>
         </span>
     </span>
     </p>
