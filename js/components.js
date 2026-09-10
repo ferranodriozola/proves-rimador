@@ -172,7 +172,7 @@ const separador_rosa1HTML = document.getElementById('separador_rosa1');
 if (separador_rosa1HTML) { separador_rosa1HTML.innerHTML = separador_rosa1; }
 
 
-const dropdowncontainer = /*html*/`
+const dropdowncontainer_llistes = /*html*/`
 <div>
     <label for="rimaSelector">Tipus de rima:</label>
     <select id="rimaSelector" ${atributsRima}>
@@ -213,8 +213,97 @@ const dropdowncontainer = /*html*/`
 </div>
 ${botoactualitzar}
 `
-const dropdowncontainerHTML = document.getElementById('dropdown-container');
-if (dropdowncontainerHTML) { dropdowncontainerHTML.innerHTML = dropdowncontainer; }
+
+const dropdowncontainer_general = /*html*/`
+<div>
+    <label for="rimaSelector">Tipus de rima:</label>
+    <select id="rimaSelector" ${atributsRima}>
+        ${opcionsRima}
+    </select>
+</div>
+
+<div ${estilSilabes}>
+    <label for="numeroSelector">Nombre de síl·labes:</label>
+    <select id="numeroSelector">
+        ${opcionsSilabes}
+    </select>
+</div>
+
+<div>
+    <label for="categoriaSelector">Comença per:</label>
+    <select id="categoriaSelector">
+        <option value="indiferent">Indiferent</option>
+        <option value="vocal+h">Vocal / H</option>
+        <option value="consonant">Consonant</option>
+    </select>
+</div>
+
+<div>
+    <label for="plurals">Incloure plurals:</label>
+    <select id="plurals">
+        <option value="si">Sí</option>
+        <option value="no">No</option>
+    </select>
+</div>
+
+<div>
+    <label for="nomsPropis">Incloure noms propis:</label>
+    <select id="nomsPropis">
+        <option value="no">No</option>
+        <option value="si">Sí</option>
+    </select>
+</div>
+
+<div>
+    <label>Verbs + pronoms: </label>
+    <p id="avis_pronoms">
+    <span class="pistes-pronoms" tabindex="0">
+        <span class="pistes-llista" role="tooltip">
+        <span>Pots buscar verbs amb pronoms utilitzant l'infinitiu i gerundi dels següents verbs:</span>
+            <span>absoldre</span>
+            <span>aparèixer</span>
+            <span>aprendre</span>
+            <span>atendre</span>
+            <span>batre</span>
+            <span>beure</span>
+            <span>caure</span>
+            <span>cloure</span>
+            <span>complaure</span>
+            <span>confondre</span>
+            <span>córrer</span>
+            <span>créixer</span>
+            <span>empènyer</span>
+            <span>escriure</span>
+            <span>fer</span>
+            <span>haver</span>
+            <span>llegir</span>
+            <span>pertànyer</span>
+            <span>preveure</span>
+            <span>prometre</span>
+            <span>recitar</span>
+            <span>respondre</span>
+            <span>riure</span>
+            <span>romandre</span>
+            <span>témer</span>
+            <span>vèncer</span>
+            <span>viure</span>
+        </span>
+    </span>
+    </p>
+</div>
+
+
+${botoactualitzar}
+`
+
+if (idPagina === 'principal') {
+    const dropdowncontainer_generalHTML = document.getElementById('dropdown-container');
+    if (dropdowncontainer_generalHTML) { dropdowncontainer_generalHTML.innerHTML = dropdowncontainer_general; }
+} else {
+    const dropdowncontainer_llistesHTML = document.getElementById('dropdown-container');
+    if (dropdowncontainer_llistesHTML) { dropdowncontainer_llistesHTML.innerHTML = dropdowncontainer_llistes; }
+}
+
 
 const checkboxContainer = /*html*/`
 <!-- Secció "Noms" -->
