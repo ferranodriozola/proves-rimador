@@ -997,13 +997,52 @@ function lligarTriaDeDialecte() {
   });
 }
 
+// Tornar la pàgina a com estava en arribar-hi: sense resultats, sense el
+// número de rimes i sense les caselles de categories. NO toca ni la paraula
+// escrita ni els filtres triats, perquè justament el que es vol tot seguit és
+// tornar a pitjar Cercar i veure el mateix en el dialecte nou.
+function tornarALInici() {
+  matches = [];
+  matches_provisionals = [];
+  paraulacerca = [0, 0, 0, 0, 0, 0, 0];
+  codiParaula = "";
+  paraulaEsNaufraga = false;
+  impressio = null;
+
+  const rimes = document.getElementById('rima_enllac');
+  if (rimes) {
+    rimes.innerHTML = "";
+    rimes.classList.remove("column-container", "cols-1", "cols-2", "cols-3");
+  }
+
+  const textNombre = document.getElementById('nombre');
+  if (textNombre) textNombre.innerHTML = "";
+
+  // El full que amaga les categories desmarcades es queda posat entre cerques.
+  // Buidar-lo és tornar-les a ensenyar totes, que és com comença cada cerca.
+  if (fullDeFiltres) fullDeFiltres.textContent = "";
+
+  // Es TREUEN els estils que hi va posar la cerca, no se n'hi posen de nous:
+  // el CSS ja diu que la caixa dels resultats no es veu (vegeu .impressio a
+  // css/impressio.scss) i que l'espai buit de sota sí.
+  const caixa = document.querySelector('.impressio');
+  if (caixa) caixa.style.display = '';
+
+  const espai = document.getElementById('espai_inicial');
+  if (espai) espai.style.display = '';
+
+  actualitzarBotoCompartir(); // sense paraula trobada, s'amaga tot sol
+}
+
 // La feina de l'index.html: refer el diccionari que se serveix, baixant el que
 // falti d'aquell dialecte.
 //
-// Triar un dialecte NO torna a cercar. Els resultats que hi ha a la pantalla es
-// queden com estan, i per veure'ls en el dialecte nou s'ha de pitjar Cercar
-// altre cop. És a posta: una cerca ampla triga a pintar-se i ningú no ha de
-// perdre el que està mirant només per haver tocat la tira.
+// Triar un dialecte TREU ELS RESULTATS de la pantalla i deixa la pàgina com en
+// arribar-hi. Abans es quedaven tal com estaven, per no fer perdre el que
+// s'estava mirant, però eren les rimes de l'altre dialecte i enlloc no ho
+// deia: es veia una llista que ja no era la del dialecte marcat a la tira. Per
+// veure la mateixa paraula en el dialecte nou s'ha de pitjar Cercar altre cop,
+// que és el que la pàgina buida convida a fer.
 //
 // Es registra aquí i no pas quan el diccionari ja està llegit, perquè mentre
 // es carrega també ha de saber dir que no: el loader tapa la pantalla sencera
@@ -1016,25 +1055,37 @@ function lligarTriaDeDialecte() {
 // cerca a mitges. Canviar-li les columnes a sota voldria dir acabar-la amb la
 // rima d'un dialecte i els números de l'altre.
 if (idPagina === 'principal') {
-  quanEsCanviaDeDialecte(codi => {
+  quanEsCanviaDeDialecte(async codi => {
     if (cercaEnCurs) return false;
 
-    // El loader hi va sempre, encara que no s'hagi de baixar res: recompondre
-    // el diccionari sencer i tornar a indexar la rima són unes quantes
-    // dècimes en què la pàgina no respon, i val més tapar-les que semblar
-    // penjada.
+    // EL LOADER NOMÉS HI VA SI S'HA DE BAIXAR ALGUNA COSA. Si el dialecte ja
+    // s'ha baixat en aquesta visita, l'únic que queda és recompondre el
+    // diccionari: feina seguida de poques dècimes i sense cap espera de xarxa.
+    // Ensenyar-hi el loader volia dir obrir-lo i tancar-lo pràcticament dins
+    // del mateix parpelleig, i una roda que apareix i desapareix de seguida fa
+    // pitjor efecte que una espera curta sense res.
     const calBaixar = !dadesPerDialecte[codi];
-    const missatge = calBaixar ? `Carregant el ${nomDelDialecte(codi)}...`
-                               : 'Canviant de dialecte...';
+    let fet;
 
-    return Loader.mentre(missatge, () => {
-      // El comptador torna a començar: els que falten són els d'aquest
-      // dialecte, no pas els de tota la visita. Va aquí dins i no pas abans
-      // perquè el Loader escriu el missatge en obrir-se, i escrivint-lo
-      // primer el comptador s'esborraria tot seguit.
-      if (calBaixar) comencarComptador(fitxersDelDialecte(codi), missatge);
-      return aplicarDialecte(codi);
-    });
+    if (calBaixar) {
+      const missatge = `Carregant el ${nomDelDialecte(codi)}...`;
+      fet = await Loader.mentre(missatge, () => {
+        // El comptador torna a començar: els que falten són els d'aquest
+        // dialecte, no pas els de tota la visita. Va aquí dins i no pas abans
+        // perquè el Loader escriu el missatge en obrir-se, i escrivint-lo
+        // primer el comptador s'esborraria tot seguit.
+        comencarComptador(fitxersDelDialecte(codi), missatge);
+        return aplicarDialecte(codi);
+      });
+    } else {
+      fet = await aplicarDialecte(codi);
+    }
+
+    // Només si el canvi ha anat bé: si no s'ha pogut fer, la tira es queda com
+    // estava i el que hi ha a la pantalla continua sent del dialecte que se
+    // serveix.
+    if (fet) tornarALInici();
+    return fet;
   });
 }
 

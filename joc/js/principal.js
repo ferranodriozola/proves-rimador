@@ -10,30 +10,30 @@
 import {
     carregarVersions, carregarIndex, carregarDialecte,
     grupDeRimes, respostesValides, escoltarProgres,
-} from './dades.js?v=decc96f';
+} from './dades.js?v=8d2b05b';
 import {
     clauAleatoria, paraulaDelDia, triarParaula,
     marge, rondesPersonalitzades,
-} from './objectius.js?v=decc96f';
-import * as personalitzat from './personalitzat.js?v=decc96f';
-import { Partida, RESULTAT, formatarTemps } from './motor.js?v=decc96f';
-import * as ui from './ui.js?v=decc96f';
-import * as dialecte from './dialecte.js?v=decc96f';
+} from './objectius.js?v=8d2b05b';
+import * as personalitzat from './personalitzat.js?v=8d2b05b';
+import { Partida, RESULTAT, formatarTemps } from './motor.js?v=8d2b05b';
+import * as ui from './ui.js?v=8d2b05b';
+import * as dialecte from './dialecte.js?v=8d2b05b';
 import {
     avui, ahir, identificadorRecord, llegirRecord, desarRecord,
     resultatDiari, dificultatsJugades, desarResultatDiari,
     llegirTotsElsRecords, llegirSobrenom, desarSobrenom,
-} from './magatzem.js?v=decc96f';
+} from './magatzem.js?v=8d2b05b';
 import {
     textPerCompartir, textPersonalitzat, compartirResultat, copiar, enllacDeTwitter,
-} from './compartir.js?v=decc96f';
+} from './compartir.js?v=8d2b05b';
 import {
     validarSobrenom, enviarPuntuacio, estaConfigurat,
     carregarClassificacio, nomsOcupats, enviarPendents, quantesPendents,
-} from './classificacio.js?v=decc96f';
+} from './classificacio.js?v=8d2b05b';
 import {
     estadistiquesDe, estadistiquesDelDia, ranquingDelDia,
-} from './estadistiques.js?v=decc96f';
+} from './estadistiques.js?v=8d2b05b';
 
 const SEGONS_DIARIA = 60;
 const NOM_DIFICULTAT = { facil: 'fàcil', dificil: 'difícil' };

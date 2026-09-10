@@ -14,7 +14,7 @@
     <link rel="icon" type="image/webp" href="assets/R.webp">
     <link rel="apple-touch-icon" href="assets/R.webp">
     <link rel="manifest" href="manifest.json">
-    <script src="dist/js/registrar-sw.min.js?v=decc96f" defer></script>
+    <script src="dist/js/registrar-sw.min.js?v=8d2b05b" defer></script>
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://rimador.cat/">
@@ -65,12 +65,12 @@
     }
     </script>
 
-    <link rel="stylesheet" href="dist/css/styles.min.css?v=decc96f">
-    <link rel="stylesheet" href="avis/avis.css?v=decc96f">
-    <script src="dist/js/components.min.js?v=decc96f" defer></script>
-    <script src="dist/js/menu.min.js?v=decc96f" defer></script>
-    <script src="avis/avis.js?v=decc96f" defer></script>
-    <script src="dist/js/script.min.js?v=decc96f" defer></script>
+    <link rel="stylesheet" href="dist/css/styles.min.css?v=8d2b05b">
+    <link rel="stylesheet" href="avis/avis.css?v=8d2b05b">
+    <script src="dist/js/components.min.js?v=8d2b05b" defer></script>
+    <script src="dist/js/menu.min.js?v=8d2b05b" defer></script>
+    <script src="avis/avis.js?v=8d2b05b" defer></script>
+    <script src="dist/js/script.min.js?v=8d2b05b" defer></script>
 </head>
 
 
@@ -101,6 +101,57 @@
     <div id="separador_rosa1">
         <!-- components.js -->
     </div>
+
+    <!-- ELS VERBS QUE ES PODEN CERCAR AMB PRONOM AL DARRERE. Al diccionari no
+         hi ha totes les combinacions de tots els verbs -serien milions-, sinó
+         les d'una llista triada (vegeu pronoms/definitiu/verbs.txt, que és
+         d'on surten les formes de l'apèndix). Sense dir quins són, ningú no
+         pot endevinar que "escriure-me-la" hi és i "cantar-me-la" no, i qui ho
+         provi es pensarà que allò no funciona.
+
+         La llista va darrere d'un interrogant que s'obre en passar-hi per
+         sobre: escrita sencera són vint-i-set paraules i ocuparia més que el
+         cercador que hi ha a sota. Escrita a mà i no pas generada: el
+         js/components.js no la pot pintar aquí, perquè el seu #separador_rosa1
+         surt a totes les pàgines i aquest avís només té sentit al cercador.
+
+         Només els infinitius: els gerundis són els mateixos verbs i afegir-los
+         doblaria la llista sense dir res de nou (ja ho diu la frase). -->
+    <p id="avis_pronoms">Pots buscar verbs amb pronoms utilitzant l'infinitiu i gerundi dels següents verbs:
+        <span class="pistes-pronoms" tabindex="0" aria-label="Quins verbs">?<!--
+             De spans i no pas d'una llista: això va dins d'un <p>, i un <ul>
+             allà dins el navegador el tancaria a mitges. Cada verb fa de
+             ratlla amb un display:block (vegeu css/container.scss). -->
+            <span class="pistes-llista" role="tooltip">
+                <span>absoldre</span>
+                <span>aparèixer</span>
+                <span>aprendre</span>
+                <span>atendre</span>
+                <span>batre</span>
+                <span>beure</span>
+                <span>caure</span>
+                <span>cloure</span>
+                <span>complaure</span>
+                <span>confondre</span>
+                <span>córrer</span>
+                <span>créixer</span>
+                <span>empènyer</span>
+                <span>escriure</span>
+                <span>fer</span>
+                <span>haver</span>
+                <span>llegir</span>
+                <span>pertànyer</span>
+                <span>preveure</span>
+                <span>prometre</span>
+                <span>recitar</span>
+                <span>respondre</span>
+                <span>riure</span>
+                <span>romandre</span>
+                <span>témer</span>
+                <span>vèncer</span>
+                <span>viure</span>
+            </span></span>
+    </p>
 
     <div class="container" id="container">
         <div class="search-container">

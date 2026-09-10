@@ -13,6 +13,89 @@ body#llista #separador_rosa1 {
     font-size: 16px;
 }
 
+/* L'AVÍS DELS VERBS AMB PRONOMS: la ratlla que hi ha entre la franja de les
+   novetats i el cercador (vegeu index.html). Alineada amb el text de la franja
+   de sobre i amb els marges justos, perquè les dues ratlles es llegeixin com
+   una sola cosa i no empenyin el cercador cap avall.
+
+   No pot anar DINS del .container, que és on seria el seu lloc: aquell bloc
+   és sticky i el #separador_rosa2 dels resultats s'hi enganxa a sota amb un
+   top: 160px comptat a mà. Fer-lo més alt descol·locaria l'altre. */
+#avis_pronoms {
+    position: relative;
+    margin: 0 0 10px 22px;
+    font-size: 15px;
+}
+
+/* L'interrogant que obre la llista. Fa de botó sense ser-ho: no hi ha res per
+   prémer, només per mirar-s'hi. El tabindex de l'HTML el fa arribable amb el
+   tabulador i el :focus de més avall fa que allà també s'obri: amb el ratolí
+   n'hi ha prou amb el :hover, però amb teclat (i a les pantalles tàctils, que
+   només donen focus) no. */
+.pistes-pronoms {
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    line-height: 17px;
+    text-align: center;
+    border: 1px solid $negre;
+    border-radius: 50%;
+    background-color: $blanc;
+    color: $negre;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: help;
+    user-select: none;
+}
+
+/* La llista, amagada fins que no s'hi passa per sobre.
+
+   EL Z-INDEX HI ÉS PER FORÇA: el .container del cercador és sticky, o sigui
+   que es pinta damunt de tot el que no ho és, i el #separador_rosa2 dels
+   resultats ja duu un z-index: 10. Sense aquest, la llista sortiria per
+   darrere del cercador i no se'n veuria res. */
+.pistes-llista {
+    display: none;
+    /* Penjada de la RATLLA i no pas de l'interrogant (per això el
+       #avis_pronoms és el position: relative i la pastilla no ho és): on cau
+       l'interrogant depèn d'on parteixi la frase, que canvia amb l'amplada de
+       la finestra, i en algunes la llista sortiria mig fora de la pantalla.
+       Penjada de la ratlla, comença sempre a la mateixa vertical que el text. */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 20;
+    padding: 8px 14px;
+    border: 1px solid $negre;
+    border-radius: 6px;
+    background-color: $blanc;
+    box-shadow: 2px 2px 6px rgba($negre, 0.3);
+    color: $negre;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 1.3;
+    text-align: left;
+    white-space: nowrap;
+    /* Vint-i-set verbs no caben en una finestra baixa, i el body va amb
+       overflow: hidden (vegeu css/general.scss): el que sobresurt es perdria
+       sense cap manera d'arribar-hi. Els 320 píxels que es descompten són el
+       que hi ha de la vora de dalt fins aquí (capçalera, tira de dialectes i
+       les dues ratlles), amb una mica de marge. En una finestra normal no
+       arriba a fer res: la llista sencera fa poc més de 400 píxels. */
+    max-height: calc(100vh - 320px);
+    overflow-y: auto;
+}
+
+/* Un verb per ratlla. */
+.pistes-llista span {
+    display: block;
+}
+
+.pistes-pronoms:hover .pistes-llista,
+.pistes-pronoms:focus .pistes-llista {
+    display: block;
+}
+
 #separador_rosa_nosaltres {
     background-color: $rosa-principal;
     top: 0px;
