@@ -45,6 +45,10 @@ import re
 import ssl
 import unicodedata
 from datetime import datetime
+from zoneinfo import ZoneInfo
+
+#zone info
+tz_espanya = ZoneInfo("Europe/Madrid")
 
 # pandas nomes fa falta quan hi ha backend configurat. Si no hi es (per exemple
 # en local, abans de muntar el full), l'script encara ha de poder escriure una
@@ -77,10 +81,6 @@ DIES_DIARIA = 30
 # ho tornem a comprovar perque es l'ultima porta abans de publicar.
 LLARG_MIN, LLARG_MAX = 3, 16
 CARACTERS_OK = re.compile(r"^[^\W_]+[\w .\-]*$", re.UNICODE)
-PARAULES_VETADES = [
-    "merda", "puta", "puto", "collo", "cabro", "fill de",
-    "nazi", "hitler", "admin", "moderador",
-]
 
 
 DIR_JOC = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -124,8 +124,6 @@ def sobrenom_valid(text):
     if not CARACTERS_OK.match(net):
         return None
     pla = sense_accents(net)
-    if any(mot in pla for mot in PARAULES_VETADES):
-        return None
     return net
 
 
@@ -247,7 +245,7 @@ def noms_ocupats(df):
 
 def classificacio_buida():
     return {
-        "actualitzacio": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        "actualitzacio": datetime.now(tz_espanya).strftime("%d/%m/%Y %H:%M:%S"),
         "modalitats": {},
         "diaria": {},
         "diaria_millors": {},
@@ -358,7 +356,7 @@ def main():
           f"{len(resultat['diaria'])} dies de paraula del dia, {millors} als millors "
           f"de sempre, {partides} partides comptades a les estadístiques, "
           f"{len(resultat['noms_ocupats'])} sobrenoms ocupats "
-          f"(hora: {datetime.now().strftime('%H:%M:%S')}).")
+          f"(hora: {datetime.now(tz_espanya).strftime('%H:%M:%S')}).")
 
 
 def desar(dades):
