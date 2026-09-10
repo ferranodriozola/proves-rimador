@@ -158,3 +158,31 @@
     if (e.key === 'Escape' && isOpen) closeMenu();
   });
 })();
+
+
+/// Botó per pujar
+(function () {
+  const btn = document.getElementById('back-to-top');
+  if (!btn) return;
+
+  const SHOW_AFTER_PX = 400;
+
+  const toggle = () => {
+    const visible = window.scrollY > SHOW_AFTER_PX;
+    btn.classList.toggle('is-visible', visible);
+    btn.setAttribute('aria-hidden', String(!visible));
+    btn.tabIndex = visible ? 0 : -1;
+  };
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: matchMedia('(prefers-reduced-motion: reduce)').matches
+        ? 'auto'
+        : 'smooth',
+    });
+  });
+
+  window.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+})();

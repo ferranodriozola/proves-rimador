@@ -332,3 +332,19 @@ const footer = /*html*/`
 `
 const footerHTML = document.getElementById('footer');
 if (footerHTML) { footerHTML.innerHTML = footer; }
+
+
+const BotoPujar = /*html*/`
+<button
+  id="back-to-top"
+  class="back-to-top"
+  type="button"
+  aria-label="Tornar amunt"
+  aria-hidden="true"
+  tabindex="-1"
+>A</button>
+`
+const BotoPujarHTML = document.getElementById('botopujar');
+if (BotoPujarHTML) { BotoPujarHTML.innerHTML = botopujar; }
+
+
