@@ -334,15 +334,20 @@ const footerHTML = document.getElementById('footer');
 if (footerHTML) { footerHTML.innerHTML = footer; }
 
 
+// El botó de tornar amunt. Aquí només hi ha la marca: qui l'ensenya i l'amaga
+// segons el desplaçament és el final de js/script.js, i com es veu és cosa de
+// css/botopujar.scss. Comença amagat (aria-hidden i sense tabindex) perquè a
+// dalt de tot no hi ha res a on tornar.
 const BotoPujar = /*html*/`
 <button
   id="back-to-top"
   class="back-to-top"
   type="button"
   aria-label="Tornar amunt"
+  title="Tornar amunt"
   aria-hidden="true"
   tabindex="-1"
->A</button>
+><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 `
 const BotoPujarHTML = document.getElementById('botopujar');
 if (BotoPujarHTML) { BotoPujarHTML.innerHTML = BotoPujar; }
