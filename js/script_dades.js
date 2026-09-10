@@ -455,7 +455,7 @@ async function carregarEstadistiques(arxiuJson) {
                         ticks: {
                             callback: function(val, index) {
                                 const etiqueta = this.getLabelForValue(val);
-                                if (window.innerWidth < 768) {
+                                if (window.innerWidth < 800) {
                                     return etiqueta.endsWith(':00') ? etiqueta : '';
                                 }
                                 return etiqueta;
