@@ -636,14 +636,10 @@ async function comencarPartida() {
     aturarPartida();
 
     const anatBe = await ambCarregant(estat.dialecte, async () => {
-        const { objectiu, respostes } = await prepararParaula();
+        const { objectiu, respostes, clau } = await prepararParaula();
 
-        ui.buidarPartida();
-        ui.pintarObjectiu(objectiu.mostrar, estat.dificultat);
-        ui.pintarRonda(0, 0);
-        ui.actualitzarPunts(0);
-        ui.mostrarPantalla('joc');
-
+        // La partida es fa ABANS de pintar la pantalla: es ella qui sap quantes
+        // rimes queden un cop treta la paraula objectiu (rimesPossibles).
         estat.partida = new Partida({
             objectiu,
             respostes,
@@ -651,6 +647,14 @@ async function comencarPartida() {
             alTic: (restants) => ui.actualitzarRellotge(restants, estat.segons, formatarTemps(restants)),
             alFinal: acabarPartida,
         });
+
+        ui.buidarPartida();
+        ui.pintarObjectiu(objectiu.mostrar, estat.dificultat,
+                          { rimes: estat.partida.rimesPossibles, clau });
+        ui.pintarRonda(0, 0);
+        ui.actualitzarPunts(0);
+        ui.mostrarPantalla('joc');
+
         estat.partida.comencar();
         ui.el.camp.focus();
     });
@@ -683,7 +687,7 @@ async function prepararParaula() {
     const objectiu = seleccio.objectiu || triarParaula(grup, seleccio.clau);
     const respostes = respostesValides(grup, seleccio.clau, estat.dificultat);
 
-    return { objectiu, respostes };
+    return { objectiu, respostes, clau: seleccio.clau };
 }
 
 function enviarParaula(esdeveniment) {
@@ -931,12 +935,7 @@ async function seguentRonda() {
         const objectiu = triarParaula(grup, seleccio.clau, seleccio.aleatori, false);
         const respostes = respostesValides(grup, seleccio.clau, pvp.config.dificultat);
 
-        ui.buidarPartida();
-        ui.pintarObjectiu(objectiu.mostrar, pvp.config.dificultat);
-        ui.pintarRonda(numero, pvp.config.rondes);
-        ui.actualitzarPunts(0);
-        ui.mostrarPantalla('joc');
-
+        // Primer la partida i despres la pantalla, com a comencarPartida().
         estat.partida = new Partida({
             objectiu,
             respostes,
@@ -945,6 +944,14 @@ async function seguentRonda() {
                 restants, pvp.config.segons, formatarTemps(restants)),
             alFinal: acabarRondaPersonalitzada,
         });
+
+        ui.buidarPartida();
+        ui.pintarObjectiu(objectiu.mostrar, pvp.config.dificultat,
+                          { rimes: estat.partida.rimesPossibles, clau: seleccio.clau });
+        ui.pintarRonda(numero, pvp.config.rondes);
+        ui.actualitzarPunts(0);
+        ui.mostrarPantalla('joc');
+
         estat.partida.comencar();
         ui.el.camp.focus();
     });

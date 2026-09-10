@@ -4,16 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#FF91FF">
-    <!-- NOINDEX MENTRE joc/ SEGUEIXI EXISTINT. Aquesta pàgina i joc/index.html
-         declaren el MATEIX <link rel="canonical"> (rimador.cat/joc/), que és el
-         que ha de ser, però amb
-         totes dues indexables Google veuria dues adreces dient que la bona és la
-         mateixa, i el sitemap.xml, que es genera dels canonical a cada
-         desplegament, hi posaria la mateixa <loc> dues vegades (vegeu "Regenerar
-         el sitemap.xml" a .github/workflows/deploy.yml: les noindex en queden
-         fora). El dia que joc/ s'esborri i aquesta carpeta passi a dir-se joc,
-         aquí hi torna a anar "index, follow". -->
-    <meta name="robots" content="noindex, follow">
+    <meta name="robots" content="index, follow">
 
     <title>El joc del Rimador.cat - troba rimes en català a contrarellotge</title>
     <meta name="description" content="Quantes rimes ets capaç de trobar abans que s'acabi el temps? El joc de rimes del Rimador.cat, en quatre dialectes, amb paraula del dia, partides il·limitades i classificació.">
@@ -218,6 +209,9 @@
 
         <p class="objectiu__etiqueta">Rimes amb</p>
         <p class="objectiu" id="objectiu">—</p>
+        <!-- Quantes paraules hi rimen i amb quina terminació, en fonètica: la
+             pinta pintarObjectiu() de js/ui.js a cada partida. -->
+        <p class="objectiu__rimes" id="objectiu-rimes" hidden></p>
 
         <form class="entrada" id="formulari" autocomplete="off">
             <input class="entrada__camp" id="camp" type="text" inputmode="text"

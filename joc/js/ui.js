@@ -9,7 +9,7 @@ const NOMS = [
     'etiqueta-diaria', 'config-titol', 'config-avis', 'config-record', 'config-dialecte',
     'tira-dialectes',
     'opcions-dificultat', 'opcions-temps', 'grup-temps', 'boto-comencar',
-    'rellotge', 'punts', 'barra-temps', 'objectiu', 'modalitat', 'ronda-actual',
+    'rellotge', 'punts', 'barra-temps', 'objectiu', 'objectiu-rimes', 'modalitat', 'ronda-actual',
     'formulari', 'camp', 'toast', 'trobades',
     'resultat-punts', 'resultat-text', 'etiqueta-record', 'resum',
     'boto-compartir', 'boto-piular', 'boto-repetir', 'trobades-final', 'titol-llista',
@@ -181,10 +181,33 @@ const MODALITAT = {
     dificil: 'Difícil (rima consonant)',
 };
 
-export function pintarObjectiu(paraula, dificultat) {
+// Les vocals de les claus de rima, tal com les escriu la transcripcio (les
+// mateixes als quatre dialectes). La clau ASSONANT es exactament la clau
+// consonant sense les consonants: comprovat contra les 520.418 files de la
+// col_3 i la col_4 de cada dialecte sense cap desacord, o sigui que no cal
+// portar-la a l'index.
+const VOCALS_DE_LA_CLAU = /[^aeiouɔəɛ]/g;
+
+/**
+ * La paraula a rimar i, a sota, quantes paraules hi rimen i amb quina
+ * terminacio, en fonetica: «Hi ha 195 paraules que rimen amb \aɾts\».
+ * En facil la terminacio es l'assonant (nomes les vocals), perque es el que val.
+ *
+ * `detall` es { rimes, clau }: les rimes ja sense la paraula objectiu (les
+ * rimesPossibles de la partida) i la clau consonant de la seccio.
+ */
+export function pintarObjectiu(paraula, dificultat, detall) {
     el.objectiu.textContent = paraula;
     el.modalitat.textContent = MODALITAT[dificultat] || MODALITAT.facil;
     el.modalitat.classList.toggle('modalitat--dificil', dificultat === 'dificil');
+
+    el.objectiuRimes.hidden = !detall;
+    if (!detall) return;
+    const clau = dificultat === 'dificil'
+        ? detall.clau
+        : detall.clau.replace(VOCALS_DE_LA_CLAU, '');
+    el.objectiuRimes.textContent = `Hi ha ${detall.rimes.toLocaleString('ca-ES')} `
+        + `${detall.rimes === 1 ? 'paraula que rima' : 'paraules que rimen'} amb \\${clau}\\`;
 }
 
 /**

@@ -1163,19 +1163,27 @@ main {
 }
 
 .codi-partida {
-    margin: 4px auto 14px;
-    padding: 4px 20px;
+    /* Petit i a la dreta. Abans era un rètol groc de la mida de la paraula
+       objectiu, i semblava el que més importava de la pantalla: només serveix
+       per comprovar de cua d'ull que els dos jugadors tenen la mateixa partida.
+       Amb width: fit-content, el margin-left auto és el que l'empeny a la dreta. */
+    margin: 2px 0 14px auto;
+    padding: 2px 10px;
     width: fit-content;
-    font-family: var(--tipus-titol);
-    font-size: clamp(2.4rem, 13vw, 3.6rem);
-    letter-spacing: 6px;
-    text-indent: 6px;
+    font-family: var(--tipus);
+    font-weight: bold;
+    font-size: 0.95rem;
+    letter-spacing: 3px;
+    text-indent: 3px;
     color: #000;
     background: var(--groc);
-    border: var(--vora);
-    border-radius: var(--radi);
-    box-shadow: var(--ombra-dura);
+    border: 2px solid var(--negre);
+    border-radius: 6px;
 }
+
+/* El rètol de sobre el segueix; el de la pantalla de resum (#resum-partida) es
+   queda centrat, que allà no hi ha cap codi gros a sota. */
+#pantalla-convit .codi-partida__rotul { text-align: right; }
 
 #convit-enllac { font-size: 0.8rem; }
 
@@ -1203,6 +1211,15 @@ main {
 .paraula-dahir {
     margin: 0 0 20px;
     text-align: center;
+}
+
+/* La línia de sota la paraula: quantes hi rimen i amb quina terminació. Petita
+   i grisa a posta, que és informació i no pas la paraula. */
+.objectiu__rimes {
+    text-align: center;
+    margin: -12px 0 16px;
+    font-size: 0.8rem;
+    color: var(--text-fluix);
 }
 
 .objectiu--menut {
