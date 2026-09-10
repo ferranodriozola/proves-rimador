@@ -1028,6 +1028,17 @@ main {
 
 .accions { display: grid; gap: 10px; }
 
+/* Al resum de la partida personalitzada, els botons van de seguida despres del
+   ronda a ronda i s'hi encastaven: la bombolla i el "Una altra partida" es
+   tocaven, mentre que els botons d'entre ells si que respiraven. El mateix
+   10px del gap de sobre, perque tot el pilot es vegi igual de separat.
+
+   Nomes on hi ha bombolles just abans (que ara mateix es el #pantalla-resum):
+   a la resta de pantalles, el que precedeix les accions ja duu el seu marge. */
+.bombolles + .accions {
+    margin-top: 10px;
+}
+
 /* El botó de piular, germà del #compartirButton del cercador (vegeu
    css/container.scss): petit, en píndola i amb el blau de tota la vida del
    Twitter, que és el que la gent reconeix i no pas el negre d'ara. Va DESPRÉS
