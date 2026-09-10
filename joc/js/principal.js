@@ -1008,6 +1008,9 @@ async function compartirPersonalitzat() {
         partida: pvp.config.partida,
         rondes: pvp.resultats,
         total: puntsTotals(),
+        // El mateix enllaç del convit: qui rebi el resultat pot jugar la
+        // partida exacta sense haver de demanar res més (vegeu copiarEnllaç).
+        enllac: personalitzat.enllacDe(pvp.config),
     });
     const com = await compartirResultat(text);
     if (com === 'cancellat' || com === 'compartit') return;
