@@ -1,0 +1,56 @@
+#el-meu-banner {
+    background-color: #2980b9; /* Color blau atractiu */
+    color: #ffffff;
+    padding: 12px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    box-sizing: border-box;
+}
+
+.banner-contingut {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.banner-contingut p {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+/* Estil del botó MENTRE està bloquejat (els primers 5 segons) */
+#tancar-banner {
+    background-color: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: not-allowed; /* Mostra el cursor de prohibit */
+    font-weight: bold;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+/* Estil del botó QUAN ja es pot clicar */
+#tancar-banner.actiu {
+    cursor: pointer;
+    opacity: 1;
+    border-color: white;
+}
+
+#tancar-banner.actiu:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Assegurem que el contingut de la web no quedi tapat */
+body {
+    padding-top: 50px; 
+}
