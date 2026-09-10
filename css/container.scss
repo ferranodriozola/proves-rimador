@@ -21,17 +21,19 @@ body#llista #separador_rosa1 {
    No pot anar DINS del .container, que és on seria el seu lloc: aquell bloc
    és sticky i el #separador_rosa2 dels resultats s'hi enganxa a sota amb un
    top: 160px comptat a mà. Fer-lo més alt descol·locaria l'altre. */
+
+/* --- BLOC VERBS AMB PRONOMS --- */
+
+/* Alineem l'interrogant a la dreta del text a la mateixa línia */
 #avis_pronoms {
+    display: inline-block;
     position: relative;
-    margin: 0 0 10px 22px;
+    margin: 0 0 0 8px; /* Marge a l'esquerra per separar-lo del text */
     font-size: 15px;
+    vertical-align: middle; 
 }
 
-/* L'interrogant que obre la llista. Fa de botó sense ser-ho: no hi ha res per
-   prémer, només per mirar-s'hi. El tabindex de l'HTML el fa arribable amb el
-   tabulador i el :focus de més avall fa que allà també s'obri: amb el ratolí
-   n'hi ha prou amb el :hover, però amb teclat (i a les pantalles tàctils, que
-   només donen focus) no. */
+/* La rodona groga de l'interrogant */
 .pistes-pronoms {
     display: inline-block;
     width: 17px;
@@ -40,78 +42,89 @@ body#llista #separador_rosa1 {
     text-align: center;
     border: 1px solid $negre;
     border-radius: 50%;
-    background-color: $blanc;
+    background-color: #FFF000; /* Color groc */
     color: $negre;
     font-size: 13px;
     font-weight: bold;
-    cursor: help;
+    cursor: default; /* El ratolí manté la fletxa estàndard */
     user-select: none;
 }
 
-/* La llista, amagada fins que no s'hi passa per sobre.
+/* Afegim l'interrogant directament des del CSS */
+.pistes-pronoms::before {
+    content: "?";
+}
 
-   EL Z-INDEX HI ÉS PER FORÇA: el .container del cercador és sticky, o sigui
-   que es pinta damunt de tot el que no ho és, i el #separador_rosa2 dels
-   resultats ja duu un z-index: 10. Sense aquest, la llista sortiria per
-   darrere del cercador i no se'n veuria res. */
+/* La llista general per a pantalles grans */
 .pistes-llista {
     display: none;
     position: absolute;
     top: 100%;
-    left: 0;
+    
+    /* Centrem el quadre just a sota de l'interrogant */
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    
     z-index: 20;
     padding: 12px 16px;
     border: 1px solid $negre;
     border-radius: 6px;
-    background-color: $gris-giny;
+    background-color: $blanc;
     box-shadow: 2px 2px 6px rgba($negre, 0.3);
     color: $negre;
     font-size: 13px;
     font-weight: normal;
     line-height: 1.4;
     text-align: left;
-    
-    /* 1. Traiem nowrap perquè el text es pugui adaptar a la pantalla */
     white-space: normal;
     
-    /* 2. Mida base i columnes per a mòbils */
-    width: 300px;
+    width: 450px;
     max-width: 90vw;
-    column-count: 2;
+    column-count: 3; /* Tres columnes per a ordinador */
     column-gap: 15px;
     
-    /* 3. Mantenim el límit d'alçada per poder fer scroll */
     max-height: calc(100vh - 200px);
     overflow-y: auto;
 }
 
-/* Un verb per ratlla. */
+/* Un verb per ratlla */
 .pistes-llista span {
     display: block;
-    break-inside: avoid; /* Evita que un verb quedi partit per la meitat en canviar de columna */
+    break-inside: avoid;
 }
 
+/* El text explicatiu (primera línia) fora de les columnes */
 .pistes-llista > span:first-child {
     column-span: all;
     margin-bottom: 12px;
-    font-weight: bold; /* Opcional: El destaquem una mica de la llista */
+    font-weight: bold;
 }
 
-/* El text explicatiu de la primera línia (el separem de les columnes) */
-.pistes-llista > span:first-child {
-    column-span: all;
-    margin-bottom: 12px;
-    font-weight: bold; /* Opcional: El destaquem una mica de la llista */
+/* Mostrem la llista al fer hover o focus */
+.pistes-pronoms:hover .pistes-llista,
+.pistes-pronoms:focus .pistes-llista {
+    display: block;
 }
 
-/* Adaptació per a pantalles de PC (més amplada i 3 columnes) */
-@media screen and (min-width: 550px) {
+/* --- ADAPTACIÓ PER A MÒBILS (Evitem que s'escapi la llista) --- */
+@media screen and (max-width: 550px) {
     .pistes-llista {
-        width: 450px;
-        column-count: 3;
+        /* Desenganxem el quadre de la rodona i el fixem al centre de la pantalla */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-top: 0;
+        
+        width: 90vw;
+        max-height: 80vh; /* Màxim el 80% de la pantalla perquè es pugui fer scroll */
+        
+        column-count: 2; /* Dues columnes al mòbil */
+        box-shadow: 0 4px 20px rgba($negre, 0.4); /* Ombra més marcada */
+        z-index: 100; /* Assegurem que quedi per sobre de tot */
     }
 }
-
 
 .pistes-pronoms:hover .pistes-llista,
 .pistes-pronoms:focus .pistes-llista {
