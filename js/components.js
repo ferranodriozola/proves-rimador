@@ -345,6 +345,6 @@ const BotoPujar = /*html*/`
 >A</button>
 `
 const BotoPujarHTML = document.getElementById('botopujar');
-if (BotoPujarHTML) { BotoPujarHTML.innerHTML = botopujar; }
+if (BotoPujarHTML) { BotoPujarHTML.innerHTML = BotoPujar; }
 
 

@@ -2548,3 +2548,31 @@ document.addEventListener("DOMContentLoaded", () => {
 // ============================================================= //
 // ============================================================= //
 
+
+/// Botó per pujar
+(function () {
+  const btn = document.getElementById('back-to-top');
+  if (!btn) return;
+  const scroller = document.getElementById('paper-window') || window;
+  const getScrollY = () =>
+    scroller === window ? window.scrollY : scroller.scrollTop;
+ 
+  const SHOW_AFTER_PX = 400;
+ 
+  const toggle = () => {
+    const visible = getScrollY() > SHOW_AFTER_PX;
+    btn.classList.toggle('is-visible', visible);
+    btn.setAttribute('aria-hidden', String(!visible));
+    btn.tabIndex = visible ? 0 : -1;
+  };
+ 
+  btn.addEventListener('click', () => {
+    const behavior = matchMedia('(prefers-reduced-motion: reduce)').matches
+      ? 'auto'
+      : 'smooth';
+    scroller.scrollTo({ top: 0, behavior });
+  });
+ 
+  scroller.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+})();
