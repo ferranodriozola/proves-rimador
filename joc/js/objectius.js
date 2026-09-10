@@ -42,7 +42,7 @@
 // "escriu de pressa" i no pas "pensa". Triant per clau, la mediana baixa a 45 i
 // nomes el 6% de les partides passen de 300.
 
-import { normalitza } from './normalitza.js?v=f697c38';
+import { normalitza } from './normalitza.js?v=49a71d7';
 
 // Barreja de bits d'una cadena (variant de cyrb53), per sembrar el generador.
 function llavor(text) {

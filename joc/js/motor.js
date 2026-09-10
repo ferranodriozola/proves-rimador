@@ -3,7 +3,7 @@
 // No toca el DOM: nomes avisa amb els callbacks (alTic, alFinal). Aixi es pot
 // provar sol i la pantalla es limita a dibuixar el que li diu.
 
-import { normalitza, semblaParaula } from './normalitza.js?v=f697c38';
+import { normalitza, semblaParaula } from './normalitza.js?v=49a71d7';
 
 export const RESULTAT = {
     BUIT: 'buit',
