@@ -236,8 +236,6 @@ async function baixarDialecte(dialecte) {
  */
 // ------------------------------------------- Les paraules del dia manuals
 
-<<<<<<< Updated upstream
-=======
 /**
  * El dades/diaries_manuals.json: les paraules del dia triades a ma per a dies
  * assenyalats (vegeu manualDelDia a objectius.js pel format). S'edita a ma i
@@ -248,7 +246,6 @@ async function baixarDialecte(dialecte) {
  * paraula automatica que cap paraula. La promesa es guarda, que la partida i la
  * pantalla d'ahir la demanen totes dues.
  */
->>>>>>> Stashed changes
 let manualsPromesa = null;
 
 export function carregarDiariesManuals() {
@@ -261,21 +258,13 @@ export function carregarDiariesManuals() {
             .then((dades) => (dades && typeof dades === 'object' ? dades : {}))
             .catch((error) => {
                 console.warn("No s'ha pogut llegir el diaries_manuals.json: es fa servir la roda", error);
-<<<<<<< Updated upstream
-                manualsPromesa = null;
-=======
                 manualsPromesa = null;   // que es pugui tornar a provar
->>>>>>> Stashed changes
                 return {};
             });
     }
     return manualsPromesa;
 }
 
-<<<<<<< Updated upstream
-const textosEnMemoria = new Map();
-
-=======
 // El fitxer d'un dialecte descodificat sencer, per a trobarObjectiu. Nomes es
 // paga el dia que hi ha paraula manual, i un sol cop per dialecte.
 const textosEnMemoria = new Map();   // codi -> string
@@ -290,7 +279,6 @@ const textosEnMemoria = new Map();   // codi -> string
  * marca i aqui no es troben, que es el que toca: no poden ser objectiu. Si
  * una paraula es a dues seccions (els homografs), es queda la primera.
  */
->>>>>>> Stashed changes
 export async function trobarObjectiu(dialecte, normalitzada) {
     const [dades, index] = await Promise.all([carregarDialecte(dialecte), carregarIndex()]);
     let text = textosEnMemoria.get(dialecte);

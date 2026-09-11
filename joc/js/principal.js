@@ -11,15 +11,7 @@ import {
     carregarVersions, carregarIndex, carregarDialecte,
     grupDeRimes, respostesValides, escoltarProgres,
     carregarDiariesManuals, trobarObjectiu,
-<<<<<<< Updated upstream
 } from './dades.js?v=f342d18';
-=======
-<<<<<<< Updated upstream
-} from './dades.js?v=1099c5d';
-=======
-} from './dades.js?v=5874983';
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 import {
     clauAleatoria, paraulaDelDia, manualDelDia, triarParaula,
     marge, rondesPersonalitzades,

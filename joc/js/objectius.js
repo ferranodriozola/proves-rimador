@@ -42,15 +42,7 @@
 // "escriu de pressa" i no pas "pensa". Triant per clau, la mediana baixa a 45 i
 // nomes el 6% de les partides passen de 300.
 
-<<<<<<< Updated upstream
 import { normalitza } from './normalitza.js?v=f342d18';
-=======
-<<<<<<< Updated upstream
-import { normalitza } from './normalitza.js?v=1099c5d';
-=======
-import { normalitza } from './normalitza.js?v=5874983';
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
 // Barreja de bits d'una cadena (variant de cyrb53), per sembrar el generador.
 function llavor(text) {
@@ -163,8 +155,6 @@ function objectiusArreuDe(entrada) {
 
 // ------------------------------------------------------- La paraula del dia
 
-<<<<<<< Updated upstream
-=======
 /**
  * La paraula del dia triada A MA per a un dia, si n'hi ha: la del
  * dades/diaries_manuals.json, que s'edita a ma per als dies assenyalats (que
@@ -186,7 +176,6 @@ function objectiusArreuDe(entrada) {
  * en algun dialecte no s'hi troba, aquell dialecte juga amb la de la roda (vegeu
  * seleccioDelDia a principal.js), o sigui que val la pena passar l'script.
  */
->>>>>>> Stashed changes
 export function manualDelDia(manuals, dataISO, dificultat) {
     const entrada = (manuals || {})[dataISO];
     const paraula = typeof entrada === 'string' ? entrada
