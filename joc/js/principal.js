@@ -11,30 +11,30 @@ import {
     carregarVersions, carregarIndex, carregarDialecte,
     grupDeRimes, respostesValides, escoltarProgres,
     carregarDiariesManuals, trobarObjectiu,
-} from './dades.js?v=1099c5d';
+} from './dades.js?v=f342d18';
 import {
     clauAleatoria, paraulaDelDia, manualDelDia, triarParaula,
     marge, rondesPersonalitzades,
-} from './objectius.js?v=1099c5d';
-import * as personalitzat from './personalitzat.js?v=1099c5d';
-import { Partida, RESULTAT, formatarTemps } from './motor.js?v=1099c5d';
-import * as ui from './ui.js?v=1099c5d';
-import * as dialecte from './dialecte.js?v=1099c5d';
+} from './objectius.js?v=f342d18';
+import * as personalitzat from './personalitzat.js?v=f342d18';
+import { Partida, RESULTAT, formatarTemps } from './motor.js?v=f342d18';
+import * as ui from './ui.js?v=f342d18';
+import * as dialecte from './dialecte.js?v=f342d18';
 import {
     avui, ahir, identificadorRecord, llegirRecord, desarRecord,
     resultatDiari, dificultatsJugades, desarResultatDiari,
     llegirTotsElsRecords, llegirSobrenom, desarSobrenom,
-} from './magatzem.js?v=1099c5d';
+} from './magatzem.js?v=f342d18';
 import {
     textPerCompartir, textPersonalitzat, compartirResultat, copiar, enllacDeTwitter,
-} from './compartir.js?v=1099c5d';
+} from './compartir.js?v=f342d18';
 import {
     validarSobrenom, enviarPuntuacio, estaConfigurat,
     carregarClassificacio, nomsOcupats, enviarPendents, quantesPendents,
-} from './classificacio.js?v=1099c5d';
+} from './classificacio.js?v=f342d18';
 import {
     estadistiquesDe, estadistiquesDelDia, ranquingDelDia,
-} from './estadistiques.js?v=1099c5d';
+} from './estadistiques.js?v=f342d18';
 
 const SEGONS_DIARIA = 60;
 const NOM_DIFICULTAT = { facil: 'fàcil', dificil: 'difícil' };
@@ -244,6 +244,7 @@ function refrescarInici() {
 function tornarAInici() {
     aturarPartida();
     refrescarInici();
+    clearInterval(intervalCompteEnrere); // NOU
     // L'adreça torna a ser la de sempre: si no, refrescar la pàgina et tornaria
     // a obrir el convit d'una partida que ja has deixat.
     personalitzat.esborrarDeLAdreca();
@@ -504,6 +505,7 @@ function pintarDiaria() {
 }
 
 // ------------------------------------------------------------ Configuració
+let intervalCompteEnrere;
 
 function obrirConfig(mode) {
     estat.mode = mode;
@@ -513,7 +515,19 @@ function obrirConfig(mode) {
     ui.el.configTitol.textContent = esDiaria ? 'Paraula del dia' : 'Il·limitat';
     ui.el.grupTemps.hidden = esDiaria;
     ui.el.configDialecte.textContent = `En ${ui.nomDialecte(estat.dialecte).toLowerCase()}`;
-    estat.segons = esDiaria ? SEGONS_DIARIA : Number(opcionsTemps.valor());
+estat.segons = esDiaria ? SEGONS_DIARIA : Number(opcionsTemps.valor());
+
+    // NOU: Lògica per al compte enrere
+    const subtitolCompteEnrere = document.getElementById('compte-enrere-diaria');
+    clearInterval(intervalCompteEnrere); // Parem per si ja estava funcionant
+    
+    if (esDiaria) {
+        subtitolCompteEnrere.style.display = 'block';
+        actualitzarCompteEnrere(); // primera crida
+        intervalCompteEnrere = setInterval(actualitzarCompteEnrere, 1000);
+    } else {
+        subtitolCompteEnrere.style.display = 'none';
+    }
 
     if (esDiaria) {
         // Un intent per dificultat i dia: les jugades es bloquegen.
@@ -576,6 +590,27 @@ function refrescarConfig() {
         ? `Rècord en aquesta modalitat: ${record}`
         : '';
 }
+    // NOU: Afegeix la funció aquí, a prop de les de configuració
+    function actualitzarCompteEnrere() {
+        const element = document.getElementById('compte-enrere-diaria');
+        if (!element) return;
+
+        const ara = new Date();
+        const dema = new Date();
+        dema.setHours(24, 0, 0, 0); 
+
+        const diferencia = dema - ara;
+
+        const hores = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minuts = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+        const segons = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+        const h = hores.toString().padStart(2, '0');
+        const m = minuts.toString().padStart(2, '0');
+        const s = segons.toString().padStart(2, '0');
+
+        element.innerHTML = `Queda <span style="color: red; font-weight: bold;">${h}h ${m}m ${s}s</span> perquè s'actualitzi la paraula del dia...`;
+    }
 
 // -------------------------------------------------------------------- Partida
 
@@ -624,6 +659,7 @@ async function ambCarregant(dialecte, feina) {
 }
 
 async function comencarPartida() {
+    clearInterval(intervalCompteEnrere); // NOU
     if (estat.mode === 'diaria' && resultatDiari(estat.data, estat.dificultat)) return;
     // Sense nom no es comença: la puntuació s'envia sola en acabar i, si no
     // sabem com et dius, la partida no aniria enlloc.

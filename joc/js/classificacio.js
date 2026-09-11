@@ -77,9 +77,11 @@ export function validarSobrenom(text, { ocupats, elMeu } = {}) {
         return { ok: false, motiu: 'Fes servir només lletres, xifres i espais.' };
     }
     const clau = clauDeSobrenom(net);
-    if (ocupats && ocupats.has(clau) && clau !== clauDeSobrenom(elMeu || '')) {
-        return { ok: false, motiu: `Ja hi ha un «${net}» a la classificació. Tria'n un altre.` };
-    }
+
+    //eliminem prohibir el sobrenom si ja està utilitzat
+    // if (ocupats && ocupats.has(clau) && clau !== clauDeSobrenom(elMeu || '')) {
+    //     return { ok: false, motiu: `Ja hi ha un «${net}» a la classificació. Tria'n un altre.` };
+    // }
 
     // La validacio de debo (les paraules vetades, la desduplicacio) la fa
     // joc/eines/compilar_classificacio.py: aixo d'aqui nomes es per dir-ho de

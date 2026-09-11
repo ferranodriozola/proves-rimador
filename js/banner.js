@@ -11,12 +11,12 @@
 
     const LINKS = {
         dialectes: "/index.html",
-        joc: "/joc",
-        naufragues: "/naufragues",
-        heptasillabics: "/heptasillabics",
-        setSillabes: "/setSillabes",
-        estadistiques: "/estadistiques",
-        historial: "/historial"
+        joc: "/joc/index.html",
+        naufragues: "/llistes/llista_naufragues.html",
+        heptasillabics: "/llistes/llista_heptasilabs.html",
+        setSillabes: "/llistes/llista_mots_de7.html",
+        estadistiques: "/dades.html",
+        historial: "/historial_canvis.html"
     };
 
     function potMostrar() {
@@ -37,11 +37,11 @@
         dialeg.innerHTML = `
             <button class="avis-tanca-act" id="tancar-banner-act" aria-label="Tanca l'avís" disabled>✕ (5s)</button>
             <h2 id="avis-titol-act">Nova actualització!</h2>
-            <p class="avis-text">Acabem de llançar una nova versió amb grans novetats al Rimador.cat. Descobreix-les totes:</p>
+            <p class="avis-text">Acaba de sortir del forn la nova versió del Rimador.cat! Descobreix totes les novetats:</p>
             
             <div class="avis-graella">
                 <!-- 1. Rimador amb dialectes -->
-                <a href="${LINKS.dialectes}" class="avis-boto-secundari avis-destacat boto-arc-iris" target="_blank">Rimes amb dialectes</a>
+                <a class="avis-boto-secundari avis-destacat boto-arc-iris" target="_blank">Rimes amb dialectes</a>
                 
                 <!-- 2. El Joc del Rimar -->
                 <a href="${LINKS.joc}" class="avis-boto-secundari avis-destacat boto-arc-iris" target="_blank"><span class="text-color-joc">El Joc del Rimar</span></a>
@@ -58,7 +58,7 @@
             </div>
             
             <p class="avis-text" style="margin-bottom: 0; font-size: 0.9em;">
-                Comprova tots els canvis a l'<a href="${LINKS.historial}" target="_blank">historial de canvis</a>.
+                Revisa tots els canvis a l'<a href="${LINKS.historial}" target="_blank">historial de canvis</a>.
             </p>
         `;
         
@@ -66,6 +66,7 @@
         dialeg.showModal();
 
         const botoTancar = dialeg.querySelector('#tancar-banner-act');
+        const enllacDialectes = dialeg.querySelector('#enllac-dialectes');
         
         let segonsRestants = 5;
         const interval = setInterval(() => {
@@ -87,6 +88,12 @@
         };
 
         botoTancar.addEventListener('click', tancaDeVeres);
+
+        enllacDialectes.addEventListener('click', () => {
+            try { localStorage.setItem(CLAU_BANNER, 'true'); } catch (e) {}
+            if (dialeg.open) dialeg.close();
+            dialeg.remove();
+        });
         
         dialeg.addEventListener('click', event => {
             if (event.target !== dialeg) return;
