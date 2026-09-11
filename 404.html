@@ -10,13 +10,15 @@
     <meta name="description" content="El Rimador.cat et permet cercar paraules que rimen amb rimes assonants i consonants segons la fonètica. Conté filtres per categories gramaticals. Prova'l!">
     <meta name="author" content="Marc i Ferran">
     <link rel="icon" type="image/webp" href="/assets/R.webp">
-    <link rel="apple-touch-icon" href="/assets/R.webp">
+    <link rel="apple-touch-icon" sizes="192x192" href="/assets/icon-192.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Rimador">
+    <!-- Chrome dispara el beforeinstallprompt mentre encara s'analitza l'HTML: aqui es captura, que el instal-lar.js va amb defer i arriba tard. -->
+    <script>window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__rimadorPrompt=e;});</script>
     <link rel="manifest" href="/manifest.json">
-    <script src="/dist/js/registrar-sw.min.js?v=6cb0060" defer></script>
-    <script src="/dist/js/instal-lar.min.js?v=6cb0060" defer></script>
+    <script src="/dist/js/registrar-sw.min.js?v=6f42f34" defer></script>
+    <script src="/dist/js/instal-lar.min.js?v=6f42f34" defer></script>
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://rimador.cat/404.html">
@@ -31,10 +33,10 @@
     <meta name="twitter:description" content="El primer cercador funcional de rimes en català segons la fonètica.">
     <meta name="twitter:image" content="https://rimador.cat/assets/R.webp">
 
-    <link rel="stylesheet" href="/dist/css/styles.min.css?v=6cb0060">
-    <script src="/dist/js/components.min.js?v=6cb0060" defer></script>
-    <script src="/dist/js/menu.min.js?v=6cb0060" defer></script>
-    <script src="/dist/js/script.min.js?v=6cb0060" defer></script>
+    <link rel="stylesheet" href="/dist/css/styles.min.css?v=6f42f34">
+    <script src="/dist/js/components.min.js?v=6f42f34" defer></script>
+    <script src="/dist/js/menu.min.js?v=6f42f34" defer></script>
+    <script src="/dist/js/script.min.js?v=6f42f34" defer></script>
 </head>
 
 <body id="error404">   
