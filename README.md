@@ -1,1 +1,0 @@
-Rimador.cat
