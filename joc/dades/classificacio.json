@@ -1,5 +1,5 @@
 {
-  "actualitzacio": "11/09/2026 02:24:08",
+  "actualitzacio": "11/09/2026 05:04:35",
   "modalitats": {
     "diaria|dificil|60": {
       "titol": "Paraula del dia · Difícil",
@@ -109,6 +109,13 @@
           "paraula": "teatre",
           "dialecte": "ca",
           "data": "09/09/2026"
+        },
+        {
+          "sobrenom": "antiinternet",
+          "punts": 3,
+          "paraula": "espasmes",
+          "dialecte": "ca",
+          "data": "11/09/2026"
         }
       ]
     },
@@ -131,9 +138,35 @@
         }
       ]
     },
+    "illimitat|facil|120": {
+      "titol": "Il·limitat · Fàcil · Lent",
+      "top": [
+        {
+          "sobrenom": "MARCVS",
+          "punts": 23,
+          "paraula": "sacarífer",
+          "dialecte": "ca",
+          "data": "11/09/2026"
+        }
+      ]
+    },
     "illimitat|facil|30": {
       "titol": "Il·limitat · Fàcil · Llampec",
       "top": [
+        {
+          "sobrenom": "antiinternet",
+          "punts": 4,
+          "paraula": "litogràfiques",
+          "dialecte": "va",
+          "data": "11/09/2026"
+        },
+        {
+          "sobrenom": "MARCVS",
+          "punts": 2,
+          "paraula": "burella",
+          "dialecte": "ca",
+          "data": "11/09/2026"
+        },
         {
           "sobrenom": "rimess",
           "punts": 2,
@@ -159,6 +192,13 @@
           "paraula": "acridínica",
           "dialecte": "ca",
           "data": "08/09/2026"
+        },
+        {
+          "sobrenom": "MARCVS",
+          "punts": 2,
+          "paraula": "hemofíliques",
+          "dialecte": "ca",
+          "data": "11/09/2026"
         }
       ]
     }
@@ -346,12 +386,14 @@
   "noms_ocupats": [
     "annus",
     "annuus",
+    "antiinternet",
     "arev",
     "drac murri",
     "ferdinandus",
     "ferran",
     "joan",
     "marc",
+    "marcvs",
     "pol",
     "pressec",
     "rimess"
@@ -387,9 +429,10 @@
         }
       },
       "illimitat|dificil|30": {
-        "partides": 1,
-        "mitjana": 6.0,
+        "partides": 2,
+        "mitjana": 4.5,
         "histograma": {
+          "3": 1,
           "6": 1
         }
       },
@@ -402,18 +445,27 @@
           "7": 1
         }
       },
-      "illimitat|facil|30": {
+      "illimitat|facil|120": {
         "partides": 1,
-        "mitjana": 2.0,
+        "mitjana": 23.0,
         "histograma": {
-          "2": 1
+          "23": 1
+        }
+      },
+      "illimitat|facil|30": {
+        "partides": 3,
+        "mitjana": 2.7,
+        "histograma": {
+          "2": 2,
+          "4": 1
         }
       },
       "illimitat|facil|60": {
-        "partides": 6,
-        "mitjana": 5.5,
+        "partides": 7,
+        "mitjana": 5.0,
         "histograma": {
           "1": 1,
+          "2": 1,
           "5": 1,
           "6": 2,
           "7": 1,
