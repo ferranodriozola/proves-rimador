@@ -11,7 +11,7 @@
 
     const LINKS = {
         dialectes: "/index.html",
-        joc: "/joc",
+        joc: "/joc/index.html",
         naufragues: "/llistes/llista_naufragues.html",
         heptasillabics: "/llistes/llista_heptasilabs.html",
         setSillabes: "/llistes/llista_mots_de7.html",
