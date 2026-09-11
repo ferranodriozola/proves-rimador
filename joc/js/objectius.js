@@ -42,7 +42,15 @@
 // "escriu de pressa" i no pas "pensa". Triant per clau, la mediana baixa a 45 i
 // nomes el 6% de les partides passen de 300.
 
+<<<<<<< Updated upstream
 import { normalitza } from './normalitza.js?v=f342d18';
+=======
+<<<<<<< Updated upstream
+import { normalitza } from './normalitza.js?v=1099c5d';
+=======
+import { normalitza } from './normalitza.js?v=5874983';
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 // Barreja de bits d'una cadena (variant de cyrb53), per sembrar el generador.
 function llavor(text) {
@@ -155,6 +163,30 @@ function objectiusArreuDe(entrada) {
 
 // ------------------------------------------------------- La paraula del dia
 
+<<<<<<< Updated upstream
+=======
+/**
+ * La paraula del dia triada A MA per a un dia, si n'hi ha: la del
+ * dades/diaries_manuals.json, que s'edita a ma per als dies assenyalats (que
+ * per Nadal toqui rimar amb un mot nadalenc). Torna la forma normalitzada, o
+ * null si aquell dia va amb la roda de sempre.
+ *
+ * EL FORMAT del fitxer es un objecte de data AAAA-MM-DD a paraula:
+ *
+ *   { "2026-12-25": { "facil": "pessebre", "dificil": "torró" },
+ *     "2027-01-06": "reis" }
+ *
+ * Amb un objecte es diu una paraula per dificultat (i es pot deixar una de les
+ * dues a la roda); amb una cadena, la mateixa per a totes dues. La paraula pot
+ * dur accents: es normalitza aqui.
+ *
+ * QUE HA DE SER LA PARAULA: una del diccionari global que pugui ser paraula a
+ * rimar (no un verb, no una de l'apendix), i que es pot comprovar amb
+ * eines/comprovar_diaries_manuals.py abans de publicar-la. Si el dia arriba i
+ * en algun dialecte no s'hi troba, aquell dialecte juga amb la de la roda (vegeu
+ * seleccioDelDia a principal.js), o sigui que val la pena passar l'script.
+ */
+>>>>>>> Stashed changes
 export function manualDelDia(manuals, dataISO, dificultat) {
     const entrada = (manuals || {})[dataISO];
     const paraula = typeof entrada === 'string' ? entrada
