@@ -198,6 +198,7 @@ async function arrencar() {
 function precarregar(codi) {
     carregarIndex().catch(() => {});
     carregarDialecte(codi).catch(() => {});
+    carregarDiariesManuals().catch(() => {});
     // I la classificació, que fa set quilobytes i és el que la pantalla de
     // final necessita per dir-te el percentil i la mitjana sense fer-te
     // esperar. Es demana un sol cop (la promesa es guarda a classificacio.js).
