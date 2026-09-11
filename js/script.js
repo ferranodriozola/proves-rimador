@@ -1405,6 +1405,16 @@ function registrarCerca(paraulaBuscada, rimaTrobada, tipusRima, codiParaula, num
     tipusRima: tipusRima,
     dialecte: dialecteActiu,
     usuari: getUsuariID(),
+horaReal: new Date().toLocaleString('es-ES', {
+      timeZone: 'Europe/Madrid',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: 'numeric',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    }).replace(',', '') 
   };
 
   if (navigator.onLine === false) {
