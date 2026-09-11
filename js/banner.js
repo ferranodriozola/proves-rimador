@@ -10,13 +10,13 @@
     const RETARD = 800;
 
     const LINKS = {
-        dialectes: "/index.html",
-        joc: "/joc/index.html",
-        naufragues: "/llistes/llista_naufragues.html",
-        heptasillabics: "/llistes/llista_heptasilabs.html",
-        setSillabes: "/llistes/llista_mots_de7.html",
-        estadistiques: "/dades.html",
-        historial: "/historial_canvis.html"
+        dialectes: "index.html",
+        joc: "joc/index.html",
+        naufragues: "llistes/llista_naufragues.html",
+        heptasillabics: "llistes/llista_heptasilabs.html",
+        setSillabes: "llistes/llista_mots_de7.html",
+        estadistiques: "dades.html",
+        historial: "historial_canvis.html"
     };
 
     function potMostrar() {

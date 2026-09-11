@@ -25,6 +25,7 @@ import re
 import sys
 import unicodedata
 
+DIR_EINES = os.path.dirname(os.path.abspath(__file__))
 DIR_DADES = os.path.join(os.path.dirname(DIR_EINES), "dades")
 FITXER = os.path.join(DIR_DADES, "diaries_manuals.json")
 
