@@ -111,7 +111,7 @@ jobs:
           # DADES del joc no hi són perquè no en necessiten: van amb el resum del
           # seu contingut, que escriu joc/eines/generar_dades.py al
           # joc/dades/versions.json.
-          if git diff --name-only "$ABANS" "${{ github.sha }}" -- 'css/*.scss' 'js/*.js' 'avis/*.js' 'avis/*.css' 'joc/js/*.js' 'joc/css/*.scss' | grep -q .; then
+          if git diff --name-only "$ABANS" "${{ github.sha }}" -- 'css/*.scss' 'js/*.js' 'avis/*.js' 'avis/*.css' | grep -q .; then
             echo "any_changed=true" >> "$GITHUB_OUTPUT"
           else
             echo "any_changed=false" >> "$GITHUB_OUTPUT"
@@ -134,7 +134,6 @@ jobs:
           #
           # Van amb cometes simples perquè són codi JS ("from './ui.js?v=...'"),
           # no atributs d'HTML.
-          find joc/js -type f -name "*.js" -exec sed -i -E "s/(\.js\?v=)[^']*/\1$NOVA_VERSIO/g" {} +
 
       - name: Guardar els HTML actualitzats al repositori
         if: steps.canvis.outputs.any_changed == 'true'
