@@ -155,6 +155,27 @@ function objectiusArreuDe(entrada) {
 
 // ------------------------------------------------------- La paraula del dia
 
+/**
+ * La paraula del dia triada A MA per a un dia, si n'hi ha: la del
+ * dades/diaries_manuals.json, que s'edita a ma per als dies assenyalats (que
+ * per Nadal toqui rimar amb un mot nadalenc). Torna la forma normalitzada, o
+ * null si aquell dia va amb la roda de sempre.
+ *
+ * EL FORMAT del fitxer es un objecte de data AAAA-MM-DD a paraula:
+ *
+ *   { "2026-12-25": { "facil": "pessebre", "dificil": "torró" },
+ *     "2027-01-06": "reis" }
+ *
+ * Amb un objecte es diu una paraula per dificultat (i es pot deixar una de les
+ * dues a la roda); amb una cadena, la mateixa per a totes dues. La paraula pot
+ * dur accents: es normalitza aqui.
+ *
+ * QUE HA DE SER LA PARAULA: una del diccionari global que pugui ser paraula a
+ * rimar (no un verb, no una de l'apendix), i que es pot comprovar amb
+ * eines/comprovar_diaries_manuals.py abans de publicar-la. Si el dia arriba i
+ * en algun dialecte no s'hi troba, aquell dialecte juga amb la de la roda (vegeu
+ * seleccioDelDia a principal.js), o sigui que val la pena passar l'script.
+ */
 export function manualDelDia(manuals, dataISO, dificultat) {
     const entrada = (manuals || {})[dataISO];
     const paraula = typeof entrada === 'string' ? entrada

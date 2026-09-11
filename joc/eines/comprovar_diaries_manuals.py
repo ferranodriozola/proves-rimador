@@ -34,7 +34,7 @@ DATA = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 def normalitzar(paraula):
     """El mateix que normalitza() de joc/js/normalitza.js."""
-    text = paraula.strip().lower().replace("·", "").replace("’", "'")
+    text = paraula.strip().lower().replace("·", "").replace("’", "’")
     text = unicodedata.normalize("NFD", text)
     return "".join(c for c in text if unicodedata.category(c) != "Mn")
 
@@ -59,7 +59,7 @@ def llegir_manuals():
                     entrades.append((data, dificultat, valor[dificultat]))
             for clau in valor:
                 if clau not in ("facil", "dificil"):
-                    raise SystemExit(f"{data}: la clau '{clau}' no es ni 'facil' ni 'dificil'.")
+                    raise SystemExit(f"{data}: la clau ‘{clau}’ no es ni ‘facil’ ni ‘dificil’.")
         else:
             raise SystemExit(f"{data}: ha de ser una paraula o un objecte amb facil/dificil.")
     return entrades

@@ -1311,13 +1311,79 @@ const ES_WEB_OFICIAL = window.location.hostname === 'rimador.cat'
 function getUsuariID() {
   let usuariID = localStorage.getItem('rimador_usuari_id');
   if (!usuariID) {
-    const temps = Date.now().toString(36);    
+    const temps = Date.now().toString(36);
     const aleatori = Math.random().toString(36).substring(2, 7);
     usuariID = 'usr_' + temps + '_' + aleatori;
     localStorage.setItem('rimador_usuari_id', usuariID);
   }
   return usuariID;
 }
+
+// --------------------------------------------------- Cerques sense connexió
+//
+// Mateix patró que la classificació del joc (joc/js/classificacio.js): si el
+// fetch no pot anar, la cerca es desa al localStorage i s'envia sola quan
+// torni la connexió (o al proper cop que s'obri la pàgina).
+const CLAU_CERQUES_PENDENTS = 'rimador.cerques.pendents.v1';
+const MAX_CERQUES_PENDENTS = 100;
+
+function llegirCerquesPendents() {
+    try {
+        const cru = localStorage.getItem(CLAU_CERQUES_PENDENTS);
+        const llista = cru ? JSON.parse(cru) : [];
+        return Array.isArray(llista) ? llista : [];
+    } catch (error) {
+        return [];
+    }
+}
+
+function desarCerquesPendents(llista) {
+    try {
+        localStorage.setItem(CLAU_CERQUES_PENDENTS, JSON.stringify(llista.slice(-MAX_CERQUES_PENDENTS)));
+    } catch (error) {}
+}
+
+function encuarCerca(camps) {
+    const llista = llegirCerquesPendents();
+    llista.push(camps);
+    desarCerquesPendents(llista);
+}
+
+async function provarDEnviarCerca(camps) {
+    try {
+        await fetch(URL_GOOGLE_SCRIPT, {
+            method: 'POST', mode: 'no-cors', body: new URLSearchParams(camps),
+        });
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
+
+let buidantCerques = false;
+
+async function enviarCerquesPendents() {
+    if (buidantCerques) return 0;
+    buidantCerques = true;
+    let enviades = 0;
+    try {
+        for (;;) {
+            const llista = llegirCerquesPendents();
+            if (llista.length === 0) break;
+            if (!(await provarDEnviarCerca(llista[0]))) break;
+            const ara = llegirCerquesPendents();
+            ara.shift();
+            desarCerquesPendents(ara);
+            enviades += 1;
+        }
+    } finally {
+        buidantCerques = false;
+    }
+    return enviades;
+}
+
+window.addEventListener('online', () => enviarCerquesPendents());
+enviarCerquesPendents();
 
 function registrarCerca(paraulaBuscada, rimaTrobada, tipusRima, codiParaula, numeroSeleccionat, comenca, inclourePropis, inclourePlurals) {
   // Aquesta comprovació va la primera de totes. Abans era al final, just
@@ -1328,27 +1394,29 @@ function registrarCerca(paraulaBuscada, rimaTrobada, tipusRima, codiParaula, num
   // if (!ES_WEB_OFICIAL) return;
   if (!paraulaBuscada || paraulaBuscada.trim().length < 2) return;
 
-  const dades = new URLSearchParams();
-  dades.append('paraula', paraulaBuscada.trim().toLowerCase());
-  dades.append('rima', rimaTrobada || "***");
-  dades.append('codi', codiParaula || "***");
-  dades.append('numeroSilabes', numeroSeleccionat);
-  dades.append('comencaPer', comenca);
-  dades.append('inclourePropis', inclourePropis);
-  dades.append('inclourePlurals', inclourePlurals);
-  dades.append('tipusRima', tipusRima);
-  // En quin dialecte s'ha cercat. Es llegeix la variable i no s'entra com a
-  // paràmetre perquè no pot haver canviat des que la cerca va començar: la
-  // tira es nega a moure's amb una cerca en marxa (vegeu
-  // quanEsCanviaDeDialecte, més amunt).
-  dades.append('dialecte', dialecteActiu);
-  dades.append('usuari', getUsuariID());
+  const camps = {
+    paraula: paraulaBuscada.trim().toLowerCase(),
+    rima: rimaTrobada || "***",
+    codi: codiParaula || "***",
+    numeroSilabes: numeroSeleccionat,
+    comencaPer: comenca,
+    inclourePropis: inclourePropis,
+    inclourePlurals: inclourePlurals,
+    tipusRima: tipusRima,
+    dialecte: dialecteActiu,
+    usuari: getUsuariID(),
+  };
+
+  if (navigator.onLine === false) {
+    encuarCerca(camps);
+    return;
+  }
 
   fetch(URL_GOOGLE_SCRIPT, {
     method: 'POST',
     mode: 'no-cors',
-    body: dades
-  }).catch(error => console.log('Error silenciós', error));
+    body: new URLSearchParams(camps)
+  }).catch(() => encuarCerca(camps));
 }
 
 
