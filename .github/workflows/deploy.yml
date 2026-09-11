@@ -144,7 +144,7 @@ jobs:
           # pas de sobre ha escrit el ?v=. En aquest job també s'hi ha compilat
           # el gulp i, més avall, s'hi esborren carpetes senceres per aprimar el
           # paquet: amb un "git add ." tot allò també entraria al commit.
-          fitxers: "*.html joc/js/*.js"
+          fitxers: "*.html"
 
       - name: Aprimar el paquet abans de publicar
         run: |
