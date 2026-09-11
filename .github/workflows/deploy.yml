@@ -117,21 +117,6 @@ jobs:
             echo "any_changed=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        # npm ci i no pas npm install: instal·la exactament el que diu el
-        # package-lock.json (no el toca ni el reescriu) i és més ràpid, perquè
-        # no ha de resoldre res.
-        run: npm ci
-
-      - name: Run Gulp
-        run: npx gulp
-
       - name: Rebentar Memòria Cau (Actualitzar versions HTML) 
         if: steps.canvis.outputs.any_changed == 'true'
         run: |
