@@ -1,0 +1,58 @@
+@use "variables" as *;
+
+#footer {
+    color: black;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#footer a {
+    color: $vermell-principal; 
+    text-decoration: none;
+}
+
+#footer a:hover {
+    color: $cian-principal;
+    font-family: var(--font-divertida-minima);
+    text-decoration: underline;
+}
+
+#footer a:active {
+    color: $cian-principal;
+}
+
+#footer a:visited {
+    color: $vermell-principal; 
+}
+
+
+#footer {
+  font-size: 16px;
+}
+
+
+@media screen and (max-width: 550px) {
+#footer {
+  font-size: 14px;
+}
+}
+
+@media screen and (max-width: 470px) {
+#footer {
+  font-size: 12px;
+}
+}
+
+@media screen and (max-width: 420px) {
+#footer {
+  font-size: 11px;
+}
+}
+
+@media screen and (max-width: 350px) {
+#footer {
+  font-size: 10px;
+}
+}

@@ -1,0 +1,57 @@
+name: Generar llistes (nàufragues i mots de 7)
+
+# Workflow reutilitzable: no s'engega tot sol. El criden amb un "uses:" els dos
+# workflows que refan el diccionari, quan ja tenen les columnes noves comitejades.
+# Les fa igual publiqui's el diccionari base o el v.6: llegeix separat/col_*.txt,
+# que són sempre les columnes del diccionari publicat.
+#
+# Com que es crida amb "uses:" i no pas amb workflow_run, corre com un job més de
+# qui el crida: no genera cap execució a part i no dispara cap desplegament pel
+# seu compte. La cadena cap a Pages continua penjant del nom del workflow que
+# crida, que és el que hi ha llistat al workflow_run de deploy.yml.
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  llistes:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          # La punta de main, que és on qui ens crida acaba de deixar les
+          # columnes noves. Per defecte agafaríem el commit amb què va començar
+          # l'execució, o sigui el diccionari VELL, i generaríem les llistes a
+          # partir d'ell sense que res se'n queixés.
+          ref: main
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+
+# ------ Crear llista nàufragues
+      - name: Crear llista de naufragues
+        working-directory: llistes
+        run: python generar_naufragues.py
+
+      - name: Comit llista de nàufragues
+        uses: ./.github/actions/comitejar
+        with:
+          missatge: Generació automàtica de la llista de nàufragues
+
+# ------ Crear llistes mots_de7
+      - name: Crear llista de mots_de7
+        working-directory: llistes
+        run: |
+          python generar_mots_de7_real.py
+          python generar_mots_de7_glosa.py
+
+      - name: Comit llista de mots de 7
+        uses: ./.github/actions/comitejar
+        with:
+          missatge: Generació automàtica de la llista de mots de 7

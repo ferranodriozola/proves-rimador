@@ -1,0 +1,91 @@
+name: Publicar el diccionari (pronoms, v.6, columnes i versions)
+description: >-
+  El tram compartit dels dos workflows que refan el diccionari: del diccionari
+  BASE, que qui ens crida acaba de deixar al workspace, fins a les columnes que
+  es baixa el navegador. Tot en un sol job i un sol commit.
+
+  Ha de ser una acció composta i no pas un workflow reutilitzable: un workflow a
+  part tindria el seu propi workspace i no veuria ni el diccionari base acabat
+  de refer ni el diccionari.6.txt, que no es comiteja.
+
+inputs:
+  missatge:
+    description: El text del commit (cada workflow hi diu com ha refet el diccionari).
+    required: true
+
+runs:
+  using: composite
+  steps:
+    # L'interruptor viu a diccionaris/python/config.py, en una sola línia.
+    # Aquí només se'n llegeix el resultat: així no hi ha dos llocs que diguin
+    # quin diccionari es publica i puguin acabar dient coses diferents.
+    - name: Quin diccionari es publica
+      id: config
+      shell: bash
+      run: python diccionaris/python/config.py >> "$GITHUB_OUTPUT"
+
+# ------ Formes amb pronom i diccionari.6.txt
+#        Se salten si l'interruptor publica el diccionari base: llavors les
+#        columnes que hi ha al workspace ja són les bones.
+    - name: Generar les formes amb 1 pronom
+      if: steps.config.outputs.cal_v6 == 'true'
+      shell: bash
+      working-directory: pronoms/python
+      run: python generar_tot_1_pronom.py
+
+    - name: Generar les formes amb 2 pronoms
+      if: steps.config.outputs.cal_v6 == 'true'
+      shell: bash
+      working-directory: pronoms/python
+      run: python generar_tot_2_pronoms.py
+
+    - name: Ajuntar-ho tot a diccionari.6.txt
+      if: steps.config.outputs.cal_v6 == 'true'
+      shell: bash
+      working-directory: pronoms/python
+      run: python ajuntar_diccionari_6.py
+
+# ------ Les columnes
+#        El diccionari publicat -> col_0,1,2,5,6,7,8, i cada transcripció -> la
+#        seva col_3 i col_4. Cada transcripció vol dir les DUES de cada
+#        dialecte: la del trans_dicc (el diccionari dit en aquell dialecte) i la
+#        de l'apendix (les paraules que només es diuen allà). La regla de la
+#        rima és aquí dins i només aquí, i és la mateixa per a totes dues: una
+#        paraula del diccionari i una de l'apendix han de poder rimar entre elles.
+#
+#        Sense "if": corre sempre, publiqui's el que es publiqui. És el pas que
+#        garanteix que les columnes són SEMPRE les del diccionari que diu
+#        config.py.
+    - name: Partir-ho tot en columnes
+      shell: bash
+      run: python diccionaris/python/columnes.py
+
+# ------ Taula + índexs de cada columna: les del diccionari, les del trans_dicc
+#        de cada dialecte i les del seu apendix. Cada grup es compara amb la
+#        seva pròpia llargada, que no és la mateixa.
+    - name: Internar les columnes
+      shell: bash
+      run: python diccionaris/python/internar.py
+
+# ------ L'última paraula: comprova que tot quadri i escriu el versions.json.
+#        Ha d'anar ABANS del comit. Si aquí res no quadra, peta, el commit no
+#        arriba a fer-se i les columnes velles es queden servint-se.
+    - name: Comprovar-ho tot i actualitzar el versions.json
+      shell: bash
+      run: python diccionaris/python/versions.py
+
+    - name: Comitejar el diccionari publicat
+      uses: ./.github/actions/comitejar
+      with:
+        missatge: ${{ inputs.missatge }}
+        # Només diccionaris/ i dialectes_col/, que és on és TOT el que fa
+        # aquesta acció: les columnes, les internades, el versions.json, les
+        # columnes 10, el diccionari base i la rima de cada dialecte (la del
+        # trans_dicc i la de l'apendix). Amb "." s'hi afegiria també pronoms/txt_fets/, que
+        # són 280 MB refets a cada passada.
+        #
+        # I no s'exclou amb un pathspec negatiu (". :!pronoms/txt_fets"), que
+        # és com estava i com petava: en topar amb una ruta ignorada, el git
+        # add no l'afegeix però SURT AMB CODI 1, i el pas es posa vermell. Amb
+        # un pathspec normal, les ignorades se les salta en silenci i surt amb 0.
+        fitxers: diccionaris dialectes_col

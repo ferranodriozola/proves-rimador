@@ -1,0 +1,287 @@
+@use "variables" as *;
+
+body#principal #separador_rosa1,
+body#llista #separador_rosa1 {
+    position: sticky;
+    background-color: $rosa-principal;
+    top: 0px;
+    min-height: 40px;
+}
+
+#separador_rosa1 p {
+    margin-left:22px;
+    font-size: 16px;
+}
+
+#separador_rosa_nosaltres {
+    background-color: $rosa-principal;
+    top: 0px;
+    min-height: 40px;
+}
+
+#separador_rosa2{
+    background-color: $rosa-principal;
+    height: 40px;
+    position: sticky;
+    top: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid $negre;
+    z-index: 10; 
+}
+
+.container {
+    background-color: $cian-principal;
+    padding: 20px;
+    text-align: left;
+    margin: 40px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-radius: 10px;
+    display: block;
+    position: sticky;
+    top: 40px;
+    font-weight: bold;
+    z-index: 20;
+}
+
+.search-container {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+#paraulaCercada {
+    margin-right: 15px;
+    height: 38px;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba($negre, 0.1);
+    border-radius: 5px;
+    background-color: $gris-molt-clar;
+    border: 2px solid $blau-input;
+    font-family: var(--font-arial);
+    color: $gris-text;
+    transition: border-color 0.3s ease-in-out;
+    padding-left: 12px;
+}
+
+#paraulaCercada:focus {
+    border-color: $rosa-mitja;
+    outline: none;
+}
+
+.boto {
+    flex-shrink: 0;
+    align-items: center;
+    background-image: linear-gradient(144deg, #ff0000, #ff7300 11.11%, #fffb00 22.22%, #48ff00 33.33%, #00ffd5 44.44%, #002bff 55.55%, #7a00ff 66.66%, #ff00c8 77.77%, #ff0000);
+    border: 0;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: $blanc;
+    display: flex;
+    font-family: var(--font-sans);
+    font-size: 20px;
+    justify-content: center;
+    line-height: 1em;
+    padding: 3px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+#cercaButton {
+    width: 120px;
+}
+
+/* Petit i discret: al costat del botó de cercar no hi ha de competir, només
+   ha de ser-hi quan hi ha alguna cosa per compartir. El blau és el de tota la
+   vida del Twitter, que és el que la gent reconeix, i no pas el negre d'ara. */
+#compartirButton {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 6px;
+    margin-left: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background-color: #1DA1F2;
+    color: $blanc;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 150ms ease-in-out;
+}
+
+#compartirButton:hover {
+    background-color: #1483c2;
+}
+
+#compartirButton svg {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+}
+
+/* La regla de dalt posa display:inline-flex, que guanyaria al display:none que
+   el navegador dona de sèrie a [hidden]: sense això el botó es veuria sempre,
+   també abans de cap cerca. */
+#compartirButton[hidden] {
+    display: none;
+}
+
+#actualitzaButton {
+    width: 142px;
+}
+.boto span {
+    background-color: $blau-fosquissim;
+    padding: 10px 16px;
+    border-radius: 6px;
+    width: 100%;
+    height: 100%;
+    transition: 150ms;
+}
+
+.boto:hover span {
+    background: none;
+    color: $blau-fosquissim;
+    font-family: var(--font-divertida-minima);
+    font-weight: bold;
+}
+
+.dropdown-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 11px;
+    font-family: var(--font-sistema);
+    font-size: 14px;
+    
+    position: relative;
+}
+
+.dropdown-container label {
+    flex: 1 1 150px;
+    margin-right: 0px;
+}
+
+.dropdown-container select {
+    flex: 1 1 200px;
+    max-width: 100%;
+}
+
+
+/* Adaptat telèfons */
+
+@media screen and (max-width: 750px) {
+    .dropdown-container {
+        font-size: 12px;
+    }
+    #paraulaCercada {
+        height: 33px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .dropdown-container {
+        font-size: 10px;
+    }
+    #paraulaCercada {
+        height: 29px;
+    }
+    
+}
+
+@media screen and (max-width: 750px) {
+    .container,
+    #separador_rosa1 {
+        position: static;
+    }
+    .container {
+        margin-left: 15px;
+        margin-right: 15px;
+        padding: 15px;
+    }
+    #separador_rosa2 {
+        top: 0px !important;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .container {
+        margin-left: 8px;
+        margin-right: 8px;
+        padding: 12px;
+    }
+
+    .search-container {
+        flex-wrap: wrap;
+    }
+    #paraulaCercada {
+        margin-right: 0px;
+        margin-bottom: 10px;
+        font-size: 16px;
+        height: 38px;
+    }
+
+    .dropdown-container {
+        font-size: 13px;
+    }
+    .dropdown-container select {
+        min-height: 26px;
+        font-size: 13px;
+    }
+    #cercaButton {
+        width: 100%;
+    }
+
+    /* Amb el .search-container en flex-wrap, el botó de cercar ja ocupa tota
+       l'amplada i aquest cau a la línia de sota tot sol. Es queda petit (que és
+       la gràcia) i el margin auto el centra sota el botó gros. */
+    #compartirButton {
+        margin: 10px auto 0;
+    }
+
+    .dropdown-container > div {
+        flex: 1 1 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+    }
+    .dropdown-container select {
+        flex: 0 1 auto;
+        max-width: 55%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+#separador_rosa1 p {
+  font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 470px) {
+#separador_rosa1 p {
+  font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+#separador_rosa1 p {
+  font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+#separador_rosa1 p {
+  font-size: 10px;
+    }
+}

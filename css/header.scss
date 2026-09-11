@@ -1,0 +1,128 @@
+@use "variables" as *;
+
+header {
+    background: url("../../assets/bubbles.png") repeat;
+    background-size: 120px 120px;
+    background-color: $vermell-principal;
+    padding: 10px;
+    color: $blanc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+
+    /*  El logo és una imatge de 600x300 amb el dibuix només al mig: la lletra
+        ocupa 462x66 píxels i tota la resta és transparent (117 píxels de buit a
+        dalt i 117 a baix). Com que el .rimador de sota li dona una amplada i
+        deixa l'alçada en auto, la caixa de la imatge acaba fent 240px d'alt
+        dins d'una capçalera de 100: sobresurt uns 70px per sota, damunt de la
+        tira de dialectes, i com que l'enllaç del logo l'embolcalla, els clics
+        que hi queien anaven a parar a la pàgina d'inici.
+
+        Això ho retalla: el buit continua sent-hi, però ja no és clicable. No es
+        perd res de vista, perquè el que es retalla és transparent.
+
+        COMPTE si algun dia s'ha de treure: qualsevol cosa que hagi de sortir de
+        la capçalera (un menú desplegable penjat d'aquí, per exemple) tampoc no
+        podrà, i s'haurà d'arreglar el buit de la imatge en comptes de tapar-lo.  */
+    overflow: hidden;
+}
+
+header.p {
+    font-size: 16px;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-right: 24px;
+}
+
+.peixet-btn {
+    display: inline-block;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    line-height: 0;
+}
+
+.peixet{
+    display: inline-block;
+    width: 90px;
+    height: 90px;
+}
+
+.rimador {
+    display: inline-block;
+    width: 480px;
+    height: auto; 
+    margin-left: 5%;
+}
+
+
+/* Adaptat telèfons */
+
+@media screen and (max-width: 750px) {
+    .peixet {
+        width: 67px;
+        height: 67px;
+    }
+    .rimador {
+        width: 360px;
+        height: auto;
+    }
+    header {
+        height: 75px;
+        padding: 7px;
+        background-size: 90px 90px;
+    }
+    header.p {
+    font-size: 14px;
+    }
+    .header-icons {
+        gap: 16px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .peixet {
+        width: 45px;
+        height: 45px;
+    }
+    .rimador {
+        width: 240px;
+        height: auto;
+    }
+    header {
+        height: 50px;
+        padding: 5px;
+        background-size: 60px 60px;
+    }
+    header.p {
+    font-size: 11px;
+    }
+    .header-icons {
+        gap: 12px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .rimador {
+        width: 195px;
+        margin-left: 3%;
+    }
+    .peixet {
+        width: 40px;
+        height: 40px;
+    }
+    .header-icons {
+        margin-right: 12px;
+        gap: 10px;
+    }
+}

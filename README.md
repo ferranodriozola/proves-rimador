@@ -1,1 +1,1 @@
-El rimador català
+Rimador.cat
