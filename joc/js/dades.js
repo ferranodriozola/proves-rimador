@@ -240,13 +240,16 @@ async function baixarDialecte(dialecte) {
  * El dades/diaries_manuals.json: les paraules del dia triades a ma per a dies
  * assenyalats (vegeu manualDelDia a objectius.js pel format). S'edita a ma i
  * per aixo no passa pel versions.json: va amb ?t= i no es cacheja mai, com la
- * classificacio.
+ * classificacio. La darrera copia bona es conserva a localStorage per poder
+ * aplicar les excepcions manuals sense xarxa.
  *
- * Si no es pot llegir, es juga amb la roda de sempre i prou: val mes una
- * paraula automatica que cap paraula. La promesa es guarda, que la partida i la
- * pantalla d'ahir la demanen totes dues.
+ * Si no es pot llegir, es fa servir la darrera copia bona. Si no n'hi ha cap,
+ * es juga amb la roda de sempre i prou: val mes una paraula automatica que cap
+ * paraula. La promesa es guarda, que la partida i la pantalla d'ahir la
+ * demanen totes dues.
  */
 let manualsPromesa = null;
+const CLAU_MANUALS = 'rimador.joc.diaries-manuals.v1';
 
 export function carregarDiariesManuals() {
     if (!manualsPromesa) {
@@ -255,8 +258,28 @@ export function carregarDiariesManuals() {
                 if (!resposta.ok) throw new Error(`diaries_manuals.json: ${resposta.status}`);
                 return resposta.json();
             })
-            .then((dades) => (dades && typeof dades === 'object' ? dades : {}))
+            .then((dades) => {
+                const manuals = dades && typeof dades === 'object' ? dades : {};
+                try {
+                    localStorage.setItem(CLAU_MANUALS, JSON.stringify(manuals));
+                } catch (error) {
+                    // Mode privat o disc ple: la partida actual encara funciona.
+                }
+                return manuals;
+            })
             .catch((error) => {
+                try {
+                    const desats = localStorage.getItem(CLAU_MANUALS);
+                    if (desats) {
+                        const manuals = JSON.parse(desats);
+                        if (manuals && typeof manuals === 'object') {
+                            console.warn("No s'ha pogut llegir el diaries_manuals.json: es fa servir la darrera copia", error);
+                            return manuals;
+                        }
+                    }
+                } catch (error2) {
+                    // Es continua amb la roda si el localStorage no es pot llegir.
+                }
                 console.warn("No s'ha pogut llegir el diaries_manuals.json: es fa servir la roda", error);
                 manualsPromesa = null;   // que es pugui tornar a provar
                 return {};

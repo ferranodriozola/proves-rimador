@@ -2,11 +2,20 @@
 //
 // A Chrome, Edge i Samsung, el navegador dispara l'event
 // "beforeinstallprompt" quan el lloc compleix els criteris d'instal·lació.
-// Aquí el capturem, ensenyem un bàner discret i, si l'usuari vol,
+// Aquí el fem servir per ensenyar un bàner discret i, si l'usuari vol,
 // llancem el diàleg natiu d'instal·lació.
 //
 // A iOS Safari no hi ha cap event equivalent: ensenyem unes instruccions
 // per fer-ho a mà (compartir > afegir a la pantalla d'inici).
+//
+// COMPTE AMB QUAN ARRIBA L'EVENT: aquest fitxer va amb defer, o sigui que no
+// s'executa fins que l'HTML està analitzat del tot. El Chrome, en canvi,
+// dispara el beforeinstallprompt tan bon punt té el manifest i un service
+// worker actiu, i en una segona visita això passa MENTRE l'index encara
+// s'analitza. L'event es dispara un sol cop: si no hi ha ningú escoltant, es
+// perd per sempre i el bàner no surt mai més. Per això cada pàgina el captura
+// amb un bocí de <script> al <head> i el desa a window.__rimadorPrompt, i
+// aquí el recollim d'allà.
 //
 // No és cap dialog modal a posta: el diàleg de la nova versió (banner.js)
 // i l'avís de donatius (avis.js) ja en fan servir, i apilar-ne un tercer
@@ -16,7 +25,7 @@
     'use strict';
 
     var CLAU = 'rimador_instal_descartat';
-    var RETARD_MS = 4000;
+    var RETARD_MS = 3000;
 
     var jo = document.currentScript;
     var ARREL = (jo && jo.src) ? new URL('../../', jo.src).pathname : '/';
@@ -48,8 +57,32 @@
         return !/CriOS|FxiOS|OPiOS|EdgiOS/.test(navigator.userAgent);
     }
 
-    var promptEvent = null;
+    // El que hagi pogut capturar el bocí del <head> abans que arribéssim.
+    var promptEvent = window.__rimadorPrompt || null;
     var bannerMostrat = false;
+    var programat = false;
+
+    // El banner.js i l'avis.js obren <dialog> modals, que deixen inert tot el
+    // que hi ha a sota: si traguéssim la barra mentre n'hi ha un d'obert,
+    // quedaria darrere la cortina i no s'hi podria tocar. S'espera que es
+    // tanqui.
+    function quanNoHiHagiDialeg(fer) {
+        if (!document.querySelector('dialog[open]')) { fer(); return; }
+        var mirador = setInterval(function () {
+            if (!document.querySelector('dialog[open]')) {
+                clearInterval(mirador);
+                fer();
+            }
+        }, 500);
+    }
+
+    function programar(tipus) {
+        if (programat || bannerMostrat || jaDescartat() || jaInstalLat()) return;
+        programat = true;
+        setTimeout(function () {
+            quanNoHiHagiDialeg(function () { mostrar(tipus); });
+        }, RETARD_MS);
+    }
 
     function mostrar(tipus) {
         if (bannerMostrat || jaDescartat() || jaInstalLat()) return;
@@ -86,11 +119,19 @@
 
         document.body.appendChild(barra);
 
-        requestAnimationFrame(function () {
-            requestAnimationFrame(function () {
-                barra.classList.add('instal-visible');
-            });
-        });
+        // El doble requestAnimationFrame és el que deixa el navegador pintar la
+        // barra a baix abans de posar-li la classe, que si no no hi ha
+        // transició. El setTimeout hi és perquè el rAF no corre a les pestanyes
+        // que no es veuen: sense ell, qui canviés de pestanya durant l'espera
+        // es trobaria la barra plantada fora de pantalla.
+        var mostrada = false;
+        function apareix() {
+            if (mostrada) return;
+            mostrada = true;
+            barra.classList.add('instal-visible');
+        }
+        requestAnimationFrame(function () { requestAnimationFrame(apareix); });
+        setTimeout(apareix, 100);
 
         barra.querySelector('.instal-tanca').addEventListener('click', function () {
             descartar();
@@ -98,8 +139,11 @@
         });
 
         var botoInstal = barra.querySelector('.instal-boto');
-        if (botoInstal && promptEvent) {
+        if (botoInstal) {
+            // El promptEvent es mira aquí dins i no pas en crear el botó: pot
+            // haver arribat després de treure la barra.
             botoInstal.addEventListener('click', function () {
+                if (!promptEvent) return;
                 promptEvent.prompt();
                 promptEvent.userChoice.then(function (result) {
                     if (result.outcome === 'accepted') descartar();
@@ -116,22 +160,24 @@
         setTimeout(function () { if (barra.parentNode) barra.remove(); }, 500);
     }
 
+    // Encara escoltem l'event pel nostre compte: si el lloc compleix els
+    // criteris més tard (el service worker s'acaba d'activar, la primera
+    // visita), el Chrome el dispara ara i el bocí del <head> ja no hi és sol.
     window.addEventListener('beforeinstallprompt', function (e) {
         e.preventDefault();
         promptEvent = e;
-        if (!jaDescartat()) {
-            setTimeout(function () { mostrar('prompt'); }, RETARD_MS);
-        }
+        programar('prompt');
     });
 
-    if (esSafariIOS()) {
-        window.addEventListener('load', function () {
-            setTimeout(function () { mostrar('ios'); }, RETARD_MS);
-        });
+    if (promptEvent) {
+        programar('prompt');
+    } else if (esSafariIOS()) {
+        programar('ios');
     }
 
     window.addEventListener('appinstalled', function () {
         descartar();
+        promptEvent = null;
         var barra = document.querySelector('.instal-banner');
         if (barra) tancar(barra);
     });
